@@ -22923,7 +22923,7 @@ export interface operations {
                      *               },
                      *               "children": [
                      *                 {
-                     *                   "name": "Current Liabilties",
+                     *                   "name": "Current Liabilities",
                      *                   "id": "CURRENT_LIABILITY",
                      *                   "node_type": "AGGREGATE",
                      *                   "type": "AGGREGATE",
@@ -23610,7 +23610,7 @@ export interface operations {
                      *                     "cells": [
                      *                       {
                      *                         "key": "name",
-                     *                         "value": "Current Liabilties"
+                     *                         "value": "Current Liabilities"
                      *                       },
                      *                       {
                      *                         "key": "total",
@@ -23738,7 +23738,7 @@ export interface operations {
                      *                         "cells": [
                      *                           {
                      *                             "key": "name",
-                     *                             "value": "Total Current Liabilties"
+                     *                             "value": "Total Current Liabilities"
                      *                           },
                      *                           {
                      *                             "key": "total",

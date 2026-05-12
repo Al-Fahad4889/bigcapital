@@ -15262,7 +15262,7 @@
                           },
                           "children": [
                             {
-                              "name": "Current Liabilties",
+                              "name": "Current Liabilities",
                               "id": "CURRENT_LIABILITY",
                               "node_type": "AGGREGATE",
                               "type": "AGGREGATE",
@@ -15951,7 +15951,7 @@
                                 "cells": [
                                   {
                                     "key": "name",
-                                    "value": "Current Liabilties"
+                                    "value": "Current Liabilities"
                                   },
                                   {
                                     "key": "total",
@@ -16079,7 +16079,7 @@
                                     "cells": [
                                       {
                                         "key": "name",
-                                        "value": "Total Current Liabilties"
+                                        "value": "Total Current Liabilities"
                                       },
                                       {
                                         "key": "total",
