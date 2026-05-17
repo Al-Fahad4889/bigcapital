@@ -60,7 +60,11 @@ export enum AbilitySubject {
   CreditNote = 'CreditNode',
   VendorCredit = 'VendorCredit',
   Project = 'Project',
-  TaxRate = 'TaxRate'
+  TaxRate = 'TaxRate',
+  AuditLog = 'AuditLog',
+  Role = 'Role',
+  Warehouse = 'Warehouse',
+  Branch = 'Branch',
 }
 
 export interface IRoleCreatedPayload {
