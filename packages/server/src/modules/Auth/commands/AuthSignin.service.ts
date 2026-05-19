@@ -65,15 +65,8 @@ export class AuthSigninService {
         .query()
         .findOne({ email: payload.sub })
         .throwIfNotFound();
-
-      tenant = await this.tenantModel
-        .query()
-        .findById(user.tenantId)
-        .throwIfNotFound();
-
-      this.clsService.set('tenantId', user.tenantId);
+      
       this.clsService.set('userId', user.id);
-      this.clsService.set('organizationId', tenant.organizationId);
     } catch (error) {
       throw new UserNotFoundException(String(payload.sub));
     }
