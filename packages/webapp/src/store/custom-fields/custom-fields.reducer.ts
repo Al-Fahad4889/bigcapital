@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import t from '@/store/types';
+import { CUSTOM_FIELDS_RESOURCE_SET } from '@/store/types';;
 import type { CustomFieldsState, CustomFieldsAction } from './custom-fields.types';
 
 const initialState: CustomFieldsState = {
@@ -15,7 +15,7 @@ const initialState: CustomFieldsState = {
 };
 
 export const customFieldsReducer = createReducer(initialState, {
-  [t.CUSTOM_FIELDS_RESOURCE_SET]: (state, action: CustomFieldsAction) => {
+  [CUSTOM_FIELDS_RESOURCE_SET]: (state, action: CustomFieldsAction) => {
     if (action.resource_slug !== undefined) {
       state.custom_fields[action.resource_slug] = action.custom_field;
     }

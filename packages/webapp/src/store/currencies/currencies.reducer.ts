@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import t from '@/store/types';
+import { CURRENCIES_REGISTERED_SET, CURRENCIES_TABLE_LOADING, CURRENCY_CODE_DELETE } from '@/store/types';;
 import type { CurrenciesState, CurrencyAction } from './currencies.types';
 
 const initialState: CurrenciesState = {
@@ -8,7 +8,7 @@ const initialState: CurrenciesState = {
 };
 
 export const currenciesReducer = createReducer(initialState, {
-  [t.CURRENCIES_REGISTERED_SET]: (state, action: CurrencyAction) => {
+  [CURRENCIES_REGISTERED_SET]: (state, action: CurrencyAction) => {
     const _currencies: Record<string, unknown> = {};
 
     (action.currencies ?? []).forEach((currency) => {
@@ -20,10 +20,10 @@ export const currenciesReducer = createReducer(initialState, {
       ..._currencies,
     };
   },
-  [t.CURRENCIES_TABLE_LOADING]: (state, action: CurrencyAction) => {
+  [CURRENCIES_TABLE_LOADING]: (state, action: CurrencyAction) => {
     state.loading = action.loading ?? false;
   },
-  [t.CURRENCY_CODE_DELETE]: (state, action: CurrencyAction) => {
+  [CURRENCY_CODE_DELETE]: (state, action: CurrencyAction) => {
     if (action.currency_code !== undefined && typeof state.data[action.currency_code] !== 'undefined') {
       delete state.data[action.currency_code];
     }

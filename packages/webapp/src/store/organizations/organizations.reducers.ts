@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { omit } from 'lodash';
-import t from '@/store/types';
+import { ORGANIZATIONS_LIST_SET, SET_ORGANIZATION_CONGRATS } from '@/store/types';;
 
 interface OrganizationsState {
   data: Record<string, unknown>;
@@ -21,7 +21,7 @@ type OrganizationCongratsAction = {
 };
 
 const reducer = createReducer(initialState, {
-  [t.ORGANIZATIONS_LIST_SET]: (state, action: OrganizationsListAction) => {
+  [ORGANIZATIONS_LIST_SET]: (state, action: OrganizationsListAction) => {
     const { organizations } = action.payload;
     const _data: Record<string, unknown> = {};
     const _dataByOrganizationId: Record<string, unknown> = {};
@@ -40,7 +40,7 @@ const reducer = createReducer(initialState, {
     state.byOrganizationId = _dataByOrganizationId;
   },
 
-  [t.SET_ORGANIZATION_CONGRATS]: (state, action: OrganizationCongratsAction) => {
+  [SET_ORGANIZATION_CONGRATS]: (state, action: OrganizationCongratsAction) => {
     const { tenantId, congrats } = action.payload;
 
     state.data[tenantId] = {

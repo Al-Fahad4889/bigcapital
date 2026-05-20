@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import t from '@/store/types';
+import { AP_AGING_SUMMARY, AR_AGING_SUMMARY, BALANCE_SHEET, CASH_FLOW_STATEMENT, CUSTOMERS_BALANCE_SUMMARY, CUSTOMERS_TRANSACTIONS, DISPLAY_FILTER_DRAWER_TOGGLE, GENERAL_LEDGER, INVENTORY_ITEM_DETAILS, INVENTORY_VALUATION, JOURNAL, PROFIT_LOSS, PROJECT_PROFITABILITY_SUMMARY, PURCHASES_BY_ITEMS, REALIZED_GAIN_OR_LOSS, SALES_BY_ITEMS, SALES_TAX_LIABILITY_SUMMARY, TRIAL_BALANCE_SHEET, UNREALIZED_GAIN_OR_LOSS, VENDORS_BALANCE_SUMMARY, VENDORS_TRANSACTIONS } from '@/store/types';;
 
 interface FinancialReportSlice {
   displayFilterDrawer: boolean;
@@ -35,7 +35,7 @@ const initialState: FinancialStatementsState = {
 type ToggleAction = { payload?: { toggle?: boolean } };
 
 const financialStatementFilterToggle = (financialName: string, statePath: string) => ({
-  [`${financialName}/${t.DISPLAY_FILTER_DRAWER_TOGGLE}`]: (
+  [`${financialName}/${DISPLAY_FILTER_DRAWER_TOGGLE}`]: (
     state: FinancialStatementsState,
     action: ToggleAction,
   ) => {
@@ -47,24 +47,24 @@ const financialStatementFilterToggle = (financialName: string, statePath: string
 });
 
 export const financialStatementsReducer = createReducer(initialState, {
-  ...financialStatementFilterToggle(t.BALANCE_SHEET, 'balanceSheet'),
-  ...financialStatementFilterToggle(t.TRIAL_BALANCE_SHEET, 'trialBalance'),
-  ...financialStatementFilterToggle(t.JOURNAL, 'journal'),
-  ...financialStatementFilterToggle(t.GENERAL_LEDGER, 'generalLedger'),
-  ...financialStatementFilterToggle(t.PROFIT_LOSS, 'profitLoss'),
-  ...financialStatementFilterToggle(t.AR_AGING_SUMMARY, 'ARAgingSummary'),
-  ...financialStatementFilterToggle(t.AP_AGING_SUMMARY, 'APAgingSummary'),
-  ...financialStatementFilterToggle(t.PURCHASES_BY_ITEMS, 'purchasesByItems'),
-  ...financialStatementFilterToggle(t.SALES_BY_ITEMS, 'salesByItems'),
-  ...financialStatementFilterToggle(t.INVENTORY_VALUATION, 'inventoryValuation'),
-  ...financialStatementFilterToggle(t.CUSTOMERS_BALANCE_SUMMARY, 'customersBalanceSummary'),
-  ...financialStatementFilterToggle(t.VENDORS_BALANCE_SUMMARY, 'vendorsBalanceSummary'),
-  ...financialStatementFilterToggle(t.CUSTOMERS_TRANSACTIONS, 'customersTransactions'),
-  ...financialStatementFilterToggle(t.VENDORS_TRANSACTIONS, 'vendorsTransactions'),
-  ...financialStatementFilterToggle(t.CASH_FLOW_STATEMENT, 'cashFlowStatement'),
-  ...financialStatementFilterToggle(t.INVENTORY_ITEM_DETAILS, 'inventoryItemDetails'),
-  ...financialStatementFilterToggle(t.REALIZED_GAIN_OR_LOSS, 'realizedGainOrLoss'),
-  ...financialStatementFilterToggle(t.UNREALIZED_GAIN_OR_LOSS, 'unrealizedGainOrLoss'),
-  ...financialStatementFilterToggle(t.PROJECT_PROFITABILITY_SUMMARY, 'projectProfitabilitySummary'),
-  ...financialStatementFilterToggle(t.SALES_TAX_LIABILITY_SUMMARY, 'salesTaxLiabilitySummary'),
+  ...financialStatementFilterToggle(BALANCE_SHEET, 'balanceSheet'),
+  ...financialStatementFilterToggle(TRIAL_BALANCE_SHEET, 'trialBalance'),
+  ...financialStatementFilterToggle(JOURNAL, 'journal'),
+  ...financialStatementFilterToggle(GENERAL_LEDGER, 'generalLedger'),
+  ...financialStatementFilterToggle(PROFIT_LOSS, 'profitLoss'),
+  ...financialStatementFilterToggle(AR_AGING_SUMMARY, 'ARAgingSummary'),
+  ...financialStatementFilterToggle(AP_AGING_SUMMARY, 'APAgingSummary'),
+  ...financialStatementFilterToggle(PURCHASES_BY_ITEMS, 'purchasesByItems'),
+  ...financialStatementFilterToggle(SALES_BY_ITEMS, 'salesByItems'),
+  ...financialStatementFilterToggle(INVENTORY_VALUATION, 'inventoryValuation'),
+  ...financialStatementFilterToggle(CUSTOMERS_BALANCE_SUMMARY, 'customersBalanceSummary'),
+  ...financialStatementFilterToggle(VENDORS_BALANCE_SUMMARY, 'vendorsBalanceSummary'),
+  ...financialStatementFilterToggle(CUSTOMERS_TRANSACTIONS, 'customersTransactions'),
+  ...financialStatementFilterToggle(VENDORS_TRANSACTIONS, 'vendorsTransactions'),
+  ...financialStatementFilterToggle(CASH_FLOW_STATEMENT, 'cashFlowStatement'),
+  ...financialStatementFilterToggle(INVENTORY_ITEM_DETAILS, 'inventoryItemDetails'),
+  ...financialStatementFilterToggle(REALIZED_GAIN_OR_LOSS, 'realizedGainOrLoss'),
+  ...financialStatementFilterToggle(UNREALIZED_GAIN_OR_LOSS, 'unrealizedGainOrLoss'),
+  ...financialStatementFilterToggle(PROJECT_PROFITABILITY_SUMMARY, 'projectProfitabilitySummary'),
+  ...financialStatementFilterToggle(SALES_TAX_LIABILITY_SUMMARY, 'salesTaxLiabilitySummary'),
 });

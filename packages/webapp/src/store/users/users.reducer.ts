@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { createTableQueryReducers } from '@/store/query-reducers';
-import t from '@/store/types';
+import { USERS_LIST_SET, USERS_TABLE_LOADING, USER_DELETE, USER_DETAILS_SET } from '@/store/types';;
 import type { UsersState } from './users.types';
 
 const initialState: UsersState = {
@@ -10,7 +10,7 @@ const initialState: UsersState = {
 };
 
 export const usersReducer = createReducer(initialState, {
-  [t.USERS_LIST_SET]: (state, action: { type: string; payload: { users: Array<Record<string, unknown>> } }) => {
+  [USERS_LIST_SET]: (state, action: { type: string; payload: { users: Array<Record<string, unknown>> } }) => {
     const { users } = action.payload;
     const _users = {};
 
@@ -25,17 +25,17 @@ export const usersReducer = createReducer(initialState, {
     };
   },
 
-  [t.USER_DETAILS_SET]: (state, action: { type: string; payload: { id: string | number; user: Record<string, unknown> } }) => {
+  [USER_DETAILS_SET]: (state, action: { type: string; payload: { id: string | number; user: Record<string, unknown> } }) => {
     const { id, user } = action.payload;
     const _user = state.items[id] || {};
     state.items[id] = { ..._user, ...user };
   },
 
-  [t.USERS_TABLE_LOADING]: (state, action: { type: string; payload: { loading: boolean } }) => {
+  [USERS_TABLE_LOADING]: (state, action: { type: string; payload: { loading: boolean } }) => {
     const { loading } = action.payload;
     state.loading = loading;
   },
-  [t.USER_DELETE]: (state, action: { type: string; payload: { id: string | number } }) => {
+  [USER_DELETE]: (state, action: { type: string; payload: { id: string | number } }) => {
     const { id } = action.payload;
     if (typeof state.items[id] !== 'undefined') {
       delete state.items[id];

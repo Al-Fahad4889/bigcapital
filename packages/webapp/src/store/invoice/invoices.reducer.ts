@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET, INVOICES_SET_SELECTED_ROWS, INVOICES_RESET_SELECTED_ROWS } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 interface InvoicesState {
@@ -33,15 +33,15 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('INVOICES', defaultTableQuery),
 
-  [`INVOICES/SET_SELECTED_ROWS`]: (state: InvoicesState, action: { payload: Array<unknown> }) => {
+  [INVOICES_SET_SELECTED_ROWS]: (state: InvoicesState, action: { payload: Array<unknown> }) => {
     state.selectedRows = action.payload;
   },
 
-  [`INVOICES/RESET_SELECTED_ROWS`]: (state: InvoicesState) => {
+  [INVOICES_RESET_SELECTED_ROWS]: (state: InvoicesState) => {
     state.selectedRows = [];
   },
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

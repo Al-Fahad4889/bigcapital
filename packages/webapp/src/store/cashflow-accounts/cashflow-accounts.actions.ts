@@ -1,4 +1,4 @@
-import t from '@/store/types';
+import { CASHFLOW_ACCOUNTS_TABLE_STATE_RESET, CASHFLOW_ACCOUNTS_TABLE_STATE_SET } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 /**
@@ -6,7 +6,7 @@ import type { TableQuery } from '@/store/store.types';
  */
 export const setCashflowAccountsTableState = (queries: Partial<TableQuery>) => {
   return {
-    type: t.CASHFLOW_ACCOUNTS_TABLE_STATE_SET,
+    type: CASHFLOW_ACCOUNTS_TABLE_STATE_SET,
     payload: { queries },
   };
 };
@@ -16,7 +16,7 @@ export const setCashflowAccountsTableState = (queries: Partial<TableQuery>) => {
  */
 export const resetCashflowAccountsTableState = () => {
   return {
-    type: t.CASHFLOW_ACCOUNTS_TABLE_STATE_RESET,
+    type: CASHFLOW_ACCOUNTS_TABLE_STATE_RESET,
   };
 };
  

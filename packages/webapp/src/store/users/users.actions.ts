@@ -1,24 +1,24 @@
 import ApiService from '@/services/ApiService';
-import t from '@/store/types';
+import { USERS_LIST_SET, USERS_TABLE_LOADING, USER_DELETE, USER_DETAILS_SET } from '@/store/types';;
 
 export const fetchUsers = () => {
   return (dispatch) =>
     new Promise((resolve, reject) => {
       dispatch({
-        type: t.USERS_TABLE_LOADING,
+        type: USERS_TABLE_LOADING,
         payload: { loading: true },
       });
 
       ApiService.get(`users`)
         .then((response) => {
           dispatch({
-            type: t.USERS_LIST_SET,
+            type: USERS_LIST_SET,
             payload: {
               users: response.data.users,
             },
           });
           dispatch({
-            type: t.USERS_TABLE_LOADING,
+            type: USERS_TABLE_LOADING,
             payload: { loading: false },
           });
           resolve(response);
@@ -35,7 +35,7 @@ export const fetchUser = ({ id }) => {
       ApiService.get(`users/${id}`)
         .then((response) => {
           dispatch({
-            type: t.USER_DETAILS_SET,
+            type: USER_DETAILS_SET,
             payload: {
               id,
               user: response.data.user,
@@ -55,7 +55,7 @@ export const deleteUser = ({ id }) => {
       ApiService.delete(`users/${id}`)
         .then((response) => {
           dispatch({
-            type: t.USER_DELETE,
+            type: USER_DELETE,
             payload: {
               id,
             },

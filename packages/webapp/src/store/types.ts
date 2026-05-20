@@ -1,71 +1,34 @@
-import authentication from './authentication/authentication.types';
-import accounts from './accounts/accounts.types';
-import cashflowAccounts from './cashflow-accounts/cashflow-accounts.types';
-import accounting from './manual-journals/manual-journals.types';
-import currencies from './currencies/currencies.types';
-import customFields from './custom-fields/custom-fields.types';
-import customViews from './custom-views/custom-views.types';
-import dashboard from './dashboard/dashboard.types';
-import expenses from './expenses/expenses.types';
-import items from './items/items.types';
-import preferences from './preferences/preferences.types';
-import users from './users/users.types';
-import financialStatements from './financial-statement/financial-statements.types';
-import itemCategories from './item-categories/items-category.type';
-import settings from './settings/settings.type';
-import search from './search/search.type';
-import register from './registers/register.type';
-import exchangeRate from './exchange-rate/exchange.type';
-import customer from './customers/customers.type';
-import estimates from './estimate/estimates.types';
-import invoices from './invoice/invoices.types';
-import receipts from './receipts/receipts.type';
-import bills from './bills/bills.type';
-import vendors from './vendors/vendors.types';
-import paymentReceives from './payment-receives/payment-receives.type';
-import paymentMades from './payment-mades/payment-mades.type';
-import organizations from './organizations/organizations.types';
-import subscription from './subscription/subscription.types';
-import inventoryAdjustments from './inventory-adjustments/inventory-adjustment.type';
-import creditNote from './credit-note/credit-note.type';
-import vendorCredit from './vendor-credit/vendor-credit.type';
-import WarehouseTransfer from './warehouse-transfer/warehouse-transfer.type';
-import projects from './project/projects.type'
-import plans from './plans/plans.types';
-
-export default {
-  ...authentication,
-  ...accounts,
-  ...cashflowAccounts,
-  ...currencies,
-  ...customFields,
-  ...customViews,
-  ...dashboard,
-  ...expenses,
-  ...items,
-  ...preferences,
-  ...users,
-  ...financialStatements,
-  ...itemCategories,
-  ...settings,
-  ...accounting,
-  ...search,
-  ...register,
-  ...exchangeRate,
-  ...customer,
-  ...vendors,
-  ...estimates,
-  ...invoices,
-  ...receipts,
-  ...bills,
-  ...paymentReceives,
-  ...paymentMades,
-  ...organizations,
-  ...subscription,
-  ...inventoryAdjustments,
-  ...plans,
-  ...creditNote,
-  ...vendorCredit,
-  ...WarehouseTransfer,
-  ...projects
-};
+export * from './authentication/authentication.types';
+export * from './accounts/accounts.types';
+export * from './cashflow-accounts/cashflow-accounts.types';
+export * from './manual-journals/manual-journals.types';
+export * from './currencies/currencies.types';
+export * from './custom-fields/custom-fields.types';
+export * from './custom-views/custom-views.types';
+export * from './dashboard/dashboard.types';
+export * from './expenses/expenses.types';
+export * from './items/items.types';
+export * from './preferences/preferences.types';
+export * from './users/users.types';
+export * from './financial-statement/financial-statements.types';
+export * from './item-categories/items-category.type';
+export * from './settings/settings.type';
+export * from './search/search.type';
+export * from './registers/register.type';
+export * from './exchange-rate/exchange.type';
+export * from './customers/customers.type';
+export * from './estimate/estimates.types';
+export * from './invoice/invoices.types';
+export * from './receipts/receipts.type';
+export * from './bills/bills.type';
+export * from './vendors/vendors.types';
+export * from './payment-receives/payment-receives.type';
+export * from './payment-mades/payment-mades.type';
+export * from './organizations/organizations.types';
+export * from './subscription/subscription.types';
+export * from './inventory-adjustments/inventory-adjustment.type';
+export * from './credit-note/credit-note.type';
+export * from './vendor-credit/vendor-credit.type';
+export * from './warehouse-transfer/warehouse-transfer.type';
+export * from './project/projects.type';
+export * from './plans/plans.types';

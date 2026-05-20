@@ -10,6 +10,4 @@ export type CustomFieldsAction = {
   fields?: Array<unknown>;
 };
 
-export default {
-  CUSTOM_FIELDS_RESOURCE_SET: 'CUSTOM_FIELDS_RESOURCE_SET',
-};
+export const CUSTOM_FIELDS_RESOURCE_SET = 'CUSTOM_FIELDS_RESOURCE_SET' as const;

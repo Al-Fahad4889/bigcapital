@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 interface CashflowAccountsState {
@@ -30,7 +30,7 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('CASHFLOW_ACCOUNTS', defaultTableQuery),
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

@@ -1,13 +1,13 @@
 // @ts-nocheck
 import { createReducer } from '@reduxjs/toolkit';
-import t from '@/store/types';
+import { REGISTER_SET } from '@/store/types';;
 
 const initialState = {
   registers: {},
 };
 
 export default createReducer(initialState, {
-  [t.REGISTER_SET]: (state, action) => {
+  [REGISTER_SET]: (state, action) => {
     const _registers = {};
 
     action.registers.forEach((register) => {

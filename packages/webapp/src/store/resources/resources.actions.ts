@@ -1,5 +1,5 @@
 import ApiService from '@/services/ApiService';
-import t from '@/store/types';
+import { RESOURCE_DATA_SET, RESOURCE_FIELDS_SET } from '@/store/types';;
 
 export const fetchResourceColumns = ({ resourceSlug }: { resourceSlug: string }) => {
   return (_dispatch: any) =>
@@ -15,7 +15,7 @@ export const fetchResourceFields = ({ resourceSlug }: { resourceSlug: string }) 
     new Promise((resolve, reject) => {
       ApiService.get(`resources/${resourceSlug}/fields`)
         .then((response) => {
-          dispatch({ type: t.RESOURCE_FIELDS_SET, fields: response.data.resource_fields, resource_slug: resourceSlug });
+          dispatch({ type: RESOURCE_FIELDS_SET, fields: response.data.resource_fields, resource_slug: resourceSlug });
           resolve(response);
         })
         .catch((error) => reject(error));
@@ -27,7 +27,7 @@ export const fetchResourceData = ({ resourceSlug }: { resourceSlug: string }) =>
     new Promise((resolve, reject) => {
       ApiService.get(`/resources/${resourceSlug}/data`)
         .then((response) => {
-          dispatch({ type: t.RESOURCE_DATA_SET, payload: { data: response.data.resource_data, resourceKey: resourceSlug } });
+          dispatch({ type: RESOURCE_DATA_SET, payload: { data: response.data.resource_data, resourceKey: resourceSlug } });
           resolve(response);
         })
         .catch((error) => reject(error));

@@ -4,9 +4,7 @@ export interface UsersState {
   loading: boolean;
 }
 
-export default {
-  USERS_LIST_SET: 'USERS_LIST_SET',
-  USERS_TABLE_LOADING: 'USERS_TABLE_LOADING',
-  USER_DETAILS_SET: 'USER_DETAILS_SET',
-  USER_DELETE: 'USER_DELETE',
-};
+export const USERS_LIST_SET = 'USERS_LIST_SET' as const;
+export const USERS_TABLE_LOADING = 'USERS_TABLE_LOADING' as const;
+export const USER_DETAILS_SET = 'USER_DETAILS_SET' as const;
+export const USER_DELETE = 'USER_DELETE' as const;

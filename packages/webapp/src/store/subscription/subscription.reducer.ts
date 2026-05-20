@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import t from '@/store/types';
+import { SET_PLAN_SUBSCRIPTIONS_LIST } from '@/store/types';;
 
 interface SubscriptionsState {
   data: Record<string, unknown>;
@@ -10,7 +10,7 @@ const initialState: SubscriptionsState = {
 };
 
 export const subscriptionsReducer = createReducer(initialState, {
-  [t.SET_PLAN_SUBSCRIPTIONS_LIST]: (
+  [SET_PLAN_SUBSCRIPTIONS_LIST]: (
     state,
     action: { payload: { subscriptions: Array<Record<string, unknown>> } },
   ) => {

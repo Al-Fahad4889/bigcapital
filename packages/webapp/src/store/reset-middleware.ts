@@ -1,14 +1,17 @@
-// @ts-nocheck
-export default (next) => (reducer, initialState, enhancer) => {
-  let resetType = 'RESET'
-  let resetData = 'state'
+import type { StoreEnhancer } from 'redux';
 
-  const enhanceReducer = (state, action) => {
-    if (action.type === resetType) {
-      state = action[resetData]
+const ResetMiddleware: StoreEnhancer = (next) => (reducer, initialState) => {
+  const resetType = 'RESET';
+  const resetData = 'state';
+
+  const enhanceReducer: typeof reducer = (state, action) => {
+    if ((action as { type: string }).type === resetType) {
+      state = (action as Record<string, unknown>)[resetData] as typeof state;
     }
-    return reducer(state, action)
-  }
+    return reducer(state, action);
+  };
 
-  return next(enhanceReducer, initialState, enhancer)
-}
+  return next(enhanceReducer, initialState);
+};
+
+export default ResetMiddleware;

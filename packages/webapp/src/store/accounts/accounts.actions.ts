@@ -1,9 +1,9 @@
-import t from '@/store/types';
+import { ACCOUNTS_TABLE_STATE_RESET, ACCOUNTS_TABLE_STATE_SET, ACCOUNTS_SET_SELECTED_ROWS } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 export const setAccountsTableState = (queries: Partial<TableQuery>) => {
   return {
-    type: t.ACCOUNTS_TABLE_STATE_SET,
+    type: ACCOUNTS_TABLE_STATE_SET,
     payload: { queries },
   };
 };
@@ -13,7 +13,7 @@ export const setAccountsTableState = (queries: Partial<TableQuery>) => {
  */
 export const resetAccountsTableState = () => {
   return {
-    type: t.ACCOUNTS_TABLE_STATE_RESET,
+    type: ACCOUNTS_TABLE_STATE_RESET,
   };
 };
 
@@ -22,7 +22,7 @@ export const resetAccountsTableState = () => {
  */
 export const setAccountsSelectedRows = (selectedRows: Array<unknown>) => {
   return {
-    type: 'ACCOUNTS/SET_SELECTED_ROWS',
+    type: ACCOUNTS_SET_SELECTED_ROWS,
     payload: selectedRows,
   };
 };

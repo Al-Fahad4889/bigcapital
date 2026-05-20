@@ -1,4 +1,4 @@
-import t from '@/store/types';
+import { INVENTORY_ADJUSTMENTS_TABLE_STATE_SET } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 /**
@@ -6,7 +6,7 @@ import type { TableQuery } from '@/store/store.types';
  */
 export const setInventoryAdjustmentsTableState = (queries: Partial<TableQuery>) => {
   return {
-    type: t.INVENTORY_ADJUSTMENTS_TABLE_STATE_SET,
+    type: INVENTORY_ADJUSTMENTS_TABLE_STATE_SET,
     payload: { queries },
   };
 };

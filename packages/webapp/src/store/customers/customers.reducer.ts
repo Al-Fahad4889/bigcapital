@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET, CUSTOMERS_SET_SELECTED_ROWS, CUSTOMERS_RESET_SELECTED_ROWS } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 interface CustomersState {
@@ -27,15 +27,15 @@ const initialState: CustomersState = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('CUSTOMERS', defaultTableQueryState),
 
-  ['CUSTOMERS/SET_SELECTED_ROWS']: (state: CustomersState, action: { payload: Array<unknown> }) => {
+  [CUSTOMERS_SET_SELECTED_ROWS]: (state: CustomersState, action: { payload: Array<unknown> }) => {
     state.selectedRows = action.payload;
   },
 
-  ['CUSTOMERS/RESET_SELECTED_ROWS']: (state: CustomersState) => {
+  [CUSTOMERS_RESET_SELECTED_ROWS]: (state: CustomersState) => {
     state.selectedRows = [];
   },
 
-  [t.RESET]: () => initialState,
+  [RESET]: () => initialState,
 });
 
 const STORAGE_KEY = 'bigcapital:estimates';

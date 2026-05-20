@@ -11,8 +11,6 @@ export type CustomViewsAction = {
   resource?: string;
 };
 
-export default {
-  VIEW_META_SET: 'VIEW_META_SET',
-  VIEW_ITEMS_SET: 'VIEW_ITEMS_SET',
-  RESOURCE_VIEWS_SET: 'RESOURCE_VIEWS_SET',
-};
+export const VIEW_META_SET = 'VIEW_META_SET' as const;
+export const VIEW_ITEMS_SET = 'VIEW_ITEMS_SET' as const;
+export const RESOURCE_VIEWS_SET = 'RESOURCE_VIEWS_SET' as const;

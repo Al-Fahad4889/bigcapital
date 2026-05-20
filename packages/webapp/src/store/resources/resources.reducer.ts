@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import t from '@/store/types';
+import { RESOURCE_COLUMNS_SET, RESOURCE_DATA_SET, RESOURCE_FIELDS_SET } from '@/store/types';;
 
 interface ResourcesState {
   data: { resources: Record<string, unknown> };
@@ -44,7 +44,7 @@ const initialState: ResourcesState = {
 };
 
 export const resourcesReducer = createReducer(initialState, {
-  [t.RESOURCE_COLUMNS_SET]: (state, action: ResourcesAction) => {
+  [RESOURCE_COLUMNS_SET]: (state, action: ResourcesAction) => {
     const _columns: Record<string, unknown> = {};
 
     (action.columns ?? []).forEach((column) => {
@@ -59,7 +59,7 @@ export const resourcesReducer = createReducer(initialState, {
     }
   },
 
-  [t.RESOURCE_FIELDS_SET]: (state, action: ResourcesAction) => {
+  [RESOURCE_FIELDS_SET]: (state, action: ResourcesAction) => {
     const _fields: Record<string, unknown> = {};
 
     (action.fields ?? []).forEach((field) => {
@@ -74,7 +74,7 @@ export const resourcesReducer = createReducer(initialState, {
     }
   },
 
-  [t.RESOURCE_DATA_SET]: (state, action: ResourcesAction) => {
+  [RESOURCE_DATA_SET]: (state, action: ResourcesAction) => {
     const { data, resourceKey } = action.payload!;
     const _data: Record<string, unknown> = {};
 

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import t from '@/store/types';
+import { CATEGORY_DELETE, ITEMS_CATEGORY_LIST_SET } from '@/store/types';;
 import { createReducer } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export default createReducer(initialState, {
-  [t.ITEMS_CATEGORY_LIST_SET]: (state, action) => {
+  [ITEMS_CATEGORY_LIST_SET]: (state, action) => {
     const _categories = {};
 
     action.categories.forEach(category => {
@@ -23,7 +23,7 @@ export default createReducer(initialState, {
     };
   },
 
-  [t.CATEGORY_DELETE]: (state, action) => {
+  [CATEGORY_DELETE]: (state, action) => {
     const { id } = action.payload;
     const categories = { ...state.categories };
 

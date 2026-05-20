@@ -4,7 +4,7 @@ import purgeStoredState from 'redux-persist/es/purgeStoredState';
 import storage from 'redux-persist/lib/storage';
 import { isUndefined } from 'lodash';
 import { getCookie } from '@/utils';
-import t from '@/store/types';
+import { AUTH_LOGIN_CLEAR_ERRORS, AUTH_LOGIN_FAILURE, AUTH_SET_AUTH_TOKEN, AUTH_SET_EMAIL_VERIFIED, AUTH_SET_ORGANIZATIOIN_ID, AUTH_SET_USER_ID, RESET } from '@/store/types';
 
 export interface AuthenticationState {
   token: string | null;
@@ -30,18 +30,18 @@ const STORAGE_KEY = 'bigcapital:authentication';
 const CONFIG = { key: STORAGE_KEY, whitelist: [], storage };
 
 const reducerInstance = createReducer(initialState, {
-  [t.LOGIN_FAILURE]: (
+  [AUTH_LOGIN_FAILURE]: (
     state: AuthenticationState,
     action: { errors: Array<{ type: string; [key: string]: unknown }> },
   ) => {
     state.errors = action.errors;
   },
 
-  [t.LOGIN_CLEAR_ERRORS]: (state: AuthenticationState) => {
+  [AUTH_LOGIN_CLEAR_ERRORS]: (state: AuthenticationState) => {
     state.errors = [];
   },
 
-  [t.SET_EMAIL_VERIFIED]: (
+  [AUTH_SET_EMAIL_VERIFIED]: (
     state: AuthenticationState,
     action: PayloadAction<{ verified?: boolean; email?: string }>,
   ) => {
@@ -55,28 +55,28 @@ const reducerInstance = createReducer(initialState, {
     }
   },
 
-  [t.SET_AUTH_TOKEN]: (
+  [AUTH_SET_AUTH_TOKEN]: (
     state: AuthenticationState,
     action: PayloadAction<{ token: string }>,
   ) => {
     state.token = action.payload.token;
   },
 
-  [t.SET_ORGANIZATIOIN_ID]: (
+  [AUTH_SET_ORGANIZATIOIN_ID]: (
     state: AuthenticationState,
     action: PayloadAction<{ organizationId: string }>,
   ) => {
     state.organizationId = action.payload.organizationId;
   },
 
-  [t.SET_USER_ID]: (
+  [AUTH_SET_USER_ID]: (
     state: AuthenticationState,
     action: PayloadAction<{ userId: string }>,
   ) => {
     state.userId = action.payload.userId;
   },
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

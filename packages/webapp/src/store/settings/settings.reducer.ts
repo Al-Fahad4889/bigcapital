@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-import t from '@/store/types';
+import { SETTING_ADD, SETTING_SET } from '@/store/types';;
 import type { SettingAction } from './settings.type';
 
 const initialState = {
@@ -77,7 +77,7 @@ const PRESIST_CONFIG = {
 };
 
 const reducerInstance = createReducer(initialState, {
-  [t.SETTING_SET]: (state, action: SettingAction) => {
+  [SETTING_SET]: (state, action: SettingAction) => {
     const { options } = action;
     const _data: Record<string, Record<string, unknown>> = {
       ...(state.data as Record<string, Record<string, unknown>>),
@@ -95,7 +95,7 @@ const reducerInstance = createReducer(initialState, {
     state.data = _data as typeof state.data;
   },
 
-  [t.SETTING_ADD]: (state, action: SettingAction) => {
+  [SETTING_ADD]: (state, action: SettingAction) => {
     const { group, key, value } = action.payload!;
 
     const newData = {

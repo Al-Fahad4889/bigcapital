@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET, ITEMS_SET_SELECTED_ROWS } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 interface ItemsTableQuery extends Partial<TableQuery> {
@@ -38,11 +38,11 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('ITEMS', defaultTableQuery),
 
-  [`ITEMS/SET_SELECTED_ROWS`]: (state: ItemsState, action: { payload: Array<unknown> }) => {
+  [ITEMS_SET_SELECTED_ROWS]: (state: ItemsState, action: { payload: Array<unknown> }) => {
     state.selectedRows = action.payload;
   },
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

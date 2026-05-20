@@ -4,7 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import {
   createTableStateReducers,
 } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET } from '@/store/types';;
 
 interface ItemCategoriesState {
   tableState: { filterRoles: Array<unknown> };
@@ -28,7 +28,7 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('ITEMS_CATEGORIES'),
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

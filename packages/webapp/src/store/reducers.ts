@@ -1,6 +1,6 @@
 import { AnyAction, combineReducers } from 'redux';
 
-import types from './types';
+import { RESET } from './types';
 
 import { authenticationPersistReducer as authentication } from './authentication/authentication.reducer';
 import { dashboardPersistReducer as dashboard } from './dashboard/dashboard.reducer';
@@ -83,7 +83,7 @@ const rootReducer = (
   state: RootState | undefined,
   action: AnyAction,
 ): RootState => {
-  if (action.type === types.RESET) {
+  if (action.type === RESET) {
     state = undefined;
   }
   return appReducer(state, action);

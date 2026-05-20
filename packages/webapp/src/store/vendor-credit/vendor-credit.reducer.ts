@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import t from '@/store/types';
+import { RESET, VENDOR_CREDITS_SET_SELECTED_ROWS } from '@/store/types';;
 import type { TableQuery } from '@/store/store.types';
 
 interface VendorCreditState {
@@ -33,11 +33,11 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('VENDOR_CREDITS', defaultTableQuery),
 
-  [`VENDOR_CREDITS/SET_SELECTED_ROWS`]: (state: VendorCreditState, action: { payload: Array<unknown> }) => {
+  [VENDOR_CREDITS_SET_SELECTED_ROWS]: (state: VendorCreditState, action: { payload: Array<unknown> }) => {
     state.selectedRows = action.payload;
   },
 
-  [t.RESET]: () => {
+  [RESET]: () => {
     purgeStoredState(CONFIG);
   },
 });

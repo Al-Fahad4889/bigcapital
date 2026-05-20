@@ -1,6 +1,5 @@
-// @ts-nocheck
-import t from '@/store/types';
+import { INIT_SUBSCRIPTION_PLANS } from '@/store/types';;
 
 export const initSubscriptionPlans = () => ({
-  type: t.INIT_SUBSCRIPTION_PLANS
+  type: INIT_SUBSCRIPTION_PLANS
 });
