@@ -97,11 +97,12 @@ const reducerInstance = createReducer(initialState, {
 
   [SETTING_ADD]: (state, action: SettingAction) => {
     const { group, key, value } = action.payload!;
+    const groupKey = group as keyof typeof state.data;
 
     const newData = {
       ...state.data,
       [group]: {
-        ...(state.data[group] as Record<string, unknown>),
+        ...((state.data[groupKey] as Record<string, unknown>) ?? {}),
         [key]: value,
       },
     };
