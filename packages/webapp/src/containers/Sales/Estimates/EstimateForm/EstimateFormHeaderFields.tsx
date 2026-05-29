@@ -28,6 +28,7 @@ import { useEstimateFormContext } from './EstimateFormProvider';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 import { useTheme } from '@emotion/react';
 import { Theme } from '@xstyled/emotion';
+import intl from 'react-intl-universal';
 
 const getEstimateFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -65,7 +66,7 @@ export default function EstimateFormHeader() {
       {/* ----------- Estimate Date ----------- */}
       <FFormGroup
         name={'estimate_date'}
-        label={<T id={'estimate_date'} />}
+        label={intl.get('estimate_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -87,7 +88,7 @@ export default function EstimateFormHeader() {
       {/* ----------- Expiration date ----------- */}
       <FFormGroup
         name={'expiration_date'}
-        label={<T id={'expiration_date'} />}
+        label={intl.get('expiration_date')}
         inline
         fastField
       >
@@ -109,7 +110,7 @@ export default function EstimateFormHeader() {
       <EstimateFormEstimateNumberField />
 
       {/* ----------- Reference ----------- */}
-      <FFormGroup name={'reference'} label={<T id={'reference'} />} inline fill>
+      <FFormGroup name={'reference'} label={intl.get('reference')} inline fill>
         <FInputGroup name={'reference'} minimal={true} />
       </FFormGroup>
 
@@ -117,7 +118,7 @@ export default function EstimateFormHeader() {
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
           name={'project_id'}
-          label={<T id={'estimate.project_name.label'} />}
+          label={intl.get('estimate.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -153,7 +154,7 @@ function EstimateFormCustomerSelect() {
 
   return (
     <FFormGroup
-      label={<T id={'customer_name'} />}
+      label={intl.get('customer_name')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
       name={'customer_id'}

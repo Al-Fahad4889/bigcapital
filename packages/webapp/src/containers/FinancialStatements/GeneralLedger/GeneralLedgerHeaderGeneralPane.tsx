@@ -5,7 +5,7 @@ import {
   AccountsMultiSelect,
   Row,
   Col,
-  FormattedMessage as T,
+
   FFormGroup,
 } from '@/components';
 
@@ -16,6 +16,7 @@ import { FinancialStatementDateRange } from '../FinancialStatementDateRange';
 import { filterAccountsOptions } from './common';
 import { useGLGeneralPanelContext } from './GLHeaderGeneralPaneProvider';
 import { GLHeaderGeneralPanelProvider } from './GLHeaderGeneralPaneProvider';
+import intl from 'react-intl-universal';
 
 /**
  * General ledger (GL) - Header - General panel.
@@ -49,7 +50,7 @@ function GLHeaderGeneralPaneContent() {
       <Row>
         <Col xs={4}>
           <FFormGroup
-            label={<T id={'specific_accounts'} />}
+            label={intl.get('specific_accounts')}
             name={'accountsIds'}
             className={Classes.FILL}
           >

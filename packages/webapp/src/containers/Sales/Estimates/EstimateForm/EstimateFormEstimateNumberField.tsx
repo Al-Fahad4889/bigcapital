@@ -12,6 +12,7 @@ import {
 } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
+import intl from 'react-intl-universal';
 
 /**
  * Estimate number field of estimate form.
@@ -61,7 +62,7 @@ export const EstimateFormEstimateNumberField = R.compose(
     return (
       <FFormGroup
         name={'estimate_number'}
-        label={<T id={'estimate'} />}
+        label={intl.get('estimate')}
         inline={true}
       >
         <ControlGroup fill={true}>

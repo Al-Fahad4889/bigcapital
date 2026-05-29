@@ -97,7 +97,7 @@ export default function ProjectExpenseFormFields() {
       {/*------------ Charge -----------*/}
       <FFormGroup
         name={'expenseCharge'}
-        label={<T id={'project_expense.dialog.charge'} />}
+        label={intl.get('project_expense.dialog.charge')}
         className={classNames('form-group--select-list', Classes.FILL)}
       >
         <ProjectTaskChargeTypeSelect

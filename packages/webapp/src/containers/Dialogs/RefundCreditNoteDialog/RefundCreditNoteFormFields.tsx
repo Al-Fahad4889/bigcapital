@@ -24,7 +24,7 @@ import {
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
-  FormattedMessage as T,
+
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -68,7 +68,7 @@ function RefundCreditNoteFormFields({
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />}>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -85,7 +85,7 @@ function RefundCreditNoteFormFields({
           {/* ------------- Refund date ------------- */}
           <FFormGroup
             name={'date'}
-            label={<T id={'refund_credit_note.dialog.refund_date'} />}
+            label={intl.get('refund_credit_note.dialog.refund_date')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -104,7 +104,7 @@ function RefundCreditNoteFormFields({
           {/* ------------ Form account ------------ */}
           <FFormGroup
             name={'from_account_id'}
-            label={<T id={'refund_credit_note.dialog.from_account'} />}
+            label={intl.get('refund_credit_note.dialog.from_account')}
             labelInfo={<FieldRequiredHint />}
             fill
             fastField
@@ -129,7 +129,7 @@ function RefundCreditNoteFormFields({
       {/* ------------- Amount ------------- */}
       <FFormGroup
         name={'amount'}
-        label={<T id={'refund_credit_note.dialog.amount'} />}
+        label={intl.get('refund_credit_note.dialog.amount')}
         labelInfo={<FieldRequiredHint />}
         fill
         fastField
@@ -158,14 +158,14 @@ function RefundCreditNoteFormFields({
       </If>
 
       {/* ------------ Reference No. ------------ */}
-      <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />} fill fastField>
+      <FFormGroup name={'reference_no'} label={intl.get('reference_no')} fill fastField>
         <FInputGroup name={'reference_no'} minimal fill />
       </FFormGroup>
 
       {/* --------- Statement --------- */}
       <FFormGroup
         name={'description'}
-        label={<T id={'refund_credit_note.dialog.description'} />}
+        label={intl.get('refund_credit_note.dialog.description')}
         fill
         fastField
       >

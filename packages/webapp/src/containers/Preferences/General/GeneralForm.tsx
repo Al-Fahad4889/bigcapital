@@ -27,6 +27,7 @@ import { useGeneralFormContext } from './GeneralFormProvider';
 
 import { shouldBaseCurrencyUpdate } from './utils';
 import { SelectButton } from '@/components/Forms/Select';
+import intl from 'react-intl-universal';
 
 const Countries = getAllCountries();
 /**
@@ -53,7 +54,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* ---------- Organization name ----------  */}
       <FFormGroup
         name={'name'}
-        label={<T id={'organization_name'} />}
+        label={intl.get('organization_name')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         helperText={<T id={'shown_on_sales_forms_and_purchase_orders'} />}
@@ -65,7 +66,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* ---------- Organization Tax Number ----------  */}
       <FFormGroup
         name={'tax_number'}
-        label={<T id={'organization_tax_number'} />}
+        label={intl.get('organization_tax_number')}
         inline={true}
         helperText={<T id={'shown_on_sales_forms_and_purchase_orders'} />}
         fastField={true}
@@ -76,7 +77,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* ---------- Industry ----------  */}
       <FFormGroup
         name={'industry'}
-        label={<T id={'organization_industry'} />}
+        label={intl.get('organization_industry')}
         inline={true}
         fastField={true}
       >
@@ -86,7 +87,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* ---------- Location ---------- */}
       <FFormGroup
         name={'location'}
-        label={<T id={'business_location'} />}
+        label={intl.get('business_location')}
         inline={true}
         fastField={true}
       >
@@ -147,7 +148,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       <FFormGroup
         name={'base_currency'}
         baseCurrencyDisabled={baseCurrencyDisabled}
-        label={<T id={'base_currency'} />}
+        label={intl.get('base_currency')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         helperText={
@@ -176,7 +177,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* --------- Fiscal Year ----------- */}
       <FFormGroup
         name={'fiscal_year'}
-        label={<T id={'fiscal_year'} />}
+        label={intl.get('fiscal_year')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         helperText={<T id={'for_reporting_you_can_specify_any_month'} />}
@@ -196,7 +197,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* ---------- Language ---------- */}
       <FormGroup
         name={'language'}
-        label={<T id={'language'} />}
+        label={intl.get('language')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         fastField={true}
@@ -218,7 +219,7 @@ export default function PreferencesGeneralForm({ isSubmitting }) {
       {/* --------- Data format ----------- */}
       <FFormGroup
         name={'date_format'}
-        label={<T id={'date_format'} />}
+        label={intl.get('date_format')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         helperText={<ErrorMessage name="date_format" />}
@@ -287,7 +288,7 @@ function TimezoneField() {
   return (
     <FFormGroup
       name={'timezone'}
-      label={<T id={'time_zone'} />}
+      label={intl.get('time_zone')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
       intent={inputIntent({ error, touched: isTouched })}

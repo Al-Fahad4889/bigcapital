@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Row,
   Col,
-  FormattedMessage as T,
+
   ItemsMultiSelect,
   FFormGroup,
 } from '@/components';
@@ -14,6 +14,7 @@ import {
   PurchasesByItemsGeneralPanelProvider,
   usePurchaseByItemsGeneralPanelContext,
 } from './PurchasesByItemsGeneralPanelProvider';
+import intl from 'react-intl-universal';
 
 /**
  *
@@ -40,7 +41,7 @@ function PurchasesByItemsGeneralPanelContent() {
         <Col xs={4}>
           <FinancialStatementsFilter
             items={filterItemsOptions}
-            label={<T id={'items.label_filter_items'} />}
+            label={intl.get('items.label_filter_items')}
             initialSelectedItem={'with-transactions'}
           />
         </Col>
@@ -48,7 +49,7 @@ function PurchasesByItemsGeneralPanelContent() {
 
       <Row>
         <Col xs={4}>
-          <FFormGroup name={'itemsIds'} label={<T id={'Specific items'} />}>
+          <FFormGroup name={'itemsIds'} label={intl.get('Specific items')}>
             <ItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>

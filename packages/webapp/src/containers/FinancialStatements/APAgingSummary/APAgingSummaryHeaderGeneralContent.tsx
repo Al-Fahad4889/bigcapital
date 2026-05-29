@@ -1,7 +1,7 @@
 import React from 'react';
 import { Position } from '@blueprintjs/core';
 import {
-  FormattedMessage as T,
+
   Row,
   Col,
   FieldHint,
@@ -14,6 +14,7 @@ import { useAPAgingSummaryGeneralContext } from './APAgingSummaryGeneralProvider
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import { filterVendorsOptions } from './constants';
 import { momentFormatter } from '@/utils';
+import intl from 'react-intl-universal';
 
 export function APAgingSummaryHeaderGeneralContent() {
   const { vendors } = useAPAgingSummaryGeneralContext();
@@ -24,7 +25,7 @@ export function APAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'asDate'}
-            label={<T id={'as_date'} />}
+            label={intl.get('as_date')}
             labelInfo={<FieldHint />}
             fill
             fastField
@@ -45,7 +46,7 @@ export function APAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'agingDaysBefore'}
-            label={<T id={'aging_before_days'} />}
+            label={intl.get('aging_before_days')}
             labelInfo={<FieldHint />}
           >
             <FInputGroup name={'agingDaysBefore'} />
@@ -57,7 +58,7 @@ export function APAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'agingPeriods'}
-            label={<T id={'aging_periods'} />}
+            label={intl.get('aging_periods')}
             labelInfo={<FieldHint />}
           >
             <FInputGroup name={'agingPeriods'} />
@@ -69,14 +70,14 @@ export function APAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FinancialStatementsFilter
             items={filterVendorsOptions}
-            label={<T id={'AP_aging_summary.filter_options.label'} />}
+            label={intl.get('AP_aging_summary.filter_options.label')}
           />
         </Col>
       </Row>
 
       <Row>
         <Col xs={5}>
-          <FFormGroup label={<T id={'specific_vendors'} />} name={'vendorsIds'}>
+          <FFormGroup label={intl.get('specific_vendors')} name={'vendorsIds'}>
             <VendorsMultiSelect name={'vendorsIds'} items={vendors} />
           </FFormGroup>
         </Col>

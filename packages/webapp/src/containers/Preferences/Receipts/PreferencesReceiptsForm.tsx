@@ -5,6 +5,7 @@ import { Button, Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
 
 import { FormattedMessage as T, FFormGroup, FTextArea } from '@/components';
+import intl from 'react-intl-universal';
 
 /**
  * Preferences general form.
@@ -22,7 +23,7 @@ export function PreferencesReceiptsForm({ isSubmitting }) {
       {/* ---------- Customer Notes ----------  */}
       <FFormGroup
         name={'receiptMessage'}
-        label={<T id={'pref.receipts.receiptMessage.field'} />}
+        label={intl.get('pref.receipts.receiptMessage.field')}
         fastField={true}
       >
         <FTextArea
@@ -36,7 +37,7 @@ export function PreferencesReceiptsForm({ isSubmitting }) {
       {/* ---------- Terms & Conditions ----------  */}
       <FFormGroup
         name={'termsConditions'}
-        label={<T id={'pref.receipts.termsConditions.field'} />}
+        label={intl.get('pref.receipts.termsConditions.field')}
         fastField={true}
       >
         <FTextArea

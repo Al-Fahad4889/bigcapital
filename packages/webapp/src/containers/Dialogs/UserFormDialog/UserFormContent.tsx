@@ -15,6 +15,7 @@ import { useUserFormContext } from './UserFormProvider';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 import { UserFormCalloutAlerts } from './components';
+import intl from 'react-intl-universal';
 
 /**
  * User form content.
@@ -40,7 +41,7 @@ function UserFormContent({
         {/* ----------- Email ----------- */}
         <FFormGroup
           name={'email'}
-          label={<T id={'email'} />}
+          label={intl.get('email')}
           labelInfo={<FieldRequiredHint />}
         >
           <FInputGroup name={'email'} />
@@ -49,7 +50,7 @@ function UserFormContent({
         {/* ----------- First name ----------- */}
         <FFormGroup
           name={'first_name'}
-          label={<T id={'first_name'} />}
+          label={intl.get('first_name')}
           labelInfo={<FieldRequiredHint />}
         >
           <FInputGroup name={'first_name'} />
@@ -58,7 +59,7 @@ function UserFormContent({
         {/* ----------- Last name ----------- */}
         <FFormGroup
           name={'last_name'}
-          label={<T id={'last_name'} />}
+          label={intl.get('last_name')}
           labelInfo={<FieldRequiredHint />}
         >
           <FInputGroup name={'last_name'} />
@@ -67,7 +68,7 @@ function UserFormContent({
         {/* ----------- Role name ----------- */}
         <FFormGroup
           name={'role_id'}
-          label={<T id={'roles.label.role_name'} />}
+          label={intl.get('roles.label.role_name')}
           labelInfo={<FieldRequiredHint />}
           className={classNames(CLASSES.FILL, 'form-group--role_name')}
         >

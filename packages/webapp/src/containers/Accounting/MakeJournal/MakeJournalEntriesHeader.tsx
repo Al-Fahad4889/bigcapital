@@ -4,10 +4,11 @@ import {
   Group,
   PageForm,
   PageFormBigNumber,
-  FormattedMessage as T,
+
 } from '@/components';
 import MakeJournalEntriesHeaderFields from './MakeJournalEntriesHeaderFields';
 import { useManualJournalTotalFormatted } from './utils';
+import intl from 'react-intl-universal';
 
 export default function MakeJournalEntriesHeader() {
   return (
@@ -26,6 +27,6 @@ function MakeJournalHeaderBigNumber() {
   const totalFormatted = useManualJournalTotalFormatted();
 
   return (
-    <PageFormBigNumber label={<T id={'amount'} />} amount={totalFormatted} />
+    <PageFormBigNumber label={intl.get('amount')} amount={totalFormatted} />
   );
 }

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Classes, ControlGroup } from '@blueprintjs/core';
 import {
   FieldRequiredHint,
-  FormattedMessage as T,
+
   FFormGroup,
   FInputGroup,
 } from '@/components';
@@ -19,7 +19,7 @@ function BranchFormFields() {
       {/*------------ Branch Name -----------*/}
       <FFormGroup
         name={'name'}
-        label={<T id={'branch.dialog.label.branch_name'} />}
+        label={intl.get('branch.dialog.label.branch_name')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         className={'form-group--branch_name'}
@@ -29,7 +29,7 @@ function BranchFormFields() {
       {/*------------ Branch Code -----------*/}
       <FFormGroup
         name={'code'}
-        label={<T id={'branch.dialog.label.branch_code'} />}
+        label={intl.get('branch.dialog.label.branch_code')}
         inline={true}
         className={'form-group--branch_name'}
       >

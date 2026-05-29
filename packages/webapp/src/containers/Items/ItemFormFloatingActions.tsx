@@ -8,6 +8,7 @@ import { CLASSES } from '@/constants/classes';
 import { useItemFormContext } from './ItemFormProvider';
 import { Group, FormattedMessage as T } from '@/components';
 import { saveInvoke } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Item form floating actions.
@@ -73,7 +74,7 @@ export default function ItemFormFloatingActions({ onCancel }) {
           <FormGroup inline={true} className={'form-group--active'}>
             <Checkbox
               inline={true}
-              label={<T id={'active'} />}
+              label={intl.get('active')}
               name={'active'}
               {...field}
             />

@@ -9,17 +9,18 @@ import {
   FFormGroup,
   FSelect,
   FieldRequiredHint,
-  FormattedMessage as T,
+
 } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { inputIntent } from '@/utils';
+import intl from 'react-intl-universal';
 
 export default function NotifyViaSMSFormFields({ notificationTypes }) {
   return (
     <NotifyViaSMSFormFieldsRoot>
       <FFormGroup
         name={'notification_key'}
-        label={<T id={'notify_via_sms.dialog.notification_type'} />}
+        label={intl.get('notify_via_sms.dialog.notification_type')}
         className={classNames(CLASSES.FILL)}
         fastField
       >
@@ -39,7 +40,7 @@ export default function NotifyViaSMSFormFields({ notificationTypes }) {
       <FastField name={'customer_name'}>
         {({ form, field, meta: { error, touched } }) => (
           <FormGroup
-            label={<T id={'notify_via_sms.dialog.send_notification_to'} />}
+            label={intl.get('notify_via_sms.dialog.send_notification_to')}
             className={classNames('form-group--customer-name', CLASSES.FILL)}
             labelInfo={<FieldRequiredHint />}
             intent={inputIntent({ error, touched })}
@@ -58,7 +59,7 @@ export default function NotifyViaSMSFormFields({ notificationTypes }) {
       <FastField name={'customer_phone_number'}>
         {({ form, field, meta: { error, touched } }) => (
           <FormGroup
-            label={<T id={'phone_number'} />}
+            label={intl.get('phone_number')}
             labelInfo={<FieldRequiredHint />}
             intent={inputIntent({ error, touched })}
             helperText={<ErrorMessage name="customer_phone_number" />}

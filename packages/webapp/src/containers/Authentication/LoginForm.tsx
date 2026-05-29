@@ -6,6 +6,7 @@ import { Tooltip2 } from '@blueprintjs/popover2';
 
 import { FFormGroup, FInputGroup, FCheckbox, T } from '@/components';
 import { AuthSubmitButton } from './_components';
+import intl from 'react-intl-universal';
 
 /**
  * Login form.
@@ -32,11 +33,11 @@ export default function LoginForm({ isSubmitting }) {
 
   return (
     <Form>
-      <FFormGroup name={'crediential'} label={<T id={'email_address'} />}>
+      <FFormGroup name={'crediential'} label={intl.get('email_address')}>
         <FInputGroup name={'crediential'} large={true} />
       </FFormGroup>
 
-      <FFormGroup name={'password'} label={<T id={'password'} />}>
+      <FFormGroup name={'password'} label={intl.get('password')}>
         <FInputGroup
           name={'password'}
           large={true}

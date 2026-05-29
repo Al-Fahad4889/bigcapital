@@ -3,10 +3,11 @@ import {
   Row,
   Col,
   FSelect,
-  FormattedMessage as T,
+
   FFormGroup,
 } from '@/components';
 import { displayColumnsByOptions } from './constants';
+import intl from 'react-intl-universal';
 
 interface SelectDisplayColumnsByProps {
   formGroupProps?: Record<string, unknown>;
@@ -21,7 +22,7 @@ export function SelectDisplayColumnsBy(props: SelectDisplayColumnsByProps) {
       <Col xs={4}>
         <FFormGroup
           name={'displayColumnsType'}
-          label={<T id={'display_report_columns'} />}
+          label={intl.get('display_report_columns')}
           inline={false}
           {...formGroupProps}
         >

@@ -22,6 +22,7 @@ import {
 import { useMakeJournalFormContext } from './MakeJournalProvider';
 import { JournalExchangeRateInputField } from './components';
 import { MakeJournalTransactionNoField } from './MakeJournalTransactionNoField';
+import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -54,7 +55,7 @@ export default function MakeJournalEntriesHeader({}) {
       {/*------------ Posting date -----------*/}
       <FFormGroup
         name={'date'}
-        label={<T id={'posting_date'} />}
+        label={intl.get('posting_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -82,7 +83,7 @@ export default function MakeJournalEntriesHeader({}) {
       {/*------------ Reference -----------*/}
       <FFormGroup
         name={'reference'}
-        label={<T id={'reference'} />}
+        label={intl.get('reference')}
         labelInfo={
           <Hint
             content={<T id={'journal_reference_hint'} />}
@@ -98,7 +99,7 @@ export default function MakeJournalEntriesHeader({}) {
       {/*------------ Journal type  -----------*/}
       <FFormGroup
         name={'journal_type'}
-        label={<T id={'journal_type'} />}
+        label={intl.get('journal_type')}
         inline
         fastField
       >
@@ -108,7 +109,7 @@ export default function MakeJournalEntriesHeader({}) {
       {/*------------ Currency  -----------*/}
       <FFormGroup
         name={'currency_code'}
-        label={<T id={'currency'} />}
+        label={intl.get('currency')}
         inline
         fastField
       >

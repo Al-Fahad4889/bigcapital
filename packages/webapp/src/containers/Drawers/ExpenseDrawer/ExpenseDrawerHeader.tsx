@@ -11,10 +11,11 @@ import {
   DetailItem,
   DetailsMenu,
   ExchangeRateDetailItem,
-  FormattedMessage as T,
+
 } from '@/components';
 import { useExpenseDrawerContext } from './ExpenseDrawerProvider';
 import { ExpenseDetailsStatus } from './components';
+import intl from 'react-intl-universal';
 
 /**
  * Expense drawer content.
@@ -26,7 +27,7 @@ export default function ExpenseDrawerHeader() {
     <CommercialDocHeader>
       <CommercialDocTopHeader>
         <DetailsMenu>
-          <DetailItem name={'amount'} label={<T id={'full_amount'} />}>
+          <DetailItem name={'amount'} label={intl.get('full_amount')}>
             <h3 class="big-number">{expense.formatted_amount}</h3>
           </DetailItem>
 
@@ -39,15 +40,15 @@ export default function ExpenseDrawerHeader() {
       <Row>
         <Col xs={6}>
           <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
-            <DetailItem name={'date'} label={<T id={'date'} />}>
+            <DetailItem name={'date'} label={intl.get('date')}>
               {expense.formatted_date}
             </DetailItem>
 
-            <DetailItem name={'reference'} label={<T id={'reference_no'} />}>
+            <DetailItem name={'reference'} label={intl.get('reference_no')}>
               {defaultTo(expense.reference_no, '-')}
             </DetailItem>
 
-            <DetailItem label={<T id={'description'} />}>
+            <DetailItem label={intl.get('description')}>
               {defaultTo(expense.description, '—')}
             </DetailItem>
             <ExchangeRateDetailItem
@@ -63,11 +64,11 @@ export default function ExpenseDrawerHeader() {
             direction={'horizantal'}
             minLabelSize={'180px'}
           >
-            <DetailItem label={<T id={'published_at'} />}>
+            <DetailItem label={intl.get('published_at')}>
               {expense.formatted_published_at || '—'}
             </DetailItem>
 
-            <DetailItem label={<T id={'created_at'} />}>
+            <DetailItem label={intl.get('created_at')}>
               {expense.formatted_created_at} 
             </DetailItem>
           </DetailsMenu>

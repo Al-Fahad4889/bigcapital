@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/css';
 import { Stepper } from '@/components/Stepper';
-import { FormattedMessage as T } from '@/components';
 import CreateWorkspaceForm from './CreateWorkspaceForm';
 import BuildingWorkspaceStep from './BuildingWorkspaceStep';
 import InviteUsersStep from './InviteUsersStep';
+import intl from 'react-intl-universal';
 
 interface CreateWorkspaceStepperProps {
   onClose: () => void;
@@ -75,21 +75,21 @@ export function CreateWorkspaceStepper({ onClose }: CreateWorkspaceStepperProps)
         content: createWorkspaceStepperContentCss,
       }}
     >
-      <Stepper.Step label={<T id={'create_workspace.steps.workspace'} />}>
+      <Stepper.Step label={intl.get('create_workspace.steps.workspace')}>
         <CreateWorkspaceForm
           onSubmitting={handleWorkspaceCreated}
           onCancel={onClose}
         />
       </Stepper.Step>
 
-      <Stepper.Step label={<T id={'create_workspace.steps.building'} />}>
+      <Stepper.Step label={intl.get('create_workspace.steps.building')}>
         <BuildingWorkspaceStep
           jobId={createdWorkspace?.jobId}
           onComplete={handleBuildingComplete}
         />
       </Stepper.Step>
 
-      <Stepper.Step label={<T id={'create_workspace.steps.invite'} />}>
+      <Stepper.Step label={intl.get('create_workspace.steps.invite')}>
         <InviteUsersStep
           organizationId={createdWorkspace?.organizationId}
           onComplete={handleInviteComplete}

@@ -3,7 +3,7 @@ import React from 'react';
 import { FormGroup, Position, ControlGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
+
   FAccountsSuggestField,
   InputPrependText,
   FieldRequiredHint,
@@ -27,6 +27,7 @@ import {
 import { MoneyInOutTransactionNoField } from '../../_components';
 import { useMoneyOutFieldsContext } from '../MoneyOutFieldsProvider';
 import { MoneyOutExchangeRateField } from '../MoneyOutExchangeRateField';
+import intl from 'react-intl-universal';
 
 /**
  * Owner drawings form fields.
@@ -44,7 +45,7 @@ export default function OwnerDrawingsFormFields() {
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup label={<T id={'branch'} />} name={'branch_id'}>
+            <FFormGroup label={intl.get('branch')} name={'branch_id'}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -61,7 +62,7 @@ export default function OwnerDrawingsFormFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -86,7 +87,7 @@ export default function OwnerDrawingsFormFields() {
         <Col xs={10}>
           <FormGroup
             name={'amount'}
-            label={<T id={'amount'} />}
+            label={intl.get('amount')}
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
@@ -105,7 +106,7 @@ export default function OwnerDrawingsFormFields() {
           {/*------------ equitty account -----------*/}
           <FFormGroup
             name={'credit_account_id'}
-            label={<T id={'cash_flow_transaction.label_equity_account'} />}
+            label={intl.get('cash_flow_transaction.label_equity_account')}
             labelInfo={<FieldRequiredHint />}
           >
             <FAccountsSuggestField
@@ -118,14 +119,14 @@ export default function OwnerDrawingsFormFields() {
 
         <Col xs={5}>
           {/*------------ Reference -----------*/}
-          <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />}>
+          <FFormGroup name={'reference_no'} label={intl.get('reference_no')}>
             <FInputGroup name={'reference_no'} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ description -----------*/}
-      <FFormGroup name={'description'} label={<T id={'description'} />}>
+      <FFormGroup name={'description'} label={intl.get('description')}>
         <FTextArea
           name={'description'}
           growVertically={true}

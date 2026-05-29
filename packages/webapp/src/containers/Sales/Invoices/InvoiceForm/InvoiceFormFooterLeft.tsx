@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import {
   FFormGroup,
   FEditableText,
-  FormattedMessage as T,
+
   Box,
   Group,
   Stack,
@@ -31,7 +31,7 @@ export function InvoiceFormFooterLeft() {
       {/* --------- Invoice message --------- */}
       <InvoiceMsgFormGroup
         name={'invoice_message'}
-        label={<T id={'invoice_message'} />}
+        label={intl.get('invoice_message')}
       >
         <FEditableText
           name={'invoice_message'}
@@ -43,7 +43,7 @@ export function InvoiceFormFooterLeft() {
 
       {/* --------- Terms and conditions --------- */}
       <TermsConditsFormGroup
-        label={<T id={'invoice_form.label.terms_conditions'} />}
+        label={intl.get('invoice_form.label.terms_conditions')}
         name={'terms_conditions'}
       >
         <FEditableText

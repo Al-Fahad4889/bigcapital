@@ -21,6 +21,7 @@ import { useIsDarkMode } from '@/hooks/useDarkMode';
 import { getFiscalYear } from '@/constants/fiscalYearOptions';
 import { getLanguages } from '@/constants/languagesOptions';
 import { getAllCurrenciesOptions } from '@/constants/currencies';
+import intl from 'react-intl-universal';
 
 const countries = getAllCountries();
 
@@ -45,7 +46,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
       {/* ---------- Organization name ----------  */}
       <FFormGroup
         name={'name'}
-        label={<T id={'legal_organization_name'} />}
+        label={intl.get('legal_organization_name')}
         fastField
       >
         <FInputGroup name={'name'} large fastField />
@@ -54,7 +55,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
       {/* ---------- Location ---------- */}
       <FFormGroup
         name={'location'}
-        label={<T id={'business_location'} />}
+        label={intl.get('business_location')}
         fastField={true}
       >
         <FSelect
@@ -74,7 +75,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
           {/* ----------  Base currency ----------  */}
           <FFormGroup
             name={'baseCurrency'}
-            label={<T id={'base_currency'} />}
+            label={intl.get('base_currency')}
             fastField={true}
           >
             <FSelect
@@ -92,7 +93,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
 
         {/* ---------- Language ---------- */}
         <Col xs={6}>
-          <FFormGroup name={'language'} label={<T id={'language'} />} fastField>
+          <FFormGroup name={'language'} label={intl.get('language')} fastField>
             <FSelect
               name={'language'}
               items={Languages}
@@ -110,7 +111,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
       {/* --------- Fiscal Year ----------- */}
       <FFormGroup
         name={'fiscalYear'}
-        label={<T id={'fiscal_year'} />}
+        label={intl.get('fiscal_year')}
         fastField
       >
         <FSelect
@@ -126,7 +127,7 @@ export default function SetupOrganizationForm({ isSubmitting, values }) {
       </FFormGroup>
 
       {/* ----------  Time zone ----------  */}
-      <FFormGroup name={'timezone'} label={<T id={'time_zone'} />}>
+      <FFormGroup name={'timezone'} label={intl.get('time_zone')}>
         <FTimezoneSelect
           name={'timezone'}
           valueDisplayFormat="composite"

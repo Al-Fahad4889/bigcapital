@@ -82,7 +82,7 @@ export default function CreditNoteDetailHeader() {
               children={defaultTo(creditNote.reference_no, '-')}
             />
             <DetailItem
-              label={<T id={'credit_note.drawer.label_created_at'} />}
+              label={intl.get('credit_note.drawer.label_created_at')}
               children={creditNote.formatted_created_at}
             />
           </DetailsMenu>

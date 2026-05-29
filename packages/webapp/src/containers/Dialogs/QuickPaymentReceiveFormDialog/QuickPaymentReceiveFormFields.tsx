@@ -12,7 +12,7 @@ import {
   Row,
   Col,
   FieldRequiredHint,
-  FormattedMessage as T,
+
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
@@ -57,7 +57,7 @@ function QuickPaymentReceiveFormFields({
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />}>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -74,7 +74,7 @@ function QuickPaymentReceiveFormFields({
           {/* ------------- Customer name ------------- */}
           <FFormGroup
             name={'customer_id'}
-            label={<T id={'customer_name'} />}
+            label={intl.get('customer_name')}
             labelInfo={<FieldRequiredHint />}
           >
             <FInputGroup name={'customer_id'} minimal={true} disabled={true} />
@@ -85,7 +85,7 @@ function QuickPaymentReceiveFormFields({
           {/* ------------ Payment receive no. ------------ */}
           <FFormGroup
             name={'payment_receive_no'}
-            label={<T id={'payment_no'} />}
+            label={intl.get('payment_no')}
           >
             <FInputGroup
               name={'payment_receive_no'}
@@ -97,7 +97,7 @@ function QuickPaymentReceiveFormFields({
       </Row>
       {/*------------ Amount Received -----------*/}
 
-      <FFormGroup name={'amount'} label={<T id={'amount_received'} />}>
+      <FFormGroup name={'amount'} label={intl.get('amount_received')}>
         <ControlGroup>
           <InputPrependText text={values.currency_code} />
           <FMoneyInputGroup
@@ -123,7 +123,7 @@ function QuickPaymentReceiveFormFields({
       <Row>
         <Col xs={5}>
           {/* ------------- Payment date ------------- */}
-          <FFormGroup name={'payment_date'} label={<T id={'payment_date'} />}>
+          <FFormGroup name={'payment_date'} label={intl.get('payment_date')}>
             <FDateInput
               {...momentFormatter('YYYY/MM/DD')}
               name={'payment_date'}
@@ -139,7 +139,7 @@ function QuickPaymentReceiveFormFields({
           {/* ------------ Deposit account ------------ */}
           <FFormGroup
             name={'deposit_account_id'}
-            label={<T id={'deposit_to'} />}
+            label={intl.get('deposit_to')}
           >
             <FAccountsSuggestField
               name={'deposit_account_id'}
@@ -158,14 +158,14 @@ function QuickPaymentReceiveFormFields({
       </Row>
 
       {/* ------------ Reference No. ------------ */}
-      <FFormGroup label={<T id={'reference'} />} name={'reference_no'}>
+      <FFormGroup label={intl.get('reference')} name={'reference_no'}>
         <FInputGroup name={'reference_no'} minimal={true} />
       </FFormGroup>
 
       {/* --------- Statement --------- */}
       <FFormGroup
         name={'statement'}
-        label={<T id={'statement'} />}
+        label={intl.get('statement')}
         className={'form-group--statement'}
       >
         <FTextArea name={'statement'} growVertically={true} />

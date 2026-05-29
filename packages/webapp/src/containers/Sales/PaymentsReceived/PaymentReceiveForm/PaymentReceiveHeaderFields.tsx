@@ -49,6 +49,7 @@ import {
 } from './utils';
 import { Features } from '@/constants';
 import { PaymentReceivePaymentNoField } from './PaymentReceivePaymentNoField';
+import intl from 'react-intl-universal';
 
 const getHeaderFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -115,7 +116,7 @@ export default function PaymentReceiveHeaderFields() {
       {/* ------------- Payment date ------------- */}
       <FFormGroup
         name={'payment_date'}
-        label={<T id={'payment_date'} />}
+        label={intl.get('payment_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -137,7 +138,7 @@ export default function PaymentReceiveHeaderFields() {
       {/* ------------ Full amount ------------ */}
       <FFormGroup
         name={'amount'}
-        label={<T id={'full_amount'} />}
+        label={intl.get('full_amount')}
         inline={true}
         labelInfo={<Hint />}
         fastField
@@ -186,7 +187,7 @@ export default function PaymentReceiveHeaderFields() {
       {/* ------------ Deposit account ------------ */}
       <FFormGroup
         name={'deposit_account_id'}
-        label={<T id={'deposit_to'} />}
+        label={intl.get('deposit_to')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
         items={accounts}
@@ -212,7 +213,7 @@ export default function PaymentReceiveHeaderFields() {
       {/* ------------ Reference No. ------------ */}
       <FFormGroup
         name={'reference_no'}
-        label={<T id={'reference'} />}
+        label={intl.get('reference')}
         inline
         fastField
       >
@@ -223,7 +224,7 @@ export default function PaymentReceiveHeaderFields() {
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
           name={'project_id'}
-          label={<T id={'payment_receive.project_name.label'} />}
+          label={intl.get('payment_receive.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -257,7 +258,7 @@ function PaymentReceiveCustomerSelect() {
 
   return (
     <FFormGroup
-      label={<T id={'customer_name'} />}
+      label={intl.get('customer_name')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
       name={'customer_id'}

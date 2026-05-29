@@ -13,6 +13,7 @@ import {
 } from '@/components';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
 /**
  * Credit note transaction number field.
@@ -63,7 +64,7 @@ export const CreditNoteTransactionNoField = R.compose(
     return (
       <FFormGroup
         name={'credit_note_number'}
-        label={<T id={'credit_note.label_credit_note'} />}
+        label={intl.get('credit_note.label_credit_note')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
       >

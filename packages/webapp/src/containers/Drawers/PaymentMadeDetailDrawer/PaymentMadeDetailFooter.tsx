@@ -9,6 +9,7 @@ import {
   DetailItem,
 } from '@/components';
 import { usePaymentMadeDetailContext } from './PaymentMadeDetailProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Payment made - Details panel - Footer.
@@ -21,7 +22,7 @@ export function PaymentMadeDetailFooter() {
       <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
         <If condition={paymentMade.statement}>
           <DetailItem
-            label={<T id={'payment_made.details.statement'} />}
+            label={intl.get('payment_made.details.statement')}
             multiline
           >
             {paymentMade.statement}

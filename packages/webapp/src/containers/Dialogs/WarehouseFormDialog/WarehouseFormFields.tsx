@@ -6,7 +6,7 @@ import { Classes, ControlGroup } from '@blueprintjs/core';
 
 import {
   FieldRequiredHint,
-  FormattedMessage as T,
+
   FFormGroup,
   FInputGroup,
 } from '@/components';
@@ -21,7 +21,7 @@ export default function WarehouseFormFields() {
       {/*------------ Warehouse Name -----------*/}
       <FFormGroup
         name={'name'}
-        label={<T id={'warehouse.dialog.label.warehouse_name'} />}
+        label={intl.get('warehouse.dialog.label.warehouse_name')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         className={'form-group--warehouse_name'}
@@ -32,7 +32,7 @@ export default function WarehouseFormFields() {
       {/*------------ Warehouse Code -----------*/}
       <FFormGroup
         name={'code'}
-        label={<T id={'warehouse.dialog.label.code'} />}
+        label={intl.get('warehouse.dialog.label.code')}
         inline={true}
         className={'form-group--warehouse_name'}
       >

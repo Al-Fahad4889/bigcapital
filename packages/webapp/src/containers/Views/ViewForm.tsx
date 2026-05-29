@@ -23,6 +23,7 @@ import { pick, get } from 'lodash';
 import ErrorMessage from '@/components/ErrorMessage';
 import { If, Icon, AppToaster } from '@/components';
 import ViewFormContainer from '@/containers/Views/ViewForm.container.js';
+import intl from 'react-intl-universal';
 
 function ViewForm({
   requestSubmitView,
@@ -274,7 +275,7 @@ function ViewForm({
           <Row>
             <Col sm={8}>
               <FormGroup
-                label={<T id={'view_name'} />}
+                label={intl.get('view_name')}
                 className={'form-group--name'}
                 intent={errors.name && touched.name && Intent.DANGER}
                 helperText={

@@ -7,13 +7,14 @@ import {
   FieldRequiredHint,
   Col,
   Row,
-  FormattedMessage as T,
+
   FFormGroup,
   FDateInput,
   FTextArea,
 } from '@/components';
 import { momentFormatter } from '@/utils';
 import { useAutofocus } from '@/hooks';
+import intl from 'react-intl-universal';
 
 /**
  * Parial Unlocking transactions form fields.
@@ -28,7 +29,7 @@ export default function UnlockingPartialTransactionsFormFields() {
           {/*------------  Unlocking from date  -----------*/}
           <FFormGroup
             name={'unlock_from_date'}
-            label={<T id={'unlocking_partial_transactions.dialog.from_date'} />}
+            label={intl.get('unlocking_partial_transactions.dialog.from_date')}
             labelInfo={<FieldRequiredHint />}
             fill
             minimal
@@ -50,7 +51,7 @@ export default function UnlockingPartialTransactionsFormFields() {
           {/*------------  Unlocking to date  -----------*/}
           <FFormGroup
             name={'unlock_to_date'}
-            label={<T id={'unlocking_partial_transactions.dialog.to_date'} />}
+            label={intl.get('unlocking_partial_transactions.dialog.to_date')}
             labelInfo={<FieldRequiredHint />}
             minimal={true}
             fill
@@ -72,7 +73,7 @@ export default function UnlockingPartialTransactionsFormFields() {
       {/*------------ unLocking  reason -----------*/}
       <FFormGroup
         name={'reason'}
-        label={<T id={'unlocking_partial_transactions.dialog.reason'} />}
+        label={intl.get('unlocking_partial_transactions.dialog.reason')}
         labelInfo={<FieldRequiredHint />}
         fastField
       >

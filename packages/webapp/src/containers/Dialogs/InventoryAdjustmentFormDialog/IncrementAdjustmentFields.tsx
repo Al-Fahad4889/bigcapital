@@ -6,12 +6,13 @@ import {
   Row,
   Col,
   FMoneyInputGroup,
-  FormattedMessage as T,
+
   FFormGroup,
   FInputGroup,
 } from '@/components';
 import { toSafeNumber } from '@/utils';
 import { decrementQuantity, incrementQuantity } from './utils';
+import intl from 'react-intl-universal';
 
 export default function IncrementAdjustmentFields() {
   const incrementFieldRef = useAutofocus();
@@ -23,7 +24,7 @@ export default function IncrementAdjustmentFields() {
       <Col className={'col--quantity-on-hand'}>
         <FFormGroup
           name={'quantity_on_hand'}
-          label={<T id={'qty_on_hand'} />}
+          label={intl.get('qty_on_hand')}
           fastField
         >
           <FInputGroup
@@ -44,7 +45,7 @@ export default function IncrementAdjustmentFields() {
       <Col className={'col--quantity'}>
         <FFormGroup
           name={'quantity'}
-          label={<T id={'increment'} />}
+          label={intl.get('increment')}
           fill
           fastField
         >
@@ -69,7 +70,7 @@ export default function IncrementAdjustmentFields() {
 
       {/*------------ Cost -----------*/}
       <Col className={'col--cost'}>
-        <FFormGroup name={'cost'} label={<T id={'cost'} />} fastField>
+        <FFormGroup name={'cost'} label={intl.get('cost')} fastField>
           <FMoneyInputGroup name={'cost'} fastField />
         </FFormGroup>
       </Col>
@@ -83,7 +84,7 @@ export default function IncrementAdjustmentFields() {
       <Col className={'col--quantity-on-hand'}>
         <FFormGroup
           name={'new_quantity'}
-          label={<T id={'new_quantity'} />}
+          label={intl.get('new_quantity')}
           fastField
         >
           <FMoneyInputGroup

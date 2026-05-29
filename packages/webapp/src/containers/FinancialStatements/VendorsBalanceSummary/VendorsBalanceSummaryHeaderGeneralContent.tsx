@@ -7,7 +7,7 @@ import {
   Row,
   Col,
   FieldHint,
-  FormattedMessage as T,
+
   FFormGroup,
   VendorsMultiSelect,
 } from '@/components';
@@ -20,6 +20,7 @@ import {
 } from '@/utils';
 import { useVendorsBalanceSummaryGeneralPanelContext } from './VendorsBalanceSummaryHeaderGeneralProvider';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
+import intl from 'react-intl-universal';
 
 /**
  * Vendors balance header - General panel - Content.
@@ -34,7 +35,7 @@ export function VendorsBalanceSummaryHeaderGeneralContent() {
           <FastField name={'asDate'}>
             {({ form, field: { value }, meta: { error } }: { form: any; field: { value: any }; meta: { error: any } }) => (
               <FormGroup
-                label={<T id={'as_date'} />}
+                label={intl.get('as_date')}
                 labelInfo={<FieldHint />}
                 fill={true}
                 intent={inputIntent({ error })}
@@ -63,7 +64,7 @@ export function VendorsBalanceSummaryHeaderGeneralContent() {
                 <Checkbox
                   inline={true}
                   small={true}
-                  label={<T id={'percentage_of_column'} />}
+                  label={intl.get('percentage_of_column')}
                   name={'percentage_column'}
                   {...field}
                 />
@@ -77,7 +78,7 @@ export function VendorsBalanceSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FinancialStatementsFilter
             items={filterVendorsOptions}
-            label={<T id={'vendors.label_filter_vendors'} />}
+            label={intl.get('vendors.label_filter_vendors')}
             initialSelectedItem={'with-transactions'}
           />
         </Col>
@@ -85,7 +86,7 @@ export function VendorsBalanceSummaryHeaderGeneralContent() {
 
       <Row>
         <Col xs={5}>
-          <FFormGroup label={<T id={'specific_vendors'} />} name={'vendorsIds'}>
+          <FFormGroup label={intl.get('specific_vendors')} name={'vendorsIds'}>
             <VendorsMultiSelect name={'vendorsIds'} items={vendors} />
           </FFormGroup>
         </Col>

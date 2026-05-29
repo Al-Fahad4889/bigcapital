@@ -12,7 +12,7 @@ import {
 } from '@blueprintjs/core';
 import classNames from 'classnames';
 import { x } from '@xstyled/emotion';
-import { FormattedMessage as T, If, FFormGroup, FSelect, FRadioGroup, FInputGroup } from '@/components';
+import { If, FFormGroup, FSelect, FRadioGroup, FInputGroup } from '@/components';
 import { handleStringChange } from '@/utils';
 import { FieldRequiredHint } from '@/components';
 import { CLASSES } from '@/constants/classes';
@@ -73,7 +73,7 @@ export default function AllocateLandedCostFormFields() {
       {/*------------Transaction type -----------*/}
       <FFormGroup
         name={'transaction_type'}
-        label={<T id={'transaction_type'} />}
+        label={intl.get('transaction_type')}
         labelInfo={<FieldRequiredHint />}
         inline
         fill
@@ -94,7 +94,7 @@ export default function AllocateLandedCostFormFields() {
       {/*------------ Transaction  -----------*/}
       <FFormGroup
         name={'transaction_id'}
-        label={<T id={'transaction_id'} />}
+        label={intl.get('transaction_id')}
         labelInfo={<FieldRequiredHint />}
         inline
         fill
@@ -130,7 +130,7 @@ export default function AllocateLandedCostFormFields() {
       <If condition={costTransactionEntries?.length > 0}>
         <FFormGroup
           name={'transaction_entry_id'}
-          label={<T id={'transaction_line'} />}
+          label={intl.get('transaction_line')}
           inline
           fill
           fastField
@@ -155,7 +155,7 @@ export default function AllocateLandedCostFormFields() {
       {/*------------ Amount -----------*/}
       <FFormGroup
         name={'amount'}
-        label={<T id={'amount'} />}
+        label={intl.get('amount')}
         inline={true}
         fastField
       >
@@ -176,7 +176,7 @@ export default function AllocateLandedCostFormFields() {
       {/*------------ Allocation method -----------*/}
       <FFormGroup
         name={'allocation_method'}
-        label={<T id={'allocation_method'} />}
+        label={intl.get('allocation_method')}
         medium
         inline
         fastField
@@ -194,8 +194,8 @@ export default function AllocateLandedCostFormFields() {
           })}
           inline={true}
         >
-          <Radio label={<T id={'quantity'} />} value="quantity" />
-          <Radio label={<T id={'valuation'} />} value="value" />
+          <Radio label={intl.get('quantity')} value="quantity" />
+          <Radio label={intl.get('valuation')} value="value" />
         </FRadioGroup>
       </FFormGroup>
 

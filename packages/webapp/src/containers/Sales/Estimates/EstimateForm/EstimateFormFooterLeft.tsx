@@ -2,7 +2,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
-import { FFormGroup, FEditableText, FormattedMessage as T } from '@/components';
+import { FFormGroup, FEditableText } from '@/components';
 
 export function EstimateFormFooterLeft() {
   return (
@@ -10,7 +10,7 @@ export function EstimateFormFooterLeft() {
       {/* --------- Customer Note --------- */}
       <EstimateMsgFormGroup
         name={'note'}
-        label={<T id={'estimate_form.label.customer_note'} />}
+        label={intl.get('estimate_form.label.customer_note')}
         hintText={'Will be displayed on the invoice'}
       >
         <FEditableText
@@ -23,7 +23,7 @@ export function EstimateFormFooterLeft() {
 
       {/* --------- Terms and conditions --------- */}
       <TermsConditsFormGroup
-        label={<T id={'estimate_form.label.terms_conditions'} />}
+        label={intl.get('estimate_form.label.terms_conditions')}
         name={'terms_conditions'}
       >
         <FEditableText

@@ -2,14 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import intl from 'react-intl-universal';
-import { FFormGroup, FEditableText, FormattedMessage as T } from '@/components';
+import { FFormGroup, FEditableText } from '@/components';
 
 export function WarehouseTransferFormFooterLeft() {
   return (
     <React.Fragment>
       {/* --------- Terms and conditions --------- */}
       <TermsConditsFormGroup
-        label={<T id={'warehouse_transfer.form.reason.label'} />}
+        label={intl.get('warehouse_transfer.form.reason.label')}
         name={'reason'}
       >
         <FEditableText

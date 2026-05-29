@@ -7,6 +7,7 @@ import {
   FTextArea,
 } from '@/components';
 import { VendorFormSectionTitle } from './VendorFormSectionTitle';
+import intl from 'react-intl-universal';
 
 export function VendorBillingAddress() {
   return (
@@ -16,7 +17,7 @@ export function VendorBillingAddress() {
       </VendorFormSectionTitle>
       <FFormGroup
         name={'billing_address_country'}
-        label={<T id={'country'} />}
+        label={intl.get('country')}
         inline
         fill
         fastField
@@ -26,7 +27,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address1'}
-        label={<T id={'address_line_1'} />}
+        label={intl.get('address_line_1')}
         inline
         fill
         fastField
@@ -36,7 +37,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address2'}
-        label={<T id={'address_line_2'} />}
+        label={intl.get('address_line_2')}
         inline
         fill
         fastField
@@ -46,7 +47,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address_city'}
-        label={<T id={'city_town'} />}
+        label={intl.get('city_town')}
         inline
         fill
         fastField
@@ -56,7 +57,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address_state'}
-        label={<T id={'state'} />}
+        label={intl.get('state')}
         inline
         fill
         fastField
@@ -66,7 +67,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address_postcode'}
-        label={<T id={'zip_code'} />}
+        label={intl.get('zip_code')}
         inline
         fill
         fastField
@@ -76,7 +77,7 @@ export function VendorBillingAddress() {
 
       <FFormGroup
         name={'billing_address_phone'}
-        label={<T id={'phone'} />}
+        label={intl.get('phone')}
         inline
         fill
         fastField

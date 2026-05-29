@@ -23,6 +23,7 @@ import {
 } from './utils';
 import { useCurrentOrganization } from '@/hooks/state';
 import { VendorFormSectionTitle } from './VendorFormSectionTitle';
+import intl from 'react-intl-universal';
 
 export function VendorFormFinancialSection() {
   const { currencies, vendorId, branches } = useVendorFormContext();
@@ -38,7 +39,7 @@ export function VendorFormFinancialSection() {
 
       <FFormGroup
         name={'currency_code'}
-        label={<T id={'currency'} />}
+        label={intl.get('currency')}
         fastField
         inline
         fill
@@ -57,7 +58,7 @@ export function VendorFormFinancialSection() {
 
       <FeatureCan feature={Features.Branches}>
         <FFormGroup
-          label={<T id={'vendor.label.opening_branch'} />}
+          label={intl.get('vendor.label.opening_branch')}
           name={'opening_balance_branch_id'}
           inline
           fill
@@ -86,7 +87,7 @@ function VendorOpeningBalanceAtField() {
   return (
     <FFormGroup
       name={'opening_balance_at'}
-      label={<T id={'opening_balance_at'} />}
+      label={intl.get('opening_balance_at')}
       inline
       fill
       helperText={<ErrorMessage name="opening_balance_at" />}
@@ -115,7 +116,7 @@ function VendorOpeningBalanceField() {
 
   return (
     <FFormGroup
-      label={<T id={'opening_balance'} />}
+      label={intl.get('opening_balance')}
       name={'opening_balance'}
       inline
       shouldUpdate={openingBalanceFieldShouldUpdate}

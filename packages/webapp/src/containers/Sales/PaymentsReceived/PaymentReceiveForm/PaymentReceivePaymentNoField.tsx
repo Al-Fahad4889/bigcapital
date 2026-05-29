@@ -14,6 +14,7 @@ import {
 
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
+import intl from 'react-intl-universal';
 
 /**
  * Payment receive number field.
@@ -60,7 +61,7 @@ export const PaymentReceivePaymentNoField = R.compose(
   return (
     <FFormGroup
       name={'payment_receive_no'}
-      label={<T id={'payment_received_no'} />}
+      label={intl.get('payment_received_no')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
     >

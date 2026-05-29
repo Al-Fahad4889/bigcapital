@@ -31,6 +31,7 @@ import {
 import { ExpensesExchangeRateInputField } from './components';
 import { useExpenseFormContext } from './ExpenseFormPageProvider';
 import { SUPPORTED_EXPENSE_PAYMENT_ACCOUNT_TYPES } from './constants';
+import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -62,7 +63,7 @@ export default function ExpenseFormHeader() {
       <FastField name={'payment_date'}>
         {({ form, field: { value }, meta: { error, touched } }) => (
           <FormGroup
-            label={<T id={'payment_date'} />}
+            label={intl.get('payment_date')}
             labelInfo={<Hint />}
             className={classNames('form-group--select-list', Classes.FILL)}
             intent={inputIntent({ error, touched })}
@@ -84,7 +85,7 @@ export default function ExpenseFormHeader() {
       <FFormGroup
         name={'payment_account_id'}
         items={accounts}
-        label={<T id={'payment_account'} />}
+        label={intl.get('payment_account')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         fastField={true}
@@ -104,7 +105,7 @@ export default function ExpenseFormHeader() {
 
       <FFormGroup
         name={'currency_code'}
-        label={<T id={'currency'} />}
+        label={intl.get('currency')}
         className={classNames(Classes.FILL)}
         inline={true}
         fastField={true}
@@ -130,7 +131,7 @@ export default function ExpenseFormHeader() {
       {/* ----------- Reference No. ----------- */}
       <FFormGroup
         name={'reference_no'}
-        label={<T id={'reference_no'} />}
+        label={intl.get('reference_no')}
         inline={true}
         fastField
       >
@@ -152,7 +153,7 @@ function ExpenseFormCustomerSelect() {
 
   return (
     <FormGroup
-      label={<T id={'customer'} />}
+      label={intl.get('customer')}
       labelInfo={<Hint />}
       inline={true}
       name={'customer_id'}

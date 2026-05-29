@@ -9,6 +9,7 @@ import {
 } from '@/components';
 
 import { useBillDrawerContext } from './BillDrawerProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Bill detail footer.
@@ -20,7 +21,7 @@ export default function BillDetailFooter() {
     <CommercialDocFooter>
       <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
         <If condition={bill.note}>
-          <DetailItem label={<T id={'note'} />} multiline>
+          <DetailItem label={intl.get('note')} multiline>
             {bill.note}
           </DetailItem>
         </If>

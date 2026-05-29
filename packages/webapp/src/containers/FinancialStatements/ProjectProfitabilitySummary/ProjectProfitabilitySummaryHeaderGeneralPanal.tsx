@@ -10,6 +10,7 @@ import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import { RadiosAccountingBasis } from '../RadiosAccountingBasis';
 
 import { useProjectProfitabilitySummaryContext } from './ProjectProfitabilitySummaryProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Project profitability summary header - General panal.
@@ -35,7 +36,7 @@ export function ProjectProfitabilitySummaryHeaderGeneralPanal() {
         <Col xs={4}>
           <FFormGroup
             name={'projectsIds'}
-            label={<T id={'projects_multi_select.label'} />}
+            label={intl.get('projects_multi_select.label')}
             className={Classes.FILL}
           >
             <ProjectMultiSelect name={'projectsIds'} projects={projects} />

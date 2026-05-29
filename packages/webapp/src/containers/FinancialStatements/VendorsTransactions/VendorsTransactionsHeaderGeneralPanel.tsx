@@ -6,7 +6,7 @@ import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import {
   Row,
   Col,
-  FormattedMessage as T,
+
   FFormGroup,
   VendorsMultiSelect,
 } from '@/components';
@@ -16,6 +16,7 @@ import {
   VendorsTransactionsGeneralPanelProvider,
   useVendorsTransactionsGeneralPanelContext,
 } from './VendorsTransactionsHeaderGeneralPanelProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Vendors transactions header - General panel
@@ -42,7 +43,7 @@ function VendorsTransactionsHeaderGeneralPanelContent() {
         <Col xs={4}>
           <FinancialStatementsFilter
             items={filterVendorsOptions}
-            label={<T id={'vendors.label_filter_vendors'} />}
+            label={intl.get('vendors.label_filter_vendors')}
             initialSelectedItem={'all-vendors'}
           />
         </Col>
@@ -50,7 +51,7 @@ function VendorsTransactionsHeaderGeneralPanelContent() {
 
       <Row>
         <Col xs={4}>
-          <FFormGroup label={<T id={'specific_vendors'} />} name={'vendorsIds'}>
+          <FFormGroup label={intl.get('specific_vendors')} name={'vendorsIds'}>
             <VendorsMultiSelect name={'vendorsIds'} items={vendors} />
           </FFormGroup>
         </Col>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Position } from '@blueprintjs/core';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import {
-  FormattedMessage as T,
+
   Row,
   Col,
   FieldHint,
@@ -14,6 +14,7 @@ import {
 import { momentFormatter } from '@/utils';
 import { useARAgingSummaryGeneralContext } from './ARAgingSummaryGeneralProvider';
 import { filterCustomersOptions } from './constants';
+import intl from 'react-intl-universal';
 
 export function ARAgingSummaryHeaderGeneralContent() {
   const { customers } = useARAgingSummaryGeneralContext();
@@ -24,7 +25,7 @@ export function ARAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'asDate'}
-            label={<T id={'as_date'} />}
+            label={intl.get('as_date')}
             labelInfo={<FieldHint />}
             fill
             fastField
@@ -45,7 +46,7 @@ export function ARAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'agingDaysBefore'}
-            label={<T id={'aging_before_days'} />}
+            label={intl.get('aging_before_days')}
             labelInfo={<FieldHint />}
             fastField
           >
@@ -58,7 +59,7 @@ export function ARAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name={'agingPeriods'}
-            label={<T id={'aging_periods'} />}
+            label={intl.get('aging_periods')}
             labelInfo={<FieldHint />}
           >
             <FInputGroup name={'agingPeriods'} medium={true} />
@@ -70,7 +71,7 @@ export function ARAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FinancialStatementsFilter
             items={filterCustomersOptions}
-            label={<T id={'AR_aging_summary.filter_options.label'} />}
+            label={intl.get('AR_aging_summary.filter_options.label')}
           />
         </Col>
       </Row>
@@ -79,7 +80,7 @@ export function ARAgingSummaryHeaderGeneralContent() {
         <Col xs={5}>
           <FFormGroup
             name="customersIds"
-            label={<T id={'specific_customers'} />}
+            label={intl.get('specific_customers')}
           >
             <CustomersMultiSelect name="customersIds" items={customers} />
           </FFormGroup>

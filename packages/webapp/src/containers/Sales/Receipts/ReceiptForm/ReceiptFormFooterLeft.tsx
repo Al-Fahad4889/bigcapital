@@ -2,7 +2,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
-import { FFormGroup, FEditableText, FormattedMessage as T } from '@/components';
+import { FFormGroup, FEditableText } from '@/components';
 
 export function ReceiptFormFooterLeft() {
   return (
@@ -10,7 +10,7 @@ export function ReceiptFormFooterLeft() {
       {/* --------- Receipt message --------- */}
       <ReceiptMsgFormGroup
         name={'receipt_message'}
-        label={<T id={'receipt_form.label.receipt_message'} />}
+        label={intl.get('receipt_form.label.receipt_message')}
         hintText={'Will be displayed on the Receipt'}
       >
         <FEditableText
@@ -23,7 +23,7 @@ export function ReceiptFormFooterLeft() {
 
       {/* --------- Terms and conditions --------- */}
       <TermsConditsFormGroup
-        label={<T id={'receipt_form.label.terms_conditions'} />}
+        label={intl.get('receipt_form.label.terms_conditions')}
         name={'terms_conditions'}
       >
         <FEditableText

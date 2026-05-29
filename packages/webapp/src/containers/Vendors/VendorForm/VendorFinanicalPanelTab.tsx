@@ -12,7 +12,7 @@ import {
   FeatureCan,
   Row,
   Col,
-  FormattedMessage as T,
+
   FMoneyInputGroup,
   ExchangeRateInputGroup,
   FDateInput,
@@ -24,6 +24,7 @@ import {
 } from './utils';
 import { useVendorFormContext } from './VendorFormProvider';
 import { useCurrentOrganization } from '@/hooks/state';
+import intl from 'react-intl-universal';
 
 /**
  * Vendor Finaniceal Panel Tab.
@@ -41,7 +42,7 @@ export function VendorFinanicalPanelTab() {
           {/*------------ Currency  -----------*/}
           <FFormGroup
             name={'currency_code'}
-            label={<T id={'currency'} />}
+            label={intl.get('currency')}
             fastField
             inline
             fastField
@@ -63,7 +64,7 @@ export function VendorFinanicalPanelTab() {
           {/*------------ Opening branch  -----------*/}
           <FeatureCan feature={Features.Branches}>
             <FFormGroup
-              label={<T id={'vendor.label.opening_branch'} />}
+              label={intl.get('vendor.label.opening_branch')}
               name={'opening_balance_branch_id'}
               inline={true}
             >
@@ -94,7 +95,7 @@ function VendorOpeningBalanceField() {
   return (
     <FFormGroup
       name={'opening_balance'}
-      label={<T id={'opening_balance'} />}
+      label={intl.get('opening_balance')}
       shouldUpdate={openingBalanceFieldShouldUpdate}
       shouldUpdateDeps={{ currencyCode: values.currency_code }}
       inline
@@ -125,7 +126,7 @@ function VendorOpeningBalanceAtField() {
   return (
     <FFormGroup
       name={'opening_balance_at'}
-      label={<T id={'opening_balance_at'} />}
+      label={intl.get('opening_balance_at')}
       helperText={<ErrorMessage name="opening_balance_at" />}
       inline
       fastField

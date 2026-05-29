@@ -14,6 +14,7 @@ import {
 
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
 /**
  * Receipt number field of receipt form.
@@ -61,7 +62,7 @@ export const ReceiptFormReceiptNumberField = R.compose(
     return (
       <FFormGroup
         name={'receipt_number'}
-        label={<T id={'receipt'} />}
+        label={intl.get('receipt')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
       >

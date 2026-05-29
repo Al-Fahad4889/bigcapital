@@ -9,6 +9,7 @@ import { FormattedMessage as T } from '@/components';
 import { useSMSMessageDialogContext } from './SMSMessageDialogProvider';
 
 import { inputIntent } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  *
@@ -31,7 +32,7 @@ export default function SMSMessageFormFields() {
       <FastField name={'message_text'}>
         {({ field, meta: { error, touched } }) => (
           <FormGroup
-            label={<T id={'notify_via_sms.dialog.message_text'} />}
+            label={intl.get('notify_via_sms.dialog.message_text')}
             className={'form-group--message_text'}
             intent={inputIntent({ error, touched })}
             helperText={

@@ -3,13 +3,14 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import {
   Money,
-  FormattedMessage as T,
+
   PageForm,
   PageFormBigNumber,
 } from '@/components';
 
 import PaymentMadeFormHeaderFields from './PaymentMadeFormHeaderFields';
 import { usePaymentmadeTotalAmount } from './utils';
+import intl from 'react-intl-universal';
 
 /**
  * Payment made header form.
@@ -26,7 +27,7 @@ function PaymentMadeFormHeader() {
     <PageForm.Header>
       <PaymentMadeFormHeaderFields />
       <PageFormBigNumber
-        label={<T id={'amount_received'} />}
+        label={intl.get('amount_received')}
         amount={<Money amount={totalAmount} currency={currency_code} />}
       />
     </PageForm.Header>

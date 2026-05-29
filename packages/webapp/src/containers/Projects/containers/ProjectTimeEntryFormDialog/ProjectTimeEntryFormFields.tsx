@@ -12,7 +12,7 @@ import {
   FDateInput,
   FTextArea,
   FieldRequiredHint,
-  FormattedMessage as T,
+
   Stack,
 } from '@/components';
 import { useProjectTimeEntryFormContext } from './ProjectTimeEntryFormProvider';
@@ -59,7 +59,7 @@ function ProjectTimeEntryFormFields() {
         {/*------------ Project -----------*/}
         <FFormGroup
           name={'project_id'}
-          label={<T id={'project_time_entry.dialog.project'} />}
+          label={intl.get('project_time_entry.dialog.project')}
           labelInfo={<FieldRequiredHint />}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -73,7 +73,7 @@ function ProjectTimeEntryFormFields() {
         {/*------------ Task -----------*/}
         <FFormGroup
           name={'task_id'}
-          label={<T id={'project_time_entry.dialog.task'} />}
+          label={intl.get('project_time_entry.dialog.task')}
           labelInfo={<FieldRequiredHint />}
           className={classNames('form-group--select-list', Classes.FILL)}
         >

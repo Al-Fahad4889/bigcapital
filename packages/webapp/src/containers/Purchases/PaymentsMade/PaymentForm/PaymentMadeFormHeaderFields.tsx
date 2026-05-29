@@ -51,6 +51,7 @@ import {
   amountPaymentEntries,
 } from '@/utils';
 import { accountsFieldShouldUpdate, vendorsFieldShouldUpdate } from './utils';
+import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -120,7 +121,7 @@ function PaymentMadeFormHeaderFields({ organization: { base_currency } }) {
       {/* ------------ Payment date ------------ */}
       <FFormGroup
         name={'payment_date'}
-        label={<T id={'payment_date'} />}
+        label={intl.get('payment_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fill
@@ -139,7 +140,7 @@ function PaymentMadeFormHeaderFields({ organization: { base_currency } }) {
       {/* ------------ Full amount ------------ */}
       <FFormGroup
         name={'amount'}
-        label={<T id={'full_amount'} />}
+        label={intl.get('full_amount')}
         inline={true}
         labelInfo={<Hint />}
         fastField
@@ -169,7 +170,7 @@ function PaymentMadeFormHeaderFields({ organization: { base_currency } }) {
       {/* ------------ Payment number ------------ */}
       <FFormGroup
         name={'payment_number'}
-        label={<T id={'payment_no'} />}
+        label={intl.get('payment_no')}
         inline={true}
         fastField
       >
@@ -179,7 +180,7 @@ function PaymentMadeFormHeaderFields({ organization: { base_currency } }) {
       {/* ------------ Payment account ------------ */}
       <FFormGroup
         name={'payment_account_id'}
-        label={<T id={'payment_account'} />}
+        label={intl.get('payment_account')}
         labelInfo={<FieldRequiredHint />}
         items={accounts}
         shouldUpdate={accountsFieldShouldUpdate}
@@ -205,7 +206,7 @@ function PaymentMadeFormHeaderFields({ organization: { base_currency } }) {
       {/* ------------ Reference ------------ */}
       <FFormGroup
         name={'reference'}
-        label={<T id={'reference'} />}
+        label={intl.get('reference')}
         inline={true}
         fastField
       >
@@ -230,7 +231,7 @@ function PaymentFormVendorSelect() {
   return (
     <FFormGroup
       name={'vendor_id'}
-      label={<T id={'vendor_name'} />}
+      label={intl.get('vendor_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
       fastField={true}

@@ -13,6 +13,7 @@ import { accountsFieldShouldUpdate } from './utils';
 import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { useItemFormContext } from './ItemFormProvider';
 import { compose } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Item form inventory sections.
@@ -30,7 +31,7 @@ function ItemFormInventorySection({ organization: { base_currency } }) {
         <Col xs={6}>
           {/*------------- Inventory Account ------------- */}
           <FFormGroup
-            label={<T id={'inventory_account'} />}
+            label={intl.get('inventory_account')}
             name={'inventory_account_id'}
             items={accounts}
             fastField={true}

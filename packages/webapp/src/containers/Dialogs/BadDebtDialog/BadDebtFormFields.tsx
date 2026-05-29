@@ -29,6 +29,7 @@ import {
 } from '@/components';
 
 import { useBadDebtContext } from './BadDebtFormProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Bad debt form fields.
@@ -49,7 +50,7 @@ function BadDebtFormFields() {
       {/*------------ Written-off amount -----------*/}
       <FFormGroup
         name={'amount'}
-        label={<T id={'bad_debt.dialog.written_off_amount'} />}
+        label={intl.get('bad_debt.dialog.written_off_amount')}
         labelInfo={<FieldRequiredHint />}
         fill
       >
@@ -66,7 +67,7 @@ function BadDebtFormFields() {
       {/*------------ Expense account -----------*/}
       <FFormGroup
         name={'expense_account_id'}
-        label={<T id={'expense_account_id'} />}
+        label={intl.get('expense_account_id')}
         labelInfo={<FieldRequiredHint />}
         fill
       >
@@ -81,7 +82,7 @@ function BadDebtFormFields() {
       {/*------------ reason -----------*/}
       <FFormGroup
         name={'reason'}
-        label={<T id={'reason'} />}
+        label={intl.get('reason')}
         labelInfo={<FieldRequiredHint />}
         fill
       >

@@ -8,6 +8,7 @@ import {
   DetailItem,
 } from '@/components';
 import { useVendorCreditDetailDrawerContext } from './VendorCreditDetailDrawerProvider';
+import intl from 'react-intl-universal';
 
 export function VendorCreditDetailFooter() {
   const { vendorCredit } = useVendorCreditDetailDrawerContext();
@@ -17,7 +18,7 @@ export function VendorCreditDetailFooter() {
       <DetailsMenu direction={'horizantal'} minLabelSize={'150px'}>
         <If condition={vendorCredit.note}>
           <DetailItem
-            label={<T id={'note'} />}
+            label={intl.get('note')}
             children={vendorCredit.note}
             multiline
           />

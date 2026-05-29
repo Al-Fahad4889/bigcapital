@@ -80,7 +80,7 @@ export default function EstimateDetailHeader() {
               children={defaultTo(estimate.reference, '-')}
             />
             <DetailItem
-              label={<T id={'estimate.details.created_at'} />}
+              label={intl.get('estimate.details.created_at')}
               children={estimate.formatted_created_at}
             />
           </DetailsMenu>

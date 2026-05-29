@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik';
 import { Classes, FormGroup, Position } from '@blueprintjs/core';
 import {
   FFormGroup,
-  FormattedMessage as T,
+
   FDateInput,
   FInputGroup,
   FTextArea,
@@ -76,7 +76,7 @@ export default function InventoryAdjustmentFormDialogFields() {
         <FeatureCan feature={Features.Branches}>
           <Col xs={5}>
             <FormGroup
-              label={<T id={'branch'} />}
+              label={intl.get('branch')}
               fill
             >
               <BranchSelect
@@ -90,7 +90,7 @@ export default function InventoryAdjustmentFormDialogFields() {
         <FeatureCan feature={Features.Warehouses}>
           <Col xs={5}>
             <FormGroup
-              label={<T id={'warehouse'} />}
+              label={intl.get('warehouse')}
               fill
             >
               <WarehouseSelect
@@ -112,7 +112,7 @@ export default function InventoryAdjustmentFormDialogFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
             fastField
@@ -134,7 +134,7 @@ export default function InventoryAdjustmentFormDialogFields() {
           {/*------------ Adjustment type -----------*/}
           <FFormGroup
             name={'type'}
-            label={<T id={'adjustment_type'} />}
+            label={intl.get('adjustment_type')}
             labelInfo={<FieldRequiredHint />}
             fill
             fastField
@@ -158,7 +158,7 @@ export default function InventoryAdjustmentFormDialogFields() {
       {/*------------ Adjustment account -----------*/}
       <FFormGroup
         name={'adjustment_account_id'}
-        label={<T id={'adjustment_account'} />}
+        label={intl.get('adjustment_account')}
         labelInfo={<FieldRequiredHint />}
         fill
       >
@@ -176,7 +176,7 @@ export default function InventoryAdjustmentFormDialogFields() {
       {/*------------ Reference -----------*/}
       <FFormGroup
         name={'reference_no'}
-        label={<T id={'reference_no'} />}
+        label={intl.get('reference_no')}
         fastField
       >
         <FInputGroup name={'reference_no'} fastField />
@@ -185,7 +185,7 @@ export default function InventoryAdjustmentFormDialogFields() {
       {/*------------ Adjustment reasons -----------*/}
       <FFormGroup
         name={'reason'}
-        label={<T id={'adjustment_reasons'} />}
+        label={intl.get('adjustment_reasons')}
         labelInfo={<FieldRequiredHint />}
         fill
         fastField

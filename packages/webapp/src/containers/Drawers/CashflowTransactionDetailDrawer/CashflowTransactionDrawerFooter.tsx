@@ -2,6 +2,7 @@
 import React from 'react';
 import { CommercialDocFooter, DetailsMenu, DetailItem, T } from '@/components';
 import { useCashflowTransactionDrawerContext } from './CashflowTransactionDrawerProvider';
+import intl from 'react-intl-universal';
 
 export function CashflowTransactionDrawerFooter() {
   const { cashflowTransaction } = useCashflowTransactionDrawerContext();
@@ -10,7 +11,7 @@ export function CashflowTransactionDrawerFooter() {
     <CommercialDocFooter>
       <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
         <DetailItem
-          label={<T id={'cash_flow.drawer.label.statement'} />}
+          label={intl.get('cash_flow.drawer.label.statement')}
           multiline
         >
           {cashflowTransaction.description}

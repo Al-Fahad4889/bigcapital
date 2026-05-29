@@ -3,7 +3,6 @@ import {
   Row,
   Col,
   ItemsMultiSelect,
-  FormattedMessage as T,
   FFormGroup,
 } from '@/components';
 import { FinancialStatementDateRange } from '../FinancialStatementDateRange';
@@ -13,6 +12,7 @@ import {
   SalesByItemGeneralPanelProvider,
   useSalesByItemsGeneralPanelContext,
 } from './SalesByItemsHeaderGeneralPanelProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Sales by items - Drawer header - General panel.
@@ -39,7 +39,7 @@ function SalesByItemsHeaderGeneralPanelContent() {
         <Col xs={4}>
           <FinancialStatementsFilter
             items={filterItemsOptions}
-            label={<T id={'items.label_filter_items'} />}
+            label={intl.get('items.label_filter_items')}
             initialSelectedItem={'with-transactions'}
           />
         </Col>
@@ -47,7 +47,7 @@ function SalesByItemsHeaderGeneralPanelContent() {
 
       <Row>
         <Col xs={4}>
-          <FFormGroup label={<T id={'Specific items'} />} name={'itemsIds'}>
+          <FFormGroup label={intl.get('Specific items')} name={'itemsIds'}>
             <ItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>

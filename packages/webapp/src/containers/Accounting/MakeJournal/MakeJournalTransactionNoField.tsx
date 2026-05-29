@@ -15,6 +15,7 @@ import {
 
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
 /**
  * Journal number field of make journal form.
@@ -57,7 +58,7 @@ export const MakeJournalTransactionNoField = R.compose(
     return (
       <FFormGroup
         name={'journal_number'}
-        label={<T id={'journal_no'} />}
+        label={intl.get('journal_no')}
         labelInfo={
           <>
             <FieldRequiredHint />

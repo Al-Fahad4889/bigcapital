@@ -2,7 +2,7 @@
 import React from 'react';
 import { Classes } from '@blueprintjs/core';
 import {
-  FormattedMessage as T,
+
   FieldRequiredHint,
   FFormGroup,
   FInputGroup,
@@ -10,6 +10,7 @@ import {
 } from '@/components';
 
 import { useAutofocus } from '@/hooks';
+import intl from 'react-intl-universal';
 
 /**
  * Item category form fields.
@@ -22,7 +23,7 @@ export default function ItemCategoryFormFields() {
       {/* ----------- Category name ----------- */}
       <FFormGroup
         name={'name'}
-        label={<T id={'category_name'} />}
+        label={intl.get('category_name')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -38,7 +39,7 @@ export default function ItemCategoryFormFields() {
       {/* ----------- Description ----------- */}
       <FFormGroup
         name={'description'}
-        label={<T id={'description'} />}
+        label={intl.get('description')}
         inline
         fastField
       >

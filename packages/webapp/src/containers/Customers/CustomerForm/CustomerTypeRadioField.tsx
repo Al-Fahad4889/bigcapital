@@ -3,7 +3,7 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { Button, ButtonGroup } from '@blueprintjs/core';
 import { FastField } from 'formik';
-import { FormattedMessage as T, FFormGroup } from '@/components';
+import { FFormGroup } from '@/components';
 
 /**
  * Customer type selector (button group).
@@ -12,7 +12,7 @@ export function CustomerTypeRadioField() {
   return (
     <FFormGroup
       name={'customer_type'}
-      label={<T id={'customer_type'} />}
+      label={intl.get('customer_type')}
       inline
       fill
       fastField

@@ -31,6 +31,7 @@ import {
 } from './components';
 import { ReceiptFormReceiptNumberField } from './ReceiptFormReceiptNumberField';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
+import intl from 'react-intl-universal';
 
 const getEstimateFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -67,7 +68,7 @@ export default function ReceiptFormHeader() {
 
       {/* ----------- Deposit account ----------- */}
       <FFormGroup
-        label={<T id={'deposit_account'} />}
+        label={intl.get('deposit_account')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
         name={'deposit_account_id'}
@@ -94,7 +95,7 @@ export default function ReceiptFormHeader() {
       {/* ----------- Receipt date ----------- */}
       <FFormGroup
         name={'receipt_date'}
-        label={<T id={'receipt_date'} />}
+        label={intl.get('receipt_date')}
         inline
         fastField
       >
@@ -117,7 +118,7 @@ export default function ReceiptFormHeader() {
 
       {/* ----------- Reference ----------- */}
       <FFormGroup
-        label={<T id={'reference'} />}
+        label={intl.get('reference')}
         inline={true}
         name={'reference_no'}
       >
@@ -128,7 +129,7 @@ export default function ReceiptFormHeader() {
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
           name={'project_id'}
-          label={<T id={'receipt.project_name.label'} />}
+          label={intl.get('receipt.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -165,7 +166,7 @@ function ReceiptFormCustomerSelect() {
   return (
     <FFormGroup
       name={'customer_id'}
-      label={<T id={'customer_name'} />}
+      label={intl.get('customer_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
       fastField={true}

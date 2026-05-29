@@ -14,6 +14,7 @@ import {
 import { DialogsName } from '@/constants/dialogs';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
 /**
  * Invoice number field of invoice form.
@@ -63,7 +64,7 @@ export const InvoiceFormInvoiceNumberField = R.compose(
     return (
       <FFormGroup
         name={'invoice_no'}
-        label={<T id={'invoice_no'} />}
+        label={intl.get('invoice_no')}
         labelInfo={<FieldRequiredHint />}
         inline={true}
         fastField={true}

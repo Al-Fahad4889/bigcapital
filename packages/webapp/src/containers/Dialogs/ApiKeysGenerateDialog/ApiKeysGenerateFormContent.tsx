@@ -37,7 +37,7 @@ function ApiKeysGenerateFormContent({
         {/* ----------- Name ----------- */}
         <FFormGroup
           name={'name'}
-          label={<T id={'api_key.name'} />}
+          label={intl.get('api_key.name')}
         >
           <FInputGroup name={'name'} placeholder={intl.get('api_key.name_placeholder')} />
         </FFormGroup>

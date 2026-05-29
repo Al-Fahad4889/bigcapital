@@ -3,7 +3,7 @@ import {
   ItemsMultiSelect,
   Row,
   Col,
-  FormattedMessage as T,
+
   FFormGroup,
 } from '@/components';
 import { FinancialStatementDateRange } from '../FinancialStatementDateRange';
@@ -12,6 +12,7 @@ import {
   InventoryItemDetailsHeaderGeneralProvider,
   useInventoryItemDetailsHeaderGeneralContext,
 } from './InventoryItemDetailsHeaderGeneralProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Inventory item details header - General panel.
@@ -36,7 +37,7 @@ function InventoryItemDetailsHeaderGeneralPanelContent() {
 
       <Row>
         <Col xs={4}>
-          <FFormGroup label={<T id={'Specific items'} />} name={'itemsIds'}>
+          <FFormGroup label={intl.get('Specific items')} name={'itemsIds'}>
             <ItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>

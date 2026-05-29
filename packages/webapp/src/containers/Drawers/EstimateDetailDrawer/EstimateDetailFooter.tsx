@@ -9,6 +9,7 @@ import {
   DetailItem,
 } from '@/components';
 import { useEstimateDetailDrawerContext } from './EstimateDetailDrawerProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Estimate details footer.
@@ -22,14 +23,14 @@ export default function EstimateDetailFooter() {
       <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
         <If condition={estimate.terms_conditions}>
           <DetailItem
-            label={<T id={'estimate.details.terms_conditions'} />}
+            label={intl.get('estimate.details.terms_conditions')}
             multiline
           >
             {estimate.terms_conditions}
           </DetailItem>
         </If>
         <If condition={estimate.note}>
-          <DetailItem label={<T id={'estimate.details.note'} />} multiline>
+          <DetailItem label={intl.get('estimate.details.note')} multiline>
             {estimate.note}
           </DetailItem>
         </If>

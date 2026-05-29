@@ -2,13 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FFormGroup, FEditableText, FormattedMessage as T } from '@/components';
+import intl from 'react-intl-universal';
 
 export function ExpenseFormFooterLeft() {
   return (
     <React.Fragment>
       {/* --------- Description --------- */}
       <DescriptionFormGroup
-        label={<T id={'description'} />}
+        label={intl.get('description')}
         name={'description'}
       >
         <FEditableText

@@ -24,6 +24,7 @@ import {
 } from './utils';
 import { useCurrentOrganization } from '@/hooks/state';
 import  { CustomerFormSectionTitle } from './CustomerFormSectionTitle';
+import intl from 'react-intl-universal';
 
 export function CustomerFormFinancialSection() {
   const { currencies, customerId, branches } = useCustomerFormContext();
@@ -39,7 +40,7 @@ export function CustomerFormFinancialSection() {
           
           <FFormGroup
             name={'currency_code'}
-            label={<T id={'currency'} />}
+            label={intl.get('currency')}
             fastField
             inline
             fill
@@ -57,7 +58,7 @@ export function CustomerFormFinancialSection() {
           
           <FeatureCan feature={Features.Branches}>
             <FFormGroup
-              label={<T id={'customer.label.opening_branch'} />}
+              label={intl.get('customer.label.opening_branch')}
               name={'opening_balance_branch_id'}
               inline
             >
@@ -82,7 +83,7 @@ function CustomerOpeningBalanceAtField() {
   return (
     <FFormGroup
       name={'opening_balance_at'}
-      label={<T id={'opening_balance_at'} />}
+      label={intl.get('opening_balance_at')}
       inline
       fill
       helperText={<ErrorMessage name="opening_balance_at" />}
@@ -111,7 +112,7 @@ function CustomerOpeningBalanceField() {
 
   return (
     <FFormGroup
-      label={<T id={'opening_balance'} />}
+      label={intl.get('opening_balance')}
       name={'opening_balance'}
       inline
       shouldUpdate={openingBalanceFieldShouldUpdate}

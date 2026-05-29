@@ -7,7 +7,7 @@ import {
   FieldRequiredHint,
   SalutationList,
   DisplayNameList,
-  FormattedMessage as T,
+
   FInputGroup,
   FFormGroup,
   Box,
@@ -31,7 +31,7 @@ export function CustomerFormBasicSection({}) {
       {/**----------- Contact name -----------*/}
       <FFormGroup
         name={'salutation'}
-        label={<T id={'contact_name'} />}
+        label={intl.get('contact_name')}
         inline
         fill
       >
@@ -69,7 +69,7 @@ export function CustomerFormBasicSection({}) {
       {/*----------- Company Name -----------*/}
       <FFormGroup
         name={'company_name'}
-        label={<T id={'company_name'} />}
+        label={intl.get('company_name')}
         inline
         fill
       >
@@ -79,7 +79,7 @@ export function CustomerFormBasicSection({}) {
       {/*----------- Display Name -----------*/}
       <FFormGroup
         name={'display_name'}
-        label={<T id={'display_name'} />}
+        label={intl.get('display_name')}
         helperText="This is the name that appears on invoices and emails."
         inline
         fill
@@ -96,7 +96,7 @@ export function CustomerFormBasicSection({}) {
       {/*------------ Vendor email -----------*/}
       <FFormGroup
         name={'email'}
-        label={<T id={'vendor_email'} />}
+        label={intl.get('vendor_email')}
         inline
       >
         <FInputGroup
@@ -109,7 +109,7 @@ export function CustomerFormBasicSection({}) {
       <FFormGroup
         name={'work_phone'}
         className={'form-group--phone-number'}
-        label={<T id={'phone_number'} />}
+        label={intl.get('phone_number')}
         inline={true}
       >
         <Stack spacing={10}>
@@ -126,7 +126,7 @@ export function CustomerFormBasicSection({}) {
       </FFormGroup>
 
       {/*------------ Vendor website -----------*/}
-      <FFormGroup name={'website'} label={<T id={'website'} />} inline={true}>
+      <FFormGroup name={'website'} label={intl.get('website')} inline={true}>
         <FInputGroup
           name={'website'}
           placeholder={'http://'}

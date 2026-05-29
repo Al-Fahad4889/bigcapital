@@ -8,13 +8,14 @@ import {
   FFormGroup,
   Icon,
   InputPrependButton,
-  FormattedMessage as T,
+
 } from '@/components';
 import { useUpdateEffect } from '@/hooks';
 
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { transactionNumber } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Syncs cashflow auto-increment settings to the form once update.
@@ -95,7 +96,7 @@ export const MoneyInOutTransactionNoField = R.compose(
     return (
       <FFormGroup
         name={'transaction_number'}
-        label={<T id={'transaction_number'} />}
+        label={intl.get('transaction_number')}
       >
         <ControlGroup fill={true}>
           <InputGroup

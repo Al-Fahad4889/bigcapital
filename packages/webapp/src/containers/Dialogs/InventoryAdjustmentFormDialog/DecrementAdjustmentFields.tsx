@@ -7,13 +7,14 @@ import {
   Row,
   Col,
   MoneyInputGroup,
-  FormattedMessage as T,
+
   FMoneyInputGroup,
   FFormGroup,
   FInputGroup,
 } from '@/components';
 import { useAutofocus } from '@/hooks';
 import { decrementQuantity } from './utils';
+import intl from 'react-intl-universal';
 
 /**
  * Decrement adjustment fields.
@@ -26,7 +27,7 @@ function DecrementAdjustmentFields() {
     <Row className={'row--decrement-fields'}>
       {/*------------ Quantity on hand  -----------*/}
       <Col className={'col--quantity-on-hand'}>
-        <FFormGroup name={'quantity_on_hand'} label={<T id={'qty_on_hand'} />}>
+        <FFormGroup name={'quantity_on_hand'} label={intl.get('qty_on_hand')}>
           <FInputGroup
             name={'quantity_on_hand'}
             disabled={true}
@@ -41,7 +42,7 @@ function DecrementAdjustmentFields() {
 
       {/*------------ Decrement -----------*/}
       <Col className={'col--decrement'}>
-        <FFormGroup name={'quantity'} label={<T id={'decrement'} />} fill>
+        <FFormGroup name={'quantity'} label={intl.get('decrement')} fill>
           <FMoneyInputGroup
             name={'quantity'}
             allowDecimals={false}
@@ -67,7 +68,7 @@ function DecrementAdjustmentFields() {
       <Col className={'col--quantity'}>
         <FFormGroup
           name={'new_quantity'}
-          label={<T id={'new_quantity'} />}
+          label={intl.get('new_quantity')}
           fill
           fastField
         >

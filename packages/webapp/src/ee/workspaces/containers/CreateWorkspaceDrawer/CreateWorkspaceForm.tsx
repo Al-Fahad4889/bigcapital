@@ -34,6 +34,7 @@ import {
   type SetupOrganizationFormValues,
 } from '@/containers/Setup/SetupOrganization.schema';
 import { transfromToSnakeCase } from '@/utils';
+import intl from 'react-intl-universal';
 
 const countries = getAllCountries();
 
@@ -113,12 +114,12 @@ export default function CreateWorkspaceForm({
             <x.div maxWidth={'600px'} w="100%" mx="auto">
               <Form>
                 {/* ---------- Organization name ----------  */}
-                <FFormGroupField name={'name'} label={<T id={'legal_organization_name'} />} fastField>
+                <FFormGroupField name={'name'} label={intl.get('legal_organization_name')} fastField>
                   <FInputGroup name={'name'} large fastField />
                 </FFormGroupField>
 
                 {/* ---------- Location ---------- */}
-                <FFormGroupField name={'location'} label={<T id={'business_location'} />} fastField={true}>
+                <FFormGroupField name={'location'} label={intl.get('business_location')} fastField={true}>
                   <FSelect
                     name={'location'}
                     items={countries}
@@ -134,7 +135,7 @@ export default function CreateWorkspaceForm({
                 <Row bsPrefix="row" className="" noGutters={false}>
                   <Col xs={6} bsPrefix="col" className="" noGutters={false}>
                     {/* ----------  Base currency ----------  */}
-                    <FFormGroupField name={'baseCurrency'} label={<T id={'base_currency'} />} fastField={true}>
+                    <FFormGroupField name={'baseCurrency'} label={intl.get('base_currency')} fastField={true}>
                       <FSelect
                         name={'baseCurrency'}
                         items={currencies}
@@ -150,7 +151,7 @@ export default function CreateWorkspaceForm({
 
                   {/* ---------- Language ---------- */}
                   <Col xs={6} bsPrefix="col" className="" noGutters={false}>
-                    <FFormGroupField name={'language'} label={<T id={'language'} />} fastField>
+                    <FFormGroupField name={'language'} label={intl.get('language')} fastField>
                       <FSelect
                         name={'language'}
                         items={Languages}
@@ -166,7 +167,7 @@ export default function CreateWorkspaceForm({
                 </Row>
 
                 {/* --------- Fiscal Year ----------- */}
-                <FFormGroupField name={'fiscalYear'} label={<T id={'fiscal_year'} />} fastField>
+                <FFormGroupField name={'fiscalYear'} label={intl.get('fiscal_year')} fastField>
                   <FSelect
                     name={'fiscalYear'}
                     items={FiscalYear}
@@ -180,7 +181,7 @@ export default function CreateWorkspaceForm({
                 </FFormGroupField>
 
                 {/* ----------  Time zone ----------  */}
-                <FFormGroupField name={'timezone'} label={<T id={'time_zone'} />}>
+                <FFormGroupField name={'timezone'} label={intl.get('time_zone')}>
                   <FTimezoneSelect
                     name={'timezone'}
                     valueDisplayFormat="composite"

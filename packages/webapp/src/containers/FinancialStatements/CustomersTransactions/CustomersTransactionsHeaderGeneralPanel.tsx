@@ -4,7 +4,7 @@ import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import {
   Row,
   Col,
-  FormattedMessage as T,
+
   CustomersMultiSelect,
   FFormGroup,
 } from '@/components';
@@ -14,6 +14,7 @@ import {
   CustomersTransactionsGeneralPanelProvider,
   useCustomersTransactionsGeneralPanelContext,
 } from './CustomersTransactionsHeaderGeneralPanelProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Customers transactions header - General panel.
@@ -40,7 +41,7 @@ function CustomersTransactionsHeaderGeneralPanelContent() {
         <Col xs={4}>
           <FinancialStatementsFilter
             items={filterCustomersOptions}
-            label={<T id={'customers.label_filter_customers'} />}
+            label={intl.get('customers.label_filter_customers')}
             initialSelectedItem={'with-transactions'}
           />
         </Col>
@@ -49,7 +50,7 @@ function CustomersTransactionsHeaderGeneralPanelContent() {
       <Row>
         <Col xs={4}>
           <FFormGroup
-            label={<T id={'specific_customers'} />}
+            label={intl.get('specific_customers')}
             name={'customersIds'}
           >
             <CustomersMultiSelect name={'customersIds'} items={customers} />

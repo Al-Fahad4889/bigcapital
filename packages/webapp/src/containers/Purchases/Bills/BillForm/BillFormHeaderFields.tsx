@@ -32,6 +32,7 @@ import {
 } from '@/utils';
 import { Features } from '@/constants';
 import { useTheme } from '@emotion/react';
+import intl from 'react-intl-universal';
 
 const getBillFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -74,7 +75,7 @@ function BillFormHeader() {
       {/* ------- Bill date ------- */}
       <FFormGroup
         name={'bill_date'}
-        label={<T id={'bill_date'} />}
+        label={intl.get('bill_date')}
         inline
         labelInfo={<FieldRequiredHint />}
         className={classNames(CLASSES.FILL)}
@@ -93,7 +94,7 @@ function BillFormHeader() {
       {/* ------- Due date ------- */}
       <FFormGroup
         name={'due_date'}
-        label={<T id={'due_date'} />}
+        label={intl.get('due_date')}
         inline
         fill
         fastField
@@ -113,7 +114,7 @@ function BillFormHeader() {
       {/* ------- Bill number ------- */}
       <FFormGroup
         name={'bill_number'}
-        label={<T id={'bill_number'} />}
+        label={intl.get('bill_number')}
         inline
         fill
         fastField
@@ -124,7 +125,7 @@ function BillFormHeader() {
       {/* ------- Reference ------- */}
       <FFormGroup
         name={'reference_no'}
-        label={<T id={'reference'} />}
+        label={intl.get('reference')}
         inline={true}
         fill
         fastField
@@ -136,7 +137,7 @@ function BillFormHeader() {
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
           name={'project_id'}
-          label={<T id={'bill.project_name.label'} />}
+          label={intl.get('bill.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -163,7 +164,7 @@ function BillFormVendorField() {
   return (
     <FFormGroup
       name={'vendor_id'}
-      label={<T id={'vendor_name'} />}
+      label={intl.get('vendor_name')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
       fastField={true}

@@ -29,6 +29,7 @@ import {
 } from './utils';
 import { compose, inputIntent } from '@/utils';
 import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
+import intl from 'react-intl-universal';
 
 /**
  * Item form body.
@@ -62,7 +63,7 @@ function ItemFormBody({ organization: { base_currency } }) {
           {/*------------- Selling price ------------- */}
           <FFormGroup
             name={'sell_price'}
-            label={<T id={'selling_price'} />}
+            label={intl.get('selling_price')}
             inline
             fastField
           >
@@ -81,7 +82,7 @@ function ItemFormBody({ organization: { base_currency } }) {
 
           {/*------------- Selling account ------------- */}
           <FFormGroup
-            label={<T id={'account'} />}
+            label={intl.get('account')}
             name={'sell_account_id'}
             labelInfo={
               <Hint content={<T id={'item.field.sell_account.hint'} />} />
@@ -119,7 +120,7 @@ function ItemFormBody({ organization: { base_currency } }) {
 
           <FFormGroup
             name={'sell_description'}
-            label={<T id={'description'} />}
+            label={intl.get('description')}
             inline={true}
             sellable={values.sellable}
             shouldUpdate={sellDescriptionFieldShouldUpdate}
@@ -157,7 +158,7 @@ function ItemFormBody({ organization: { base_currency } }) {
           {/*------------- Cost price ------------- */}
           <FFormGroup
             name={'cost_price'}
-            label={<T id={'cost_price'} />}
+            label={intl.get('cost_price')}
             inline
             fastField
           >
@@ -181,7 +182,7 @@ function ItemFormBody({ organization: { base_currency } }) {
             purchasable={values.purchasable}
             items={accounts}
             shouldUpdate={costAccountFieldShouldUpdate}
-            label={<T id={'account'} />}
+            label={intl.get('account')}
             labelInfo={
               <Hint content={<T id={'item.field.cost_account.hint'} />} />
             }
@@ -222,7 +223,7 @@ function ItemFormBody({ organization: { base_currency } }) {
 
           <FFormGroup
             name={'purchase_description'}
-            label={<T id={'description'} />}
+            label={intl.get('description')}
             className={'form-group--purchase-description'}
             helperText={<ErrorMessage name={'description'} />}
             inline={true}

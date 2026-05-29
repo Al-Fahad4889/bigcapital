@@ -33,6 +33,7 @@ import {
   ProjectBillableEntriesLink,
 } from '@/containers/Projects/components';
 import { Features } from '@/constants';
+import intl from 'react-intl-universal';
 
 const getInvoiceFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -71,7 +72,7 @@ export default function InvoiceFormHeaderFields() {
       {/* ----------- Invoice date ----------- */}
       <FFormGroup
         name={'invoice_date'}
-        label={<T id={'invoice_date'} />}
+        label={intl.get('invoice_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -96,7 +97,7 @@ export default function InvoiceFormHeaderFields() {
       {/* ----------- Due date ----------- */}
       <FFormGroup
         name={'due_date'}
-        label={<T id={'due_date'} />}
+        label={intl.get('due_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
@@ -123,7 +124,7 @@ export default function InvoiceFormHeaderFields() {
       <InvoiceFormInvoiceNumberField />
 
       {/* ----------- Reference ----------- */}
-      <FFormGroup name={'reference_no'} label={<T id={'reference'} />} inline>
+      <FFormGroup name={'reference_no'} label={intl.get('reference')} inline>
         <FInputGroup name={'reference_no'} minimal={true} />
       </FFormGroup>
 
@@ -131,7 +132,7 @@ export default function InvoiceFormHeaderFields() {
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
           name={'project_id'}
-          label={<T id={'invoice.project_name.label'} />}
+          label={intl.get('invoice.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
@@ -175,7 +176,7 @@ function InvoiceFormCustomerSelect() {
   return (
     <FFormGroup
       name={'customer_id'}
-      label={<T id={'customer_name'} />}
+      label={intl.get('customer_name')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
       fastField={true}

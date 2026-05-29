@@ -11,6 +11,7 @@ import { FieldRequiredHint, FFormGroup, FInputGroup, FSelect } from '@/component
 
 import { useAutofocus } from '@/hooks';
 import { currenciesOptions } from '@/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Currency form fields.
@@ -35,7 +36,7 @@ export default function CurrencyFormFields() {
     <div className={Classes.DIALOG_BODY}>
       <FFormGroup
         name={'currency_code'}
-        label={<T id={'currency_code'} />}
+        label={intl.get('currency_code')}
       >
         <FSelect
           name={'currency_code'}
@@ -57,7 +58,7 @@ export default function CurrencyFormFields() {
       {/* ----------- Currency name ----------- */}
       <FFormGroup
         name={'currency_name'}
-        label={<T id={'currency_name'} />}
+        label={intl.get('currency_name')}
         labelInfo={<FieldRequiredHint />}
       >
         <FInputGroup
@@ -69,7 +70,7 @@ export default function CurrencyFormFields() {
       {/* ----------- Currency Code ----------- */}
       <FFormGroup
         name={'currency_sign'}
-        label={<T id={'currency_sign'} />}
+        label={intl.get('currency_sign')}
         labelInfo={<FieldRequiredHint />}
       >
         <FInputGroup name={'currency_sign'} />

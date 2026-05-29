@@ -27,6 +27,7 @@ import {
   useSetPrimaryBranchToForm,
   BranchRowDivider,
 } from '../../MoneyInDialog/utils';
+import intl from 'react-intl-universal';
 
 /**
  * Transfer from account form fields.
@@ -44,7 +45,7 @@ export default function TransferFromAccountFormFields() {
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup label={<T id={'branch'} />} name={'branch_id'}>
+            <FFormGroup label={intl.get('branch')} name={'branch_id'}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -61,7 +62,7 @@ export default function TransferFromAccountFormFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -84,7 +85,7 @@ export default function TransferFromAccountFormFields() {
       <Row>
         <Col xs={10}>
           <FormGroup
-            label={<T id={'amount'} />}
+            label={intl.get('amount')}
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
@@ -122,14 +123,14 @@ export default function TransferFromAccountFormFields() {
 
         <Col xs={5}>
           {/*------------ Reference -----------*/}
-          <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />}>
+          <FFormGroup name={'reference_no'} label={intl.get('reference_no')}>
             <FInputGroup name={'reference_no'} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ Description -----------*/}
-      <FormGroup name={'description'} label={<T id={'description'} />}>
+      <FormGroup name={'description'} label={intl.get('description')}>
         <FTextArea
           name={'description'}
           growVertically={true}

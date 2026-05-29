@@ -4,7 +4,7 @@ import { DateInput } from '@blueprintjs/datetime';
 import { FormGroup, Position } from '@blueprintjs/core';
 
 import {
-  FormattedMessage as T,
+
   ItemsMultiSelect,
   Row,
   Col,
@@ -23,6 +23,7 @@ import {
   useInventoryValuationGeneralPanelContext,
 } from './InventoryValuationHeaderGeneralPanelProvider';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
+import intl from 'react-intl-universal';
 
 /**
  * Inventory valuation - Drawer Header - General panel.
@@ -48,7 +49,7 @@ function InventoryValuationHeaderGeneralPanelContent() {
           <FastField name={'asDate'}>
             {({ form, field: { value }, meta: { error } }: any) => (
               <FormGroup
-                label={<T id={'as_date'} />}
+                label={intl.get('as_date')}
                 labelInfo={<FieldHint />}
                 fill={true}
                 intent={inputIntent({ error })}
@@ -73,7 +74,7 @@ function InventoryValuationHeaderGeneralPanelContent() {
         <Col xs={4}>
           <FinancialStatementsFilter
             items={filterInventoryValuationOptions}
-            label={<T id={'items.label_filter_items'} />}
+            label={intl.get('items.label_filter_items')}
             initialSelectedItem={'all-items'}
           />
         </Col>
@@ -81,7 +82,7 @@ function InventoryValuationHeaderGeneralPanelContent() {
 
       <Row>
         <Col xs={4}>
-          <FFormGroup name={'itemsIds'} label={<T id={'Specific items'} />}>
+          <FFormGroup name={'itemsIds'} label={intl.get('Specific items')}>
             <ItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>

@@ -9,6 +9,7 @@ import {
   DetailItem,
 } from '@/components';
 import { usePaymentReceiveDetailContext } from './PaymentReceiveDetailProvider';
+import intl from 'react-intl-universal';
 
 /**
  * Payment receive detail footer.
@@ -22,7 +23,7 @@ export default function PaymentReceiveDetailFooter() {
       <DetailsMenu direction={'horizantal'} minLabelSize={'180px'}>
         <If condition={paymentReceive.statement}>
           <DetailItem
-            label={<T id={'payment_receive.details.statement'} />}
+            label={intl.get('payment_receive.details.statement')}
             multiline
           >
             {paymentReceive.statement}

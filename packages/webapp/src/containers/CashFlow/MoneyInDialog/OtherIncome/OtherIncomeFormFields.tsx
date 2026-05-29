@@ -10,7 +10,7 @@ import {
 } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-  FormattedMessage as T,
+
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
@@ -40,6 +40,7 @@ import { useSetPrimaryBranchToForm, BranchRowDivider } from '../utils';
 import { MoneyInOutTransactionNoField } from '../../_components';
 import { useMoneyInFieldsContext } from '../MoneyInFieldsProvider';
 import { MoneyInExchangeRateField } from '../MoneyInExchangeRateField';
+import intl from 'react-intl-universal';
 
 /**
  * Other income form fields.
@@ -57,7 +58,7 @@ export default function OtherIncomeFormFields() {
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />}>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')}>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -74,7 +75,7 @@ export default function OtherIncomeFormFields() {
           {/*------------ Date -----------*/}
           <FFormGroup
             name={'date'}
-            label={<T id={'date'} />}
+            label={intl.get('date')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -101,7 +102,7 @@ export default function OtherIncomeFormFields() {
         <Col xs={10}>
           <FFormGroup
             name={'amount'}
-            label={<T id={'amount'} />}
+            label={intl.get('amount')}
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
@@ -120,7 +121,7 @@ export default function OtherIncomeFormFields() {
           {/*------------ other income account -----------*/}
           <FFormGroup
             name={'credit_account_id'}
-            label={<T id={'cash_flow_transaction.other_income_account'} />}
+            label={intl.get('cash_flow_transaction.other_income_account')}
             labelInfo={<FieldRequiredHint />}
           >
             <FAccountsSuggestField
@@ -133,14 +134,14 @@ export default function OtherIncomeFormFields() {
 
         <Col xs={5}>
           {/*------------ Reference -----------*/}
-          <FFormGroup label={<T id={'reference_no'} />} name={'reference_no'}>
+          <FFormGroup label={intl.get('reference_no')} name={'reference_no'}>
             <FInputGroup name={'reference_no'} />
           </FFormGroup>
         </Col>
       </Row>
 
       {/*------------ Description -----------*/}
-      <FFormGroup name={'description'} label={<T id={'description'} />}>
+      <FFormGroup name={'description'} label={intl.get('description')}>
         <FTextArea
           name={'description'}
           growVertically={true}

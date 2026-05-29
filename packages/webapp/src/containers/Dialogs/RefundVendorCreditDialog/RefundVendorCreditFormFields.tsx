@@ -16,7 +16,7 @@ import {
   FAccountsSuggestField,
   InputPrependText,
   FMoneyInputGroup,
-  FormattedMessage as T,
+
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -52,7 +52,7 @@ function RefundVendorCreditFormFields({
       <FeatureCan feature={Features.Branches}>
         <Row>
           <Col xs={5}>
-            <FFormGroup name={'branch_id'} label={<T id={'branch'} />} fill>
+            <FFormGroup name={'branch_id'} label={intl.get('branch')} fill>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -69,7 +69,7 @@ function RefundVendorCreditFormFields({
           {/* ------------- Refund date ------------- */}
           <FFormGroup
             name={'refund_date'}
-            label={<T id={'refund_vendor_credit.dialog.refund_date'} />}
+            label={intl.get('refund_vendor_credit.dialog.refund_date')}
             labelInfo={<FieldRequiredHint />}
             fill
             fastField
@@ -90,7 +90,7 @@ function RefundVendorCreditFormFields({
           {/* ------------ Form account ------------ */}
           <FFormGroup
             name={'deposit_account_id'}
-            label={<T id={'refund_vendor_credit.dialog.deposit_to_account'} />}
+            label={intl.get('refund_vendor_credit.dialog.deposit_to_account')}
             labelInfo={<FieldRequiredHint />}
             fill
           >
@@ -113,7 +113,7 @@ function RefundVendorCreditFormFields({
       {/* ------------- Amount ------------- */}
       <FFormGroup
         name={'amount'}
-        label={<T id={'refund_vendor_credit.dialog.amount'} />}
+        label={intl.get('refund_vendor_credit.dialog.amount')}
         labelInfo={<FieldRequiredHint />}
         fill
         fastField
@@ -144,7 +144,7 @@ function RefundVendorCreditFormFields({
       {/* ------------ Reference No. ------------ */}
       <FFormGroup
         name={'reference_no'}
-        label={<T id={'reference_no'} />}
+        label={intl.get('reference_no')}
         fill
         fastField
       >
@@ -152,7 +152,7 @@ function RefundVendorCreditFormFields({
       </FFormGroup>
 
       {/* --------- Statement --------- */}
-      <FFormGroup name={'description'} label={<T id={'refund_vendor_credit.dialog.description'} />} fill fastField>
+      <FFormGroup name={'description'} label={intl.get('refund_vendor_credit.dialog.description')} fill fastField>
         <FTextArea name={'description'} growVertically fill fastField />
       </FFormGroup>
     </div>

@@ -71,7 +71,7 @@ export default function EstimatedExpenseFormFields() {
       {/*------------ Charge -----------*/}
       <FFormGroup
         name={'charge'}
-        label={<T id={'estimated_expenses.dialog.charge'} />}
+        label={intl.get('estimated_expenses.dialog.charge')}
         className={classNames('form-group--select-list', Classes.FILL)}
       >
         <ProjectTaskChargeTypeSelect

@@ -43,6 +43,7 @@ import {
 
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -115,7 +116,7 @@ function VendorCreditNoteFormHeaderFields({
       {/* ------- Vendor Credit date ------- */}
       <FFormGroup
         name={'vendor_credit_date'}
-        label={<T id={'credit_note.label_credit_note_date'} />}
+        label={intl.get('credit_note.label_credit_note_date')}
         inline
         labelInfo={<FieldRequiredHint />}
         fill
@@ -134,7 +135,7 @@ function VendorCreditNoteFormHeaderFields({
       {/* ----------- Vendor Credit No # ----------- */}
       <FFormGroup
         name={'vendor_credit_number'}
-        label={<T id={'credit_note.label_credit_note'} />}
+        label={intl.get('credit_note.label_credit_note')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
         fastField
@@ -164,7 +165,7 @@ function VendorCreditNoteFormHeaderFields({
       </FFormGroup>
 
       {/* ----------- Reference ----------- */}
-      <FFormGroup name={'reference_no'} label={<T id={'reference_no'} />} inline={true} fastField>
+      <FFormGroup name={'reference_no'} label={intl.get('reference_no')} inline={true} fastField>
         <FInputGroup name={'reference_no'} minimal={true} fastField />
       </FFormGroup>
     </Stack>
@@ -184,7 +185,7 @@ function VendorCreditFormVendorSelect() {
   return (
     <FFormGroup
       name={'vendor_id'}
-      label={<T id={'vendor_name'} />}
+      label={intl.get('vendor_name')}
       inline={true}
       labelInfo={<FieldRequiredHint />}
       fastField={true}
