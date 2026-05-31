@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const EstimatedExpenseFormDialogContent = React.lazy(() => import('./EstimatedExpenseFormDialogContent').then(m => ({ default: m.EstimatedExpenseFormDialogContent })));
+const EstimatedExpenseFormDialogContent = React.lazy(() =>
+  import('./EstimatedExpenseFormDialogContent').then((m) => ({
+    default: m.EstimatedExpenseFormDialogContent,
+  })),
+);
 
 /**
  * Estimate expense form dialog.

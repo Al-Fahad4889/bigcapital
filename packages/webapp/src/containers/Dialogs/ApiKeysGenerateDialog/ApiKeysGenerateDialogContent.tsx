@@ -83,4 +83,6 @@ function ApiKeysGenerateDialogContentInner({
   );
 }
 
-export const ApiKeysGenerateDialogContent = compose(withDialogActions)(ApiKeysGenerateDialogContentInner);
+export const ApiKeysGenerateDialogContent = compose(withDialogActions)(
+  ApiKeysGenerateDialogContentInner,
+);

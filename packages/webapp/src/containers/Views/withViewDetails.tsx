@@ -14,7 +14,9 @@ interface ViewDetailsOwnProps {
   viewId: string | number;
 }
 
-export const withViewDetails = <Props extends ViewDetailsOwnProps = ViewDetailsOwnProps>() => {
+export const withViewDetails = <
+  Props extends ViewDetailsOwnProps = ViewDetailsOwnProps,
+>() => {
   const getViewItem = getViewItemFactory();
   const getViewMeta = getViewMetaFactory();
 

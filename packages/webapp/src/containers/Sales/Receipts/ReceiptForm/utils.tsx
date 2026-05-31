@@ -173,7 +173,8 @@ export const transformFormValuesToRequest = (values) => {
 
 export const useSetPrimaryWarehouseToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { warehouses, isWarehousesSuccess, isNewMode } = useReceiptFormContext();
+  const { warehouses, isWarehousesSuccess, isNewMode } =
+    useReceiptFormContext();
 
   React.useEffect(() => {
     if (isWarehousesSuccess && isNewMode) {

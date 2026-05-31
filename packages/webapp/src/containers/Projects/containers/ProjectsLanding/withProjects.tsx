@@ -7,13 +7,15 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithProjectsProps {
-  projectsTableState: ReturnType<ReturnType<typeof getProjectsTableStateFactory>>;
-  projectsTableStateChanged: ReturnType<ReturnType<typeof isProjectsTableStateChangedFactory>>;
+  projectsTableState: ReturnType<
+    ReturnType<typeof getProjectsTableStateFactory>
+  >;
+  projectsTableStateChanged: ReturnType<
+    ReturnType<typeof isProjectsTableStateChangedFactory>
+  >;
 }
 
-export const withProjects = <
-  Props extends { location?: { search: string } },
->(
+export const withProjects = <Props extends { location?: { search: string } }>(
   mapState?: MapState<WithProjectsProps, Props>,
 ) => {
   const getProjectsTableState = getProjectsTableStateFactory();

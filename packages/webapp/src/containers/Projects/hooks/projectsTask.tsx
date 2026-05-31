@@ -20,14 +20,15 @@ export function useCreateProjectTask(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: ([id, values]) => apiRequest.post(`/projects/${id}/tasks`, values),
-          onSuccess: (res, [id, values]) => {
-        // Common invalidate queries.
-        commonInvalidateQueries(queryClient);
-      },
-      ...props,
+  return useMutation({
+    mutationFn: ([id, values]) =>
+      apiRequest.post(`/projects/${id}/tasks`, values),
+    onSuccess: (res, [id, values]) => {
+      // Common invalidate queries.
+      commonInvalidateQueries(queryClient);
     },
-  );
+    ...props,
+  });
 }
 
 /**
@@ -39,8 +40,9 @@ export function useEditProjectTask(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: ([id, values]) => apiRequest.put(`tasks/${id}`, values),
-        onSuccess: (res, [id, values]) => {
+  return useMutation({
+    mutationFn: ([id, values]) => apiRequest.put(`tasks/${id}`, values),
+    onSuccess: (res, [id, values]) => {
       // Common invalidate queries.
       commonInvalidateQueries(queryClient);
 
@@ -59,8 +61,9 @@ export function useDeleteProjectTask(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: (id) => apiRequest.delete(`tasks/${id}`),
-        onSuccess: (res, id) => {
+  return useMutation({
+    mutationFn: (id) => apiRequest.delete(`tasks/${id}`),
+    onSuccess: (res, id) => {
       // Invalidate specific project task.
       queryClient.invalidateQueries({ queryKey: [t.PROJECT_TASK, id] });
 

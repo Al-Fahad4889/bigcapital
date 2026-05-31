@@ -43,38 +43,55 @@ import { financialReportsKeys } from '../FinancialReports/query-keys';
 import { settingsKeys } from '../settings/query-keys';
 import { cashflowAccountsKeys } from '../cashflow-accounts/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: vendorCreditsKeys.all() });
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
   queryClient.invalidateQueries({ queryKey: vendorsKeys.all() });
   queryClient.invalidateQueries({ queryKey: accountsKeys.all() });
   queryClient.invalidateQueries({ queryKey: settingsKeys.vendorCredits() });
-  queryClient.invalidateQueries({ queryKey: vendorCreditsKeys.refund(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: vendorCreditsKeys.refundTransaction(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: vendorCreditsKeys.reconcile(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: vendorCreditsKeys.reconciles(null).slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: vendorCreditsKeys.refund(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: vendorCreditsKeys.refundTransaction(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: vendorCreditsKeys.reconcile(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: vendorCreditsKeys.reconciles(null).slice(0, 1),
+  });
   queryClient.invalidateQueries({ queryKey: billsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1),
+  });
   queryClient.invalidateQueries({ queryKey: financialReportsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: financialReportsKeys.transactionsByReference().slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: organizationKeys.mutateAbilities() });
+  queryClient.invalidateQueries({
+    queryKey: financialReportsKeys.transactionsByReference().slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: organizationKeys.mutateAbilities(),
+  });
 };
 
 export function useCreateVendorCredit(
-  props?: UseMutationOptions<void, Error, CreateVendorCreditBody>
+  props?: UseMutationOptions<void, Error, CreateVendorCreditBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (values: CreateVendorCreditBody) => createVendorCredit(fetcher, values),
+    mutationFn: (values: CreateVendorCreditBody) =>
+      createVendorCredit(fetcher, values),
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
 
 export function useEditVendorCredit(
-  props?: UseMutationOptions<void, Error, [number, EditVendorCreditBody]>
+  props?: UseMutationOptions<void, Error, [number, EditVendorCreditBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -90,7 +107,9 @@ export function useEditVendorCredit(
   });
 }
 
-export function useDeleteVendorCredit(props?: UseMutationOptions<void, Error, number>) {
+export function useDeleteVendorCredit(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -105,15 +124,24 @@ export function useDeleteVendorCredit(props?: UseMutationOptions<void, Error, nu
 }
 
 export function useBulkDeleteVendorCredits(
-  props?: UseMutationOptions<void, Error, { ids: number[]; skipUndeletable?: boolean }>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    { ids: number[]; skipUndeletable?: boolean }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ({ ids, skipUndeletable = false }: { ids: number[]; skipUndeletable?: boolean }) =>
-      bulkDeleteVendorCredits(fetcher, { ids, skipUndeletable }),
+    mutationFn: ({
+      ids,
+      skipUndeletable = false,
+    }: {
+      ids: number[];
+      skipUndeletable?: boolean;
+    }) => bulkDeleteVendorCredits(fetcher, { ids, skipUndeletable }),
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
@@ -123,14 +151,16 @@ export function useValidateBulkDeleteVendorCredits(
     ValidateBulkDeleteVendorCreditsResponse,
     Error,
     number[]
-  >
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
     mutationFn: (ids: number[]) =>
-      validateBulkDeleteVendorCredits(fetcher, { ids } as BulkDeleteVendorCreditsBody),
+      validateBulkDeleteVendorCredits(fetcher, {
+        ids,
+      } as BulkDeleteVendorCreditsBody),
   });
 }
 
@@ -139,7 +169,7 @@ export function useValidateBulkDeleteVendorCredits(
  */
 export function useVendorCredits(
   query?: GetVendorCreditsQuery,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -153,7 +183,7 @@ export function useVendorCredits(
 export function useVendorCredit(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
-  _requestProps?: unknown
+  _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
 
@@ -176,7 +206,11 @@ export function useRefreshVendorCredits() {
 }
 
 export function useCreateRefundVendorCredit(
-  props?: UseMutationOptions<void, Error, [number, CreateRefundVendorCreditBody]>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    [number, CreateRefundVendorCreditBody]
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -192,7 +226,9 @@ export function useCreateRefundVendorCredit(
   });
 }
 
-export function useDeleteRefundVendorCredit(props?: UseMutationOptions<void, Error, number>) {
+export function useDeleteRefundVendorCredit(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -209,7 +245,7 @@ export function useDeleteRefundVendorCredit(props?: UseMutationOptions<void, Err
 export function useRefundVendorCredit(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
-  _requestProps?: unknown
+  _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
 
@@ -221,7 +257,9 @@ export function useRefundVendorCredit(
   });
 }
 
-export function useOpenVendorCredit(props?: UseMutationOptions<void, Error, number>) {
+export function useOpenVendorCredit(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -236,7 +274,11 @@ export function useOpenVendorCredit(props?: UseMutationOptions<void, Error, numb
 }
 
 export function useCreateReconcileVendorCredit(
-  props?: UseMutationOptions<void, Error, [number, ApplyVendorCreditToBillsBody]>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    [number, ApplyVendorCreditToBillsBody]
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -255,7 +297,7 @@ export function useCreateReconcileVendorCredit(
 export function useReconcileVendorCredit(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
-  _requestProps?: unknown
+  _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
 
@@ -270,7 +312,7 @@ export function useReconcileVendorCredit(
 export function useReconcileVendorCredits(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
-  _requestProps?: unknown
+  _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
 
@@ -283,7 +325,7 @@ export function useReconcileVendorCredits(
 }
 
 export function useDeleteReconcileVendorCredit(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -299,7 +341,7 @@ export function useDeleteReconcileVendorCredit(
 export function useRefundVendorCreditTransaction(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
-  _requestProps?: unknown
+  _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
 

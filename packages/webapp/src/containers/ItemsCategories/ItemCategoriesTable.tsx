@@ -65,4 +65,7 @@ function ItemsCategoryTable({
   );
 }
 
-export const ItemCategoriesTable = compose(withDialogActions, withAlertActions)(ItemsCategoryTable);
+export const ItemCategoriesTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(ItemsCategoryTable);

@@ -58,7 +58,7 @@ export function useUncategorizedTransactionsColumns() {
       {
         Header: 'Description',
         accessor: 'description',
-        className: clsx(Classes.TEXT_MUTED),        
+        className: clsx(Classes.TEXT_MUTED),
         textOverview: true,
       },
       {
@@ -81,14 +81,14 @@ export function useUncategorizedTransactionsColumns() {
         accessor: 'formatted_deposit_amount',
         align: 'right',
         width: depositWidth,
-        money: true
+        money: true,
       },
       {
         Header: 'Withdrawal',
         accessor: 'formatted_withdrawal_amount',
         align: 'right',
         width: withdrawalWidth,
-        money: true
+        money: true,
       },
     ],
     [],

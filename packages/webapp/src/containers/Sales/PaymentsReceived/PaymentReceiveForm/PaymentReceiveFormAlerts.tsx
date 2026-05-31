@@ -8,7 +8,10 @@ import { clearAllPaymentEntries } from './utils';
  * Payment receive form alerts.
  */
 export function PaymentReceiveFormAlerts() {
-  const { values: { entries }, setFieldValue } = useFormikContext();
+  const {
+    values: { entries },
+    setFieldValue,
+  } = useFormikContext();
 
   const handleClearingAllLines = () => {
     const newEntries = clearAllPaymentEntries(entries);

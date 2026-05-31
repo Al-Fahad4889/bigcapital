@@ -44,6 +44,6 @@ function UnlockingTransactionsFormFloatingActionsInner({
   );
 }
 
-export const UnlockingTransactionsFormFloatingActions = compose(withDialogActions)(
-  UnlockingTransactionsFormFloatingActionsInner,
-);
+export const UnlockingTransactionsFormFloatingActions = compose(
+  withDialogActions,
+)(UnlockingTransactionsFormFloatingActionsInner);

@@ -46,7 +46,9 @@ function SMSIntegrationTabsInner({
   );
 }
 
-export const SMSIntegrationTabs = compose(withDashboardActions)(SMSIntegrationTabsInner);
+export const SMSIntegrationTabs = compose(withDashboardActions)(
+  SMSIntegrationTabsInner,
+);
 
 const SMSIntegrationCard = styled(Card)`
   padding: 0;

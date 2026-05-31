@@ -44,4 +44,6 @@ function BranchFormFloatingActionsInner({
     </div>
   );
 }
-export const BranchFormFloatingActions = compose(withDialogActions)(BranchFormFloatingActionsInner);
+export const BranchFormFloatingActions = compose(withDialogActions)(
+  BranchFormFloatingActionsInner,
+);

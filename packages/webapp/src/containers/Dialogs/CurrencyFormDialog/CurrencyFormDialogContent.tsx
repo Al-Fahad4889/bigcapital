@@ -25,4 +25,6 @@ function CurrencyFormDialogContentInner({
   );
 }
 
-export const CurrencyFormDialogContent = compose(withCurrencyDetail)(CurrencyFormDialogContentInner);
+export const CurrencyFormDialogContent = compose(withCurrencyDetail)(
+  CurrencyFormDialogContentInner,
+);

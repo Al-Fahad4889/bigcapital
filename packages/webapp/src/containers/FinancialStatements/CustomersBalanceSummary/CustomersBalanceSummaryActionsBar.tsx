@@ -12,9 +12,7 @@ import classNames from 'classnames';
 
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
-import {
-  withCustomersBalanceSummary,
-} from './withCustomersBalanceSummary';
+import { withCustomersBalanceSummary } from './withCustomersBalanceSummary';
 import {
   withCustomersBalanceSummaryActions,
   WithCustomersBalanceSummaryActionsProps,
@@ -35,7 +33,10 @@ interface CustomersBalanceSummaryActionsBarOwnProps {
 
 type CustomersBalanceSummaryActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithCustomersBalanceSummaryActionsProps, 'toggleCustomerBalanceFilterDrawer'> &
+} & Pick<
+  WithCustomersBalanceSummaryActionsProps,
+  'toggleCustomerBalanceFilterDrawer'
+> &
   WithDialogActionsProps &
   CustomersBalanceSummaryActionsBarOwnProps;
 

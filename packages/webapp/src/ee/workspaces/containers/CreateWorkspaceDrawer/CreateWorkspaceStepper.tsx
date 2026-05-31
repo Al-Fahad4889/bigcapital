@@ -49,9 +49,12 @@ const createWorkspaceStepperContentCss = css`
   }
 `;
 
-export function CreateWorkspaceStepper({ onClose }: CreateWorkspaceStepperProps) {
+export function CreateWorkspaceStepper({
+  onClose,
+}: CreateWorkspaceStepperProps) {
   const [stepIndex, setStepIndex] = useState(0);
-  const [createdWorkspace, setCreatedWorkspace] = useState<CreatedWorkspace | null>(null);
+  const [createdWorkspace, setCreatedWorkspace] =
+    useState<CreatedWorkspace | null>(null);
 
   const handleWorkspaceCreated = (data: CreatedWorkspace) => {
     setCreatedWorkspace(data);

@@ -14,9 +14,7 @@ export interface SetupOrganizationFormValues {
 // Retrieve the setup organization form validation.
 export const getSetupOrganizationValidation = () =>
   Yup.object().shape({
-    name: Yup.string()
-      .required()
-      .label(intl.get('organization_name_')),
+    name: Yup.string().required().label(intl.get('organization_name_')),
     location: Yup.string()
       .required()
       .label(intl.get('setup.organization.location')),

@@ -60,7 +60,8 @@ function MarkDefaultBrandingTemplateAlertInner({
       onConfirm={handleConfirmDelete}
     >
       <p>
-        Are you sure want to mark the given branding template as a default template?
+        Are you sure want to mark the given branding template as a default
+        template?
       </p>
     </Alert>
   );

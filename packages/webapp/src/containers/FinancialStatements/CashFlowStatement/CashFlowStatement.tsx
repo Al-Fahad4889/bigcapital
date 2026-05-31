@@ -78,4 +78,6 @@ function CashFlowStatementInner({
   );
 }
 
-export const CashFlowStatement = compose(withCashFlowStatementActions)(CashFlowStatementInner);
+export const CashFlowStatement = compose(withCashFlowStatementActions)(
+  CashFlowStatementInner,
+);

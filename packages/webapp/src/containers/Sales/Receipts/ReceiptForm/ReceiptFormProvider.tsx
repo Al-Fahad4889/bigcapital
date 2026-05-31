@@ -46,10 +46,9 @@ function ReceiptFormProvider({ receiptId, ...props }) {
   const { data: accounts, isLoading: isAccountsLoading } = useAccounts();
 
   // Fetch customers list.
-  const {
-    data: customersData,
-    isLoading: isCustomersLoading,
-  } = useCustomers({ page_size: 10000 });
+  const { data: customersData, isLoading: isCustomersLoading } = useCustomers({
+    page_size: 10000,
+  });
 
   // Fetch warehouses list.
   const {
@@ -88,18 +87,15 @@ function ReceiptFormProvider({ receiptId, ...props }) {
   );
 
   // Handle fetch Items data table or list.
-  const {
-    data: itemsData,
-    isLoading: isItemsLoading,
-  } = useItems({
+  const { data: itemsData, isLoading: isItemsLoading } = useItems({
     page_size: 10000,
     stringified_filter_roles: stringifiedFilterRoles,
   });
   // Fetch project list.
-  const {
-    data: projectsData,
-    isLoading: isProjectsLoading,
-  } = useProjects({}, { enabled: !!isProjectsFeatureCan });
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
+    {},
+    { enabled: !!isProjectsFeatureCan },
+  );
 
   // Fetches branding templates of receipt.
   const { data: brandingTemplates, isLoading: isBrandingTemplatesLoading } =

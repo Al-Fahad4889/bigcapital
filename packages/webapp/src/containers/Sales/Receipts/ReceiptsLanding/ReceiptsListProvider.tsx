@@ -40,7 +40,9 @@ function ReceiptsListProvider({ query, tableStateChanged, ...props }) {
     isViewsLoading,
 
     resourceMeta,
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     isResourceFetching,
     isResourceLoading,
 

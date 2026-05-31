@@ -3,14 +3,17 @@ import type {
   PlaidExchangeTokenBody,
   PlaidLinkTokenResponse,
 } from '@bigcapital/sdk-ts';
-import { fetchPlaidExchangeToken, fetchPlaidLinkToken } from '@bigcapital/sdk-ts';
+import {
+  fetchPlaidExchangeToken,
+  fetchPlaidLinkToken,
+} from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../../useRequest';
 
 /**
  * Retrieves the Plaid link token.
  */
 export function useGetPlaidLinkToken(
-  props?: UseMutationOptions<PlaidLinkTokenResponse, Error, void>
+  props?: UseMutationOptions<PlaidLinkTokenResponse, Error, void>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -24,7 +27,7 @@ export function useGetPlaidLinkToken(
  * Exchanges the Plaid public token for an access token.
  */
 export function usePlaidExchangeToken(
-  props?: UseMutationOptions<void, Error, PlaidExchangeTokenBody>
+  props?: UseMutationOptions<void, Error, PlaidExchangeTokenBody>,
 ) {
   const fetcher = useApiFetcher();
 

@@ -70,4 +70,7 @@ function JournalInner({
   );
 }
 
-export const Journal = compose(withDashboardActions, withJournalActions)(JournalInner);
+export const Journal = compose(
+  withDashboardActions,
+  withJournalActions,
+)(JournalInner);

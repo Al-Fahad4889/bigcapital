@@ -1,4 +1,10 @@
-import { ApiExtraModels, ApiOperation, ApiResponse, ApiTags, getSchemaPath } from '@nestjs/swagger';
+import {
+  ApiExtraModels,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
 import { SettingsApplicationService } from './SettingsApplication.service';
 import { ISettingsDTO, PreferencesAction } from './Settings.types';

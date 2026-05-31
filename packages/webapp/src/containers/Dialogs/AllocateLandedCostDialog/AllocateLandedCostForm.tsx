@@ -101,4 +101,6 @@ function AllocateLandedCostFormInner({
   );
 }
 
-export const AllocateLandedCostForm = compose(withDialogActions)(AllocateLandedCostFormInner);
+export const AllocateLandedCostForm = compose(withDialogActions)(
+  AllocateLandedCostFormInner,
+);

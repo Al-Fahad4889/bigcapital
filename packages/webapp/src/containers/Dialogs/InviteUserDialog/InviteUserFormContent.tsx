@@ -78,4 +78,6 @@ function InviteUserFormContentInner({
   );
 }
 
-export const InviteUserFormContent = compose(withDialogActions)(InviteUserFormContentInner);
+export const InviteUserFormContent = compose(withDialogActions)(
+  InviteUserFormContentInner,
+);

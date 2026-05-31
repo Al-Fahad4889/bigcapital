@@ -7,7 +7,9 @@ export interface WithPlanProps {
   plan: ReturnType<ReturnType<typeof getPlanSelector>>;
 }
 
-export const withPlan = <Props = unknown>(mapState?: MapState<WithPlanProps, Props>) => {
+export const withPlan = <Props = unknown,>(
+  mapState?: MapState<WithPlanProps, Props>,
+) => {
   const mapStateToProps: MapStateToProps<
     WithPlanProps,
     Props,

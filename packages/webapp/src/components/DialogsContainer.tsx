@@ -184,9 +184,7 @@ export default function DialogsContainer() {
       <SelectPaymentMethodsDialog
         dialogName={DialogsName.SelectPaymentMethod}
       />
-      <ApiKeysGenerateDialog
-        dialogName={DialogsName.ApiKeysGenerate}
-      />
+      <ApiKeysGenerateDialog dialogName={DialogsName.ApiKeysGenerate} />
       <WorkspaceDeleteDialog dialogName={DialogsName.WorkspaceDelete} />
       <WorkspaceInactivateDialog dialogName={DialogsName.WorkspaceInactivate} />
     </div>

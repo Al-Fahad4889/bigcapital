@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ContactDialogContent = lazy(() => import('./ContactDuplicateDialogContent').then(m => ({ default: m.ContactDuplicateDialogContent })));
+const ContactDialogContent = lazy(() =>
+  import('./ContactDuplicateDialogContent').then((m) => ({
+    default: m.ContactDuplicateDialogContent,
+  })),
+);
 /**
  * Contact duplicate dialog.
  */

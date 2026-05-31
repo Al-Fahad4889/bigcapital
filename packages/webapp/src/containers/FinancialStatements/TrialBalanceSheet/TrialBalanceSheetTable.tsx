@@ -16,12 +16,11 @@ interface TrialBalanceSheetTableProps {
 /**
  * Trial Balance sheet data table.
  */
-export function TrialBalanceSheetTable({ companyName }: TrialBalanceSheetTableProps) {
+export function TrialBalanceSheetTable({
+  companyName,
+}: TrialBalanceSheetTableProps) {
   // Trial balance sheet context.
-  const {
-    trialBalanceSheet,
-    isLoading,
-  } = useTrialBalanceSheetContext();
+  const { trialBalanceSheet, isLoading } = useTrialBalanceSheetContext();
 
   const table = (trialBalanceSheet as any)?.table;
   const meta = (trialBalanceSheet as any)?.meta;

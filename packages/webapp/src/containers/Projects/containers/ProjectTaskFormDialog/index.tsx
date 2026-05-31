@@ -6,7 +6,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ProjectTaskFormDialogContent = React.lazy(() => import('./ProjectTaskFormDialogContent').then(m => ({ default: m.ProjectTaskFormDialogContent })));
+const ProjectTaskFormDialogContent = React.lazy(() =>
+  import('./ProjectTaskFormDialogContent').then((m) => ({
+    default: m.ProjectTaskFormDialogContent,
+  })),
+);
 
 /**
  * Project task form dialog.

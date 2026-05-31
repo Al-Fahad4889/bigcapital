@@ -58,10 +58,10 @@ function MakeJournalProvider({ journalId, query, ...props }) {
   } = useBranches(query, { enabled: isBranchFeatureCan });
 
   // Fetch the projects list.
-  const {
-    data: projectsData,
-    isLoading: isProjectsLoading,
-  } = useProjects({}, { enabled: !!isProjectFeatureCan });
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
+    {},
+    { enabled: !!isProjectFeatureCan },
+  );
 
   // Submit form payload.
   const [submitPayload, setSubmitPayload] = useState({});

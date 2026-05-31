@@ -9,7 +9,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useTransactionsByReference(
   query: TransactionsByReferenceJsonQuery,
-  props?: Omit<UseQueryOptions<TransactionsByReferenceJsonResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<TransactionsByReferenceJsonResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

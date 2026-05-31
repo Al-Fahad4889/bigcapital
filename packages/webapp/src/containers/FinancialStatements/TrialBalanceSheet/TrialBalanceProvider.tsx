@@ -18,9 +18,14 @@ interface TrialBalanceSheetProviderProps {
   children?: ReactNode;
 }
 
-const TrialBalanceSheetContext = createContext<TrialBalanceSheetContextValue | undefined>(undefined);
+const TrialBalanceSheetContext = createContext<
+  TrialBalanceSheetContextValue | undefined
+>(undefined);
 
-function TrialBalanceSheetProvider({ query, ...props }: TrialBalanceSheetProviderProps) {
+function TrialBalanceSheetProvider({
+  query,
+  ...props
+}: TrialBalanceSheetProviderProps) {
   const httpQuery = useMemo(() => transformFilterFormToQuery(query), [query]);
 
   const {
@@ -28,7 +33,10 @@ function TrialBalanceSheetProvider({ query, ...props }: TrialBalanceSheetProvide
     isFetching,
     isLoading,
     refetch,
-  } = useTrialBalanceSheet({ ...httpQuery }, { placeholderData: (prev) => prev });
+  } = useTrialBalanceSheet(
+    { ...httpQuery },
+    { placeholderData: (prev) => prev },
+  );
 
   const provider: TrialBalanceSheetContextValue = {
     trialBalanceSheet,
@@ -47,7 +55,10 @@ function TrialBalanceSheetProvider({ query, ...props }: TrialBalanceSheetProvide
 
 const useTrialBalanceSheetContext = (): TrialBalanceSheetContextValue => {
   const ctx = useContext(TrialBalanceSheetContext);
-  if (!ctx) throw new Error('useTrialBalanceSheetContext must be used within a TrialBalanceSheetProvider');
+  if (!ctx)
+    throw new Error(
+      'useTrialBalanceSheetContext must be used within a TrialBalanceSheetProvider',
+    );
   return ctx;
 };
 

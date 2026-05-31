@@ -13,7 +13,9 @@ interface CashFlowStatementTableProps {
   companyName: string;
 }
 
-export function CashFlowStatementTable({ companyName }: CashFlowStatementTableProps) {
+export function CashFlowStatementTable({
+  companyName,
+}: CashFlowStatementTableProps) {
   const { cashFlowStatement, query } = useCashFlowStatementContext();
   const tableRows = cashFlowStatement?.tableRows ?? [];
   const meta = cashFlowStatement?.meta;

@@ -7,7 +7,9 @@ import { useTransactionsByReference } from '@/hooks/query';
 import { useInventoryAdjustmentDrawerContext } from './InventoryAdjustmentDrawerProvider';
 
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '../../JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Inentory adjustment detail GL entries panel.

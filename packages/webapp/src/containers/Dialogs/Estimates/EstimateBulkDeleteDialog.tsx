@@ -101,4 +101,3 @@ export const EstimateBulkDeleteDialog = compose(
   withDialogActions,
   withEstimatesActions,
 )(EstimateBulkDeleteDialogInner);
-

@@ -97,22 +97,22 @@ export const InvoiceNoSyncSettingsToForm = R.compose(
  * as an indication the entries rates have been re-calculated.
  * @returns {React.ReactNode}
  */
-export const InvoiceExchangeRateSync = R.compose(withDialogActions)(
-  ({ openDialog }) => {
-    const total = useInvoiceTotal();
-    const timeout = useRef();
+export const InvoiceExchangeRateSync = R.compose(withDialogActions)(({
+  openDialog,
+}) => {
+  const total = useInvoiceTotal();
+  const timeout = useRef();
 
-    useSyncExRateToForm({
-      onSynced: () => {
-        // If the total bigger then zero show alert to the user after adjusting entries.
-        if (total > 0) {
-          clearTimeout(timeout.current);
-          timeout.current = setTimeout(() => {
-            openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
-          }, 500);
-        }
-      },
-    });
-    return null;
-  },
-);
+  useSyncExRateToForm({
+    onSynced: () => {
+      // If the total bigger then zero show alert to the user after adjusting entries.
+      if (total > 0) {
+        clearTimeout(timeout.current);
+        timeout.current = setTimeout(() => {
+          openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
+        }, 500);
+      }
+    },
+  });
+  return null;
+});

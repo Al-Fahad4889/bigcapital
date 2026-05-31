@@ -6,15 +6,16 @@ import { FinancialReportBody } from '../FinancialReportPage';
 import { FinancialSheetSkeleton } from '@/components';
 import { useARAgingSummaryContext } from './ARAgingSummaryProvider';
 
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 
 interface ARAgingSummaryBodyProps {
   organizationName: WithCurrentOrganizationProps['organization']['name'];
 }
 
-function ARAgingSummaryBodyJSX({
-  organizationName,
-}: ARAgingSummaryBodyProps) {
+function ARAgingSummaryBodyJSX({ organizationName }: ARAgingSummaryBodyProps) {
   const { isARAgingLoading } = useARAgingSummaryContext();
 
   return (

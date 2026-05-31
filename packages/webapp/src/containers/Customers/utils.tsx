@@ -21,7 +21,9 @@ export const transformErrors = (errors) => {
   }
   if (errors.find((error) => error.type === 'CUSTOMER_HAS_TRANSACTIONS')) {
     AppToaster.show({
-      message: intl.get('this_customer_cannot_be_deleted_as_it_is_associated_with_transactions'),
+      message: intl.get(
+        'this_customer_cannot_be_deleted_as_it_is_associated_with_transactions',
+      ),
       intent: Intent.DANGER,
     });
   }

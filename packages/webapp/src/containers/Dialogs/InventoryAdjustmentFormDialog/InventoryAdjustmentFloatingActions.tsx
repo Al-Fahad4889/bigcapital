@@ -71,4 +71,6 @@ function InventoryAdjustmentFloatingActionsInner({
   );
 }
 
-export const InventoryAdjustmentFloatingActions = compose(withDialogActions)(InventoryAdjustmentFloatingActionsInner);
+export const InventoryAdjustmentFloatingActions = compose(withDialogActions)(
+  InventoryAdjustmentFloatingActionsInner,
+);

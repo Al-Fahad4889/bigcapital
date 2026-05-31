@@ -133,7 +133,7 @@ function PaymentMadeActionsBarInner({
             icon={<Icon icon={'trash-16'} iconSize={16} />}
             text={<T id={'delete'} />}
             intent={Intent.DANGER}
-          // onClick={handleBulkDelete}
+            // onClick={handleBulkDelete}
           />
         </If>
         <Button

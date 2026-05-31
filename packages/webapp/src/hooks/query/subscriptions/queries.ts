@@ -18,7 +18,8 @@ export const usePaymentByVoucher = (props) => {
 
   return useMutation({
     ...props,
-    mutationFn: (values) => apiRequest.post('subscription/license/payment', values),
+    mutationFn: (values) =>
+      apiRequest.post('subscription/license/payment', values),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: subscriptionsKeys.all() });
       queryClient.invalidateQueries({ queryKey: organizationKeys.current() });

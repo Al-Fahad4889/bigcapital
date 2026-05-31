@@ -59,19 +59,17 @@ const commonColumnMapper = R.curry((data: unknown[], column: ColumnDef) => {
 /**
  * Numeric columns accessor.
  */
-const numericColumnAccessor = R.curry(
-  (data: unknown[], column: ColumnDef) => {
-    const accessor = getTableCellValueAccessor(column.cell_index);
-    const width = getReportColWidth(data, accessor, column.label);
+const numericColumnAccessor = R.curry((data: unknown[], column: ColumnDef) => {
+  const accessor = getTableCellValueAccessor(column.cell_index);
+  const width = getReportColWidth(data, accessor, column.label);
 
-    return {
-      ...column,
-      align: Align.Right,
-      width,
-      money: true,
-    };
-  },
-);
+  return {
+    ...column,
+    align: Align.Right,
+    width,
+    money: true,
+  };
+});
 
 /**
  * Date column accessor.
@@ -118,14 +116,8 @@ const dynamiColumnMapper = R.curry((data: unknown[], column: ColumnDef) => {
 
   return R.compose(
     R.when(R.pathEq(['key'], 'date'), dateColumnAccessor),
-    R.when(
-      R.pathEq(['key'], 'reference_type'),
-      transactionTypeColumnAccessor,
-    ),
-    R.when(
-      R.pathEq(['key'], 'reference_number'),
-      transactionIdColumnAccessor,
-    ),
+    R.when(R.pathEq(['key'], 'reference_type'), transactionTypeColumnAccessor),
+    R.when(R.pathEq(['key'], 'reference_number'), transactionIdColumnAccessor),
     R.when(R.pathEq(['key'], 'description'), descriptionColumnAccessor),
     R.when(R.pathEq(['key'], 'credit'), _numericColumnAccessor),
     R.when(R.pathEq(['key'], 'debit'), _numericColumnAccessor),

@@ -17,10 +17,7 @@ interface APAgingSummaryTableProps {
 export function APAgingSummaryTable({
   organizationName,
 }: APAgingSummaryTableProps) {
-  const {
-    APAgingSummary,
-    isAPAgingLoading,
-  } = useAPAgingSummaryContext();
+  const { APAgingSummary, isAPAgingLoading } = useAPAgingSummaryContext();
 
   const columns = useAPAgingSummaryColumns();
   const table = (APAgingSummary as any)?.table;

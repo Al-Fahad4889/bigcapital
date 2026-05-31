@@ -43,7 +43,7 @@ function CategorizeTransactionAsideRoot({
 
   const handleClose = () => {
     closeMatchingTransactionAside();
-  }
+  };
   // Cannot continue if there is no selected transactions.;
   if (!selectedUncategorizedTransactionId) {
     return null;

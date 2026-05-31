@@ -115,7 +115,8 @@ export const transformFormToRequest = (form) => {
 
 export const useSetPrimaryBranchToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { branches, isBranchesSuccess, isNewMode } = usePaymentMadeFormContext();
+  const { branches, isBranchesSuccess, isNewMode } =
+    usePaymentMadeFormContext();
 
   React.useEffect(() => {
     if (isBranchesSuccess && isNewMode) {

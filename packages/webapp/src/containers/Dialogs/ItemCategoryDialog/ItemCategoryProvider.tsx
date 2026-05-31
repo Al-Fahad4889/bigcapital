@@ -13,12 +13,10 @@ const ItemCategoryContext = createContext();
  * Accounts chart data provider.
  */
 function ItemCategoryProvider({ itemCategoryId, dialogName, ...props }) {
-  const { data: itemCategory, isFetching: isItemCategoryLoading } = useItemCategory(
-    itemCategoryId,
-    {
+  const { data: itemCategory, isFetching: isItemCategoryLoading } =
+    useItemCategory(itemCategoryId, {
       enabled: !!itemCategoryId,
-    },
-  );
+    });
   // Create and edit item category mutations.
   const { mutateAsync: createItemCategoryMutate } = useCreateItemCategory();
   const { mutateAsync: editItemCategoryMutate } = useEditItemCategory();
@@ -39,7 +37,7 @@ function ItemCategoryProvider({ itemCategoryId, dialogName, ...props }) {
     editItemCategoryMutate,
 
     isNewMode,
-    isEditMode
+    isEditMode,
   };
 
   return (
@@ -52,7 +50,6 @@ function ItemCategoryProvider({ itemCategoryId, dialogName, ...props }) {
   );
 }
 
-const useItemCategoryContext = () =>
-  React.useContext(ItemCategoryContext);
+const useItemCategoryContext = () => React.useContext(ItemCategoryContext);
 
 export { ItemCategoryProvider, useItemCategoryContext };

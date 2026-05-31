@@ -18,10 +18,12 @@ export const withPaymentReceivedMailReceiptPreviewProps = <
 
     const items = useMemo(
       () =>
-        paymentReceivedMailState?.entries?.map((entry: { paidAmount: string; invoiceNumber: string }) => ({
-          total: entry.paidAmount,
-          label: entry.invoiceNumber,
-        })),
+        paymentReceivedMailState?.entries?.map(
+          (entry: { paidAmount: string; invoiceNumber: string }) => ({
+            total: entry.paidAmount,
+            label: entry.invoiceNumber,
+          }),
+        ),
       [paymentReceivedMailState?.entries],
     );
 

@@ -15,11 +15,20 @@ import { CustomersTransactionsExportMenu } from './components';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { useCustomersTransactionsContext } from './CustomersTransactionsProvider';
-import { withCustomersTransactions, WithCustomersTransactionsProps } from './withCustomersTransactions';
-import { withCustomersTransactionsActions, WithCustomersTransactionsActionsProps } from './withCustomersTransactionsActions';
+import {
+  withCustomersTransactions,
+  WithCustomersTransactionsProps,
+} from './withCustomersTransactions';
+import {
+  withCustomersTransactionsActions,
+  WithCustomersTransactionsActionsProps,
+} from './withCustomersTransactionsActions';
 
 import { compose, saveInvoke } from '@/utils';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
 interface CustomersTransactionsActionsBarOwnProps {
@@ -29,7 +38,10 @@ interface CustomersTransactionsActionsBarOwnProps {
 
 type CustomersTransactionsActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithCustomersTransactionsActionsProps, 'toggleCustomersTransactionsFilterDrawer'> &
+} & Pick<
+  WithCustomersTransactionsActionsProps,
+  'toggleCustomersTransactionsFilterDrawer'
+> &
   WithDialogActionsProps &
   CustomersTransactionsActionsBarOwnProps;
 

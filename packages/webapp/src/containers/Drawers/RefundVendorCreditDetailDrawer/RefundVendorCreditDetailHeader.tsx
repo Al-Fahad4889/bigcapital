@@ -24,7 +24,9 @@ export function RefundVendorCreditDetailHeader() {
             <FormatDate value={refundVendorTransaction.formatted_date} />
           }
         />
-        <DetailItem label={intl.get('refund_vendor_credit.drawer.label.amount')}>
+        <DetailItem
+          label={intl.get('refund_vendor_credit.drawer.label.amount')}
+        >
           <strong>{refundVendorTransaction.formtted_amount}</strong>
         </DetailItem>
         <DetailItem
@@ -36,10 +38,14 @@ export function RefundVendorCreditDetailHeader() {
           label={intl.get('refund_vendor_credit.drawer.label.deposit_account')}
           children={refundVendorTransaction.deposit_account.name}
         />
-        <DetailItem label={intl.get('refund_vendor_credit.drawer.label.reference_no')}>
+        <DetailItem
+          label={intl.get('refund_vendor_credit.drawer.label.reference_no')}
+        >
           {defaultTo(refundVendorTransaction.reference_no, '—')}
         </DetailItem>
-        <DetailItem label={intl.get('refund_vendor_credit.drawer.label.description')}>
+        <DetailItem
+          label={intl.get('refund_vendor_credit.drawer.label.description')}
+        >
           {defaultTo(refundVendorTransaction.description, '—')}
         </DetailItem>
       </DetailsMenu>

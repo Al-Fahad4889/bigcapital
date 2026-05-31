@@ -11,8 +11,14 @@ import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { CashFlowStatementHeaderGeneralPanel as CashFlowStatementGeneralPanel } from './CashFlowStatementGeneralPanel';
 import { CashFlowStatementDimensionsPanel } from './CashFlowStatementDimensionsPanel';
 
-import { withCashFlowStatement, WithCashFlowStatementProps } from './withCashFlowStatement';
-import { withCashFlowStatementActions, WithCashFlowStatementActionsProps } from './withCashFlowStatementActions';
+import {
+  withCashFlowStatement,
+  WithCashFlowStatementProps,
+} from './withCashFlowStatement';
+import {
+  withCashFlowStatementActions,
+  WithCashFlowStatementActionsProps,
+} from './withCashFlowStatementActions';
 
 import { getDefaultCashFlowSheetQuery } from './utils';
 import { compose, transformToForm } from '@/utils';
@@ -28,7 +34,10 @@ interface CashFlowStatementHeaderOwnProps {
 
 type CashFlowStatementHeaderProps = CashFlowStatementHeaderOwnProps &
   Pick<WithCashFlowStatementProps, 'cashFlowStatementDrawerFilter'> &
-  Pick<WithCashFlowStatementActionsProps, 'toggleCashFlowStatementFilterDrawer'>;
+  Pick<
+    WithCashFlowStatementActionsProps,
+    'toggleCashFlowStatementFilterDrawer'
+  >;
 
 function CashFlowStatementHeaderInner({
   onSubmitFilter,

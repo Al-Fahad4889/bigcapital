@@ -6,7 +6,9 @@ export interface WithInventoryValuationActionsProps {
   toggleInventoryValuationFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithInventoryValuationActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithInventoryValuationActionsProps => ({
   toggleInventoryValuationFilterDrawer: (toggle: boolean) =>
     dispatch(toggleInventoryValuationFilterDrawer(toggle)),
 });

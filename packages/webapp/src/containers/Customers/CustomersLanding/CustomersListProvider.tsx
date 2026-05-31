@@ -40,7 +40,9 @@ function CustomersListProvider({ tableState, tableStateChanged, ...props }) {
     customers: customersData?.data,
     pagination: customersData?.pagination,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     resourceMeta,
     isResourceMetaLoading,
     isResourceMetaFetching,

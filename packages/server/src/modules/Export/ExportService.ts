@@ -149,7 +149,9 @@ export class ExportResourceService {
             const group = parent;
             return [
               {
-                name: this.i18nService.t(value.name, { defaultValue: value.name }),
+                name: this.i18nService.t(value.name, {
+                  defaultValue: value.name,
+                }),
                 type: value.type || 'text',
                 accessor: value.accessor || key,
                 group,
@@ -166,24 +168,31 @@ export class ExportResourceService {
       columns: { [key: string]: IModelMetaColumn },
       parent = '',
     ) => {
-      return Object.entries(columns)
-        // @ts-expect-error
-        .filter(([_, value]) => value.printable !== false)
-        .flatMap(([key, value]) => {
-          if (value.type === 'collection' && value.collectionOf === 'object') {
-            return processColumns(value.columns, key);
-          } else {
-            const group = parent;
-            return [
-              {
-                name: this.i18nService.t(value.name, { defaultValue: value.name }),
-                type: value.type || 'text',
-                accessor: value.accessor || key,
-                group,
-              },
-            ];
-          }
-        });
+      return (
+        Object.entries(columns)
+          // @ts-expect-error
+          .filter(([_, value]) => value.printable !== false)
+          .flatMap(([key, value]) => {
+            if (
+              value.type === 'collection' &&
+              value.collectionOf === 'object'
+            ) {
+              return processColumns(value.columns, key);
+            } else {
+              const group = parent;
+              return [
+                {
+                  name: this.i18nService.t(value.name, {
+                    defaultValue: value.name,
+                  }),
+                  type: value.type || 'text',
+                  accessor: value.accessor || key,
+                  group,
+                },
+              ];
+            }
+          })
+      );
     };
     return processColumns(resourceMeta.columns);
   }

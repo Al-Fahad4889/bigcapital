@@ -83,4 +83,6 @@ function InventoryAdjustmentFormInner({
   );
 }
 
-export const InventoryAdjustmentForm = compose(withDialogActions)(InventoryAdjustmentFormInner);
+export const InventoryAdjustmentForm = compose(withDialogActions)(
+  InventoryAdjustmentFormInner,
+);

@@ -12,7 +12,11 @@ interface FinancialReportsItemProps {
   link: string;
 }
 
-function FinancialReportsItem({ title, desc, link }: FinancialReportsItemProps) {
+function FinancialReportsItem({
+  title,
+  desc,
+  link,
+}: FinancialReportsItemProps) {
   return (
     <div className="financial-reports__item">
       <Link className="title" to={link}>
@@ -28,7 +32,10 @@ interface FinancialReportsSectionProps {
   reports: FinancialReportsItemProps[];
 }
 
-function FinancialReportsSection({ sectionTitle, reports }: FinancialReportsSectionProps) {
+function FinancialReportsSection({
+  sectionTitle,
+  reports,
+}: FinancialReportsSectionProps) {
   return (
     <div className="financial-reports__section">
       <div className="section-title">{sectionTitle}</div>

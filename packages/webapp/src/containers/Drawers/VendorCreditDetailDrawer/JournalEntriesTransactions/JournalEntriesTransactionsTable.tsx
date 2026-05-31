@@ -7,7 +7,9 @@ import { useTransactionsByReference } from '@/hooks/query';
 import { useJournalEntriesTransactionsColumns } from './components';
 
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '@/containers/JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '@/containers/JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Journal entries vendor credit transactions table.

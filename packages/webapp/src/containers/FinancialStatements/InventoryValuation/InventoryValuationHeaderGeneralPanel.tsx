@@ -4,7 +4,6 @@ import { DateInput } from '@blueprintjs/datetime';
 import { FormGroup, Position } from '@blueprintjs/core';
 
 import {
-
   ItemsMultiSelect,
   Row,
   Col,

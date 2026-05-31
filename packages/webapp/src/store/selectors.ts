@@ -1,10 +1,16 @@
 import { pick, at, mapValues } from 'lodash';
 
-export const getItemById = (items: Record<string, unknown>, id: string | number) => {
+export const getItemById = (
+  items: Record<string, unknown>,
+  id: string | number,
+) => {
   return items[id] || null;
 };
 
-export const pickItemsFromIds = (items: Record<string, unknown>, ids: Array<string | number>) => {
+export const pickItemsFromIds = (
+  items: Record<string, unknown>,
+  ids: Array<string | number>,
+) => {
   return at(items, ids as string[]).filter((i) => i);
 };
 
@@ -67,9 +73,8 @@ export const paginationLocationQuery = (
   const queryParamsKeys = ['page_size', 'page', 'custom_view_id'];
 
   return queryParams
-    ? mapValues(
-        pick(Object.fromEntries(queryParams), queryParamsKeys),
-        (v) => parseInt(v, 10),
+    ? mapValues(pick(Object.fromEntries(queryParams), queryParamsKeys), (v) =>
+        parseInt(v, 10),
       )
     : null;
 };

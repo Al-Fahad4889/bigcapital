@@ -7,12 +7,18 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithAccountsProps {
-  accountsTableState: ReturnType<ReturnType<typeof getAccountsTableStateFactory>>;
-  accountsTableStateChanged: ReturnType<ReturnType<typeof accountsTableStateChangedFactory>>;
+  accountsTableState: ReturnType<
+    ReturnType<typeof getAccountsTableStateFactory>
+  >;
+  accountsTableStateChanged: ReturnType<
+    ReturnType<typeof accountsTableStateChangedFactory>
+  >;
   accountsSelectedRows: unknown[];
 }
 
-export function withAccounts<Props = unknown>(mapState?: MapState<WithAccountsProps, Props>) {
+export function withAccounts<Props = unknown>(
+  mapState?: MapState<WithAccountsProps, Props>,
+) {
   const getAccountsTableState = getAccountsTableStateFactory();
   const accountsTableStateChanged = accountsTableStateChangedFactory();
 
@@ -26,7 +32,9 @@ export function withAccounts<Props = unknown>(mapState?: MapState<WithAccountsPr
       accountsTableStateChanged: accountsTableStateChanged(state),
       accountsSelectedRows: state.accounts?.selectedRows || [],
     };
-    return mapState ? (mapState(mapped, state, props) as WithAccountsProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithAccountsProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

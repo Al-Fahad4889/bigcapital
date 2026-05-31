@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchGeneralLedgerTable,
   fetchGeneralLedgerXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useGeneralLedgerSheet(
   query: GeneralLedgerTableQuery,
-  props?: Omit<UseQueryOptions<GeneralLedgerTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<GeneralLedgerTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

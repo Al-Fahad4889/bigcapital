@@ -8,7 +8,7 @@ import { WarehouseTransferFormEntriesTable } from './WarehouseTransferFormEntrie
 import {
   entriesFieldShouldUpdate,
   defaultWarehouseTransferEntry,
-  useWatchItemsCostSetCostEntries
+  useWatchItemsCostSetCostEntries,
 } from './utils';
 
 /**

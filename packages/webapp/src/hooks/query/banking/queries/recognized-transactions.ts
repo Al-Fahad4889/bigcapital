@@ -1,24 +1,34 @@
-import { useInfiniteQuery, useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
-import { fetchExcludedBankTransactions, fetchRecognizedTransaction, fetchRecognizedTransactions } from '@bigcapital/sdk-ts';
+import {
+  useInfiniteQuery,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
+import {
+  fetchExcludedBankTransactions,
+  fetchRecognizedTransaction,
+  fetchRecognizedTransactions,
+} from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../../useRequest';
 import { bankingKeys } from '../query-keys';
 
 export function useGetRecognizedBankTransaction(
   uncategorizedTransactionId: number,
-  options?: UseQueryOptions<unknown, Error>
+  options?: UseQueryOptions<unknown, Error>,
 ): UseQueryResult<unknown, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useQuery({
     ...options,
     queryKey: bankingKeys.recognizedTransaction(uncategorizedTransactionId),
-    queryFn: () => fetchRecognizedTransaction(fetcher, uncategorizedTransactionId),
+    queryFn: () =>
+      fetchRecognizedTransaction(fetcher, uncategorizedTransactionId),
   });
 }
 
 export function useRecognizedBankTransactionsInfinity(
   query: Record<string, unknown>,
-  infinityProps?: Record<string, unknown>
+  infinityProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -26,11 +36,7 @@ export function useRecognizedBankTransactionsInfinity(
     ...infinityProps,
     queryKey: bankingKeys.recognizedTransactionsInfinity(query),
     initialPageParam: 1,
-    queryFn: async ({
-      pageParam = 1,
-    }: {
-      pageParam?: number;
-    }) => {
+    queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
       return fetchRecognizedTransactions(fetcher, {
         page: pageParam,
         ...query,
@@ -38,9 +44,19 @@ export function useRecognizedBankTransactionsInfinity(
     },
     getPreviousPageParam: (firstPage: { pagination: { page: number } }) =>
       firstPage.pagination.page - 1,
-    getNextPageParam: (lastPage: { pagination: { total: number; page: number; pageSize?: number; page_size?: number } }) => {
+    getNextPageParam: (lastPage: {
+      pagination: {
+        total: number;
+        page: number;
+        pageSize?: number;
+        page_size?: number;
+      };
+    }) => {
       const { pagination } = lastPage;
-      const pageSize = 'pageSize' in pagination ? (pagination as { pageSize: number }).pageSize : (pagination as { page_size: number }).page_size;
+      const pageSize =
+        'pageSize' in pagination
+          ? (pagination as { pageSize: number }).pageSize
+          : (pagination as { page_size: number }).page_size;
       return pagination.total > pageSize * pagination.page
         ? lastPage.pagination.page + 1
         : undefined;
@@ -50,7 +66,7 @@ export function useRecognizedBankTransactionsInfinity(
 
 export function useExcludedBankTransactionsInfinity(
   query: Record<string, unknown>,
-  infinityProps?: Record<string, unknown>
+  infinityProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -58,11 +74,7 @@ export function useExcludedBankTransactionsInfinity(
     ...infinityProps,
     queryKey: bankingKeys.excludedTransactionsInfinity(query),
     initialPageParam: 1,
-    queryFn: async ({
-      pageParam = 1,
-    }: {
-      pageParam?: number;
-    }) => {
+    queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
       return fetchExcludedBankTransactions(fetcher, {
         page: pageParam,
         ...query,
@@ -70,9 +82,19 @@ export function useExcludedBankTransactionsInfinity(
     },
     getPreviousPageParam: (firstPage: { pagination: { page: number } }) =>
       firstPage.pagination.page - 1,
-    getNextPageParam: (lastPage: { pagination: { total: number; page: number; pageSize?: number; page_size?: number } }) => {
+    getNextPageParam: (lastPage: {
+      pagination: {
+        total: number;
+        page: number;
+        pageSize?: number;
+        page_size?: number;
+      };
+    }) => {
       const { pagination } = lastPage;
-      const pageSize = 'pageSize' in pagination ? (pagination as { pageSize: number }).pageSize : (pagination as { page_size: number }).page_size;
+      const pageSize =
+        'pageSize' in pagination
+          ? (pagination as { pageSize: number }).pageSize
+          : (pagination as { page_size: number }).page_size;
       return pagination.total > pageSize * pagination.page
         ? lastPage.pagination.page + 1
         : undefined;

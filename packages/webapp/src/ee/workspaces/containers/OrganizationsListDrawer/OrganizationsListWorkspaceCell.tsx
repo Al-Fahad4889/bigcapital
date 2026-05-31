@@ -71,7 +71,13 @@ export function OrganizationsListWorkspaceCell({
         minWidth={0}
         flex={1}
       >
-        <x.div display="flex" alignItems="center" gap="6px" maxW="100%" minWidth={0}>
+        <x.div
+          display="flex"
+          alignItems="center"
+          gap="6px"
+          maxW="100%"
+          minWidth={0}
+        >
           <x.span
             fontWeight={500}
             fontSize="14px"

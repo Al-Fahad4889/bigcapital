@@ -48,7 +48,7 @@ export function usePendingTransactionsTableColumns() {
         textOverview: true,
         align: 'right',
         clickable: true,
-        money: true
+        money: true,
       },
       {
         id: 'withdrawal',
@@ -59,7 +59,7 @@ export function usePendingTransactionsTableColumns() {
         textOverview: true,
         align: 'right',
         clickable: true,
-        money: true
+        money: true,
       },
     ],
     [],

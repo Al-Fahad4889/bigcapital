@@ -20,10 +20,8 @@ export function InventoryItemDetailsTable({
   // #ownProps
   companyName,
 }: InventoryItemDetailsTableProps) {
-  const {
-    inventoryItemDetails,
-    isInventoryItemDetailsLoading,
-  } = useInventoryItemDetailsContext();
+  const { inventoryItemDetails, isInventoryItemDetailsLoading } =
+    useInventoryItemDetailsContext();
 
   // Null-safe access for SDK opaque type.
   const tableRows = (inventoryItemDetails as any)?.tableRows ?? [];

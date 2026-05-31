@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchReceivableAgingTable,
   fetchReceivableAgingXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useARAgingSummaryReport(
   query: ReceivableAgingTableQuery,
-  props?: Omit<UseQueryOptions<ReceivableAgingTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<ReceivableAgingTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

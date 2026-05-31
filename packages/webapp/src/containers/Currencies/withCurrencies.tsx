@@ -9,7 +9,9 @@ export interface WithCurrenciesProps {
   currenciesLoading: boolean;
 }
 
-export function withCurrencies<Props>(mapState?: MapState<WithCurrenciesProps, Props>) {
+export function withCurrencies<Props>(
+  mapState?: MapState<WithCurrenciesProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithCurrenciesProps,
     Props,
@@ -20,7 +22,9 @@ export function withCurrencies<Props>(mapState?: MapState<WithCurrenciesProps, P
       currenciesList: getCurrenciesList(state),
       currenciesLoading: state.currencies.loading,
     };
-    return mapState ? (mapState(mapped, state, props) as WithCurrenciesProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithCurrenciesProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

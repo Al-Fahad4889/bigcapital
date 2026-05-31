@@ -62,4 +62,6 @@ function BranchActivateFormInner({
   );
 }
 
-export const BranchActivateForm = compose(withDialogActions)(BranchActivateFormInner);
+export const BranchActivateForm = compose(withDialogActions)(
+  BranchActivateFormInner,
+);

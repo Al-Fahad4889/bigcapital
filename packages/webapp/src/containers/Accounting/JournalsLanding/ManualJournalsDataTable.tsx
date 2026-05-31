@@ -109,7 +109,6 @@ function ManualJournalsDataTableInner({
     setManualJournalsSelectedRows(selectedIds);
   };
 
-
   // Display manual journal empty status instead of the table.
   if (isEmptyStatus) {
     return <ManualJournalsEmptyStatus />;

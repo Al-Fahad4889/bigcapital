@@ -12,10 +12,14 @@ import { ProjectProfitabilitySummaryActionsBar } from './ProjectProfitabilitySum
 import { ProjectProfitabilitySummaryBody } from './ProjectProfitabilitySummaryBody';
 import { ProjectProfitabilitySummaryProvider } from './ProjectProfitabilitySummaryProvider';
 import { useProjectProfitabilitySummaryQuery } from './utils';
-import { withProjectProfitabilitySummaryActions, WithProjectProfitabilitySummaryActionsProps } from './withProjectProfitabilitySummaryActions';
+import {
+  withProjectProfitabilitySummaryActions,
+  WithProjectProfitabilitySummaryActionsProps,
+} from './withProjectProfitabilitySummaryActions';
 import { compose } from '@/utils';
 
-interface ProjectProfitabilitySummaryProps extends WithProjectProfitabilitySummaryActionsProps {}
+interface ProjectProfitabilitySummaryProps
+  extends WithProjectProfitabilitySummaryActionsProps {}
 
 /**
  * Project profitability summary.
@@ -73,6 +77,6 @@ function ProjectProfitabilitySummaryInner({
   );
 }
 
-export const ProjectProfitabilitySummary = compose(withProjectProfitabilitySummaryActions)(
-  ProjectProfitabilitySummaryInner,
-);
+export const ProjectProfitabilitySummary = compose(
+  withProjectProfitabilitySummaryActions,
+)(ProjectProfitabilitySummaryInner);

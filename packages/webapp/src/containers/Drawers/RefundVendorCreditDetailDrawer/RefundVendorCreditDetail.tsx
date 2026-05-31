@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Tab } from '@blueprintjs/core';
 
 import { DrawerMainTabs } from '@/components';
-import { RefundVendorCreditDetailTab } from './RefundVendorCreditDetailTab'
+import { RefundVendorCreditDetailTab } from './RefundVendorCreditDetailTab';
 import { RefundVendorCreditDetailActionsBar } from './RefundVendorCreditDetailActionsBar';
 
 /**

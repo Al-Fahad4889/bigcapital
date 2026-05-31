@@ -57,7 +57,9 @@ function WarehouseTransfersListProvider({
     refresh,
 
     resourceMeta,
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     isResourceLoading,
     isResourceFetching,
 

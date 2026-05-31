@@ -14,7 +14,7 @@ function ProjectTimesheetsProvider({ ...props }) {
   const projectId = parseInt(id, 10);
 
   // fetch project time entries.
-const {
+  const {
     data: projectTimeEntriesData,
     isLoading: isProjectTimeEntriesLoading,
   } = useProjectTimeEntries(projectId, {

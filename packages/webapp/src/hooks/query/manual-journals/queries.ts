@@ -33,7 +33,9 @@ import { cashflowAccountsKeys } from '../cashflow-accounts/query-keys';
 import { financialReportsKeys } from '../FinancialReports/query-keys';
 import { settingsKeys } from '../settings/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   // Invalidate manual journals.
   queryClient.invalidateQueries({ queryKey: manualJournalsKeys.all() });
 
@@ -53,15 +55,19 @@ const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>)
   queryClient.invalidateQueries({ queryKey: financialReportsKeys.all() });
 
   // Invalidate the cashflow transactions.
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions() });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity() });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactions(),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity(),
+  });
 };
 
 /**
  * Creates a new manual journal.
  */
 export function useCreateJournal(
-  props?: UseMutationOptions<void, Error, CreateManualJournalBody>
+  props?: UseMutationOptions<void, Error, CreateManualJournalBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -77,7 +83,7 @@ export function useCreateJournal(
 }
 
 export function useEditJournal(
-  props?: UseMutationOptions<void, Error, [number, EditManualJournalBody]>
+  props?: UseMutationOptions<void, Error, [number, EditManualJournalBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -87,14 +93,16 @@ export function useEditJournal(
     mutationFn: ([id, values]: [number, EditManualJournalBody]) =>
       editManualJournal(fetcher, id, values),
     onSuccess: (_res, [id]) => {
-      queryClient.invalidateQueries({ queryKey: manualJournalsKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: manualJournalsKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
 }
 
 export function useDeleteJournal(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -103,14 +111,16 @@ export function useDeleteJournal(
     ...props,
     mutationFn: (id: number) => deleteManualJournal(fetcher, id),
     onSuccess: (_res, id) => {
-      queryClient.invalidateQueries({ queryKey: manualJournalsKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: manualJournalsKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
 }
 
 export function useBulkDeleteManualJournals(
-  props?: UseMutationOptions<void, Error, BulkDeleteManualJournalsBody>
+  props?: UseMutationOptions<void, Error, BulkDeleteManualJournalsBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -133,18 +143,19 @@ export function useValidateBulkDeleteManualJournals(
     ValidateBulkDeleteManualJournalsResponse,
     Error,
     number[]
-  >
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
-    mutationFn: (ids: number[]) => validateBulkDeleteManualJournals(fetcher, { ids }),
+    mutationFn: (ids: number[]) =>
+      validateBulkDeleteManualJournals(fetcher, { ids }),
   });
 }
 
 export function usePublishJournal(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -153,7 +164,9 @@ export function usePublishJournal(
     ...props,
     mutationFn: (id: number) => publishManualJournal(fetcher, id),
     onSuccess: (_res, id) => {
-      queryClient.invalidateQueries({ queryKey: manualJournalsKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: manualJournalsKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -161,21 +174,23 @@ export function usePublishJournal(
 
 export function useJournals(
   query?: ManualJournalsListQuery | null,
-  props?: Omit<UseQueryOptions<ManualJournalsListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<ManualJournalsListResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
 
   return useQuery({
     ...props,
     queryKey: manualJournalsKeys.list(query ?? undefined),
-    queryFn: async () =>
-      fetchManualJournals(fetcher, query ?? {}),
+    queryFn: async () => fetchManualJournals(fetcher, query ?? {}),
   });
 }
 
 export function useJournal(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<ManualJournal>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ManualJournal>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 

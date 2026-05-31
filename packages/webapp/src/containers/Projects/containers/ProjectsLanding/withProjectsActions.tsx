@@ -11,7 +11,9 @@ export interface WithProjectsActionsProps {
   resetProjectsTableState: () => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithProjectsActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithProjectsActionsProps => ({
   setProjectsTableState: (state: Partial<TableQuery>) =>
     dispatch(setProjectsTableState(state)),
   resetProjectsTableState: () => dispatch(resetProjectsTableState()),

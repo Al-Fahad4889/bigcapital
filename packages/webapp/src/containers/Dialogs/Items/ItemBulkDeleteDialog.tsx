@@ -100,4 +100,3 @@ export const ItemBulkDeleteDialog = compose(
   withDialogActions,
   withItemsActions,
 )(ItemBulkDeleteDialogInner);
-

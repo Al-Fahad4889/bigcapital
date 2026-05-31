@@ -10,8 +10,14 @@ import { ProfitLossSheetHeaderGeneralPane } from './ProfitLossSheetHeaderGeneral
 import { ProfitLossSheetHeaderComparisonPanel } from './ProfitLossSheetHeaderComparisonPanel';
 import { ProfitLossSheetHeaderDimensionsPanel } from './ProfitLossSheetHeaderDimensionsPanel';
 import { withProfitLoss, WithProfitLossProps } from './withProfitLoss';
-import { withProfitLossActions, WithProfitLossActionsProps } from './withProfitLossActions';
-import { useProfitLossHeaderValidationSchema, getDefaultProfitLossQuery } from './utils';
+import {
+  withProfitLossActions,
+  WithProfitLossActionsProps,
+} from './withProfitLossActions';
+import {
+  useProfitLossHeaderValidationSchema,
+  getDefaultProfitLossQuery,
+} from './utils';
 import { useFeatureCan } from '@/hooks/state';
 import { Features } from '@/constants';
 import type { FormikHelpers } from 'formik';

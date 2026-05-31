@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RESET, CREDIT_NOTES_SET_SELECTED_ROWS } from '@/store/types';;
+import { RESET, CREDIT_NOTES_SET_SELECTED_ROWS } from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 interface CreditNoteState {
@@ -33,7 +33,10 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('CREDIT_NOTES', defaultTableQuery),
 
-  [CREDIT_NOTES_SET_SELECTED_ROWS]: (state: CreditNoteState, action: { payload: Array<unknown> }) => {
+  [CREDIT_NOTES_SET_SELECTED_ROWS]: (
+    state: CreditNoteState,
+    action: { payload: Array<unknown> },
+  ) => {
     state.selectedRows = action.payload;
   },
 
@@ -42,4 +45,7 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const creditNotesPersistReducer = persistReducer(CONFIG, reducerInstance);
+export const creditNotesPersistReducer = persistReducer(
+  CONFIG,
+  reducerInstance,
+);

@@ -244,4 +244,6 @@ function ItemFormBodyInner({ organization: { base_currency } }) {
   );
 }
 
-export const ItemFormBody = compose(withCurrentOrganization())(ItemFormBodyInner);
+export const ItemFormBody = compose(withCurrentOrganization())(
+  ItemFormBodyInner,
+);

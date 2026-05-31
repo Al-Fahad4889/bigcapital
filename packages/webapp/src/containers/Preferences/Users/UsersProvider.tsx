@@ -8,7 +8,9 @@ interface UsersListContextValue {
   isUsersFetching: boolean;
 }
 
-const UsersListContext = createContext<UsersListContextValue>({} as UsersListContextValue);
+const UsersListContext = createContext<UsersListContextValue>(
+  {} as UsersListContextValue,
+);
 
 interface UsersListProviderProps {
   children: ReactNode;

@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const EstimateDetailDrawerContent = React.lazy(() => import('./EstimateDetailDrawerContent').then(m => ({ default: m.EstimateDetailDrawerContent })));
+const EstimateDetailDrawerContent = React.lazy(() =>
+  import('./EstimateDetailDrawerContent').then((m) => ({
+    default: m.EstimateDetailDrawerContent,
+  })),
+);
 
 function EstimateDetailDrawer({
   name,
@@ -13,7 +17,6 @@ function EstimateDetailDrawer({
   isOpen,
   payload: { estimateId },
 }) {
- 
   return (
     <Drawer
       isOpen={isOpen}

@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RECEIPTS_SELECTED_ROWS_SET, RESET } from '@/store/types';;
+import { RECEIPTS_SELECTED_ROWS_SET, RESET } from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 interface ReceiptsState {
@@ -33,7 +33,10 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('RECEIPTS', defaultTableQuery),
 
-  [RECEIPTS_SELECTED_ROWS_SET]: (state: ReceiptsState, action: { payload: Array<unknown> }) => {
+  [RECEIPTS_SELECTED_ROWS_SET]: (
+    state: ReceiptsState,
+    action: { payload: Array<unknown> },
+  ) => {
     state.selectedRows = action.payload;
   },
 
@@ -42,4 +45,7 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const salesReceiptsPersistReducer = persistReducer(CONFIG, reducerInstance);
+export const salesReceiptsPersistReducer = persistReducer(
+  CONFIG,
+  reducerInstance,
+);

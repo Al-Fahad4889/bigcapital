@@ -3,7 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-import { SETTING_ADD, SETTING_SET } from '@/store/types';;
+import { SETTING_ADD, SETTING_SET } from '@/store/types';
 import type { SettingAction } from './settings.type';
 
 const initialState = {
@@ -110,4 +110,7 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const settingsPersistReducer = persistReducer(PRESIST_CONFIG, reducerInstance);
+export const settingsPersistReducer = persistReducer(
+  PRESIST_CONFIG,
+  reducerInstance,
+);

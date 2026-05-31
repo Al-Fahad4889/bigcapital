@@ -37,4 +37,6 @@ function BranchesEmptyStatusInner({
     />
   );
 }
-export const BranchesEmptyStatus = compose(withDialogActions)(BranchesEmptyStatusInner);
+export const BranchesEmptyStatus = compose(withDialogActions)(
+  BranchesEmptyStatusInner,
+);

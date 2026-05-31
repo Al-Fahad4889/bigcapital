@@ -53,4 +53,6 @@ function ProjectBillableEntriesFormInner({
   );
 }
 
-export const ProjectBillableEntriesForm = compose(withDialogActions)(ProjectBillableEntriesFormInner);
+export const ProjectBillableEntriesForm = compose(withDialogActions)(
+  ProjectBillableEntriesFormInner,
+);

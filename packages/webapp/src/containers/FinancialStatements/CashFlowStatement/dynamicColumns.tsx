@@ -24,7 +24,11 @@ const accountNameMapper = (column: ReportTableColumn) => ({
   sticky: Align.Left,
 });
 
-const dateRangeMapper = (data: unknown[], index: number, column: ReportTableColumn) => ({
+const dateRangeMapper = (
+  data: unknown[],
+  index: number,
+  column: ReportTableColumn,
+) => ({
   id: column.key,
   Header: column.label,
   key: column.key,
@@ -37,10 +41,14 @@ const dateRangeMapper = (data: unknown[], index: number, column: ReportTableColu
   disableSortBy: true,
   textOverview: true,
   align: Align.Right,
-  money: true
+  money: true,
 });
 
-const totalMapper = (data: unknown[], index: number, column: ReportTableColumn) => ({
+const totalMapper = (
+  data: unknown[],
+  index: number,
+  column: ReportTableColumn,
+) => ({
   key: 'total',
   Header: intl.get('total'),
   accessor: `cells[${index}].value`,
@@ -53,12 +61,15 @@ const totalMapper = (data: unknown[], index: number, column: ReportTableColumn) 
   }),
   disableSortBy: true,
   align: Align.Right,
-  money: true
+  money: true,
 });
 
 const isMatchesDateRange = (r: string) => R.match(/^date-range/g, r).length > 0;
 
-export const dynamicColumns = (columns: ReportTableColumn[], data: unknown[]) => {
+export const dynamicColumns = (
+  columns: ReportTableColumn[],
+  data: unknown[],
+) => {
   const mapper = (column, index) => {
     return R.compose(
       R.when(

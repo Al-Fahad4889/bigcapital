@@ -1,6 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { FormattedMessage as T, FieldRequiredHint, Card, FFormGroup, FInputGroup, FTextArea } from '@/components';
+import {
+  FormattedMessage as T,
+  FieldRequiredHint,
+  Card,
+  FFormGroup,
+  FInputGroup,
+  FTextArea,
+} from '@/components';
 import { useAutofocus } from '@/hooks';
 import intl from 'react-intl-universal';
 

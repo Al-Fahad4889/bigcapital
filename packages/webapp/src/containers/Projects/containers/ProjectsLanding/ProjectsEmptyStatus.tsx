@@ -44,4 +44,6 @@ function ProjectsEmptyStatusInner({
   );
 }
 
-export const ProjectsEmptyStatus = compose(withDialogActions)(ProjectsEmptyStatusInner);
+export const ProjectsEmptyStatus = compose(withDialogActions)(
+  ProjectsEmptyStatusInner,
+);

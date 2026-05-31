@@ -1,10 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import {
-  createTableStateReducers,
-} from '@/store/table-state.reducer';
-import { RESET } from '@/store/types';;
+import { createTableStateReducers } from '@/store/table-state.reducer';
+import { RESET } from '@/store/types';
 
 interface ItemCategoriesState {
   tableState: { filterRoles: Array<unknown> };

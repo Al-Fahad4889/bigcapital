@@ -40,7 +40,9 @@ function VendorsListProvider({ tableState, tableStateChanged, ...props }) {
     pagination: vendorsData?.pagination,
     vendorsViews,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     resourceMeta,
     isResourceMetaLoading,
     isResourceMetaFetching,

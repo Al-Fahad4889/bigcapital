@@ -13,13 +13,19 @@ import classNames from 'classnames';
 
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
-import { withProfitLossActions, WithProfitLossActionsProps } from './withProfitLossActions';
+import {
+  withProfitLossActions,
+  WithProfitLossActionsProps,
+} from './withProfitLossActions';
 import { withProfitLoss, WithProfitLossProps } from './withProfitLoss';
 
 import { compose, saveInvoke } from '@/utils';
 import { useProfitLossSheetContext } from './ProfitLossProvider';
 import { ProfitLossSheetExportMenu } from './components';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
 interface ProfitLossActionsBarOwnProps {
@@ -27,7 +33,10 @@ interface ProfitLossActionsBarOwnProps {
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;
 }
 
-type ProfitLossActionsBarProps = Pick<WithProfitLossProps, 'profitLossDrawerFilter'> &
+type ProfitLossActionsBarProps = Pick<
+  WithProfitLossProps,
+  'profitLossDrawerFilter'
+> &
   Pick<WithProfitLossActionsProps, 'toggleProfitLossFilterDrawer'> &
   WithDialogActionsProps &
   ProfitLossActionsBarOwnProps;

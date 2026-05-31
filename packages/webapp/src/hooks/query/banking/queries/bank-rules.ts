@@ -8,10 +8,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import type {
-  CreateBankRuleBody,
-  EditBankRuleBody,
-} from '@bigcapital/sdk-ts';
+import type { CreateBankRuleBody, EditBankRuleBody } from '@bigcapital/sdk-ts';
 import {
   createBankRule,
   deleteBankRule,
@@ -30,7 +27,7 @@ const commonInvalidateQueries = (queryClient: QueryClient) => {
 };
 
 export function useCreateBankRule(
-  options?: UseMutationOptions<unknown, Error, CreateBankRuleBody>
+  options?: UseMutationOptions<unknown, Error, CreateBankRuleBody>,
 ): UseMutationResult<unknown, Error, CreateBankRuleBody> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -43,7 +40,11 @@ export function useCreateBankRule(
 }
 
 export function useEditBankRule(
-  options?: UseMutationOptions<unknown, Error, { id: number; value: EditBankRuleBody }>
+  options?: UseMutationOptions<
+    unknown,
+    Error,
+    { id: number; value: EditBankRuleBody }
+  >,
 ): UseMutationResult<unknown, Error, { id: number; value: EditBankRuleBody }> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -57,7 +58,7 @@ export function useEditBankRule(
 }
 
 export function useDeleteBankRule(
-  options?: UseMutationOptions<unknown, Error, number>
+  options?: UseMutationOptions<unknown, Error, number>,
 ): UseMutationResult<unknown, Error, number> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -75,7 +76,7 @@ export function useDeleteBankRule(
 }
 
 export function useBankRules(
-  options?: UseQueryOptions<unknown, Error>
+  options?: UseQueryOptions<unknown, Error>,
 ): UseQueryResult<unknown, Error> {
   const fetcher = useApiFetcher();
 
@@ -88,7 +89,7 @@ export function useBankRules(
 
 export function useBankRule(
   bankRuleId: number,
-  options?: UseQueryOptions<unknown, Error>
+  options?: UseQueryOptions<unknown, Error>,
 ): UseQueryResult<unknown, Error> {
   const fetcher = useApiFetcher();
 

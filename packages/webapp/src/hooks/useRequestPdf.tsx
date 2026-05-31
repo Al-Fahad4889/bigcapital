@@ -51,7 +51,7 @@ export const useRequestPdf = (httpProps) => {
     isLoaded,
     pdfUrl,
     response,
-    filename
+    filename,
   };
 };
 

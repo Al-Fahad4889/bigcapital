@@ -1,13 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
-import {
-  Intent,
-  Menu,
-  MenuItem,
-  MenuDivider,
-  Tag,
-} from '@blueprintjs/core';
+import { Intent, Menu, MenuItem, MenuDivider, Tag } from '@blueprintjs/core';
 import clsx from 'classnames';
 import {
   FormatDateCell,
@@ -17,10 +11,7 @@ import {
   Choose,
   Can,
 } from '@/components';
-import {
-  formattedAmount,
-  safeCallback,
-} from '@/utils';
+import { formattedAmount, safeCallback } from '@/utils';
 import {
   BillAction,
   PaymentMadeAction,

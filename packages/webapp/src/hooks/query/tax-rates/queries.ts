@@ -23,12 +23,14 @@ import {
 import { useApiFetcher } from '../../useRequest';
 import { taxRatesKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: taxRatesKeys.all() });
 };
 
 export function useTaxRates(
-  props?: Omit<UseQueryOptions<TaxRatesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<TaxRatesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -40,7 +42,7 @@ export function useTaxRates(
 
 export function useTaxRate(
   taxRateId: number | null | undefined,
-  props?: Omit<UseQueryOptions<TaxRate>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<TaxRate>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -52,7 +54,7 @@ export function useTaxRate(
 }
 
 export function useEditTaxRate(
-  props?: UseMutationOptions<void, Error, [string, EditTaxRateBody]>
+  props?: UseMutationOptions<void, Error, [string, EditTaxRateBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -68,7 +70,7 @@ export function useEditTaxRate(
 }
 
 export function useCreateTaxRate(
-  props?: UseMutationOptions<void, Error, CreateTaxRateBody>
+  props?: UseMutationOptions<void, Error, CreateTaxRateBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -80,7 +82,7 @@ export function useCreateTaxRate(
 }
 
 export function useDeleteTaxRate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -95,7 +97,7 @@ export function useDeleteTaxRate(
 }
 
 export function useActivateTaxRate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -110,7 +112,7 @@ export function useActivateTaxRate(
 }
 
 export function useInactivateTaxRate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();

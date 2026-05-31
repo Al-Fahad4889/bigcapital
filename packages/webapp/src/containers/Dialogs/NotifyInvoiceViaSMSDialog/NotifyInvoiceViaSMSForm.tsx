@@ -106,4 +106,6 @@ function NotifyInvoiceViaSMSFormInner({
   );
 }
 
-export const NotifyInvoiceViaSMSForm = compose(withDialogActions)(NotifyInvoiceViaSMSFormInner);
+export const NotifyInvoiceViaSMSForm = compose(withDialogActions)(
+  NotifyInvoiceViaSMSFormInner,
+);

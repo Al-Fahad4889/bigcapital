@@ -176,7 +176,7 @@ function InvoicesDataTableInner({
           onViewDetails: handleViewDetailInvoice,
           onPrint: handlePrintInvoice,
           onConvert: handleConvertToCreitNote,
-          onSendMail: handleSendMailInvoice
+          onSendMail: handleSendMailInvoice,
         }}
       />
     </DashboardContentTable>

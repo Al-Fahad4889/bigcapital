@@ -10,7 +10,10 @@ export function UnlockingTransactionsDialogContent({
   dialogName,
 }) {
   return (
-    <UnlockingTransactionsFormProvider moduleName={moduleName} dialogName={dialogName}>
+    <UnlockingTransactionsFormProvider
+      moduleName={moduleName}
+      dialogName={dialogName}
+    >
       <UnlockingTransactionsForm />
     </UnlockingTransactionsFormProvider>
   );

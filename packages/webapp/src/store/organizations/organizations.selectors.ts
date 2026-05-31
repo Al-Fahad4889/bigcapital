@@ -4,8 +4,13 @@ import type { RootState } from '@/store/reducers';
 type OrgProps = { organizationId: string };
 type OrgRecord = Record<string, unknown>;
 
-const organizationSelector = (state: RootState, props: OrgProps): OrgRecord | undefined => {
-  const tenantId = state.organizations.byOrganizationId[props.organizationId] as string;
+const organizationSelector = (
+  state: RootState,
+  props: OrgProps,
+): OrgRecord | undefined => {
+  const tenantId = state.organizations.byOrganizationId[
+    props.organizationId
+  ] as string;
   return state.organizations.data[tenantId] as OrgRecord | undefined;
 };
 
@@ -29,7 +34,10 @@ export const isOrganizationReadyFactory = () =>
 
 export const isOrganizationSubscribedFactory = () =>
   createSelector(organizationSelector, (organization) => {
-    return (organization?.['subscriptions'] as Array<unknown> | undefined)?.length! > 0;
+    return (
+      (organization?.['subscriptions'] as Array<unknown> | undefined)?.length! >
+      0
+    );
   });
 
 export const isOrganizationCongratsFactory = () =>

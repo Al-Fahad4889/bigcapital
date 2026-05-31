@@ -40,4 +40,6 @@ function ReconcileVendorCreditFloatingActionsInner({
     </div>
   );
 }
-export const ReconcileVendorCreditFloatingActions = compose(withDialogActions)(ReconcileVendorCreditFloatingActionsInner);
+export const ReconcileVendorCreditFloatingActions = compose(withDialogActions)(
+  ReconcileVendorCreditFloatingActionsInner,
+);

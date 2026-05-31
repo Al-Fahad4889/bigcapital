@@ -12,7 +12,6 @@ import {
   FeatureCan,
   Row,
   Col,
-
   FMoneyInputGroup,
   ExchangeRateInputGroup,
   FDateInput,

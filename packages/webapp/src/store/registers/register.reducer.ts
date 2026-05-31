@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { createReducer } from '@reduxjs/toolkit';
-import { REGISTER_SET } from '@/store/types';;
+import { REGISTER_SET } from '@/store/types';
 
 const initialState = {
   registers: {},

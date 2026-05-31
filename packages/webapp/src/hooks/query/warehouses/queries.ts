@@ -25,14 +25,16 @@ import { warehousesKeys } from './query-keys';
 import { warehousesTransfersKeys } from '../warehouses-transfers/query-keys';
 import { usersKeys } from '../users/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: warehousesKeys.all() });
   queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.all() });
   queryClient.invalidateQueries({ queryKey: usersKeys.dashboardMeta() });
 };
 
 export function useCreateWarehouse(
-  props?: UseMutationOptions<void, Error, CreateWarehouseBody>
+  props?: UseMutationOptions<void, Error, CreateWarehouseBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -46,7 +48,7 @@ export function useCreateWarehouse(
 }
 
 export function useEditWarehouse(
-  props?: UseMutationOptions<void, Error, [number, EditWarehouseBody]>
+  props?: UseMutationOptions<void, Error, [number, EditWarehouseBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -63,7 +65,7 @@ export function useEditWarehouse(
 }
 
 export function useDeleteWarehouse(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -80,7 +82,7 @@ export function useDeleteWarehouse(
 
 export function useWarehouses(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<WarehousesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<WarehousesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -93,7 +95,7 @@ export function useWarehouses(
 export function useWarehouse(
   id: number | string | null | undefined,
   props?: Omit<UseQueryOptions<Warehouse>, 'queryKey' | 'queryFn'>,
-  _requestProps?: Record<string, unknown>
+  _requestProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
   const idStr = id != null ? String(id) : '';
@@ -106,7 +108,7 @@ export function useWarehouse(
 }
 
 export function useActivateWarehouses(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -119,7 +121,7 @@ export function useActivateWarehouses(
 }
 
 export function useMarkWarehouseAsPrimary(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ItemsMultiSelect,
-  Row,
-  Col,
-
-  FFormGroup,
-} from '@/components';
+import { ItemsMultiSelect, Row, Col, FFormGroup } from '@/components';
 import { FinancialStatementDateRange } from '../FinancialStatementDateRange';
 
 import {

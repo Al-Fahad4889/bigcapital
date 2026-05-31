@@ -62,10 +62,7 @@ export class SaleInvoicesCost {
       (acc: Record<number, ModelObject<InventoryTransaction>>, transaction) => {
         const existing = acc[transaction.itemId];
 
-        if (
-          !existing ||
-          moment(existing.date).isBefore(transaction.date)
-        ) {
+        if (!existing || moment(existing.date).isBefore(transaction.date)) {
           return {
             ...acc,
             [transaction.itemId]: {

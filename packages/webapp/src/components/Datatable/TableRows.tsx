@@ -1,6 +1,6 @@
 // @ts-nocheck
-import React, { useContext } from "react";
-import TableContext from "./TableContext";
+import React, { useContext } from 'react';
+import TableContext from './TableContext';
 
 /**
  * Table rows.
@@ -13,6 +13,12 @@ export default function TableRows() {
 
   return page.map((row, index) => {
     prepareRow(row);
-    return <TableRowRenderer key={index} row={row} TableCellRenderer={TableCellRenderer} />;
+    return (
+      <TableRowRenderer
+        key={index}
+        row={row}
+        TableCellRenderer={TableCellRenderer}
+      />
+    );
   });
 }

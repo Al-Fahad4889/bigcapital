@@ -9,7 +9,10 @@ import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { SalesByItemsHeaderGeneralPanel } from './SalesByItemsHeaderGeneralPanel';
 
 import { withSalesByItems } from './withSalesByItems';
-import { withSalesByItemsActions, WithSalesByItemsActionsProps } from './withSalesByItemsActions';
+import {
+  withSalesByItemsActions,
+  WithSalesByItemsActionsProps,
+} from './withSalesByItemsActions';
 
 import { compose, transformToForm } from '@/utils';
 import {
@@ -66,7 +69,10 @@ function SalesByItemsHeaderInner({
   ) as SalesByItemsFormValues;
 
   // Handle the form submitting.
-  const handleSubmit = (values: SalesByItemsFormValues, { setSubmitting }: FormikHelpers<SalesByItemsFormValues>) => {
+  const handleSubmit = (
+    values: SalesByItemsFormValues,
+    { setSubmitting }: FormikHelpers<SalesByItemsFormValues>,
+  ) => {
     onSubmitFilter(values);
     setSubmitting(false);
     toggleSalesByItemsFilterDrawer(false);

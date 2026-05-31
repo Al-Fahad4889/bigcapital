@@ -1,12 +1,16 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { RESOURCE_VIEWS_SET, VIEW_ITEMS_SET, VIEW_META_SET } from '@/store/types';;
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  RESOURCE_VIEWS_SET,
+  VIEW_ITEMS_SET,
+  VIEW_META_SET,
+} from '@/store/types';
 import type { CustomViewsState, CustomViewsAction } from './custom-views.types';
 
 const initialState: CustomViewsState = {
   views: {},
   resourceViews: {
-    'accounts': [],
-    'expenses': [],
+    accounts: [],
+    expenses: [],
   },
   viewsMeta: {},
 };
@@ -32,4 +36,4 @@ export const customViewsReducer = createReducer(initialState, {
     });
     state.views = { ...state.views, ..._views };
   },
-})
+});

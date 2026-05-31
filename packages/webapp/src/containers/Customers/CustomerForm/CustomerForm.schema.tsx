@@ -11,10 +11,7 @@ const Schema = Yup.object().shape({
   first_name: Yup.string().trim(),
   last_name: Yup.string().trim(),
   company_name: Yup.string().trim(),
-  display_name: Yup.string()
-    .trim()
-    .required()
-    .label(intl.get('display_name_')),
+  display_name: Yup.string().trim().required().label(intl.get('display_name_')),
 
   email: Yup.string().email().nullable(),
   work_phone: Yup.string().nullable(),

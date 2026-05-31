@@ -6,8 +6,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const BalanceSheetPdfDialogContent = lazy(
-  () => import('./BalanceSheetPdfDialogContent').then((m) => ({ default: m.BalanceSheetPdfDialogContent })),
+const BalanceSheetPdfDialogContent = lazy(() =>
+  import('./BalanceSheetPdfDialogContent').then((m) => ({
+    default: m.BalanceSheetPdfDialogContent,
+  })),
 );
 
 /**
@@ -20,7 +22,10 @@ interface BalanceSheetPdfDialogRootProps {
   isOpen: boolean;
 }
 
-function BalanceSheetPdfDialogRoot({ dialogName, isOpen }: BalanceSheetPdfDialogRootProps) {
+function BalanceSheetPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: BalanceSheetPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

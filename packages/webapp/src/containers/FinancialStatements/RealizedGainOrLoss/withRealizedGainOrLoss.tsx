@@ -4,10 +4,14 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithRealizedGainOrLossProps {
-  realizedGainOrLossDrawerFilter: ReturnType<typeof getRealizedGainOrLossFilterDrawer>;
+  realizedGainOrLossDrawerFilter: ReturnType<
+    typeof getRealizedGainOrLossFilterDrawer
+  >;
 }
 
-export const withRealizedGainOrLoss = <Props,>(mapState?: MapState<WithRealizedGainOrLossProps, Props>) => {
+export const withRealizedGainOrLoss = <Props,>(
+  mapState?: MapState<WithRealizedGainOrLossProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithRealizedGainOrLossProps = {
       realizedGainOrLossDrawerFilter: getRealizedGainOrLossFilterDrawer(state),

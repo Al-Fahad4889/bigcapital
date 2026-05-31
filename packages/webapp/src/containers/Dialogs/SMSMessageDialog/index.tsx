@@ -6,7 +6,11 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 
 import { compose } from '@/utils';
 
-const SMSMessageDialogContent = React.lazy(() => import('./SMSMessageDialogContent').then(m => ({ default: m.SMSMessageDialogContent })));
+const SMSMessageDialogContent = React.lazy(() =>
+  import('./SMSMessageDialogContent').then((m) => ({
+    default: m.SMSMessageDialogContent,
+  })),
+);
 
 /**
  * SMS Message dialog.

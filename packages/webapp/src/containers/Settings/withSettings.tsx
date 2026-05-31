@@ -31,7 +31,9 @@ export interface WithSettingsProps {
   timesheetsSettings: SettingsGroup;
 }
 
-export const withSettings = <Props = unknown>(mapState?: MapState<WithSettingsProps, Props>) => {
+export const withSettings = <Props = unknown,>(
+  mapState?: MapState<WithSettingsProps, Props>,
+) => {
   const mapStateToProps: MapStateToProps<
     WithSettingsProps,
     Props,

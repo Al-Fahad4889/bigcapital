@@ -4,7 +4,11 @@ import * as R from 'ramda';
 import { Drawer, DrawerSuspense } from '@/components';
 import { withDrawers } from '@/containers/Drawer/withDrawers';
 
-const EstimateCustomizeDrawerBody = React.lazy(() => import('./EstimateCustomizeDrawerBody').then(m => ({ default: m.EstimateCustomizeDrawerBody })));
+const EstimateCustomizeDrawerBody = React.lazy(() =>
+  import('./EstimateCustomizeDrawerBody').then((m) => ({
+    default: m.EstimateCustomizeDrawerBody,
+  })),
+);
 
 /**
  * Estimate customize drawer.

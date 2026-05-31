@@ -15,7 +15,7 @@ export interface WithSubscriptionssProps {
   >;
 }
 
-export const withSubscriptionss = <Props = unknown>(
+export const withSubscriptionss = <Props = unknown,>(
   mapState?: MapState<WithSubscriptionssProps, Props>,
 ) => {
   const isSubscriptionsInactive = isSubscriptionsInactiveFactory();

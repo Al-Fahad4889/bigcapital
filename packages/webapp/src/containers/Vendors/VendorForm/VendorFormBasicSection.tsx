@@ -1,12 +1,15 @@
 // @ts-nocheck
 import intl from 'react-intl-universal';
-import { ControlGroup, Divider, Icon as BlueprintIcon } from '@blueprintjs/core';
+import {
+  ControlGroup,
+  Divider,
+  Icon as BlueprintIcon,
+} from '@blueprintjs/core';
 import {
   Hint,
   FieldRequiredHint,
   SalutationList,
   DisplayNameList,
-
   FInputGroup,
   FFormGroup,
   Box,
@@ -117,7 +120,11 @@ export function VendorFormBasicSection({}) {
         fastField
       >
         <Stack spacing={10}>
-          <FInputGroup name={'work_phone'} placeholder={intl.get('work')} leftIcon="phone" fastField
+          <FInputGroup
+            name={'work_phone'}
+            placeholder={intl.get('work')}
+            leftIcon="phone"
+            fastField
           />
           <FInputGroup
             name={'personal_phone'}

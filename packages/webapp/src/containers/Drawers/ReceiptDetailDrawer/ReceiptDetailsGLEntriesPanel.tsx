@@ -7,7 +7,9 @@ import { useTransactionsByReference } from '@/hooks/query';
 import { useReceiptDetailDrawerContext } from './ReceiptDetailDrawerProvider';
 
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '../../JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Receipt details GL entries panel.

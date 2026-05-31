@@ -18,8 +18,8 @@ import { compose, objectKeysTransform } from '@/utils';
 
 const initialValues = {
   email: '',
-  role_id: ''
-}
+  role_id: '',
+};
 
 function InviteUserFormInner({
   // #withDialogActions

@@ -23,7 +23,11 @@ export function Authentication() {
         <AuthInsider>
           <AuthLogo>
             {isDarkMode ? (
-              <BigcapitalAlt color={"rgba(255, 255, 255, 0.6)"} height={37} width={214} />
+              <BigcapitalAlt
+                color={'rgba(255, 255, 255, 0.6)'}
+                height={37}
+                width={214}
+              />
             ) : (
               <Icon icon="bigcapital" height={37} width={214} />
             )}

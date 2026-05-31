@@ -11,7 +11,6 @@ import { ManualJournalsDataTable } from './ManualJournalsDataTable';
 import { ManualJournalActionsBar as ManualJournalsActionsBar } from './ManualJournalActionsBar';
 import { withManualJournals } from './withManualJournals';
 
-
 /**
  * Manual journals table.
  */

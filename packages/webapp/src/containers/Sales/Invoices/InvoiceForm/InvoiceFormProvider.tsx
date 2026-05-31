@@ -113,10 +113,10 @@ function InvoiceFormProvider({
   const { data: taxRates, isLoading: isTaxRatesLoading } = useTaxRates();
 
   // Fetch project list.
-  const {
-    data: projectsData,
-    isLoading: isProjectsLoading,
-  } = useProjects({}, { enabled: !!isProjectsFeatureCan });
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
+    {},
+    { enabled: !!isProjectsFeatureCan },
+  );
 
   // Fetches the estimate by the given id.
   const { data: estimate, isLoading: isEstimateLoading } = useEstimate(
@@ -139,19 +139,15 @@ function InvoiceFormProvider({
     : ([] as []);
 
   // Handle fetching the items table based on the given query.
-  const {
-    data: itemsData,
-    isLoading: isItemsLoading,
-  } = useItems({
+  const { data: itemsData, isLoading: isItemsLoading } = useItems({
     page_size: 10000,
     stringified_filter_roles: ITEMS_FILTER_ROLES_QUERY,
   });
 
   // Handle fetch customers data table or list
-  const {
-    data: customersData,
-    isLoading: isCustomersLoading,
-  } = useCustomers({ page_size: 10000 });
+  const { data: customersData, isLoading: isCustomersLoading } = useCustomers({
+    page_size: 10000,
+  });
 
   // Fetch warehouses list.
   const {
@@ -210,7 +206,9 @@ function InvoiceFormProvider({
     submitPayload,
     branches: branches ?? [],
     warehouses: warehouses ?? [],
-    projects: (projectsData as { data?: { projects?: unknown[] } })?.data?.projects ?? [],
+    projects:
+      (projectsData as { data?: { projects?: unknown[] } })?.data?.projects ??
+      [],
     taxRates: taxRates?.data ?? [],
     brandingTemplates: brandingTemplates?.templates ?? [],
 

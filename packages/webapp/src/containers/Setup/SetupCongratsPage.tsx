@@ -24,12 +24,7 @@ function SetupCongratsPageInner({ setOrganizationSetupCompleted }) {
   };
 
   return (
-    <x.div
-      w={'500px'}
-      mx="auto"
-      textAlign="center"
-      pt={'80px'}
-    >
+    <x.div w={'500px'} mx="auto" textAlign="center" pt={'80px'}>
       <x.div>
         <WorkflowIcon width="280" height="330" />
       </x.div>
@@ -76,4 +71,6 @@ function SetupCongratsPageInner({ setOrganizationSetupCompleted }) {
   );
 }
 
-export const SetupCongratsPage = compose(withOrganizationActions)(SetupCongratsPageInner);
+export const SetupCongratsPage = compose(withOrganizationActions)(
+  SetupCongratsPageInner,
+);

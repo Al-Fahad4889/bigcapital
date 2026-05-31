@@ -10,7 +10,8 @@ export const accountsKeys = {
   list: (query?: Record<string, unknown> | null) => [ACCOUNTS, query] as const,
   detail: (id: number | null | undefined) => [ACCOUNT, id] as const,
   types: () => [ACCOUNTS_TYPES] as const,
-  transactions: (id: number | null | undefined) => [ACCOUNT_TRANSACTION, id] as const,
+  transactions: (id: number | null | undefined) =>
+    [ACCOUNT_TRANSACTION, id] as const,
 };
 
 // Grouped object for use in components/hooks

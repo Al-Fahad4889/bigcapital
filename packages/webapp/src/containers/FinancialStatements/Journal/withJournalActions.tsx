@@ -6,7 +6,9 @@ export interface WithJournalActionsProps {
   toggleJournalSheetFilter: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithJournalActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithJournalActionsProps => ({
   toggleJournalSheetFilter: (toggle: boolean) =>
     dispatch(toggleJournalSheeetFilterDrawer(toggle)),
 });

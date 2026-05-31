@@ -35,7 +35,8 @@ export function useDeleteLandedCost(props) {
 
   return useMutation({
     ...props,
-    mutationFn: (landedCostId) => deleteAllocatedLandedCost(fetcher, landedCostId),
+    mutationFn: (landedCostId) =>
+      deleteAllocatedLandedCost(fetcher, landedCostId),
     onSuccess: () => {
       commonInvalidateQueries(queryClient);
     },
@@ -48,7 +49,9 @@ export function useLandedCostTransaction(query, props) {
     ...props,
     queryKey: landedCostKeys.list({ query }),
     queryFn: () =>
-      fetchLandedCostTransactions(fetcher, { transaction_type: query } as Record<string, unknown>),
+      fetchLandedCostTransactions(fetcher, {
+        transaction_type: query,
+      } as Record<string, unknown>),
   });
 }
 

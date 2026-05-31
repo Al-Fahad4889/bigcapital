@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const RefundCreditNoteDialogContent = React.lazy(() => import('./RefundCreditNoteDialogContent').then(m => ({ default: m.RefundCreditNoteDialogContent })));
+const RefundCreditNoteDialogContent = React.lazy(() =>
+  import('./RefundCreditNoteDialogContent').then((m) => ({
+    default: m.RefundCreditNoteDialogContent,
+  })),
+);
 
 /**
  * Refund credit note dialog.

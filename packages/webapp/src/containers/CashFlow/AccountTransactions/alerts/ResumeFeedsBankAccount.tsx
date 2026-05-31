@@ -10,7 +10,7 @@ import { useResumeFeedsBankAccount } from '@/hooks/query/banking';
 import { compose } from '@/utils';
 
 /**
- * Resume bank account feeds alert. 
+ * Resume bank account feeds alert.
  */
 function ResumeFeedsBankAccountAlert({
   name,

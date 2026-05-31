@@ -66,4 +66,4 @@ export const transformBillToForm = (bill) => {
     amount: bill.due_amount,
     bill_id: bill.id,
   };
-}
+};

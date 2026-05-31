@@ -4,9 +4,7 @@ import intl from 'react-intl-universal';
 import { DATATYPES_LENGTH } from '@/constants/dataTypes';
 
 const Schema = Yup.object().shape({
-  currency_name: Yup.string()
-    .required()
-    .label(intl.get('currency_name_')),
+  currency_name: Yup.string().required().label(intl.get('currency_name_')),
   currency_code: Yup.string()
     .max(4)
     .required()

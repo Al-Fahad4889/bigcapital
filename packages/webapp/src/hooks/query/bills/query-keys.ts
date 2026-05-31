@@ -10,7 +10,8 @@ export const billsKeys = {
   list: (query?: Record<string, unknown>) => [BILLS, query] as const,
   detail: (id: number | null | undefined) => [BILL, id] as const,
   due: (vendorId?: number | null) => [BILLS, BILLS_DUE, vendorId] as const,
-  paymentTransactions: (id: number | null | undefined) => [BILLS_PAYMENT_TRANSACTIONS, id] as const,
+  paymentTransactions: (id: number | null | undefined) =>
+    [BILLS_PAYMENT_TRANSACTIONS, id] as const,
 };
 
 // Grouped object for use in components/hooks

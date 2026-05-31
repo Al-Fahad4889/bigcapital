@@ -75,10 +75,8 @@ function ExpensesActionsBar({
   const onClickNewExpense = () => {
     history.push('/expenses/new');
   };
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteExpenses,
-  } = useBulkDeleteExpensesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteExpenses } =
+    useBulkDeleteExpensesDialog();
 
   // Handle delete button click.
   const handleBulkDelete = () => {

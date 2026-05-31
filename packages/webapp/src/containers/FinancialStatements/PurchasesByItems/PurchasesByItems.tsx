@@ -11,7 +11,10 @@ import { PurchasesByItemsBody } from './PurchasesByItemsBody';
 import { usePurchasesByItemsQuery } from './utils';
 import { compose } from '@/utils';
 
-import { withPurchasesByItemsActions, WithPurchasesByItemsActionsProps } from './withPurchasesByItemsActions';
+import {
+  withPurchasesByItemsActions,
+  WithPurchasesByItemsActionsProps,
+} from './withPurchasesByItemsActions';
 import { PurchasesByItemsDialogs } from './PurchasesByItemsDialogs';
 
 interface PurchasesByItemsProps {
@@ -77,4 +80,6 @@ function PurchasesByItemsInner({
   );
 }
 
-export const PurchasesByItems = compose(withPurchasesByItemsActions)(PurchasesByItemsInner);
+export const PurchasesByItems = compose(withPurchasesByItemsActions)(
+  PurchasesByItemsInner,
+);

@@ -5,7 +5,8 @@ import { useGetPlaidLinkToken } from '../query';
 import { Intent } from '@blueprintjs/core';
 
 export const useOpenPlaidConnect = () => {
-  const { mutateAsync: getPlaidLinkToken, isPending: isLoading } = useGetPlaidLinkToken();
+  const { mutateAsync: getPlaidLinkToken, isPending: isLoading } =
+    useGetPlaidLinkToken();
   const setPlaidId = useSetBankingPlaidToken();
 
   const openPlaidAsync = useCallback(() => {

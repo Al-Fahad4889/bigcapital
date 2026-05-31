@@ -126,27 +126,25 @@ export const PaymentReceiveSyncIncrementSettingsToForm = R.compose(
     paymentReceiveNumberPrefix: paymentReceiveSettings?.numberPrefix,
     paymentReceiveAutoIncrement: paymentReceiveSettings?.autoIncrement,
   })),
-)(
-  ({
-    paymentReceiveNextNumber,
+)(({
+  paymentReceiveNextNumber,
+  paymentReceiveNumberPrefix,
+  paymentReceiveAutoIncrement,
+}) => {
+  const { setFieldValue } = useFormikContext();
+
+  useLayoutEffect(() => {
+    if (!paymentReceiveAutoIncrement) return;
+
+    setFieldValue(
+      'payment_receive_no',
+      transactionNumber(paymentReceiveNumberPrefix, paymentReceiveNextNumber),
+    );
+  }, [
+    setFieldValue,
     paymentReceiveNumberPrefix,
+    paymentReceiveNextNumber,
     paymentReceiveAutoIncrement,
-  }) => {
-    const { setFieldValue } = useFormikContext();
-
-    useLayoutEffect(() => {
-      if (!paymentReceiveAutoIncrement) return;
-
-      setFieldValue(
-        'payment_receive_no',
-        transactionNumber(paymentReceiveNumberPrefix, paymentReceiveNextNumber),
-      );
-    }, [
-      setFieldValue,
-      paymentReceiveNumberPrefix,
-      paymentReceiveNextNumber,
-      paymentReceiveAutoIncrement,
-    ]);
-    return null;
-  },
-);
+  ]);
+  return null;
+});

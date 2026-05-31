@@ -1,4 +1,4 @@
-  import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { FinancialHeaderLoadingSkeleton } from '../FinancialHeaderLoadingSkeleton';
 import { useCustomers } from '@/hooks/query';
 
@@ -7,7 +7,9 @@ type UseCustomersResult = ReturnType<typeof useCustomers>;
 type CustomersBalanceSummaryGeneralContextValue = {
   isCustomersLoading: boolean;
   isCustomersFetching: boolean;
-  customers: UseCustomersResult['data'] extends { customers: infer C } ? C : unknown;
+  customers: UseCustomersResult['data'] extends { customers: infer C }
+    ? C
+    : unknown;
 };
 
 type CustomersBalanceSummaryGeneralProviderProps = {

@@ -56,8 +56,8 @@ const allTransactionsStatusAccessor = (transaction) => {
         transaction.status === 'categorized'
           ? Intent.SUCCESS
           : transaction.status === 'matched'
-          ? Intent.SUCCESS
-          : Intent.NONE
+            ? Intent.SUCCESS
+            : Intent.NONE
       }
       minimal={transaction.status === 'manual'}
     >

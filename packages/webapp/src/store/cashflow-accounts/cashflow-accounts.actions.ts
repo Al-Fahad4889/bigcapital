@@ -1,4 +1,7 @@
-import { CASHFLOW_ACCOUNTS_TABLE_STATE_RESET, CASHFLOW_ACCOUNTS_TABLE_STATE_SET } from '@/store/types';;
+import {
+  CASHFLOW_ACCOUNTS_TABLE_STATE_RESET,
+  CASHFLOW_ACCOUNTS_TABLE_STATE_SET,
+} from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 /**
@@ -19,4 +22,3 @@ export const resetCashflowAccountsTableState = () => {
     type: CASHFLOW_ACCOUNTS_TABLE_STATE_RESET,
   };
 };
- 

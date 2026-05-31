@@ -44,7 +44,9 @@ function CustomerOpeningBalanceFormInner({
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
     const formValues = {
       ...values,
-      opening_balance_at: moment(values.opening_balance_at).format('YYYY-MM-DD'),
+      opening_balance_at: moment(values.opening_balance_at).format(
+        'YYYY-MM-DD',
+      ),
     };
 
     // Handle request response success.
@@ -82,4 +84,6 @@ function CustomerOpeningBalanceFormInner({
   );
 }
 
-export const CustomerOpeningBalanceForm = compose(withDialogActions)(CustomerOpeningBalanceFormInner);
+export const CustomerOpeningBalanceForm = compose(withDialogActions)(
+  CustomerOpeningBalanceFormInner,
+);

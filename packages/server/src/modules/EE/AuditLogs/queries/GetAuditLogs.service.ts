@@ -52,7 +52,9 @@ export class GetAuditLogsService {
       q = q.where('userId', query.userId);
     }
     if (query.from) {
-      const from = moment(query.from).startOf('day').format('YYYY-MM-DD HH:mm:ss');
+      const from = moment(query.from)
+        .startOf('day')
+        .format('YYYY-MM-DD HH:mm:ss');
       q = q.where('createdAt', '>=', from);
     }
     if (query.to) {

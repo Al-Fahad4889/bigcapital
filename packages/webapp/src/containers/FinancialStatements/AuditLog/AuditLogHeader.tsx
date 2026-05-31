@@ -4,11 +4,7 @@ import moment from 'moment';
 import { Button, Tabs, Tab, Position } from '@blueprintjs/core';
 import styled from 'styled-components';
 import { Formik, Form, FormikHelpers } from 'formik';
-import {
-  FormattedMessage as T,
-  FFormGroup,
-  FDateInput,
-} from '@/components';
+import { FormattedMessage as T, FFormGroup, FDateInput } from '@/components';
 import { FMultiSelect } from '@/components/Forms';
 import { useAuditLogFilterOptionsQuery } from '@/hooks/query';
 import { saveInvoke, transformToForm } from '@/utils';
@@ -29,9 +25,7 @@ interface AuditLogHeaderProps {
   toggleFilterDrawer: (toggle?: boolean) => void;
 }
 
-function normalizeStringListField(
-  value: unknown,
-): string[] {
+function normalizeStringListField(value: unknown): string[] {
   if (Array.isArray(value)) return value;
   return value ? [value as string] : [];
 }
@@ -166,11 +160,7 @@ export function AuditLogHeader({
               title={<T id={'general'} />}
               panel={
                 <div style={{ maxWidth: '400px' }}>
-                  <FFormGroup
-                    name="subject"
-                    label={'Subject'}
-                    fastField
-                  >
+                  <FFormGroup name="subject" label={'Subject'} fastField>
                     <FMultiSelect
                       name="subject"
                       items={subjectSelectItems}
@@ -187,11 +177,7 @@ export function AuditLogHeader({
                     />
                   </FFormGroup>
 
-                  <FFormGroup
-                    name="action"
-                    label={'Action'}
-                    fastField
-                  >
+                  <FFormGroup name="action" label={'Action'} fastField>
                     <FMultiSelect
                       name="action"
                       items={actionSelectItems}
@@ -208,14 +194,13 @@ export function AuditLogHeader({
                     />
                   </FFormGroup>
 
-                  <FFormGroup
-                    name="fromDate"
-                    label={'From'}
-                    fastField
-                  >
+                  <FFormGroup name="fromDate" label={'From'} fastField>
                     <FDateInput
                       name="fromDate"
-                      popoverProps={{ position: Position.BOTTOM, minimal: true }}
+                      popoverProps={{
+                        position: Position.BOTTOM,
+                        minimal: true,
+                      }}
                       formatDate={(date: Date) => date.toLocaleDateString()}
                       parseDate={(str: string) => new Date(str)}
                       inputProps={{ fill: true }}
@@ -223,16 +208,14 @@ export function AuditLogHeader({
                     />
                   </FFormGroup>
 
-                  <FFormGroup
-                    name="toDate"
-                    label={'To'}
-                    fill
-                    fastField
-                  >
+                  <FFormGroup name="toDate" label={'To'} fill fastField>
                     <FDateInput
                       name="toDate"
                       type="date"
-                      popoverProps={{ position: Position.BOTTOM, minimal: true }}
+                      popoverProps={{
+                        position: Position.BOTTOM,
+                        minimal: true,
+                      }}
                       formatDate={(date: Date) => date.toLocaleDateString()}
                       parseDate={(str: string) => new Date(str)}
                       inputProps={{ fill: true }}
@@ -257,4 +240,3 @@ export function AuditLogHeader({
     </AuditLogDrawerHeader>
   );
 }
-

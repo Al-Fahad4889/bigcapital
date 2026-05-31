@@ -30,10 +30,13 @@ function GeneralLedgerHeaderDimensionsPanelProvider({
   const isBranchFeatureCan = featureCan(Features.Branches);
 
   // Fetches the branches list.
-  const { isLoading: isBranchesLoading, data: branches } = useBranches(undefined, {
-    enabled: isBranchFeatureCan,
-    placeholderData: (previousData) => previousData,
-  });
+  const { isLoading: isBranchesLoading, data: branches } = useBranches(
+    undefined,
+    {
+      enabled: isBranchFeatureCan,
+      placeholderData: (previousData) => previousData,
+    },
+  );
 
   // Provider
   const provider: GeneralLedgerHeaderDimensionsPanelContextValue = {
@@ -51,15 +54,16 @@ function GeneralLedgerHeaderDimensionsPanelProvider({
   );
 }
 
-const useGeneralLedgerHeaderDimensionsContext = (): GeneralLedgerHeaderDimensionsPanelContextValue => {
-  const ctx = useContext(GeneralLedgerHeaderDimensionsPanelContext);
-  if (!ctx) {
-    throw new Error(
-      'useGeneralLedgerHeaderDimensionsContext must be used within a GeneralLedgerHeaderDimensionsPanelProvider',
-    );
-  }
-  return ctx;
-};
+const useGeneralLedgerHeaderDimensionsContext =
+  (): GeneralLedgerHeaderDimensionsPanelContextValue => {
+    const ctx = useContext(GeneralLedgerHeaderDimensionsPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useGeneralLedgerHeaderDimensionsContext must be used within a GeneralLedgerHeaderDimensionsPanelProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   GeneralLedgerHeaderDimensionsPanelProvider,

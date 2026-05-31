@@ -10,8 +10,14 @@ import { FormattedMessage as T } from '@/components';
 import { FinancialStatementHeader } from '@/containers/FinancialStatements/FinancialStatementHeader';
 import { InventoryValuationHeaderGeneralPanel } from './InventoryValuationHeaderGeneralPanel';
 import { InventoryValuationHeaderDimensionsPanel } from './InventoryValuationHeaderDimensionsPanel';
-import { withInventoryValuation, WithInventoryValuationProps } from './withInventoryValuation';
-import { withInventoryValuationActions, WithInventoryValuationActionsProps } from './withInventoryValuationActions';
+import {
+  withInventoryValuation,
+  WithInventoryValuationProps,
+} from './withInventoryValuation';
+import {
+  withInventoryValuationActions,
+  WithInventoryValuationActionsProps,
+} from './withInventoryValuationActions';
 
 import { compose, transformToForm } from '@/utils';
 import { useFeatureCan } from '@/hooks/state';
@@ -35,7 +41,10 @@ interface InventoryValuationHeaderOwnProps {
 
 type InventoryValuationHeaderProps = InventoryValuationHeaderOwnProps &
   Pick<WithInventoryValuationProps, 'inventoryValuationDrawerFilter'> &
-  Pick<WithInventoryValuationActionsProps, 'toggleInventoryValuationFilterDrawer'>;
+  Pick<
+    WithInventoryValuationActionsProps,
+    'toggleInventoryValuationFilterDrawer'
+  >;
 
 /**
  * inventory valuation header.
@@ -66,7 +75,10 @@ function InventoryValuationHeaderInner({
   );
 
   // Handle the form of header submit.
-  const handleSubmit = (values: InventoryValuationFormValues, actions: FormikHelpers<InventoryValuationFormValues>) => {
+  const handleSubmit = (
+    values: InventoryValuationFormValues,
+    actions: FormikHelpers<InventoryValuationFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleInventoryValuationFilterDrawer(false);
     actions.setSubmitting(false);

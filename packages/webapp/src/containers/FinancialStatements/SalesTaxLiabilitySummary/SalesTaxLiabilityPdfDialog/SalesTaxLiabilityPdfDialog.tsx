@@ -9,8 +9,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const SalesTaxLiabilityPdfDialogContent = lazy(
-  () => import('./SalesTaxLiabilityPdfDialogContent').then((m) => ({ default: m.SalesTaxLiabilityPdfDialogContent })),
+const SalesTaxLiabilityPdfDialogContent = lazy(() =>
+  import('./SalesTaxLiabilityPdfDialogContent').then((m) => ({
+    default: m.SalesTaxLiabilityPdfDialogContent,
+  })),
 );
 
 interface SalesTaxLiabilityPdfDialogRootProps {
@@ -22,7 +24,11 @@ interface SalesTaxLiabilityPdfDialogRootProps {
 /**
  * Sales tax liability pdf preview dialog.
  */
-function SalesTaxLiabilityPdfDialogRoot({ dialogName, payload, isOpen }: SalesTaxLiabilityPdfDialogRootProps) {
+function SalesTaxLiabilityPdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: SalesTaxLiabilityPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

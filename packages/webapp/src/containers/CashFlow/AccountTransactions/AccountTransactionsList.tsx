@@ -65,8 +65,16 @@ export const AccountTransactionsList = R.compose(
   ),
 )(AccountTransactionsListRoot);
 
-const AccountsTransactionsAll = lazy(() => import('./AccountsTransactionsAll').then(m => ({ default: m.AccountTransactionsAll })));
-const AccountsTransactionsUncategorized = lazy(() => import('./AllTransactionsUncategorized').then(m => ({ default: m.AllTransactionsUncategorized })));
+const AccountsTransactionsAll = lazy(() =>
+  import('./AccountsTransactionsAll').then((m) => ({
+    default: m.AccountTransactionsAll,
+  })),
+);
+const AccountsTransactionsUncategorized = lazy(() =>
+  import('./AllTransactionsUncategorized').then((m) => ({
+    default: m.AllTransactionsUncategorized,
+  })),
+);
 
 function AccountTransactionsContent() {
   const { filterTab } = useAccountTransactionsContext();

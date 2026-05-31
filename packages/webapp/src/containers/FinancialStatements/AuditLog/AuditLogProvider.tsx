@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-} from 'react';
+import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import { flatten, map } from 'lodash';
 import { useAuditLogsInfinityQuery } from '@/hooks/query';
 import { IntersectionObserver } from '@/components';

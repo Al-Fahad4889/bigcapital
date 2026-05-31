@@ -79,4 +79,6 @@ function NotifyEstimateViaSMSFormInner({
   );
 }
 
-export const NotifyEstimateViaSMSForm = compose(withDialogActions)(NotifyEstimateViaSMSFormInner);
+export const NotifyEstimateViaSMSForm = compose(withDialogActions)(
+  NotifyEstimateViaSMSFormInner,
+);

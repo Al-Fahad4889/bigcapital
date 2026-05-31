@@ -5,7 +5,8 @@ export const TRANSACTIONS_LOCKING = 'TRANSACTIONS_LOCKING';
 // Query key factory
 export const transactionsLockingKeys = {
   all: () => [TRANSACTIONS_LOCKING] as const,
-  list: (query?: Record<string, unknown>) => [TRANSACTIONS_LOCKING, query] as const,
+  list: (query?: Record<string, unknown>) =>
+    [TRANSACTIONS_LOCKING, query] as const,
   detail: (module: string) => [TRANSACTION_LOCKING, module] as const,
 };
 

@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { useCustomersTransactionsReport } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UseCustomersTransactionsResult = ReturnType<typeof useCustomersTransactionsReport>;
+type UseCustomersTransactionsResult = ReturnType<
+  typeof useCustomersTransactionsReport
+>;
 
 interface CustomersTransactionsContextValue {
   customersTransactions: UseCustomersTransactionsResult['data'];
@@ -20,12 +22,17 @@ interface CustomersTransactionsProviderProps {
   children?: ReactNode;
 }
 
-const CustomersTransactionsContext = createContext<CustomersTransactionsContextValue | undefined>(undefined);
+const CustomersTransactionsContext = createContext<
+  CustomersTransactionsContextValue | undefined
+>(undefined);
 
 /**
  * Customers transactions provider.
  */
-function CustomersTransactionsProvider({ filter, ...props }: CustomersTransactionsProviderProps) {
+function CustomersTransactionsProvider({
+  filter,
+  ...props
+}: CustomersTransactionsProviderProps) {
   const query = useMemo(() => transformFilterFormToQuery(filter), [filter]);
 
   // Fetches the customers transactions.
@@ -34,7 +41,9 @@ function CustomersTransactionsProvider({ filter, ...props }: CustomersTransactio
     isFetching: isCustomersTransactionsFetching,
     isLoading: isCustomersTransactionsLoading,
     refetch: CustomersTransactionsRefetch,
-  } = useCustomersTransactionsReport(query, { placeholderData: (prev) => prev });
+  } = useCustomersTransactionsReport(query, {
+    placeholderData: (prev) => prev,
+  });
 
   const provider: CustomersTransactionsContextValue = {
     customersTransactions,
@@ -54,10 +63,14 @@ function CustomersTransactionsProvider({ filter, ...props }: CustomersTransactio
   );
 }
 
-const useCustomersTransactionsContext = (): CustomersTransactionsContextValue => {
-  const ctx = useContext(CustomersTransactionsContext);
-  if (!ctx) throw new Error('useCustomersTransactionsContext must be used within a CustomersTransactionsProvider');
-  return ctx;
-};
+const useCustomersTransactionsContext =
+  (): CustomersTransactionsContextValue => {
+    const ctx = useContext(CustomersTransactionsContext);
+    if (!ctx)
+      throw new Error(
+        'useCustomersTransactionsContext must be used within a CustomersTransactionsProvider',
+      );
+    return ctx;
+  };
 
 export { CustomersTransactionsProvider, useCustomersTransactionsContext };

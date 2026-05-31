@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchInventoryValuationJson,
   fetchInventoryValuationTable,
@@ -22,7 +27,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useInventoryValuation(
   query: InventoryValuationJsonQuery,
-  props?: Omit<UseQueryOptions<InventoryValuationJsonResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<InventoryValuationJsonResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -34,7 +42,10 @@ export function useInventoryValuation(
 
 export function useInventoryValuationTable(
   query: InventoryValuationTableQuery,
-  props?: Omit<UseQueryOptions<InventoryValuationTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<InventoryValuationTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

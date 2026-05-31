@@ -14,9 +14,7 @@ function VendorFormPageLoading({ children }) {
   const { isFormLoading } = useVendorFormContext();
 
   return (
-    <DashboardInsider loading={isFormLoading}>
-      {children}
-    </DashboardInsider>
+    <DashboardInsider loading={isFormLoading}>{children}</DashboardInsider>
   );
 }
 
@@ -45,7 +43,7 @@ export function VendorFormPage() {
           <VendorFormFormik
             onSubmitSuccess={handleSubmitSuccess}
             onCancel={handleFormCancel}
-            />
+          />
         </Box>
       </VendorFormPageLoading>
     </VendorFormProvider>

@@ -3,51 +3,57 @@ import * as R from 'ramda';
 import { getColumnWidth } from '@/utils';
 import { Align } from '@/constants';
 
-const characterColumn = R.curry((data: any[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 200,
-    magicSpacing: 10,
+const characterColumn = R.curry(
+  (data: any[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 200,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
+    textOverview: true,
+    sticky: Align.Left,
   }),
-  disableSortBy: true,
-  textOverview: true,
-  sticky: Align.Left,
-}));
+);
 
-const numericColumn = R.curry((data: any[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 130,
-    magicSpacing: 10,
+const numericColumn = R.curry(
+  (data: any[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 130,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
+    align: Align.Right,
   }),
-  disableSortBy: true,
-  align: Align.Right,
-}));
+);
 
 /**
  *  columns mapper.
  */
-const columnsMapper = R.curry((data: any[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 130,
-    magicSpacing: 10,
+const columnsMapper = R.curry(
+  (data: any[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 130,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
+    textOverview: true,
   }),
-  disableSortBy: true,
-  textOverview: true,
-}));
+);
 
 /**
  * project profitability summary columns mapper.

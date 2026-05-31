@@ -13,8 +13,14 @@ import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 import { BalanceSheetExportMenu } from './components';
 import { useBalanceSheetContext } from './BalanceSheetProvider';
 import { withBalanceSheet, WithBalanceSheetProps } from './withBalanceSheet';
-import { withBalanceSheetActions, WithBalanceSheetActionsProps } from './withBalanceSheetActions';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withBalanceSheetActions,
+  WithBalanceSheetActionsProps,
+} from './withBalanceSheetActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { compose, saveInvoke } from '@/utils';
 import { DialogsName } from '@/constants/dialogs';
 
@@ -64,8 +70,8 @@ function BalanceSheetActionsBarInner({
 
   // Handles the pdf print button click.
   const handlePdfPrintBtnSubmit = () => {
-    openDialog(DialogsName.BalanceSheetPdfPreview)
-  }
+    openDialog(DialogsName.BalanceSheetPdfPreview);
+  };
 
   return (
     <DashboardActionsBar>
@@ -140,5 +146,5 @@ export const BalanceSheetActionsBar = compose(
     balanceSheetDrawerFilter,
   })),
   withBalanceSheetActions,
-  withDialogActions
+  withDialogActions,
 )(BalanceSheetActionsBarInner);

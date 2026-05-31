@@ -6,7 +6,8 @@ import { defaultTableQuery } from './receipts.reducer';
 import { createSelector } from 'reselect';
 import type { RootState } from '@/store/reducers';
 
-const receiptTableStateSelector = (state: RootState) => state.salesReceipts.tableState;
+const receiptTableStateSelector = (state: RootState) =>
+  state.salesReceipts.tableState;
 
 // Retrieve receipts table query.
 export const getReceiptsTableStateFactory = () =>

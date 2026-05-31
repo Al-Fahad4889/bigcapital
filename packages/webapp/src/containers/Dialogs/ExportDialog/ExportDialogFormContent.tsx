@@ -24,10 +24,7 @@ function ExportDialogFormContentRoot({
           You can export data from Bigcapital in CSV or XLSX format
         </x.p>
 
-        <FFormGroup
-          name={'resource'}
-          label={'Select Resource'}
-        >
+        <FFormGroup name={'resource'} label={'Select Resource'}>
           <x.div maxWidth="280px">
             <FSelect
               name={'resource'}

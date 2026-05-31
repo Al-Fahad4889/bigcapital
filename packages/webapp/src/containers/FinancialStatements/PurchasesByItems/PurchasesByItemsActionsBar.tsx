@@ -14,8 +14,14 @@ import { DashboardActionsBar, FormattedMessage as T, Icon } from '@/components';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { withPurchasesByItems } from './withPurchasesByItems';
-import { withPurchasesByItemsActions, WithPurchasesByItemsActionsProps } from './withPurchasesByItemsActions';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withPurchasesByItemsActions,
+  WithPurchasesByItemsActionsProps,
+} from './withPurchasesByItemsActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { compose, saveInvoke } from '@/utils';
 import { usePurchaseByItemsContext } from './PurchasesByItemsProvider';
 import { PurchasesByItemsExportMenu } from './components';
@@ -28,7 +34,10 @@ interface PurchasesByItemsActionsBarOwnProps {
 
 type PurchasesByItemsActionsBarProps = {
   purchasesByItemsDrawerFilter: boolean;
-} & Pick<WithPurchasesByItemsActionsProps, 'togglePurchasesByItemsFilterDrawer'> &
+} & Pick<
+  WithPurchasesByItemsActionsProps,
+  'togglePurchasesByItemsFilterDrawer'
+> &
   WithDialogActionsProps &
   PurchasesByItemsActionsBarOwnProps;
 

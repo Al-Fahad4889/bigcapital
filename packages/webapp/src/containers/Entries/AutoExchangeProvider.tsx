@@ -17,8 +17,9 @@ const AutoExchangeRateContext = React.createContext(
 );
 
 function AutoExchangeRateProvider({ children }: AutoExchangeRateProviderProps) {
-  const [autoExRateCurrency, setAutoExRateCurrency] =
-    React.useState<string | null>('');
+  const [autoExRateCurrency, setAutoExRateCurrency] = React.useState<
+    string | null
+  >('');
 
   // Retrieves the exchange rate.
   const { data: autoExchangeRate, isLoading: isAutoExchangeRateLoading } =

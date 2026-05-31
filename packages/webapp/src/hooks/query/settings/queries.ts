@@ -27,7 +27,7 @@ import { useApiFetcher } from '../../useRequest';
 import { settingsKeys } from './query-keys';
 
 export function useSaveSettings(
-  props?: UseMutationOptions<void, Error, SaveSettingsBody>
+  props?: UseMutationOptions<void, Error, SaveSettingsBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -42,7 +42,7 @@ export function useSaveSettings(
 }
 
 export function useSettings(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -54,7 +54,7 @@ export function useSettings(
 }
 
 export function useSettingsInvoices(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -66,7 +66,7 @@ export function useSettingsInvoices(
 }
 
 export function useSettingsEstimates(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -78,7 +78,7 @@ export function useSettingsEstimates(
 }
 
 export function useSettingsPaymentReceives(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -90,7 +90,7 @@ export function useSettingsPaymentReceives(
 }
 
 export function useSettingsReceipts(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -102,7 +102,7 @@ export function useSettingsReceipts(
 }
 
 export function useSettingsManualJournals(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -113,7 +113,7 @@ export function useSettingsManualJournals(
   });
 }
 export function useSettingsItems(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -125,7 +125,7 @@ export function useSettingsItems(
 }
 
 export function useSettingCashFlow(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -137,7 +137,7 @@ export function useSettingCashFlow(
 }
 
 export function useSettingsCreditNotes(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -149,7 +149,7 @@ export function useSettingsCreditNotes(
 }
 
 export function useSettingsVendorCredits(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -161,7 +161,7 @@ export function useSettingsVendorCredits(
 }
 
 export function useSettingsWarehouseTransfers(
-  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SettingsResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -173,7 +173,7 @@ export function useSettingsWarehouseTransfers(
 }
 
 export function useSettingSMSNotifications(
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -186,7 +186,7 @@ export function useSettingSMSNotifications(
 
 export function useSettingSMSNotification(
   key: string,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -199,17 +199,28 @@ export function useSettingSMSNotification(
 }
 
 export function useSettingEditSMSNotification(
-  props?: UseMutationOptions<unknown, Error, { key: string; values: Record<string, unknown> }>
+  props?: UseMutationOptions<
+    unknown,
+    Error,
+    { key: string; values: Record<string, unknown> }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ({ key, values }: { key: string; values: Record<string, unknown> }) =>
-      editSettingSMSNotification(fetcher, key, values),
+    mutationFn: ({
+      key,
+      values,
+    }: {
+      key: string;
+      values: Record<string, unknown>;
+    }) => editSettingSMSNotification(fetcher, key, values),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: settingsKeys.smsNotifications() });
+      queryClient.invalidateQueries({
+        queryKey: settingsKeys.smsNotifications(),
+      });
     },
   });
 }

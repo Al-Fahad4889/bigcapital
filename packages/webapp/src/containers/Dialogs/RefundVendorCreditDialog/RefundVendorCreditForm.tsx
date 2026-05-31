@@ -77,4 +77,6 @@ function RefundVendorCreditFormInner({
   );
 }
 
-export const RefundVendorCreditForm = compose(withDialogActions)(RefundVendorCreditFormInner);
+export const RefundVendorCreditForm = compose(withDialogActions)(
+  RefundVendorCreditFormInner,
+);

@@ -41,7 +41,9 @@ function EstimatesListProvider({ query, tableStateChanged, ...props }) {
     estimates: estimatesData?.data,
     pagination: estimatesData?.pagination,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     estimatesViews,
 
     isResourceLoading,

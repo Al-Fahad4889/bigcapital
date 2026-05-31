@@ -17,7 +17,7 @@ function ItemsEntriesDeleteAlertInner({
 
   // #withAlertStoreConnect
   isOpen,
-  payload: {  },
+  payload: {},
 
   // #withAlertActions
   closeAlert,
@@ -30,7 +30,7 @@ function ItemsEntriesDeleteAlertInner({
   // Handle confirm the alert.
   const handleConfirm = (event) => {
     closeAlert(name);
-    saveInvoke(onConfirm, event)
+    saveInvoke(onConfirm, event);
   };
 
   return (
@@ -44,7 +44,8 @@ function ItemsEntriesDeleteAlertInner({
       loading={false}
     >
       <p>
-        Clearing the table lines will delete all quantities and rate were applied to the items, Is this okay?
+        Clearing the table lines will delete all quantities and rate were
+        applied to the items, Is this okay?
       </p>
     </Alert>
   );

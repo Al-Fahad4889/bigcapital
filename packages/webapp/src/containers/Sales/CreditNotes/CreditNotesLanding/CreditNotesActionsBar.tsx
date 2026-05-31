@@ -106,12 +106,10 @@ function CreditNotesActionsBarInner({
   // Handle the customize button click.
   const handleCustomizeBtnClick = () => {
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'CreditNote' });
-  }
+  };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteCreditNotes,
-  } = useBulkDeleteCreditNotesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteCreditNotes } =
+    useBulkDeleteCreditNotesDialog();
 
   // Show bulk delete button when rows are selected.
   if (!isEmpty(creditNotesSelectedRows)) {

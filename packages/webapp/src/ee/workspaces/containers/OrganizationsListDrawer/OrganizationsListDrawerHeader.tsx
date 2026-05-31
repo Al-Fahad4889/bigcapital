@@ -31,7 +31,11 @@ export function OrganizationsListDrawerHeader({
   onClose,
 }: OrganizationsListDrawerHeaderProps) {
   const handleChange = (e) => {
-    if (e.currentTarget.checked && !isCurrentOrgDefault && activeOrganizationId) {
+    if (
+      e.currentTarget.checked &&
+      !isCurrentOrgDefault &&
+      activeOrganizationId
+    ) {
       onSetDefaultWorkspace(activeOrganizationId);
     }
   };
@@ -54,10 +58,7 @@ export function OrganizationsListDrawerHeader({
         cursor="pointer"
         userSelect="none"
       >
-        <Switch
-          checked={isCurrentOrgDefault}
-          onChange={handleChange}
-        />
+        <Switch checked={isCurrentOrgDefault} onChange={handleChange} />
         <x.span fontSize="14px" color="rgb(255, 255, 255)">
           {intl.get('workspaces.set_default_workspace', {
             fallback: 'Set default workspace',

@@ -4,7 +4,10 @@ import { FinancialReportBody } from '../FinancialReportPage';
 import { FinancialSheetSkeleton } from '@/components/FinancialSheet';
 import { useVendorsTransactionsContext } from './VendorsTransactionsProvider';
 import { VendorsTransactionsTable } from './VendorsTransactionsTable';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 
 interface VendorsTransactionsBodyJSXProps {
   organizationName: WithCurrentOrganizationProps['organization']['name'];

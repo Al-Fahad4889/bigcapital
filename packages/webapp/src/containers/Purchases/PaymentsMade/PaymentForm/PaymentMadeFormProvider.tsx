@@ -39,10 +39,9 @@ function PaymentMadeFormProvider({ query, paymentMadeId, ...props }) {
   } = useItems({ page_size: 10000 });
 
   // Handle fetch venders data table or list.
-  const {
-    data: vendorsData,
-    isLoading: isVendorsLoading,
-  } = useVendors({ page_size: 10000 });
+  const { data: vendorsData, isLoading: isVendorsLoading } = useVendors({
+    page_size: 10000,
+  });
 
   // Handle fetch specific payment made details.
   const {

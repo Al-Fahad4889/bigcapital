@@ -17,7 +17,9 @@ const GLHeaderGeneralPanelContext = createContext<
  */
 function GLHeaderGeneralPanelProvider({
   ...props
-}: { children?: React.ReactNode }) {
+}: {
+  children?: React.ReactNode;
+}) {
   // Accounts list.
   const { data: accounts, isLoading: isAccountsLoading } = useAccounts();
 

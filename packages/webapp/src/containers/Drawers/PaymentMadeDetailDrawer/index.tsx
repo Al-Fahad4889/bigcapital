@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const PaymentMadeDetailContent = React.lazy(() => import('./PaymentMadeDetailContent').then(m => ({ default: m.PaymentMadeDetailContent })));
+const PaymentMadeDetailContent = React.lazy(() =>
+  import('./PaymentMadeDetailContent').then((m) => ({
+    default: m.PaymentMadeDetailContent,
+  })),
+);
 
 /**
  * Payment made detail drawer.

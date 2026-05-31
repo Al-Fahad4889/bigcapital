@@ -295,7 +295,7 @@ function MatchTransactionField({
   );
 }
 
-interface MatchTransctionFooterProps extends WithBankingActionsProps { }
+interface MatchTransctionFooterProps extends WithBankingActionsProps {}
 
 /**
  * Renders the match transactions footer.

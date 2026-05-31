@@ -6,7 +6,9 @@ export interface WithPurchasesByItemsActionsProps {
   togglePurchasesByItemsFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithPurchasesByItemsActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithPurchasesByItemsActionsProps => ({
   togglePurchasesByItemsFilterDrawer: (toggle: boolean) =>
     dispatch(togglePurchasesByItemsFilterDrawer(toggle)),
 });

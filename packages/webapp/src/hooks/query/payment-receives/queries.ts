@@ -47,22 +47,37 @@ import { cashflowAccountsKeys } from '../cashflow-accounts/query-keys';
 
 const commonInvalidateQueries = (client: ReturnType<typeof useQueryClient>) => {
   client.invalidateQueries({ queryKey: paymentReceivesKeys.all() });
-  client.invalidateQueries({ queryKey: paymentReceivesKeys.editPage(null).slice(0, 1) });
+  client.invalidateQueries({
+    queryKey: paymentReceivesKeys.editPage(null).slice(0, 1),
+  });
   client.invalidateQueries({ queryKey: invoicesKeys.all() });
   client.invalidateQueries({ queryKey: accountsKeys.all() });
   client.invalidateQueries({ queryKey: financialReportsKeys.all() });
-  client.invalidateQueries({ queryKey: financialReportsKeys.transactionsByReference().slice(0, 1) });
+  client.invalidateQueries({
+    queryKey: financialReportsKeys.transactionsByReference().slice(0, 1),
+  });
   client.invalidateQueries({ queryKey: customersKeys.all() });
-  client.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions().slice(0, 1) });
-  client.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1) });
+  client.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactions().slice(0, 1),
+  });
+  client.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1),
+  });
   client.invalidateQueries({ queryKey: creditNotesKeys.all() });
-  client.invalidateQueries({ queryKey: creditNotesKeys.reconcile(null).slice(0, 1) });
-  client.invalidateQueries({ queryKey: invoicesKeys.paymentTransactions(null).slice(0, 1) });
+  client.invalidateQueries({
+    queryKey: creditNotesKeys.reconcile(null).slice(0, 1),
+  });
+  client.invalidateQueries({
+    queryKey: invoicesKeys.paymentTransactions(null).slice(0, 1),
+  });
 };
 
 export function usePaymentReceives(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<PaymentsReceivedListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<PaymentsReceivedListResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -73,7 +88,7 @@ export function usePaymentReceives(
 }
 
 export function useCreatePaymentReceive(
-  props?: UseMutationOptions<void, Error, CreatePaymentReceivedBody>
+  props?: UseMutationOptions<void, Error, CreatePaymentReceivedBody>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -91,7 +106,7 @@ export function useCreatePaymentReceive(
 }
 
 export function useEditPaymentReceive(
-  props?: UseMutationOptions<void, Error, [number, EditPaymentReceivedBody]>
+  props?: UseMutationOptions<void, Error, [number, EditPaymentReceivedBody]>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -109,7 +124,7 @@ export function useEditPaymentReceive(
 }
 
 export function useDeletePaymentReceive(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -126,7 +141,7 @@ export function useDeletePaymentReceive(
 }
 
 export function useBulkDeletePaymentReceives(
-  props?: UseMutationOptions<void, Error, BulkDeletePaymentsReceivedBody>
+  props?: UseMutationOptions<void, Error, BulkDeletePaymentsReceivedBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -140,19 +155,24 @@ export function useBulkDeletePaymentReceives(
 }
 
 export function useValidateBulkDeletePaymentReceives(
-  props?: UseMutationOptions<ValidateBulkDeletePaymentsReceivedResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeletePaymentsReceivedResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
-    mutationFn: (ids: number[]) => validateBulkDeletePaymentsReceived(fetcher, ids),
+    mutationFn: (ids: number[]) =>
+      validateBulkDeletePaymentsReceived(fetcher, ids),
   });
 }
 
 export function usePaymentReceive(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<PaymentReceived>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<PaymentReceived>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -165,7 +185,7 @@ export function usePaymentReceive(
 
 export function usePaymentReceiveEditPage(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -179,13 +199,14 @@ export function usePaymentReceiveEditPage(
 export function useRefreshPaymentReceive() {
   const queryClient = useQueryClient();
   return {
-    refresh: () => queryClient.invalidateQueries({ queryKey: paymentReceivesKeys.all() }),
+    refresh: () =>
+      queryClient.invalidateQueries({ queryKey: paymentReceivesKeys.all() }),
   };
 }
 
 /** Notify by SMS – no SDK route in schema; kept on apiRequest. */
 export function useCreateNotifyPaymentReceiveBySMS(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
@@ -195,7 +216,9 @@ export function useCreateNotifyPaymentReceiveBySMS(
     mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
       apiRequest.post(`payments-received/${id}/notify-by-sms`, values, {}),
     onSuccess: (_res, [id]) => {
-      queryClient.invalidateQueries({ queryKey: paymentReceivesKeys.notifyBySms(id) });
+      queryClient.invalidateQueries({
+        queryKey: paymentReceivesKeys.notifyBySms(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -205,7 +228,7 @@ export function useCreateNotifyPaymentReceiveBySMS(
 export function usePaymentReceiveSMSDetail(
   paymentReceiveId: number | null | undefined,
   props?: Record<string, unknown>,
-  requestProps?: Record<string, unknown>
+  requestProps?: Record<string, unknown>,
 ) {
   return useRequestQuery(
     paymentReceivesKeys.smsDetail(paymentReceiveId),
@@ -246,7 +269,7 @@ export function useSendPaymentReceiveMail(
     SendPaymentReceiveMailResponse,
     Error,
     [number, SendPaymentReceiveMailValues]
-  >
+  >,
 ): UseMutationResult<
   SendPaymentReceiveMailResponse,
   Error,
@@ -259,7 +282,11 @@ export function useSendPaymentReceiveMail(
   return useMutation({
     ...props,
     mutationFn: ([id, values]: [number, SendPaymentReceiveMailValues]) =>
-      sendPaymentReceiveMail(fetcher, id, values as unknown as Record<string, unknown>) as Promise<SendPaymentReceiveMailResponse>,
+      sendPaymentReceiveMail(
+        fetcher,
+        id,
+        values as unknown as Record<string, unknown>,
+      ) as Promise<SendPaymentReceiveMailResponse>,
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
@@ -286,7 +313,7 @@ export interface GetPaymentReceivedMailStateResponse {
 
 export function usePaymentReceivedMailState(
   paymentReceiveId: number,
-  props?: UseQueryOptions<GetPaymentReceivedMailStateResponse, Error>
+  props?: UseQueryOptions<GetPaymentReceivedMailStateResponse, Error>,
 ): UseQueryResult<GetPaymentReceivedMailStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -294,12 +321,15 @@ export function usePaymentReceivedMailState(
     ...props,
     queryKey: paymentReceivesKeys.mailOptions(paymentReceiveId),
     queryFn: () =>
-      fetchPaymentReceiveMail(fetcher, paymentReceiveId) as Promise<GetPaymentReceivedMailStateResponse>,
+      fetchPaymentReceiveMail(
+        fetcher,
+        paymentReceiveId,
+      ) as Promise<GetPaymentReceivedMailStateResponse>,
   });
 }
 
 export function usePaymentReceivedState(
-  options?: UseQueryOptions<PaymentReceivedStateResponse, Error>
+  options?: UseQueryOptions<PaymentReceivedStateResponse, Error>,
 ): UseQueryResult<PaymentReceivedStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -315,7 +345,7 @@ export function usePaymentReceivedState(
  */
 export function useGetPaymentReceiveHtml(
   paymentReceivedId: number,
-  options?: UseQueryOptions<PaymentReceivedHtmlContentResponse, Error>
+  options?: UseQueryOptions<PaymentReceivedHtmlContentResponse, Error>,
 ): UseQueryResult<PaymentReceivedHtmlContentResponse, Error> {
   const fetcher = useApiFetcher();
 

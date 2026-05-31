@@ -4,15 +4,17 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithVendorsBalanceSummaryProps {
-  VendorsSummaryFilterDrawer: ReturnType<typeof getVendorsBalanceSummaryFilterDrawer>;
+  VendorsSummaryFilterDrawer: ReturnType<
+    typeof getVendorsBalanceSummaryFilterDrawer
+  >;
 }
 
-export const withVendorsBalanceSummary = <Props,>(mapState?: MapState<WithVendorsBalanceSummaryProps, Props>) => {
+export const withVendorsBalanceSummary = <Props,>(
+  mapState?: MapState<WithVendorsBalanceSummaryProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithVendorsBalanceSummaryProps = {
-      VendorsSummaryFilterDrawer: getVendorsBalanceSummaryFilterDrawer(
-        state,
-      ),
+      VendorsSummaryFilterDrawer: getVendorsBalanceSummaryFilterDrawer(state),
     };
     return mapState ? mapState(mapped, state, props) : mapped;
   };

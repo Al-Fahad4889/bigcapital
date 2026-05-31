@@ -41,14 +41,23 @@ const isBoolean = (val: string): boolean => {
  * Based on query-types library approach: https://github.com/xpepermint/query-types
  */
 const createDecoder = (parseNumbers: boolean, parseBooleans: boolean) => {
-  return (str: string, defaultDecoder?: any, charset?: string, type?: 'key' | 'value') => {
+  return (
+    str: string,
+    defaultDecoder?: any,
+    charset?: string,
+    type?: 'key' | 'value',
+  ) => {
     // Only decode values, not keys
     if (type === 'key') {
-      return defaultDecoder ? defaultDecoder(str, defaultDecoder, charset) : str;
+      return defaultDecoder
+        ? defaultDecoder(str, defaultDecoder, charset)
+        : str;
     }
 
     // First decode using default decoder
-    const decoded = defaultDecoder ? defaultDecoder(str, defaultDecoder, charset) : decodeURIComponent(str);
+    const decoded = defaultDecoder
+      ? defaultDecoder(str, defaultDecoder, charset)
+      : decodeURIComponent(str);
 
     // Handle empty strings and undefined
     if (typeof decoded === 'undefined' || decoded === '') {
@@ -86,18 +95,24 @@ export function useQueryString(
   const isFirst = useRef(true);
 
   // Extract parseNumbers and parseBooleans from parseOptions
-  const { parseNumbers = false, parseBooleans = false, ...qsParseOptions } = parseOptions || {};
+  const {
+    parseNumbers = false,
+    parseBooleans = false,
+    ...qsParseOptions
+  } = parseOptions || {};
 
   // Create decoder if needed
   const parseConfig = {
     ...qsParseOptions,
-    ...(parseNumbers || parseBooleans ? {
-      decoder: createDecoder(parseNumbers, parseBooleans),
-    } : {}),
+    ...(parseNumbers || parseBooleans
+      ? {
+          decoder: createDecoder(parseNumbers, parseBooleans),
+        }
+      : {}),
   };
 
   const [state, setState] = useState(
-    qs.parse(location.search.substring(1), parseConfig)
+    qs.parse(location.search.substring(1), parseConfig),
   );
 
   useEffect((): void => {

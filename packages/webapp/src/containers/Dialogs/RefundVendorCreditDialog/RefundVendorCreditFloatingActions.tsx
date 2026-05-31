@@ -44,4 +44,6 @@ function RefundVendorCreditFloatingActionsInner({
   );
 }
 
-export const RefundVendorCreditFloatingActions = compose(withDialogActions)(RefundVendorCreditFloatingActionsInner);
+export const RefundVendorCreditFloatingActions = compose(withDialogActions)(
+  RefundVendorCreditFloatingActionsInner,
+);

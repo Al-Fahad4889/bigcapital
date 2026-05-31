@@ -57,4 +57,6 @@ function ProjectInvoicingFormInner({
   );
 }
 
-export const ProjectInvoicingForm = compose(withDialogActions)(ProjectInvoicingFormInner);
+export const ProjectInvoicingForm = compose(withDialogActions)(
+  ProjectInvoicingFormInner,
+);

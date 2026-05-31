@@ -3,7 +3,10 @@ import { getItemById } from '@/store/selectors';
 import type { RootState } from '@/store/reducers';
 
 const currenciesItemsSelector = (state: RootState) => state.currencies.data;
-const currenciesCodePropSelector = (state: RootState, props: { currencyId: string }) => props.currencyId;
+const currenciesCodePropSelector = (
+  state: RootState,
+  props: { currencyId: string },
+) => props.currencyId;
 
 export const getCurrenciesList = createSelector(
   currenciesItemsSelector,
@@ -19,4 +22,3 @@ export const getCurrencyByCode = createSelector(
     return getItemById(currencies, currencyCode);
   },
 );
-

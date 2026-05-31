@@ -48,7 +48,7 @@ function CreditNotesDataTableInner({
   creditNoteTableSize,
 
   // #withCreditNotes
-  creditNoteTableState
+  creditNoteTableState,
 }) {
   const history = useHistory();
 
@@ -176,5 +176,5 @@ export const CreditNotesDataTable = compose(
   withSettings(({ creditNoteSettings }) => ({
     creditNoteTableSize: creditNoteSettings?.tableSize,
   })),
-  withCreditNotes(({ creditNoteTableState }) => ({ creditNoteTableState }))
+  withCreditNotes(({ creditNoteTableState }) => ({ creditNoteTableState })),
 )(CreditNotesDataTableInner);

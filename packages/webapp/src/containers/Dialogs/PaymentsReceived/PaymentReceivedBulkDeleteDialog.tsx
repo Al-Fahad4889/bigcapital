@@ -105,4 +105,3 @@ export const PaymentReceivedBulkDeleteDialog = compose(
   withDialogActions,
   withPaymentsReceivedActions,
 )(PaymentReceivedBulkDeleteDialogInner);
-

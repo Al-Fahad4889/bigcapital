@@ -4,7 +4,10 @@ import { FinancialSheetSkeleton } from '@/components';
 import { FinancialReportBody } from '../FinancialReportPage';
 import { useTrialBalanceSheetContext } from './TrialBalanceProvider';
 import { TrialBalanceSheetTable } from './TrialBalanceSheetTable';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 
 interface TrialBalanceSheetBodyProps {
   organizationName: WithCurrentOrganizationProps['organization']['name'];

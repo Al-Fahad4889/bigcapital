@@ -5,14 +5,17 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ProjectInvoicingDialogContent = React.lazy(() => import('./ProjectInvoicingFormDialogContent').then(m => ({ default: m.ProjectInvoicingFormDialogContent })));
+const ProjectInvoicingDialogContent = React.lazy(() =>
+  import('./ProjectInvoicingFormDialogContent').then((m) => ({
+    default: m.ProjectInvoicingFormDialogContent,
+  })),
+);
 
 /**
  * Project invoicing form dialog.
  * @returns
  */
 function ProjectInvoicingFormDialog({ dialogName, payload: {}, isOpen }) {
-
   return (
     <ProjectInvoicingFormDialogRoot
       name={dialogName}

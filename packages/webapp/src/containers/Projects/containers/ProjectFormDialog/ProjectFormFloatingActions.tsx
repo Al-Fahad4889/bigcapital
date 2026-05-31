@@ -34,4 +34,6 @@ function ProjectFormFloatingActionsInner({
   );
 }
 
-export const ProjectFormFloatingActions = compose(withDialogActions)(ProjectFormFloatingActionsInner);
+export const ProjectFormFloatingActions = compose(withDialogActions)(
+  ProjectFormFloatingActionsInner,
+);

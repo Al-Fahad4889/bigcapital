@@ -31,9 +31,7 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { useBillsListContext } from './BillsListProvider';
-import {
-  useRefreshBills,
-} from '@/hooks/query/bills';
+import { useRefreshBills } from '@/hooks/query/bills';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { useBulkDeleteBillsDialog } from './hooks/use-bulk-delete-bills-dialog';
 
@@ -102,10 +100,8 @@ function BillActionsBar({
   const handlePrintBtnClick = () => {
     downloadExportPdf({ resource: 'Bill' });
   };
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteBills,
-  } = useBulkDeleteBillsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteBills } =
+    useBulkDeleteBillsDialog();
 
   // Handle bulk delete.
   const handleBulkDelete = () => {

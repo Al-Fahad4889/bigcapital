@@ -19,7 +19,7 @@ export interface WithSubscriptionsProps {
   >;
 }
 
-export const withSubscriptions = <Props = unknown>(
+export const withSubscriptions = <Props = unknown,>(
   mapState?: MapState<WithSubscriptionsProps, Props>,
   slug?: string,
 ) => {

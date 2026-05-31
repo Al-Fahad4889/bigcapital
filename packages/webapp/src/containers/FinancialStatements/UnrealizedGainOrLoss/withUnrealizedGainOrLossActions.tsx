@@ -6,9 +6,14 @@ export interface WithUnrealizedGainOrLossActionsProps {
   toggleUnrealizedGainOrLossFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithUnrealizedGainOrLossActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithUnrealizedGainOrLossActionsProps => ({
   toggleUnrealizedGainOrLossFilterDrawer: (toggle: boolean) =>
     dispatch(toggleUnrealizedGainOrLossFilterDrawer(toggle)),
 });
 
-export const withUnrealizedGainOrLossActions = connect(null, mapDispatchToProps);
+export const withUnrealizedGainOrLossActions = connect(
+  null,
+  mapDispatchToProps,
+);

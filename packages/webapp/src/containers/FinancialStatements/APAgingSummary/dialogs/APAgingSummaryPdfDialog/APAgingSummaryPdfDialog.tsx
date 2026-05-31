@@ -6,8 +6,10 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
-const APAgingSummaryPdfDialogContent = lazy(
-  () => import('./APAgingSummaryPdfDialogContent').then((m) => ({ default: m.APAgingSummaryPdfDialogContent })),
+const APAgingSummaryPdfDialogContent = lazy(() =>
+  import('./APAgingSummaryPdfDialogContent').then((m) => ({
+    default: m.APAgingSummaryPdfDialogContent,
+  })),
 );
 
 interface APAgingSummaryPdfDialogRootProps {
@@ -16,7 +18,10 @@ interface APAgingSummaryPdfDialogRootProps {
   isOpen: boolean;
 }
 
-function APAgingSummaryPdfDialogRoot({ dialogName, isOpen }: APAgingSummaryPdfDialogRootProps) {
+function APAgingSummaryPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: APAgingSummaryPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

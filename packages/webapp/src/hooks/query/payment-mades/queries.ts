@@ -28,12 +28,17 @@ import { paymentMadesKeys } from './query-keys';
 const commonInvalidateQueries = (client: ReturnType<typeof useQueryClient>) => {
   client.invalidateQueries({ queryKey: paymentMadesKeys.all() });
   client.invalidateQueries({ queryKey: paymentMadesKeys.newEntries() });
-  client.invalidateQueries({ queryKey: paymentMadesKeys.editPage(null).slice(0, 1) });
+  client.invalidateQueries({
+    queryKey: paymentMadesKeys.editPage(null).slice(0, 1),
+  });
 };
 
 export function usePaymentMades(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<BillPaymentsListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<BillPaymentsListResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -44,7 +49,7 @@ export function usePaymentMades(
 }
 
 export function useCreatePaymentMade(
-  props?: UseMutationOptions<void, Error, CreateBillPaymentBody>
+  props?: UseMutationOptions<void, Error, CreateBillPaymentBody>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -58,7 +63,7 @@ export function useCreatePaymentMade(
 }
 
 export function useEditPaymentMade(
-  props?: UseMutationOptions<void, Error, [number, EditBillPaymentBody]>
+  props?: UseMutationOptions<void, Error, [number, EditBillPaymentBody]>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -75,7 +80,7 @@ export function useEditPaymentMade(
 }
 
 export function useDeletePaymentMade(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -92,7 +97,10 @@ export function useDeletePaymentMade(
 
 export function usePaymentMadeEditPage(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<BillPaymentEditPageResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<BillPaymentEditPageResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -109,7 +117,7 @@ export function usePaymentMadeNewPageEntries(
   props?: Omit<
     UseQueryOptions<BillPaymentNewPageEntriesResponse, Error>,
     'queryKey' | 'queryFn' | 'enabled'
-  >
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -124,13 +132,14 @@ export function usePaymentMadeNewPageEntries(
 export function useRefreshPaymentMades() {
   const queryClient = useQueryClient();
   return {
-    refresh: () => queryClient.invalidateQueries({ queryKey: paymentMadesKeys.all() }),
+    refresh: () =>
+      queryClient.invalidateQueries({ queryKey: paymentMadesKeys.all() }),
   };
 }
 
 export function usePaymentMade(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<BillPayment>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<BillPayment>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

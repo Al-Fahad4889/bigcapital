@@ -18,7 +18,7 @@ export function PreferencesStripeCallback() {
 
   useEffect(() => {
     stripeAccountCallback({ code }).then(() => {
-      history.push('/preferences/payment-methods')
+      history.push('/preferences/payment-methods');
     });
   }, [history, stripeAccountCallback, code]);
 

@@ -18,7 +18,7 @@ function JournalDeleteEntriesAlertInner({
 
   // #withAlertStoreConnect
   isOpen,
-  payload: {  },
+  payload: {},
 
   // #withAlertActions
   closeAlert,
@@ -45,7 +45,8 @@ function JournalDeleteEntriesAlertInner({
       loading={false}
     >
       <p>
-        Clearing the table lines will delete all credits and debits were applied, Is this okay?
+        Clearing the table lines will delete all credits and debits were
+        applied, Is this okay?
       </p>
     </Alert>
   );

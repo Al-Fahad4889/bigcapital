@@ -9,9 +9,7 @@ import { RefundVendorCreditDetail } from './RefundVendorCreditDetail';
  * Refund vendor credit drawer content.
  * @returns
  */
-export function RefundVendorCreditDrawerContent({
-  refundTransactionId,
-}) {
+export function RefundVendorCreditDrawerContent({ refundTransactionId }) {
   return (
     <RefundVendorCreditDrawerProvider refundTransactionId={refundTransactionId}>
       <DrawerBody>

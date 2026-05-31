@@ -11,7 +11,10 @@ import { WithUnrealizedGainOrLossActionsProps } from './withUnrealizedGainOrLoss
 
 type UnrealizedGainOrLossProps = {
   organizationName: string;
-} & Pick<WithUnrealizedGainOrLossActionsProps, 'toggleUnrealizedGainOrLossFilterDrawer'>;
+} & Pick<
+  WithUnrealizedGainOrLossActionsProps,
+  'toggleUnrealizedGainOrLossFilterDrawer'
+>;
 
 export function UnrealizedGainOrLoss({
   toggleUnrealizedGainOrLossFilterDrawer,

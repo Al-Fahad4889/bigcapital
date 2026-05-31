@@ -80,10 +80,8 @@ function AccountsActionsBarInner({
   const { refresh } = useRefreshAccounts();
 
   // Bulk delete accounts dialog.
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteAccounts,
-  } = useBulkDeleteAccountsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteAccounts } =
+    useBulkDeleteAccountsDialog();
 
   // Handle bulk accounts delete.
   const handleBulkDelete = () => {

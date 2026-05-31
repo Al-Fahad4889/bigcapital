@@ -122,7 +122,9 @@ export class OrganizationController {
   }
 
   @Get('base-currency-mutate')
-  @ApiOperation({ summary: 'Retrieves the base currency mutation lock abilities.' })
+  @ApiOperation({
+    summary: 'Retrieves the base currency mutation lock abilities.',
+  })
   @ApiResponse({
     status: 200,
     description: 'The base currency mutation abilities.',

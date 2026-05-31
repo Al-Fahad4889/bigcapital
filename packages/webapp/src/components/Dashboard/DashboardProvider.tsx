@@ -13,7 +13,9 @@ export default function DashboardProvider({ children }) {
 
   // Show toast when user has switched workspaces
   useEffect(() => {
-    const switchedWorkspaceName = sessionStorage.getItem('switchedWorkspaceName');
+    const switchedWorkspaceName = sessionStorage.getItem(
+      'switchedWorkspaceName',
+    );
     if (switchedWorkspaceName) {
       AppToaster.show({
         message: intl.get('workspace.switched_successfully', {

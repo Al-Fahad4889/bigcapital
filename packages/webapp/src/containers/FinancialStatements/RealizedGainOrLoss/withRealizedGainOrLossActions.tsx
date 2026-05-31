@@ -6,7 +6,9 @@ export interface WithRealizedGainOrLossActionsProps {
   toggleRealizedGainOrLossFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithRealizedGainOrLossActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithRealizedGainOrLossActionsProps => ({
   toggleRealizedGainOrLossFilterDrawer: (toggle: boolean) =>
     dispatch(toggleRealizedGainOrLossFilterDrawer(toggle)),
 });

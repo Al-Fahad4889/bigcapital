@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { useFormikContext } from 'formik'; 
+import { useFormikContext } from 'formik';
 import { index as WarehouseTransferNumberDialog } from '@/containers/Dialogs/WarehouseTransferNumberDialog';
 
 /**

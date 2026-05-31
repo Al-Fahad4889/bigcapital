@@ -1,4 +1,8 @@
-import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+import {
+  UseQueryOptions,
+  UseQueryResult,
+  useQuery,
+} from '@tanstack/react-query';
 import type {
   AutofillCategorizeTransactionResponse,
   BankingAccountSummaryResponse,
@@ -11,11 +15,12 @@ import { useApiFetcher } from '../../../useRequest';
 import { bankingKeys } from '../query-keys';
 
 /** @deprecated Use AutofillCategorizeTransactionResponse from @bigcapital/sdk-ts */
-export type GetAutofillCategorizeTransaction = AutofillCategorizeTransactionResponse;
+export type GetAutofillCategorizeTransaction =
+  AutofillCategorizeTransactionResponse;
 
 export function useGetBankAccountSummaryMeta(
   bankAccountId: number,
-  options?: UseQueryOptions<BankingAccountSummaryResponse, Error>
+  options?: UseQueryOptions<BankingAccountSummaryResponse, Error>,
 ): UseQueryResult<BankingAccountSummaryResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
@@ -27,12 +32,13 @@ export function useGetBankAccountSummaryMeta(
 
 export function useGetAutofillCategorizeTransaction(
   uncategorizedTransactionIds: number[],
-  options?: UseQueryOptions<AutofillCategorizeTransactionResponse, Error>
+  options?: UseQueryOptions<AutofillCategorizeTransactionResponse, Error>,
 ): UseQueryResult<AutofillCategorizeTransactionResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...options,
     queryKey: bankingKeys.autofillCategorize(uncategorizedTransactionIds),
-    queryFn: () => fetchAutofillCategorizeTransaction(fetcher, uncategorizedTransactionIds),
+    queryFn: () =>
+      fetchAutofillCategorizeTransaction(fetcher, uncategorizedTransactionIds),
   });
 }

@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RESET, ACCOUNTS_SET_SELECTED_ROWS } from '@/store/types';;
+import { RESET, ACCOUNTS_SET_SELECTED_ROWS } from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 interface AccountsState {
@@ -32,7 +32,10 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('ACCOUNTS', defaultTableQuery),
 
-  [ACCOUNTS_SET_SELECTED_ROWS]: (state: AccountsState, action: { payload: Array<unknown> }) => {
+  [ACCOUNTS_SET_SELECTED_ROWS]: (
+    state: AccountsState,
+    action: { payload: Array<unknown> },
+  ) => {
     state.selectedRows = action.payload;
   },
 

@@ -56,7 +56,7 @@ function AuditLogReportContent() {
             toggleFilterDrawer={toggleFilterDrawer}
           />
           <AuditLogLoadingBar />
-          <AuditLogBody /> 
+          <AuditLogBody />
         </FinancialStatement>
       </DashboardPageContent>
     </AuditLogProvider>
@@ -83,4 +83,3 @@ export function AuditLogReport() {
     </>
   );
 }
-

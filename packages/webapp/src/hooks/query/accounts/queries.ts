@@ -26,18 +26,20 @@ import {
   bulkDeleteAccounts,
   validateBulkDeleteAccounts,
   AccountTypesList,
-  AccountTransactionsList
+  AccountTransactionsList,
 } from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../useRequest';
 import { accountsKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: accountsKeys.all() });
 };
 
 export function useAccounts(
   query?: GetAccountsQuery | null,
-  props?: Omit<UseQueryOptions<AccountsList>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<AccountsList>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -49,7 +51,7 @@ export function useAccounts(
 
 export function useAccount(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Account>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Account>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -61,7 +63,7 @@ export function useAccount(
 }
 
 export function useAccountsTypes(
-  props?: Omit<UseQueryOptions<AccountTypesList>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<AccountTypesList>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -72,7 +74,7 @@ export function useAccountsTypes(
 }
 
 export function useCreateAccount(
-  props?: UseMutationOptions<void, Error, CreateAccountBody>
+  props?: UseMutationOptions<void, Error, CreateAccountBody>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -85,7 +87,7 @@ export function useCreateAccount(
 }
 
 export function useEditAccount(
-  props?: UseMutationOptions<void, Error, [number, EditAccountBody]>
+  props?: UseMutationOptions<void, Error, [number, EditAccountBody]>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -99,7 +101,7 @@ export function useEditAccount(
 }
 
 export function useDeleteAccount(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -112,7 +114,7 @@ export function useDeleteAccount(
 }
 
 export function useActivateAccount(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -125,7 +127,7 @@ export function useActivateAccount(
 }
 
 export function useInactivateAccount(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -142,7 +144,7 @@ export function useBulkDeleteAccounts(
     void,
     Error,
     { ids: number[]; skipUndeletable?: boolean }
-  >
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -161,7 +163,7 @@ export function useBulkDeleteAccounts(
 }
 
 export function useValidateBulkDeleteAccounts(
-  props?: UseMutationOptions<ValidateBulkDeleteResponse, Error, number[]>
+  props?: UseMutationOptions<ValidateBulkDeleteResponse, Error, number[]>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -176,7 +178,7 @@ export function useAccountTransactions(
   props?: Omit<
     UseQueryOptions<AccountTransactionsList>,
     'queryKey' | 'queryFn'
-  >
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

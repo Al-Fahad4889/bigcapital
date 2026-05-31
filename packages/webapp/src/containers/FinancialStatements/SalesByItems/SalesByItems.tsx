@@ -8,7 +8,10 @@ import { FinancialStatement, DashboardPageContent } from '@/components';
 import { SalesByItemsActionsBar } from './SalesByItemsActionsBar';
 import { SalesByItemsHeader } from './SalesByItemsHeader';
 
-import { withSalesByItemsActions, WithSalesByItemsActionsProps } from './withSalesByItemsActions';
+import {
+  withSalesByItemsActions,
+  WithSalesByItemsActionsProps,
+} from './withSalesByItemsActions';
 
 import { useSalesByItemsQuery } from './utils';
 import { compose } from '@/utils';

@@ -29,7 +29,7 @@ import { bankingKeys } from '../query-keys';
 
 export function useGetBankTransactionsMatches(
   uncategorizedTransactionIds: number[],
-  options?: UseQueryOptions<MatchedTransactionsResponse, Error>
+  options?: UseQueryOptions<MatchedTransactionsResponse, Error>,
 ): UseQueryResult<MatchedTransactionsResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -37,11 +37,16 @@ export function useGetBankTransactionsMatches(
     ...options,
     queryKey: bankingKeys.transactionMatches(uncategorizedTransactionIds),
     queryFn: () =>
-      fetchMatchedTransactions(fetcher, uncategorizedTransactionIds) as Promise<MatchedTransactionsResponse>,
+      fetchMatchedTransactions(
+        fetcher,
+        uncategorizedTransactionIds,
+      ) as Promise<MatchedTransactionsResponse>,
   });
 }
 
-const onValidateExcludeUncategorizedTransaction = (queryClient: QueryClient) => {
+const onValidateExcludeUncategorizedTransaction = (
+  queryClient: QueryClient,
+) => {
   queryClient.invalidateQueries({
     queryKey: bankingKeys.excludedTransactionsInfinity(),
   });
@@ -54,7 +59,7 @@ const onValidateExcludeUncategorizedTransaction = (queryClient: QueryClient) => 
 };
 
 export function useExcludeUncategorizedTransaction(
-  options?: UseMutationOptions<unknown, Error, number>
+  options?: UseMutationOptions<unknown, Error, number>,
 ): UseMutationResult<unknown, Error, number> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -68,7 +73,7 @@ export function useExcludeUncategorizedTransaction(
 }
 
 export function useUnexcludeUncategorizedTransaction(
-  options?: UseMutationOptions<unknown, Error, number>
+  options?: UseMutationOptions<unknown, Error, number>,
 ): UseMutationResult<unknown, Error, number> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -82,7 +87,7 @@ export function useUnexcludeUncategorizedTransaction(
 }
 
 export function useExcludeUncategorizedTransactions(
-  options?: UseMutationOptions<unknown, Error, ExcludeBankTransactionsBulkBody>
+  options?: UseMutationOptions<unknown, Error, ExcludeBankTransactionsBulkBody>,
 ): UseMutationResult<unknown, Error, ExcludeBankTransactionsBulkBody> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -96,7 +101,7 @@ export function useExcludeUncategorizedTransactions(
 }
 
 export function useUnexcludeUncategorizedTransactions(
-  options?: UseMutationOptions<unknown, Error, ExcludeBankTransactionsBulkBody>
+  options?: UseMutationOptions<unknown, Error, ExcludeBankTransactionsBulkBody>,
 ): UseMutationResult<unknown, Error, ExcludeBankTransactionsBulkBody> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -110,14 +115,15 @@ export function useUnexcludeUncategorizedTransactions(
 }
 
 export function useMatchUncategorizedTransaction(
-  props?: UseMutationOptions<unknown, Error, MatchTransactionBody>
+  props?: UseMutationOptions<unknown, Error, MatchTransactionBody>,
 ): UseMutationResult<unknown, Error, MatchTransactionBody> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (value: MatchTransactionBody) => matchTransaction(fetcher, value),
+    mutationFn: (value: MatchTransactionBody) =>
+      matchTransaction(fetcher, value),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: bankingKeys.summaryMeta(),
@@ -132,7 +138,11 @@ type UnmatchUncategorizedTransactionValues = {
 };
 
 export function useUnmatchMatchedUncategorizedTransaction(
-  props?: UseMutationOptions<unknown, Error, UnmatchUncategorizedTransactionValues>
+  props?: UseMutationOptions<
+    unknown,
+    Error,
+    UnmatchUncategorizedTransactionValues
+  >,
 ): UseMutationResult<unknown, Error, UnmatchUncategorizedTransactionValues> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();

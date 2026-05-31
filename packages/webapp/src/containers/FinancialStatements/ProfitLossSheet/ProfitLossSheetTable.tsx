@@ -16,7 +16,9 @@ interface ProfitLossSheetTableProps {
   companyName: string;
 }
 
-export function ProfitLossSheetTable({ companyName }: ProfitLossSheetTableProps) {
+export function ProfitLossSheetTable({
+  companyName,
+}: ProfitLossSheetTableProps) {
   const { profitLossSheet } = useProfitLossSheetContext();
   const table = profitLossSheet?.table;
   const query = profitLossSheet?.query;

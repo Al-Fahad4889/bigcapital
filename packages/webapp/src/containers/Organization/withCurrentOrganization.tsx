@@ -38,7 +38,9 @@ export interface WithCurrentOrganizationProps {
   organization: OrganizationStore;
 }
 
-export function withCurrentOrganization<Props>(mapState?: MapState<WithCurrentOrganizationProps, Props>) {
+export function withCurrentOrganization<Props>(
+  mapState?: MapState<WithCurrentOrganizationProps, Props>,
+) {
   const getCurrentOrganization = getCurrentOrganizationFactory();
 
   const mapStateToProps: MapStateToProps<
@@ -51,7 +53,9 @@ export function withCurrentOrganization<Props>(mapState?: MapState<WithCurrentOr
       organizationId: state.authentication.organizationId,
       organization: getCurrentOrganization(state) as OrganizationStore,
     };
-    return mapState ? (mapState(mapped, state, props) as WithCurrentOrganizationProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithCurrentOrganizationProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

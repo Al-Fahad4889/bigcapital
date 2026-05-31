@@ -4,7 +4,9 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithCashflowAccountsProps {
-  cashflowAccountsTableState: ReturnType<ReturnType<typeof getCashflowAccountsTableStateFactory>>;
+  cashflowAccountsTableState: ReturnType<
+    ReturnType<typeof getCashflowAccountsTableStateFactory>
+  >;
 }
 
 export const withCashflowAccounts = <

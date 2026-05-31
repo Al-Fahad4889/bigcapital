@@ -62,7 +62,7 @@ import { InvoicePaymentTransactionDto } from './dtos/InvoicePaymentTransactionRe
 @ApiExtraModels(InvoicePaymentTransactionDto)
 @UseGuards(AuthorizationGuard, PermissionGuard)
 export class SaleInvoicesController {
-  constructor(private saleInvoiceApplication: SaleInvoiceApplication) { }
+  constructor(private saleInvoiceApplication: SaleInvoiceApplication) {}
 
   @Post('validate-bulk-delete')
   @RequirePermission(SaleInvoiceAction.Delete, AbilitySubject.SaleInvoice)

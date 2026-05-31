@@ -9,7 +9,10 @@ export const useBulkDeleteAccountsDialog = () => {
     openBulkDeleteDialog,
     closeBulkDeleteDialog,
     isValidatingBulkDelete,
-  } = useBulkDeleteDialog(DialogsName.AccountBulkDelete, validateBulkDeleteMutation);
+  } = useBulkDeleteDialog(
+    DialogsName.AccountBulkDelete,
+    validateBulkDeleteMutation,
+  );
 
   return {
     openBulkDeleteDialog,
@@ -17,4 +20,3 @@ export const useBulkDeleteAccountsDialog = () => {
     isValidatingBulkDeleteAccounts: isValidatingBulkDelete,
   };
 };
-

@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { useInventoryItemDetailsReport } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UseInventoryItemDetailsReportResult = ReturnType<typeof useInventoryItemDetailsReport>;
+type UseInventoryItemDetailsReportResult = ReturnType<
+  typeof useInventoryItemDetailsReport
+>;
 
 type InventoryItemDetailsContextValue = {
   inventoryItemDetails: UseInventoryItemDetailsReportResult['data'];
@@ -19,14 +21,17 @@ type InventoryItemDetailsProviderProps = {
   children?: React.ReactNode;
 };
 
-const InventoryItemDetailsContext = createContext<InventoryItemDetailsContextValue | undefined>(
-  undefined,
-);
+const InventoryItemDetailsContext = createContext<
+  InventoryItemDetailsContextValue | undefined
+>(undefined);
 
 /**
  * Inventory item details provider.
  */
-function InventoryItemDetailsProvider({ query, ...props }: InventoryItemDetailsProviderProps) {
+function InventoryItemDetailsProvider({
+  query,
+  ...props
+}: InventoryItemDetailsProviderProps) {
   const requestQuery = useMemo(
     () => transformFilterFormToQuery(query) as Record<string, unknown>,
     [query],

@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import * as R from 'ramda';
 import { useAppQueryString } from '@/hooks';
-import { Group, Stack, } from '@/components';
+import { Group, Stack } from '@/components';
 import { useAccountTransactionsContext } from './AccountTransactionsProvider';
 import { TagsControl } from '@/components/TagsControl';
 import { AccountUncategorizedDateFilter } from './UncategorizedTransactions/AccountUncategorizedDateFilter';

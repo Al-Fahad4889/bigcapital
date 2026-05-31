@@ -28,7 +28,9 @@ import { safeCallback, firstLettersArgs, calculateStatus } from '@/utils';
 export function ProjectStatus({ row }) {
   return (
     <ProjectStatusRoot>
-      <ProjectStatusTaskAmount>{row.total_expenses_formatted}</ProjectStatusTaskAmount>
+      <ProjectStatusTaskAmount>
+        {row.total_expenses_formatted}
+      </ProjectStatusTaskAmount>
       <ProjectProgressBar
         animate={false}
         stripes={false}
@@ -43,9 +45,7 @@ export function ProjectStatus({ row }) {
  * status accessor.
  */
 export const StatusAccessor = (row) => {
-  return (
-    <ProjectStatus row={row} />
-  );
+  return <ProjectStatus row={row} />;
 };
 
 /**

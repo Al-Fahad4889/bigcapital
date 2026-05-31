@@ -8,9 +8,14 @@ type RealizedGainOrLossProviderProps = {
   children?: React.ReactNode;
 };
 
-const RealizedGainOrLossContext = React.createContext<RealizedGainOrLossContextValue | undefined>(undefined);
+const RealizedGainOrLossContext = React.createContext<
+  RealizedGainOrLossContextValue | undefined
+>(undefined);
 
-function RealizedGainOrLossProvider({ filter, ...props }: RealizedGainOrLossProviderProps) {
+function RealizedGainOrLossProvider({
+  filter,
+  ...props
+}: RealizedGainOrLossProviderProps) {
   const provider: RealizedGainOrLossContextValue = {};
 
   return (
@@ -22,7 +27,10 @@ function RealizedGainOrLossProvider({ filter, ...props }: RealizedGainOrLossProv
 
 const useRealizedGainOrLossContext = (): RealizedGainOrLossContextValue => {
   const ctx = React.useContext(RealizedGainOrLossContext);
-  if (!ctx) throw new Error('useRealizedGainOrLossContext must be used within RealizedGainOrLossProvider');
+  if (!ctx)
+    throw new Error(
+      'useRealizedGainOrLossContext must be used within RealizedGainOrLossProvider',
+    );
   return ctx;
 };
 

@@ -54,4 +54,6 @@ function EstimatedExpenseFormInner({
   );
 }
 
-export const EstimatedExpenseForm = compose(withDialogActions)(EstimatedExpenseFormInner);
+export const EstimatedExpenseForm = compose(withDialogActions)(
+  EstimatedExpenseFormInner,
+);

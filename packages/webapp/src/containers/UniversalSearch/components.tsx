@@ -37,9 +37,9 @@ function UniversalSearchItemDetail(item, { handleClick, modifiers, query }) {
  * @returns
  */
 export const DashboardUniversalSearchItem = (props, actions) => {
-    const itemRenderer = getUniversalSearchBind(props._type, 'itemRenderer');
+  const itemRenderer = getUniversalSearchBind(props._type, 'itemRenderer');
 
-    return typeof itemRenderer !== 'undefined'
-      ? itemRenderer(props, actions)
-      : UniversalSearchItemDetail(props, actions);
-  };
+  return typeof itemRenderer !== 'undefined'
+    ? itemRenderer(props, actions)
+    : UniversalSearchItemDetail(props, actions);
+};

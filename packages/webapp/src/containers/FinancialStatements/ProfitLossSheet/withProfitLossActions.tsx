@@ -6,7 +6,9 @@ export interface WithProfitLossActionsProps {
   toggleProfitLossFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithProfitLossActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithProfitLossActionsProps => ({
   toggleProfitLossFilterDrawer: (toggle: boolean) =>
     dispatch(toggleProfitLossFilterDrawer(toggle)),
 });

@@ -6,9 +6,14 @@ export interface WithVendorsBalanceSummaryActionsProps {
   toggleVendorSummaryFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapActionsToProps = (dispatch: Dispatch): WithVendorsBalanceSummaryActionsProps => ({
+export const mapActionsToProps = (
+  dispatch: Dispatch,
+): WithVendorsBalanceSummaryActionsProps => ({
   toggleVendorSummaryFilterDrawer: (toggle: boolean) =>
     dispatch(toggleVendorsBalanceSummaryFilterDrawer(toggle)),
 });
 
-export const withVendorsBalanceSummaryActions = connect(null, mapActionsToProps);
+export const withVendorsBalanceSummaryActions = connect(
+  null,
+  mapActionsToProps,
+);

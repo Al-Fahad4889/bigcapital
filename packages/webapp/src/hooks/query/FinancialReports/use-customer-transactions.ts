@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchTransactionsByCustomersTable,
   fetchTransactionsByCustomersXlsx,
@@ -25,7 +30,10 @@ interface CustomersTransactionsReport {
 
 export function useCustomersTransactionsReport(
   query: TransactionsByCustomersTableQuery,
-  props?: Omit<UseQueryOptions<CustomersTransactionsReport, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<CustomersTransactionsReport, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -68,7 +76,9 @@ export function useCustomersTransactionsCsvExport(
   });
 }
 
-export function useCustomersTransactionsPdfExport(query: TransactionsByCustomersPdfQuery) {
+export function useCustomersTransactionsPdfExport(
+  query: TransactionsByCustomersPdfQuery,
+) {
   const fetcher = useApiFetcher();
   return useFetcherPdf(() => fetchTransactionsByCustomersPdf(fetcher, query));
 }

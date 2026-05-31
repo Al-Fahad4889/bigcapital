@@ -55,9 +55,7 @@ type BillFormContextValue = {
 
   createBillMutate: (values: CreateBillBody) => Promise<void>;
   editBillMutate: (args: [number, EditBillBody]) => Promise<void>;
-  setSubmitPayload: React.Dispatch<
-    React.SetStateAction<BillFormSubmitPayload>
-  >;
+  setSubmitPayload: React.Dispatch<React.SetStateAction<BillFormSubmitPayload>>;
 };
 
 const BillFormContext = createContext<BillFormContextValue | undefined>(
@@ -101,16 +99,12 @@ function BillFormProvider({ billId, ...props }: BillFormProviderProps) {
   const { data: accounts, isLoading: isAccountsLoading } = useAccounts();
 
   // Handle fetch vendors data table
-  const {
-    data: vendorsData,
-    isLoading: isVendorsLoading,
-  } = useVendors({ page_size: 10000 });
+  const { data: vendorsData, isLoading: isVendorsLoading } = useVendors({
+    page_size: 10000,
+  });
 
   // Handle fetch Items data table or list
-  const {
-    data: itemsData,
-    isLoading: isItemsLoading,
-  } = useItems({
+  const { data: itemsData, isLoading: isItemsLoading } = useItems({
     page_size: 10000,
     stringified_filter_roles: stringifiedFilterRoles,
   });
@@ -138,10 +132,10 @@ function BillFormProvider({ billId, ...props }: BillFormProviderProps) {
   const { data: taxRates, isLoading: isTaxRatesLoading } = useTaxRates();
 
   // Fetches the projects list.
-  const {
-    data: projectsData,
-    isLoading: isProjectsLoading,
-  } = useProjects({}, { enabled: !!isProjectsFeatureCan });
+  const { data: projectsData, isLoading: isProjectsLoading } = useProjects(
+    {},
+    { enabled: !!isProjectsFeatureCan },
+  );
 
   // Handle fetching bill settings.
   const { isFetching: isSettingLoading } = useSettings();

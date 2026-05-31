@@ -13,8 +13,14 @@ import {
   getDefaultSalesTaxLiablitySummaryQuery,
   getSalesTaxLiabilitySummaryQueryValidation,
 } from './utils';
-import { withSalesTaxLiabilitySummary, WithSalesTaxLiabilitySummaryProps } from './withSalesTaxLiabilitySummary';
-import { withSalesTaxLiabilitySummaryActions, WithSalesTaxLiabilitySummaryActionsProps } from './withSalesTaxLiabilitySummaryActions';
+import {
+  withSalesTaxLiabilitySummary,
+  WithSalesTaxLiabilitySummaryProps,
+} from './withSalesTaxLiabilitySummary';
+import {
+  withSalesTaxLiabilitySummaryActions,
+  WithSalesTaxLiabilitySummaryActionsProps,
+} from './withSalesTaxLiabilitySummaryActions';
 import { SalesTaxLiabilitySummaryHeaderGeneral } from './SalesTaxLiabilitySummaryHeaderGeneralPanel';
 
 interface SalesTaxLiabilitySummaryFormValues {
@@ -29,9 +35,14 @@ interface SalesTaxLiabilitySummaryHeaderOwnProps {
   pageFilter: Record<string, any>;
 }
 
-type SalesTaxLiabilitySummaryHeaderProps =
-  Pick<WithSalesTaxLiabilitySummaryProps, 'salesTaxLiabilitySummaryFilter'> &
-  Pick<WithSalesTaxLiabilitySummaryActionsProps, 'toggleSalesTaxLiabilitySummaryFilterDrawer'> &
+type SalesTaxLiabilitySummaryHeaderProps = Pick<
+  WithSalesTaxLiabilitySummaryProps,
+  'salesTaxLiabilitySummaryFilter'
+> &
+  Pick<
+    WithSalesTaxLiabilitySummaryActionsProps,
+    'toggleSalesTaxLiabilitySummaryFilterDrawer'
+  > &
   SalesTaxLiabilitySummaryHeaderOwnProps;
 
 /**
@@ -65,7 +76,10 @@ function SalesTaxLiabilitySummaryHeaderInner({
   );
 
   // Handle form submit.
-  const handleSubmit = (values: SalesTaxLiabilitySummaryFormValues, actions: FormikHelpers<SalesTaxLiabilitySummaryFormValues>) => {
+  const handleSubmit = (
+    values: SalesTaxLiabilitySummaryFormValues,
+    actions: FormikHelpers<SalesTaxLiabilitySummaryFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     actions.setSubmitting(false);

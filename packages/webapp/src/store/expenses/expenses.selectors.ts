@@ -6,7 +6,8 @@ import { createSelector } from 'reselect';
 import type { RootState } from '@/store/reducers';
 
 // Items table state selectors.
-const expensesTableStateSelector = (state: RootState) => state.expenses.tableState;
+const expensesTableStateSelector = (state: RootState) =>
+  state.expenses.tableState;
 
 // Retrive expenses table query.
 export const getExpensesTableStateFactory = () =>
@@ -36,6 +37,7 @@ export const getExpensesSelectedRowsFactory = () =>
 // Kept to support legacy HOC consumers without changing their call sites.
 export const getExpenseByIdFactory = () =>
   createSelector(
-    (_state: RootState, props: { expenseId?: number | string }) => props?.expenseId,
+    (_state: RootState, props: { expenseId?: number | string }) =>
+      props?.expenseId,
     (_expenseId): unknown => null,
   );

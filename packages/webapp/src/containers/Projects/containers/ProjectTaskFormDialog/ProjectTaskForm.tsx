@@ -43,7 +43,7 @@ function ProjectTaskFormInner({
 
   // Handles the form submit.
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
-    const form = {...values};
+    const form = { ...values };
 
     // Handle request response success.
     const onSuccess = (response) => {

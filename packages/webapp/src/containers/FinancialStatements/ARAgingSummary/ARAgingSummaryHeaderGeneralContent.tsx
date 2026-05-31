@@ -2,7 +2,6 @@ import React from 'react';
 import { Position } from '@blueprintjs/core';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import {
-
   Row,
   Col,
   FieldHint,

@@ -191,5 +191,5 @@ export const ItemsDataTable = compose(
   withSettings(({ itemsSettings }) => ({
     itemsTableSize: itemsSettings.tableSize,
   })),
-  withItems(({ itemsTableState }) => ({ itemsTableState }))
+  withItems(({ itemsTableState }) => ({ itemsTableState })),
 )(ItemsDataTableInner);

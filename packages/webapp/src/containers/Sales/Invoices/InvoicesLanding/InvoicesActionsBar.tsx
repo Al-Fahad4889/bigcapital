@@ -64,13 +64,10 @@ function InvoiceActionsBar({
 
   // #withDrawerActions
   openDrawer,
-
 }) {
   const history = useHistory();
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteInvoices,
-  } = useBulkDeleteInvoicesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteInvoices } =
+    useBulkDeleteInvoicesDialog();
 
   // Sale invoices list context.
   const { invoicesViews, invoicesFields } = useInvoicesListContext();

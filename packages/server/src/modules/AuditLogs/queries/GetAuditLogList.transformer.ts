@@ -41,17 +41,22 @@ export class GetAuditLogListTransformer extends Transformer {
   protected userEmail = (item: Record<string, any>): string | null => {
     if (!item.tenantUser) return null;
     const u = item.tenantUser as Record<string, string>;
-    const email =
-      u.email || u.emailAddress || u.email_address || '';
+    const email = u.email || u.emailAddress || u.email_address || '';
     return email || null;
   };
 
   protected action = (item: Record<string, any>): string => {
-    return formatAction(item.action, this.context.i18n.t.bind(this.context.i18n));
+    return formatAction(
+      item.action,
+      this.context.i18n.t.bind(this.context.i18n),
+    );
   };
 
   protected subject = (item: Record<string, any>): string => {
-    return formatSubject(item.subject, this.context.i18n.t.bind(this.context.i18n));
+    return formatSubject(
+      item.subject,
+      this.context.i18n.t.bind(this.context.i18n),
+    );
   };
 
   protected summary = (item: Record<string, any>): string => {

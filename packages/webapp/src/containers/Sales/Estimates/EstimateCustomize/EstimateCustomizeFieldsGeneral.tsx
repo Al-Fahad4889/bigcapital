@@ -40,7 +40,7 @@ export function EstimateCustomizeGeneralField() {
       <Overlay visible={!isTemplateNameFilled}>
         <Stack spacing={0}>
           <FFormGroup
-            name={'primaryColor'} 
+            name={'primaryColor'}
             label={'Primary Color'}
             style={{ justifyContent: 'space-between' }}
             inline

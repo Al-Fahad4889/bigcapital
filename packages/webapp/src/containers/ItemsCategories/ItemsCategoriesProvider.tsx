@@ -31,7 +31,9 @@ function ItemsCategoriesProvider({ tableState, ...props }) {
     isCategoriesFetching,
     isCategoriesLoading,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     resourceMeta,
     isResourceLoading,
     isResourceFetching,

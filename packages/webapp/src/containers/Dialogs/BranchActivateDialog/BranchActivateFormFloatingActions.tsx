@@ -39,11 +39,12 @@ function BranchActivateFormFloatingActionsInner({
           type="submit"
         >
           {<T id={'branches.activate_button'} />}
-          
         </Button>
       </div>
     </div>
   );
 }
 
-export const BranchActivateFormFloatingActions = compose(withDialogActions)(BranchActivateFormFloatingActionsInner);
+export const BranchActivateFormFloatingActions = compose(withDialogActions)(
+  BranchActivateFormFloatingActionsInner,
+);

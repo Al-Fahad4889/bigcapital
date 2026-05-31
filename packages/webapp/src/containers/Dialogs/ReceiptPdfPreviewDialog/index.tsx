@@ -8,7 +8,11 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const PdfPreviewDialogContent = React.lazy(() => import('./ReceiptPdfPreviewDialogContent').then(m => ({ default: m.ReceiptPdfPreviewDialogContent })));
+const PdfPreviewDialogContent = React.lazy(() =>
+  import('./ReceiptPdfPreviewDialogContent').then((m) => ({
+    default: m.ReceiptPdfPreviewDialogContent,
+  })),
+);
 
 /**
  * Receipt Pdf preview dialog.

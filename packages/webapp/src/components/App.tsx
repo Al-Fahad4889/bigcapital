@@ -20,11 +20,31 @@ import { EnsureUserEmailNotVerified } from './Guards/EnsureUserEmailNotVerified'
 const DashboardPrivatePages = lazy(
   () => import('@/components/Dashboard/PrivatePages'),
 );
-const AuthenticationPage = lazy(() => import('@/containers/Authentication/AuthenticationPage').then(m => ({ default: m.AuthenticationPage })));
-const EmailConfirmation = lazy(() => import('@/containers/Authentication/EmailConfirmation').then(m => ({ default: m.EmailConfirmation })));
-const RegisterVerify = lazy(() => import('@/containers/Authentication/RegisterVerify').then(m => ({ default: m.RegisterVerify })));
-const OneClickDemoPage = lazy(() => import('@/containers/OneClickDemo/OneClickDemoPage').then(m => ({ default: m.OneClickDemoPage })));
-const PaymentPortalPage = lazy(() => import('@/containers/PaymentPortal/PaymentPortalPage').then(m => ({ default: m.PaymentPortalPage })));
+const AuthenticationPage = lazy(() =>
+  import('@/containers/Authentication/AuthenticationPage').then((m) => ({
+    default: m.AuthenticationPage,
+  })),
+);
+const EmailConfirmation = lazy(() =>
+  import('@/containers/Authentication/EmailConfirmation').then((m) => ({
+    default: m.EmailConfirmation,
+  })),
+);
+const RegisterVerify = lazy(() =>
+  import('@/containers/Authentication/RegisterVerify').then((m) => ({
+    default: m.RegisterVerify,
+  })),
+);
+const OneClickDemoPage = lazy(() =>
+  import('@/containers/OneClickDemo/OneClickDemoPage').then((m) => ({
+    default: m.OneClickDemoPage,
+  })),
+);
+const PaymentPortalPage = lazy(() =>
+  import('@/containers/PaymentPortal/PaymentPortalPage').then((m) => ({
+    default: m.PaymentPortalPage,
+  })),
+);
 
 /**
  * App inner.

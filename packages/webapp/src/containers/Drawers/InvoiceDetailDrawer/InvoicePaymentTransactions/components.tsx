@@ -6,7 +6,10 @@ import { Intent, Menu, MenuItem, MenuDivider } from '@blueprintjs/core';
 import { CLASSES } from '@/constants/classes';
 import { FormatDateCell, Icon, Can } from '@/components';
 import { safeCallback } from '@/utils';
-import { PaymentReceiveAction, AbilitySubject } from '@/constants/abilityOption';
+import {
+  PaymentReceiveAction,
+  AbilitySubject,
+} from '@/constants/abilityOption';
 
 /**
  * Table actions menu.

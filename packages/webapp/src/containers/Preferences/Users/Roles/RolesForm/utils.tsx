@@ -225,8 +225,8 @@ function detarmineCheckboxState(isFullChecked, isFullUnchecked) {
   return isFullChecked
     ? FULL_ACCESS_CHECKBOX_STATE.ON
     : isFullUnchecked
-    ? FULL_ACCESS_CHECKBOX_STATE.OFF
-    : FULL_ACCESS_CHECKBOX_STATE.INDETARMINE;
+      ? FULL_ACCESS_CHECKBOX_STATE.OFF
+      : FULL_ACCESS_CHECKBOX_STATE.INDETARMINE;
 }
 
 /**

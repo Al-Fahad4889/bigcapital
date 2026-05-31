@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Row,
-  Col,
-  FSelect,
-
-  FFormGroup,
-} from '@/components';
+import { Row, Col, FSelect, FFormGroup } from '@/components';
 import { displayColumnsByOptions } from './constants';
 import intl from 'react-intl-universal';
 

@@ -8,8 +8,14 @@ import { FormattedMessage as T } from '@/components';
 import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { VendorsTransactionsHeaderGeneralPanel } from './VendorsTransactionsHeaderGeneralPanel';
 
-import { withVendorsTransaction, WithVendorsTransactionProps } from './withVendorsTransaction';
-import { withVendorsTransactionsActions, WithVendorsTransactionsActionsProps } from './withVendorsTransactionsActions';
+import {
+  withVendorsTransaction,
+  WithVendorsTransactionProps,
+} from './withVendorsTransaction';
+import {
+  withVendorsTransactionsActions,
+  WithVendorsTransactionsActionsProps,
+} from './withVendorsTransactionsActions';
 
 import { compose, transformToForm } from '@/utils';
 import {
@@ -29,9 +35,9 @@ interface FormValues {
   [key: string]: unknown;
 }
 
-type VendorsTransactionsHeaderProps = VendorsTransactionsHeaderOwnProps &
-  { isFilterDrawerOpen: boolean } &
-  WithVendorsTransactionsActionsProps;
+type VendorsTransactionsHeaderProps = VendorsTransactionsHeaderOwnProps & {
+  isFilterDrawerOpen: boolean;
+} & WithVendorsTransactionsActionsProps;
 
 /**
  * Vendors transactions header.
@@ -64,7 +70,10 @@ function VendorsTransactionsHeaderInner({
   const validationSchema = getVendorTransactionsQuerySchema();
 
   // Handle form submit.
-  const handleSubmit = (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const handleSubmit = (
+    values: FormValues,
+    { setSubmitting }: FormikHelpers<FormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     setSubmitting(false);

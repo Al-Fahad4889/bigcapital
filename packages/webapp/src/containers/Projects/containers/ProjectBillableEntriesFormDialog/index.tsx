@@ -6,7 +6,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ProjectBillableEntriesFormDialogContent = React.lazy(() => import('./ProjectBillableEntriesFormDialogContent').then(m => ({ default: m.ProjectEntriesFormDialogContent })));
+const ProjectBillableEntriesFormDialogContent = React.lazy(() =>
+  import('./ProjectBillableEntriesFormDialogContent').then((m) => ({
+    default: m.ProjectEntriesFormDialogContent,
+  })),
+);
 
 /**
  * Project billable entries form dialog.
@@ -36,7 +40,9 @@ function ProjectBillableEntriesFormDialog({
   );
 }
 
-export const index = compose(withDialogRedux())(ProjectBillableEntriesFormDialog);
+export const index = compose(withDialogRedux())(
+  ProjectBillableEntriesFormDialog,
+);
 
 const ProjectBillableEntriesFormDialogRoot = styled(Dialog)`
   .bp4-dialog-body {

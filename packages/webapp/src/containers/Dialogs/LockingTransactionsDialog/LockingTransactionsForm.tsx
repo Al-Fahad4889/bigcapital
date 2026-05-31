@@ -87,4 +87,6 @@ function LockingTransactionsFormInner({
     />
   );
 }
-export const LockingTransactionsForm = compose(withDialogActions)(LockingTransactionsFormInner);
+export const LockingTransactionsForm = compose(withDialogActions)(
+  LockingTransactionsFormInner,
+);

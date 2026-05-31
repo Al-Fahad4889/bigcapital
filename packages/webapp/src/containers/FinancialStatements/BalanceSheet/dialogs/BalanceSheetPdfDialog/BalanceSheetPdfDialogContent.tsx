@@ -28,7 +28,6 @@ export function BalanceSheetPdfDialogContent() {
         <AnchorButton
           href={pdfUrl}
           download={'invoice.pdf'}
-
           disabled={!isLoaded}
           small
           minimal

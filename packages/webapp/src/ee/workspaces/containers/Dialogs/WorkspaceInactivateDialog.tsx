@@ -4,7 +4,10 @@ import { Button, Classes, Dialog, Intent, Callout } from '@blueprintjs/core';
 import { FormattedMessage as T, AppToaster } from '@/components';
 import intl from 'react-intl-universal';
 import { x } from '@xstyled/emotion';
-import { useInactivateWorkspace, useActivateWorkspace } from '@/ee/workspaces/hooks/query/workspaces';
+import {
+  useInactivateWorkspace,
+  useActivateWorkspace,
+} from '@/ee/workspaces/hooks/query/workspaces';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
@@ -17,8 +20,10 @@ function WorkspaceInactivateDialog({
   // #withDialogActions
   closeDialog,
 }) {
-  const { mutateAsync: inactivateWorkspace, isLoading: isInactivating } = useInactivateWorkspace();
-  const { mutateAsync: activateWorkspace, isLoading: isActivating } = useActivateWorkspace();
+  const { mutateAsync: inactivateWorkspace, isLoading: isInactivating } =
+    useInactivateWorkspace();
+  const { mutateAsync: activateWorkspace, isLoading: isActivating } =
+    useActivateWorkspace();
 
   const isLoading = isInactivating || isActivating;
   const isInactivateAction = isActive !== false;
@@ -64,8 +69,12 @@ function WorkspaceInactivateDialog({
   };
 
   const title = isInactivateAction
-    ? intl.get('workspaces.inactivate_workspace', { fallback: 'Inactivate Workspace' })
-    : intl.get('workspaces.activate_workspace', { fallback: 'Activate Workspace' });
+    ? intl.get('workspaces.inactivate_workspace', {
+        fallback: 'Inactivate Workspace',
+      })
+    : intl.get('workspaces.activate_workspace', {
+        fallback: 'Activate Workspace',
+      });
 
   const confirmationKey = isInactivateAction
     ? 'workspaces.inactivate_workspace_confirmation'
@@ -101,13 +110,27 @@ function WorkspaceInactivateDialog({
 
         {isInactivateAction && (
           <x.div pl={2} mt={4}>
-            <p>{intl.get('workspaces.inactivate_workspace_details', {
-              fallback: 'Inactivating this workspace will:',
-            })}</p>
+            <p>
+              {intl.get('workspaces.inactivate_workspace_details', {
+                fallback: 'Inactivating this workspace will:',
+              })}
+            </p>
             <x.ul pl={8}>
-              <x.li mb={1}>{intl.get('workspaces.inactivate_workspace_effect_1', { fallback: 'Prevent all users from signing in' })}</x.li>
-              <x.li mb={1}>{intl.get('workspaces.inactivate_workspace_effect_2', { fallback: 'Preserve all data and settings' })}</x.li>
-              <x.li mb={1}>{intl.get('workspaces.inactivate_workspace_effect_3', { fallback: 'Allow reactivation at any time' })}</x.li>
+              <x.li mb={1}>
+                {intl.get('workspaces.inactivate_workspace_effect_1', {
+                  fallback: 'Prevent all users from signing in',
+                })}
+              </x.li>
+              <x.li mb={1}>
+                {intl.get('workspaces.inactivate_workspace_effect_2', {
+                  fallback: 'Preserve all data and settings',
+                })}
+              </x.li>
+              <x.li mb={1}>
+                {intl.get('workspaces.inactivate_workspace_effect_3', {
+                  fallback: 'Allow reactivation at any time',
+                })}
+              </x.li>
             </x.ul>
           </x.div>
         )}
@@ -119,14 +142,14 @@ function WorkspaceInactivateDialog({
             <T id={'cancel'} />
           </Button>
 
-          <Button
-            intent={intent}
-            onClick={handleConfirm}
-            loading={isLoading}
-          >
+          <Button intent={intent} onClick={handleConfirm} loading={isLoading}>
             {isInactivateAction
-              ? intl.get('workspaces.inactivate_workspace', { fallback: 'Inactivate' })
-              : intl.get('workspaces.activate_workspace', { fallback: 'Activate' })}
+              ? intl.get('workspaces.inactivate_workspace', {
+                  fallback: 'Inactivate',
+                })
+              : intl.get('workspaces.activate_workspace', {
+                  fallback: 'Activate',
+                })}
           </Button>
         </div>
       </div>

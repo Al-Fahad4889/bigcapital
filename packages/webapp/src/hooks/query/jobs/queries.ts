@@ -6,7 +6,10 @@ import { jobsKeys } from './query-keys';
 /**
  * Retrieve the job metadata.
  */
-export function useJob(jobId: string | number | null | undefined, props: Omit<UseQueryOptions, 'queryKey' | 'queryFn'> = {}) {
+export function useJob(
+  jobId: string | number | null | undefined,
+  props: Omit<UseQueryOptions, 'queryKey' | 'queryFn'> = {},
+) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,

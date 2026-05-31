@@ -64,9 +64,7 @@ function AccountsChartProvider({
     resourceMeta,
     resourceViews,
 
-    fields: resourceMeta
-      ? getFieldsFromResourceMeta(resourceMeta.fields)
-      : [],
+    fields: resourceMeta ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
 
     isAccountsLoading,
     isAccountsFetching,

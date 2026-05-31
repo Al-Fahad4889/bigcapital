@@ -7,8 +7,12 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithWarehouseTransfersProps {
-  warehouseTransferTableState: ReturnType<ReturnType<typeof getWarehouseTransfersTableStateFactory>>;
-  warehouseTransferTableStateChanged: ReturnType<ReturnType<typeof isWarehouseTransferTableStateChangedFactory>>;
+  warehouseTransferTableState: ReturnType<
+    ReturnType<typeof getWarehouseTransfersTableStateFactory>
+  >;
+  warehouseTransferTableStateChanged: ReturnType<
+    ReturnType<typeof isWarehouseTransferTableStateChangedFactory>
+  >;
 }
 
 export const withWarehouseTransfers = <
@@ -16,13 +20,16 @@ export const withWarehouseTransfers = <
 >(
   mapState?: MapState<WithWarehouseTransfersProps, Props>,
 ) => {
-  const getWarehouseTransferTableState = getWarehouseTransfersTableStateFactory();
-  const isWarehouseTransferTableChanged = isWarehouseTransferTableStateChangedFactory();
+  const getWarehouseTransferTableState =
+    getWarehouseTransfersTableStateFactory();
+  const isWarehouseTransferTableChanged =
+    isWarehouseTransferTableStateChangedFactory();
 
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithWarehouseTransfersProps = {
       warehouseTransferTableState: getWarehouseTransferTableState(state, props),
-      warehouseTransferTableStateChanged: isWarehouseTransferTableChanged(state),
+      warehouseTransferTableStateChanged:
+        isWarehouseTransferTableChanged(state),
     };
     return mapState ? mapState(mapped, state, props) : mapped;
   };

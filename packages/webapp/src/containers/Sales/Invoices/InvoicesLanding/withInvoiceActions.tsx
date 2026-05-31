@@ -15,7 +15,9 @@ export interface WithInvoiceActionsProps {
   resetInvoicesSelectedRows: () => void;
 }
 
-export const mapDipatchToProps = (dispatch: Dispatch): WithInvoiceActionsProps => ({
+export const mapDipatchToProps = (
+  dispatch: Dispatch,
+): WithInvoiceActionsProps => ({
   setInvoicesTableState: (queries: Partial<TableQuery>) =>
     dispatch(setInvoicesTableState(queries)),
   resetInvoicesTableState: () => dispatch(resetInvoicesTableState()),

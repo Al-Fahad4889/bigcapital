@@ -41,4 +41,6 @@ function QuickPaymentMadeFloatingActionsInner({
   );
 }
 
-export const QuickPaymentMadeFloatingActions = compose(withDialogActions)(QuickPaymentMadeFloatingActionsInner);
+export const QuickPaymentMadeFloatingActions = compose(withDialogActions)(
+  QuickPaymentMadeFloatingActionsInner,
+);

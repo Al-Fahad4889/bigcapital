@@ -42,9 +42,9 @@ function SidebarMenuItemComposer({ item, index }) {
   return SidebarMenuItem.ItemTypes.indexOf(item.type) !== -1 ? (
     <SidebarMenuItem item={item} index={index} />
   ) : // Group item type.
-    item.type === ISidebarMenuItemType.Group ? (
-      <MenuItemLabel text={item.text} />
-    ) : null;
+  item.type === ISidebarMenuItemType.Group ? (
+    <MenuItemLabel text={item.text} />
+  ) : null;
 }
 
 /**

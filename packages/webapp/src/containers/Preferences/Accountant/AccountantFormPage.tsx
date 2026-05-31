@@ -5,8 +5,14 @@ import { Formik, FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import { flatten, unflatten } from 'flat';
 import { AppToaster } from '@/components';
-import { withDashboardActions, type WithDashboardActionsProps } from '@/containers/Dashboard/withDashboardActions';
-import { withSettings, type WithSettingsProps } from '@/containers/Settings/withSettings';
+import {
+  withDashboardActions,
+  type WithDashboardActionsProps,
+} from '@/containers/Dashboard/withDashboardActions';
+import {
+  withSettings,
+  type WithSettingsProps,
+} from '@/containers/Settings/withSettings';
 import { AccountantForm } from './AccountantForm';
 import { AccountantSchema } from './Accountant.schema';
 import { useAccountantFormContext } from './AccountantFormProvider';
@@ -32,7 +38,9 @@ const defaultFormValues = flatten({
   },
 });
 
-interface AccountantFormPageInnerProps extends WithDashboardActionsProps, WithSettingsProps {}
+interface AccountantFormPageInnerProps
+  extends WithDashboardActionsProps,
+    WithSettingsProps {}
 
 function AccountantFormPageInner({
   changePreferencesPageTitle,
@@ -48,7 +56,10 @@ function AccountantFormPageInner({
     ...defaultFormValues,
     ...transformToForm(flatten(allSettings), defaultFormValues),
   });
-  const handleFormSubmit = (values: Record<string, any>, { setSubmitting }: FormikHelpers<Record<string, any>>) => {
+  const handleFormSubmit = (
+    values: Record<string, any>,
+    { setSubmitting }: FormikHelpers<Record<string, any>>,
+  ) => {
     const options = R.compose(
       transferObjectOptionsToArray,
       transfromToSnakeCase,

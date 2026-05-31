@@ -1,11 +1,21 @@
-import { useMutation, useQuery, UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  UseMutationOptions,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 import type { AcceptInviteBody, BulkInviteBody } from '@bigcapital/sdk-ts';
-import { acceptInvite, bulkSendInviteUsers, fetchInviteCheck, resendInvite } from '@bigcapital/sdk-ts';
+import {
+  acceptInvite,
+  bulkSendInviteUsers,
+  fetchInviteCheck,
+  resendInvite,
+} from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../useRequest';
 import { inviteKeys } from './query-keys';
 
 export function useAuthInviteAccept(
-  props?: UseMutationOptions<unknown, Error, [Record<string, unknown>, string]>
+  props?: UseMutationOptions<unknown, Error, [Record<string, unknown>, string]>,
 ) {
   const fetcher = useApiFetcher();
   return useMutation({
@@ -17,7 +27,7 @@ export function useAuthInviteAccept(
 
 export function useInviteMetaByToken(
   token: string | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
@@ -29,7 +39,7 @@ export function useInviteMetaByToken(
 }
 
 export function useResendInvitation(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const fetcher = useApiFetcher();
   return useMutation({
@@ -39,7 +49,7 @@ export function useResendInvitation(
 }
 
 export function useBulkCreateInviteUsers(
-  props?: UseMutationOptions<unknown, Error, BulkInviteBody>
+  props?: UseMutationOptions<unknown, Error, BulkInviteBody>,
 ) {
   const fetcher = useApiFetcher();
   return useMutation({

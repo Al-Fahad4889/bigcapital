@@ -3,7 +3,7 @@ import { css } from '@emotion/css';
 import { Intent } from '@blueprintjs/core';
 import { PaymentReceivedSendMailFormSchema } from './_types';
 import { AppToaster } from '@/components';
-import { useSendPaymentReceiveMail, } from '@/hooks/query';
+import { useSendPaymentReceiveMail } from '@/hooks/query';
 import { usePaymentReceivedSendMailBoot } from './PaymentReceivedMailBoot';
 import { useDrawerActions } from '@/hooks/state';
 import { useDrawerContext } from '@/components/Drawer/DrawerProvider';

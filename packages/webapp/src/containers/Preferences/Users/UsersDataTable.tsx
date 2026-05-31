@@ -104,4 +104,7 @@ function UsersDataTableInner({
   );
 }
 
-export const UsersDataTable = compose(withDialogActions, withAlertActions)(UsersDataTableInner);
+export const UsersDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(UsersDataTableInner);

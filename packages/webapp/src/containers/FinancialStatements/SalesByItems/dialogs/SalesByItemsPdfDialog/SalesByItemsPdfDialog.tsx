@@ -7,8 +7,8 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const SalesByItemsPdfDialogContent = lazy(
-  () => import('./SalesByItemsPdfDialogContent').then((m) => ({
+const SalesByItemsPdfDialogContent = lazy(() =>
+  import('./SalesByItemsPdfDialogContent').then((m) => ({
     default: m.SalesByItemsPdfDialogContent,
   })),
 );
@@ -22,7 +22,11 @@ interface SalesByItemsPdfDialogRootProps {
 /**
  * Sales by items sheet pdf preview dialog.
  */
-function SalesByItemsPdfDialogRoot({ dialogName, payload, isOpen }: SalesByItemsPdfDialogRootProps) {
+function SalesByItemsPdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: SalesByItemsPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

@@ -15,7 +15,13 @@ export default function TablePagination() {
       pageCount,
       state: { pageIndex, pageSize },
     },
-    props: { pagination, loading, onPaginationChange, hidePaginationNoPages, rowsCount },
+    props: {
+      pagination,
+      loading,
+      onPaginationChange,
+      hidePaginationNoPages,
+      rowsCount,
+    },
   } = useContext(TableContext);
 
   const triggerOnPaginationChange = useCallback(

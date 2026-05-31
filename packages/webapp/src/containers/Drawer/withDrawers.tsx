@@ -11,7 +11,9 @@ export interface WithDrawersProps {
   payload: ReturnType<ReturnType<typeof getDrawerPayloadFactory>>;
 }
 
-export function withDrawers<Props extends { name: string }>(mapState?: MapState<WithDrawersProps, Props>) {
+export function withDrawers<Props extends { name: string }>(
+  mapState?: MapState<WithDrawersProps, Props>,
+) {
   const isDrawerOpen = isDrawerOpenFactory();
   const getDrawerPayload = getDrawerPayloadFactory();
 
@@ -24,7 +26,9 @@ export function withDrawers<Props extends { name: string }>(mapState?: MapState<
       isOpen: isDrawerOpen(state, props),
       payload: getDrawerPayload(state, props),
     };
-    return mapState ? (mapState(mapped, state, props) as WithDrawersProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithDrawersProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

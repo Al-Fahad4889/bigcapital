@@ -24,4 +24,5 @@ function CurrenciesListInner({
   );
 }
 
-export const CurrenciesList = compose(withDashboardActions)(CurrenciesListInner);
+export const CurrenciesList =
+  compose(withDashboardActions)(CurrenciesListInner);

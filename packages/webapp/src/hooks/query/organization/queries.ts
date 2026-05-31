@@ -34,7 +34,8 @@ export function useOrganizations(props?: Record<string, unknown>) {
     organizationKeys.all(),
     { method: 'get', url: `organization/all` },
     {
-      select: (res: { data: { organizations: unknown[] } }) => res.data.organizations,
+      select: (res: { data: { organizations: unknown[] } }) =>
+        res.data.organizations,
       initialDataUpdatedAt: 0,
       initialData: {
         data: {
@@ -50,7 +51,7 @@ export function useOrganizations(props?: Record<string, unknown>) {
  * Retrieve the current organization metadata.
  */
 export function useCurrentOrganization(
-  props?: Omit<UseQueryOptions<OrganizationCurrent>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<OrganizationCurrent>, 'queryKey' | 'queryFn'>,
 ) {
   const setOrganizations = useSetOrganizations();
   const setSubscriptions = useSetSubscriptions();
@@ -64,7 +65,9 @@ export function useCurrentOrganization(
 
   useEffect(() => {
     if (result.isSuccess && result.data) {
-      const data = result.data as OrganizationCurrent & { subscriptions?: unknown };
+      const data = result.data as OrganizationCurrent & {
+        subscriptions?: unknown;
+      };
       const organization = omit(data, ['subscriptions']);
       batch(() => {
         setSubscriptions(data.subscriptions);
@@ -80,14 +83,15 @@ export function useCurrentOrganization(
  * Organization setup.
  */
 export function useOrganizationSetup(
-  props?: UseMutationOptions<void, Error, BuildOrganizationBody>
+  props?: UseMutationOptions<void, Error, BuildOrganizationBody>,
 ) {
   const fetcher = useApiFetcher();
   const queryClient = useQueryClient();
 
   return useMutation({
     ...props,
-    mutationFn: (values: BuildOrganizationBody) => buildOrganization(fetcher, values) as Promise<void>,
+    mutationFn: (values: BuildOrganizationBody) =>
+      buildOrganization(fetcher, values) as Promise<void>,
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: organizationKeys.current() });
       queryClient.invalidateQueries({ queryKey: organizationKeys.all() });
@@ -100,14 +104,15 @@ export function useOrganizationSetup(
  * Saves the organization.
  */
 export function useUpdateOrganization(
-  props?: UseMutationOptions<void, Error, UpdateOrganizationBody>
+  props?: UseMutationOptions<void, Error, UpdateOrganizationBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (information: UpdateOrganizationBody) => updateOrganization(fetcher, information),
+    mutationFn: (information: UpdateOrganizationBody) =>
+      updateOrganization(fetcher, information),
     onSuccess: (...args) => {
       queryClient.invalidateQueries({ queryKey: organizationKeys.current() });
       queryClient.invalidateQueries({ queryKey: organizationKeys.all() });
@@ -117,7 +122,10 @@ export function useUpdateOrganization(
 }
 
 export function useOrgBaseCurrencyMutateAbilities(
-  props?: Omit<UseQueryOptions<OrgBaseCurrencyMutateAbilitiesResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<OrgBaseCurrencyMutateAbilitiesResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
 
@@ -125,6 +133,7 @@ export function useOrgBaseCurrencyMutateAbilities(
     ...props,
     queryKey: organizationKeys.mutateAbilities(),
     queryFn: () => fetchOrgBaseCurrencyMutateAbilities(fetcher),
-    select: (data: OrgBaseCurrencyMutateAbilitiesResponse) => data?.abilities ?? [],
+    select: (data: OrgBaseCurrencyMutateAbilitiesResponse) =>
+      data?.abilities ?? [],
   });
 }

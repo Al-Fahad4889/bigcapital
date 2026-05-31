@@ -12,7 +12,9 @@ interface TrialBalanceSheetPdfDialogContentProps {
   subscriptionForm?: Record<string, unknown>;
 }
 
-export function TrialBalanceSheetPdfDialogContent(_props: TrialBalanceSheetPdfDialogContentProps) {
+export function TrialBalanceSheetPdfDialogContent(
+  _props: TrialBalanceSheetPdfDialogContentProps,
+) {
   const { httpQuery } = useTrialBalanceSheetContext();
   const { isLoading, pdfUrl } = useTrialBalanceSheetPdf(httpQuery);
 

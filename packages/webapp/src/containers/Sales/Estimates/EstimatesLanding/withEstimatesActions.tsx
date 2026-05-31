@@ -13,7 +13,9 @@ export interface WithEstimatesActionsProps {
   setEstimatesSelectedRows: (selectedRows: Array<unknown>) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithEstimatesActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithEstimatesActionsProps => ({
   setEstimatesTableState: (state: Partial<TableQuery>) =>
     dispatch(setEstimatesTableState(state)),
   resetEstimatesTableState: () => dispatch(resetEstimatesTableState()),

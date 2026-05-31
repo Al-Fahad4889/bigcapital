@@ -37,7 +37,9 @@ export const getInventoryItemDetailsQuerySchema = () => {
 /**
  * Parses inventory item details browser location query.
  */
-const parseInventoryItemDetailsQuery = (locationQuery: Record<string, unknown>) => {
+const parseInventoryItemDetailsQuery = (
+  locationQuery: Record<string, unknown>,
+) => {
   const defaultQuery = getInventoryItemDetailsDefaultQuery();
 
   const transformed = {
@@ -82,5 +84,8 @@ export const useInventoryValuationQuery = () => {
 export const useInventoryValuationHttpQuery = () => {
   const { query } = useInventoryValuationQuery();
 
-  return React.useMemo(() => transformFilterFormToQuery(query) as Record<string, unknown>, [query]);
+  return React.useMemo(
+    () => transformFilterFormToQuery(query) as Record<string, unknown>,
+    [query],
+  );
 };

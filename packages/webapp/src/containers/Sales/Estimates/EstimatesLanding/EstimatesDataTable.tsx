@@ -46,7 +46,7 @@ function EstimatesDataTableInner({
   estimatesTableSize,
 
   // #withEstimates
-  estimatesTableState
+  estimatesTableState,
 }) {
   const history = useHistory();
 
@@ -109,7 +109,7 @@ function EstimatesDataTableInner({
   // Handle mail send estimate.
   const handleMailSendEstimate = ({ id }) => {
     openDrawer(DRAWERS.ESTIMATE_SEND_MAIL, { estimateId: id });
-  }
+  };
 
   // Local storage memorizing columns widths.
   const [initialColumnsWidths, , handleColumnResizing] =
@@ -191,5 +191,5 @@ export const EstimatesDataTable = compose(
   withSettings(({ estimatesSettings }) => ({
     estimatesTableSize: estimatesSettings?.tableSize,
   })),
-  withEstimates(({ estimatesTableState }) => ({ estimatesTableState }))
+  withEstimates(({ estimatesTableState }) => ({ estimatesTableState })),
 )(EstimatesDataTableInner);

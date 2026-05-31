@@ -53,14 +53,16 @@ function QuickCustomerFormDrawerInner({
   return (
     <CustomerFormProvider customerId={customerId}>
       <DrawerCustomerFormLoading>
-          <CustomerFormFormik
-            initialValues={{ first_name: displayName }}
-            onSubmitSuccess={handleSubmitSuccess}
-            onCancel={handleCancelForm}
-          />
+        <CustomerFormFormik
+          initialValues={{ first_name: displayName }}
+          onSubmitSuccess={handleSubmitSuccess}
+          onCancel={handleCancelForm}
+        />
       </DrawerCustomerFormLoading>
     </CustomerFormProvider>
   );
 }
 
-export const QuickCustomerFormDrawer = R.compose(withDrawerActions)(QuickCustomerFormDrawerInner);
+export const QuickCustomerFormDrawer = R.compose(withDrawerActions)(
+  QuickCustomerFormDrawerInner,
+);

@@ -38,7 +38,10 @@ export class GetAuditLogFilterOptionsService {
       subjects: subjectRows
         .map((r) => r.subject)
         .filter(Boolean)
-        .map((key) => ({ key, label: this.i18n.t(`audit_log.subject.${key}`) })),
+        .map((key) => ({
+          key,
+          label: this.i18n.t(`audit_log.subject.${key}`),
+        })),
       actions: actionRows
         .map((r) => r.action)
         .filter(Boolean)

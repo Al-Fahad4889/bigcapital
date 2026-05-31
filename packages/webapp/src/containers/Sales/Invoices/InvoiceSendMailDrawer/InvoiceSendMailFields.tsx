@@ -52,7 +52,7 @@ function InvoiceSendMailFooter() {
       px={'16px'}
       borderTopWidth={1}
       borderTopStyle="solid"
-      borderTopColor={isDarkMode ? 'rgba(255, 255, 255, 0.2)' : "#d8d8d9"}
+      borderTopColor={isDarkMode ? 'rgba(255, 255, 255, 0.2)' : '#d8d8d9'}
       position={'apart'}
     >
       <Group spacing={10} ml={'auto'}>

@@ -4,10 +4,14 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithItemCategoriesProps {
-  itemsCategoriesTableState: ReturnType<ReturnType<typeof getItemsCategoriesTableStateFactory>>;
+  itemsCategoriesTableState: ReturnType<
+    ReturnType<typeof getItemsCategoriesTableStateFactory>
+  >;
 }
 
-export const withItemCategories = <Props extends { location?: { search: string } }>(
+export const withItemCategories = <
+  Props extends { location?: { search: string } },
+>(
   mapState?: MapState<WithItemCategoriesProps, Props>,
 ) => {
   const getItemsCategoriesTableState = getItemsCategoriesTableStateFactory();

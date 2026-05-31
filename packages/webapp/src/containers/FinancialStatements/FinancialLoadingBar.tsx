@@ -9,5 +9,5 @@ export function FinancialLoadingBar() {
     <div className={'financial-progressbar'}>
       <MaterialProgressBar />
     </div>
-  )
+  );
 }

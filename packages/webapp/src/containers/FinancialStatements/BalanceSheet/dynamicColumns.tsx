@@ -12,7 +12,11 @@ interface ReportTableColumn {
 
 const getTableCellValueAccessor = (index: number) => `cells[${index}].value`;
 
-const getReportColWidth = (data: unknown[], accessor: string, headerText?: string) => {
+const getReportColWidth = (
+  data: unknown[],
+  accessor: string,
+  headerText?: string,
+) => {
   return getColumnWidth(
     data,
     accessor,
@@ -337,6 +341,9 @@ const dynamicColumnMapper = R.curry((data, column) => {
   )(column);
 });
 
-export const dynamicColumns = (columns: ReportTableColumn[], data: unknown[]) => {
+export const dynamicColumns = (
+  columns: ReportTableColumn[],
+  data: unknown[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };

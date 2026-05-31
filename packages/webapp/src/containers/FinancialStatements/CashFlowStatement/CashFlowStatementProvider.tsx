@@ -40,7 +40,9 @@ function CashFlowStatementProvider({
     isFetching: isCashFlowFetching,
     isLoading: isCashFlowLoading,
     refetch: refetchCashFlow,
-  } = useCashFlowStatementReport(httpQuery, { placeholderData: (prev) => prev });
+  } = useCashFlowStatementReport(httpQuery, {
+    placeholderData: (prev) => prev,
+  });
 
   const provider: CashFlowStatementContextValue = {
     cashFlowStatement,

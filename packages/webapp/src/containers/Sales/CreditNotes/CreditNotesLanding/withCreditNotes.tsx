@@ -7,8 +7,12 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithCreditNotesProps {
-  creditNoteTableState: ReturnType<ReturnType<typeof getCreditNotesTableStateFactory>>;
-  creditNoteTableStateChanged: ReturnType<ReturnType<typeof isCreditNotesTableStateChangedFactory>>;
+  creditNoteTableState: ReturnType<
+    ReturnType<typeof getCreditNotesTableStateFactory>
+  >;
+  creditNoteTableStateChanged: ReturnType<
+    ReturnType<typeof isCreditNotesTableStateChangedFactory>
+  >;
   creditNotesSelectedRows: unknown[];
 }
 

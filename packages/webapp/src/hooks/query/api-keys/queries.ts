@@ -10,12 +10,14 @@ import { fetchApiKeys, generateApiKey, revokeApiKey } from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../useRequest';
 import { apiKeysKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: apiKeysKeys.all() });
 };
 
 export function useApiKeys(
-  props?: Omit<UseQueryOptions<ApiKeysList>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ApiKeysList>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -26,7 +28,7 @@ export function useApiKeys(
 }
 
 export function useGenerateApiKey(
-  props?: UseMutationOptions<void, Error, GenerateApiKeyBody>
+  props?: UseMutationOptions<void, Error, GenerateApiKeyBody>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();
@@ -39,7 +41,7 @@ export function useGenerateApiKey(
 }
 
 export function useRevokeApiKey(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const client = useQueryClient();
   const fetcher = useApiFetcher();

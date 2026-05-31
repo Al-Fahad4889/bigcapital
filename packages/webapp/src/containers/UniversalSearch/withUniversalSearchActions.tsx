@@ -13,11 +13,16 @@ export interface WithUniversalSearchActionsProps {
   closeGlobalSearch: () => void;
   setResourceTypeUniversalSearch: (resourceType: string) => void;
   resetResourceTypeUniversalSearch: () => void;
-  setSelectedItemUniversalSearch: (resourceType: string, resourceId: number | string) => void;
+  setSelectedItemUniversalSearch: (
+    resourceType: string,
+    resourceId: number | string,
+  ) => void;
   resetSelectedItemUniversalSearch: () => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithUniversalSearchActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithUniversalSearchActionsProps => ({
   openGlobalSearch: () => dispatch({ type: OPEN_SEARCH }),
   closeGlobalSearch: () => dispatch({ type: CLOSE_SEARCH }),
 
@@ -27,8 +32,10 @@ export const mapDispatchToProps = (dispatch: Dispatch): WithUniversalSearchActio
   resetResourceTypeUniversalSearch: () =>
     dispatch(universalSearchResetResourceType()),
 
-  setSelectedItemUniversalSearch: (resourceType: string, resourceId: number | string) =>
-    dispatch(universalSearchSetSelectedItem(resourceType, resourceId)),
+  setSelectedItemUniversalSearch: (
+    resourceType: string,
+    resourceId: number | string,
+  ) => dispatch(universalSearchSetSelectedItem(resourceType, resourceId)),
 
   resetSelectedItemUniversalSearch: () =>
     dispatch(universalSearchResetSelectedItem()),

@@ -10,7 +10,11 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const PdfPreviewDialogContent = lazy(() => import('./InvoicePdfPreviewDialogContent').then(m => ({ default: m.InvoicePdfPreviewDialogContent })));
+const PdfPreviewDialogContent = lazy(() =>
+  import('./InvoicePdfPreviewDialogContent').then((m) => ({
+    default: m.InvoicePdfPreviewDialogContent,
+  })),
+);
 
 /**
  * Invoice PDF preview dialog.

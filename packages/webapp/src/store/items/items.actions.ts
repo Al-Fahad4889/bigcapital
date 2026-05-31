@@ -1,4 +1,8 @@
-import { ITEMS_TABLE_STATE_RESET, ITEMS_TABLE_STATE_SET, ITEMS_SET_SELECTED_ROWS } from '@/store/types';;
+import {
+  ITEMS_TABLE_STATE_RESET,
+  ITEMS_TABLE_STATE_SET,
+  ITEMS_SET_SELECTED_ROWS,
+} from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 export const setItemsTableState = (queries: Partial<TableQuery>) => {
@@ -8,12 +12,11 @@ export const setItemsTableState = (queries: Partial<TableQuery>) => {
   };
 };
 
-
 export const resetItemsTableState = () => {
   return {
     type: ITEMS_TABLE_STATE_RESET,
   };
-}
+};
 
 export const setItemsSelectedRows = (selectedRows: Array<unknown>) => {
   return {

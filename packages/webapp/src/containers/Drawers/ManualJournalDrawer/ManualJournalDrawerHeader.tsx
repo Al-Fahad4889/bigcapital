@@ -8,7 +8,6 @@ import {
   Col,
   DetailsMenu,
   DetailItem,
-
   CommercialDocHeader,
   CommercialDocTopHeader,
 } from '@/components';

@@ -65,7 +65,7 @@ const TimesheetContent = styled.div`
   display: block;
   white-space: nowrap;
   font-size: 13px;
-  color: #5D5E71;
+  color: #5d5e71;
   margin-top: 0.25rem;
 `;
 

@@ -25,74 +25,72 @@ export const MakeJournalTransactionNoField = R.compose(
   withSettings(({ manualJournalsSettings }) => ({
     journalAutoIncrement: manualJournalsSettings?.autoIncrement,
   })),
-)(
-  ({
-    // #withDialog
-    openDialog,
+)(({
+  // #withDialog
+  openDialog,
 
-    // #withSettings
-    journalAutoIncrement,
-  }) => {
-    const { setFieldValue, values } = useFormikContext();
+  // #withSettings
+  journalAutoIncrement,
+}) => {
+  const { setFieldValue, values } = useFormikContext();
 
-    const handleJournalNumberChange = () => {
-      openDialog('journal-number-form');
-    };
-    const handleJournalNoBlur = (event) => {
-      const newValue = event.target.value;
+  const handleJournalNumberChange = () => {
+    openDialog('journal-number-form');
+  };
+  const handleJournalNoBlur = (event) => {
+    const newValue = event.target.value;
 
-      if (values.journal_number !== newValue && journalAutoIncrement) {
-        openDialog('journal-number-form', {
-          initialFormValues: {
-            onceManualNumber: newValue,
-            incrementMode: 'manual-transaction',
-          },
-        });
+    if (values.journal_number !== newValue && journalAutoIncrement) {
+      openDialog('journal-number-form', {
+        initialFormValues: {
+          onceManualNumber: newValue,
+          incrementMode: 'manual-transaction',
+        },
+      });
+    }
+    if (!journalAutoIncrement) {
+      setFieldValue('journal_number', newValue);
+      setFieldValue('journal_number_manually', newValue);
+    }
+  };
+
+  return (
+    <FFormGroup
+      name={'journal_number'}
+      label={intl.get('journal_no')}
+      labelInfo={
+        <>
+          <FieldRequiredHint />
+          <FieldHint />
+        </>
       }
-      if (!journalAutoIncrement) {
-        setFieldValue('journal_number', newValue);
-        setFieldValue('journal_number_manually', newValue);
-      }
-    };
-
-    return (
-      <FFormGroup
-        name={'journal_number'}
-        label={intl.get('journal_no')}
-        labelInfo={
-          <>
-            <FieldRequiredHint />
-            <FieldHint />
-          </>
-        }
-        fill={true}
-        inline={true}
-        fastField={true}
-      >
-        <ControlGroup fill={true}>
-          <FInputGroup
-            name={'journal_number'}
-            fill={true}
-            asyncControl={true}
-            onBlur={handleJournalNoBlur}
-            fastField={true}
-            onChange={() => {}}
-          />
-          <InputPrependButton
-            buttonProps={{
-              onClick: handleJournalNumberChange,
-              icon: <Icon icon={'settings-18'} />,
-            }}
-            tooltip={true}
-            tooltipProps={{
-              content: <T id={'setting_your_auto_generated_journal_number'} />,
-              position: Position.BOTTOM_LEFT,
-            }}
-          />
-        </ControlGroup>
-      </FFormGroup>
-    );
-  },
-);
+      fill={true}
+      inline={true}
+      fastField={true}
+    >
+      <ControlGroup fill={true}>
+        <FInputGroup
+          name={'journal_number'}
+          fill={true}
+          asyncControl={true}
+          onBlur={handleJournalNoBlur}
+          fastField={true}
+          onChange={() => {}}
+        />
+        <InputPrependButton
+          buttonProps={{
+            onClick: handleJournalNumberChange,
+            icon: <Icon icon={'settings-18'} />,
+          }}
+          tooltip={true}
+          tooltipProps={{
+            content: <T id={'setting_your_auto_generated_journal_number'} />,
+            position: Position.BOTTOM_LEFT,
+          }}
+        />
+      </ControlGroup>
+    </FFormGroup>
+  );
+});
 
 MakeJournalTransactionNoField.displayName = 'MakeJournalTransactionNoField';

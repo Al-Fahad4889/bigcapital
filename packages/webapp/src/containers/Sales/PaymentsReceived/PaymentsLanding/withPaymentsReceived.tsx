@@ -8,9 +8,15 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithPaymentsReceivedProps {
-  paymentReceivesTableState: ReturnType<ReturnType<typeof getPaymentReceiveTableStateFactory>>;
-  paymentsTableStateChanged: ReturnType<ReturnType<typeof paymentsTableStateChangedFactory>>;
-  paymentReceivesSelectedRows: ReturnType<ReturnType<typeof getPaymentReceivesSelectedRowsFactory>>;
+  paymentReceivesTableState: ReturnType<
+    ReturnType<typeof getPaymentReceiveTableStateFactory>
+  >;
+  paymentsTableStateChanged: ReturnType<
+    ReturnType<typeof paymentsTableStateChangedFactory>
+  >;
+  paymentReceivesSelectedRows: ReturnType<
+    ReturnType<typeof getPaymentReceivesSelectedRowsFactory>
+  >;
 }
 
 export const withPaymentsReceived = <

@@ -27,7 +27,9 @@ export const useCustomersSummaryColumns = () => {
   const { CustomerBalanceSummary } = useCustomersBalanceSummaryContext();
 
   return React.useMemo(() => {
-    return dynamicColumns((CustomerBalanceSummary as any)?.table?.columns ?? []);
+    return dynamicColumns(
+      (CustomerBalanceSummary as any)?.table?.columns ?? [],
+    );
   }, [(CustomerBalanceSummary as any)?.table?.columns]);
 };
 

@@ -14,12 +14,18 @@ import classNames from 'classnames';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { withVendorsBalanceSummary } from './withVendorsBalanceSummary';
-import { withVendorsBalanceSummaryActions, WithVendorsBalanceSummaryActionsProps } from './withVendorsBalanceSummaryActions';
+import {
+  withVendorsBalanceSummaryActions,
+  WithVendorsBalanceSummaryActionsProps,
+} from './withVendorsBalanceSummaryActions';
 import { useVendorsBalanceSummaryContext } from './VendorsBalanceSummaryProvider';
 
 import { saveInvoke, compose } from '@/utils';
 import { VendorSummarySheetExportMenu } from './components';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
 interface VendorsBalanceSummaryActionsBarOwnProps {
@@ -29,7 +35,10 @@ interface VendorsBalanceSummaryActionsBarOwnProps {
 
 type VendorsBalanceSummaryActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithVendorsBalanceSummaryActionsProps, 'toggleVendorSummaryFilterDrawer'> &
+} & Pick<
+  WithVendorsBalanceSummaryActionsProps,
+  'toggleVendorSummaryFilterDrawer'
+> &
   WithDialogActionsProps &
   VendorsBalanceSummaryActionsBarOwnProps;
 

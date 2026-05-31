@@ -50,4 +50,6 @@ function SMSMessageFormFloatingActionsInner({
   );
 }
 
-export const SMSMessageFormFloatingActions = compose(withDialogActions)(SMSMessageFormFloatingActionsInner);
+export const SMSMessageFormFloatingActions = compose(withDialogActions)(
+  SMSMessageFormFloatingActionsInner,
+);

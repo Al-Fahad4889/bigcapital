@@ -5,7 +5,11 @@ import { Drawer, DrawerHeaderContent, DrawerSuspense } from '@/components';
 import { withDrawers } from '@/containers/Drawer/withDrawers';
 import { DRAWERS } from '@/constants/drawers';
 
-const TaxRateDetailsDrawerContent = React.lazy(() => import('./TaxRateDetailsContent').then(m => ({ default: m.TaxRateDetailsContent })));
+const TaxRateDetailsDrawerContent = React.lazy(() =>
+  import('./TaxRateDetailsContent').then((m) => ({
+    default: m.TaxRateDetailsContent,
+  })),
+);
 
 /**
  * Tax rate details drawer.
@@ -30,4 +34,6 @@ function TaxRateDetailsDrawerInner({
   );
 }
 
-export const TaxRateDetailsDrawer = R.compose(withDrawers())(TaxRateDetailsDrawerInner);
+export const TaxRateDetailsDrawer = R.compose(withDrawers())(
+  TaxRateDetailsDrawerInner,
+);

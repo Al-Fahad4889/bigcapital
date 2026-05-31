@@ -36,7 +36,9 @@ function PaymentsReceivedListProvider({ query, tableStateChanged, ...props }) {
 
   // Detarmines the datatable empty status.
   const isEmptyStatus =
-    !isPaymentReceivesLoading && !tableStateChanged && isEmpty(paymentReceivesData?.data);
+    !isPaymentReceivesLoading &&
+    !tableStateChanged &&
+    isEmpty(paymentReceivesData?.data);
 
   // Provider payload.
   const provider = {
@@ -45,7 +47,9 @@ function PaymentsReceivedListProvider({ query, tableStateChanged, ...props }) {
     pagination: paymentReceivesData?.pagination,
     resourceMeta,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
 
     isEmptyStatus,
     isViewsLoading,

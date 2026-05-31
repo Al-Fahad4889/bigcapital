@@ -17,11 +17,7 @@ import { AppToaster } from '@/components';
 /**
  * API Key Display view component (used within the generate dialog).
  */
-export function ApiKeyDisplayView({
-  dialogName,
-  apiKey,
-  onClose,
-}) {
+export function ApiKeyDisplayView({ dialogName, apiKey, onClose }) {
   const clipboard = useClipboard();
 
   const handleCopy = () => {
@@ -38,14 +34,18 @@ export function ApiKeyDisplayView({
     <>
       <div className={Classes.DIALOG_BODY}>
         <Alert intent="primary">
-          <strong>{intl.get('api_key.important')}:</strong> {intl.get('api_key.display_warning')}
+          <strong>{intl.get('api_key.important')}:</strong>{' '}
+          {intl.get('api_key.display_warning')}
         </Alert>
         <FormGroup label={intl.get('api_key.label')}>
           <InputGroup
             value={apiKey || ''}
             readOnly
             rightElement={
-              <Tooltip content={intl.get('api_key.copy_to_clipboard')} position={Position.TOP}>
+              <Tooltip
+                content={intl.get('api_key.copy_to_clipboard')}
+                position={Position.TOP}
+              >
                 <Button
                   onClick={handleCopy}
                   minimal
@@ -59,7 +59,11 @@ export function ApiKeyDisplayView({
 
       <div className={Classes.DIALOG_FOOTER}>
         <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-          <Button intent={Intent.PRIMARY} onClick={onClose} style={{ width: '85px' }}>
+          <Button
+            intent={Intent.PRIMARY}
+            onClick={onClose}
+            style={{ width: '85px' }}
+          >
             <T id={'done'} />
           </Button>
         </div>

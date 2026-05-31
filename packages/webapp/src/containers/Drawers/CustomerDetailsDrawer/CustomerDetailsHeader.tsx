@@ -31,7 +31,7 @@ export function CustomerDetailsHeader() {
         <DetailItem
           label={intl.get('customer.drawer.label.customer_type')}
           name={'type'}
-          children={customer?.formatted_customer_type }
+          children={customer?.formatted_customer_type}
         />
         <DetailItem label={intl.get('customer.drawer.label.unused_credits')}>
           0

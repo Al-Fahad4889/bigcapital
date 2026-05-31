@@ -9,7 +9,9 @@ export interface WithAuthenticationProps {
   currentOrganizationId: string | null;
 }
 
-export function withAuthentication<Props>(mapState?: MapState<WithAuthenticationProps, Props>) {
+export function withAuthentication<Props>(
+  mapState?: MapState<WithAuthenticationProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithAuthenticationProps,
     Props,
@@ -20,7 +22,9 @@ export function withAuthentication<Props>(mapState?: MapState<WithAuthentication
       authenticatedUserId: state.authentication.userId,
       currentOrganizationId: state.authentication?.organizationId,
     };
-    return mapState ? (mapState(mapped, state, props) as WithAuthenticationProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithAuthenticationProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

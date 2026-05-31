@@ -5,7 +5,10 @@ import { Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
 import { DataTable, AppToaster, TableSkeletonRows } from '@/components';
 import { useRolesTableColumns, ActionsMenu } from './components';
-import { withAlertActions, type WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
+import {
+  withAlertActions,
+  type WithAlertActionsProps,
+} from '@/containers/Alert/withAlertActions';
 import { useRolesContext } from './RolesListProvider';
 import { compose } from '@/utils';
 
@@ -22,7 +25,13 @@ function RolesDataTableInner({
 
   const { roles, isRolesFetching, isRolesLoading } = useRolesContext();
 
-  const handleDeleteRole = ({ id, predefined }: { id: number; predefined: boolean }) => {
+  const handleDeleteRole = ({
+    id,
+    predefined,
+  }: {
+    id: number;
+    predefined: boolean;
+  }) => {
     if (predefined) {
       AppToaster.show({
         message: intl.get('roles.error.you_cannot_delete_predefined_roles'),
@@ -32,7 +41,13 @@ function RolesDataTableInner({
       openAlert('role-delete', { roleId: id });
     }
   };
-  const handleEditRole = ({ id, predefined }: { id: number; predefined: boolean }) => {
+  const handleEditRole = ({
+    id,
+    predefined,
+  }: {
+    id: number;
+    predefined: boolean;
+  }) => {
     if (predefined) {
       AppToaster.show({
         message: intl.get('roles.error.you_cannot_edit_predefined_roles'),

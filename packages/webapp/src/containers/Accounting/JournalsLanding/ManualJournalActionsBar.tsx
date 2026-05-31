@@ -72,10 +72,8 @@ function ManualJournalActionsBarInner({
   const onClickNewManualJournal = () => {
     history.push('/make-journal-entry');
   };
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteManualJournals,
-  } = useBulkDeleteManualJournalsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteManualJournals } =
+    useBulkDeleteManualJournalsDialog();
 
   const handleBulkDelete = () => {
     openBulkDeleteDialog(manualJournalsSelectedRows);
@@ -210,10 +208,12 @@ export const ManualJournalActionsBar = compose(
   withDialogActions,
   withManualJournalsActions,
   withSettingsActions,
-  withManualJournals(({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
-    manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
-    manualJournalsSelectedRows,
-  })),
+  withManualJournals(
+    ({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
+      manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
+      manualJournalsSelectedRows,
+    }),
+  ),
   withSettings(({ manualJournalsSettings }) => ({
     manualJournalsTableSize: manualJournalsSettings?.tableSize,
   })),

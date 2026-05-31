@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import {
-
   FAccountsSuggestField,
   FieldRequiredHint,
   Col,

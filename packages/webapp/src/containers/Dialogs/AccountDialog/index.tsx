@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const AccountDialogContent = lazy(() => import('./AccountDialogContent').then(m => ({ default: m.AccountDialogContent })));
+const AccountDialogContent = lazy(() =>
+  import('./AccountDialogContent').then((m) => ({
+    default: m.AccountDialogContent,
+  })),
+);
 
 /**
  * Account form dialog.

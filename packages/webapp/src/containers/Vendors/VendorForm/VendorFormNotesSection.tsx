@@ -1,5 +1,10 @@
 // @ts-nocheck
-import { Box, FFormGroup, FormattedMessage as T, FTextArea } from '@/components';
+import {
+  Box,
+  FFormGroup,
+  FormattedMessage as T,
+  FTextArea,
+} from '@/components';
 import { VendorFormSectionTitle } from './VendorFormSectionTitle';
 import intl from 'react-intl-universal';
 

@@ -45,7 +45,7 @@ export function setAuthLoginCookies(data: AuthSigninResponse): void {
 }
 
 export function useAuthLogin(
-  props?: UseMutationOptions<AuthSigninResponse, Error, AuthSigninBody>
+  props?: UseMutationOptions<AuthSigninResponse, Error, AuthSigninBody>,
 ) {
   const fetcher = useAuthApiFetcher();
   const setAuthToken = useSetAuthToken();
@@ -71,7 +71,7 @@ export function useAuthLogin(
 }
 
 export function useAuthRegister(
-  props?: UseMutationOptions<unknown, Error, AuthSignupBody>
+  props?: UseMutationOptions<unknown, Error, AuthSignupBody>,
 ) {
   const fetcher = useAuthApiFetcher();
 
@@ -82,7 +82,7 @@ export function useAuthRegister(
 }
 
 export function useAuthSendResetPassword(
-  props?: UseMutationOptions<unknown, Error, AuthSendResetPasswordBody>
+  props?: UseMutationOptions<unknown, Error, AuthSendResetPasswordBody>,
 ) {
   const fetcher = useAuthApiFetcher();
 
@@ -98,7 +98,7 @@ export function useAuthResetPassword(
     unknown,
     Error,
     [token: string, values: AuthResetPasswordBody]
-  >
+  >,
 ) {
   const fetcher = useAuthApiFetcher();
 
@@ -113,7 +113,7 @@ export function useAuthMetadata(
   props?: Omit<
     UseQueryOptions<AuthMetaResponse, Error>,
     'queryKey' | 'queryFn'
-  >
+  >,
 ) {
   const fetcher = useAuthApiFetcher();
 
@@ -125,7 +125,7 @@ export function useAuthMetadata(
 }
 
 export function useAuthSignUpVerifyResendMail(
-  props?: UseMutationOptions<void, Error, void>
+  props?: UseMutationOptions<void, Error, void>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -136,7 +136,7 @@ export function useAuthSignUpVerifyResendMail(
 }
 
 export function useAuthSignUpVerify(
-  props?: UseMutationOptions<unknown, Error, AuthSignupVerifyBody>
+  props?: UseMutationOptions<unknown, Error, AuthSignupVerifyBody>,
 ) {
   const fetcher = useAuthApiFetcher();
 

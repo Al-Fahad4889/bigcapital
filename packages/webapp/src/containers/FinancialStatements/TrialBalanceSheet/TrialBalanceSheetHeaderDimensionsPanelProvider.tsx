@@ -14,13 +14,18 @@ interface TrialBLHeaderDimensionsPanelProviderProps {
   children?: ReactNode;
 }
 
-const TrialBLSheetHeaderDimensionsContext = React.createContext<TrialBLSheetHeaderDimensionsContextValue | undefined>(undefined);
+const TrialBLSheetHeaderDimensionsContext = React.createContext<
+  TrialBLSheetHeaderDimensionsContextValue | undefined
+>(undefined);
 
 /**
  *  Trial BL sheet header provider.
  * @returns
  */
-function TrialBLHeaderDimensionsPanelProvider({ query, ...props }: TrialBLHeaderDimensionsPanelProviderProps) {
+function TrialBLHeaderDimensionsPanelProvider({
+  query,
+  ...props
+}: TrialBLHeaderDimensionsPanelProviderProps) {
   // Features guard.
   const { featureCan } = useFeatureCan();
   const isBranchFeatureCan = featureCan(Features.Branches);
@@ -44,11 +49,15 @@ function TrialBLHeaderDimensionsPanelProvider({ query, ...props }: TrialBLHeader
   );
 }
 
-const useTrialBalanceSheetPanelContext = (): TrialBLSheetHeaderDimensionsContextValue => {
-  const ctx = React.useContext(TrialBLSheetHeaderDimensionsContext);
-  if (!ctx) throw new Error('useTrialBalanceSheetPanelContext must be used within a TrialBLHeaderDimensionsPanelProvider');
-  return ctx;
-};
+const useTrialBalanceSheetPanelContext =
+  (): TrialBLSheetHeaderDimensionsContextValue => {
+    const ctx = React.useContext(TrialBLSheetHeaderDimensionsContext);
+    if (!ctx)
+      throw new Error(
+        'useTrialBalanceSheetPanelContext must be used within a TrialBLHeaderDimensionsPanelProvider',
+      );
+    return ctx;
+  };
 
 export {
   TrialBLHeaderDimensionsPanelProvider,

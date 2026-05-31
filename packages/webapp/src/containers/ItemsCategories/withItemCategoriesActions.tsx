@@ -7,7 +7,9 @@ export interface WithItemCategoriesActionsProps {
   setItemsCategoriesTableState: (state: Partial<TableQuery>) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithItemCategoriesActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithItemCategoriesActionsProps => ({
   setItemsCategoriesTableState: (state: Partial<TableQuery>) =>
     dispatch(setItemsCategoriesTableState(state)),
 });

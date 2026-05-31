@@ -1,11 +1,11 @@
 // @ts-nocheck
-import { Tab } from "@blueprintjs/core";
-import { Card, Group } from "@/components";
-import { Tabs } from "@blueprintjs/core";
-import { useState } from "react";
+import { Tab } from '@blueprintjs/core';
+import { Card, Group } from '@/components';
+import { Tabs } from '@blueprintjs/core';
+import { useState } from 'react';
 import { css } from '@emotion/css';
-import { VendorFloatingActions } from "./VendorFloatingActions";
-import { VendorFormSections } from "./VendorFormFields";
+import { VendorFloatingActions } from './VendorFloatingActions';
+import { VendorFormSections } from './VendorFormFields';
 
 export function VendorFormContent() {
   const [selectedTabId, setSelectedTabId] = useState('primary');
@@ -14,21 +14,30 @@ export function VendorFormContent() {
     const sectionId = String(tabId);
     setSelectedTabId(sectionId);
 
-    const section = document.querySelector(
-      `[data-section-id="${sectionId}"]`,
-    );
+    const section = document.querySelector(`[data-section-id="${sectionId}"]`);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   return (
-    <Card className={css`padding-bottom: 0 !important;`}>
-      <Group verticalAlign={'top'} alignItems={'flex-start'} flexWrap={'nowrap'}>
+    <Card
+      className={css`
+        padding-bottom: 0 !important;
+      `}
+    >
+      <Group
+        verticalAlign={'top'}
+        alignItems={'flex-start'}
+        flexWrap={'nowrap'}
+      >
         <Tabs
           selectedTabId={selectedTabId}
           onChange={handleTabChange}
-          className={css`position: sticky; top: 20px;`}
+          className={css`
+            position: sticky;
+            top: 20px;
+          `}
           vertical
         >
           <Tab id={'primary'} title={'Basic'} />
@@ -41,5 +50,5 @@ export function VendorFormContent() {
       </Group>
       <VendorFloatingActions />
     </Card>
-  )
+  );
 }

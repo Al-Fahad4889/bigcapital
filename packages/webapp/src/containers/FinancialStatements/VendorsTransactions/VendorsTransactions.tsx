@@ -9,7 +9,10 @@ import { VendorsTransactionsLoadingBar } from './components';
 import { VendorsTransactionsHeader } from './VendorsTransactionsHeader';
 import { VendorsTransactionsActionsBar } from './VendorsTransactionsActionsBar';
 
-import { withVendorsTransactionsActions, WithVendorsTransactionsActionsProps } from './withVendorsTransactionsActions';
+import {
+  withVendorsTransactionsActions,
+  WithVendorsTransactionsActionsProps,
+} from './withVendorsTransactionsActions';
 
 import { compose } from '@/utils';
 import { useVendorsTransactionsQuery } from './_utils';
@@ -74,4 +77,6 @@ function VendorsTransactionsInner({
     </VendorsTransactionsProvider>
   );
 }
-export const VendorsTransactions = compose(withVendorsTransactionsActions)(VendorsTransactionsInner);
+export const VendorsTransactions = compose(withVendorsTransactionsActions)(
+  VendorsTransactionsInner,
+);

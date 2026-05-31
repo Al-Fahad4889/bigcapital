@@ -19,10 +19,10 @@ const StyledButtonGroup = styled(ButtonGroup)`
 
 const StyledPaginationButton = styled(Button)`
   --x-button-text-color: #666666;
-  --x-button-hover-background: #E6EFFB;
+  --x-button-hover-background: #e6effb;
   --x-button-active-text-color: #000;
-  --x-button-active-background: #E6EFFB;
-  --x-button-active-disabled-background: #E6EFFB;
+  --x-button-active-background: #e6effb;
+  --x-button-active-disabled-background: #e6effb;
 
   .bp4-dark & {
     --x-button-text-color: rgba(255, 255, 255, 0.8);
@@ -35,9 +35,9 @@ const StyledPaginationButton = styled(Button)`
   min-height: 24px;
   border-radius: 5px;
 
-  &:not([class*="bp4-intent-"]).bp4-minimal {
+  &:not([class*='bp4-intent-']).bp4-minimal {
     color: var(--x-button-text-color);
-    
+
     &:hover {
       background-color: var(--x-button-hover-background);
     }
@@ -63,7 +63,7 @@ const StyledPreviousButton = styled(StyledPaginationButton)`
   padding-right: 10px;
 
   .bp4-icon {
-    [dir="rtl"] & {
+    [dir='rtl'] & {
       transform: scale(-1);
     }
   }
@@ -88,9 +88,9 @@ const StyledHTMLSelect = styled(HTMLSelect)`
     --x-html-select-text-color: rgba(255, 255, 255, 0.8);
     --x-html-select-border-color: rgba(255, 255, 255, 0.15);
   }
-  &.bp4-html-select.bp4-minimal  {
+  &.bp4-html-select.bp4-minimal {
     margin-left: 6px;
-    
+
     select {
       height: 24px;
       width: auto;
@@ -299,7 +299,12 @@ export function Pagination({
         </x.div>
       </x.div>
 
-      <x.div color={isDark ? 'rgba(255, 255, 255, 0.6)' : '#666'} ml="12px" display="flex" alignItems="center">
+      <x.div
+        color={isDark ? 'rgba(255, 255, 255, 0.6)' : '#666'}
+        ml="12px"
+        display="flex"
+        alignItems="center"
+      >
         {intl.get('showing_current_page_to_total', {
           currentPage: state.currentPage,
           totalPages: state.totalPages,

@@ -22,10 +22,7 @@ import {
   If,
   Icon,
 } from '@/components';
-import {
-  ManualJournalAction,
-  AbilitySubject,
-} from "@/constants/abilityOption";
+import { ManualJournalAction, AbilitySubject } from '@/constants/abilityOption';
 import { safeCallback } from '@/utils';
 
 /**

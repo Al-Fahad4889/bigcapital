@@ -3,7 +3,10 @@ import { InventoryValuationTable } from './InventoryValuationTable';
 import { useInventoryValuationContext } from './InventoryValuationProvider';
 import { FinancialReportBody } from '../FinancialReportPage';
 import { FinancialSheetSkeleton } from '@/components';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 import { compose } from '@/utils';
 
 interface InventoryValuationBodyProps {
@@ -14,7 +17,9 @@ interface InventoryValuationBodyProps {
  * Inventory valuation body.
  * @returns {JSX.Element}
  */
-function InventoryValuationBodyJSX({ organizationName }: InventoryValuationBodyProps) {
+function InventoryValuationBodyJSX({
+  organizationName,
+}: InventoryValuationBodyProps) {
   const { isLoading } = useInventoryValuationContext();
 
   return (

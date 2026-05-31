@@ -43,6 +43,6 @@ function ReconcileCreditNoteFormFloatingActionsInner({
     </div>
   );
 }
-export const ReconcileCreditNoteFormFloatingActions = compose(withDialogActions)(
-  ReconcileCreditNoteFormFloatingActionsInner,
-);
+export const ReconcileCreditNoteFormFloatingActions = compose(
+  withDialogActions,
+)(ReconcileCreditNoteFormFloatingActionsInner);

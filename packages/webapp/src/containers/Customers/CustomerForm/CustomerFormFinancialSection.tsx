@@ -23,7 +23,7 @@ import {
   useSetPrimaryBranchToForm,
 } from './utils';
 import { useCurrentOrganization } from '@/hooks/state';
-import  { CustomerFormSectionTitle } from './CustomerFormSectionTitle';
+import { CustomerFormSectionTitle } from './CustomerFormSectionTitle';
 import intl from 'react-intl-universal';
 
 export function CustomerFormFinancialSection() {
@@ -37,40 +37,40 @@ export function CustomerFormFinancialSection() {
       <CustomerFormSectionTitle>
         <T id={'financial'} />
       </CustomerFormSectionTitle>
-          
-          <FFormGroup
-            name={'currency_code'}
-            label={intl.get('currency')}
-            fastField
-            inline
-            fill
-            >
-            <CurrencySelectList
-              name="currency_code"
-              items={currencies}
-              disabled={customerId}
-              />
-          </FFormGroup>
 
-          <CustomerOpeningBalanceField />
-          <CustomerOpeningBalanceExchangeRateField />
-          <CustomerOpeningBalanceAtField />
-          
-          <FeatureCan feature={Features.Branches}>
-            <FFormGroup
-              label={intl.get('customer.label.opening_branch')}
-              name={'opening_balance_branch_id'}
-              inline
-            >
-              <BranchSelect
-                name={'opening_balance_branch_id'}
-                branches={branches}
-                popoverProps={{ minimal: true }}
-                fastField
-              />
-            </FFormGroup>
-          </FeatureCan>
-              </Box>
+      <FFormGroup
+        name={'currency_code'}
+        label={intl.get('currency')}
+        fastField
+        inline
+        fill
+      >
+        <CurrencySelectList
+          name="currency_code"
+          items={currencies}
+          disabled={customerId}
+        />
+      </FFormGroup>
+
+      <CustomerOpeningBalanceField />
+      <CustomerOpeningBalanceExchangeRateField />
+      <CustomerOpeningBalanceAtField />
+
+      <FeatureCan feature={Features.Branches}>
+        <FFormGroup
+          label={intl.get('customer.label.opening_branch')}
+          name={'opening_balance_branch_id'}
+          inline
+        >
+          <BranchSelect
+            name={'opening_balance_branch_id'}
+            branches={branches}
+            popoverProps={{ minimal: true }}
+            fastField
+          />
+        </FFormGroup>
+      </FeatureCan>
+    </Box>
   );
 }
 
@@ -144,14 +144,13 @@ function CustomerOpeningBalanceExchangeRateField() {
     return null;
   }
   return (
-    
-      <ExchangeRateInputGroup
-        fromCurrency={values.currency_code}
-        toCurrency={currentOrganization.base_currency}
-        name={'opening_balance_exchange_rate'}
-        onRecalcConfirm={() => {}}
-        onCancel={() => {}}
-        formGroupProps={{ label: ' ' }}
-      />
+    <ExchangeRateInputGroup
+      fromCurrency={values.currency_code}
+      toCurrency={currentOrganization.base_currency}
+      name={'opening_balance_exchange_rate'}
+      onRecalcConfirm={() => {}}
+      onCancel={() => {}}
+      formGroupProps={{ label: ' ' }}
+    />
   );
 }

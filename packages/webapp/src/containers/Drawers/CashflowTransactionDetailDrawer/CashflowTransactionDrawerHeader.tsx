@@ -5,7 +5,6 @@ import {
   DetailsMenu,
   DetailItem,
   FormatDate,
-
   Row,
   Col,
   CommercialDocHeader,

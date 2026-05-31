@@ -34,10 +34,11 @@ export const useCashFlowStatementColumns = () => {
   const { cashFlowStatement } = useCashFlowStatementContext();
 
   return React.useMemo(
-    () => dynamicColumns(
-      cashFlowStatement?.columns ?? [],
-      cashFlowStatement?.tableRows ?? [],
-    ),
+    () =>
+      dynamicColumns(
+        cashFlowStatement?.columns ?? [],
+        cashFlowStatement?.tableRows ?? [],
+      ),
     [cashFlowStatement],
   );
 };

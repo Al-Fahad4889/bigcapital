@@ -59,9 +59,10 @@ const mapActionsToProps = (dispatch: Dispatch): WithDashboardActionsProps => ({
 export function withDashboardActions<P>(
   WrappedComponent: ComponentType<P>,
 ): ComponentType<Omit<P, keyof WithDashboardActionsProps>> {
-  const Connected = connect(null, mapActionsToProps)(
-    WrappedComponent as ComponentType<any>,
-  );
+  const Connected = connect(
+    null,
+    mapActionsToProps,
+  )(WrappedComponent as ComponentType<any>);
   return Connected as unknown as ComponentType<
     Omit<P, keyof WithDashboardActionsProps>
   >;

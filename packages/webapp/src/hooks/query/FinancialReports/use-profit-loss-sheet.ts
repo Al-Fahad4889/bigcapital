@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchProfitLossTable,
   fetchProfitLossXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useProfitLossSheet(
   query: ProfitLossTableQuery,
-  props?: Omit<UseQueryOptions<ProfitLossTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<ProfitLossTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

@@ -9,8 +9,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const CustomerTransactionsPdfDialogContent = lazy(
-  () => import('./CustomerTransactionsPdfDialogContent').then(m => ({ default: m.CustomerTransactionsPdfDialogContent })),
+const CustomerTransactionsPdfDialogContent = lazy(() =>
+  import('./CustomerTransactionsPdfDialogContent').then((m) => ({
+    default: m.CustomerTransactionsPdfDialogContent,
+  })),
 );
 
 interface CustomerTransactionsPdfDialogRootProps {
@@ -22,7 +24,11 @@ interface CustomerTransactionsPdfDialogRootProps {
 /**
  * Cashflow sheet pdf preview dialog.
  */
-function CustomerTransactionsPdfDialogRoot({ dialogName, payload, isOpen }: CustomerTransactionsPdfDialogRootProps) {
+function CustomerTransactionsPdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: CustomerTransactionsPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

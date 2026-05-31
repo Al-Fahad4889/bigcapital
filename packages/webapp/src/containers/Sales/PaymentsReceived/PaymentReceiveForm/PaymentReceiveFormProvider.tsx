@@ -126,8 +126,10 @@ function PaymentReceiveFormProvider({
     useGetPdfTemplates({ resource: 'PaymentReceive' });
 
   // Fetches the payment received initial state.
-  const { data: paymentReceivedState, isLoading: isPaymentReceivedStateLoading } =
-    usePaymentReceivedState();
+  const {
+    data: paymentReceivedState,
+    isLoading: isPaymentReceivedStateLoading,
+  } = usePaymentReceivedState();
 
   const isNewMode = !paymentReceiveId;
 

@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchInventoryItemDetailsTable,
   fetchInventoryItemDetailsXlsx,
@@ -26,7 +31,10 @@ interface InventoryItemDetailsReport {
 
 export function useInventoryItemDetailsReport(
   query: InventoryItemDetailsTableQuery,
-  props?: Omit<UseQueryOptions<InventoryItemDetailsReport, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<InventoryItemDetailsReport, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -70,7 +78,9 @@ export function useInventoryItemDetailsCsvExport(
   });
 }
 
-export function useInventoryItemDetailsPdf(query: InventoryItemDetailsPdfQuery) {
+export function useInventoryItemDetailsPdf(
+  query: InventoryItemDetailsPdfQuery,
+) {
   const fetcher = useApiFetcher();
   return useFetcherPdf(() => fetchInventoryItemDetailsPdf(fetcher, query));
 }

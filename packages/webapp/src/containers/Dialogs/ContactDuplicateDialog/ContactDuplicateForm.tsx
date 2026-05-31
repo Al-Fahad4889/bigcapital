@@ -23,9 +23,7 @@ function ContactDuplicateFormInner({
   const { dialogName, contactId } = useContactDuplicateFromContext();
 
   const validationSchema = Yup.object().shape({
-    contact_type: Yup.string()
-      .required()
-      .label(intl.get('contact_type_')),
+    contact_type: Yup.string().required().label(intl.get('contact_type_')),
   });
 
   const initialValues = {
@@ -97,4 +95,6 @@ function ContactDuplicateFormInner({
   );
 }
 
-export const ContactDuplicateForm = compose(withDialogActions)(ContactDuplicateFormInner);
+export const ContactDuplicateForm = compose(withDialogActions)(
+  ContactDuplicateFormInner,
+);

@@ -26,10 +26,7 @@ import {
 } from './components';
 import { ProjectsSelect } from '@/containers/Projects/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import {
-  momentFormatter,
-  compose,
-} from '@/utils';
+import { momentFormatter, compose } from '@/utils';
 import { Features } from '@/constants';
 import { useTheme } from '@emotion/react';
 import intl from 'react-intl-universal';

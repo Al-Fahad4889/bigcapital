@@ -10,7 +10,10 @@ import { VendorsBalanceSummaryProvider } from './VendorsBalanceSummaryProvider';
 import { VendorsSummarySheetLoadingBar } from './components';
 import { VendorBalanceSummaryBody } from './VendorsBalanceSummaryBody';
 
-import { withVendorsBalanceSummaryActions, WithVendorsBalanceSummaryActionsProps } from './withVendorsBalanceSummaryActions';
+import {
+  withVendorsBalanceSummaryActions,
+  WithVendorsBalanceSummaryActionsProps,
+} from './withVendorsBalanceSummaryActions';
 
 import { useVendorsBalanceSummaryQuery } from './utils';
 import { VendorBalanceDialogs } from './VendorBalanceDialogs';
@@ -74,4 +77,6 @@ function VendorsBalanceSummaryInner({
   );
 }
 
-export const VendorsBalanceSummary = compose(withVendorsBalanceSummaryActions)(VendorsBalanceSummaryInner);
+export const VendorsBalanceSummary = compose(withVendorsBalanceSummaryActions)(
+  VendorsBalanceSummaryInner,
+);

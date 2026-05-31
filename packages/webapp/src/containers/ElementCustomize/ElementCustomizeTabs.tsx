@@ -40,9 +40,7 @@ export function ElementCustomizeTabs() {
               id: string;
               label: string;
               tabProps?: TabProps;
-            }) => (
-              <Tab id={id} key={id} title={label} {...tabProps} />
-            ),
+            }) => <Tab id={id} key={id} title={label} {...tabProps} />,
           )}
         </Tabs>
       </Box>

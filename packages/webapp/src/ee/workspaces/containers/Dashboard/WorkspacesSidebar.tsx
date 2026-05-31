@@ -34,9 +34,7 @@ function WorkspaceIcon({ workspace, isActive, onClick }) {
           'is-active': isActive,
           'is-disabled': isDisabled,
         })}
-        onClick={() =>
-          !isDisabled && onClick(workspace.organizationId, name)
-        }
+        onClick={() => !isDisabled && onClick(workspace.organizationId, name)}
         disabled={isDisabled}
       >
         {workspace.isBuildRunning ? (

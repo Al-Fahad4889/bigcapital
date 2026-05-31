@@ -39,7 +39,9 @@ function InvoicesListProvider({ query, tableStateChanged, ...props }) {
     invoices: invoicesData?.data,
     pagination: invoicesData?.pagination,
 
-    invoicesFields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    invoicesFields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     invoicesViews,
 
     isInvoicesLoading,

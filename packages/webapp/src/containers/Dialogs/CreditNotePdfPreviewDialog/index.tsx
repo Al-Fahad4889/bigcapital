@@ -9,7 +9,11 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
-const PdfPreviewDialogContent = React.lazy(() => import('./CreditNotePdfPreviewDialogContent').then(m => ({ default: m.CreditNotePdfPreviewDialogContent })));
+const PdfPreviewDialogContent = React.lazy(() =>
+  import('./CreditNotePdfPreviewDialogContent').then((m) => ({
+    default: m.CreditNotePdfPreviewDialogContent,
+  })),
+);
 
 /**
  * Credit note PDF previwe dialog.

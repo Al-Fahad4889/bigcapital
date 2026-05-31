@@ -15,7 +15,9 @@ interface CashFlowStatementBodyProps {
   organizationName: WithCurrentOrganizationProps['organization']['name'];
 }
 
-function CashFlowStatementBodyJSX({ organizationName }: CashFlowStatementBodyProps) {
+function CashFlowStatementBodyJSX({
+  organizationName,
+}: CashFlowStatementBodyProps) {
   const { isCashFlowLoading } = useCashFlowStatementContext();
 
   return (

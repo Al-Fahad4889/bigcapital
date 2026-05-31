@@ -45,4 +45,6 @@ function CreditNotePdfPreviewDialogContentInner({
   );
 }
 
-export const CreditNotePdfPreviewDialogContent = compose(withDialogActions)(CreditNotePdfPreviewDialogContentInner);
+export const CreditNotePdfPreviewDialogContent = compose(withDialogActions)(
+  CreditNotePdfPreviewDialogContentInner,
+);

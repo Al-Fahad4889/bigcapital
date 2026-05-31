@@ -100,4 +100,6 @@ function DisconnectBankAccountDialogContentInner({
   );
 }
 
-export const DisconnectBankAccountDialogContent = R.compose(withDialogActions)(DisconnectBankAccountDialogContentInner);
+export const DisconnectBankAccountDialogContent = R.compose(withDialogActions)(
+  DisconnectBankAccountDialogContentInner,
+);

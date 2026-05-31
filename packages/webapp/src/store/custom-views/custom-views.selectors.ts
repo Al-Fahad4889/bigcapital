@@ -6,7 +6,8 @@ const resourceViewsIdsSelector = (
   state: RootState,
   _props: unknown,
   resourceName: string,
-) => state.views.resourceViews[resourceName] as Array<string | number> | undefined;
+) =>
+  state.views.resourceViews[resourceName] as Array<string | number> | undefined;
 
 const viewsSelector = (state: RootState) =>
   state.views.views as Record<string, unknown>;

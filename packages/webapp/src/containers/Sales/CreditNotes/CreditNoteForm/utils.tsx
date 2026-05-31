@@ -163,7 +163,8 @@ export const useSetPrimaryBranchToForm = () => {
 
 export const useSetPrimaryWarehouseToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { warehouses, isWarehousesSuccess, isNewMode } = useCreditNoteFormContext();
+  const { warehouses, isWarehousesSuccess, isNewMode } =
+    useCreditNoteFormContext();
 
   React.useEffect(() => {
     if (isWarehousesSuccess && isNewMode) {

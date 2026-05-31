@@ -44,35 +44,50 @@ import { settingsKeys } from '../settings/query-keys';
 import { organizationKeys } from '../organization/query-keys';
 import { cashflowAccountsKeys } from '../cashflow-accounts/query-keys';
 
-function commonInvalidateQueries(queryClient: ReturnType<typeof useQueryClient>) {
+function commonInvalidateQueries(
+  queryClient: ReturnType<typeof useQueryClient>,
+) {
   queryClient.invalidateQueries({ queryKey: receiptsKeys.all() });
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
   queryClient.invalidateQueries({ queryKey: accountsKeys.all() });
   queryClient.invalidateQueries({ queryKey: financialReportsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: financialReportsKeys.transactionsByReference().slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions().slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: itemsKeys.associatedReceipts(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: itemsKeys.warehousesLocation(null).slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: financialReportsKeys.transactionsByReference().slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactions().slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity().slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: itemsKeys.associatedReceipts(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: itemsKeys.warehousesLocation(null).slice(0, 1),
+  });
   queryClient.invalidateQueries({ queryKey: settingsKeys.receipts() });
-  queryClient.invalidateQueries({ queryKey: organizationKeys.mutateAbilities() });
+  queryClient.invalidateQueries({
+    queryKey: organizationKeys.mutateAbilities(),
+  });
 }
 
 export function useCreateReceipt(
-  props?: UseMutationOptions<void, Error, CreateSaleReceiptBody>
+  props?: UseMutationOptions<void, Error, CreateSaleReceiptBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (values: CreateSaleReceiptBody) => createSaleReceipt(fetcher, values),
+    mutationFn: (values: CreateSaleReceiptBody) =>
+      createSaleReceipt(fetcher, values),
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
 
 export function useEditReceipt(
-  props?: UseMutationOptions<void, Error, [number, EditSaleReceiptBody]>
+  props?: UseMutationOptions<void, Error, [number, EditSaleReceiptBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -88,7 +103,9 @@ export function useEditReceipt(
   });
 }
 
-export function useDeleteReceipt(props?: UseMutationOptions<void, Error, number>) {
+export function useDeleteReceipt(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -103,7 +120,7 @@ export function useDeleteReceipt(props?: UseMutationOptions<void, Error, number>
 }
 
 export function useBulkDeleteReceipts(
-  props?: UseMutationOptions<void, Error, BulkDeleteReceiptsBody>
+  props?: UseMutationOptions<void, Error, BulkDeleteReceiptsBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -117,7 +134,11 @@ export function useBulkDeleteReceipts(
 }
 
 export function useValidateBulkDeleteReceipts(
-  props?: UseMutationOptions<ValidateBulkDeleteReceiptsResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeleteReceiptsResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher();
 
@@ -127,7 +148,9 @@ export function useValidateBulkDeleteReceipts(
   });
 }
 
-export function useCloseReceipt(props?: UseMutationOptions<void, Error, number>) {
+export function useCloseReceipt(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -143,7 +166,7 @@ export function useCloseReceipt(props?: UseMutationOptions<void, Error, number>)
 
 export function useReceipts(
   query?: GetSaleReceiptsQuery,
-  props?: UseQueryOptions<SaleReceiptsListResponse, Error>
+  props?: UseQueryOptions<SaleReceiptsListResponse, Error>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -156,7 +179,7 @@ export function useReceipts(
 
 export function useReceipt(
   id: number | null | undefined,
-  props?: UseQueryOptions<SaleReceipt, Error>
+  props?: UseQueryOptions<SaleReceipt, Error>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -184,7 +207,7 @@ export function useRefreshReceipts() {
 
 // Not in OpenAPI schema for sale-receipts; keep using apiRequest until server exposes.
 export function useCreateNotifyReceiptBySMS(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
@@ -204,7 +227,7 @@ export function useCreateNotifyReceiptBySMS(
 export function useReceiptSMSDetail(
   receiptId: number,
   props?: Record<string, unknown>,
-  requestProps?: Record<string, unknown>
+  requestProps?: Record<string, unknown>,
 ) {
   return useRequestQuery(
     receiptsKeys.smsDetail(receiptId),
@@ -216,12 +239,12 @@ export function useReceiptSMSDetail(
     {
       defaultData: {},
       ...props,
-    }
+    },
   );
 }
 
 export function useSendSaleReceiptMail(
-  props?: UseMutationOptions<void, Error, [number, SaleReceiptSendMailBody]>
+  props?: UseMutationOptions<void, Error, [number, SaleReceiptSendMailBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -236,7 +259,7 @@ export function useSendSaleReceiptMail(
 
 export function useSaleReceiptMailState(
   receiptId: number,
-  props?: UseQueryOptions<SaleReceiptMailResponse, Error>
+  props?: UseQueryOptions<SaleReceiptMailResponse, Error>,
 ): UseQueryResult<SaleReceiptMailResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -248,7 +271,7 @@ export function useSaleReceiptMailState(
 }
 
 export function useGetReceiptState(
-  options?: UseQueryOptions<SaleReceiptStateResponse, Error>
+  options?: UseQueryOptions<SaleReceiptStateResponse, Error>,
 ): UseQueryResult<SaleReceiptStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -261,7 +284,7 @@ export function useGetReceiptState(
 
 export function useGetSaleReceiptHtml(
   receiptId: number,
-  options?: UseQueryOptions<SaleReceiptHtmlContentResponse, Error>
+  options?: UseQueryOptions<SaleReceiptHtmlContentResponse, Error>,
 ): UseQueryResult<SaleReceiptHtmlContentResponse, Error> {
   const fetcher = useApiFetcher();
 

@@ -156,7 +156,8 @@ export const useObserveVendorCreditNoSettings = (prefix, nextNumber) => {
 
 export const useSetPrimaryBranchToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { branches, isBranchesSuccess, isNewMode } = useVendorCreditNoteFormContext();
+  const { branches, isBranchesSuccess, isNewMode } =
+    useVendorCreditNoteFormContext();
 
   React.useEffect(() => {
     if (isBranchesSuccess && isNewMode) {
@@ -171,7 +172,8 @@ export const useSetPrimaryBranchToForm = () => {
 
 export const useSetPrimaryWarehouseToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { warehouses, isWarehousesSuccess, isNewMode } = useVendorCreditNoteFormContext();
+  const { warehouses, isWarehousesSuccess, isNewMode } =
+    useVendorCreditNoteFormContext();
 
   React.useEffect(() => {
     if (isWarehousesSuccess && isNewMode) {

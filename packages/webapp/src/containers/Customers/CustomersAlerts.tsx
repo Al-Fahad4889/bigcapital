@@ -1,9 +1,21 @@
 // @ts-nocheck
 import React from 'react';
 
-const CustomerDeleteAlert = React.lazy(() => import('@/containers/Alerts/Customers/CustomerDeleteAlert').then(m => ({ default: m.CustomerDeleteAlert })));
-const CustomerActivateAlert = React.lazy(() => import('@/containers/Alerts/Customers/CustomerActivateAlert').then(m => ({ default: m.CustomerActivateAlert })));
-const CustomerInactivateAlert = React.lazy(() => import('@/containers/Alerts/Customers/CustomerInactivateAlert').then(m => ({ default: m.CustomerInactivateAlert })));
+const CustomerDeleteAlert = React.lazy(() =>
+  import('@/containers/Alerts/Customers/CustomerDeleteAlert').then((m) => ({
+    default: m.CustomerDeleteAlert,
+  })),
+);
+const CustomerActivateAlert = React.lazy(() =>
+  import('@/containers/Alerts/Customers/CustomerActivateAlert').then((m) => ({
+    default: m.CustomerActivateAlert,
+  })),
+);
+const CustomerInactivateAlert = React.lazy(() =>
+  import('@/containers/Alerts/Customers/CustomerInactivateAlert').then((m) => ({
+    default: m.CustomerInactivateAlert,
+  })),
+);
 
 /**
  * Customers alert.

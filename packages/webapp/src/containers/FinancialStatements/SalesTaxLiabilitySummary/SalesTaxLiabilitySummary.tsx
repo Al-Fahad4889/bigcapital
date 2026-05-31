@@ -10,11 +10,15 @@ import { SalesTaxLiabilitySummaryBoot } from './SalesTaxLiabilitySummaryBoot';
 import { SalesTaxLiabilitySummaryBody } from './SalesTaxLiabilitySummaryBody';
 import { useSalesTaxLiabilitySummaryQuery } from './utils';
 import { SalesTaxLiabiltiyPdfDialog } from './SalesTaxLiabilityPdfDialog';
-import { withSalesTaxLiabilitySummaryActions, WithSalesTaxLiabilitySummaryActionsProps } from './withSalesTaxLiabilitySummaryActions';
+import {
+  withSalesTaxLiabilitySummaryActions,
+  WithSalesTaxLiabilitySummaryActionsProps,
+} from './withSalesTaxLiabilitySummaryActions';
 import { compose } from '@/utils';
 import { DialogsName } from '@/constants/dialogs';
 
-interface SalesTaxLiabilitySummaryProps extends WithSalesTaxLiabilitySummaryActionsProps {}
+interface SalesTaxLiabilitySummaryProps
+  extends WithSalesTaxLiabilitySummaryActionsProps {}
 
 /**
  * Sales tax liability summary.
@@ -73,6 +77,6 @@ function SalesTaxLiabilitySummaryInner({
   );
 }
 
-export const SalesTaxLiabilitySummary = compose(withSalesTaxLiabilitySummaryActions)(
-  SalesTaxLiabilitySummaryInner,
-);
+export const SalesTaxLiabilitySummary = compose(
+  withSalesTaxLiabilitySummaryActions,
+)(SalesTaxLiabilitySummaryInner);

@@ -20,15 +20,14 @@ import { useApiFetcher } from '../../useRequest';
 import { currenciesKeys } from './query-keys';
 
 export function useCreateCurrency(
-  props?: UseMutationOptions<void, Error, CreateCurrencyBody>
+  props?: UseMutationOptions<void, Error, CreateCurrencyBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (values: CreateCurrencyBody) =>
-      createCurrency(fetcher, values),
+    mutationFn: (values: CreateCurrencyBody) => createCurrency(fetcher, values),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: currenciesKeys.all() });
     },
@@ -36,7 +35,7 @@ export function useCreateCurrency(
 }
 
 export function useEditCurrency(
-  props?: UseMutationOptions<void, Error, [number, EditCurrencyBody]>
+  props?: UseMutationOptions<void, Error, [number, EditCurrencyBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -52,15 +51,14 @@ export function useEditCurrency(
 }
 
 export function useDeleteCurrency(
-  props?: UseMutationOptions<void, Error, string>
+  props?: UseMutationOptions<void, Error, string>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (currencyCode: string) =>
-      deleteCurrency(fetcher, currencyCode),
+    mutationFn: (currencyCode: string) => deleteCurrency(fetcher, currencyCode),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: currenciesKeys.all() });
     },
@@ -68,7 +66,7 @@ export function useDeleteCurrency(
 }
 
 export function useCurrencies(
-  props?: Omit<UseQueryOptions<CurrenciesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<CurrenciesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

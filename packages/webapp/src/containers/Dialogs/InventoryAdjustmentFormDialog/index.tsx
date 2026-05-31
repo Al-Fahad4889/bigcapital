@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const InventoryAdjustmentFormDialogContent = lazy(() => import('./InventoryAdjustmentFormDialogContent').then(m => ({ default: m.InventoryAdjustmentFormDialogContent })));
+const InventoryAdjustmentFormDialogContent = lazy(() =>
+  import('./InventoryAdjustmentFormDialogContent').then((m) => ({
+    default: m.InventoryAdjustmentFormDialogContent,
+  })),
+);
 
 /**
  * Inventory adjustments form dialog.

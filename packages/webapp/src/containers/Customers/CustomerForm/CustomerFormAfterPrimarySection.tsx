@@ -8,12 +8,7 @@ export function CustomerFormAfterPrimarySection({}) {
   return (
     <div>
       {/*------------ Customer email -----------*/}
-      <FFormGroup
-        name={'email'}
-        label={intl.get('customer_email')}
-        inline
-        fill
-      >
+      <FFormGroup name={'email'} label={intl.get('customer_email')} inline fill>
         <FInputGroup name={'email'} fill />
       </FFormGroup>
 
@@ -39,12 +34,7 @@ export function CustomerFormAfterPrimarySection({}) {
       </FFormGroup>
 
       {/*------------ Customer website -----------*/}
-      <FFormGroup
-        name={'website'}
-        label={intl.get('website')}
-        inline
-        fill
-      >
+      <FFormGroup name={'website'} label={intl.get('website')} inline fill>
         <FInputGroup name={'website'} placeholder={'http://'} fill />
       </FFormGroup>
     </div>

@@ -24,7 +24,6 @@ import {
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
-
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -140,7 +139,6 @@ function RefundCreditNoteFormFieldsInner({
             name={'amount'}
             minimal={true}
             inputRef={(ref) => (amountFieldRef.current = ref)}
-
           />
         </ControlGroup>
       </FFormGroup>
@@ -158,7 +156,12 @@ function RefundCreditNoteFormFieldsInner({
       </If>
 
       {/* ------------ Reference No. ------------ */}
-      <FFormGroup name={'reference_no'} label={intl.get('reference_no')} fill fastField>
+      <FFormGroup
+        name={'reference_no'}
+        label={intl.get('reference_no')}
+        fill
+        fastField
+      >
         <FInputGroup name={'reference_no'} minimal fill />
       </FFormGroup>
 
@@ -175,7 +178,9 @@ function RefundCreditNoteFormFieldsInner({
   );
 }
 
-export const RefundCreditNoteFormFields = compose(withCurrentOrganization())(RefundCreditNoteFormFieldsInner);
+export const RefundCreditNoteFormFields = compose(withCurrentOrganization())(
+  RefundCreditNoteFormFieldsInner,
+);
 
 export const BranchRowDivider = styled.div`
   --x-divider-color: #ebf1f6;

@@ -45,7 +45,9 @@ function PaymentMadesListProvider({ query, tableStateChanged, ...props }) {
     filterMeta: paymentMadesData?.filter_meta,
     paymentMadesViews,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     resourceMeta,
     isResourceMetaLoading,
     isResourceMetaFetching,

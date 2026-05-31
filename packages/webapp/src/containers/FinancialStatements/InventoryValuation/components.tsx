@@ -32,7 +32,8 @@ export const useInventoryValuationTableColumns = () => {
     () => [
       {
         Header: intl.get('item_name'),
-        accessor: (row: Record<string, unknown>) => (row.code ? `${row.name} - ${row.code}` : row.name),
+        accessor: (row: Record<string, unknown>) =>
+          row.code ? `${row.name} - ${row.code}` : row.name,
         className: 'name',
         width: 240,
         textOverview: true,

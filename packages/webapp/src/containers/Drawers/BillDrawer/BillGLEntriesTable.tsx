@@ -8,7 +8,9 @@ import { useTransactionsByReference } from '@/hooks/query';
 import { useBillDrawerContext } from './BillDrawerProvider';
 
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '../../JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Bill GL entries table.

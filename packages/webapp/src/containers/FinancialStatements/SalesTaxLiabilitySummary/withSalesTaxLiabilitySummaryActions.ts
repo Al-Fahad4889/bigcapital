@@ -6,9 +6,14 @@ export interface WithSalesTaxLiabilitySummaryActionsProps {
   toggleSalesTaxLiabilitySummaryFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithSalesTaxLiabilitySummaryActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithSalesTaxLiabilitySummaryActionsProps => ({
   toggleSalesTaxLiabilitySummaryFilterDrawer: (toggle: boolean) =>
     dispatch(toggleSalesTaxLiabilitySummaryFilterDrawer(toggle)),
 });
 
-export const withSalesTaxLiabilitySummaryActions = connect(null, mapDispatchToProps);
+export const withSalesTaxLiabilitySummaryActions = connect(
+  null,
+  mapDispatchToProps,
+);

@@ -7,7 +7,6 @@ import {
   FInputGroup,
   Col,
   Row,
-
   InputPrependText,
 } from '@/components';
 import { EstimateAmount } from './utils';
@@ -68,4 +67,6 @@ function ProjectTaskFormFieldsInner({
   );
 }
 
-export const ProjectTaskFormFields = compose(withCurrentOrganization())(ProjectTaskFormFieldsInner);
+export const ProjectTaskFormFields = compose(withCurrentOrganization())(
+  ProjectTaskFormFieldsInner,
+);

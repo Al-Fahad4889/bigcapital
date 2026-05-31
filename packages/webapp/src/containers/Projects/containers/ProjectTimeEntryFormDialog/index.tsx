@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ProjectTimeEntryFormDialogContent = React.lazy(() => import('./ProjectTimeEntryFormDialogContent').then(m => ({ default: m.ProjectTimeEntryFormDialogContent })));
+const ProjectTimeEntryFormDialogContent = React.lazy(() =>
+  import('./ProjectTimeEntryFormDialogContent').then((m) => ({
+    default: m.ProjectTimeEntryFormDialogContent,
+  })),
+);
 
 /**
  * Project time entry form dialog.

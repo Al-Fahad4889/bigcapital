@@ -23,4 +23,6 @@ function KeyboardShortcutsFooterInner({
   );
 }
 
-export const KeyboardShortcutsFooter = compose(withDialogActions)(KeyboardShortcutsFooterInner);
+export const KeyboardShortcutsFooter = compose(withDialogActions)(
+  KeyboardShortcutsFooterInner,
+);

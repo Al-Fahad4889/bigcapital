@@ -13,7 +13,11 @@ interface ReportTableColumn {
 
 const getTableCellValueAccessor = (index: number) => `cells[${index}].value`;
 
-const getReportColWidth = (data: unknown[], accessor: string, labelText?: string) => {
+const getReportColWidth = (
+  data: unknown[],
+  accessor: string,
+  labelText?: string,
+) => {
   return getColumnWidth(
     data,
     accessor,
@@ -39,7 +43,7 @@ const percentageOfIncomeAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -58,7 +62,7 @@ const percentageOfExpenseAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -77,7 +81,7 @@ const percentageOfColumnAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -96,7 +100,7 @@ const percentageOfRowAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -115,7 +119,7 @@ const previousYearAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -134,7 +138,7 @@ const previousYearChangeAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -153,7 +157,7 @@ const previousYearPercentageAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -172,7 +176,7 @@ const previousPeriodAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -191,7 +195,7 @@ const previousPeriodChangeAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -210,7 +214,7 @@ const previousPeriodPercentageAccessor = R.curry((data, column) => {
     align: Align.Right,
     disableSortBy: true,
     textOverview: true,
-    money: true
+    money: true,
   };
 });
 
@@ -292,7 +296,7 @@ const totalColumn = R.curry((data, column) => {
     width,
     disableSortBy: true,
     align: hasChildren ? Align.Center : Align.Right,
-    money: true
+    money: true,
   };
 });
 
@@ -353,7 +357,7 @@ const dateRangeColumn = R.curry((data, column) => {
     disableSortBy: true,
     textOverview: true,
     align: isDateColumnHasColumns ? Align.Center : Align.Right,
-    money: true
+    money: true,
   };
   return R.compose(
     R.when(
@@ -389,6 +393,9 @@ const dynamicColumnMapper = R.curry((data, column) => {
   )(column);
 });
 
-export const dynamicColumns = (columns: ReportTableColumn[], data: unknown[]) => {
+export const dynamicColumns = (
+  columns: ReportTableColumn[],
+  data: unknown[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };

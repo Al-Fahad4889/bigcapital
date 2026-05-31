@@ -45,4 +45,6 @@ function RefundVendorCreditDetailActionsBarInner({
   );
 }
 
-export const RefundVendorCreditDetailActionsBar = compose(withAlertActions)(RefundVendorCreditDetailActionsBarInner);
+export const RefundVendorCreditDetailActionsBar = compose(withAlertActions)(
+  RefundVendorCreditDetailActionsBarInner,
+);

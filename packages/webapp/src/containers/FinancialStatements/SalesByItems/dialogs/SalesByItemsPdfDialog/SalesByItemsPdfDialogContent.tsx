@@ -11,7 +11,9 @@ interface SalesByItemsPdfDialogContentProps {
   dialogName?: string;
 }
 
-export function SalesByItemsPdfDialogContent({ dialogName }: SalesByItemsPdfDialogContentProps) {
+export function SalesByItemsPdfDialogContent({
+  dialogName,
+}: SalesByItemsPdfDialogContentProps) {
   const { httpQuery } = useSalesByItemsContext();
   const { isLoading, pdfUrl } = useSalesByItemsPdfExport(httpQuery);
 

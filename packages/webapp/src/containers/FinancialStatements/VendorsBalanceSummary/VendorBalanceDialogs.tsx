@@ -5,7 +5,9 @@ import { VendorBalancePdfDialog } from './dialogs/VendorBalancePdfDialog';
 export function VendorBalanceDialogs() {
   return (
     <>
-      <VendorBalancePdfDialog dialogName={DialogsName.VendorBalancePdfPreview} />
+      <VendorBalancePdfDialog
+        dialogName={DialogsName.VendorBalancePdfPreview}
+      />
     </>
   );
 }

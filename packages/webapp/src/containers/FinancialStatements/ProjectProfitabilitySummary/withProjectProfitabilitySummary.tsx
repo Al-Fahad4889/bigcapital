@@ -4,10 +4,14 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithProjectProfitabilitySummaryProps {
-  projectProfitabilitySummaryDrawerFilter: ReturnType<typeof getProjectProfitabilitySummaryFilterDrawer>;
+  projectProfitabilitySummaryDrawerFilter: ReturnType<
+    typeof getProjectProfitabilitySummaryFilterDrawer
+  >;
 }
 
-export const withProjectProfitabilitySummary = <Props,>(mapState?: MapState<WithProjectProfitabilitySummaryProps, Props>) => {
+export const withProjectProfitabilitySummary = <Props,>(
+  mapState?: MapState<WithProjectProfitabilitySummaryProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithProjectProfitabilitySummaryProps = {
       projectProfitabilitySummaryDrawerFilter:

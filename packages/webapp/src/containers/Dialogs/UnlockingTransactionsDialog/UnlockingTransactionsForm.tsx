@@ -74,4 +74,6 @@ function UnlockingTransactionsFormInner({
     />
   );
 }
-export const UnlockingTransactionsForm = compose(withDialogActions)(UnlockingTransactionsFormInner);
+export const UnlockingTransactionsForm = compose(withDialogActions)(
+  UnlockingTransactionsFormInner,
+);

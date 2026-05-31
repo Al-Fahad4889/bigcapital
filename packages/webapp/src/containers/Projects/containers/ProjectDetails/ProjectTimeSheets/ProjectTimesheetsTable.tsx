@@ -93,12 +93,12 @@ const ProjectTimesheetDataTable = styled(DataTable)`
         &.td-name {
           padding-left: 1rem;
         }
-        &.td-actions{
+        &.td-actions {
           padding-right: 1rem;
         }
       }
 
-      .tr:last-of-type .td{
+      .tr:last-of-type .td {
         border-bottom: 0;
       }
     }

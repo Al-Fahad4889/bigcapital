@@ -38,7 +38,7 @@ function ReceiptDetailActionBarInner({
 
   // #withDrawerActions
   closeDrawer,
-  openDrawer
+  openDrawer,
 }) {
   const history = useHistory();
   const { receiptId } = useReceiptDetailDrawerContext();

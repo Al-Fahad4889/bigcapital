@@ -70,7 +70,9 @@ interface CustomerWithCurrency {
  * then change the state to fetch the realtime exchange rate of the new selected currency.
  */
 export const useCustomerUpdateExRate = () => {
-  const { setFieldValue, values } = useFormikContext<{ exchange_rate: number | string }>();
+  const { setFieldValue, values } = useFormikContext<{
+    exchange_rate: number | string;
+  }>();
   const { setAutoExRateCurrency } = useAutoExRateContext();
 
   const updateEntriesOnExChange = useUpdateEntriesOnExchangeRateChange();
@@ -88,7 +90,10 @@ export const useCustomerUpdateExRate = () => {
         setFieldValue('exchange_rate', DEFAULT_EX_RATE + '');
         setFieldValue(
           'entries',
-          updateEntriesOnExChange(Number(values.exchange_rate), DEFAULT_EX_RATE),
+          updateEntriesOnExChange(
+            Number(values.exchange_rate),
+            DEFAULT_EX_RATE,
+          ),
         );
       } else {
         // Sets the currency code to fetch exchange rate of the given currency code.
@@ -114,7 +119,9 @@ interface UseSyncExRateToFormProps {
  * the entries rate based on the given new and old ex. rate.
  */
 export const useSyncExRateToForm = ({ onSynced }: UseSyncExRateToFormProps) => {
-  const { setFieldValue, values } = useFormikContext<{ exchange_rate: number | string }>();
+  const { setFieldValue, values } = useFormikContext<{
+    exchange_rate: number | string;
+  }>();
   const { autoExRateCurrency, autoExchangeRate, isAutoExchangeRateLoading } =
     useAutoExRateContext();
   const updateEntriesOnExChange = useUpdateEntriesOnExchangeRateChange();

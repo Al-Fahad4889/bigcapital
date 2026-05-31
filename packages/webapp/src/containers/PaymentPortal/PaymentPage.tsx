@@ -60,7 +60,7 @@ export interface PaymentPageProps {
   // # Copyright
   copyrightText?: string;
 
-  classNames?: Record<string, string>
+  classNames?: Record<string, string>;
 }
 
 export function InvoicePaymentPage({

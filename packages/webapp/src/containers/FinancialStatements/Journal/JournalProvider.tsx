@@ -26,10 +26,7 @@ const JournalSheetContext = createContext<JournalSheetContextValue | undefined>(
 /**
  * Journal sheet provider.
  */
-function JournalSheetProvider({
-  query,
-  children,
-}: JournalSheetProviderProps) {
+function JournalSheetProvider({ query, children }: JournalSheetProviderProps) {
   // Transforms the sheet query to request query.
   const httpQuery = React.useMemo(
     () => transformFilterFormToQuery(query),

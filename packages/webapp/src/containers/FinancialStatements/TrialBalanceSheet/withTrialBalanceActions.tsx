@@ -6,7 +6,9 @@ export interface WithTrialBalanceActionsProps {
   toggleTrialBalanceFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithTrialBalanceActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithTrialBalanceActionsProps => ({
   toggleTrialBalanceFilterDrawer: (toggle: boolean) =>
     dispatch(toggleTrialBalanceSheetFilterDrawer(toggle)),
 });

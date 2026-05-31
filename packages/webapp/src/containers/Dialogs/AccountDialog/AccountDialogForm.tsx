@@ -135,4 +135,6 @@ function AccountFormDialogContent({
   );
 }
 
-export const AccountDialogForm = compose(withDialogActions)(AccountFormDialogContent);
+export const AccountDialogForm = compose(withDialogActions)(
+  AccountFormDialogContent,
+);

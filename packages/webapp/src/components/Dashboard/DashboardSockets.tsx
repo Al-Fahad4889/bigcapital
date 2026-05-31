@@ -12,12 +12,18 @@ export function DashboardSockets() {
 
   useEffect(() => {
     socket.current = io('/', { path: '/socket' });
-  
+
     socket.current.on('NEW_TRANSACTIONS_DATA', () => {
       client.invalidateQueries({ queryKey: [AccountsQueryKeys.ACCOUNTS] });
-      client.invalidateQueries({ queryKey: [AccountsQueryKeys.ACCOUNT_TRANSACTION] });
-      client.invalidateQueries({ queryKey: [CashflowAccountsQueryKeys.CASH_FLOW_ACCOUNTS] });
-      client.invalidateQueries({ queryKey: [CashflowAccountsQueryKeys.CASH_FLOW_TRANSACTIONS] });
+      client.invalidateQueries({
+        queryKey: [AccountsQueryKeys.ACCOUNT_TRANSACTION],
+      });
+      client.invalidateQueries({
+        queryKey: [CashflowAccountsQueryKeys.CASH_FLOW_ACCOUNTS],
+      });
+      client.invalidateQueries({
+        queryKey: [CashflowAccountsQueryKeys.CASH_FLOW_TRANSACTIONS],
+      });
 
       AppToaster.show({
         message: 'The Plaid connected accounts have been updated.',

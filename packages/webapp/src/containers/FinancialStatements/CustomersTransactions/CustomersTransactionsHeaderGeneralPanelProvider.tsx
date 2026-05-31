@@ -12,12 +12,16 @@ interface CustomersTransactionsGeneralPanelProviderProps {
   children?: ReactNode;
 }
 
-const CustomersTransactionsGeneralPanelContext = createContext<CustomersTransactionsGeneralPanelContextValue | undefined>(undefined);
+const CustomersTransactionsGeneralPanelContext = createContext<
+  CustomersTransactionsGeneralPanelContextValue | undefined
+>(undefined);
 
 /**
  * Customers transactions provider.
  */
-function CustomersTransactionsGeneralPanelProvider({ ...props }: CustomersTransactionsGeneralPanelProviderProps) {
+function CustomersTransactionsGeneralPanelProvider({
+  ...props
+}: CustomersTransactionsGeneralPanelProviderProps) {
   // Fetches the customers list.
   const {
     data: customersData,
@@ -43,11 +47,15 @@ function CustomersTransactionsGeneralPanelProvider({ ...props }: CustomersTransa
   );
 }
 
-const useCustomersTransactionsGeneralPanelContext = (): CustomersTransactionsGeneralPanelContextValue => {
-  const ctx = useContext(CustomersTransactionsGeneralPanelContext);
-  if (!ctx) throw new Error('useCustomersTransactionsGeneralPanelContext must be used within a CustomersTransactionsGeneralPanelProvider');
-  return ctx;
-};
+const useCustomersTransactionsGeneralPanelContext =
+  (): CustomersTransactionsGeneralPanelContextValue => {
+    const ctx = useContext(CustomersTransactionsGeneralPanelContext);
+    if (!ctx)
+      throw new Error(
+        'useCustomersTransactionsGeneralPanelContext must be used within a CustomersTransactionsGeneralPanelProvider',
+      );
+    return ctx;
+  };
 
 export {
   CustomersTransactionsGeneralPanelProvider,

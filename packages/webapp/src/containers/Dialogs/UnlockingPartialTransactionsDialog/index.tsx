@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const UnlockingPartialTransactionsDialogContent = React.lazy(() => import('./UnlockingPartialTransactionsDialogContent').then(m => ({ default: m.UnlockingPartialTransactionsDialogContent })));
+const UnlockingPartialTransactionsDialogContent = React.lazy(() =>
+  import('./UnlockingPartialTransactionsDialogContent').then((m) => ({
+    default: m.UnlockingPartialTransactionsDialogContent,
+  })),
+);
 
 /**
  * UncLocking Partial transactions dialog.
@@ -33,4 +37,6 @@ function UnLockingPartialTransactionsDilaog({
   );
 }
 
-export const index = compose(withDialogRedux())(UnLockingPartialTransactionsDilaog);
+export const index = compose(withDialogRedux())(
+  UnLockingPartialTransactionsDilaog,
+);

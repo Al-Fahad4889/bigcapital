@@ -165,7 +165,12 @@ function VendorCreditNoteFormHeaderFieldsInner({
       </FFormGroup>
 
       {/* ----------- Reference ----------- */}
-      <FFormGroup name={'reference_no'} label={intl.get('reference_no')} inline={true} fastField>
+      <FFormGroup
+        name={'reference_no'}
+        label={intl.get('reference_no')}
+        inline={true}
+        fastField
+      >
         <FInputGroup name={'reference_no'} minimal={true} fastField />
       </FFormGroup>
     </Stack>

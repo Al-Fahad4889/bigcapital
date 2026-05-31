@@ -12,12 +12,12 @@ export interface WithBillsProps {
   billsTableStateChanged: ReturnType<
     ReturnType<typeof billsTableStateChangedFactory>
   >;
-  billsSelectedRows: ReturnType<
-    ReturnType<typeof getBillsSelectedRowsFactory>
-  >;
+  billsSelectedRows: ReturnType<ReturnType<typeof getBillsSelectedRowsFactory>>;
 }
 
-export function withBills<Props = unknown>(mapState?: MapState<WithBillsProps, Props>) {
+export function withBills<Props = unknown>(
+  mapState?: MapState<WithBillsProps, Props>,
+) {
   const getBillsTableState = getBillsTableStateFactory();
   const billsTableStateChanged = billsTableStateChangedFactory();
   const getBillsSelectedRows = getBillsSelectedRowsFactory();
@@ -32,7 +32,9 @@ export function withBills<Props = unknown>(mapState?: MapState<WithBillsProps, P
       billsTableStateChanged: billsTableStateChanged(state),
       billsSelectedRows: getBillsSelectedRows(state),
     };
-    return mapState ? (mapState(mapped, state, props) as WithBillsProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithBillsProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

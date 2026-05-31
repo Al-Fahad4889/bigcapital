@@ -1,5 +1,9 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { deleteAttachment, fetchAttachmentPresignedUrl, uploadAttachment } from '@bigcapital/sdk-ts';
+import {
+  deleteAttachment,
+  fetchAttachmentPresignedUrl,
+  uploadAttachment,
+} from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../useRequest';
 
 type UploadAttachmentResponse = Awaited<ReturnType<typeof uploadAttachment>>;
@@ -17,7 +21,11 @@ function toFormData(values: FormData | Record<string, unknown>): FormData {
 }
 
 export function useUploadAttachments(
-  props?: UseMutationOptions<UploadAttachmentResponse, Error, FormData | Record<string, unknown>>
+  props?: UseMutationOptions<
+    UploadAttachmentResponse,
+    Error,
+    FormData | Record<string, unknown>
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useMutation({
@@ -26,7 +34,9 @@ export function useUploadAttachments(
   });
 }
 
-export function useDeleteAttachment(props?: UseMutationOptions<void, Error, string>) {
+export function useDeleteAttachment(
+  props?: UseMutationOptions<void, Error, string>,
+) {
   const fetcher = useApiFetcher();
   return useMutation({
     ...props,
@@ -35,7 +45,7 @@ export function useDeleteAttachment(props?: UseMutationOptions<void, Error, stri
 }
 
 export function useGetPresignedUrlAttachment(
-  props?: UseMutationOptions<unknown, Error, string>
+  props?: UseMutationOptions<unknown, Error, string>,
 ) {
   const fetcher = useApiFetcher();
   return useMutation({

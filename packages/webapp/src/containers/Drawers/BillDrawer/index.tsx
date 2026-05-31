@@ -5,7 +5,9 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const BillDrawerContent = React.lazy(() => import('./BillDrawerContent').then(m => ({ default: m.BillDrawerContent })));
+const BillDrawerContent = React.lazy(() =>
+  import('./BillDrawerContent').then((m) => ({ default: m.BillDrawerContent })),
+);
 
 /**
  * Bill drawer.

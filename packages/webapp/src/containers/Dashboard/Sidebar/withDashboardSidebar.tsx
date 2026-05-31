@@ -7,7 +7,9 @@ export interface WithDashboardSidebarProps {
   sidebarSubmenuId: unknown;
 }
 
-export function withDashboardSidebar<Props = unknown>(mapState?: MapState<WithDashboardSidebarProps, Props>) {
+export function withDashboardSidebar<Props = unknown>(
+  mapState?: MapState<WithDashboardSidebarProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithDashboardSidebarProps,
     Props,
@@ -19,7 +21,10 @@ export function withDashboardSidebar<Props = unknown>(mapState?: MapState<WithDa
       sidebarSubmenuId: submenu.submenuId,
     };
     return mapState
-      ? ({ ...mapped, ...mapState(mapped, state, props) } as WithDashboardSidebarProps)
+      ? ({
+          ...mapped,
+          ...mapState(mapped, state, props),
+        } as WithDashboardSidebarProps)
       : mapped;
   };
   return connect(mapStateToProps);

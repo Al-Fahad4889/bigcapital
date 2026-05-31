@@ -41,13 +41,17 @@ import { itemsKeys } from '../items/query-keys';
 import { useRequestPdf } from '../../useRequestPdf';
 import { settingsKeys } from '../settings/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: estimatesKeys.all() });
-  queryClient.invalidateQueries({ queryKey: itemsKeys.associatedEstimates(null).slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: itemsKeys.associatedEstimates(null).slice(0, 1),
+  });
 };
 
 export function useCreateEstimate(
-  props?: UseMutationOptions<void, Error, CreateSaleEstimateBody>
+  props?: UseMutationOptions<void, Error, CreateSaleEstimateBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -64,7 +68,7 @@ export function useCreateEstimate(
 }
 
 export function useEditEstimate(
-  props?: UseMutationOptions<void, Error, [number, EditSaleEstimateBody]>
+  props?: UseMutationOptions<void, Error, [number, EditSaleEstimateBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -82,7 +86,7 @@ export function useEditEstimate(
 
 export function useEstimate(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<SaleEstimate>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<SaleEstimate>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -95,7 +99,10 @@ export function useEstimate(
 
 export function useEstimates(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<SaleEstimatesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<SaleEstimatesListResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -105,9 +112,8 @@ export function useEstimates(
   });
 }
 
-
 export function useDeleteEstimate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -123,7 +129,7 @@ export function useDeleteEstimate(
 }
 
 export function useBulkDeleteEstimates(
-  props?: UseMutationOptions<void, Error, BulkDeleteEstimatesBody>
+  props?: UseMutationOptions<void, Error, BulkDeleteEstimatesBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -137,18 +143,23 @@ export function useBulkDeleteEstimates(
 }
 
 export function useValidateBulkDeleteEstimates(
-  props?: UseMutationOptions<ValidateBulkDeleteEstimatesResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeleteEstimatesResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
-    mutationFn: (ids: number[]) => validateBulkDeleteSaleEstimates(fetcher, ids),
+    mutationFn: (ids: number[]) =>
+      validateBulkDeleteSaleEstimates(fetcher, ids),
   });
 }
 
 export function useDeliverEstimate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -164,7 +175,7 @@ export function useDeliverEstimate(
 }
 
 export function useApproveEstimate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -180,7 +191,7 @@ export function useApproveEstimate(
 }
 
 export function useRejectEstimate(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -212,7 +223,7 @@ export function useRefreshEstimates() {
 }
 
 export function useCreateNotifyEstimateBySMS(
-  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -222,7 +233,9 @@ export function useCreateNotifyEstimateBySMS(
     mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
       notifySaleEstimateBySms(fetcher, id, values),
     onSuccess: (_data, [id]) => {
-      queryClient.invalidateQueries({ queryKey: estimatesKeys.notifyBySms(id) });
+      queryClient.invalidateQueries({
+        queryKey: estimatesKeys.notifyBySms(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -231,7 +244,7 @@ export function useCreateNotifyEstimateBySMS(
 export function useEstimateSMSDetail(
   estimateId: number | null | undefined,
   props?: Record<string, unknown>,
-  requestProps?: Record<string, unknown>
+  requestProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -244,7 +257,7 @@ export function useEstimateSMSDetail(
 }
 
 export function useSendSaleEstimateMail(
-  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -259,7 +272,7 @@ export function useSendSaleEstimateMail(
 
 export function useSaleEstimateMailState(
   estimateId: number,
-  props?: UseQueryOptions<SaleEstimateMailStateResponse, Error>
+  props?: UseQueryOptions<SaleEstimateMailStateResponse, Error>,
 ): UseQueryResult<SaleEstimateMailStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
@@ -270,7 +283,7 @@ export function useSaleEstimateMailState(
 }
 
 export function useGetSaleEstimatesState(
-  options?: UseQueryOptions<SaleEstimatesStateResponse, Error>
+  options?: UseQueryOptions<SaleEstimatesStateResponse, Error>,
 ): UseQueryResult<SaleEstimatesStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -286,7 +299,7 @@ export function useGetSaleEstimatesState(
  */
 export const useGetSaleEstimateHtml = (
   estimateId: number,
-  options?: UseQueryOptions<SaleEstimateHtmlContentResponse>
+  options?: UseQueryOptions<SaleEstimateHtmlContentResponse>,
 ): UseQueryResult<SaleEstimateHtmlContentResponse> => {
   const fetcher = useApiFetcher();
 

@@ -24,27 +24,48 @@ export const SALES_TAX_LIABILITY_SUMMARY = 'SALES_TAX_LIABILITY_SUMMARY';
 // Query key factory
 export const financialReportsKeys = {
   all: () => [FINANCIAL_REPORT] as const,
-  balanceSheet: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, BALANCE_SHEET, query] as const,
-  trialBalance: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, TRIAL_BALANCE_SHEET, query] as const,
-  profitLoss: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, PROFIT_LOSS_SHEET, query] as const,
-  generalLedger: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, GENERAL_LEDGER, query] as const,
-  journal: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, JOURNAL, query] as const,
-  arAgingSummary: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, AR_AGING_SUMMARY, query] as const,
-  apAgingSummary: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, AP_AGING_SUMMARY, query] as const,
-  vendorTransactions: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, VENDORS_TRANSACTIONS, query] as const,
-  customerTransactions: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, CUSTOMERS_TRANSACTIONS, query] as const,
-  vendorBalanceSummary: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, VENDORS_BALANCE_SUMMARY, query] as const,
-  customerBalanceSummary: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, CUSTOMERS_BALANCE_SUMMARY, query] as const,
-  salesByItems: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, SALES_BY_ITEMS, query] as const,
-  purchasesByItems: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, PURCHASES_BY_ITEMS, query] as const,
-  inventoryValuation: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, INVENTORY_VALUATION, query] as const,
-  cashFlowStatement: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, CASH_FLOW_STATEMENT, query] as const,
-  inventoryItemDetails: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, INVENTORY_ITEM_DETAILS, query] as const,
-  transactionsByReference: (query?: Record<string, unknown>) => [TRANSACTIONS_BY_REFERENCE, query] as const,
-  realizedGainOrLoss: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, REALIZED_GAIN_OR_LOSS, query] as const,
-  unrealizedGainOrLoss: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, UNREALIZED_GAIN_OR_LOSS, query] as const,
-  projectProfitability: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, PROJECT_PROFITABILITY_SUMMARY, query] as const,
-  salesTaxLiability: (query?: Record<string, unknown>) => [FINANCIAL_REPORT, SALES_TAX_LIABILITY_SUMMARY, query] as const,
+  balanceSheet: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, BALANCE_SHEET, query] as const,
+  trialBalance: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, TRIAL_BALANCE_SHEET, query] as const,
+  profitLoss: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, PROFIT_LOSS_SHEET, query] as const,
+  generalLedger: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, GENERAL_LEDGER, query] as const,
+  journal: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, JOURNAL, query] as const,
+  arAgingSummary: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, AR_AGING_SUMMARY, query] as const,
+  apAgingSummary: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, AP_AGING_SUMMARY, query] as const,
+  vendorTransactions: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, VENDORS_TRANSACTIONS, query] as const,
+  customerTransactions: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, CUSTOMERS_TRANSACTIONS, query] as const,
+  vendorBalanceSummary: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, VENDORS_BALANCE_SUMMARY, query] as const,
+  customerBalanceSummary: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, CUSTOMERS_BALANCE_SUMMARY, query] as const,
+  salesByItems: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, SALES_BY_ITEMS, query] as const,
+  purchasesByItems: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, PURCHASES_BY_ITEMS, query] as const,
+  inventoryValuation: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, INVENTORY_VALUATION, query] as const,
+  cashFlowStatement: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, CASH_FLOW_STATEMENT, query] as const,
+  inventoryItemDetails: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, INVENTORY_ITEM_DETAILS, query] as const,
+  transactionsByReference: (query?: Record<string, unknown>) =>
+    [TRANSACTIONS_BY_REFERENCE, query] as const,
+  realizedGainOrLoss: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, REALIZED_GAIN_OR_LOSS, query] as const,
+  unrealizedGainOrLoss: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, UNREALIZED_GAIN_OR_LOSS, query] as const,
+  projectProfitability: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, PROJECT_PROFITABILITY_SUMMARY, query] as const,
+  salesTaxLiability: (query?: Record<string, unknown>) =>
+    [FINANCIAL_REPORT, SALES_TAX_LIABILITY_SUMMARY, query] as const,
 };
 
 // Grouped object for use in components/hooks

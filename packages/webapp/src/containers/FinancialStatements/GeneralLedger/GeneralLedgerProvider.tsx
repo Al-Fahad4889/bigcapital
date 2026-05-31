@@ -20,9 +20,9 @@ type GeneralLedgerProviderProps = {
   children?: React.ReactNode;
 };
 
-const GeneralLedgerContext = createContext<GeneralLedgerContextValue | undefined>(
-  undefined,
-);
+const GeneralLedgerContext = createContext<
+  GeneralLedgerContextValue | undefined
+>(undefined);
 
 /**
  * General ledger provider.

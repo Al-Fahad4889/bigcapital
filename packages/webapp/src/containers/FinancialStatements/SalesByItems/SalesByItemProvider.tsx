@@ -18,7 +18,9 @@ interface SalesByItemProviderProps {
   children?: React.ReactNode;
 }
 
-const SalesByItemsContext = createContext<SalesByItemsContextValue | undefined>(undefined);
+const SalesByItemsContext = createContext<SalesByItemsContextValue | undefined>(
+  undefined,
+);
 
 function SalesByItemProvider({ query, ...props }: SalesByItemProviderProps) {
   // Transforms the sheet query to http query.
@@ -29,7 +31,10 @@ function SalesByItemProvider({ query, ...props }: SalesByItemProviderProps) {
     isFetching,
     isLoading,
     refetch,
-  } = useSalesByItemsTable({ ...httpQuery }, { placeholderData: (prev) => prev });
+  } = useSalesByItemsTable(
+    { ...httpQuery },
+    { placeholderData: (prev) => prev },
+  );
 
   const provider: SalesByItemsContextValue = {
     salesByItems,

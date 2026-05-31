@@ -3,14 +3,23 @@ import { includes } from 'lodash';
 import type { RootState } from '@/store/reducers';
 
 type SubscriptionRecord = Record<string, unknown>;
-type SubscriptionProps = { subscriptionType?: string; subscriptionTypes?: Array<string> };
+type SubscriptionProps = {
+  subscriptionType?: string;
+  subscriptionTypes?: Array<string>;
+};
 
 const subscriptionSelector =
   (slug?: string) =>
-  (state: RootState, props: SubscriptionProps): SubscriptionRecord | undefined => {
-    const subscriptions = Object.values(state.subscriptions.data) as SubscriptionRecord[];
+  (
+    state: RootState,
+    props: SubscriptionProps,
+  ): SubscriptionRecord | undefined => {
+    const subscriptions = Object.values(
+      state.subscriptions.data,
+    ) as SubscriptionRecord[];
     return subscriptions.find(
-      (subscription) => subscription['slug'] === (slug || props.subscriptionType),
+      (subscription) =>
+        subscription['slug'] === (slug || props.subscriptionType),
     );
   };
 
@@ -18,17 +27,21 @@ const subscriptionsSelector = (
   state: RootState,
   props: SubscriptionProps,
 ): SubscriptionRecord[] => {
-  const subscriptions = Object.values(state.subscriptions.data) as SubscriptionRecord[];
+  const subscriptions = Object.values(
+    state.subscriptions.data,
+  ) as SubscriptionRecord[];
   return subscriptions.filter(
     (subscription) =>
-      includes(props.subscriptionTypes, subscription['slug']) || !props.subscriptionTypes,
+      includes(props.subscriptionTypes, subscription['slug']) ||
+      !props.subscriptionTypes,
   );
 };
 
 export const isSubscriptionOnTrialFactory = (slug?: string) =>
   createSelector(
     subscriptionSelector(slug),
-    (subscription) => !!(subscription as SubscriptionRecord | undefined)?.['on_trial'],
+    (subscription) =>
+      !!(subscription as SubscriptionRecord | undefined)?.['on_trial'],
   );
 
 export const isSubscriptionActiveFactory = (slug?: string) =>
@@ -39,7 +52,8 @@ export const isSubscriptionActiveFactory = (slug?: string) =>
 export const isSubscriptionInactiveFactory = (slug?: string) =>
   createSelector(
     subscriptionSelector(slug),
-    (subscription) => !!(subscription as SubscriptionRecord | undefined)?.['inactive'],
+    (subscription) =>
+      !!(subscription as SubscriptionRecord | undefined)?.['inactive'],
   );
 
 export const isSubscriptionsInactiveFactory = () =>

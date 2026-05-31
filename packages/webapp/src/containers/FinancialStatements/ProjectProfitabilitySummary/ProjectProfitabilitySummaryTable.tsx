@@ -20,10 +20,8 @@ export function ProjectProfitabilitySummaryTable({
   companyName,
 }: ProjectProfitabilitySummaryTableProps) {
   // Project profitability summary context.
-  const {
-    projectProfitabilitySummary,
-    query,
-  } = useProjectProfitabilitySummaryContext();
+  const { projectProfitabilitySummary, query } =
+    useProjectProfitabilitySummaryContext();
 
   const tableRows = (projectProfitabilitySummary as any)?.tableRows;
   const meta = (projectProfitabilitySummary as any)?.meta;

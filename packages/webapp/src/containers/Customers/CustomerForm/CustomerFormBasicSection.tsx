@@ -1,13 +1,16 @@
 // @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
-import { ControlGroup, Divider, Icon as BlueprintIcon } from '@blueprintjs/core';
+import {
+  ControlGroup,
+  Divider,
+  Icon as BlueprintIcon,
+} from '@blueprintjs/core';
 import {
   Hint,
   FieldRequiredHint,
   SalutationList,
   DisplayNameList,
-
   FInputGroup,
   FFormGroup,
   Box,
@@ -53,7 +56,7 @@ export function CustomerFormBasicSection({}) {
           />
         </ControlGroup>
       </FFormGroup>
-      
+
       <FFormGroup
         name={'code'}
         label={'Customer Code'}
@@ -61,9 +64,7 @@ export function CustomerFormBasicSection({}) {
         inline
         fill
       >
-        <FInputGroup
-          name={'code'}
-          fill />
+        <FInputGroup name={'code'} fill />
       </FFormGroup>
 
       {/*----------- Company Name -----------*/}
@@ -91,18 +92,11 @@ export function CustomerFormBasicSection({}) {
         />
       </FFormGroup>
 
-      <Divider  style={{ margin: '20px 0' }} />
+      <Divider style={{ margin: '20px 0' }} />
 
       {/*------------ Vendor email -----------*/}
-      <FFormGroup
-        name={'email'}
-        label={intl.get('vendor_email')}
-        inline
-      >
-        <FInputGroup
-          name={'email'}
-          leftIcon={<Icon icon="envelope" />}
-        />
+      <FFormGroup name={'email'} label={intl.get('vendor_email')} inline>
+        <FInputGroup name={'email'} leftIcon={<Icon icon="envelope" />} />
       </FFormGroup>
 
       {/*------------ Phone number -----------*/}

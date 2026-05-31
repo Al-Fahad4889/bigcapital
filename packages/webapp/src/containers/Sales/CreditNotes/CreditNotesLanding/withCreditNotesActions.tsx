@@ -13,7 +13,9 @@ export interface WithCreditNotesActionsProps {
   setCreditNotesSelectedRows: (selectedRows: Array<unknown>) => void;
 }
 
-export const mapDipatchToProps = (dispatch: Dispatch): WithCreditNotesActionsProps => ({
+export const mapDipatchToProps = (
+  dispatch: Dispatch,
+): WithCreditNotesActionsProps => ({
   setCreditNotesTableState: (queries: Partial<TableQuery>) =>
     dispatch(setCreditNoteTableState(queries)),
   resetCreditNotesTableState: () => dispatch(resetCreditNoteTableState()),

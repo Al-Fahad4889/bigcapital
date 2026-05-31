@@ -44,4 +44,6 @@ function RefundVendorCreditTransactionsTableInner({
   );
 }
 
-export const RefundVendorCreditTransactionsTable = compose(withAlertActions)(RefundVendorCreditTransactionsTableInner);
+export const RefundVendorCreditTransactionsTable = compose(withAlertActions)(
+  RefundVendorCreditTransactionsTableInner,
+);

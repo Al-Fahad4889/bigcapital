@@ -70,6 +70,6 @@ function CustomersBalanceSummaryInner({
   );
 }
 
-export const CustomersBalanceSummary = R.compose(withCustomersBalanceSummaryActions)(
-  CustomersBalanceSummaryInner,
-);
+export const CustomersBalanceSummary = R.compose(
+  withCustomersBalanceSummaryActions,
+)(CustomersBalanceSummaryInner);

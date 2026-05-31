@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { useInventoryValuationTable } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UseInventoryValuationTableResult = ReturnType<typeof useInventoryValuationTable>;
+type UseInventoryValuationTableResult = ReturnType<
+  typeof useInventoryValuationTable
+>;
 
 type InventoryValuationContextValue = {
   inventoryValuation: UseInventoryValuationTableResult['data'];
@@ -19,14 +21,17 @@ type InventoryValuationProviderProps = {
   children?: React.ReactNode;
 };
 
-const InventoryValuationContext = createContext<InventoryValuationContextValue | undefined>(
-  undefined,
-);
+const InventoryValuationContext = createContext<
+  InventoryValuationContextValue | undefined
+>(undefined);
 
 /**
  * Inventory valuation sheet provider.
  */
-function InventoryValuationProvider({ query, ...props }: InventoryValuationProviderProps) {
+function InventoryValuationProvider({
+  query,
+  ...props
+}: InventoryValuationProviderProps) {
   // Transformes the filter form query to request query.
   const httpQuery = useMemo(
     () => transformFilterFormToQuery(query) as Record<string, unknown>,

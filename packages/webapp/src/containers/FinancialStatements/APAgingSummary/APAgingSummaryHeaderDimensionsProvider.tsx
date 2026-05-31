@@ -16,9 +16,15 @@ type APAgingSummaryHeaderDimensionsProviderProps = {
   children?: React.ReactNode;
 };
 
-const APAgingSummaryHeaderDimensonsContext = React.createContext<APAgingSummaryHeaderDimensionsContextValue | undefined>(undefined);
+const APAgingSummaryHeaderDimensonsContext = React.createContext<
+  APAgingSummaryHeaderDimensionsContextValue | undefined
+>(undefined);
 
-function APAgingSummaryHeaderDimensionsProvider({ query, children, ...props }: APAgingSummaryHeaderDimensionsProviderProps) {
+function APAgingSummaryHeaderDimensionsProvider({
+  query,
+  children,
+  ...props
+}: APAgingSummaryHeaderDimensionsProviderProps) {
   const { featureCan } = useFeatureCan();
   const isBranchFeatureCan = featureCan(Features.Branches);
 
@@ -35,20 +41,21 @@ function APAgingSummaryHeaderDimensionsProvider({ query, children, ...props }: A
   return isBranchesLoading ? (
     <FinancialHeaderLoadingSkeleton />
   ) : (
-    <APAgingSummaryHeaderDimensonsContext.Provider
-      value={provider}
-      {...props}
-    >
+    <APAgingSummaryHeaderDimensonsContext.Provider value={provider} {...props}>
       {children}
     </APAgingSummaryHeaderDimensonsContext.Provider>
   );
 }
 
-const useAPAgingSummaryHeaderDimensonsContext = (): APAgingSummaryHeaderDimensionsContextValue => {
-  const ctx = React.useContext(APAgingSummaryHeaderDimensonsContext);
-  if (!ctx) throw new Error('useAPAgingSummaryHeaderDimensonsContext must be used within APAgingSummaryHeaderDimensionsProvider');
-  return ctx;
-};
+const useAPAgingSummaryHeaderDimensonsContext =
+  (): APAgingSummaryHeaderDimensionsContextValue => {
+    const ctx = React.useContext(APAgingSummaryHeaderDimensonsContext);
+    if (!ctx)
+      throw new Error(
+        'useAPAgingSummaryHeaderDimensonsContext must be used within APAgingSummaryHeaderDimensionsProvider',
+      );
+    return ctx;
+  };
 
 export {
   APAgingSummaryHeaderDimensionsProvider,

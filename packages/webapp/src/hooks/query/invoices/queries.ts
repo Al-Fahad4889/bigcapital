@@ -51,31 +51,44 @@ import { financialReportsKeys } from '../FinancialReports/query-keys';
 import { creditNotesKeys } from '../credit-note/query-keys';
 import { settingsKeys } from '../settings/query-keys';
 
-function commonInvalidateQueries(queryClient: ReturnType<typeof useQueryClient>) {
+function commonInvalidateQueries(
+  queryClient: ReturnType<typeof useQueryClient>,
+) {
   queryClient.invalidateQueries({ queryKey: invoicesKeys.all() });
   queryClient.invalidateQueries({ queryKey: customersKeys.all() });
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
   queryClient.invalidateQueries({ queryKey: settingsKeys.invoices() });
   queryClient.invalidateQueries({ queryKey: financialReportsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: financialReportsKeys.transactionsByReference().slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: financialReportsKeys.transactionsByReference().slice(0, 1),
+  });
   queryClient.invalidateQueries({ queryKey: accountsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: creditNotesKeys.reconcile(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: creditNotesKeys.reconciles(null).slice(0, 1) });
-  queryClient.invalidateQueries({ queryKey: organizationKeys.mutateAbilities() });
+  queryClient.invalidateQueries({
+    queryKey: creditNotesKeys.reconcile(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: creditNotesKeys.reconciles(null).slice(0, 1),
+  });
+  queryClient.invalidateQueries({
+    queryKey: organizationKeys.mutateAbilities(),
+  });
 }
 
 export function useCreateInvoice(
-  props?: UseMutationOptions<void, Error, CreateSaleInvoiceBody>
+  props?: UseMutationOptions<void, Error, CreateSaleInvoiceBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (values: CreateSaleInvoiceBody) => createSaleInvoice(fetcher, values),
+    mutationFn: (values: CreateSaleInvoiceBody) =>
+      createSaleInvoice(fetcher, values),
     onSuccess: (_data, values) => {
       const customerId = values.customerId as unknown as number;
-      queryClient.invalidateQueries({ queryKey: customersKeys.detail(customerId) });
+      queryClient.invalidateQueries({
+        queryKey: customersKeys.detail(customerId),
+      });
       queryClient.invalidateQueries({ queryKey: estimatesKeys.all() });
       commonInvalidateQueries(queryClient);
     },
@@ -83,7 +96,7 @@ export function useCreateInvoice(
 }
 
 export function useEditInvoice(
-  props?: UseMutationOptions<void, Error, [number, EditSaleInvoiceBody]>
+  props?: UseMutationOptions<void, Error, [number, EditSaleInvoiceBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -95,13 +108,17 @@ export function useEditInvoice(
     onSuccess: (_data, [id, values]) => {
       const customerId = values.customerId as unknown as number;
       queryClient.invalidateQueries({ queryKey: invoicesKeys.detail(id) });
-      queryClient.invalidateQueries({ queryKey: customersKeys.detail(customerId) });
+      queryClient.invalidateQueries({
+        queryKey: customersKeys.detail(customerId),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
 }
 
-export function useDeleteInvoice(props?: UseMutationOptions<void, Error, number>) {
+export function useDeleteInvoice(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -121,7 +138,7 @@ export function useBulkDeleteInvoices(
     void,
     Error,
     { ids: number[]; skipUndeletable?: boolean }
-  >
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -140,7 +157,11 @@ export function useBulkDeleteInvoices(
 }
 
 export function useValidateBulkDeleteInvoices(
-  props?: UseMutationOptions<ValidateBulkDeleteSaleInvoicesResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeleteSaleInvoicesResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher();
 
@@ -152,7 +173,7 @@ export function useValidateBulkDeleteInvoices(
 
 export function useInvoices(
   query?: GetSaleInvoicesQuery,
-  props?: UseQueryOptions<SaleInvoicesListResponse, Error>
+  props?: UseQueryOptions<SaleInvoicesListResponse, Error>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -163,7 +184,9 @@ export function useInvoices(
   });
 }
 
-export function useDeliverInvoice(props?: UseMutationOptions<void, Error, number>) {
+export function useDeliverInvoice(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -171,7 +194,9 @@ export function useDeliverInvoice(props?: UseMutationOptions<void, Error, number
     ...props,
     mutationFn: (invoiceId: number) => deliverSaleInvoice(fetcher, invoiceId),
     onSuccess: (_data, invoiceId) => {
-      queryClient.invalidateQueries({ queryKey: invoicesKeys.detail(invoiceId) });
+      queryClient.invalidateQueries({
+        queryKey: invoicesKeys.detail(invoiceId),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -202,7 +227,7 @@ export function usePdfInvoice(invoiceId: number) {
 
 export function useInvoiceHtml(
   invoiceId: number,
-  options?: UseQueryOptions<SaleInvoiceHtmlContentResponse, Error>
+  options?: UseQueryOptions<SaleInvoiceHtmlContentResponse, Error>,
 ): UseQueryResult<SaleInvoiceHtmlContentResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -215,14 +240,15 @@ export function useInvoiceHtml(
 
 export function useDueInvoices(
   customerId: number | null | undefined,
-  props?: UseQueryOptions<unknown, Error>
+  props?: UseQueryOptions<unknown, Error>,
 ) {
   const fetcher = useApiFetcher();
 
   return useQuery({
     ...props,
     queryKey: invoicesKeys.due(customerId),
-    queryFn: () => fetchReceivableSaleInvoices(fetcher, customerId ?? undefined),
+    queryFn: () =>
+      fetchReceivableSaleInvoices(fetcher, customerId ?? undefined),
     enabled: customerId != null,
   });
 }
@@ -238,7 +264,7 @@ export function useRefreshInvoices() {
 }
 
 export function useCreateBadDebt(
-  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<void, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -254,7 +280,9 @@ export function useCreateBadDebt(
   });
 }
 
-export function useCancelBadDebt(props?: UseMutationOptions<void, Error, number>) {
+export function useCancelBadDebt(
+  props?: UseMutationOptions<void, Error, number>,
+) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -262,7 +290,9 @@ export function useCancelBadDebt(props?: UseMutationOptions<void, Error, number>
     ...props,
     mutationFn: (id: number) => cancelWrittenOffSaleInvoice(fetcher, id),
     onSuccess: (_data, id) => {
-      queryClient.invalidateQueries({ queryKey: invoicesKeys.cancelBadDebt(id) });
+      queryClient.invalidateQueries({
+        queryKey: invoicesKeys.cancelBadDebt(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -270,7 +300,7 @@ export function useCancelBadDebt(props?: UseMutationOptions<void, Error, number>
 
 // Not in OpenAPI schema for sale-invoices; keep using apiRequest.
 export function useCreateNotifyInvoiceBySMS(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
@@ -290,7 +320,7 @@ export function useCreateNotifyInvoiceBySMS(
 export function useInvoiceSMSDetail(
   invoiceId: number,
   query?: Record<string, unknown>,
-  props?: Record<string, unknown>
+  props?: Record<string, unknown>,
 ) {
   return useRequestQuery(
     [...invoicesKeys.smsDetail(invoiceId), query],
@@ -303,13 +333,13 @@ export function useInvoiceSMSDetail(
       select: (res: { data: unknown }) => res.data,
       defaultData: {},
       ...props,
-    }
+    },
   );
 }
 
 export function useInvoicePaymentTransactions(
   invoiceId: number,
-  props?: UseQueryOptions<InvoicePaymentTransactionsResponse, Error>
+  props?: UseQueryOptions<InvoicePaymentTransactionsResponse, Error>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -399,14 +429,18 @@ export interface GetSaleInvoiceDefaultOptionsResponse {
 
 export function useSaleInvoiceMailState(
   invoiceId: number,
-  options?: UseQueryOptions<GetSaleInvoiceDefaultOptionsResponse, Error>
+  options?: UseQueryOptions<GetSaleInvoiceDefaultOptionsResponse, Error>,
 ): UseQueryResult<GetSaleInvoiceDefaultOptionsResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useQuery({
     ...options,
     queryKey: invoicesKeys.defaultOptions(invoiceId),
-    queryFn: () => fetchSaleInvoiceMailState(fetcher, invoiceId) as Promise<GetSaleInvoiceDefaultOptionsResponse>,
+    queryFn: () =>
+      fetchSaleInvoiceMailState(
+        fetcher,
+        invoiceId,
+      ) as Promise<GetSaleInvoiceDefaultOptionsResponse>,
   });
 }
 
@@ -414,7 +448,7 @@ export function useSaleInvoiceMailState(
 export type GetSaleInvoiceStateResponse = SaleInvoiceStateResponse;
 
 export function useGetSaleInvoiceState(
-  options?: UseQueryOptions<GetSaleInvoiceStateResponse, Error>
+  options?: UseQueryOptions<GetSaleInvoiceStateResponse, Error>,
 ): UseQueryResult<GetSaleInvoiceStateResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -422,8 +456,9 @@ export function useGetSaleInvoiceState(
     ...options,
     queryKey: invoicesKeys.state(),
     queryFn: () =>
-      fetchSaleInvoiceState(fetcher).then((data: GetSaleInvoiceStateResponse & { data?: unknown }) =>
-        (data?.data ?? data) as GetSaleInvoiceStateResponse
+      fetchSaleInvoiceState(fetcher).then(
+        (data: GetSaleInvoiceStateResponse & { data?: unknown }) =>
+          (data?.data ?? data) as GetSaleInvoiceStateResponse,
       ),
   });
 }
@@ -478,7 +513,7 @@ export interface GetSaleInvoiceBrandingTemplateResponse {
 
 export function useGetSaleInvoiceBrandingTemplate(
   invoiceId: number,
-  options?: UseQueryOptions<GetSaleInvoiceBrandingTemplateResponse, Error>
+  options?: UseQueryOptions<GetSaleInvoiceBrandingTemplateResponse, Error>,
 ): UseQueryResult<GetSaleInvoiceBrandingTemplateResponse, Error> {
   const apiRequest = useApiRequest();
 
@@ -488,8 +523,11 @@ export function useGetSaleInvoiceBrandingTemplate(
     queryFn: () =>
       apiRequest
         .get(`/sale-invoices/${invoiceId}/template`, {})
-        .then((res: { data?: { data?: unknown } }) =>
-          transformToCamelCase(res.data?.data) as GetSaleInvoiceBrandingTemplateResponse
+        .then(
+          (res: { data?: { data?: unknown } }) =>
+            transformToCamelCase(
+              res.data?.data,
+            ) as GetSaleInvoiceBrandingTemplateResponse,
         ),
   });
 }

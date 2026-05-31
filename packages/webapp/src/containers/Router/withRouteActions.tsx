@@ -11,7 +11,10 @@ export interface WithRouteActionsProps {
   removeQuery: (key: string) => void;
 }
 
-export const mapDispatchToProps = (_dispatch: Dispatch, props: RouteActionsOwnProps): WithRouteActionsProps => {
+export const mapDispatchToProps = (
+  _dispatch: Dispatch,
+  props: RouteActionsOwnProps,
+): WithRouteActionsProps => {
   return {
     addQuery: (key: string, value: string) => {
       const pathname = props.location.pathname;

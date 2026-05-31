@@ -59,6 +59,8 @@ export const withSubscriptionPlanMapper = <
       annuallyVariantId: plan.annuallyVariantId,
       onSubscribe,
     };
-    return <WrappedComponent {...mappedProps} {...(restProps as unknown as P)} />;
+    return (
+      <WrappedComponent {...mappedProps} {...(restProps as unknown as P)} />
+    );
   };
 };

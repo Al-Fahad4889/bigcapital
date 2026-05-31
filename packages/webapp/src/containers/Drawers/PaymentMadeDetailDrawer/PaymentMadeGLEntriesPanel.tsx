@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import { Card } from '@/components';
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '../../JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '../../JournalEntriesTable/JournalEntriesTable';
 
 import { useTransactionsByReference } from '@/hooks/query';
 import { usePaymentMadeDetailContext } from './PaymentMadeDetailProvider';

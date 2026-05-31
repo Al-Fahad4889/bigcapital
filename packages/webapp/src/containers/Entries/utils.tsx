@@ -286,9 +286,9 @@ export const useComposeRowsOnRemoveTableRow = () => {
 
 /**
  * Retrieves the aggregate tax rates from the given item entries.
- * @param {string} currencyCode - 
- * @param {any} taxRates - 
- * @param {any} entries - 
+ * @param {string} currencyCode -
+ * @param {any} taxRates -
+ * @param {any} entries -
  */
 export const aggregateItemEntriesTaxRates = R.curry(
   (currencyCode, taxRates, entries) => {

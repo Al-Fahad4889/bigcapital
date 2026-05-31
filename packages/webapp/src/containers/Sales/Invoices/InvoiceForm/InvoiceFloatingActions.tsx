@@ -247,7 +247,16 @@ export function InvoiceFloatingActions() {
             </Menu>
           }
         >
-          <Button minimal icon={<MoreIcon fill={isDarkMode ? "#fff" : "#000"} height={'14px'} width={'14px'} />} />
+          <Button
+            minimal
+            icon={
+              <MoreIcon
+                fill={isDarkMode ? '#fff' : '#000'}
+                height={'14px'}
+                width={'14px'}
+              />
+            }
+          />
         </Popover>
       </Group>
     </PageForm.FooterActions>

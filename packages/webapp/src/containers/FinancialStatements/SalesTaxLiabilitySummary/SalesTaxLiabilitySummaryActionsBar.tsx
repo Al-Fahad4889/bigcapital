@@ -15,20 +15,34 @@ import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { compose, saveInvoke } from '@/utils';
 import { useSalesTaxLiabilitySummaryContext } from './SalesTaxLiabilitySummaryBoot';
-import { withSalesTaxLiabilitySummary, WithSalesTaxLiabilitySummaryProps } from './withSalesTaxLiabilitySummary';
-import { withSalesTaxLiabilitySummaryActions, WithSalesTaxLiabilitySummaryActionsProps } from './withSalesTaxLiabilitySummaryActions';
+import {
+  withSalesTaxLiabilitySummary,
+  WithSalesTaxLiabilitySummaryProps,
+} from './withSalesTaxLiabilitySummary';
+import {
+  withSalesTaxLiabilitySummaryActions,
+  WithSalesTaxLiabilitySummaryActionsProps,
+} from './withSalesTaxLiabilitySummaryActions';
 import { SalesTaxLiabilityExportMenu } from './components';
 import { DialogsName } from '@/constants/dialogs';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 
 interface SalesTaxLiabilitySummaryActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;
 }
 
-type SalesTaxLiabilitySummaryActionsBarProps =
-  Pick<WithSalesTaxLiabilitySummaryProps, 'salesTaxLiabilitySummaryFilter'> &
-  Pick<WithSalesTaxLiabilitySummaryActionsProps, 'toggleSalesTaxLiabilitySummaryFilterDrawer'> &
+type SalesTaxLiabilitySummaryActionsBarProps = Pick<
+  WithSalesTaxLiabilitySummaryProps,
+  'salesTaxLiabilitySummaryFilter'
+> &
+  Pick<
+    WithSalesTaxLiabilitySummaryActionsProps,
+    'toggleSalesTaxLiabilitySummaryFilterDrawer'
+  > &
   WithDialogActionsProps &
   SalesTaxLiabilitySummaryActionsBarOwnProps;
 

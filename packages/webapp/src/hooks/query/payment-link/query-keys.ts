@@ -6,7 +6,8 @@ export const PAYMENT_LINK_INVOICE_PDF = 'GetPaymentLinkInvoicePdf';
 export const paymentLinkKeys = {
   all: () => [PAYMENT_LINK_INVOICE] as const,
   invoice: (linkId: string) => [PAYMENT_LINK_INVOICE, linkId] as const,
-  invoicePdf: (invoiceId: string) => [PAYMENT_LINK_INVOICE_PDF, invoiceId] as const,
+  invoicePdf: (invoiceId: string) =>
+    [PAYMENT_LINK_INVOICE_PDF, invoiceId] as const,
 };
 
 // Grouped object for use in components/hooks

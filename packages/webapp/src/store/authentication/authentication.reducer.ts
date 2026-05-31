@@ -4,7 +4,15 @@ import purgeStoredState from 'redux-persist/es/purgeStoredState';
 import storage from 'redux-persist/lib/storage';
 import { isUndefined } from 'lodash';
 import { getCookie } from '@/utils';
-import { AUTH_LOGIN_CLEAR_ERRORS, AUTH_LOGIN_FAILURE, AUTH_SET_AUTH_TOKEN, AUTH_SET_EMAIL_VERIFIED, AUTH_SET_ORGANIZATIOIN_ID, AUTH_SET_USER_ID, RESET } from '@/store/types';
+import {
+  AUTH_LOGIN_CLEAR_ERRORS,
+  AUTH_LOGIN_FAILURE,
+  AUTH_SET_AUTH_TOKEN,
+  AUTH_SET_EMAIL_VERIFIED,
+  AUTH_SET_ORGANIZATIOIN_ID,
+  AUTH_SET_USER_ID,
+  RESET,
+} from '@/store/types';
 
 export interface AuthenticationState {
   token: string | null;
@@ -81,10 +89,14 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const authenticationPersistReducer = persistReducer(CONFIG, reducerInstance);
+export const authenticationPersistReducer = persistReducer(
+  CONFIG,
+  reducerInstance,
+);
 
-export const isAuthenticated = (state: { authentication: AuthenticationState }) =>
-  !!state.authentication.token;
+export const isAuthenticated = (state: {
+  authentication: AuthenticationState;
+}) => !!state.authentication.token;
 
 export const hasErrorType = (
   state: { authentication: AuthenticationState },

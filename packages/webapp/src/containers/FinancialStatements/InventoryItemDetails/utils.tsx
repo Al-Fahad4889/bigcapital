@@ -3,52 +3,61 @@ import * as R from 'ramda';
 import { getColumnWidth } from '@/utils';
 import { Align } from '@/constants';
 
-const itemNameOrDateColumn = R.curry((data: unknown[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 130,
-    magicSpacing: 10,
+const itemNameOrDateColumn = R.curry(
+  (data: unknown[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 130,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
   }),
-  disableSortBy: true,
-}));
+);
 
-const numericColumn = R.curry((data: unknown[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 130,
-    magicSpacing: 10,
+const numericColumn = R.curry(
+  (data: unknown[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 130,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
+    align: Align.Right,
+    money: true,
   }),
-  disableSortBy: true,
-  align: Align.Right,
-  money: true,
-}));
+);
 
-const columnsMapper = R.curry((data: unknown[], index: number, column: Record<string, any>) => ({
-  id: column.key,
-  key: column.key,
-  Header: column.label,
-  accessor: `cells[${index}].value`,
-  className: column.key,
-  width: getColumnWidth(data, `cells.${index}.key`, {
-    minWidth: 130,
-    magicSpacing: 10,
+const columnsMapper = R.curry(
+  (data: unknown[], index: number, column: Record<string, any>) => ({
+    id: column.key,
+    key: column.key,
+    Header: column.label,
+    accessor: `cells[${index}].value`,
+    className: column.key,
+    width: getColumnWidth(data, `cells.${index}.key`, {
+      minWidth: 130,
+      magicSpacing: 10,
+    }),
+    disableSortBy: true,
+    textOverview: true,
   }),
-  disableSortBy: true,
-  textOverview: true,
-}));
+);
 
 /**
  * Inventory item details columns.
  */
-export const dynamicColumns = (columns: Record<string, any>[], data: unknown[]) => {
+export const dynamicColumns = (
+  columns: Record<string, any>[],
+  data: unknown[],
+) => {
   const mapper = (column: Record<string, any>, index: number) => {
     return R.compose(
       R.cond([

@@ -6,7 +6,8 @@ export const ITEM_WAREHOUSES_LOCATION = 'ITEM_WAREHOUSES_LOCATION';
 // Query key factory
 export const warehousesTransfersKeys = {
   all: () => [WAREHOUSE_TRANSFERS] as const,
-  list: (query?: Record<string, unknown>) => [WAREHOUSE_TRANSFERS, query] as const,
+  list: (query?: Record<string, unknown>) =>
+    [WAREHOUSE_TRANSFERS, query] as const,
   detail: (id: number | null | undefined) => [WAREHOUSE_TRANSFER, id] as const,
 };
 

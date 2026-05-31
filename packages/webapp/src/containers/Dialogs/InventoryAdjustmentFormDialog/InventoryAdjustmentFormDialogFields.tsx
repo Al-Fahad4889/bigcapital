@@ -7,7 +7,6 @@ import { useFormikContext } from 'formik';
 import { Classes, FormGroup, Position } from '@blueprintjs/core';
 import {
   FFormGroup,
-
   FDateInput,
   FInputGroup,
   FTextArea,
@@ -75,10 +74,7 @@ export function InventoryAdjustmentFormDialogFields() {
       <Row>
         <FeatureCan feature={Features.Branches}>
           <Col xs={5}>
-            <FormGroup
-              label={intl.get('branch')}
-              fill
-            >
+            <FormGroup label={intl.get('branch')} fill>
               <BranchSelect
                 name={'branch_id'}
                 branches={branches}
@@ -89,10 +85,7 @@ export function InventoryAdjustmentFormDialogFields() {
         </FeatureCan>
         <FeatureCan feature={Features.Warehouses}>
           <Col xs={5}>
-            <FormGroup
-              label={intl.get('warehouse')}
-              fill
-            >
+            <FormGroup label={intl.get('warehouse')} fill>
               <WarehouseSelect
                 name={'warehouse_id'}
                 warehouses={warehouses}

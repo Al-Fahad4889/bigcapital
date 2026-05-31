@@ -61,7 +61,9 @@ function AllocateLandedCostFloatingActionsInner({
   );
 }
 
-export const AllocateLandedCostFloatingActions = compose(withDialogActions)(AllocateLandedCostFloatingActionsInner);
+export const AllocateLandedCostFloatingActions = compose(withDialogActions)(
+  AllocateLandedCostFloatingActionsInner,
+);
 
 const AllocateDialogFooter = styled(DialogFooter)`
   display: flex;

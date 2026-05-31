@@ -1,5 +1,8 @@
 import { useRequestQuery } from '@/hooks/useQueryRequest';
-import { FINANCIAL_REPORT, PROJECT_PROFITABILITY_SUMMARY } from '@/hooks/query/FinancialReports/query-keys';
+import {
+  FINANCIAL_REPORT,
+  PROJECT_PROFITABILITY_SUMMARY,
+} from '@/hooks/query/FinancialReports/query-keys';
 
 interface UseProjectProfitabilitySummaryProps {
   select?: (res: any) => any;
@@ -10,7 +13,10 @@ interface UseProjectProfitabilitySummaryProps {
 /**
  * Retrieve the profitability summary for the project
  */
-export function useProjectProfitabilitySummary(query: Record<string, any>, props?: UseProjectProfitabilitySummaryProps) {
+export function useProjectProfitabilitySummary(
+  query: Record<string, any>,
+  props?: UseProjectProfitabilitySummaryProps,
+) {
   return useRequestQuery(
     [FINANCIAL_REPORT, PROJECT_PROFITABILITY_SUMMARY, query],
     {

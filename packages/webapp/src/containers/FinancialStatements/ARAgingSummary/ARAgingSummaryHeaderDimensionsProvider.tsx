@@ -16,9 +16,15 @@ type ARAgingSummaryHeaderDimensionsProviderProps = {
   children?: React.ReactNode;
 };
 
-const ARAgingSummaryHeaderDimensonsContext = React.createContext<ARAgingSummaryHeaderDimensionsContextValue | undefined>(undefined);
+const ARAgingSummaryHeaderDimensonsContext = React.createContext<
+  ARAgingSummaryHeaderDimensionsContextValue | undefined
+>(undefined);
 
-function ARAgingSummaryHeaderDimensionsProvider({ query, children, ...props }: ARAgingSummaryHeaderDimensionsProviderProps) {
+function ARAgingSummaryHeaderDimensionsProvider({
+  query,
+  children,
+  ...props
+}: ARAgingSummaryHeaderDimensionsProviderProps) {
   const { featureCan } = useFeatureCan();
   const isBranchFeatureCan = featureCan(Features.Branches);
 
@@ -35,20 +41,21 @@ function ARAgingSummaryHeaderDimensionsProvider({ query, children, ...props }: A
   return isBranchesLoading ? (
     <FinancialHeaderLoadingSkeleton />
   ) : (
-    <ARAgingSummaryHeaderDimensonsContext.Provider
-      value={provider}
-      {...props}
-    >
+    <ARAgingSummaryHeaderDimensonsContext.Provider value={provider} {...props}>
       {children}
     </ARAgingSummaryHeaderDimensonsContext.Provider>
   );
 }
 
-const useARAgingSummaryHeaderDimensonsContext = (): ARAgingSummaryHeaderDimensionsContextValue => {
-  const ctx = React.useContext(ARAgingSummaryHeaderDimensonsContext);
-  if (!ctx) throw new Error('useARAgingSummaryHeaderDimensonsContext must be used within ARAgingSummaryHeaderDimensionsProvider');
-  return ctx;
-};
+const useARAgingSummaryHeaderDimensonsContext =
+  (): ARAgingSummaryHeaderDimensionsContextValue => {
+    const ctx = React.useContext(ARAgingSummaryHeaderDimensonsContext);
+    if (!ctx)
+      throw new Error(
+        'useARAgingSummaryHeaderDimensonsContext must be used within ARAgingSummaryHeaderDimensionsProvider',
+      );
+    return ctx;
+  };
 
 export {
   ARAgingSummaryHeaderDimensionsProvider,

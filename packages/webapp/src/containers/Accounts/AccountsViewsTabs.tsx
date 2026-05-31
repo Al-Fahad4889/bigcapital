@@ -19,7 +19,7 @@ function AccountsViewsTabsInner({
   setAccountsTableState,
 
   // #withAccounts
-  accountsCurrentView
+  accountsCurrentView,
 }) {
   // Accounts chart context.
   const { resourceViews } = useAccountsChartContext();
@@ -55,6 +55,6 @@ function AccountsViewsTabsInner({
 export const AccountsViewsTabs = compose(
   withAccountsTableActions,
   withAccounts(({ accountsTableState }) => ({
-    accountsCurrentView: accountsTableState.viewSlug
-  }))
+    accountsCurrentView: accountsTableState.viewSlug,
+  })),
 )(AccountsViewsTabsInner);

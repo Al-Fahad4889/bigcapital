@@ -29,7 +29,11 @@ export function useWorkspaces(options: Record<string, unknown> = {}) {
 
   return useRequestQuery(
     ['workspaces', { includeInactive }],
-    { method: 'get', url: 'workspaces', params: { includeInactive, currentOrganizationId } },
+    {
+      method: 'get',
+      url: 'workspaces',
+      params: { includeInactive, currentOrganizationId },
+    },
     {
       select: (res: { data: unknown }) => transformToCamelCase(res.data),
       initialDataUpdatedAt: 0,
@@ -46,11 +50,7 @@ export function useCreateWorkspace() {
   const apiRequest = useApiRequest();
   const queryClient = useQueryClient();
 
-  return useMutation<
-    CreateWorkspaceResponse,
-    unknown,
-    CreateWorkspaceRequest
-  >({
+  return useMutation<CreateWorkspaceResponse, unknown, CreateWorkspaceRequest>({
     mutationFn: async (values) => {
       const response = await apiRequest.post('workspaces', values, undefined);
       return transformToCamelCase(response.data) as CreateWorkspaceResponse;

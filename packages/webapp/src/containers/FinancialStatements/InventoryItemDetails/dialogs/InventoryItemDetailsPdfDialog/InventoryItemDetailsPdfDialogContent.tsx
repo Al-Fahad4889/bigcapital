@@ -12,7 +12,9 @@ interface InventoryItemDetailsPdfDialogContentProps {
   dialogName: string;
 }
 
-export function InventoryItemDetailsPdfDialogContent({ dialogName }: InventoryItemDetailsPdfDialogContentProps) {
+export function InventoryItemDetailsPdfDialogContent({
+  dialogName,
+}: InventoryItemDetailsPdfDialogContentProps) {
   const { httpQuery } = useInventoryItemDetailsContext();
   const { isLoading, pdfUrl } = useInventoryItemDetailsPdf(httpQuery);
 

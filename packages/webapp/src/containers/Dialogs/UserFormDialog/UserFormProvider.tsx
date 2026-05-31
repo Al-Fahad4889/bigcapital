@@ -27,13 +27,11 @@ function UserFormProvider({ userId, dialogName, ...props }) {
   const { data: roles, isLoading: isRolesLoading } = useRoles();
 
   // Retrieve authenticated user information.
-  const {
-    data: authAccountData,
-  } = useAuthenticatedAccount();
+  const { data: authAccountData } = useAuthenticatedAccount();
 
   const isEditMode = userId;
 
-  const isAuth = user.system_user_id == authAccountData?.id
+  const isAuth = user.system_user_id == authAccountData?.id;
 
   // Provider state.
   const provider = {

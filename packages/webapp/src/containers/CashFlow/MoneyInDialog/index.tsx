@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const MoneyInDialogContent = React.lazy(() => import('./MoneyInDialogContent').then(m => ({ default: m.MoneyInDialogContent })));
+const MoneyInDialogContent = React.lazy(() =>
+  import('./MoneyInDialogContent').then((m) => ({
+    default: m.MoneyInDialogContent,
+  })),
+);
 
 /**
  * Money In dialog.

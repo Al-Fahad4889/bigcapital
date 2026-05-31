@@ -15,33 +15,40 @@ const taxNameAccessor = R.curry((data: any[], column: Record<string, any>) => ({
   disableSortBy: true,
 }));
 
-const taxableAmountAccessor = R.curry((data: any[], column: Record<string, any>) => {
-  const accessor = getTableCellValueAccessor(column.cell_index);
+const taxableAmountAccessor = R.curry(
+  (data: any[], column: Record<string, any>) => {
+    const accessor = getTableCellValueAccessor(column.cell_index);
 
-  return {
-    Header: column.label,
-    id: column.key,
-    accessor: getTableCellValueAccessor(column.cell_index),
-    className: column.key,
-    width: getColumnWidth(data, accessor, { minWidth: 120 }),
-    align: Align.Right,
-    disableSortBy: true,
-  };
-});
+    return {
+      Header: column.label,
+      id: column.key,
+      accessor: getTableCellValueAccessor(column.cell_index),
+      className: column.key,
+      width: getColumnWidth(data, accessor, { minWidth: 120 }),
+      align: Align.Right,
+      disableSortBy: true,
+    };
+  },
+);
 
-const dynamicColumnMapper = R.curry((data: any[], column: Record<string, any>) => {
-  const taxNameAccessorColumn = taxNameAccessor(data);
-  const taxableAmountColumn = taxableAmountAccessor(data);
+const dynamicColumnMapper = R.curry(
+  (data: any[], column: Record<string, any>) => {
+    const taxNameAccessorColumn = taxNameAccessor(data);
+    const taxableAmountColumn = taxableAmountAccessor(data);
 
-  return R.compose(
-    R.when(R.pathEq(['key'], 'taxName'), taxNameAccessorColumn),
-    R.when(R.pathEq(['key'], 'taxableAmount'), taxableAmountColumn),
-    R.when(R.pathEq(['key'], 'taxRate'), taxableAmountColumn),
-    R.when(R.pathEq(['key'], 'taxPercentage'), taxableAmountColumn),
-    R.when(R.pathEq(['key'], 'collectedTax'), taxableAmountColumn),
-  )(column);
-});
+    return R.compose(
+      R.when(R.pathEq(['key'], 'taxName'), taxNameAccessorColumn),
+      R.when(R.pathEq(['key'], 'taxableAmount'), taxableAmountColumn),
+      R.when(R.pathEq(['key'], 'taxRate'), taxableAmountColumn),
+      R.when(R.pathEq(['key'], 'taxPercentage'), taxableAmountColumn),
+      R.when(R.pathEq(['key'], 'collectedTax'), taxableAmountColumn),
+    )(column);
+  },
+);
 
-export const salesTaxLiabilitySummaryDynamicColumns = (columns: Record<string, any>[], data: any[]) => {
+export const salesTaxLiabilitySummaryDynamicColumns = (
+  columns: Record<string, any>[],
+  data: any[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };

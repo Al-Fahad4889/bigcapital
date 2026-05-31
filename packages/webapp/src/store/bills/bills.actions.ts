@@ -1,4 +1,8 @@
-import { BILLS_TABLE_STATE_RESET, BILLS_TABLE_STATE_SET, BILLS_SET_SELECTED_ROWS } from '@/store/types';;
+import {
+  BILLS_TABLE_STATE_RESET,
+  BILLS_TABLE_STATE_SET,
+  BILLS_SET_SELECTED_ROWS,
+} from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 export const setBillsTableState = (queries: Partial<TableQuery>) => {

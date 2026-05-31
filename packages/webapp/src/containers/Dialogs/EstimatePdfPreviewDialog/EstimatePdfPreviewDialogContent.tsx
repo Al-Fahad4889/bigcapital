@@ -48,4 +48,6 @@ function EstimatePdfPreviewDialogContentInner({
   );
 }
 
-export const EstimatePdfPreviewDialogContent = compose(withDialogActions)(EstimatePdfPreviewDialogContentInner);
+export const EstimatePdfPreviewDialogContent = compose(withDialogActions)(
+  EstimatePdfPreviewDialogContentInner,
+);

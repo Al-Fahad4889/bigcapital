@@ -14,13 +14,18 @@ interface AccountantFormContextValue {
   saveSettingMutate: ReturnType<typeof useSaveSettings>['mutateAsync'];
 }
 
-const AccountantFormContext = React.createContext<AccountantFormContextValue>({} as AccountantFormContextValue);
+const AccountantFormContext = React.createContext<AccountantFormContextValue>(
+  {} as AccountantFormContextValue,
+);
 
 interface AccountantFormProviderProps {
   children: ReactNode;
 }
 
-function AccountantFormProvider({ children, ...props }: AccountantFormProviderProps) {
+function AccountantFormProvider({
+  children,
+  ...props
+}: AccountantFormProviderProps) {
   const { isLoading: isAccountsLoading, data: accounts } = useAccounts();
   const { isLoading: isSettingsLoading } = useSettings();
   const { mutateAsync: saveSettingMutate } = useSaveSettings();

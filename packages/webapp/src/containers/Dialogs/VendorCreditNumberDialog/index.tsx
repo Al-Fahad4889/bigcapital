@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose, saveInvoke } from '@/utils';
 
-const VendorCreditNumberDialogContent = React.lazy(() => import('./VendorCreditNumberDialogContent').then(m => ({ default: m.VendorCreditNumberDialogContent })));
+const VendorCreditNumberDialogContent = React.lazy(() =>
+  import('./VendorCreditNumberDialogContent').then((m) => ({
+    default: m.VendorCreditNumberDialogContent,
+  })),
+);
 
 /**
  * Vendor Credit number dialog.

@@ -2,12 +2,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
 
-import {
-  Icon,
-  DetailsMenu,
-  DetailItem,
-
-} from '@/components';
+import { Icon, DetailsMenu, DetailItem } from '@/components';
 import { useAccountDrawerContext } from './AccountDrawerProvider';
 import intl from 'react-intl-universal';
 

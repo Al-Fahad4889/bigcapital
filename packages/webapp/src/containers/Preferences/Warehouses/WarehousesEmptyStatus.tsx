@@ -38,4 +38,6 @@ function WarehousesEmptyStatusInner({
   );
 }
 
-export const WarehousesEmptyStatus = compose(withDialogActions)(WarehousesEmptyStatusInner);
+export const WarehousesEmptyStatus = compose(withDialogActions)(
+  WarehousesEmptyStatusInner,
+);

@@ -2,7 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Intent } from '@blueprintjs/core';
 import { Icon, FormattedMessage as T } from '@/components';
-import { withDialogActions, type WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  type WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
 function UsersActionsInner({ openDialog }: WithDialogActionsProps) {

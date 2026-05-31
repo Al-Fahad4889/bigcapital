@@ -5,4 +5,4 @@ export const setGlobalErrors = (errors: Record<string, unknown>) => {
       errors,
     },
   };
-}
+};

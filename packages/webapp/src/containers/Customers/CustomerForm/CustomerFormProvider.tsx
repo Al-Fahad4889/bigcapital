@@ -63,7 +63,11 @@ const CustomerFormContext = createContext<CustomerFormContextValue | undefined>(
   undefined,
 );
 
-export function CustomerFormProvider({ query, customerId, children }: CustomerFormProviderProps) {
+export function CustomerFormProvider({
+  query,
+  customerId,
+  children,
+}: CustomerFormProviderProps) {
   const { state } = useLocation<{ action?: number | string }>();
   const contactId = state?.action;
 
@@ -82,7 +86,8 @@ export function CustomerFormProvider({ query, customerId, children }: CustomerFo
     { enabled: !!contactId },
   );
   // Handle fetch Currencies data table
-  const { data: currencies, isLoading: isCurrenciesLoading } = useCurrencies(undefined);
+  const { data: currencies, isLoading: isCurrenciesLoading } =
+    useCurrencies(undefined);
 
   // Fetches the branches list.
   const {
@@ -92,11 +97,14 @@ export function CustomerFormProvider({ query, customerId, children }: CustomerFo
   } = useBranches(query, { enabled: isBranchFeatureCan });
 
   // Form submit payload.
-  const [submitPayload, setSubmitPayload] = useState<CustomerFormSubmitPayload>({});
+  const [submitPayload, setSubmitPayload] = useState<CustomerFormSubmitPayload>(
+    {},
+  );
 
   const editCustomerMutation = useEditCustomer(undefined) as any;
   const createCustomerMutation = useCreateCustomer(undefined) as any;
-  const editCustomerMutate = editCustomerMutation.mutateAsync as CustomerFormContextValue['editCustomerMutate'];
+  const editCustomerMutate =
+    editCustomerMutation.mutateAsync as CustomerFormContextValue['editCustomerMutate'];
   const createCustomerMutate =
     createCustomerMutation.mutateAsync as CustomerFormContextValue['createCustomerMutate'];
 

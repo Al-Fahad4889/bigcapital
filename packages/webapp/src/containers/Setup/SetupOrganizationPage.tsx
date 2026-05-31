@@ -70,4 +70,6 @@ function SetupOrganizationPageInner({ wizard }) {
   );
 }
 
-export const SetupOrganizationPage = compose(withSettingsActions)(SetupOrganizationPageInner);
+export const SetupOrganizationPage = compose(withSettingsActions)(
+  SetupOrganizationPageInner,
+);

@@ -41,9 +41,7 @@ function VendorCreditBulkDeleteDialogInner({
     })
       .then(() => {
         AppToaster.show({
-          message: intl.get(
-            'the_vendor_credits_has_been_deleted_successfully',
-          ),
+          message: intl.get('the_vendor_credits_has_been_deleted_successfully'),
           intent: Intent.SUCCESS,
         });
         setVendorsCreditNoteSelectedRows([]);
@@ -103,4 +101,3 @@ export const VendorCreditBulkDeleteDialog = compose(
   withDialogActions,
   withVendorsCreditNotesActions,
 )(VendorCreditBulkDeleteDialogInner);
-

@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ReceiptFormMailDeliverDialogContent = React.lazy(() => import('./ReceiptFormMailDeliverDialogContent').then(m => ({ default: m.ReceiptFormMailDeliverDialogContent })));
+const ReceiptFormMailDeliverDialogContent = React.lazy(() =>
+  import('./ReceiptFormMailDeliverDialogContent').then((m) => ({
+    default: m.ReceiptFormMailDeliverDialogContent,
+  })),
+);
 
 /**
  * Receipt mail dialog.
@@ -34,4 +38,6 @@ function ReceiptFormMailDeliverDialogInner({
   );
 }
 
-export const ReceiptFormMailDeliverDialog = compose(withDialogRedux())(ReceiptFormMailDeliverDialogInner);
+export const ReceiptFormMailDeliverDialog = compose(withDialogRedux())(
+  ReceiptFormMailDeliverDialogInner,
+);

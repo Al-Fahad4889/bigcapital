@@ -24,7 +24,7 @@ import { excludePrivateProps } from '@/utils';
 
 interface BrandingTemplateFormProps<
   T extends BrandingTemplateValues,
-  Y extends BrandingState
+  Y extends BrandingState,
 > extends ElementCustomizeProps<T, Y> {
   resource: string;
   templateId?: number;

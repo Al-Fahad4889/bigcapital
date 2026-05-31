@@ -8,8 +8,14 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { CustomersTransactionsHeaderGeneralPanel } from './CustomersTransactionsHeaderGeneralPanel';
 
-import { withCustomersTransactions, WithCustomersTransactionsProps } from './withCustomersTransactions';
-import { withCustomersTransactionsActions, WithCustomersTransactionsActionsProps } from './withCustomersTransactionsActions';
+import {
+  withCustomersTransactions,
+  WithCustomersTransactionsProps,
+} from './withCustomersTransactions';
+import {
+  withCustomersTransactionsActions,
+  WithCustomersTransactionsActionsProps,
+} from './withCustomersTransactionsActions';
 
 import { compose, transformToForm } from '@/utils';
 import {
@@ -32,7 +38,10 @@ interface CustomersTransactionsHeaderOwnProps {
 
 type CustomersTransactionsHeaderProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithCustomersTransactionsActionsProps, 'toggleCustomersTransactionsFilterDrawer'> &
+} & Pick<
+  WithCustomersTransactionsActionsProps,
+  'toggleCustomersTransactionsFilterDrawer'
+> &
   CustomersTransactionsHeaderOwnProps;
 
 /**
@@ -67,7 +76,10 @@ function CustomersTransactionsHeaderInner({
   const validationSchema = getCustomersTransactionsQuerySchema();
 
   // Handle form submit.
-  const handleSubmit = (values: CustomersTransactionsHeaderFormValues, { setSubmitting }: FormikHelpers<CustomersTransactionsHeaderFormValues>) => {
+  const handleSubmit = (
+    values: CustomersTransactionsHeaderFormValues,
+    { setSubmitting }: FormikHelpers<CustomersTransactionsHeaderFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     setSubmitting(false);

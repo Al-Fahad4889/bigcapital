@@ -45,4 +45,6 @@ function EstimatedExpenseFormFloatingActionsInner({
   );
 }
 
-export const EstimatedExpenseFormFloatingActions = compose(withDialogActions)(EstimatedExpenseFormFloatingActionsInner);
+export const EstimatedExpenseFormFloatingActions = compose(withDialogActions)(
+  EstimatedExpenseFormFloatingActionsInner,
+);

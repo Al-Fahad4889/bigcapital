@@ -11,8 +11,7 @@ export interface WithDrawerActionsProps {
 export const mapDispatchToProps = (
   dispatch: Dispatch,
 ): WithDrawerActionsProps => ({
-  openDrawer: (name, payload) =>
-    dispatch({ type: OPEN_DRAWER, name, payload }),
+  openDrawer: (name, payload) => dispatch({ type: OPEN_DRAWER, name, payload }),
   closeDrawer: (name, payload) =>
     dispatch({ type: CLOSE_DRAWER, name, payload }),
 });
@@ -20,9 +19,10 @@ export const mapDispatchToProps = (
 export function withDrawerActions<P>(
   WrappedComponent: ComponentType<P>,
 ): ComponentType<Omit<P, keyof WithDrawerActionsProps>> {
-  const Connected = connect(null, mapDispatchToProps)(
-    WrappedComponent as ComponentType<any>,
-  );
+  const Connected = connect(
+    null,
+    mapDispatchToProps,
+  )(WrappedComponent as ComponentType<any>);
   return Connected as unknown as ComponentType<
     Omit<P, keyof WithDrawerActionsProps>
   >;

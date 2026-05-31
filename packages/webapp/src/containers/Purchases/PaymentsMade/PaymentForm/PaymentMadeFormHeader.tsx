@@ -1,12 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { useFormikContext } from 'formik';
-import {
-  Money,
-
-  PageForm,
-  PageFormBigNumber,
-} from '@/components';
+import { Money, PageForm, PageFormBigNumber } from '@/components';
 
 import { PaymentMadeFormHeaderFields } from './PaymentMadeFormHeaderFields';
 import { usePaymentmadeTotalAmount } from './utils';

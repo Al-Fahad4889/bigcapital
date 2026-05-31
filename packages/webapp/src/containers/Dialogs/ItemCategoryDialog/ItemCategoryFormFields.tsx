@@ -2,7 +2,6 @@
 import React from 'react';
 import { Classes } from '@blueprintjs/core';
 import {
-
   FieldRequiredHint,
   FFormGroup,
   FInputGroup,

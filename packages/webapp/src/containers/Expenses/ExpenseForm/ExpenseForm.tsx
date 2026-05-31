@@ -61,13 +61,13 @@ function ExpenseFormInner({
     () => ({
       ...(!isEmpty(expense)
         ? {
-          ...transformToEditForm(expense, defaultExpense),
-        }
+            ...transformToEditForm(expense, defaultExpense),
+          }
         : {
-          ...defaultExpense,
-          currency_code: base_currency,
-          payment_account_id: defaultTo(preferredPaymentAccount, ''),
-        }),
+            ...defaultExpense,
+            currency_code: base_currency,
+            payment_account_id: defaultTo(preferredPaymentAccount, ''),
+          }),
     }),
     [expense, base_currency, preferredPaymentAccount],
   );

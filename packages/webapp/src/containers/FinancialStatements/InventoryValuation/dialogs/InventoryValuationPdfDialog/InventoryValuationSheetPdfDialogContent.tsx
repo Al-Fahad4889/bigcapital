@@ -12,7 +12,9 @@ interface InventoryValuationSheetPdfDialogContentProps {
   dialogName: string;
 }
 
-export function InventoryValuationSheetPdfDialogContent({ dialogName }: InventoryValuationSheetPdfDialogContentProps) {
+export function InventoryValuationSheetPdfDialogContent({
+  dialogName,
+}: InventoryValuationSheetPdfDialogContentProps) {
   const { httpQuery } = useInventoryValuationContext();
   const { isLoading, pdfUrl } = useInventoryValuationPdf(httpQuery);
 

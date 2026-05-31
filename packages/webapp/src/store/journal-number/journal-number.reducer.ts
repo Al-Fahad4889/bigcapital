@@ -44,7 +44,10 @@ export const viewPaginationSetReducer = (type: string) => ({
     };
     state.views = {
       ...state.views,
-      [customViewId]: { ...(state.views?.[customViewId] ?? {}), paginationMeta },
+      [customViewId]: {
+        ...(state.views?.[customViewId] ?? {}),
+        paginationMeta,
+      },
     };
   },
 });
@@ -54,7 +57,10 @@ export const createTableQueryReducers = (RESOURCE_NAME: string) => ({
     state: { tableQuery: Partial<TableQuery> },
     action: { payload: { value: unknown }; key: string },
   ) => {
-    state.tableQuery = { ...state.tableQuery, [action.key]: action.payload.value };
+    state.tableQuery = {
+      ...state.tableQuery,
+      [action.key]: action.payload.value,
+    };
   },
   [`${RESOURCE_NAME}/TABLE_QUERIES_ADD`]: (
     state: { tableQuery: Partial<TableQuery> },

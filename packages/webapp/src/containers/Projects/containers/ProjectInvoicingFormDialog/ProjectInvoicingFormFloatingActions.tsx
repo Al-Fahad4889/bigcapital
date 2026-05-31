@@ -45,4 +45,6 @@ function ProjectInvoicingFormFloatingActionsInner({
   );
 }
 
-export const ProjectInvoicingFormFloatingActions = compose(withDialogActions)(ProjectInvoicingFormFloatingActionsInner);
+export const ProjectInvoicingFormFloatingActions = compose(withDialogActions)(
+  ProjectInvoicingFormFloatingActionsInner,
+);

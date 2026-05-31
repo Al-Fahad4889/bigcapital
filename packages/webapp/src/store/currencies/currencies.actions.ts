@@ -1,11 +1,20 @@
 import ApiService from '@/services/ApiService';
-import { CLEAR_CURRENCY_FORM_ERRORS, CURRENCIES_REGISTERED_SET, CURRENCIES_TABLE_LOADING, CURRENCY_CODE_DELETE } from '@/store/types';;
+import {
+  CLEAR_CURRENCY_FORM_ERRORS,
+  CURRENCIES_REGISTERED_SET,
+  CURRENCIES_TABLE_LOADING,
+  CURRENCY_CODE_DELETE,
+} from '@/store/types';
 
 export const submitCurrencies = ({ form }: { form: unknown }) => {
   return (_dispatch: any) => ApiService.post('currencies', form);
 };
 
-export const deleteCurrency = ({ currency_code }: { currency_code: string }) => {
+export const deleteCurrency = ({
+  currency_code,
+}: {
+  currency_code: string;
+}) => {
   return (dispatch: any) =>
     new Promise((resolve, reject) => {
       ApiService.delete(`currencies/${currency_code}`)
@@ -19,7 +28,13 @@ export const deleteCurrency = ({ currency_code }: { currency_code: string }) => 
     });
 };
 
-export const editCurrency = ({ id, form }: { id: string | number; form: unknown }) => {
+export const editCurrency = ({
+  id,
+  form,
+}: {
+  id: string | number;
+  form: unknown;
+}) => {
   return (dispatch: any) =>
     new Promise((resolve, reject) => {
       ApiService.post(`currencies/${id}`, form)
@@ -46,7 +61,10 @@ export const fetchCurrencies = () => {
       dispatch({ type: CURRENCIES_TABLE_LOADING, loading: true });
       ApiService.get('currencies')
         .then((response) => {
-          dispatch({ type: CURRENCIES_REGISTERED_SET, currencies: response.data.currencies });
+          dispatch({
+            type: CURRENCIES_REGISTERED_SET,
+            currencies: response.data.currencies,
+          });
           dispatch({ type: CURRENCIES_TABLE_LOADING, loading: false });
           resolve(response);
         })

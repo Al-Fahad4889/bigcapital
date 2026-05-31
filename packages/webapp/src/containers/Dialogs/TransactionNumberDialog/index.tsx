@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose, saveInvoke } from '@/utils';
 
-const TransactionNumberDialogContent = React.lazy(() => import('./TransactionNumberDialogContent').then(m => ({ default: m.TransactionNumberDialogContent })));
+const TransactionNumberDialogContent = React.lazy(() =>
+  import('./TransactionNumberDialogContent').then((m) => ({
+    default: m.TransactionNumberDialogContent,
+  })),
+);
 
 /**
  * Transaction number dialog.

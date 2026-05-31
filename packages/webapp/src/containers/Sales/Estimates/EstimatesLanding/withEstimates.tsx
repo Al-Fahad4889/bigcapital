@@ -8,14 +8,18 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithEstimatesProps {
-  estimatesTableState: ReturnType<ReturnType<typeof getEstimatesTableStateFactory>>;
-  estimatesTableStateChanged: ReturnType<ReturnType<typeof isEstimatesTableStateChangedFactory>>;
-  estimatesSelectedRows: ReturnType<ReturnType<typeof getEstimatesSelectedRowsFactory>>;
+  estimatesTableState: ReturnType<
+    ReturnType<typeof getEstimatesTableStateFactory>
+  >;
+  estimatesTableStateChanged: ReturnType<
+    ReturnType<typeof isEstimatesTableStateChangedFactory>
+  >;
+  estimatesSelectedRows: ReturnType<
+    ReturnType<typeof getEstimatesSelectedRowsFactory>
+  >;
 }
 
-export const withEstimates = <
-  Props extends { location?: { search: string } },
->(
+export const withEstimates = <Props extends { location?: { search: string } }>(
   mapState?: MapState<WithEstimatesProps, Props>,
 ) => {
   const getEstimatesTableState = getEstimatesTableStateFactory();

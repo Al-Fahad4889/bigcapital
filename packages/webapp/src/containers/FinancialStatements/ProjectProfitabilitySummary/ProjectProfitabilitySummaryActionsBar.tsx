@@ -15,8 +15,14 @@ import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { compose, saveInvoke } from '@/utils';
 import { useProjectProfitabilitySummaryContext } from './ProjectProfitabilitySummaryProvider';
-import { withProjectProfitabilitySummary, WithProjectProfitabilitySummaryProps } from './withProjectProfitabilitySummary';
-import { withProjectProfitabilitySummaryActions, WithProjectProfitabilitySummaryActionsProps } from './withProjectProfitabilitySummaryActions';
+import {
+  withProjectProfitabilitySummary,
+  WithProjectProfitabilitySummaryProps,
+} from './withProjectProfitabilitySummary';
+import {
+  withProjectProfitabilitySummaryActions,
+  WithProjectProfitabilitySummaryActionsProps,
+} from './withProjectProfitabilitySummaryActions';
 
 interface ProjectProfitabilitySummaryActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
@@ -25,7 +31,10 @@ interface ProjectProfitabilitySummaryActionsBarOwnProps {
 
 type ProjectProfitabilitySummaryActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithProjectProfitabilitySummaryActionsProps, 'toggleProjectProfitabilitySummaryFilterDrawer'> &
+} & Pick<
+  WithProjectProfitabilitySummaryActionsProps,
+  'toggleProjectProfitabilitySummaryFilterDrawer'
+> &
   ProjectProfitabilitySummaryActionsBarOwnProps;
 
 /**

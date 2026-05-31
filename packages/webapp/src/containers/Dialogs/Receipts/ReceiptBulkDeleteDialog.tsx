@@ -101,4 +101,3 @@ export const ReceiptBulkDeleteDialog = compose(
   withDialogActions,
   withReceiptsActions,
 )(ReceiptBulkDeleteDialogInner);
-

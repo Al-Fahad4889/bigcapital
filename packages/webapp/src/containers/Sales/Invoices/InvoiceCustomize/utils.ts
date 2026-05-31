@@ -27,18 +27,19 @@ export const transformToNewRequest = (
   };
 };
 
-export const useInvoiceCustomizeInitialValues = (): InvoiceCustomizeFormValues => {
-  const { pdfTemplate } = useBrandingTemplateBoot();
+export const useInvoiceCustomizeInitialValues =
+  (): InvoiceCustomizeFormValues => {
+    const { pdfTemplate } = useBrandingTemplateBoot();
 
-  const defaultPdfTemplate = {
-    templateName: pdfTemplate?.templateName,
-    ...pdfTemplate?.attributes,
+    const defaultPdfTemplate = {
+      templateName: pdfTemplate?.templateName,
+      ...pdfTemplate?.attributes,
+    };
+    return {
+      ...initialValues,
+      ...(transformToForm(
+        defaultPdfTemplate,
+        initialValues,
+      ) as InvoiceCustomizeFormValues),
+    };
   };
-  return {
-    ...initialValues,
-    ...(transformToForm(
-      defaultPdfTemplate,
-      initialValues,
-    ) as InvoiceCustomizeFormValues),
-  };
-};

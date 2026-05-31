@@ -32,7 +32,8 @@ function BillsListProvider({ query, tableStateChanged, ...props }) {
   } = useBills(query, { keepPreviousData: true });
 
   // Detarmines the datatable empty status.
-  const isEmptyStatus = isEmpty(billsData?.data) && !isBillsLoading && !tableStateChanged;
+  const isEmptyStatus =
+    isEmpty(billsData?.data) && !isBillsLoading && !tableStateChanged;
 
   // Provider payload.
   const provider = {
@@ -41,7 +42,9 @@ function BillsListProvider({ query, tableStateChanged, ...props }) {
     billsViews,
 
     resourceMeta,
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     isResourceLoading,
     isResourceFetching,
 

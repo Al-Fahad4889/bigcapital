@@ -6,7 +6,9 @@ import { FinancialHeaderLoadingSkeleton } from '../FinancialHeaderLoadingSkeleto
 type UseVendorsResult = ReturnType<typeof useVendors>;
 
 type APAgingSummaryGeneralContextValue = {
-  vendors: UseVendorsResult['data'] extends { vendors?: infer V } | undefined ? V : undefined;
+  vendors: UseVendorsResult['data'] extends { vendors?: infer V } | undefined
+    ? V
+    : undefined;
   isVendorsLoading: boolean;
 };
 
@@ -14,13 +16,15 @@ type APAgingSummaryGeneralProviderProps = {
   children?: React.ReactNode;
 };
 
-const APAgingSummaryGeneralContext = createContext<APAgingSummaryGeneralContextValue | undefined>(undefined);
+const APAgingSummaryGeneralContext = createContext<
+  APAgingSummaryGeneralContextValue | undefined
+>(undefined);
 
-function APAgingSummaryGeneralProvider({ children, ...props }: APAgingSummaryGeneralProviderProps) {
-  const {
-    data: vendorsData,
-    isFetching: isVendorsLoading,
-  } = useVendors();
+function APAgingSummaryGeneralProvider({
+  children,
+  ...props
+}: APAgingSummaryGeneralProviderProps) {
+  const { data: vendorsData, isFetching: isVendorsLoading } = useVendors();
 
   const provider: APAgingSummaryGeneralContextValue = {
     vendors: (vendorsData as any)?.vendors,
@@ -38,10 +42,14 @@ function APAgingSummaryGeneralProvider({ children, ...props }: APAgingSummaryGen
   );
 }
 
-const useAPAgingSummaryGeneralContext = (): APAgingSummaryGeneralContextValue => {
-  const ctx = useContext(APAgingSummaryGeneralContext);
-  if (!ctx) throw new Error('useAPAgingSummaryGeneralContext must be used within APAgingSummaryGeneralProvider');
-  return ctx;
-};
+const useAPAgingSummaryGeneralContext =
+  (): APAgingSummaryGeneralContextValue => {
+    const ctx = useContext(APAgingSummaryGeneralContext);
+    if (!ctx)
+      throw new Error(
+        'useAPAgingSummaryGeneralContext must be used within APAgingSummaryGeneralProvider',
+      );
+    return ctx;
+  };
 
 export { APAgingSummaryGeneralProvider, useAPAgingSummaryGeneralContext };

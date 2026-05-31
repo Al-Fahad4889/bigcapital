@@ -9,7 +9,6 @@ import { useSendEstimateFormatArgsOptions } from './hooks';
 import { useSendMailItems } from '../SendMailViewDrawer/hooks';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
-
 export function EstimateSendMailFields() {
   const argOptions = useSendEstimateFormatArgsOptions();
   const items = useSendMailItems();

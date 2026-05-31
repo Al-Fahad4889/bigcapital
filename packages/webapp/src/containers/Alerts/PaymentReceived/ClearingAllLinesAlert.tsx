@@ -30,7 +30,7 @@ function ClearningAllLinesAlert({
   // Handle confirm delete manual journal.
   const handleConfirm = (event) => {
     closeAlert(name);
-    saveInvoke(onConfirm, event)
+    saveInvoke(onConfirm, event);
   };
 
   return (

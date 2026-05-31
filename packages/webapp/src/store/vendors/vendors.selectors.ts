@@ -5,7 +5,8 @@ import { paginationLocationQuery } from '@/store/selectors';
 import { defaultTableQueryState } from './vendors.reducer';
 import type { RootState } from '@/store/reducers';
 
-const vendorsTableStateSelector = (state: RootState) => state.vendors.tableState;
+const vendorsTableStateSelector = (state: RootState) =>
+  state.vendors.tableState;
 
 /**
  * Retrieve vendors table state.

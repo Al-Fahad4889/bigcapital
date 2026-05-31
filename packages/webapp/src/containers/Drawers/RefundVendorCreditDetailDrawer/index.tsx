@@ -6,7 +6,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const RefundVendorCreditDrawerContent = React.lazy(() => import('./RefundVendorCreditDrawerContent').then(m => ({ default: m.RefundVendorCreditDrawerContent })));
+const RefundVendorCreditDrawerContent = React.lazy(() =>
+  import('./RefundVendorCreditDrawerContent').then((m) => ({
+    default: m.RefundVendorCreditDrawerContent,
+  })),
+);
 
 /**
  * Refund credit note detail.

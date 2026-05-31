@@ -18,11 +18,17 @@ export const withEstimateMailReceiptPreviewProps = <
 
     const items = useMemo(
       () =>
-        estimateMailState?.entries?.map((entry: { quantity?: number; totalFormatted?: string; name?: string }) => ({
-          quantity: entry.quantity,
-          total: entry.totalFormatted,
-          label: entry.name,
-        })),
+        estimateMailState?.entries?.map(
+          (entry: {
+            quantity?: number;
+            totalFormatted?: string;
+            name?: string;
+          }) => ({
+            quantity: entry.quantity,
+            total: entry.totalFormatted,
+            label: entry.name,
+          }),
+        ),
       [estimateMailState?.entries],
     );
 

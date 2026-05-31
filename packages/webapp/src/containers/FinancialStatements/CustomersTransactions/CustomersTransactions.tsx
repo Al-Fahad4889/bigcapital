@@ -6,7 +6,10 @@ import { FinancialStatement, DashboardPageContent } from '@/components';
 import { CustomersTransactionsHeader } from './CustomersTransactionsHeader';
 import { CustomersTransactionsActionsBar } from './CustomersTransactionsActionsBar';
 
-import { withCustomersTransactionsActions, WithCustomersTransactionsActionsProps } from './withCustomersTransactionsActions';
+import {
+  withCustomersTransactionsActions,
+  WithCustomersTransactionsActionsProps,
+} from './withCustomersTransactionsActions';
 import { CustomersTransactionsLoadingBar } from './components';
 import { CustomersTransactionsBody } from './CustomersTransactionsBody';
 import { CustomersTransactionsProvider } from './CustomersTransactionsProvider';
@@ -15,7 +18,8 @@ import { compose } from '@/utils';
 import { useCustomersTransactionsQuery } from './_utils';
 import { CustomersTransactionsDialogs } from './CustomersTransactionsDialogs';
 
-interface CustomersTransactionsProps extends WithCustomersTransactionsActionsProps {}
+interface CustomersTransactionsProps
+  extends WithCustomersTransactionsActionsProps {}
 
 /**
  * Customers transactions.
@@ -72,4 +76,6 @@ function CustomersTransactionsInner({
     </CustomersTransactionsProvider>
   );
 }
-export const CustomersTransactions = compose(withCustomersTransactionsActions)(CustomersTransactionsInner);
+export const CustomersTransactions = compose(withCustomersTransactionsActions)(
+  CustomersTransactionsInner,
+);

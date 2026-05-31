@@ -20,9 +20,11 @@ import { useWatch } from '@/hooks/utils';
 export const ItemErrorType = {
   ItemNameExists: 'ITEM_NAME_EXISTS',
   InventoryAccountCannotModified: 'INVENTORY_ACCOUNT_CANNOT_MODIFIED',
-  TypeCannotChangeWithItemHasTransactions: 'TYPE_CANNOT_CHANGE_WITH_ITEM_HAS_TRANSACTIONS',
+  TypeCannotChangeWithItemHasTransactions:
+    'TYPE_CANNOT_CHANGE_WITH_ITEM_HAS_TRANSACTIONS',
   ItemHasAssociatedTransactions: 'ITEM_HAS_ASSOCIATED_TRANSACTINS',
-  ItemHasAssociatedInventoryAdjustment: 'ITEM_HAS_ASSOCIATED_INVENTORY_ADJUSTMENT',
+  ItemHasAssociatedInventoryAdjustment:
+    'ITEM_HAS_ASSOCIATED_INVENTORY_ADJUSTMENT',
   ItemHasAssociatedTransactionsPlural: 'ITEM_HAS_ASSOCIATED_TRANSACTIONS',
 } as const;
 
@@ -86,7 +88,9 @@ export const transitionItemTypeKeyToLabel = (itemTypeKey) => {
 // handle delete errors.
 export const handleDeleteErrors = (errors) => {
   if (
-    errors.find((error) => error.type === ItemErrorType.ItemHasAssociatedTransactions)
+    errors.find(
+      (error) => error.type === ItemErrorType.ItemHasAssociatedTransactions,
+    )
   ) {
     AppToaster.show({
       message: intl.get('the_item_has_associated_transactions'),
@@ -96,7 +100,8 @@ export const handleDeleteErrors = (errors) => {
 
   if (
     errors.find(
-      (error) => error.type === ItemErrorType.ItemHasAssociatedInventoryAdjustment,
+      (error) =>
+        error.type === ItemErrorType.ItemHasAssociatedInventoryAdjustment,
     )
   ) {
     AppToaster.show({
@@ -108,7 +113,8 @@ export const handleDeleteErrors = (errors) => {
   }
   if (
     errors.find(
-      (error) => error.type === ItemErrorType.TypeCannotChangeWithItemHasTransactions,
+      (error) =>
+        error.type === ItemErrorType.TypeCannotChangeWithItemHasTransactions,
     )
   ) {
     AppToaster.show({
@@ -119,7 +125,10 @@ export const handleDeleteErrors = (errors) => {
     });
   }
   if (
-    errors.find((error) => error.type === ItemErrorType.ItemHasAssociatedTransactionsPlural)
+    errors.find(
+      (error) =>
+        error.type === ItemErrorType.ItemHasAssociatedTransactionsPlural,
+    )
   ) {
     AppToaster.show({
       message: intl.get('item.error.you_could_not_delete_item_has_associated'),
@@ -229,7 +238,9 @@ export const transformSubmitRequestErrors = (error) => {
   if (errors.find((e) => e.type === ItemErrorType.ItemNameExists)) {
     fields.name = intl.get('the_name_used_before');
   }
-  if (errors.find((e) => e.type === ItemErrorType.InventoryAccountCannotModified)) {
+  if (
+    errors.find((e) => e.type === ItemErrorType.InventoryAccountCannotModified)
+  ) {
     AppToaster.show({
       message: intl.get('cannot_change_item_inventory_account'),
       intent: Intent.DANGER,

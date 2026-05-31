@@ -11,7 +11,10 @@ import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { UnrealizedGainOrLossGeneralPanel } from './UnrealizedGainOrLossGeneralPanel';
 
 import { withUnrealizedGainOrLoss } from './withUnrealizedGainOrLoss';
-import { withUnrealizedGainOrLossActions, WithUnrealizedGainOrLossActionsProps } from './withUnrealizedGainOrLossActions';
+import {
+  withUnrealizedGainOrLossActions,
+  WithUnrealizedGainOrLossActionsProps,
+} from './withUnrealizedGainOrLossActions';
 
 import { compose, transformToForm } from '@/utils';
 
@@ -20,9 +23,12 @@ interface UnrealizedGainOrLossHeaderOwnProps {
   pageFilter: Record<string, unknown>;
 }
 
-type UnrealizedGainOrLossHeaderProps = UnrealizedGainOrLossHeaderOwnProps &
-  { isFilterDrawerOpen: boolean } &
-  Pick<WithUnrealizedGainOrLossActionsProps, 'toggleUnrealizedGainOrLossFilterDrawer'>;
+type UnrealizedGainOrLossHeaderProps = UnrealizedGainOrLossHeaderOwnProps & {
+  isFilterDrawerOpen: boolean;
+} & Pick<
+    WithUnrealizedGainOrLossActionsProps,
+    'toggleUnrealizedGainOrLossFilterDrawer'
+  >;
 
 function UnrealizedGainOrLossHeaderInner({
   onSubmitFilter,
@@ -54,7 +60,10 @@ function UnrealizedGainOrLossHeaderInner({
     displayColumnsType: Yup.string(),
   });
 
-  const handleSubmit = (values: Record<string, unknown>, { setSubmitting }: FormikHelpers<Record<string, unknown>>) => {
+  const handleSubmit = (
+    values: Record<string, unknown>,
+    { setSubmitting }: FormikHelpers<Record<string, unknown>>,
+  ) => {
     onSubmitFilter(values);
     toggleUnrealizedGainOrLossFilterDrawer(false);
     setSubmitting(false);

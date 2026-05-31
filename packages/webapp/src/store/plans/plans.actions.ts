@@ -1,5 +1,5 @@
-import { INIT_SUBSCRIPTION_PLANS } from '@/store/types';;
+import { INIT_SUBSCRIPTION_PLANS } from '@/store/types';
 
 export const initSubscriptionPlans = () => ({
-  type: INIT_SUBSCRIPTION_PLANS
+  type: INIT_SUBSCRIPTION_PLANS,
 });

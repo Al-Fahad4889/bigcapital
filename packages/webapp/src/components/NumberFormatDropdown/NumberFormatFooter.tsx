@@ -11,7 +11,7 @@ import { FormattedMessage as T } from '@/components';
 export default function NumberFormatFooter({
   // #ownProps
   onCancelClick,
-  submitDisabled
+  submitDisabled,
 }) {
   return (
     <div className={classNames('number-format-dropdown__footer')}>

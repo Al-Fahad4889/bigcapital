@@ -100,12 +100,16 @@ function CustomerFormFormikRoot({
   } = useCustomerFormContext();
 
   const initialValues = useMemo<CustomerFormValues>(
-    () => ({
-      ...defaultInitialValues,
-      currency_code: base_currency,
-      ...transformToForm(contactDuplicate ?? customer ?? {}, defaultInitialValues),
-      ...transformToForm(initialCustomerValues, defaultInitialValues),
-    }) as CustomerFormValues,
+    () =>
+      ({
+        ...defaultInitialValues,
+        currency_code: base_currency,
+        ...transformToForm(
+          contactDuplicate ?? customer ?? {},
+          defaultInitialValues,
+        ),
+        ...transformToForm(initialCustomerValues, defaultInitialValues),
+      }) as CustomerFormValues,
     [customer, contactDuplicate, base_currency, initialCustomerValues],
   );
 
@@ -142,22 +146,24 @@ function CustomerFormFormikRoot({
       createCustomerMutate(formValues).then(onSuccess).catch(onError);
     } else {
       if (!customer) return;
-      editCustomerMutate([customer.id, formValues]).then(onSuccess).catch(onError);
+      editCustomerMutate([customer.id, formValues])
+        .then(onSuccess)
+        .catch(onError);
     }
   };
 
   return (
-      <Formik<CustomerFormValues>
-        validationSchema={isNewMode ? CreateCustomerForm : EditCustomerForm}
-        initialValues={initialValues}
-        onSubmit={handleFormSubmit}
-      >
-        <Form>
-          <CustomerFormFields>
-            <CustomerFormContent />
-          </CustomerFormFields>
-        </Form>
-      </Formik>
+    <Formik<CustomerFormValues>
+      validationSchema={isNewMode ? CreateCustomerForm : EditCustomerForm}
+      initialValues={initialValues}
+      onSubmit={handleFormSubmit}
+    >
+      <Form>
+        <CustomerFormFields>
+          <CustomerFormContent />
+        </CustomerFormFields>
+      </Form>
+    </Formik>
   );
 }
 
@@ -166,7 +172,7 @@ const CustomerFormFields = styled.div`
   .bp6-form-content {
     min-width: 300px;
   }
-  .bp4-form-group{
+  .bp4-form-group {
     margin-bottom: 20px;
   }
   .bp4-form-group.bp4-inline label.bp4-label {
@@ -174,4 +180,6 @@ const CustomerFormFields = styled.div`
   }
 `;
 
-export const CustomerFormFormik = compose(withCurrentOrganization(undefined))(CustomerFormFormikRoot);
+export const CustomerFormFormik = compose(withCurrentOrganization(undefined))(
+  CustomerFormFormikRoot,
+);

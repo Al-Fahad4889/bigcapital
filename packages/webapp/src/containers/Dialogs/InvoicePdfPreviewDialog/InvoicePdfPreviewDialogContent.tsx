@@ -47,4 +47,6 @@ function InvoicePdfPreviewDialogContentInner({
   );
 }
 
-export const InvoicePdfPreviewDialogContent = compose(withDialogActions)(InvoicePdfPreviewDialogContentInner);
+export const InvoicePdfPreviewDialogContent = compose(withDialogActions)(
+  InvoicePdfPreviewDialogContentInner,
+);

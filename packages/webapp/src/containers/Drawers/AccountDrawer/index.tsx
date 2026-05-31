@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const AccountDrawerContent = lazy(() => import('./AccountDrawerContent').then(m => ({ default: m.AccountDrawerContent })));
+const AccountDrawerContent = lazy(() =>
+  import('./AccountDrawerContent').then((m) => ({
+    default: m.AccountDrawerContent,
+  })),
+);
 
 /**
  * Account drawer.

@@ -16,7 +16,6 @@ import { FormObserver, SMSMessagePreview } from '@/components';
 import { transformToForm, safeInvoke } from '@/utils';
 import { getSMSUnits } from './utils';
 
-
 const defaultInitialValues = {
   notification_key: '',
   customer_name: '',

@@ -18,7 +18,9 @@ import {
 
 /** Blueprint FormGroup supports `fastField`; package typings omit it. */
 type FFormGroupWithFastField = typeof FFormGroup & {
-  (props: React.ComponentProps<typeof FFormGroup> & { fastField?: boolean }): JSX.Element;
+  (
+    props: React.ComponentProps<typeof FFormGroup> & { fastField?: boolean },
+  ): JSX.Element;
 };
 const FFormGroupField = FFormGroup as FFormGroupWithFastField;
 import { useIsDarkMode } from '@/hooks/useDarkMode';
@@ -76,9 +78,7 @@ export default function CreateWorkspaceForm({
     { setSubmitting, setErrors }: FormikHelpers<SetupOrganizationFormValues>,
   ) => {
     try {
-      const payload = transfromToSnakeCase(
-        values,
-      ) as CreateWorkspaceRequest;
+      const payload = transfromToSnakeCase(values) as CreateWorkspaceRequest;
       const result = await createWorkspaceMutate(payload);
       setSubmitting(false);
       onSubmitting({
@@ -94,7 +94,9 @@ export default function CreateWorkspaceForm({
         error.response.data !== null &&
         'errors' in error.response.data
       ) {
-        const { errors } = error.response.data as { errors: Record<string, string> };
+        const { errors } = error.response.data as {
+          errors: Record<string, string>;
+        };
         if (errors && typeof errors === 'object') {
           setErrors(errors);
         }
@@ -110,16 +112,24 @@ export default function CreateWorkspaceForm({
     >
       {(formikProps) => (
         <>
-        <x.div flex={1} pt={'22px'} overflow={'auto'}>
+          <x.div flex={1} pt={'22px'} overflow={'auto'}>
             <x.div maxWidth={'600px'} w="100%" mx="auto">
               <Form>
                 {/* ---------- Organization name ----------  */}
-                <FFormGroupField name={'name'} label={intl.get('legal_organization_name')} fastField>
+                <FFormGroupField
+                  name={'name'}
+                  label={intl.get('legal_organization_name')}
+                  fastField
+                >
                   <FInputGroup name={'name'} large fastField />
                 </FFormGroupField>
 
                 {/* ---------- Location ---------- */}
-                <FFormGroupField name={'location'} label={intl.get('business_location')} fastField={true}>
+                <FFormGroupField
+                  name={'location'}
+                  label={intl.get('business_location')}
+                  fastField={true}
+                >
                   <FSelect
                     name={'location'}
                     items={countries}
@@ -135,7 +145,11 @@ export default function CreateWorkspaceForm({
                 <Row bsPrefix="row" className="" noGutters={false}>
                   <Col xs={6} bsPrefix="col" className="" noGutters={false}>
                     {/* ----------  Base currency ----------  */}
-                    <FFormGroupField name={'baseCurrency'} label={intl.get('base_currency')} fastField={true}>
+                    <FFormGroupField
+                      name={'baseCurrency'}
+                      label={intl.get('base_currency')}
+                      fastField={true}
+                    >
                       <FSelect
                         name={'baseCurrency'}
                         items={currencies}
@@ -151,7 +165,11 @@ export default function CreateWorkspaceForm({
 
                   {/* ---------- Language ---------- */}
                   <Col xs={6} bsPrefix="col" className="" noGutters={false}>
-                    <FFormGroupField name={'language'} label={intl.get('language')} fastField>
+                    <FFormGroupField
+                      name={'language'}
+                      label={intl.get('language')}
+                      fastField
+                    >
                       <FSelect
                         name={'language'}
                         items={Languages}
@@ -167,7 +185,11 @@ export default function CreateWorkspaceForm({
                 </Row>
 
                 {/* --------- Fiscal Year ----------- */}
-                <FFormGroupField name={'fiscalYear'} label={intl.get('fiscal_year')} fastField>
+                <FFormGroupField
+                  name={'fiscalYear'}
+                  label={intl.get('fiscal_year')}
+                  fastField
+                >
                   <FSelect
                     name={'fiscalYear'}
                     items={FiscalYear}
@@ -181,13 +203,16 @@ export default function CreateWorkspaceForm({
                 </FFormGroupField>
 
                 {/* ----------  Time zone ----------  */}
-                <FFormGroupField name={'timezone'} label={intl.get('time_zone')}>
+                <FFormGroupField
+                  name={'timezone'}
+                  label={intl.get('time_zone')}
+                >
                   <FTimezoneSelect
                     name={'timezone'}
                     valueDisplayFormat="composite"
                     showLocalTimezone={true}
                     placeholder={
-                      <T id={'select_time_zone'} /> as unknown as string
+                      (<T id={'select_time_zone'} />) as unknown as string
                     }
                     popoverProps={{ minimal: true }}
                     buttonProps={{
@@ -199,13 +224,21 @@ export default function CreateWorkspaceForm({
                 </FFormGroupField>
 
                 <x.p fontSize={12} mb={6} className={Classes.TEXT_MUTED}>
-                  <T id={'setup.organization.note_you_can_change_your_preferences'} />
+                  <T
+                    id={
+                      'setup.organization.note_you_can_change_your_preferences'
+                    }
+                  />
                 </x.p>
               </Form>
             </x.div>
           </x.div>
 
-          <x.div borderTop={"1px solid rgba(255, 255, 255, 0.1)"} pt={'12px'} pb={'12px'}>
+          <x.div
+            borderTop={'1px solid rgba(255, 255, 255, 0.1)'}
+            pt={'12px'}
+            pb={'12px'}
+          >
             <x.div
               display="flex"
               justifyContent="flex-end"

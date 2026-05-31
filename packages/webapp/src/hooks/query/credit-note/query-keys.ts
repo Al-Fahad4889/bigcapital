@@ -12,9 +12,12 @@ export const creditNotesKeys = {
   list: (query?: Record<string, unknown>) => [CREDIT_NOTES, query] as const,
   detail: (id: number | null | undefined) => [CREDIT_NOTE, id] as const,
   refund: (id: number | null | undefined) => [REFUND_CREDIT_NOTE, id] as const,
-  refundTransaction: (id: number | null | undefined) => [REFUND_CREDIT_NOTE_TRANSACTION, id] as const,
-  reconcile: (id: number | null | undefined) => [RECONCILE_CREDIT_NOTE, id] as const,
-  reconciles: (id: number | null | undefined) => [RECONCILE_CREDIT_NOTES, id] as const,
+  refundTransaction: (id: number | null | undefined) =>
+    [REFUND_CREDIT_NOTE_TRANSACTION, id] as const,
+  reconcile: (id: number | null | undefined) =>
+    [RECONCILE_CREDIT_NOTE, id] as const,
+  reconciles: (id: number | null | undefined) =>
+    [RECONCILE_CREDIT_NOTES, id] as const,
   state: () => ['CREDIT_NOTE_STATE'] as const,
 };
 

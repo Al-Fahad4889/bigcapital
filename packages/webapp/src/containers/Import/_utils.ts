@@ -52,7 +52,7 @@ export const transformValueToReq = (
  * @returns {Record<string, object | string>}
  */
 export const transformResToFormValues = (
-  value: { from: string; to: string , group: string }[],
+  value: { from: string; to: string; group: string }[],
 ): Record<string, object | string> => {
   return value?.reduce((acc, map) => {
     const path = map?.group ? `${map.group}.${map.to}` : map.to;
@@ -62,9 +62,9 @@ export const transformResToFormValues = (
 };
 
 /**
- * Retrieves the initial values of mapping form. 
- * @param {EntityColumn[]} entityColumns 
- * @param {SheetColumn[]} sheetColumns 
+ * Retrieves the initial values of mapping form.
+ * @param {EntityColumn[]} entityColumns
+ * @param {SheetColumn[]} sheetColumns
  */
 const getInitialDefaultValues = (
   entityColumns: EntityColumn[],

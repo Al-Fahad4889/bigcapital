@@ -117,7 +117,7 @@ function useAppYupLoadLocales(currentLocale) {
         setLocale(results);
         setIsLoading(false);
       })
-      .then(() => { });
+      .then(() => {});
   }, [currentLocale, stopLoading]);
 
   // Watches the valiue to start/stop splash screen.

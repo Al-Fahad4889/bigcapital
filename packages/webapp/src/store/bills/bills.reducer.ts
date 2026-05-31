@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RESET, BILLS_SET_SELECTED_ROWS } from '@/store/types';;
+import { RESET, BILLS_SET_SELECTED_ROWS } from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 interface BillsState {
@@ -33,7 +33,10 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('BILLS', defaultTableQuery),
 
-  [BILLS_SET_SELECTED_ROWS]: (state: BillsState, action: { payload: Array<unknown> }) => {
+  [BILLS_SET_SELECTED_ROWS]: (
+    state: BillsState,
+    action: { payload: Array<unknown> },
+  ) => {
     state.selectedRows = action.payload;
   },
 

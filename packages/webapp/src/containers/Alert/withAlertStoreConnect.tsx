@@ -11,7 +11,9 @@ export interface WithAlertStoreConnectProps {
   payload: ReturnType<ReturnType<typeof getAlertPayloadFactory>>;
 }
 
-export function withAlertStoreConnect<Props extends { name: string }>(mapState?: MapState<WithAlertStoreConnectProps>) {
+export function withAlertStoreConnect<Props extends { name: string }>(
+  mapState?: MapState<WithAlertStoreConnectProps>,
+) {
   const isAlertOpen = isAlertOpenFactory();
   const getAlertPayload = getAlertPayloadFactory();
 
@@ -25,7 +27,10 @@ export function withAlertStoreConnect<Props extends { name: string }>(mapState?:
       payload: getAlertPayload(state, props),
     };
     return mapState
-      ? ({ ...mapped, ...mapState(mapped, state, props) } as WithAlertStoreConnectProps)
+      ? ({
+          ...mapped,
+          ...mapState(mapped, state, props),
+        } as WithAlertStoreConnectProps)
       : mapped;
   };
   return connect(mapStateToProps);

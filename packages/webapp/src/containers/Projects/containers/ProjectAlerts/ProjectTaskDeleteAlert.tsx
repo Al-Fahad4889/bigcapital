@@ -66,7 +66,9 @@ function ProjectTaskDeleteAlertInner({
       loading={isLoading}
     >
       <p>
-        <FormattedHTMLMessage id={'project_task.alert.once_delete_this_project'} />
+        <FormattedHTMLMessage
+          id={'project_task.alert.once_delete_this_project'}
+        />
       </p>
     </Alert>
   );

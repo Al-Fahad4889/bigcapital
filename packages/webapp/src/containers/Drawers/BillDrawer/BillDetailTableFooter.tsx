@@ -43,10 +43,7 @@ export function BillDetailTableFooter() {
           />
         )}
         {bill.adjustment_formatted && (
-          <TotalLine
-            title={'Adjustment'}
-            value={bill.adjustment_formatted}
-          />
+          <TotalLine title={'Adjustment'} value={bill.adjustment_formatted} />
         )}
         <TotalLine
           title={<T id={'bill.details.total'} />}

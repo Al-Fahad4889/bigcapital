@@ -43,4 +43,6 @@ function RefundCreditNoteFloatingActionsInner({
     </div>
   );
 }
-export const RefundCreditNoteFloatingActions = compose(withDialogActions)(RefundCreditNoteFloatingActionsInner);
+export const RefundCreditNoteFloatingActions = compose(withDialogActions)(
+  RefundCreditNoteFloatingActionsInner,
+);

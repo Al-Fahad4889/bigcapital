@@ -7,7 +7,9 @@ export interface WithSalesByItemsProps {
   salesByItemsDrawerFilter: ReturnType<typeof getSalesByItemsFilterDrawer>;
 }
 
-export const withSalesByItems = <Props,>(mapState?: MapState<WithSalesByItemsProps, Props>) => {
+export const withSalesByItems = <Props,>(
+  mapState?: MapState<WithSalesByItemsProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithSalesByItemsProps = {
       salesByItemsDrawerFilter: getSalesByItemsFilterDrawer(state),

@@ -44,8 +44,8 @@ function ViewFormPageInner({
             requestFetchResourceFields(resourceSlug),
           ]
         : viewId
-        ? [requestFetchViewResource(viewId)]
-        : []),
+          ? [requestFetchViewResource(viewId)]
+          : []),
       ...(viewId ? [requestFetchView(viewId)] : []),
     ]);
   }, []);

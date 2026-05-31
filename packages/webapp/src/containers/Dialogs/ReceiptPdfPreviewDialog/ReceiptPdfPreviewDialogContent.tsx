@@ -47,4 +47,6 @@ function ReceiptPdfPreviewDialogContentInner({
   );
 }
 
-export const ReceiptPdfPreviewDialogContent = compose(withDialogActions)(ReceiptPdfPreviewDialogContentInner);
+export const ReceiptPdfPreviewDialogContent = compose(withDialogActions)(
+  ReceiptPdfPreviewDialogContentInner,
+);

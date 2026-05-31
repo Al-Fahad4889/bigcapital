@@ -7,8 +7,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const PurchasesByItemsPdfDialogContent = lazy(
-  () => import('./PurchasesByItemsPdfDialogContent').then((m) => ({ default: m.PurchasesByItemsPdfDialogContent })),
+const PurchasesByItemsPdfDialogContent = lazy(() =>
+  import('./PurchasesByItemsPdfDialogContent').then((m) => ({
+    default: m.PurchasesByItemsPdfDialogContent,
+  })),
 );
 
 interface PurchasesByItemsPdfDialogRootProps {
@@ -20,7 +22,11 @@ interface PurchasesByItemsPdfDialogRootProps {
 /**
  * Purchases by items sheet pdf preview dialog.
  */
-function PurchasesByItemsPdfDialogRoot({ dialogName, payload, isOpen }: PurchasesByItemsPdfDialogRootProps) {
+function PurchasesByItemsPdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: PurchasesByItemsPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

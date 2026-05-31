@@ -24,15 +24,12 @@ function CustomerBulkDeleteAlertInner({
   // #withAlertActions
   closeAlert,
 }) {
-  
   const [isLoading, setLoading] = useState(false);
 
   // handle cancel delete  alert.
   const handleCancelDeleteAlert = () => {
     closeAlert(name);
   };
-
-
 
   // Handle confirm customers bulk delete.
   const handleConfirmBulkDelete = useCallback(() => {

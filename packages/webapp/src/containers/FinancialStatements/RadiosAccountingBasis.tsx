@@ -14,10 +14,7 @@ export function RadiosAccountingBasis(props: RadiosAccountingBasisProps) {
 
   return (
     <FastField name={'basis'}>
-      {({
-        form: { setFieldValue },
-        field: { value },
-      }: any) => (
+      {({ form: { setFieldValue }, field: { value } }: any) => (
         <RadioGroup
           inline={true}
           label={intl.get('accounting_basis')}

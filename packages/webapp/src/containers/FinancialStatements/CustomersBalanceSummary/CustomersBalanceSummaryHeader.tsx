@@ -19,18 +19,27 @@ import {
 import { CustomersBalanceSummaryGeneralPanel } from './CustomersBalanceSummaryGeneralPanel';
 
 import { compose, transformToForm } from '@/utils';
-import { getCustomersBalanceQuerySchema, getDefaultCustomersBalanceQuery } from './utils';
+import {
+  getCustomersBalanceQuerySchema,
+  getDefaultCustomersBalanceQuery,
+} from './utils';
 
-type CustomerBalanceFormValues = ReturnType<typeof getDefaultCustomersBalanceQuery>;
+type CustomerBalanceFormValues = ReturnType<
+  typeof getDefaultCustomersBalanceQuery
+>;
 
 interface CustomersBalanceSummaryHeaderOwnProps {
   onSubmitFilter: (values: CustomerBalanceFormValues) => void;
   pageFilter: CustomerBalanceFormValues;
 }
 
-type CustomersBalanceSummaryHeaderProps = CustomersBalanceSummaryHeaderOwnProps &
-  Pick<WithCustomersBalanceSummaryProps, 'customersBalanceDrawerFilter'> &
-  Pick<WithCustomersBalanceSummaryActionsProps, 'toggleCustomerBalanceFilterDrawer'>;
+type CustomersBalanceSummaryHeaderProps =
+  CustomersBalanceSummaryHeaderOwnProps &
+    Pick<WithCustomersBalanceSummaryProps, 'customersBalanceDrawerFilter'> &
+    Pick<
+      WithCustomersBalanceSummaryActionsProps,
+      'toggleCustomerBalanceFilterDrawer'
+    >;
 
 function CustomersBalanceSummaryHeaderInner({
   onSubmitFilter,

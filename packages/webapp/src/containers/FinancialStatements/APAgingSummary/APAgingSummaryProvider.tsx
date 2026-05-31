@@ -20,9 +20,14 @@ type APAgingSummaryProviderProps = {
   children?: React.ReactNode;
 };
 
-const APAgingSummaryContext = createContext<APAgingSummaryContextValue | undefined>(undefined);
+const APAgingSummaryContext = createContext<
+  APAgingSummaryContextValue | undefined
+>(undefined);
 
-function APAgingSummaryProvider({ filter, ...props }: APAgingSummaryProviderProps) {
+function APAgingSummaryProvider({
+  filter,
+  ...props
+}: APAgingSummaryProviderProps) {
   // Transformers the filter from to the Url query.
   const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]);
 
@@ -51,7 +56,10 @@ function APAgingSummaryProvider({ filter, ...props }: APAgingSummaryProviderProp
 
 const useAPAgingSummaryContext = (): APAgingSummaryContextValue => {
   const ctx = useContext(APAgingSummaryContext);
-  if (!ctx) throw new Error('useAPAgingSummaryContext must be used within APAgingSummaryProvider');
+  if (!ctx)
+    throw new Error(
+      'useAPAgingSummaryContext must be used within APAgingSummaryProvider',
+    );
   return ctx;
 };
 

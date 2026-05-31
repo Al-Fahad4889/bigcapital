@@ -7,8 +7,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const InventoryItemDetailsPdfDialogContent = lazy(
-  () => import('./InventoryItemDetailsPdfDialogContent').then((m) => ({ default: m.InventoryItemDetailsPdfDialogContent })),
+const InventoryItemDetailsPdfDialogContent = lazy(() =>
+  import('./InventoryItemDetailsPdfDialogContent').then((m) => ({
+    default: m.InventoryItemDetailsPdfDialogContent,
+  })),
 );
 
 interface InventoryItemDetailsPdfDialogRootProps {
@@ -21,7 +23,10 @@ interface InventoryItemDetailsPdfDialogRootProps {
  * Inventory item details sheet pdf preview dialog.
  * @returns {React.ReactNode}
  */
-function InventoryItemDetailsPdfDialogRoot({ dialogName, isOpen }: InventoryItemDetailsPdfDialogRootProps) {
+function InventoryItemDetailsPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: InventoryItemDetailsPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

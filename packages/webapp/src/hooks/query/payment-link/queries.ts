@@ -48,14 +48,16 @@ export function useCreatePaymentLink(
 > {
   const fetcher = useApiFetcher();
 
-  return useMutation<CreatePaymentLinkResponse, Error, CreatePaymentLinkValues>({
-    mutationFn: (values) =>
-      generateSaleInvoiceSharableLink(
-        fetcher,
-        Number(values.transactionId),
-      ).then((data) => ({ link: data.link })),
-    ...options,
-  });
+  return useMutation<CreatePaymentLinkResponse, Error, CreatePaymentLinkValues>(
+    {
+      mutationFn: (values) =>
+        generateSaleInvoiceSharableLink(
+          fetcher,
+          Number(values.transactionId),
+        ).then((data) => ({ link: data.link })),
+      ...options,
+    },
+  );
 }
 
 // Get Invoice Payment Link
@@ -118,18 +120,10 @@ export const useGeneratePaymentLinkInvoicePdf = (
     Error,
     GeneratePaymentLinkInvoicePdfValues
   >,
-): UseMutationResult<
-  Blob,
-  Error,
-  GeneratePaymentLinkInvoicePdfValues
-> => {
+): UseMutationResult<Blob, Error, GeneratePaymentLinkInvoicePdfValues> => {
   const fetcher = useApiFetcher();
 
-  return useMutation<
-    Blob,
-    Error,
-    GeneratePaymentLinkInvoicePdfValues
-  >({
+  return useMutation<Blob, Error, GeneratePaymentLinkInvoicePdfValues>({
     mutationFn: (values: GeneratePaymentLinkInvoicePdfValues) =>
       fetchGetPaymentLinkInvoicePdf(fetcher, values.paymentLinkId),
     ...options,

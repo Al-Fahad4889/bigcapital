@@ -4,7 +4,10 @@ import { Button, Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
 import { EmptyStatus } from '@/components';
 import { Can, FormattedMessage as T } from '@/components';
-import { PaymentReceiveAction, AbilitySubject } from '@/constants/abilityOption';
+import {
+  PaymentReceiveAction,
+  AbilitySubject,
+} from '@/constants/abilityOption';
 
 export function PaymentsReceivedEmptyStatus() {
   const history = useHistory();

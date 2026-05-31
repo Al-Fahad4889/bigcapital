@@ -45,4 +45,5 @@ function JournalPdfDialogRoot({
   );
 }
 
-export const JournalPdfDialog = compose(withDialogRedux())(JournalPdfDialogRoot);
+export const JournalPdfDialog =
+  compose(withDialogRedux())(JournalPdfDialogRoot);

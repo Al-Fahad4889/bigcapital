@@ -213,7 +213,8 @@ export const currenciesFieldShouldUpdate = (newProps, oldProps) => {
 
 export const useSetPrimaryBranchToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { branches, isBranchesSuccess, isNewMode } = useMakeJournalFormContext();
+  const { branches, isBranchesSuccess, isNewMode } =
+    useMakeJournalFormContext();
 
   React.useEffect(() => {
     if (isBranchesSuccess && isNewMode) {

@@ -7,7 +7,12 @@ import classNames from 'classnames';
 
 import { CLASSES } from '@/constants/classes';
 import { useCurrencyFormContext } from './CurrencyFormProvider';
-import { FieldRequiredHint, FFormGroup, FInputGroup, FSelect } from '@/components';
+import {
+  FieldRequiredHint,
+  FFormGroup,
+  FInputGroup,
+  FSelect,
+} from '@/components';
 
 import { useAutofocus } from '@/hooks';
 import { currenciesOptions } from '@/utils';
@@ -34,10 +39,7 @@ export function CurrencyFormFields() {
 
   return (
     <div className={Classes.DIALOG_BODY}>
-      <FFormGroup
-        name={'currency_code'}
-        label={intl.get('currency_code')}
-      >
+      <FFormGroup name={'currency_code'} label={intl.get('currency_code')}>
         <FSelect
           name={'currency_code'}
           items={currenciesOptions}

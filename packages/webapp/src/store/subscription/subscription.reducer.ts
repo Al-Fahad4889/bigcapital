@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { SET_PLAN_SUBSCRIPTIONS_LIST } from '@/store/types';;
+import { SET_PLAN_SUBSCRIPTIONS_LIST } from '@/store/types';
 
 interface SubscriptionsState {
   data: Record<string, unknown>;

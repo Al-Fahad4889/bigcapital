@@ -18,9 +18,14 @@ type ARAgingSummaryProviderProps = {
   children?: React.ReactNode;
 };
 
-const ARAgingSummaryContext = createContext<ARAgingSummaryContextValue | undefined>(undefined);
+const ARAgingSummaryContext = createContext<
+  ARAgingSummaryContextValue | undefined
+>(undefined);
 
-function ARAgingSummaryProvider({ filter, ...props }: ARAgingSummaryProviderProps) {
+function ARAgingSummaryProvider({
+  filter,
+  ...props
+}: ARAgingSummaryProviderProps) {
   const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]);
 
   const {
@@ -47,7 +52,10 @@ function ARAgingSummaryProvider({ filter, ...props }: ARAgingSummaryProviderProp
 
 const useARAgingSummaryContext = (): ARAgingSummaryContextValue => {
   const ctx = useContext(ARAgingSummaryContext);
-  if (!ctx) throw new Error('useARAgingSummaryContext must be used within ARAgingSummaryProvider');
+  if (!ctx)
+    throw new Error(
+      'useARAgingSummaryContext must be used within ARAgingSummaryProvider',
+    );
   return ctx;
 };
 

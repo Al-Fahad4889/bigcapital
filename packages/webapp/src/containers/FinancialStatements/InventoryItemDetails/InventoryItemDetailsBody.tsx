@@ -3,7 +3,10 @@ import { useInventoryItemDetailsContext } from './InventoryItemDetailsProvider';
 import { InventoryItemDetailsTable } from './InventoryItemDetailsTable';
 import { FinancialReportBody } from '../FinancialReportPage';
 import { FinancialSheetSkeleton } from '@/components';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 import { compose } from '@/utils';
 
 interface InventoryItemDetailsBodyProps {
@@ -14,7 +17,9 @@ interface InventoryItemDetailsBodyProps {
  * Inventory item details body.
  * @returns {JSX.Element}
  */
-function InventoryItemDetailsBodyJSX({ organizationName }: InventoryItemDetailsBodyProps) {
+function InventoryItemDetailsBodyJSX({
+  organizationName,
+}: InventoryItemDetailsBodyProps) {
   const { isInventoryItemDetailsLoading } = useInventoryItemDetailsContext();
 
   return (

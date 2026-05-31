@@ -9,12 +9,18 @@ interface VendorsBalanceSummaryGeneralPanelContextValue {
   isVendorsLoading: boolean;
 }
 
-const VendorsBalanceSummaryGeneralPanelContext = createContext<VendorsBalanceSummaryGeneralPanelContextValue | undefined>(undefined);
+const VendorsBalanceSummaryGeneralPanelContext = createContext<
+  VendorsBalanceSummaryGeneralPanelContextValue | undefined
+>(undefined);
 
 /**
  * Vendors balance summary general panel provider.
  */
-function VendorsBalanceSummaryGeneralPanelProvider({ ...props }: { children?: React.ReactNode }) {
+function VendorsBalanceSummaryGeneralPanelProvider({
+  ...props
+}: {
+  children?: React.ReactNode;
+}) {
   // Fetch vendors list with pagination meta.
   const {
     data: vendorsData,
@@ -41,13 +47,16 @@ function VendorsBalanceSummaryGeneralPanelProvider({ ...props }: { children?: Re
   );
 }
 
-const useVendorsBalanceSummaryGeneralPanelContext = (): VendorsBalanceSummaryGeneralPanelContextValue => {
-  const ctx = useContext(VendorsBalanceSummaryGeneralPanelContext);
-  if (!ctx) {
-    throw new Error('useVendorsBalanceSummaryGeneralPanelContext must be used within a VendorsBalanceSummaryGeneralPanelProvider');
-  }
-  return ctx;
-};
+const useVendorsBalanceSummaryGeneralPanelContext =
+  (): VendorsBalanceSummaryGeneralPanelContextValue => {
+    const ctx = useContext(VendorsBalanceSummaryGeneralPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useVendorsBalanceSummaryGeneralPanelContext must be used within a VendorsBalanceSummaryGeneralPanelProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   VendorsBalanceSummaryGeneralPanelProvider,

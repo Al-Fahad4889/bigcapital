@@ -45,6 +45,6 @@ function VendorOpeningBalanceFormFloatingActionsInner({
     </div>
   );
 }
-export const VendorOpeningBalanceFormFloatingActions = compose(withDialogActions)(
-  VendorOpeningBalanceFormFloatingActionsInner,
-);
+export const VendorOpeningBalanceFormFloatingActions = compose(
+  withDialogActions,
+)(VendorOpeningBalanceFormFloatingActionsInner);

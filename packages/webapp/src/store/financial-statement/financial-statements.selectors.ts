@@ -69,8 +69,9 @@ export const projectProfitabilitySummaryFilterDrawerSelector = (
   state: RootState,
 ) => filterDrawerByTypeSelector('projectProfitabilitySummary')(state);
 
-export const salesTaxLiabilitySummaryFilterDrawerSelector = (state: RootState) =>
-  filterDrawerByTypeSelector('salesTaxLiabilitySummary')(state);
+export const salesTaxLiabilitySummaryFilterDrawerSelector = (
+  state: RootState,
+) => filterDrawerByTypeSelector('salesTaxLiabilitySummary')(state);
 
 export const getBalanceSheetFilterDrawer = createSelector(
   balanceSheetFilterDrawerSelector,

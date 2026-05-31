@@ -6,7 +6,9 @@ export interface WithGlobalErrorsActionsProps {
   globalErrorsSet: (errors: Record<string, unknown>) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithGlobalErrorsActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithGlobalErrorsActionsProps => ({
   globalErrorsSet: (errors: Record<string, unknown>) =>
     dispatch(setGlobalErrors(errors)),
 });

@@ -29,12 +29,14 @@ import {
 import { useApiFetcher } from '../../useRequest';
 import { billsKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: billsKeys.all() });
 };
 
 export function useCreateBill(
-  props?: UseMutationOptions<void, Error, CreateBillBody>
+  props?: UseMutationOptions<void, Error, CreateBillBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -47,7 +49,7 @@ export function useCreateBill(
 }
 
 export function useEditBill(
-  props?: UseMutationOptions<void, Error, [number, EditBillBody]>
+  props?: UseMutationOptions<void, Error, [number, EditBillBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -63,9 +65,7 @@ export function useEditBill(
   });
 }
 
-export function useOpenBill(
-  props?: UseMutationOptions<void, Error, number>
-) {
+export function useOpenBill(props?: UseMutationOptions<void, Error, number>) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -79,9 +79,7 @@ export function useOpenBill(
   });
 }
 
-export function useDeleteBill(
-  props?: UseMutationOptions<void, Error, number>
-) {
+export function useDeleteBill(props?: UseMutationOptions<void, Error, number>) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -95,9 +93,14 @@ export function useDeleteBill(
   });
 }
 
-export type BulkDeleteBillsPayload = { ids: number[]; skipUndeletable?: boolean };
+export type BulkDeleteBillsPayload = {
+  ids: number[];
+  skipUndeletable?: boolean;
+};
 
-function toBulkDeleteBody(payload: BulkDeleteBillsPayload): BulkDeleteBillsBody {
+function toBulkDeleteBody(
+  payload: BulkDeleteBillsPayload,
+): BulkDeleteBillsBody {
   return {
     ids: payload.ids,
     skipUndeletable: payload.skipUndeletable ?? false,
@@ -105,7 +108,7 @@ function toBulkDeleteBody(payload: BulkDeleteBillsPayload): BulkDeleteBillsBody 
 }
 
 export function useBulkDeleteBills(
-  props?: UseMutationOptions<void, Error, BulkDeleteBillsPayload>
+  props?: UseMutationOptions<void, Error, BulkDeleteBillsPayload>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -127,7 +130,7 @@ export type ValidateBulkDeleteBillsResponse = {
 };
 
 export function useValidateBulkDeleteBills(
-  props?: UseMutationOptions<ValidateBulkDeleteBillsResponse, Error, number[]>
+  props?: UseMutationOptions<ValidateBulkDeleteBillsResponse, Error, number[]>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -140,7 +143,7 @@ export function useValidateBulkDeleteBills(
 
 export function useBills(
   query?: GetBillsQuery,
-  props?: Omit<UseQueryOptions<BillsListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<BillsListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -152,7 +155,7 @@ export function useBills(
 
 export function useBill(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Bill>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Bill>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -165,14 +168,17 @@ export function useBill(
 
 export function useDueBills(
   vendorId: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown[]>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown[]>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
     ...props,
     queryKey: billsKeys.due(vendorId),
     queryFn: () =>
-      fetchDueBills(fetcher, vendorId != null ? { vendor_id: vendorId } : undefined),
+      fetchDueBills(
+        fetcher,
+        vendorId != null ? { vendor_id: vendorId } : undefined,
+      ),
   });
 }
 
@@ -185,7 +191,10 @@ export function useRefreshBills() {
 
 export function useBillPaymentTransactions(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<BillPaymentTransactionsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<BillPaymentTransactionsResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

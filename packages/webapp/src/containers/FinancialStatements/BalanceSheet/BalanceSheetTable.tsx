@@ -29,7 +29,10 @@ export function BalanceSheetTable({ companyName }: BalanceSheetTableProps) {
     <FinancialSheet
       companyName={companyName}
       sheetType={intl.get('balance_sheet')}
-      dateText={balanceSheet?.meta?.formatted_date_range ?? balanceSheet?.meta?.formatted_as_date}
+      dateText={
+        balanceSheet?.meta?.formatted_date_range ??
+        balanceSheet?.meta?.formatted_as_date
+      }
       basis={balanceSheet?.query.basis}
     >
       <BalanceSheetDataTable

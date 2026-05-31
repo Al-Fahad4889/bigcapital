@@ -6,8 +6,10 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
-const ARAgingSummaryPdfDialogContent = lazy(
-  () => import('./ARAgingSummaryPdfDialogContent').then((m) => ({ default: m.ARAgingSummaryPdfDialogContent })),
+const ARAgingSummaryPdfDialogContent = lazy(() =>
+  import('./ARAgingSummaryPdfDialogContent').then((m) => ({
+    default: m.ARAgingSummaryPdfDialogContent,
+  })),
 );
 
 interface ARAgingSummaryPdfDialogRootProps {
@@ -16,7 +18,10 @@ interface ARAgingSummaryPdfDialogRootProps {
   isOpen: boolean;
 }
 
-function ARAgingSummaryPdfDialogRoot({ dialogName, isOpen }: ARAgingSummaryPdfDialogRootProps) {
+function ARAgingSummaryPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: ARAgingSummaryPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

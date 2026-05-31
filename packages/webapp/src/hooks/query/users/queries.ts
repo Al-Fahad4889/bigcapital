@@ -30,12 +30,14 @@ import { useSetFeatureDashboardMeta } from '../../state/feature';
 import { usersKeys } from './query-keys';
 import { useSetAuthEmailConfirmed } from '../../state';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: usersKeys.all() });
 };
 
 export function useCreateInviteUser(
-  props?: UseMutationOptions<void, Error, InviteUserBody>
+  props?: UseMutationOptions<void, Error, InviteUserBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -50,14 +52,15 @@ export function useCreateInviteUser(
 }
 
 export function useEditUser(
-  props?: UseMutationOptions<void, Error, [number, EditUserBody]>
+  props?: UseMutationOptions<void, Error, [number, EditUserBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ([id, values]: [number, EditUserBody]) => editUser(fetcher, id, values),
+    mutationFn: ([id, values]: [number, EditUserBody]) =>
+      editUser(fetcher, id, values),
     onSuccess: (_res, [id]) => {
       queryClient.invalidateQueries({ queryKey: usersKeys.detail(id) });
       commonInvalidateQueries(queryClient);
@@ -66,7 +69,7 @@ export function useEditUser(
 }
 
 export function useInactivateUser(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const fetcher = useApiFetcher();
   const queryClient = useQueryClient();
@@ -82,7 +85,7 @@ export function useInactivateUser(
 }
 
 export function useActivateUser(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const fetcher = useApiFetcher();
   const queryClient = useQueryClient();
@@ -97,9 +100,7 @@ export function useActivateUser(
   });
 }
 
-export function useDeleteUser(
-  props?: UseMutationOptions<void, Error, number>
-) {
+export function useDeleteUser(props?: UseMutationOptions<void, Error, number>) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -114,7 +115,7 @@ export function useDeleteUser(
 }
 
 export function useUsers(
-  props?: Omit<UseQueryOptions<UsersListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<UsersListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -126,7 +127,7 @@ export function useUsers(
 
 export function useUser(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<User>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<User>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -138,7 +139,7 @@ export function useUser(
 }
 
 export function useAuthenticatedAccount(
-  props?: Omit<UseQueryOptions<AuthedAccount>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<AuthedAccount>, 'queryKey' | 'queryFn'>,
 ) {
   const setEmailConfirmed = useSetAuthEmailConfirmed();
   const fetcher = useApiFetcher();
@@ -160,7 +161,10 @@ export function useAuthenticatedAccount(
 }
 
 export const useDashboardMeta = (
-  props?: Omit<UseQueryOptions<GetDashboardBootMetaResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<GetDashboardBootMetaResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) => {
   const setFeatureDashboardMeta = useSetFeatureDashboardMeta();
   const fetcher = useApiFetcher();

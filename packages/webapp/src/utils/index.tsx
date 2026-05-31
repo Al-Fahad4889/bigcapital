@@ -240,8 +240,12 @@ export function formattedExchangeRate(amount, currency) {
   return formatter.format(amount);
 }
 
-export const ConditionalWrapper = ({ condition, wrapper, children, ...rest }) =>
-  condition ? wrapper({ children, ...rest }) : children;
+export const ConditionalWrapper = ({
+  condition,
+  wrapper,
+  children,
+  ...rest
+}) => (condition ? wrapper({ children, ...rest }) : children);
 
 export const checkRequiredProperties = (obj, properties) => {
   return properties.some((prop) => {
@@ -484,7 +488,10 @@ export const getColumnWidth = (
   return result;
 };
 
-export const getForceWidth = (text: string, magicSpacing: number = 14): number => {
+export const getForceWidth = (
+  text: string,
+  magicSpacing: number = 14,
+): number => {
   const textLength = text.length;
   const result = textLength * magicSpacing;
 

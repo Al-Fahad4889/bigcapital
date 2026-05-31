@@ -10,7 +10,10 @@ export class UserDto {
   @ApiProperty({ description: 'The last name', example: 'Doe' })
   lastName: string;
 
-  @ApiProperty({ description: 'The email address', example: 'john@example.com' })
+  @ApiProperty({
+    description: 'The email address',
+    example: 'john@example.com',
+  })
   email: string;
 
   @ApiProperty({ description: 'Whether the user is active', example: true })
@@ -22,7 +25,10 @@ export class UserDto {
   @ApiProperty({ description: 'The role name', example: 'Administrator' })
   roleName: string;
 
-  @ApiProperty({ description: 'The role description', example: 'Full access to all features' })
+  @ApiProperty({
+    description: 'The role description',
+    example: 'Full access to all features',
+  })
   roleDescription: string;
 
   @ApiProperty({ description: 'The role slug', example: 'administrator' })

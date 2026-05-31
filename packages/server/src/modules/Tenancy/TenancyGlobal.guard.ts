@@ -40,10 +40,10 @@ export class TenancyGlobalGuard implements CanActivate {
     const authorization = request.headers['authorization']?.trim();
     const isAuthApiKey = !!getAuthApiKey(authorization || '');
 
-    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_ROUTE, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
+    const isPublic = this.reflector.getAllAndOverride<boolean>(
+      IS_PUBLIC_ROUTE,
+      [context.getHandler(), context.getClass()],
+    );
     const isTenantAgnostic = this.reflector.getAllAndOverride<boolean>(
       IS_TENANT_AGNOSTIC,
       [context.getHandler(), context.getClass()],

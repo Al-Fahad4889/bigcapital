@@ -19,7 +19,9 @@ import { useApiFetcher } from '../../../useRequest';
 import { bankingKeys } from '../query-keys';
 
 /** Mutation variables for pause (hook uses bankAccountId for the API id). */
-type PauseFeedsBankAccountValues = { bankAccountId: PauseBankAccountParams['id'] };
+type PauseFeedsBankAccountValues = {
+  bankAccountId: PauseBankAccountParams['id'];
+};
 
 /**
  * Pauses the feeds syncing of the bank account.
@@ -34,14 +36,18 @@ export function usePauseFeedsBankAccount(
     mutationFn: (values: PauseFeedsBankAccountValues) =>
       pauseBankAccount(fetcher, values.bankAccountId),
     onSuccess: (_res, values) => {
-      queryClient.invalidateQueries({ queryKey: bankingKeys.summaryMeta(values.bankAccountId) });
+      queryClient.invalidateQueries({
+        queryKey: bankingKeys.summaryMeta(values.bankAccountId),
+      });
     },
     ...options,
   });
 }
 
 /** Mutation variables for resume (hook uses bankAccountId for the API id). */
-type ResumeFeedsBankAccountValues = { bankAccountId: RefreshBankAccountParams['id'] };
+type ResumeFeedsBankAccountValues = {
+  bankAccountId: RefreshBankAccountParams['id'];
+};
 
 /**
  * Resumes the feeds syncing of the bank account.
@@ -56,17 +62,21 @@ export function useResumeFeedsBankAccount(
     mutationFn: (values: ResumeFeedsBankAccountValues) =>
       resumeBankAccount(fetcher, values.bankAccountId),
     onSuccess: (_res, values) => {
-      queryClient.invalidateQueries({ queryKey: bankingKeys.summaryMeta(values.bankAccountId) });
+      queryClient.invalidateQueries({
+        queryKey: bankingKeys.summaryMeta(values.bankAccountId),
+      });
     },
     ...options,
   });
 }
 
 /** Mutation variables (UI uses bankAccountId; API path param is id). */
-type DisconnectBankAccountValues = { bankAccountId: DisconnectBankAccountParams['id'] };
+type DisconnectBankAccountValues = {
+  bankAccountId: DisconnectBankAccountParams['id'];
+};
 
 export function useDisconnectBankAccount(
-  options?: UseMutationOptions<unknown, Error, DisconnectBankAccountValues>
+  options?: UseMutationOptions<unknown, Error, DisconnectBankAccountValues>,
 ): UseMutationResult<unknown, Error, DisconnectBankAccountValues> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -76,16 +86,20 @@ export function useDisconnectBankAccount(
     mutationFn: ({ bankAccountId }: DisconnectBankAccountValues) =>
       disconnectBankAccount(fetcher, bankAccountId),
     onSuccess: (_data, values) => {
-      queryClient.invalidateQueries({ queryKey: bankingKeys.summaryMeta(values.bankAccountId) });
+      queryClient.invalidateQueries({
+        queryKey: bankingKeys.summaryMeta(values.bankAccountId),
+      });
     },
   });
 }
 
 /** Mutation variables (UI uses bankAccountId; API path param is id). */
-type UpdateBankAccountValues = { bankAccountId: RefreshBankAccountParams['id'] };
+type UpdateBankAccountValues = {
+  bankAccountId: RefreshBankAccountParams['id'];
+};
 
 export function useUpdateBankAccount(
-  options?: UseMutationOptions<unknown, Error, UpdateBankAccountValues>
+  options?: UseMutationOptions<unknown, Error, UpdateBankAccountValues>,
 ): UseMutationResult<unknown, Error, UpdateBankAccountValues> {
   const fetcher = useApiFetcher();
 

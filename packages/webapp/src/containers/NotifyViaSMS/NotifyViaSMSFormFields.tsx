@@ -5,12 +5,7 @@ import { FormGroup, InputGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
 import styled from 'styled-components';
 
-import {
-  FFormGroup,
-  FSelect,
-  FieldRequiredHint,
-
-} from '@/components';
+import { FFormGroup, FSelect, FieldRequiredHint } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { inputIntent } from '@/utils';
 import intl from 'react-intl-universal';

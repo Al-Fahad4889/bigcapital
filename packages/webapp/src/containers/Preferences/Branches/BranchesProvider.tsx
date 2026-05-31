@@ -28,10 +28,9 @@ function BranchesProvider({ query, ...props }: BranchesProviderProps) {
   const isBranchFeatureCan = featureCan(Features.Branches);
 
   // Fetches the branches list.
-  const {
-    isLoading: isBranchesLoading,
-    data: branches,
-  } = useBranches(query, { enabled: isBranchFeatureCan });
+  const { isLoading: isBranchesLoading, data: branches } = useBranches(query, {
+    enabled: isBranchFeatureCan,
+  });
 
   // Detarmines the datatable empty status.
   const isEmptyStatus =

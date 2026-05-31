@@ -18,7 +18,6 @@ export const transformToReq = (
   };
 };
 
-
 export const initialValues = {
   type: 'deposit',
   date: '',

@@ -25,7 +25,9 @@ const InventoryValuationHeaderDimensionsPanelContext = createContext<
  * Inventory valuation header provider.
  * @returns
  */
-function InventoryValuationHeaderDimensionsProvider({ ...props }: InventoryValuationHeaderDimensionsProviderProps) {
+function InventoryValuationHeaderDimensionsProvider({
+  ...props
+}: InventoryValuationHeaderDimensionsProviderProps) {
   // Features guard.
   const { featureCan } = useFeatureCan();
 
@@ -64,15 +66,16 @@ function InventoryValuationHeaderDimensionsProvider({ ...props }: InventoryValua
   );
 }
 
-const useInventoryValuationHeaderDimensionsPanelContext = (): InventoryValuationHeaderDimensionsPanelContextValue => {
-  const ctx = useContext(InventoryValuationHeaderDimensionsPanelContext);
-  if (!ctx) {
-    throw new Error(
-      'useInventoryValuationHeaderDimensionsPanelContext must be used within InventoryValuationHeaderDimensionsProvider',
-    );
-  }
-  return ctx;
-};
+const useInventoryValuationHeaderDimensionsPanelContext =
+  (): InventoryValuationHeaderDimensionsPanelContextValue => {
+    const ctx = useContext(InventoryValuationHeaderDimensionsPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useInventoryValuationHeaderDimensionsPanelContext must be used within InventoryValuationHeaderDimensionsProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   InventoryValuationHeaderDimensionsProvider,

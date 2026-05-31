@@ -4,10 +4,14 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithSalesTaxLiabilitySummaryProps {
-  salesTaxLiabilitySummaryFilter: ReturnType<typeof getSalesTaxLiabilitySummaryFilterDrawer>;
+  salesTaxLiabilitySummaryFilter: ReturnType<
+    typeof getSalesTaxLiabilitySummaryFilterDrawer
+  >;
 }
 
-export const withSalesTaxLiabilitySummary = <Props,>(mapState?: MapState<WithSalesTaxLiabilitySummaryProps, Props>) => {
+export const withSalesTaxLiabilitySummary = <Props>(
+  mapState?: MapState<WithSalesTaxLiabilitySummaryProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithSalesTaxLiabilitySummaryProps = {
       salesTaxLiabilitySummaryFilter:

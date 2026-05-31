@@ -21,7 +21,6 @@ function ClearAllLinesAlert({
   // #withAlertActions
   closeAlert,
 }) {
-
   // Handle the alert cancel.
   const handleCancel = () => {
     closeAlert(name);

@@ -8,8 +8,10 @@ import withDialogRedux from '@/components/DialogReduxConnect';
 import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
-const CashflowSheetPdfDialogContent = lazy(
-  () => import('./CashflowSheetPdfDialogContent').then((m) => ({ default: m.CashflowSheetPdfDialogContent })),
+const CashflowSheetPdfDialogContent = lazy(() =>
+  import('./CashflowSheetPdfDialogContent').then((m) => ({
+    default: m.CashflowSheetPdfDialogContent,
+  })),
 );
 
 interface CashflowSheetPdfDialogRootProps {
@@ -18,7 +20,10 @@ interface CashflowSheetPdfDialogRootProps {
   isOpen: boolean;
 }
 
-function CashflowSheetPdfDialogRoot({ dialogName, isOpen }: CashflowSheetPdfDialogRootProps) {
+function CashflowSheetPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: CashflowSheetPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

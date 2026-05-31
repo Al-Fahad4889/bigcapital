@@ -9,10 +9,7 @@ interface PaperProps extends SystemProps {
 
 export const Paper = ({ children, ...props }: PaperProps) => {
   return (
-    <x.div
-      {...props}
-      className={clsx(styles.root)}
-    >
+    <x.div {...props} className={clsx(styles.root)}>
       {children}
     </x.div>
   );

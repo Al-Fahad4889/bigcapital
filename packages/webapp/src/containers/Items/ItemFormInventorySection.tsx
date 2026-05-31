@@ -53,4 +53,6 @@ function ItemFormInventorySectionInner({ organization: { base_currency } }) {
   );
 }
 
-export const ItemFormInventorySection = compose(withCurrentOrganization())(ItemFormInventorySectionInner);
+export const ItemFormInventorySection = compose(withCurrentOrganization())(
+  ItemFormInventorySectionInner,
+);

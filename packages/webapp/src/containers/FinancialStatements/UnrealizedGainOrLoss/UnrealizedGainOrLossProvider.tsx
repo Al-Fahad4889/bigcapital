@@ -9,9 +9,14 @@ type UnrealizedGainOrLossProviderProps = {
   children?: React.ReactNode;
 };
 
-const UnrealizedGainOrLossContext = React.createContext<UnrealizedGainOrLossContextValue | undefined>(undefined);
+const UnrealizedGainOrLossContext = React.createContext<
+  UnrealizedGainOrLossContextValue | undefined
+>(undefined);
 
-function UnrealizedGainOrLossProvider({ filter, ...props }: UnrealizedGainOrLossProviderProps) {
+function UnrealizedGainOrLossProvider({
+  filter,
+  ...props
+}: UnrealizedGainOrLossProviderProps) {
   const provider: UnrealizedGainOrLossContextValue = {};
   return (
     <FinancialReportPage name="unrealized-gain-loss">
@@ -22,7 +27,10 @@ function UnrealizedGainOrLossProvider({ filter, ...props }: UnrealizedGainOrLoss
 
 const useUnrealizedGainOrLossContext = (): UnrealizedGainOrLossContextValue => {
   const ctx = React.useContext(UnrealizedGainOrLossContext);
-  if (!ctx) throw new Error('useUnrealizedGainOrLossContext must be used within UnrealizedGainOrLossProvider');
+  if (!ctx)
+    throw new Error(
+      'useUnrealizedGainOrLossContext must be used within UnrealizedGainOrLossProvider',
+    );
   return ctx;
 };
 

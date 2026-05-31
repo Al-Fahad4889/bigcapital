@@ -6,7 +6,7 @@ import clsx from 'classnames';
 import { Intent, MenuItem, Menu } from '@blueprintjs/core';
 import { safeCallback } from '@/utils';
 import { CLASSES } from '@/constants/classes';
-import {  Icon } from '@/components';
+import { Icon } from '@/components';
 
 /**
  * Actions menu.

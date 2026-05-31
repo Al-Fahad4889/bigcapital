@@ -25,7 +25,7 @@ function TaxRatesLandingProvider({ tableState, ...props }) {
     taxRates,
     isTaxRatesFetching,
     isTaxRatesLoading,
-    isEmptyStatus
+    isEmptyStatus,
   };
 
   return (

@@ -203,8 +203,8 @@ export const PlaidSlice = createSlice({
 
     /**
      * Sets the uncategorized transactions filter.
-     * @param {StorePlaidState} state 
-     * @param {PayloadAction<{ filter: any }>} action 
+     * @param {StorePlaidState} state
+     * @param {PayloadAction<{ filter: any }>} action
      */
     setUncategorizedTransactionsFilter: (
       state: StorePlaidState,
@@ -215,7 +215,7 @@ export const PlaidSlice = createSlice({
 
     /**
      * Resets the uncategorized transactions filter.
-     * @param {StorePlaidState} state 
+     * @param {StorePlaidState} state
      */
     resetUncategorizedTranasctionsFilter: (state: StorePlaidState) => {
       state.uncategorizedFilter = {};

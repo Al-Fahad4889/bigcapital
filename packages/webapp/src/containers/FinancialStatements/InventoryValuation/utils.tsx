@@ -29,7 +29,9 @@ export const getInventoryValuationQuery = () => ({
 /**
  * Parses inventory valuation location query to report query.
  */
-const parseInventoryValuationQuery = (locationQuery: Record<string, unknown>) => {
+const parseInventoryValuationQuery = (
+  locationQuery: Record<string, unknown>,
+) => {
   const defaultQuery = getInventoryValuationQuery();
 
   const transformed = {

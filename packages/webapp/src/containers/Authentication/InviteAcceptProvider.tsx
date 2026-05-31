@@ -26,7 +26,9 @@ function InviteAcceptProvider({ token, ...props }) {
   const history = useHistory();
 
   useEffect(() => {
-    if (inviteMetaError) { history.push('/auth/login'); }
+    if (inviteMetaError) {
+      history.push('/auth/login');
+    }
   }, [history, inviteMetaError]);
 
   // Transform the backend response to match frontend expectations.

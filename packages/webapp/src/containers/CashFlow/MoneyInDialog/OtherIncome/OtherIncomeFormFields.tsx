@@ -10,7 +10,6 @@ import {
 } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,

@@ -79,23 +79,23 @@ export const TotalLinePrimitive = styled.div`
     border-bottom: 1px solid var(--x-color-divider);
 
     ${(props) =>
-    props.borderStyle === TotalLineBorderStyle.DoubleDark &&
-    `
+      props.borderStyle === TotalLineBorderStyle.DoubleDark &&
+      `
       border-bottom: 3px double var(--x-color-divider-dark);
     `}
     ${(props) =>
-    props.borderStyle === TotalLineBorderStyle.SingleDark &&
-    `
+      props.borderStyle === TotalLineBorderStyle.SingleDark &&
+      `
       border-bottom: 1px double var(--x-color-divider-dark);
     `}
     ${(props) =>
-    props.borderStyle === TotalLineBorderStyle.None &&
-    `
+      props.borderStyle === TotalLineBorderStyle.None &&
+      `
       border-bottom-color: transparent;
     `}
     ${(props) =>
-    props.textStyle === TotalLineTextStyle.Bold &&
-    `
+      props.textStyle === TotalLineTextStyle.Bold &&
+      `
       font-weight: 600;
     `}
   }
@@ -107,7 +107,14 @@ export const TotalLinePrimitive = styled.div`
 `;
 
 const TotalLineAmount = (props) => {
-  return <x.div display={'table-cell'} padding={'8px'} textAlign={'right'} {...props} />;
+  return (
+    <x.div
+      display={'table-cell'}
+      padding={'8px'}
+      textAlign={'right'}
+      {...props}
+    />
+  );
 };
 
 export const TotalLineTitle = (props) => {

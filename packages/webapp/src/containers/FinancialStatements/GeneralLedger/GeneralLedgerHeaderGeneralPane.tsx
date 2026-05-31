@@ -1,13 +1,7 @@
 import React from 'react';
 import { Classes } from '@blueprintjs/core';
 
-import {
-  AccountsMultiSelect,
-  Row,
-  Col,
-
-  FFormGroup,
-} from '@/components';
+import { AccountsMultiSelect, Row, Col, FFormGroup } from '@/components';
 
 import { RadiosAccountingBasis } from '../RadiosAccountingBasis';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';

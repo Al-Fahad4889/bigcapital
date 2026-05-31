@@ -37,7 +37,11 @@ export const handleDeleteErrors = (errors) => {
       intent: Intent.DANGER,
     });
   }
-  if (errors.find((e) => e.type === DeleteAccountTypeError.AccountHasAssociatedTransactions)) {
+  if (
+    errors.find(
+      (e) => e.type === DeleteAccountTypeError.AccountHasAssociatedTransactions,
+    )
+  ) {
     AppToaster.show({
       message: intl.get('cannot_delete_account_has_associated_transactions'),
       intent: Intent.DANGER,

@@ -6,10 +6,7 @@ import { debounce } from 'lodash';
 import { withDashboard } from '@/containers/Dashboard/withDashboard';
 import { compose } from '@/utils';
 
-function DashboardSplitPane({
-  sidebarExpended,
-  children
-}) {
+function DashboardSplitPane({ sidebarExpended, children }) {
   const initialSize = 220;
 
   const [defaultSize, setDefaultSize] = useState(
@@ -23,7 +20,7 @@ function DashboardSplitPane({
   const handleChange = (size) => {
     debounceSaveSize.current(size);
     setDefaultSize(size);
-  }
+  };
   return (
     <SplitPane
       allowResize={sidebarExpended}
@@ -41,5 +38,5 @@ function DashboardSplitPane({
 }
 
 export default compose(
-  withDashboard(({ sidebarExpended }) => ({ sidebarExpended }))
+  withDashboard(({ sidebarExpended }) => ({ sidebarExpended })),
 )(DashboardSplitPane);

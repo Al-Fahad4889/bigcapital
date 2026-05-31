@@ -79,4 +79,5 @@ function GeneralFormPageInner({
   );
 }
 
-export const GeneralFormPage = compose(withDashboardActions)(GeneralFormPageInner);
+export const GeneralFormPage =
+  compose(withDashboardActions)(GeneralFormPageInner);

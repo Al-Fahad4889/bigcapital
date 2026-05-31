@@ -2,11 +2,7 @@
 import { css } from '@emotion/css';
 import { x } from '@xstyled/emotion';
 import clsx from 'classnames';
-import {
-  FFormGroup,
-  FInputGroup,
-  TotalLinePrimitive,
-} from '@/components';
+import { FFormGroup, FInputGroup, TotalLinePrimitive } from '@/components';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
 const inputGroupCss = css`

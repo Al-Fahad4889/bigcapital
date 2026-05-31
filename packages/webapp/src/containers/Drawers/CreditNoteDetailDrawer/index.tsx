@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const CreditNoteDetailDrawerContent = React.lazy(() => import('./CreditNoteDetailDrawerContent').then(m => ({ default: m.CreditNoteDetailDrawerContent })));
+const CreditNoteDetailDrawerContent = React.lazy(() =>
+  import('./CreditNoteDetailDrawerContent').then((m) => ({
+    default: m.CreditNoteDetailDrawerContent,
+  })),
+);
 
 /**
  * Credit note detail drawer.

@@ -23,5 +23,5 @@ export default function TablePage() {
   if (page.length === 0) {
     return <TableNoResultsRowRenderer />;
   }
-  return (<TableRowsRenderer />);
+  return <TableRowsRenderer />;
 }

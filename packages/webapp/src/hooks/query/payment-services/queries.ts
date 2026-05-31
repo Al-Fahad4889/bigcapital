@@ -35,8 +35,8 @@ export const useGetPaymentServices = (
   return useQuery<GetPaymentServicesResponse, Error>({
     queryKey: paymentServicesKeys.list(),
     queryFn: () =>
-      fetchGetPaymentServices(fetcher).then((res) =>
-        res?.payment_services as GetPaymentServicesResponse,
+      fetchGetPaymentServices(fetcher).then(
+        (res) => res?.payment_services as GetPaymentServicesResponse,
       ),
     ...options,
   });
@@ -55,7 +55,9 @@ export const useGetPaymentServicesState = (
   return useQuery<GetPaymentServicesStateResponse, Error>({
     queryKey: paymentServicesKeys.state(),
     queryFn: () =>
-      fetchGetPaymentServicesState(fetcher) as Promise<GetPaymentServicesStateResponse>,
+      fetchGetPaymentServicesState(
+        fetcher,
+      ) as Promise<GetPaymentServicesStateResponse>,
     ...options,
   });
 };
@@ -93,8 +95,12 @@ export const useUpdatePaymentMethod = (): UseMutationResult<
       fetchUpdatePaymentMethod(fetcher, Number(data.paymentMethodId), {
         ...(data.values.name && { name: data.values.name }),
         options: {
-          ...(data.values.bankAccountId && { bankAccountId: data.values.bankAccountId }),
-          ...(data.values.clearingAccountId && { clearningAccountId: data.values.clearingAccountId }),
+          ...(data.values.bankAccountId && {
+            bankAccountId: data.values.bankAccountId,
+          }),
+          ...(data.values.clearingAccountId && {
+            clearningAccountId: data.values.clearingAccountId,
+          }),
         },
       }),
     onSuccess: () => {
@@ -111,15 +117,18 @@ export const useUpdatePaymentMethod = (): UseMutationResult<
  */
 export const useGetPaymentMethod = (
   paymentMethodId: number,
-  options?: Omit<UseQueryOptions<GetPaymentServiceResponse, Error>, 'queryKey' | 'queryFn'>,
+  options?: Omit<
+    UseQueryOptions<GetPaymentServiceResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ): UseQueryResult<GetPaymentServiceResponse, Error> => {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useQuery<GetPaymentServiceResponse, Error>({
     queryKey: paymentServicesKeys.detail(paymentMethodId),
     queryFn: () =>
-      fetchGetPaymentService(fetcher, paymentMethodId).then((res) =>
-        res?.data as GetPaymentServiceResponse,
+      fetchGetPaymentService(fetcher, paymentMethodId).then(
+        (res) => res?.data as GetPaymentServiceResponse,
       ),
     enabled: !!paymentMethodId,
     ...options,

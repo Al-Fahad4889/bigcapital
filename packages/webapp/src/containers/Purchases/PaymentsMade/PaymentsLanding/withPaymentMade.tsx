@@ -7,8 +7,12 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithPaymentMadeProps {
-  paymentMadesTableState: ReturnType<ReturnType<typeof getPaymentMadesTableStateFactory>>;
-  paymentsTableStateChanged: ReturnType<ReturnType<typeof paymentsTableStateChangedFactory>>;
+  paymentMadesTableState: ReturnType<
+    ReturnType<typeof getPaymentMadesTableStateFactory>
+  >;
+  paymentsTableStateChanged: ReturnType<
+    ReturnType<typeof paymentsTableStateChangedFactory>
+  >;
 }
 
 export const withPaymentMade = <

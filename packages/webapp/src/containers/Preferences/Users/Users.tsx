@@ -7,7 +7,10 @@ import '@/style/pages/Preferences/Users.scss';
 import { Card } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import PreferencesSubContent from '@/components/Preferences/PreferencesSubContent';
-import { withDialogActions, type WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  type WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 
 function UsersPreferences({ openDialog }: WithDialogActionsProps) {
   const onChangeTabs = (currentTabId: string) => {};

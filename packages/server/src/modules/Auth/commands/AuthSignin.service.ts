@@ -23,7 +23,7 @@ export class AuthSigninService {
 
     private readonly jwtService: JwtService,
     private readonly clsService: ClsService,
-  ) { }
+  ) {}
 
   /**
    * Validates the given email and password.
@@ -65,7 +65,7 @@ export class AuthSigninService {
         .query()
         .findOne({ email: payload.sub })
         .throwIfNotFound();
-      
+
       this.clsService.set('userId', user.id);
     } catch (error) {
       throw new UserNotFoundException(String(payload.sub));

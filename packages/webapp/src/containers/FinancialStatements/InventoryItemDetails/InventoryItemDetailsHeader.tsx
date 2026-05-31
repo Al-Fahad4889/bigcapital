@@ -12,8 +12,14 @@ import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { InventoryItemDetailsHeaderGeneralPanel } from './InventoryItemDetailsHeaderGeneralPanel';
 import { InventoryItemDetailsHeaderDimensionsPanel } from './InventoryItemDetailsHeaderDimensionsPanel';
 
-import { withInventoryItemDetails, WithInventoryItemDetailsProps } from './withInventoryItemDetails';
-import { withInventoryItemDetailsActions, WithInventoryItemDetailsActionsProps } from './withInventoryItemDetailsActions';
+import {
+  withInventoryItemDetails,
+  WithInventoryItemDetailsProps,
+} from './withInventoryItemDetails';
+import {
+  withInventoryItemDetailsActions,
+  WithInventoryItemDetailsActionsProps,
+} from './withInventoryItemDetailsActions';
 
 import {
   getInventoryItemDetailsDefaultQuery,
@@ -38,7 +44,10 @@ interface InventoryItemDetailsHeaderOwnProps {
 
 type InventoryItemDetailsHeaderProps = InventoryItemDetailsHeaderOwnProps &
   Pick<WithInventoryItemDetailsProps, 'inventoryItemDetailDrawerFilter'> &
-  Pick<WithInventoryItemDetailsActionsProps, 'toggleInventoryItemDetailsFilterDrawer'>;
+  Pick<
+    WithInventoryItemDetailsActionsProps,
+    'toggleInventoryItemDetailsFilterDrawer'
+  >;
 
 /**
  * Inventory item details header.
@@ -72,7 +81,10 @@ function InventoryItemDetailsHeaderInner({
   const validationSchema = getInventoryItemDetailsQuerySchema();
 
   // Handle form submit.
-  const handleSubmit = (values: InventoryItemDetailsFormValues, actions: FormikHelpers<InventoryItemDetailsFormValues>) => {
+  const handleSubmit = (
+    values: InventoryItemDetailsFormValues,
+    actions: FormikHelpers<InventoryItemDetailsFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     actions.setSubmitting(false);

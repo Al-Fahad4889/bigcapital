@@ -17,7 +17,9 @@ interface PurchasesByItemsTableProps {
 /**
  * Purchases by items data table.
  */
-export function PurchasesByItemsTable({ companyName }: PurchasesByItemsTableProps) {
+export function PurchasesByItemsTable({
+  companyName,
+}: PurchasesByItemsTableProps) {
   // Purchases by items context.
   const { purchaseByItems } = usePurchaseByItemsContext();
 

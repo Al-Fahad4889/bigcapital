@@ -14,12 +14,10 @@ export default function DashboardLoadingIndicator({
   return (
     <Choose>
       <Choose.When condition={isLoading}>
-        <BigcapitalLoading />        
+        <BigcapitalLoading />
       </Choose.When>
 
-      <Choose.Otherwise>
-        { children }
-      </Choose.Otherwise>
+      <Choose.Otherwise>{children}</Choose.Otherwise>
     </Choose>
   );
 }

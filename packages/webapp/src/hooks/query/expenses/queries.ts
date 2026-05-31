@@ -34,7 +34,9 @@ import { cashflowAccountsKeys } from '../cashflow-accounts/query-keys';
 import { financialReportsKeys } from '../FinancialReports/query-keys';
 import { settingsKeys } from '../settings/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   // Invalidate expenses.
   queryClient.invalidateQueries({ queryKey: expensesKeys.all() });
 
@@ -51,8 +53,12 @@ const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>)
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
 
   // Invalidate cashflow accounts.
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions() });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity() });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactions(),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity(),
+  });
 
   // Invalidate settings.
   queryClient.invalidateQueries({ queryKey: settingsKeys.receipts() });
@@ -62,15 +68,14 @@ const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>)
 };
 
 export function useCreateExpense(
-  props?: UseMutationOptions<void, Error, CreateExpenseBody>
+  props?: UseMutationOptions<void, Error, CreateExpenseBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (values: CreateExpenseBody) =>
-      createExpense(fetcher, values),
+    mutationFn: (values: CreateExpenseBody) => createExpense(fetcher, values),
     onSuccess: () => {
       commonInvalidateQueries(queryClient);
     },
@@ -78,7 +83,7 @@ export function useCreateExpense(
 }
 
 export function useEditExpense(
-  props?: UseMutationOptions<void, Error, [number, EditExpenseBody]>
+  props?: UseMutationOptions<void, Error, [number, EditExpenseBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -95,7 +100,7 @@ export function useEditExpense(
 }
 
 export function useDeleteExpense(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -111,7 +116,7 @@ export function useDeleteExpense(
 }
 
 export function usePublishExpense(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -127,17 +132,14 @@ export function usePublishExpense(
 }
 
 export function useBulkDeleteExpenses(
-  props?: UseMutationOptions<void, Error, BulkDeleteExpensesBody>
+  props?: UseMutationOptions<void, Error, BulkDeleteExpensesBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ({
-      ids,
-      skipUndeletable = false,
-    }: BulkDeleteExpensesBody) =>
+    mutationFn: ({ ids, skipUndeletable = false }: BulkDeleteExpensesBody) =>
       bulkDeleteExpenses(fetcher, { ids, skipUndeletable }),
     onSuccess: () => {
       commonInvalidateQueries(queryClient);
@@ -150,7 +152,7 @@ export function useValidateBulkDeleteExpenses(
     ValidateBulkDeleteExpensesResponse,
     Error,
     number[]
-  >
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -163,7 +165,7 @@ export function useValidateBulkDeleteExpenses(
 
 export function useExpenses(
   query?: GetExpensesQuery | null,
-  props?: Omit<UseQueryOptions<ExpensesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ExpensesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -176,7 +178,7 @@ export function useExpenses(
 
 export function useExpense(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Expense>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Expense>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 

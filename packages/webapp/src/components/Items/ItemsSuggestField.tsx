@@ -152,5 +152,6 @@ function ItemsSuggestFieldRoot({
   );
 }
 
-export const ItemsSuggestField =
-  R.compose(withDrawerActions)(ItemsSuggestFieldRoot);
+export const ItemsSuggestField = R.compose(withDrawerActions)(
+  ItemsSuggestFieldRoot,
+);

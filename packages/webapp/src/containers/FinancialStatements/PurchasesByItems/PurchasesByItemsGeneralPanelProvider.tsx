@@ -5,7 +5,9 @@ import { FinancialHeaderLoadingSkeleton } from '../FinancialHeaderLoadingSkeleto
 type UseItemsResult = ReturnType<typeof useItems>;
 
 interface PurchasesByItemsGeneralPanelContextValue {
-  items: UseItemsResult['data'] extends { items?: infer I } | undefined ? I : unknown;
+  items: UseItemsResult['data'] extends { items?: infer I } | undefined
+    ? I
+    : unknown;
   isItemsLoading: boolean;
   isItemsFetching: boolean;
 }
@@ -14,9 +16,13 @@ interface PurchasesByItemsGeneralPanelProviderProps {
   children?: React.ReactNode;
 }
 
-const PurchasesByItemsGeneralPanelContext = createContext<PurchasesByItemsGeneralPanelContextValue | undefined>(undefined);
+const PurchasesByItemsGeneralPanelContext = createContext<
+  PurchasesByItemsGeneralPanelContextValue | undefined
+>(undefined);
 
-function PurchasesByItemsGeneralPanelProvider({ ...props }: PurchasesByItemsGeneralPanelProviderProps) {
+function PurchasesByItemsGeneralPanelProvider({
+  ...props
+}: PurchasesByItemsGeneralPanelProviderProps) {
   // Handle fetching the items based on the given query.
   const {
     data: itemsData,
@@ -44,11 +50,13 @@ function PurchasesByItemsGeneralPanelProvider({ ...props }: PurchasesByItemsGene
   );
 }
 
-const usePurchaseByItemsGeneralPanelContext = (): PurchasesByItemsGeneralPanelContextValue => {
-  const ctx = useContext(PurchasesByItemsGeneralPanelContext);
-  if (!ctx) throw new Error('PurchasesByItemsGeneralPanelContext is not provided');
-  return ctx;
-};
+const usePurchaseByItemsGeneralPanelContext =
+  (): PurchasesByItemsGeneralPanelContextValue => {
+    const ctx = useContext(PurchasesByItemsGeneralPanelContext);
+    if (!ctx)
+      throw new Error('PurchasesByItemsGeneralPanelContext is not provided');
+    return ctx;
+  };
 
 export {
   PurchasesByItemsGeneralPanelProvider,

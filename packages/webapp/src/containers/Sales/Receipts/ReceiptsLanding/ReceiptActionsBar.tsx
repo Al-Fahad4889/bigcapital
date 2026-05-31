@@ -37,9 +37,7 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { useReceiptsListContext } from './ReceiptsListProvider';
-import {
-  useRefreshReceipts,
-} from '@/hooks/query/receipts';
+import { useRefreshReceipts } from '@/hooks/query/receipts';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { SaleReceiptAction, AbilitySubject } from '@/constants/abilityOption';
 import { useBulkDeleteReceiptsDialog } from './hooks/use-bulk-delete-receipts-dialog';
@@ -124,10 +122,8 @@ function ReceiptActionsBarInner({
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'SaleReceipt' });
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteReceipts,
-  } = useBulkDeleteReceiptsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteReceipts } =
+    useBulkDeleteReceiptsDialog();
 
   if (!isEmpty(receiptSelectedRows)) {
     const handleBulkDelete = () => {

@@ -30,8 +30,10 @@ export function StripeIntegrationEditFormContent() {
       <FFormGroup
         name={'clearingAccountId'}
         label={'Clearing Account'}
-        subLabel='Liability Account'
-        helperText={'Clearing account tracks all payments collected through Stripe.'}
+        subLabel="Liability Account"
+        helperText={
+          'Clearing account tracks all payments collected through Stripe.'
+        }
         style={{ maxWidth: 300 }}
       >
         <AccountsSelect

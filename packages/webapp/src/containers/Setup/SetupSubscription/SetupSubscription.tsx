@@ -35,4 +35,6 @@ function SetupSubscriptionInner({
   );
 }
 
-export const SetupSubscription = R.compose(withSubscriptionPlansActions)(SetupSubscriptionInner);
+export const SetupSubscription = R.compose(withSubscriptionPlansActions)(
+  SetupSubscriptionInner,
+);

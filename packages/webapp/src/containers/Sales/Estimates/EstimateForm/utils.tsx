@@ -182,7 +182,8 @@ export const transfromsFormValuesToRequest = (values) => {
 
 export const useSetPrimaryWarehouseToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { warehouses, isWarehousesSuccess, isNewMode } = useEstimateFormContext();
+  const { warehouses, isWarehousesSuccess, isNewMode } =
+    useEstimateFormContext();
 
   React.useEffect(() => {
     if (isWarehousesSuccess && isNewMode) {

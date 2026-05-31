@@ -23,4 +23,6 @@ function CurrenciesActionsInner({ openDialog }) {
   );
 }
 
-export const CurrenciesActions = compose(withDialogActions)(CurrenciesActionsInner);
+export const CurrenciesActions = compose(withDialogActions)(
+  CurrenciesActionsInner,
+);

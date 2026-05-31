@@ -72,34 +72,32 @@ export const UncategorizedTransactionsDateFilter = R.compose(
   withBanking(({ uncategorizedTransactionsFilter }) => ({
     uncategorizedTransactionsFilter,
   })),
-)(
-  ({
-    // #withBankingActions
-    setUncategorizedTransactionsFilter,
+)(({
+  // #withBankingActions
+  setUncategorizedTransactionsFilter,
 
-    // #withBanking
-    uncategorizedTransactionsFilter,
+  // #withBanking
+  uncategorizedTransactionsFilter,
 
-    // #ownProps
-    onSubmit,
-  }) => {
-    const initialValues = {
-      ...uncategorizedTransactionsFilter,
-    };
+  // #ownProps
+  onSubmit,
+}) => {
+  const initialValues = {
+    ...uncategorizedTransactionsFilter,
+  };
 
-    const handleSubmit = (values) => {
-      setUncategorizedTransactionsFilter({
-        fromDate: values.fromDate,
-        toDate: values.toDate,
-      });
-      onSubmit && onSubmit(values);
-    };
+  const handleSubmit = (values) => {
+    setUncategorizedTransactionsFilter({
+      fromDate: values.fromDate,
+      toDate: values.toDate,
+    });
+    onSubmit && onSubmit(values);
+  };
 
-    return (
-      <AccountTransactionsDateFilterForm
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      />
-    );
-  },
-);
+  return (
+    <AccountTransactionsDateFilterForm
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+    />
+  );
+});

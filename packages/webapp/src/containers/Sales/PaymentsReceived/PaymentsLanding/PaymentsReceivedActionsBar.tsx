@@ -116,10 +116,8 @@ function PaymentsReceivedActionsBarInner({
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'PaymentReceive' });
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeletePaymentReceives,
-  } = useBulkDeletePaymentReceivesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeletePaymentReceives } =
+    useBulkDeletePaymentReceivesDialog();
 
   if (!isEmpty(paymentReceivesSelectedRows)) {
     const handleBulkDelete = () => {
@@ -229,11 +227,13 @@ function PaymentsReceivedActionsBarInner({
 export const PaymentsReceivedActionsBar = compose(
   withPaymentsReceivedActions,
   withSettingsActions,
-  withPaymentsReceived(({ paymentReceivesTableState, paymentReceivesSelectedRows }) => ({
-    paymentReceivesTableState,
-    paymentFilterConditions: paymentReceivesTableState.filterRoles,
-    paymentReceivesSelectedRows,
-  })),
+  withPaymentsReceived(
+    ({ paymentReceivesTableState, paymentReceivesSelectedRows }) => ({
+      paymentReceivesTableState,
+      paymentFilterConditions: paymentReceivesTableState.filterRoles,
+      paymentReceivesSelectedRows,
+    }),
+  ),
   withSettings(({ paymentReceiveSettings }) => ({
     paymentReceivesTableSize: paymentReceiveSettings?.tableSize,
   })),

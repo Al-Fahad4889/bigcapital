@@ -1,6 +1,13 @@
 import React, { createContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import type { Item, AccountsList, TaxRatesListResponse, CreateItemBody, EditItemBody, ItemsCategoriesListResult } from '@bigcapital/sdk-ts';
+import type {
+  Item,
+  AccountsList,
+  TaxRatesListResponse,
+  CreateItemBody,
+  EditItemBody,
+  ItemsCategoriesListResult,
+} from '@bigcapital/sdk-ts';
 import {
   useItem,
   useSettingsItems,
@@ -41,7 +48,9 @@ type ItemFormContextValue = {
   setSubmitPayload: React.Dispatch<React.SetStateAction<ItemFormSubmitPayload>>;
 };
 
-const ItemFormContext = createContext<ItemFormContextValue | undefined>(undefined);
+const ItemFormContext = createContext<ItemFormContextValue | undefined>(
+  undefined,
+);
 
 /**
  * Accounts chart data provider.
@@ -54,10 +63,8 @@ function ItemFormProvider({ itemId, ...props }: ItemFormProviderProps) {
   const { isLoading: isAccountsLoading, data: accounts } = useAccounts();
 
   // Fetches the items categories list.
-  const {
-    isLoading: isItemsCategoriesLoading,
-    data: itemsCategoriesData,
-  } = useItemsCategories();
+  const { isLoading: isItemsCategoriesLoading, data: itemsCategoriesData } =
+    useItemsCategories();
 
   const { data: taxRates, isLoading: isTaxRatesLoading } = useTaxRates();
 
@@ -72,9 +79,7 @@ function ItemFormProvider({ itemId, ...props }: ItemFormProviderProps) {
   useWatchItemError(itemQuery);
 
   // Fetches item settings.
-  const {
-    isLoading: isItemsSettingsLoading,
-  } = useSettingsItems();
+  const { isLoading: isItemsSettingsLoading } = useSettingsItems();
 
   // Create and edit item mutations.
   const { mutateAsync: editItemMutate } = useEditItem();
@@ -110,8 +115,12 @@ function ItemFormProvider({ itemId, ...props }: ItemFormProviderProps) {
     isItemLoading,
     isTaxRatesLoading,
 
-    createItemMutate: createItemMutate as (values: CreateItemBody) => Promise<void>,
-    editItemMutate: editItemMutate as (args: [number, EditItemBody]) => Promise<void>,
+    createItemMutate: createItemMutate as (
+      values: CreateItemBody,
+    ) => Promise<void>,
+    editItemMutate: editItemMutate as (
+      args: [number, EditItemBody],
+    ) => Promise<void>,
     setSubmitPayload,
   };
 
@@ -121,7 +130,9 @@ function ItemFormProvider({ itemId, ...props }: ItemFormProviderProps) {
 const useItemFormContext = (): ItemFormContextValue => {
   const ctx = React.useContext(ItemFormContext);
   if (!ctx) {
-    throw new Error('useItemFormContext must be used within an ItemFormProvider');
+    throw new Error(
+      'useItemFormContext must be used within an ItemFormProvider',
+    );
   }
   return ctx;
 };

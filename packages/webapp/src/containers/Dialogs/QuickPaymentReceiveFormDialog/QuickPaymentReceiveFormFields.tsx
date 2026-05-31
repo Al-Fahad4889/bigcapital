@@ -12,7 +12,6 @@ import {
   Row,
   Col,
   FieldRequiredHint,
-
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,

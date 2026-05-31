@@ -22,10 +22,7 @@ export function CustomersTransactionsTable({
   companyName,
 }: CustomersTransactionsTableProps) {
   // Customers transactions context.
-  const {
-    customersTransactions,
-    query,
-  } = useCustomersTransactionsContext();
+  const { customersTransactions, query } = useCustomersTransactionsContext();
 
   const tableRows = (customersTransactions as any)?.tableRows;
   const meta = (customersTransactions as any)?.meta;

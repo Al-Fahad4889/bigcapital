@@ -7,7 +7,9 @@ export interface WithTrialBalanceProps {
   trialBalanceDrawerFilter: ReturnType<typeof getTrialBalanceSheetFilterDrawer>;
 }
 
-export const withTrialBalance = <Props,>(mapState?: MapState<WithTrialBalanceProps, Props>) => {
+export const withTrialBalance = <Props,>(
+  mapState?: MapState<WithTrialBalanceProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithTrialBalanceProps = {
       trialBalanceDrawerFilter: getTrialBalanceSheetFilterDrawer(state),

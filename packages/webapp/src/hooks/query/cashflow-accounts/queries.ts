@@ -31,18 +31,28 @@ import { customersKeys } from '../customers/query-keys';
 import { vendorsKeys } from '../vendors/query-keys';
 import { financialReportsKeys } from '../FinancialReports/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   // Invalidate cashflow accounts.
   queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.all() });
 
   // Invalidate cashflow transactions.
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions() });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactionsInfinity() });
-  queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.uncategorizedInfinity() });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactions(),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.transactionsInfinity(),
+  });
+  queryClient.invalidateQueries({
+    queryKey: cashflowAccountsKeys.uncategorizedInfinity(),
+  });
 
   // Invalidate accounts.
   queryClient.invalidateQueries({ queryKey: accountsKeys.all() });
-  queryClient.invalidateQueries({ queryKey: accountsKeys.transactions(null).slice(0, 1) });
+  queryClient.invalidateQueries({
+    queryKey: accountsKeys.transactions(null).slice(0, 1),
+  });
 
   // Invalidate financial reports.
   queryClient.invalidateQueries({ queryKey: financialReportsKeys.all() });
@@ -56,7 +66,7 @@ const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>)
 
 export function useCashflowAccounts(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -68,7 +78,7 @@ export function useCashflowAccounts(
 }
 
 export function useCreateCashflowTransaction(
-  props?: UseMutationOptions<void, Error, CreateCashflowTransactionBody>
+  props?: UseMutationOptions<void, Error, CreateCashflowTransactionBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -85,7 +95,7 @@ export function useCreateCashflowTransaction(
 
 export function useCashflowTransaction(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -98,7 +108,7 @@ export function useCashflowTransaction(
 }
 
 export function useDeleteCashflowTransaction(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -107,7 +117,9 @@ export function useDeleteCashflowTransaction(
     ...props,
     mutationFn: (id: number) => deleteCashflowTransaction(fetcher, id),
     onSuccess: (_res, id) => {
-      queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transaction(id) });
+      queryClient.invalidateQueries({
+        queryKey: cashflowAccountsKeys.transaction(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -117,9 +129,19 @@ export function useAccountTransactionsInfinity(
   accountId: number,
   query?: CashflowAccountTransactionsQuery,
   props?: Omit<
-    UseInfiniteQueryOptions<unknown, Error, unknown, unknown, readonly [string, number | undefined, CashflowAccountTransactionsQuery | undefined]>,
+    UseInfiniteQueryOptions<
+      unknown,
+      Error,
+      unknown,
+      unknown,
+      readonly [
+        string,
+        number | undefined,
+        CashflowAccountTransactionsQuery | undefined,
+      ]
+    >,
     'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam'
-  >
+  >,
 ) {
   const fetcher = useApiFetcher();
 
@@ -127,7 +149,10 @@ export function useAccountTransactionsInfinity(
     ...props,
     queryKey: cashflowAccountsKeys.transactionsInfinity(accountId, query),
     queryFn: ({ pageParam = 1 }) =>
-      fetchAccountTransactionsInfinity(fetcher, accountId, { ...query, page: pageParam }),
+      fetchAccountTransactionsInfinity(fetcher, accountId, {
+        ...query,
+        page: pageParam,
+      }),
     initialPageParam: 1,
     getNextPageParam: (lastPage: { pagination?: { nextPage?: number } }) =>
       lastPage?.pagination?.nextPage,
@@ -138,9 +163,19 @@ export function useAccountUncategorizedTransactionsInfinity(
   accountId: number,
   query?: CashflowAccountUncategorizedTransactionsQuery,
   props?: Omit<
-    UseInfiniteQueryOptions<unknown, Error, unknown, unknown, readonly [string, number | undefined, CashflowAccountUncategorizedTransactionsQuery | undefined]>,
+    UseInfiniteQueryOptions<
+      unknown,
+      Error,
+      unknown,
+      unknown,
+      readonly [
+        string,
+        number | undefined,
+        CashflowAccountUncategorizedTransactionsQuery | undefined,
+      ]
+    >,
     'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam'
-  >
+  >,
 ) {
   const fetcher = useApiFetcher();
 
@@ -148,7 +183,10 @@ export function useAccountUncategorizedTransactionsInfinity(
     ...props,
     queryKey: cashflowAccountsKeys.uncategorizedInfinity(accountId, query),
     queryFn: ({ pageParam = 1 }) =>
-      fetchAccountUncategorizedTransactions(fetcher, accountId, { ...query, page: pageParam }),
+      fetchAccountUncategorizedTransactions(fetcher, accountId, {
+        ...query,
+        page: pageParam,
+      }),
     initialPageParam: 1,
     getNextPageParam: (lastPage: { pagination?: { nextPage?: number } }) =>
       lastPage?.pagination?.nextPage,
@@ -170,14 +208,16 @@ export function useRefreshCashflowTransactions() {
 
   return {
     refresh: () => {
-      queryClient.invalidateQueries({ queryKey: cashflowAccountsKeys.transactions() });
+      queryClient.invalidateQueries({
+        queryKey: cashflowAccountsKeys.transactions(),
+      });
     },
   };
 }
 
 export function useUncategorizedTransaction(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
 
@@ -190,15 +230,24 @@ export function useUncategorizedTransaction(
 }
 
 export function useCategorizeTransaction(
-  props?: UseMutationOptions<void, Error, { id: number; values: CategorizeTransactionBody }>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    { id: number; values: CategorizeTransactionBody }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ({ id, values }: { id: number; values: CategorizeTransactionBody }) =>
-      categorizeTransaction(fetcher, id, values),
+    mutationFn: ({
+      id,
+      values,
+    }: {
+      id: number;
+      values: CategorizeTransactionBody;
+    }) => categorizeTransaction(fetcher, id, values),
     onSuccess: () => {
       commonInvalidateQueries(queryClient);
     },
@@ -206,7 +255,7 @@ export function useCategorizeTransaction(
 }
 
 export function useUncategorizeTransaction(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();

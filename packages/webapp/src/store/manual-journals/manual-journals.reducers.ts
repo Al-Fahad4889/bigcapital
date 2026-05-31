@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RESET, MANUAL_JOURNALS_SET_SELECTED_ROWS } from '@/store/types';;
+import { RESET, MANUAL_JOURNALS_SET_SELECTED_ROWS } from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 interface ManualJournalsState {
@@ -33,7 +33,10 @@ const CONFIG = {
 const reducerInstance = createReducer(initialState, {
   ...createTableStateReducers('MANUAL_JOURNALS', defaultTableQuery),
 
-  [MANUAL_JOURNALS_SET_SELECTED_ROWS]: (state: ManualJournalsState, action: { payload: Array<unknown> }) => {
+  [MANUAL_JOURNALS_SET_SELECTED_ROWS]: (
+    state: ManualJournalsState,
+    action: { payload: Array<unknown> },
+  ) => {
     state.selectedRows = action.payload;
   },
 
@@ -42,4 +45,7 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const manualJournalsPersistReducer = persistReducer(CONFIG, reducerInstance);
+export const manualJournalsPersistReducer = persistReducer(
+  CONFIG,
+  reducerInstance,
+);

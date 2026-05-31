@@ -264,7 +264,8 @@ const transformPaymentMethodsToForm = (
 
 export const useSetPrimaryWarehouseToForm = () => {
   const { setFieldValue } = useFormikContext();
-  const { warehouses, isWarehousesSuccess, isNewMode } = useInvoiceFormContext();
+  const { warehouses, isWarehousesSuccess, isNewMode } =
+    useInvoiceFormContext();
 
   React.useEffect(() => {
     if (isWarehousesSuccess && isNewMode) {

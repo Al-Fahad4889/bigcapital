@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchCustomerBalanceTable,
   fetchCustomerBalanceXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useCustomerBalanceSummaryReport(
   query: CustomerBalanceTableQuery,
-  props?: Omit<UseQueryOptions<CustomerBalanceTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<CustomerBalanceTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

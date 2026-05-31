@@ -20,7 +20,9 @@ export const getDefaultSalesTaxLiablitySummaryQuery = () => ({
 /**
  * Parses the sales tax liability summary query.
  */
-const parseSalesTaxLiabilitySummaryQuery = (locationQuery: Record<string, any>) => {
+const parseSalesTaxLiabilitySummaryQuery = (
+  locationQuery: Record<string, any>,
+) => {
   const defaultQuery = getDefaultSalesTaxLiablitySummaryQuery();
 
   const transformed = {

@@ -6,7 +6,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const InventoryAdjustmentDrawerContent = React.lazy(() => import('./InventoryAdjustmentDrawerContent').then(m => ({ default: m.InventoryAdjustmentDrawerContent })));
+const InventoryAdjustmentDrawerContent = React.lazy(() =>
+  import('./InventoryAdjustmentDrawerContent').then((m) => ({
+    default: m.InventoryAdjustmentDrawerContent,
+  })),
+);
 
 /**
  * Inventory adjustment detail drawer.

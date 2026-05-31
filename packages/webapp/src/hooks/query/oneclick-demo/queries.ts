@@ -16,7 +16,7 @@ import {
 import { setAuthLoginCookies } from '../authentication';
 import { batch } from 'react-redux';
 
-interface CreateOneClickDemoValues { }
+interface CreateOneClickDemoValues {}
 interface CreateOneClickDemoRes {
   email: string;
   signedIn: any;
@@ -42,7 +42,7 @@ export function useCreateOneClickDemo(
     () => apiRequest.post(`/demo/one_click`),
     {
       ...props,
-      onSuccess: (res, id) => { },
+      onSuccess: (res, id) => {},
     },
   );
 }
@@ -50,7 +50,7 @@ export function useCreateOneClickDemo(
 interface OneClickSigninDemoValues {
   demoId: string;
 }
-interface OneClickSigninDemoRes { }
+interface OneClickSigninDemoRes {}
 
 /**
  * Sign-in to the created one-click demo account.

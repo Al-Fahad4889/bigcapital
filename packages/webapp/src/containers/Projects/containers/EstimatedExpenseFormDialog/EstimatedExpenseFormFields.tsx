@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import intl from 'react-intl-universal';
 import { Classes, ControlGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
-import {
-  FFormGroup,
-  FInputGroup,
-  FormattedMessage as T,
-} from '@/components';
+import { FFormGroup, FInputGroup, FormattedMessage as T } from '@/components';
 import {
   ExpenseSelect,
   FInputGroupComponent,

@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {connect} from 'react-redux';
-import {compose} from '@/utils';
+import { connect } from 'react-redux';
+import { compose } from '@/utils';
 
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withResourceDetail } from '@/containers/Resources/withResourceDetails';
@@ -9,8 +9,9 @@ import { withViewsDetails } from '@/containers/Views/withViewDetails';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    resourceName: ownProps.viewId ?
-      ownProps.viewMeta.resource?.name : ownProps.resourceName,
+    resourceName: ownProps.viewId
+      ? ownProps.viewMeta.resource?.name
+      : ownProps.resourceName,
   };
 };
 

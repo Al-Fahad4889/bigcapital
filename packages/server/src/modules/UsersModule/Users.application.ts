@@ -6,7 +6,11 @@ import { InactivateUserService } from './commands/InactivateUser.service';
 import { GetUserService } from './queries/GetUser.service';
 import { AcceptInviteUserService } from './commands/AcceptInviteUser.service';
 import { EditUserDto } from './dtos/EditUser.dto';
-import { InviteUserDto, SendInviteUserDto, BulkSendInviteUserDto } from './dtos/InviteUser.dto';
+import {
+  InviteUserDto,
+  SendInviteUserDto,
+  BulkSendInviteUserDto,
+} from './dtos/InviteUser.dto';
 import { GetUsersService } from './queries/GetUsers.service';
 import { InviteTenantUserService } from './commands/InviteUser.service';
 import { SendBulkInvitesService } from './commands/SendBulkInvites.service';

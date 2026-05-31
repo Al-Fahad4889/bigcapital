@@ -54,16 +54,14 @@ function OrganizationsListTable({
 
   const handleSetDefault = useCallback(
     (organizationId) => {
-      setDefaultWorkspace
-        .mutateAsync({ organizationId })
-        .then(() => {
-          AppToaster.show({
-            message: intl.get('workspaces.default_workspace_set_successfully', {
-              fallback: 'Default workspace has been set successfully',
-            }),
-            intent: Intent.SUCCESS,
-          });
+      setDefaultWorkspace.mutateAsync({ organizationId }).then(() => {
+        AppToaster.show({
+          message: intl.get('workspaces.default_workspace_set_successfully', {
+            fallback: 'Default workspace has been set successfully',
+          }),
+          intent: Intent.SUCCESS,
         });
+      });
     },
     [setDefaultWorkspace],
   );
@@ -92,7 +90,9 @@ function OrganizationsListTable({
   const columns = useMemo(
     () => [
       {
-        Header: intl.get('workspaces.column_workspace', { fallback: 'Workspace' }),
+        Header: intl.get('workspaces.column_workspace', {
+          fallback: 'Workspace',
+        }),
         accessor: 'metadata.name',
         width: 320,
         Cell: ({ row }) => (
@@ -112,7 +112,9 @@ function OrganizationsListTable({
       },
       {
         id: 'liabilities',
-        Header: intl.get('workspaces.column_liabilities', { fallback: 'Liabilities' }),
+        Header: intl.get('workspaces.column_liabilities', {
+          fallback: 'Liabilities',
+        }),
         accessor: 'formattedTotalLiabilities',
         Cell: ({ value }) => value || '-',
         align: 'right',
@@ -125,20 +127,31 @@ function OrganizationsListTable({
         disableSortBy: true,
         Cell: ({ row }) => {
           const workspace = row.original;
-          const workspaceName = workspace.metadata?.name || workspace.organizationId;
-          const isCurrentOrganization = workspace.organizationId === activeOrganizationId;
-          const isDisabled = !workspace.isReady || workspace.isBuildRunning || workspace.isDeleting;
+          const workspaceName =
+            workspace.metadata?.name || workspace.organizationId;
+          const isCurrentOrganization =
+            workspace.organizationId === activeOrganizationId;
+          const isDisabled =
+            !workspace.isReady ||
+            workspace.isBuildRunning ||
+            workspace.isDeleting;
           const isOwner = workspace.role === 'owner';
-          const canSwitch = !isCurrentOrganization && !isDisabled && workspace.isActive;
+          const canSwitch =
+            !isCurrentOrganization && !isDisabled && workspace.isActive;
           const defaultDisabled =
-            !workspace.isReady || workspace.isBuildRunning || !workspace.isActive || workspace.isDefault;
+            !workspace.isReady ||
+            workspace.isBuildRunning ||
+            !workspace.isActive ||
+            workspace.isDefault;
           const canSetDefaultInMenu = !workspace.isDefault && !defaultDisabled;
 
           const menuContent = isOwner ? (
             <Menu minimal>
               {canSetDefaultInMenu && (
                 <MenuItem
-                  text={intl.get('workspaces.set_as_default', { fallback: 'Set as default' })}
+                  text={intl.get('workspaces.set_as_default', {
+                    fallback: 'Set as default',
+                  })}
                   icon={<Icon icon="star" />}
                   onClick={() => handleSetDefault(workspace.organizationId)}
                 />
@@ -146,16 +159,24 @@ function OrganizationsListTable({
               <MenuItem
                 text={
                   workspace.isActive
-                    ? intl.get('workspaces.inactivate_workspace', { fallback: 'Inactivate Workspace' })
-                    : intl.get('workspaces.activate_workspace', { fallback: 'Activate Workspace' })
+                    ? intl.get('workspaces.inactivate_workspace', {
+                        fallback: 'Inactivate Workspace',
+                      })
+                    : intl.get('workspaces.activate_workspace', {
+                        fallback: 'Activate Workspace',
+                      })
                 }
                 icon={<Icon icon={workspace.isActive ? 'disable' : 'tick'} />}
                 disabled={isDisabled}
-                onClick={() => !isDisabled && handleInactivateWorkspace(workspace)}
+                onClick={() =>
+                  !isDisabled && handleInactivateWorkspace(workspace)
+                }
               />
               <MenuDivider />
               <MenuItem
-                text={intl.get('workspaces.delete_workspace', { fallback: 'Delete Workspace' })}
+                text={intl.get('workspaces.delete_workspace', {
+                  fallback: 'Delete Workspace',
+                })}
                 icon={<Icon icon="trash" />}
                 disabled={isDisabled}
                 intent={Intent.DANGER}
@@ -165,7 +186,12 @@ function OrganizationsListTable({
           ) : null;
 
           return (
-            <x.div display="flex" alignItems="center" justifyContent="flex-end" gap="6px">
+            <x.div
+              display="flex"
+              alignItems="center"
+              justifyContent="flex-end"
+              gap="6px"
+            >
               {!isCurrentOrganization && (
                 <Tooltip
                   content={`Switch to ${workspaceName}`}
@@ -175,7 +201,12 @@ function OrganizationsListTable({
                     type="button"
                     small
                     disabled={!canSwitch}
-                    onClick={() => handleSwitchWorkspace(workspace.organizationId, workspaceName)}
+                    onClick={() =>
+                      handleSwitchWorkspace(
+                        workspace.organizationId,
+                        workspaceName,
+                      )
+                    }
                     icon={<Icon icon="arrow-right" iconSize={18} />}
                   />
                 </Tooltip>

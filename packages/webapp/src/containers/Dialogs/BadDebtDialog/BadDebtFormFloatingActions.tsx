@@ -8,7 +8,6 @@ import { useBadDebtContext } from './BadDebtFormProvider';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
 /**
  * Bad bebt form floating actions.
  */
@@ -46,4 +45,6 @@ function BadDebtFormFloatingActionsInner({
   );
 }
 
-export const BadDebtFormFloatingActions = compose(withDialogActions)(BadDebtFormFloatingActionsInner);
+export const BadDebtFormFloatingActions = compose(withDialogActions)(
+  BadDebtFormFloatingActionsInner,
+);

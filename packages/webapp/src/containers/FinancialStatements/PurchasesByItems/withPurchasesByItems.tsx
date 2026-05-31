@@ -4,10 +4,14 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithPurchasesByItemsProps {
-  purchasesByItemsDrawerFilter: ReturnType<typeof getPurchasesByItemsFilterDrawer>;
+  purchasesByItemsDrawerFilter: ReturnType<
+    typeof getPurchasesByItemsFilterDrawer
+  >;
 }
 
-export const withPurchasesByItems = <Props,>(mapState?: MapState<WithPurchasesByItemsProps, Props>) => {
+export const withPurchasesByItems = <Props,>(
+  mapState?: MapState<WithPurchasesByItemsProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithPurchasesByItemsProps = {
       purchasesByItemsDrawerFilter: getPurchasesByItemsFilterDrawer(state),

@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { useVendorsTransactionsReport } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UseVendorsTransactionsResult = ReturnType<typeof useVendorsTransactionsReport>;
+type UseVendorsTransactionsResult = ReturnType<
+  typeof useVendorsTransactionsReport
+>;
 
 interface VendorsTransactionsContextValue {
   vendorsTransactions: UseVendorsTransactionsResult['data'];
@@ -18,12 +20,17 @@ interface VendorsTransactionsProviderProps {
   filter: Record<string, unknown>;
 }
 
-const VendorsTransactionsContext = createContext<VendorsTransactionsContextValue | undefined>(undefined);
+const VendorsTransactionsContext = createContext<
+  VendorsTransactionsContextValue | undefined
+>(undefined);
 
 /**
  * Vendors transactions provider.
  */
-function VendorsTransactionsProvider({ filter, ...props }: VendorsTransactionsProviderProps & { children?: React.ReactNode }) {
+function VendorsTransactionsProvider({
+  filter,
+  ...props
+}: VendorsTransactionsProviderProps & { children?: React.ReactNode }) {
   const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]);
 
   // Fetch vendors transactions based on the given query.
@@ -55,7 +62,9 @@ function VendorsTransactionsProvider({ filter, ...props }: VendorsTransactionsPr
 const useVendorsTransactionsContext = (): VendorsTransactionsContextValue => {
   const ctx = useContext(VendorsTransactionsContext);
   if (!ctx) {
-    throw new Error('useVendorsTransactionsContext must be used within a VendorsTransactionsProvider');
+    throw new Error(
+      'useVendorsTransactionsContext must be used within a VendorsTransactionsProvider',
+    );
   }
   return ctx;
 };

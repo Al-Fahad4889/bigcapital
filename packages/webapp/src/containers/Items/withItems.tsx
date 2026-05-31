@@ -14,7 +14,9 @@ export interface WithItemsProps {
   >;
 }
 
-export function withItems<Props = unknown>(mapState?: MapState<WithItemsProps, Props>) {
+export function withItems<Props = unknown>(
+  mapState?: MapState<WithItemsProps, Props>,
+) {
   const getItemsTableState = getItemsTableStateFactory();
   const isItemsTableStateChanged = isItemsTableStateChangedFactory();
 
@@ -28,7 +30,9 @@ export function withItems<Props = unknown>(mapState?: MapState<WithItemsProps, P
       itemsTableState: getItemsTableState(state, props as never),
       itemsTableStateChanged: isItemsTableStateChanged(state),
     };
-    return mapState ? (mapState(mapped, state, props) as WithItemsProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithItemsProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

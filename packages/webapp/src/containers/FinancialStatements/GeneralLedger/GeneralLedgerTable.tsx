@@ -21,9 +21,7 @@ interface GeneralLedgerTableProps {
 /**
  * General ledger table.
  */
-export function GeneralLedgerTable({
-  companyName,
-}: GeneralLedgerTableProps) {
+export function GeneralLedgerTable({ companyName }: GeneralLedgerTableProps) {
   // General ledger context.
   const { generalLedger, isLoading } = useGeneralLedgerContext();
 

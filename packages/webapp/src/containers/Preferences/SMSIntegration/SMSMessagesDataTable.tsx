@@ -87,7 +87,9 @@ function SMSMessagesDataTableInner({
   );
 }
 
-export const SMSMessagesDataTable = compose(withDialogActions)(SMSMessagesDataTableInner);
+export const SMSMessagesDataTable = compose(withDialogActions)(
+  SMSMessagesDataTableInner,
+);
 
 const SMSNotificationsTable = styled(DataTable)`
   .table .tbody .tr .td {

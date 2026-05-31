@@ -54,7 +54,9 @@ export function FinancialSheet({
     >
       {hasHead && (
         <div>
-          {companyName && <FinancialSheetTitle>{companyName}</FinancialSheetTitle>}
+          {companyName && (
+            <FinancialSheetTitle>{companyName}</FinancialSheetTitle>
+          )}
           {sheetType && <FinancialSheetType>{sheetType}</FinancialSheetType>}
           {dateText && <FinancialSheetDate>{dateText}</FinancialSheetDate>}
         </div>

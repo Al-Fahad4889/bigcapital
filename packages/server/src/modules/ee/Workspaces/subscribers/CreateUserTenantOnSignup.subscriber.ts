@@ -16,7 +16,10 @@ export class CreateUserTenantOnSignupSubscriber {
    * to their new organization as the owner.
    */
   @OnEvent(events.auth.signUp)
-  async handleSignUp({ user, tenant }: IAuthSignedUpEventPayload): Promise<void> {
+  async handleSignUp({
+    user,
+    tenant,
+  }: IAuthSignedUpEventPayload): Promise<void> {
     await this.userTenantModel.query().insert({
       userId: user.id,
       tenantId: tenant.id,

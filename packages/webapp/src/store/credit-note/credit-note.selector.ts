@@ -4,7 +4,8 @@ import { createDeepEqualSelector } from '@/utils';
 import { defaultTableQuery } from './credit-note.reducer';
 import type { RootState } from '@/store/reducers';
 
-const creditsTableStateSelector = (state: RootState) => state.creditNotes.tableState;
+const creditsTableStateSelector = (state: RootState) =>
+  state.creditNotes.tableState;
 
 /**
  * Retrieve credit notes table state.

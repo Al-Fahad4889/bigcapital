@@ -4,13 +4,7 @@ import intl from 'react-intl-universal';
 import clsx from 'classnames';
 import { Intent, Tag, Menu, MenuItem, MenuDivider } from '@blueprintjs/core';
 import { CLASSES } from '@/constants/classes';
-import {
-  FormattedMessage as T,
-  Choose,
-  If,
-  Icon,
-  Can,
-} from '@/components';
+import { FormattedMessage as T, Choose, If, Icon, Can } from '@/components';
 import { safeCallback } from '@/utils';
 import { CreditNoteAction, AbilitySubject } from '@/constants/abilityOption';
 

@@ -5,7 +5,8 @@ import { createDeepEqualSelector } from '@/utils';
 import { defaultTableQuery } from './manual-journals.reducers';
 import type { RootState } from '@/store/reducers';
 
-const manualJournalsTableState = (state: RootState) => state.manualJournals.tableState;
+const manualJournalsTableState = (state: RootState) =>
+  state.manualJournals.tableState;
 
 // Retrieve manual jouranls table state.
 export const getManualJournalsTableStateFactory = () =>

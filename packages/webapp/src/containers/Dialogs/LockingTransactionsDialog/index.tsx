@@ -4,7 +4,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const LockingTransactionsDialogContent = React.lazy(() => import('./LockingTransactionsDialogContent').then(m => ({ default: m.LockingTransactionsDialogContent })));
+const LockingTransactionsDialogContent = React.lazy(() =>
+  import('./LockingTransactionsDialogContent').then((m) => ({
+    default: m.LockingTransactionsDialogContent,
+  })),
+);
 
 /**
  * Locking Transactions dialog

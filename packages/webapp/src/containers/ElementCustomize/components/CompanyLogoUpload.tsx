@@ -69,7 +69,10 @@ export function CompanyLogoUpload({
       onReject={(files) => console.log('rejected files', files)}
       maxSize={5 * 1024 ** 2}
       accept={[MIME_TYPES.png, MIME_TYPES.jpeg]}
-      classNames={{ root: clsx(styles?.root, classNames?.root), content: styles.dropzoneContent }}
+      classNames={{
+        root: clsx(styles?.root, classNames?.root),
+        content: styles.dropzoneContent,
+      }}
       activateOnClick={false}
       openRef={openRef}
       {...dropzoneProps}

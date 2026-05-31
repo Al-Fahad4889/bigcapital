@@ -101,4 +101,3 @@ export const CustomerBulkDeleteDialog = compose(
   withDialogActions,
   withCustomersActions,
 )(CustomerBulkDeleteDialogInner);
-

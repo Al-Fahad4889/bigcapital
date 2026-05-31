@@ -85,14 +85,14 @@ const ProjectTaksDataTable = styled(DataTable)`
       }
     }
 
-    .tbody .tr .td{
+    .tbody .tr .td {
       padding-top: 0.7rem;
       padding-bottom: 0.7rem;
 
-      &:first-of-type{
+      &:first-of-type {
         padding-left: 1rem;
       }
-      &.td-actions{
+      &.td-actions {
         padding-right: 1rem;
       }
     }

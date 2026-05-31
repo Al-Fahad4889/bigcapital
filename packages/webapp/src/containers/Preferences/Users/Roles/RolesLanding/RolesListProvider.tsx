@@ -10,7 +10,9 @@ interface RolesListContextValue {
   isRolesLoading: boolean;
 }
 
-const RolesListContext = React.createContext<RolesListContextValue>({} as RolesListContextValue);
+const RolesListContext = React.createContext<RolesListContextValue>(
+  {} as RolesListContextValue,
+);
 
 interface RolesListProviderProps {
   children: ReactNode;

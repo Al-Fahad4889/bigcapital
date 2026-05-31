@@ -6,7 +6,8 @@ import { defaultTableQuery } from './payment-mades.reducer';
 import { createSelector } from 'reselect';
 import type { RootState } from '@/store/reducers';
 
-const paymentMadesTableStateSelector = (state: RootState) => state.paymentMades.tableState;
+const paymentMadesTableStateSelector = (state: RootState) =>
+  state.paymentMades.tableState;
 
 // Get payment mades table state marged with location query.
 export const getPaymentMadesTableStateFactory = () =>

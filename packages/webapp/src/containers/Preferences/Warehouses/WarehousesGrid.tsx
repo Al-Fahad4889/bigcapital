@@ -10,11 +10,8 @@ import { WarehousesGridItems } from './WarehousesGridItems';
  */
 export function WarehousesGrid() {
   // Retrieve list context.
-  const {
-    warehouses,
-    isWarehouesLoading,
-    isEmptyStatus,
-  } = useWarehousesContext();
+  const { warehouses, isWarehouesLoading, isEmptyStatus } =
+    useWarehousesContext();
 
   return (
     <React.Fragment>

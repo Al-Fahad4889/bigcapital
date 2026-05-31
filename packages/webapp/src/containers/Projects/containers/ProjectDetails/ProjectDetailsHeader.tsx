@@ -2,10 +2,7 @@
 import React from 'react';
 import intl from 'react-intl-universal';
 import { FormatDate } from '@/components';
-import {
-  DetailFinancialCard,
-  DetailFinancialSection,
-} from './components';
+import { DetailFinancialCard, DetailFinancialSection } from './components';
 import { calculateStatus } from '@/utils';
 import { useCalculateProject } from './utils';
 

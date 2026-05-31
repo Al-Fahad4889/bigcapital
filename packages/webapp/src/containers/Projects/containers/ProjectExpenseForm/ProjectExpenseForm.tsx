@@ -62,4 +62,6 @@ function ProjectExpenseFormInner({
   );
 }
 
-export const ProjectExpenseForm = compose(withDialogActions)(ProjectExpenseFormInner);
+export const ProjectExpenseForm = compose(withDialogActions)(
+  ProjectExpenseFormInner,
+);

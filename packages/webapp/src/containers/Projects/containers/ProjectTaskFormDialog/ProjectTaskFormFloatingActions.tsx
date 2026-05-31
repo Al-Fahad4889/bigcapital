@@ -45,4 +45,6 @@ function ProjectTaskFormFloatingActionsInner({
   );
 }
 
-export const ProjectTaskFormFloatingActions = compose(withDialogActions)(ProjectTaskFormFloatingActionsInner);
+export const ProjectTaskFormFloatingActions = compose(withDialogActions)(
+  ProjectTaskFormFloatingActionsInner,
+);

@@ -27,46 +27,44 @@ export const SubscriptionPlanMapped = R.compose(
   withSubscriptionPlanMapper,
   withDrawerActions,
   withPlans(({ plansPeriod }) => ({ plansPeriod })),
-)(
-  ({
-    openDrawer,
-    closeDrawer,
-    monthlyVariantId,
-    annuallyVariantId,
-    plansPeriod,
-    ...props
-  }) => {
-    const { mutateAsync: changeSubscriptionPlan, isLoading } =
-      useChangeSubscriptionPlan();
+)(({
+  openDrawer,
+  closeDrawer,
+  monthlyVariantId,
+  annuallyVariantId,
+  plansPeriod,
+  ...props
+}) => {
+  const { mutateAsync: changeSubscriptionPlan, isLoading } =
+    useChangeSubscriptionPlan();
 
-    // Handles the subscribe button click.
-    const handleSubscribe = () => {
-      const variantId =
-        plansPeriod === SubscriptionPlansPeriod.Monthly
-          ? monthlyVariantId
-          : annuallyVariantId;
+  // Handles the subscribe button click.
+  const handleSubscribe = () => {
+    const variantId =
+      plansPeriod === SubscriptionPlansPeriod.Monthly
+        ? monthlyVariantId
+        : annuallyVariantId;
 
-      changeSubscriptionPlan({ variant_id: variantId })
-        .then(() => {
-          closeDrawer(DRAWERS.CHANGE_SUBSCARIPTION_PLAN);
-          AppToaster.show({
-            message: 'The subscription plan has been changed.',
-            intent: Intent.SUCCESS,
-          });
-        })
-        .catch((error) => {
-          AppToaster.show({
-            message: 'Something went wrong.',
-            intent: Intent.DANGER,
-          });
+    changeSubscriptionPlan({ variant_id: variantId })
+      .then(() => {
+        closeDrawer(DRAWERS.CHANGE_SUBSCARIPTION_PLAN);
+        AppToaster.show({
+          message: 'The subscription plan has been changed.',
+          intent: Intent.SUCCESS,
         });
-    };
-    return (
-      <SubscriptionPlan
-        {...props}
-        onSubscribe={handleSubscribe}
-        subscribeButtonProps={{ loading: isLoading }}
-      />
-    );
-  },
-);
+      })
+      .catch((error) => {
+        AppToaster.show({
+          message: 'Something went wrong.',
+          intent: Intent.DANGER,
+        });
+      });
+  };
+  return (
+    <SubscriptionPlan
+      {...props}
+      onSubscribe={handleSubscribe}
+      subscribeButtonProps={{ loading: isLoading }}
+    />
+  );
+});

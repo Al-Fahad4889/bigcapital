@@ -8,12 +8,18 @@ interface VendorsTransactionsGeneralPanelContextValue {
   isVendorsFetching: boolean;
 }
 
-const VendorsTransactionsGeneralPanelContext = createContext<VendorsTransactionsGeneralPanelContextValue | undefined>(undefined);
+const VendorsTransactionsGeneralPanelContext = createContext<
+  VendorsTransactionsGeneralPanelContextValue | undefined
+>(undefined);
 
 /**
  * Vendors transactions general panel provider.
  */
-function VendorsTransactionsGeneralPanelProvider({ ...props }: { children?: React.ReactNode }) {
+function VendorsTransactionsGeneralPanelProvider({
+  ...props
+}: {
+  children?: React.ReactNode;
+}) {
   // Fetch vendors list based on the given query.
   const {
     data: vendorsData,
@@ -39,13 +45,16 @@ function VendorsTransactionsGeneralPanelProvider({ ...props }: { children?: Reac
   );
 }
 
-const useVendorsTransactionsGeneralPanelContext = (): VendorsTransactionsGeneralPanelContextValue => {
-  const ctx = useContext(VendorsTransactionsGeneralPanelContext);
-  if (!ctx) {
-    throw new Error('useVendorsTransactionsGeneralPanelContext must be used within a VendorsTransactionsGeneralPanelProvider');
-  }
-  return ctx;
-};
+const useVendorsTransactionsGeneralPanelContext =
+  (): VendorsTransactionsGeneralPanelContextValue => {
+    const ctx = useContext(VendorsTransactionsGeneralPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useVendorsTransactionsGeneralPanelContext must be used within a VendorsTransactionsGeneralPanelProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   VendorsTransactionsGeneralPanelProvider,

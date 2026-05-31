@@ -14,7 +14,6 @@ import {
   FDateInput,
   FMoneyInputGroup,
   InputPrependText,
-
   Stack,
   CustomersSelect,
 } from '@/components';

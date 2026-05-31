@@ -5,7 +5,8 @@ import { defaultTableQuery } from './invoices.reducer';
 import { createSelector } from 'reselect';
 import type { RootState } from '@/store/reducers';
 
-const invoicesTableStateSelector = (state: RootState) => state.salesInvoices.tableState;
+const invoicesTableStateSelector = (state: RootState) =>
+  state.salesInvoices.tableState;
 
 /**
  * Retrieve invoices table state.

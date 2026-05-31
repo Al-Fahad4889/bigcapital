@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import intl from 'react-intl-universal';
 import { UsersListProvider } from './UsersProvider';
-import { withDashboardActions, type WithDashboardActionsProps } from '@/containers/Dashboard/withDashboardActions';
+import {
+  withDashboardActions,
+  type WithDashboardActionsProps,
+} from '@/containers/Dashboard/withDashboardActions';
 import { UsersDataTable } from './UsersDataTable';
 import { compose } from '@/utils';
 

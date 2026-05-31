@@ -109,11 +109,7 @@ export function SetupOrganizationForm({ isSubmitting, values }) {
       </Row>
 
       {/* --------- Fiscal Year ----------- */}
-      <FFormGroup
-        name={'fiscalYear'}
-        label={intl.get('fiscal_year')}
-        fastField
-      >
+      <FFormGroup name={'fiscalYear'} label={intl.get('fiscal_year')} fastField>
         <FSelect
           name={'fiscalYear'}
           items={FiscalYear}

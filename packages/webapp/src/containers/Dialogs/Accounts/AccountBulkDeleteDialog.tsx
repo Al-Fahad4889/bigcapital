@@ -28,7 +28,8 @@ function AccountBulkDeleteDialogInner({
   // #withDialogActions
   closeDialog,
 }) {
-  const { mutateAsync: bulkDeleteAccounts, isLoading } = useBulkDeleteAccounts();
+  const { mutateAsync: bulkDeleteAccounts, isLoading } =
+    useBulkDeleteAccounts();
 
   const handleCancel = () => {
     closeDialog(dialogName);
@@ -98,4 +99,3 @@ export const AccountBulkDeleteDialog = compose(
   withDialogActions,
   withAccountsTableActions,
 )(AccountBulkDeleteDialogInner);
-

@@ -3,13 +3,7 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import { Radio } from '@blueprintjs/core';
 
-import {
-  Row,
-  Col,
-  FFormGroup,
-  FInputGroup,
-  FRadioGroup,
-} from '@/components';
+import { Row, Col, FFormGroup, FInputGroup, FRadioGroup } from '@/components';
 import intl from 'react-intl-universal';
 
 /**
@@ -20,10 +14,7 @@ export function ReferenceNumberFormContent() {
     <>
       {/* ------------- Auto increment mode ------------- */}
       <FRadioGroup name={'incrementMode'} fastField>
-        <Radio
-          label={intl.get('auto_increment.field.auto')}
-          value="auto"
-        />
+        <Radio label={intl.get('auto_increment.field.auto')} value="auto" />
       </FRadioGroup>
       <ReferenceNumberAutoIncrement />
 

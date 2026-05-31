@@ -58,7 +58,9 @@ export function usePublishInventoryAdjustment(props) {
     ...props,
     mutationFn: (id) => publishInventoryAdjustment(fetcher, id),
     onSuccess: (_res, id) => {
-      queryClient.invalidateQueries({ queryKey: inventoryAdjustmentsKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: inventoryAdjustmentsKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });

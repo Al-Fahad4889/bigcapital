@@ -10,8 +10,14 @@ import { compose, transformToForm } from '@/utils';
 
 import { FinancialStatementHeader } from '../FinancialStatementHeader';
 import { VendorsBalanceSummaryHeaderGeneral } from './VendorsBalanceSummaryHeaderGeneral';
-import { withVendorsBalanceSummary, WithVendorsBalanceSummaryProps } from './withVendorsBalanceSummary';
-import { withVendorsBalanceSummaryActions, WithVendorsBalanceSummaryActionsProps } from './withVendorsBalanceSummaryActions';
+import {
+  withVendorsBalanceSummary,
+  WithVendorsBalanceSummaryProps,
+} from './withVendorsBalanceSummary';
+import {
+  withVendorsBalanceSummaryActions,
+  WithVendorsBalanceSummaryActionsProps,
+} from './withVendorsBalanceSummaryActions';
 import { getVendorsBalanceQuerySchema } from './utils';
 
 interface VendorsBalanceSummaryHeaderOwnProps {
@@ -63,7 +69,10 @@ function VendorsBalanceSummaryHeaderInner({
   );
 
   // handle form submit.
-  const handleSubmit = (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const handleSubmit = (
+    values: FormValues,
+    { setSubmitting }: FormikHelpers<FormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleVendorSummaryFilterDrawer(false);
     setSubmitting(false);

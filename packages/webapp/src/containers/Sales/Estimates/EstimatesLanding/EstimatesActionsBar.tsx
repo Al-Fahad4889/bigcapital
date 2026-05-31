@@ -35,9 +35,7 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
 import { useEstimatesListContext } from './EstimatesListProvider';
-import {
-  useRefreshEstimates,
-} from '@/hooks/query/estimates';
+import { useRefreshEstimates } from '@/hooks/query/estimates';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { useBulkDeleteEstimatesDialog } from './hooks/use-bulk-delete-estimates-dialog';
 
@@ -121,10 +119,8 @@ function EstimateActionsBar({
     openDrawer(DRAWERS.BRANDING_TEMPLATES, { resource: 'SaleEstimate' });
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteEstimates,
-  } = useBulkDeleteEstimatesDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteEstimates } =
+    useBulkDeleteEstimatesDialog();
 
   // Handle bulk estimates delete.
   const handleBulkDelete = () => {

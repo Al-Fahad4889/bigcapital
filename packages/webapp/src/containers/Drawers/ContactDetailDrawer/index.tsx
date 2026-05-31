@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const ContactDetailDrawerContent = React.lazy(() => import('./ContactDetailDrawerContent').then(m => ({ default: m.ContactDetailDrawerContent })));
+const ContactDetailDrawerContent = React.lazy(() =>
+  import('./ContactDetailDrawerContent').then((m) => ({
+    default: m.ContactDetailDrawerContent,
+  })),
+);
 
 /**
  * Contact detail drawer.

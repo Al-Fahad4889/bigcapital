@@ -1,18 +1,27 @@
-export type TranslateFn = (key: string, options?: { args?: Record<string, any> }) => string;
+export type TranslateFn = (
+  key: string,
+  options?: { args?: Record<string, any> },
+) => string;
 
 const defaultT: TranslateFn = (key) => key;
 
 /**
  * Format camelCase subject to readable text using i18n.
  */
-export function formatSubject(subject: string, t: TranslateFn = defaultT): string {
+export function formatSubject(
+  subject: string,
+  t: TranslateFn = defaultT,
+): string {
   return t(`audit_log.subject.${subject}`);
 }
 
 /**
  * Format action to capitalized text using i18n.
  */
-export function formatAction(action: string, t: TranslateFn = defaultT): string {
+export function formatAction(
+  action: string,
+  t: TranslateFn = defaultT,
+): string {
   if (!action) return '';
   return t(`audit_log.action.${action}`);
 }
@@ -32,7 +41,11 @@ export function formatMetadataSummary(
       if (m.billNumber) {
         return m.amount
           ? t('audit_log.metadata.bill_with_amount', {
-              args: { billNumber: String(m.billNumber), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                billNumber: String(m.billNumber),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.bill', {
               args: { billNumber: String(m.billNumber) },
@@ -44,7 +57,11 @@ export function formatMetadataSummary(
       if (m.invoiceNumber) {
         return m.balance
           ? t('audit_log.metadata.invoice_with_balance', {
-              args: { invoiceNumber: String(m.invoiceNumber), balance: String(m.balance), currencyCode: String(m.currencyCode || '') },
+              args: {
+                invoiceNumber: String(m.invoiceNumber),
+                balance: String(m.balance),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.invoice', {
               args: { invoiceNumber: String(m.invoiceNumber) },
@@ -56,7 +73,11 @@ export function formatMetadataSummary(
       if (m.receiptNumber) {
         return m.amount
           ? t('audit_log.metadata.receipt_with_amount', {
-              args: { receiptNumber: String(m.receiptNumber), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                receiptNumber: String(m.receiptNumber),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.receipt', {
               args: { receiptNumber: String(m.receiptNumber) },
@@ -68,7 +89,11 @@ export function formatMetadataSummary(
       if (m.estimateNumber) {
         return m.total
           ? t('audit_log.metadata.estimate_with_total', {
-              args: { estimateNumber: String(m.estimateNumber), total: String(m.total), currencyCode: String(m.currencyCode || '') },
+              args: {
+                estimateNumber: String(m.estimateNumber),
+                total: String(m.total),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.estimate', {
               args: { estimateNumber: String(m.estimateNumber) },
@@ -80,7 +105,11 @@ export function formatMetadataSummary(
       if (m.paymentReceiveNo) {
         return m.amount
           ? t('audit_log.metadata.payment_receive_with_amount', {
-              args: { paymentReceiveNo: String(m.paymentReceiveNo), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                paymentReceiveNo: String(m.paymentReceiveNo),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.payment_receive', {
               args: { paymentReceiveNo: String(m.paymentReceiveNo) },
@@ -92,7 +121,11 @@ export function formatMetadataSummary(
       if (m.paymentNumber) {
         return m.amount
           ? t('audit_log.metadata.payment_made_with_amount', {
-              args: { paymentNumber: String(m.paymentNumber), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                paymentNumber: String(m.paymentNumber),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.payment_made', {
               args: { paymentNumber: String(m.paymentNumber) },
@@ -104,7 +137,10 @@ export function formatMetadataSummary(
       if (m.amount) {
         return m.currencyCode
           ? t('audit_log.metadata.expense_with_currency', {
-              args: { amount: String(m.amount), currencyCode: String(m.currencyCode) },
+              args: {
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode),
+              },
             })
           : t('audit_log.metadata.expense', {
               args: { amount: String(m.amount) },
@@ -116,7 +152,11 @@ export function formatMetadataSummary(
       if (m.creditNoteNumber) {
         return m.amount
           ? t('audit_log.metadata.credit_note_with_amount', {
-              args: { creditNoteNumber: String(m.creditNoteNumber), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                creditNoteNumber: String(m.creditNoteNumber),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.credit_note', {
               args: { creditNoteNumber: String(m.creditNoteNumber) },
@@ -128,7 +168,11 @@ export function formatMetadataSummary(
       if (m.vendorCreditNumber) {
         return m.total
           ? t('audit_log.metadata.vendor_credit_with_total', {
-              args: { vendorCreditNumber: String(m.vendorCreditNumber), total: String(m.total), currencyCode: String(m.currencyCode || '') },
+              args: {
+                vendorCreditNumber: String(m.vendorCreditNumber),
+                total: String(m.total),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.vendor_credit', {
               args: { vendorCreditNumber: String(m.vendorCreditNumber) },
@@ -140,7 +184,11 @@ export function formatMetadataSummary(
       if (m.journalNumber) {
         return m.amount
           ? t('audit_log.metadata.journal_with_amount', {
-              args: { journalNumber: String(m.journalNumber), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                journalNumber: String(m.journalNumber),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.journal', {
               args: { journalNumber: String(m.journalNumber) },
@@ -152,7 +200,10 @@ export function formatMetadataSummary(
       if (m.amount) {
         return m.currencyCode
           ? t('audit_log.metadata.cashflow_with_currency', {
-              args: { amount: String(m.amount), currencyCode: String(m.currencyCode) },
+              args: {
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode),
+              },
             })
           : t('audit_log.metadata.cashflow', {
               args: { amount: String(m.amount) },
@@ -203,7 +254,10 @@ export function formatMetadataSummary(
       if (m.displayName) {
         return m.email
           ? t('audit_log.metadata.customer_with_email', {
-              args: { displayName: String(m.displayName), email: String(m.email) },
+              args: {
+                displayName: String(m.displayName),
+                email: String(m.email),
+              },
             })
           : t('audit_log.metadata.customer', {
               args: { displayName: String(m.displayName) },
@@ -215,7 +269,10 @@ export function formatMetadataSummary(
       if (m.displayName) {
         return m.email
           ? t('audit_log.metadata.vendor_with_email', {
-              args: { displayName: String(m.displayName), email: String(m.email) },
+              args: {
+                displayName: String(m.displayName),
+                email: String(m.email),
+              },
             })
           : t('audit_log.metadata.vendor', {
               args: { displayName: String(m.displayName) },
@@ -227,7 +284,10 @@ export function formatMetadataSummary(
       if (m.roleName) {
         return m.oldRoleName
           ? t('audit_log.metadata.role_with_old', {
-              args: { roleName: String(m.roleName), oldRoleName: String(m.oldRoleName) },
+              args: {
+                roleName: String(m.roleName),
+                oldRoleName: String(m.oldRoleName),
+              },
             })
           : t('audit_log.metadata.role', {
               args: { roleName: String(m.roleName) },
@@ -284,7 +344,10 @@ export function formatMetadataSummary(
       if (m.module) {
         return m.lockToDate
           ? t('audit_log.metadata.locking_with_date', {
-              args: { module: String(m.module), lockToDate: String(m.lockToDate) },
+              args: {
+                module: String(m.module),
+                lockToDate: String(m.lockToDate),
+              },
             })
           : t('audit_log.metadata.locking_module', {
               args: { module: String(m.module) },
@@ -312,10 +375,17 @@ export function formatMetadataSummary(
       if (m.amount) {
         return m.payee
           ? t('audit_log.metadata.imported_with_payee', {
-              args: { payee: String(m.payee), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                payee: String(m.payee),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.imported', {
-              args: { amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             });
       }
       return t('audit_log.metadata.imported_plain');
@@ -324,7 +394,10 @@ export function formatMetadataSummary(
       if (m.plaidAccountId) {
         return m.batch
           ? t('audit_log.metadata.plaid_with_batch', {
-              args: { plaidAccountId: String(m.plaidAccountId), batch: String(m.batch) },
+              args: {
+                plaidAccountId: String(m.plaidAccountId),
+                batch: String(m.batch),
+              },
             })
           : t('audit_log.metadata.plaid', {
               args: { plaidAccountId: String(m.plaidAccountId) },
@@ -336,10 +409,17 @@ export function formatMetadataSummary(
       if (m.amount) {
         return m.payee
           ? t('audit_log.metadata.bank_with_payee', {
-              args: { payee: String(m.payee), amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                payee: String(m.payee),
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             })
           : t('audit_log.metadata.bank', {
-              args: { amount: String(m.amount), currencyCode: String(m.currencyCode || '') },
+              args: {
+                amount: String(m.amount),
+                currencyCode: String(m.currencyCode || ''),
+              },
             });
       }
       return t('audit_log.metadata.bank_plain');

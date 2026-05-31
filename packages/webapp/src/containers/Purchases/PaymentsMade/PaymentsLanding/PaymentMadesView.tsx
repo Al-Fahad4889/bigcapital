@@ -22,7 +22,6 @@ function PaymentMadesViewPage({
         exact={true}
         path={['/payments-made/:custom_view_id/custom_view', '/payments-made']}
       >
-
         {/* <PaymentMadeDataTable
               onDeletePaymentMade={handleDeletePaymentMade}
               onEditPaymentMade={handleEditPaymentMade}

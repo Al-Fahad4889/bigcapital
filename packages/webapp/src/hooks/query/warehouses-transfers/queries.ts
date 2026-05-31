@@ -25,9 +25,14 @@ import { warehousesTransfersKeys } from './query-keys';
 import { itemsKeys } from '../items/query-keys';
 
 /** Query params for listing warehouse transfers (pagination, filter, etc.). */
-type GetWarehouseTransfersQuery = Record<string, string | number | boolean | undefined>;
+type GetWarehouseTransfersQuery = Record<
+  string,
+  string | number | boolean | undefined
+>;
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.all() });
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
 };
@@ -36,7 +41,7 @@ const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>)
  * Create a new warehouse transfer.
  */
 export function useCreateWarehouseTransfer(
-  props?: UseMutationOptions<void, Error, CreateWarehouseTransferBody>
+  props?: UseMutationOptions<void, Error, CreateWarehouseTransferBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -53,7 +58,7 @@ export function useCreateWarehouseTransfer(
  * Edits the given warehouse transfer.
  */
 export function useEditWarehouseTransfer(
-  props?: UseMutationOptions<void, Error, [number, EditWarehouseTransferBody]>
+  props?: UseMutationOptions<void, Error, [number, EditWarehouseTransferBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -63,7 +68,9 @@ export function useEditWarehouseTransfer(
     mutationFn: ([id, values]: [number, EditWarehouseTransferBody]) =>
       editWarehouseTransfer(fetcher, id, values),
     onSuccess: (_, [id]) => {
-      queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: warehousesTransfersKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -73,7 +80,7 @@ export function useEditWarehouseTransfer(
  * Deletes the given warehouse Transfer.
  */
 export function useDeleteWarehouseTransfer(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -93,7 +100,7 @@ export function useWarehousesTransfers(
   props?: Omit<
     UseQueryOptions<WarehouseTransfersListResponse>,
     'queryKey' | 'queryFn'
-  >
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -103,7 +110,7 @@ export function useWarehousesTransfers(
       (
         fetchWarehouseTransfers as (
           fetcher: unknown,
-          query?: GetWarehouseTransfersQuery
+          query?: GetWarehouseTransfersQuery,
         ) => Promise<WarehouseTransfersListResponse>
       )(fetcher, query ?? undefined),
   });
@@ -115,7 +122,7 @@ export function useWarehousesTransfers(
 export function useWarehouseTransfer(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<WarehouseTransfer>, 'queryKey' | 'queryFn'>,
-  _requestProps?: Record<string, unknown>
+  _requestProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -130,7 +137,7 @@ export function useWarehouseTransfer(
  * Initiate warehouse transfer.
  */
 export function useInitiateWarehouseTransfer(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -139,7 +146,9 @@ export function useInitiateWarehouseTransfer(
     ...props,
     mutationFn: (id: number) => initiateWarehouseTransfer(fetcher, id),
     onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: warehousesTransfersKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -149,7 +158,7 @@ export function useInitiateWarehouseTransfer(
  * Mark warehouse transfer as transferred.
  */
 export function useTransferredWarehouseTransfer(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -158,7 +167,9 @@ export function useTransferredWarehouseTransfer(
     ...props,
     mutationFn: (id: number) => transferredWarehouseTransfer(fetcher, id),
     onSuccess: (_, id) => {
-      queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.detail(id) });
+      queryClient.invalidateQueries({
+        queryKey: warehousesTransfersKeys.detail(id),
+      });
       commonInvalidateQueries(queryClient);
     },
   });
@@ -169,7 +180,9 @@ export function useRefreshWarehouseTransfers() {
 
   return {
     refresh: () => {
-      queryClient.invalidateQueries({ queryKey: warehousesTransfersKeys.all() });
+      queryClient.invalidateQueries({
+        queryKey: warehousesTransfersKeys.all(),
+      });
     },
   };
 }

@@ -86,11 +86,17 @@ function ResetPasswordFooterLinks() {
     <AuthFooterLinks>
       {!signupDisabled && (
         <AuthFooterLink>
-          <T id={'dont_have_an_account'} /> <Link to={'/auth/register'}><T id={'sign_up'} /></Link>
+          <T id={'dont_have_an_account'} />{' '}
+          <Link to={'/auth/register'}>
+            <T id={'sign_up'} />
+          </Link>
         </AuthFooterLink>
       )}
       <AuthFooterLink>
-        <T id={'return_to'} /> <Link to={'/auth/login'}><T id={'sign_in'} /></Link>
+        <T id={'return_to'} />{' '}
+        <Link to={'/auth/login'}>
+          <T id={'sign_in'} />
+        </Link>
       </AuthFooterLink>
     </AuthFooterLinks>
   );

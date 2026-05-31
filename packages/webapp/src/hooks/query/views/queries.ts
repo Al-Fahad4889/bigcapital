@@ -1,12 +1,15 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import type { ResourceViewResponse, ResourceMetaResponse } from '@bigcapital/sdk-ts';
+import type {
+  ResourceViewResponse,
+  ResourceMetaResponse,
+} from '@bigcapital/sdk-ts';
 import { fetchResourceView, fetchResourceMeta } from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../useRequest';
 import { viewsKeys } from './query-keys';
 
 export function useResourceViews(
   resourceSlug: string | null | undefined,
-  props?: Omit<UseQueryOptions<ResourceViewResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ResourceViewResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -19,7 +22,7 @@ export function useResourceViews(
 
 export function useResourceMeta(
   resourceSlug: string | null | undefined,
-  props?: Omit<UseQueryOptions<ResourceMetaResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ResourceMetaResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

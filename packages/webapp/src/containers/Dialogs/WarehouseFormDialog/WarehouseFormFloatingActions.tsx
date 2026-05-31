@@ -46,4 +46,6 @@ function WarehouseFormFloatingActionsInner({
   );
 }
 
-export const WarehouseFormFloatingActions = compose(withDialogActions)(WarehouseFormFloatingActionsInner);
+export const WarehouseFormFloatingActions = compose(withDialogActions)(
+  WarehouseFormFloatingActionsInner,
+);

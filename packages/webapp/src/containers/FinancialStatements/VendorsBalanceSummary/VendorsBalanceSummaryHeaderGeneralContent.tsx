@@ -7,7 +7,6 @@ import {
   Row,
   Col,
   FieldHint,
-
   FFormGroup,
   VendorsMultiSelect,
 } from '@/components';
@@ -33,7 +32,15 @@ export function VendorsBalanceSummaryHeaderGeneralContent() {
       <Row>
         <Col xs={5}>
           <FastField name={'asDate'}>
-            {({ form, field: { value }, meta: { error } }: { form: any; field: { value: any }; meta: { error: any } }) => (
+            {({
+              form,
+              field: { value },
+              meta: { error },
+            }: {
+              form: any;
+              field: { value: any };
+              meta: { error: any };
+            }) => (
               <FormGroup
                 label={intl.get('as_date')}
                 labelInfo={<FieldHint />}

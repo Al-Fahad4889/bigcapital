@@ -7,7 +7,9 @@ import { useTransactionsByReference } from '@/hooks/query';
 import { useInvoiceDetailDrawerContext } from './InvoiceDetailDrawerProvider';
 
 import {
-  AmountDisplayedBaseCurrencyMessage, JournalEntriesTable } from '../../JournalEntriesTable/JournalEntriesTable';
+  AmountDisplayedBaseCurrencyMessage,
+  JournalEntriesTable,
+} from '../../JournalEntriesTable/JournalEntriesTable';
 
 /**
  * Invoice GL entries table.
@@ -41,6 +43,4 @@ export function InvoiceGLEntriesTable() {
 
 const InvoiceGLEntriesDatatable = styled(JournalEntriesTable)``;
 
-const InvoiceGLEntriesRoot = styled(Card)`
-  
-`;
+const InvoiceGLEntriesRoot = styled(Card)``;

@@ -15,7 +15,8 @@ export function BillingPageContent() {
   return (
     <Box className={styles.root}>
       <Text>
-        Only pay for what you really need. All plans come with 24/7 customer support.
+        Only pay for what you really need. All plans come with 24/7 customer
+        support.
       </Text>
 
       <Group style={{ marginTop: '2rem' }}>

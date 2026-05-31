@@ -33,10 +33,7 @@ function VendorCreditNoteFormProvider({ vendorCreditId, ...props }) {
   const isWarehouseFeatureCan = featureCan(Features.Warehouses);
 
   // Handle fetching the items table based on the given query.
-  const {
-    data: itemsData,
-    isLoading: isItemsLoading,
-  } = useItems({
+  const { data: itemsData, isLoading: isItemsLoading } = useItems({
     page_size: 10000,
   });
 
@@ -44,10 +41,9 @@ function VendorCreditNoteFormProvider({ vendorCreditId, ...props }) {
   useSettingsVendorCredits();
 
   // Handle fetch vendors data table or list
-  const {
-    data: vendorsData,
-    isLoading: isVendorsLoading,
-  } = useVendors({ page_size: 10000 });
+  const { data: vendorsData, isLoading: isVendorsLoading } = useVendors({
+    page_size: 10000,
+  });
 
   // Handle fetch vendor credit details.
   const { data: vendorCredit, isLoading: isVendorCreditLoading } =

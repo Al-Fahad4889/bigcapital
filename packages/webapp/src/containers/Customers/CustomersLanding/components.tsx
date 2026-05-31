@@ -152,7 +152,7 @@ export function useCustomersTableColumns() {
         accessor: PhoneNumberAccessor,
         width: 100,
         clickable: true,
-        className: clsx('phone_number', CLASSES.TEXT_MUTED)
+        className: clsx('phone_number', CLASSES.TEXT_MUTED),
       },
       {
         id: 'note',
@@ -161,7 +161,7 @@ export function useCustomersTableColumns() {
         disableSortBy: true,
         width: 85,
         clickable: true,
-        className: clsx(CLASSES.TEXT_MUTED)
+        className: clsx(CLASSES.TEXT_MUTED),
       },
       {
         id: 'balance',

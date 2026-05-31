@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchVendorBalanceTable,
   fetchVendorBalanceXlsx,
@@ -23,7 +28,10 @@ interface VendorsBalanceSummaryReport {
 
 export function useVendorsBalanceSummaryReport(
   query: VendorBalanceTableQuery,
-  props?: Omit<UseQueryOptions<VendorsBalanceSummaryReport, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<VendorsBalanceSummaryReport, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

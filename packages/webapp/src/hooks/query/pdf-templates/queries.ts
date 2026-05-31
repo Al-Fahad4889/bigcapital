@@ -51,21 +51,33 @@ export type GetPdfTemplatesResponse = PdfTemplatesListResponse;
 export type AssignPdfTemplateAsDefaultValues = { templateId: number };
 export type AssignPdfTemplateAsDefaultResponse = void;
 
-export type GetPdfTemplateBrandingStateResponse = PdfTemplateBrandingStateResponse;
+export type GetPdfTemplateBrandingStateResponse =
+  PdfTemplateBrandingStateResponse;
 
-function invalidatePdfTemplateQueries(queryClient: ReturnType<typeof useQueryClient>) {
+function invalidatePdfTemplateQueries(
+  queryClient: ReturnType<typeof useQueryClient>,
+) {
   queryClient.invalidateQueries({ queryKey: pdfTemplatesKeys.all() });
 }
 
 // Hook for creating a PDF template
 export function useCreatePdfTemplate(
-  options?: UseMutationOptions<CreatePdfTemplateResponse, Error, CreatePdfTemplateValues>
-): UseMutationResult<CreatePdfTemplateResponse, Error, CreatePdfTemplateValues> {
+  options?: UseMutationOptions<
+    CreatePdfTemplateResponse,
+    Error,
+    CreatePdfTemplateValues
+  >,
+): UseMutationResult<
+  CreatePdfTemplateResponse,
+  Error,
+  CreatePdfTemplateValues
+> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
-    mutationFn: (values: CreatePdfTemplateValues) => createPdfTemplate(fetcher, values),
+    mutationFn: (values: CreatePdfTemplateValues) =>
+      createPdfTemplate(fetcher, values),
     onSuccess: () => invalidatePdfTemplateQueries(queryClient),
     ...options,
   });
@@ -77,7 +89,7 @@ export function useEditPdfTemplate(
     EditPdfTemplateResponse,
     Error,
     { templateId: number; values: EditPdfTemplateValues }
-  >
+  >,
 ): UseMutationResult<
   EditPdfTemplateResponse,
   Error,
@@ -87,8 +99,13 @@ export function useEditPdfTemplate(
   const fetcher = useApiFetcher();
 
   return useMutation({
-    mutationFn: ({ templateId, values }: { templateId: number; values: EditPdfTemplateValues }) =>
-      editPdfTemplate(fetcher, templateId, values),
+    mutationFn: ({
+      templateId,
+      values,
+    }: {
+      templateId: number;
+      values: EditPdfTemplateValues;
+    }) => editPdfTemplate(fetcher, templateId, values),
     onSuccess: () => invalidatePdfTemplateQueries(queryClient),
     ...options,
   });
@@ -96,7 +113,11 @@ export function useEditPdfTemplate(
 
 // Hook for deleting a PDF template
 export function useDeletePdfTemplate(
-  options?: UseMutationOptions<DeletePdfTemplateResponse, Error, { templateId: number }>
+  options?: UseMutationOptions<
+    DeletePdfTemplateResponse,
+    Error,
+    { templateId: number }
+  >,
 ): UseMutationResult<DeletePdfTemplateResponse, Error, { templateId: number }> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -112,7 +133,10 @@ export function useDeletePdfTemplate(
 // Hook for getting a single PDF template
 export function useGetPdfTemplate(
   templateId: number,
-  options?: Omit<UseQueryOptions<GetPdfTemplateResponse, Error>, 'queryKey' | 'queryFn'>
+  options?: Omit<
+    UseQueryOptions<GetPdfTemplateResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ): UseQueryResult<GetPdfTemplateResponse, Error> {
   const fetcher = useApiFetcher();
 
@@ -127,7 +151,7 @@ export function useGetPdfTemplate(
 // Hook for getting multiple PDF templates
 export function useGetPdfTemplates(
   query?: GetPdfTemplatesQuery,
-  options?: UseQueryOptions<GetPdfTemplatesResponse, Error>
+  options?: UseQueryOptions<GetPdfTemplatesResponse, Error>,
 ): UseQueryResult<GetPdfTemplatesResponse, Error> {
   const fetcher = useApiFetcher();
 
@@ -144,7 +168,7 @@ export function useAssignPdfTemplateAsDefault(
     AssignPdfTemplateAsDefaultResponse,
     Error,
     AssignPdfTemplateAsDefaultValues
-  >
+  >,
 ): UseMutationResult<
   AssignPdfTemplateAsDefaultResponse,
   Error,
@@ -170,7 +194,7 @@ export function useAssignPdfTemplateAsDefault(
 
 // Retrieve organization branding state.
 export function useGetPdfTemplateBrandingState(
-  options?: UseQueryOptions<GetPdfTemplateBrandingStateResponse, Error>
+  options?: UseQueryOptions<GetPdfTemplateBrandingStateResponse, Error>,
 ): UseQueryResult<GetPdfTemplateBrandingStateResponse, Error> {
   const fetcher = useApiFetcher();
 

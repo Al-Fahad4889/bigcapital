@@ -19,7 +19,7 @@ interface Account {
   account_normal?: string;
 }
 
-export interface AccountSelect extends Partial<Account>, SelectOptionProps { }
+export interface AccountSelect extends Partial<Account>, SelectOptionProps {}
 
 type MultiSelectProps = React.ComponentProps<typeof FMultiSelect>;
 

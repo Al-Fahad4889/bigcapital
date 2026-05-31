@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchSalesTaxLiabilityTable,
   fetchSalesTaxLiabilityXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useSalesTaxLiabilitySummary(
   query: SalesTaxLiabilityTableQuery,
-  props?: Omit<UseQueryOptions<SalesTaxLiabilityTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<SalesTaxLiabilityTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -57,7 +65,9 @@ export function useSalesTaxLiabilitySummaryCsvExport(
   });
 }
 
-export function useSalesTaxLiabilitySummaryPdf(query: SalesTaxLiabilityPdfQuery) {
+export function useSalesTaxLiabilitySummaryPdf(
+  query: SalesTaxLiabilityPdfQuery,
+) {
   const fetcher = useApiFetcher();
   return useFetcherPdf(() => fetchSalesTaxLiabilityPdf(fetcher, query));
 }

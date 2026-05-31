@@ -87,7 +87,9 @@ export default function DrawersContainer() {
       <InvoiceSendMailDrawer name={DRAWERS.INVOICE_SEND_MAIL} />
       <EstimateSendMailDrawer name={DRAWERS.ESTIMATE_SEND_MAIL} />
       <ReceiptSendMailDrawer name={DRAWERS.RECEIPT_SEND_MAIL} />
-      <PaymentReceivedSendMailDrawer name={DRAWERS.PAYMENT_RECEIVED_SEND_MAIL} />
+      <PaymentReceivedSendMailDrawer
+        name={DRAWERS.PAYMENT_RECEIVED_SEND_MAIL}
+      />
       <CreateWorkspaceDrawer name={DRAWERS.CREATE_WORKSPACE} />
       <OrganizationsListDrawer name={DRAWERS.ORGANIZATIONS_LIST} />
     </div>

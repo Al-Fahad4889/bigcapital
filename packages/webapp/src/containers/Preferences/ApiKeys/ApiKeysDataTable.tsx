@@ -37,7 +37,9 @@ function ApiKeysDataTableInner({
         })
         .catch((error) => {
           AppToaster.show({
-            message: error?.response?.data?.message || intl.get('something_went_wrong'),
+            message:
+              error?.response?.data?.message ||
+              intl.get('something_went_wrong'),
             intent: Intent.DANGER,
           });
         });
@@ -62,4 +64,7 @@ function ApiKeysDataTableInner({
   );
 }
 
-export const ApiKeysDataTable = compose(withDialogActions, withAlertActions)(ApiKeysDataTableInner);
+export const ApiKeysDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(ApiKeysDataTableInner);

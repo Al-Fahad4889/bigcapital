@@ -7,7 +7,7 @@ export default function TableIndeterminateCheckboxHeader({
 }) {
   return (
     <div>
-      <Checkbox  {...getToggleAllRowsSelectedProps()} />
+      <Checkbox {...getToggleAllRowsSelectedProps()} />
     </div>
   );
 }

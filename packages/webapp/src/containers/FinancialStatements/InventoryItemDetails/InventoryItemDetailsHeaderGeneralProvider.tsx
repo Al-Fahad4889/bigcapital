@@ -20,7 +20,9 @@ const InventoryItemDetailsHeaderGeneralContext = createContext<
 /**
  * Inventory item details provider.
  */
-function InventoryItemDetailsHeaderGeneralProvider({ ...props }: InventoryItemDetailsHeaderGeneralProviderProps) {
+function InventoryItemDetailsHeaderGeneralProvider({
+  ...props
+}: InventoryItemDetailsHeaderGeneralProviderProps) {
   // Handle fetching the items based on the given query.
   const {
     data: itemsData,
@@ -51,15 +53,16 @@ function InventoryItemDetailsHeaderGeneralProvider({ ...props }: InventoryItemDe
   );
 }
 
-const useInventoryItemDetailsHeaderGeneralContext = (): InventoryItemDetailsHeaderGeneralContextValue => {
-  const ctx = useContext(InventoryItemDetailsHeaderGeneralContext);
-  if (!ctx) {
-    throw new Error(
-      'useInventoryItemDetailsHeaderGeneralContext must be used within InventoryItemDetailsHeaderGeneralProvider',
-    );
-  }
-  return ctx;
-};
+const useInventoryItemDetailsHeaderGeneralContext =
+  (): InventoryItemDetailsHeaderGeneralContextValue => {
+    const ctx = useContext(InventoryItemDetailsHeaderGeneralContext);
+    if (!ctx) {
+      throw new Error(
+        'useInventoryItemDetailsHeaderGeneralContext must be used within InventoryItemDetailsHeaderGeneralProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   InventoryItemDetailsHeaderGeneralProvider,

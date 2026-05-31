@@ -4,7 +4,9 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithInventoryAdjustmentsProps {
-  inventoryAdjustmentTableState: ReturnType<ReturnType<typeof getInventroyAdjsTableStateFactory>>;
+  inventoryAdjustmentTableState: ReturnType<
+    ReturnType<typeof getInventroyAdjsTableStateFactory>
+  >;
   inventoryAdjustmentsSelectedRows: unknown[];
 }
 

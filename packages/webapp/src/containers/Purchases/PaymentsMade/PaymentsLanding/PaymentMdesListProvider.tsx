@@ -22,10 +22,8 @@ function PaymentMadesProvider({ query, ...props }) {
     useResourceFields('bill_payments');
 
   // Fetch accounts list according to the given custom view id.
-  const {
-    data: paymentMadesData,
-    isLoading: isPaymentsLoading,
-  } = usePaymentMades(query);
+  const { data: paymentMadesData, isLoading: isPaymentsLoading } =
+    usePaymentMades(query);
 
   // Provider payload.
   const provider = {

@@ -20,7 +20,7 @@ export function Aside({
   children,
   hideCloseButton,
   classNames,
-  className
+  className,
 }: AsideProps) {
   const isDarkMode = useIsDarkMode();
   const handleClose = () => {
@@ -34,7 +34,9 @@ export function Aside({
           <Button
             aria-label="Close"
             className={Classes.DIALOG_CLOSE_BUTTON}
-            icon={<Icon icon={'smallCross'} color={isDarkMode ? '#fff' : '#000'} />}
+            icon={
+              <Icon icon={'smallCross'} color={isDarkMode ? '#fff' : '#000'} />
+            }
             minimal={true}
             onClick={handleClose}
           />
@@ -46,13 +48,13 @@ export function Aside({
   );
 }
 
-interface AsideContentProps extends BoxProps { }
+interface AsideContentProps extends BoxProps {}
 
 function AsideContent({ ...props }: AsideContentProps) {
   return <Box {...props} className={clsx(styles.content, props?.className)} />;
 }
 
-interface AsideFooterProps extends BoxProps { }
+interface AsideFooterProps extends BoxProps {}
 
 function AsideFooter({ ...props }: AsideFooterProps) {
   return <Box {...props} />;

@@ -11,7 +11,9 @@ export interface WithCashflowAccountsTableActionsProps {
   resetCashflowAccountsTableState: () => void;
 }
 
-export const mapActionsToProps = (dispatch: Dispatch): WithCashflowAccountsTableActionsProps => ({
+export const mapActionsToProps = (
+  dispatch: Dispatch,
+): WithCashflowAccountsTableActionsProps => ({
   setCashflowAccountsTableState: (queries: Partial<TableQuery>) =>
     dispatch(setCashflowAccountsTableState(queries)),
 
@@ -19,4 +21,7 @@ export const mapActionsToProps = (dispatch: Dispatch): WithCashflowAccountsTable
     dispatch(resetCashflowAccountsTableState()),
 });
 
-export const withCashflowAccountsTableActions = connect(null, mapActionsToProps);
+export const withCashflowAccountsTableActions = connect(
+  null,
+  mapActionsToProps,
+);

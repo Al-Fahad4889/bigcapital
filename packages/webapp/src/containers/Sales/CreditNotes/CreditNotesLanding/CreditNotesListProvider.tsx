@@ -41,7 +41,9 @@ function CreditNotesListProvider({ query, tableStateChanged, ...props }) {
 
   // Detarmines the datatable empty status.S
   const isEmptyStatus =
-    isEmpty(creditNotesData?.data) && !isCreditNotesLoading && !tableStateChanged;
+    isEmpty(creditNotesData?.data) &&
+    !isCreditNotesLoading &&
+    !tableStateChanged;
 
   // Provider payload.
   const provider = {
@@ -52,7 +54,9 @@ function CreditNotesListProvider({ query, tableStateChanged, ...props }) {
     refresh,
 
     resourceMeta,
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     isResourceLoading,
     isResourceFetching,
 

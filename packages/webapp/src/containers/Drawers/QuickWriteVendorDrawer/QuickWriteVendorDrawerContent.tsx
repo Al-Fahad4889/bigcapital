@@ -20,7 +20,10 @@ export function QuickWriteVendorDrawerContent({ displayName, autofillRef }) {
         title={<T id={'create_a_new_vendor'} />}
       />
       <DrawerBody>
-        <QuickVendorFormDrawer displayName={displayName} autofillRef={autofillRef} />
+        <QuickVendorFormDrawer
+          displayName={displayName}
+          autofillRef={autofillRef}
+        />
       </DrawerBody>
     </React.Fragment>
   );

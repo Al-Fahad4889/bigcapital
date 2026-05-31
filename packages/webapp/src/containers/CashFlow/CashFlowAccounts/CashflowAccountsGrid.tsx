@@ -318,7 +318,7 @@ const AccountsEmptyStateBase = styled.div`
 `;
 const AccountsEmptyStateTitle = styled.h1`
   --x-text-color: #626b76;
-  
+
   .bp4-dark & {
     --x-text-color: rgba(255, 255, 255, 0.6);
   }

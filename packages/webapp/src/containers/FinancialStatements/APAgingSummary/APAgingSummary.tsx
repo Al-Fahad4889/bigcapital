@@ -11,7 +11,10 @@ import { APAgingSummaryBody } from './APAgingSummaryBody';
 import { APAgingSummaryProvider } from './APAgingSummaryProvider';
 import { APAgingSummarySheetLoadingBar } from './components';
 
-import { withAPAgingSummaryActions, WithAPAgingSummaryActionsProps } from './withAPAgingSummaryActions';
+import {
+  withAPAgingSummaryActions,
+  WithAPAgingSummaryActionsProps,
+} from './withAPAgingSummaryActions';
 
 import { compose } from '@/utils';
 import { APAgingSummaryPdfDialog } from './dialogs/APAgingSummaryPdfDialog';
@@ -74,4 +77,6 @@ function APAgingSummaryInner({
   );
 }
 
-export const APAgingSummary = compose(withAPAgingSummaryActions)(APAgingSummaryInner);
+export const APAgingSummary = compose(withAPAgingSummaryActions)(
+  APAgingSummaryInner,
+);

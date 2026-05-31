@@ -60,7 +60,10 @@ function BalanceSheetHeaderInner({
   const validationSchema = getBalanceSheetHeaderValidationSchema();
 
   // Handle form submit.
-  const handleSubmit = (values: BalanceSheetFormValues, actions: FormikHelpers<BalanceSheetFormValues>) => {
+  const handleSubmit = (
+    values: BalanceSheetFormValues,
+    actions: FormikHelpers<BalanceSheetFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     actions.setSubmitting(false);

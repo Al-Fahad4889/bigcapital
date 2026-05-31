@@ -70,16 +70,16 @@ function VendorCreditNoteFormInner({
     () => ({
       ...(!isEmpty(vendorCredit)
         ? {
-          ...transformToEditForm(vendorCredit),
-        }
+            ...transformToEditForm(vendorCredit),
+          }
         : {
-          ...defaultVendorsCreditNote,
-          ...(vendorcreditAutoIncrement && {
-            vendor_credit_number: vendorCreditNumber,
+            ...defaultVendorsCreditNote,
+            ...(vendorcreditAutoIncrement && {
+              vendor_credit_number: vendorCreditNumber,
+            }),
+            currency_code: base_currency,
+            ...newVendorCredit,
           }),
-          currency_code: base_currency,
-          ...newVendorCredit,
-        }),
     }),
     [vendorCredit, base_currency],
   );

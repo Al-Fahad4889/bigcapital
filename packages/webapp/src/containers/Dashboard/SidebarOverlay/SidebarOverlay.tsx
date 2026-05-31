@@ -84,7 +84,11 @@ function SidebarOverlayItem({ item }: SidebarOverlayItemProps) {
   ) : //
   item.type === ISidebarMenuItemType.Link ||
     item.type === ISidebarMenuItemType.Dialog ? (
-    <SidebarOverlayItemLink text={item.text} href={item.href} onClick={item.onClick} />
+    <SidebarOverlayItemLink
+      text={item.text}
+      href={item.href}
+      onClick={item.onClick}
+    />
   ) : null;
 }
 

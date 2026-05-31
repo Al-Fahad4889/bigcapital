@@ -6,7 +6,10 @@ import { FinancialStatement, DashboardPageContent } from '@/components';
 import { ARAgingSummaryProvider } from './ARAgingSummaryProvider';
 import { ARAgingSummarySheetLoadingBar } from './components';
 import { ARAgingSummaryBody } from './ARAgingSummaryBody';
-import { withARAgingSummaryActions, WithARAgingSummaryActionsProps } from './withARAgingSummaryActions';
+import {
+  withARAgingSummaryActions,
+  WithARAgingSummaryActionsProps,
+} from './withARAgingSummaryActions';
 import { useARAgingSummaryQuery } from './common';
 import { ARAgingSummaryPdfDialog } from './dialogs/ARAgingSummaryPdfDialog';
 import { DialogsName } from '@/constants/dialogs';
@@ -67,4 +70,6 @@ function ARAgingSummaryInner({
   );
 }
 
-export const ARAgingSummary = compose(withARAgingSummaryActions)(ARAgingSummaryInner);
+export const ARAgingSummary = compose(withARAgingSummaryActions)(
+  ARAgingSummaryInner,
+);

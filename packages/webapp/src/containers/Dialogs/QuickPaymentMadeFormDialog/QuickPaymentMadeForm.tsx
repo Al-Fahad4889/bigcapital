@@ -10,7 +10,11 @@ import { useQuickPaymentMadeContext } from './QuickPaymentMadeFormProvider';
 import { QuickPaymentMadeFormContent } from './QuickPaymentMadeFormContent';
 
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import { defaultPaymentMade, transformBillToForm, transformErrors } from './utils';
+import {
+  defaultPaymentMade,
+  transformBillToForm,
+  transformErrors,
+} from './utils';
 import { compose } from '@/utils';
 
 /**
@@ -73,4 +77,6 @@ function QuickPaymentMadeFormInner({
   );
 }
 
-export const QuickPaymentMadeForm = compose(withDialogActions)(QuickPaymentMadeFormInner);
+export const QuickPaymentMadeForm = compose(withDialogActions)(
+  QuickPaymentMadeFormInner,
+);

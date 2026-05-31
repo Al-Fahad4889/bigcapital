@@ -14,12 +14,21 @@ import classNames from 'classnames';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { useCashFlowStatementContext } from './CashFlowStatementProvider';
-import { withCashFlowStatement, WithCashFlowStatementProps } from './withCashFlowStatement';
-import { withCashFlowStatementActions, WithCashFlowStatementActionsProps } from './withCashFlowStatementActions';
+import {
+  withCashFlowStatement,
+  WithCashFlowStatementProps,
+} from './withCashFlowStatement';
+import {
+  withCashFlowStatementActions,
+  WithCashFlowStatementActionsProps,
+} from './withCashFlowStatementActions';
 
 import { compose, saveInvoke } from '@/utils';
 import { CashflowSheetExportMenu } from './components';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
 interface CashFlowStatementActionsBarOwnProps {
@@ -27,8 +36,10 @@ interface CashFlowStatementActionsBarOwnProps {
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;
 }
 
-type CashFlowStatementActionsBarProps = { isFilterDrawerOpen: boolean } &
-  Pick<WithCashFlowStatementActionsProps, 'toggleCashFlowStatementFilterDrawer'> &
+type CashFlowStatementActionsBarProps = { isFilterDrawerOpen: boolean } & Pick<
+  WithCashFlowStatementActionsProps,
+  'toggleCashFlowStatementFilterDrawer'
+> &
   WithDialogActionsProps &
   CashFlowStatementActionsBarOwnProps;
 

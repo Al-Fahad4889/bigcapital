@@ -23,7 +23,9 @@ export function getDefaultTrialBalanceQuery() {
 /**
  * Parses the trial balance sheet query of browser location.
  */
-const parseTrialBalanceSheetQuery = (locationQuery: Record<string, unknown>) => {
+const parseTrialBalanceSheetQuery = (
+  locationQuery: Record<string, unknown>,
+) => {
   const defaultQuery = getDefaultTrialBalanceQuery();
 
   const transformed = {

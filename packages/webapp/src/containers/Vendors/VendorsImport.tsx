@@ -19,7 +19,7 @@ export function VendorsImport() {
         resource={'vendors'}
         onImportSuccess={handleImportSuccess}
         onCancelClick={handleImportBtnClick}
-        exampleTitle='Vendors Example'
+        exampleTitle="Vendors Example"
       />
     </DashboardInsider>
   );

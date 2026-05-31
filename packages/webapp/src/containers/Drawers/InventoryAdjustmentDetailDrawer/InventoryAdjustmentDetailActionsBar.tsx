@@ -53,4 +53,6 @@ function InventoryAdjustmentDetailActionsBarInner({
   );
 }
 
-export const InventoryAdjustmentDetailActionsBar = compose(withAlertActions)(InventoryAdjustmentDetailActionsBarInner);
+export const InventoryAdjustmentDetailActionsBar = compose(withAlertActions)(
+  InventoryAdjustmentDetailActionsBarInner,
+);

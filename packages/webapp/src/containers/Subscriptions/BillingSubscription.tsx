@@ -120,8 +120,8 @@ function SubscriptionRoot({ openAlert, openDrawer }) {
               {mainSubscription.planPeriod === 'month'
                 ? 'mo'
                 : mainSubscription.planPeriod === 'year'
-                ? 'yearly'
-                : ''}
+                  ? 'yearly'
+                  : ''}
             </Text>
           )}
         </Group>

@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { transformFilterFormToQuery } from '../common';
 import { useSalesTaxLiabilitySummary } from '@/hooks/query';
 
-type UseSalesTaxLiabilitySummaryResult = ReturnType<typeof useSalesTaxLiabilitySummary>;
+type UseSalesTaxLiabilitySummaryResult = ReturnType<
+  typeof useSalesTaxLiabilitySummary
+>;
 
 interface SalesTaxLiabilitySummaryContextValue {
   salesTaxLiabilitySummary: UseSalesTaxLiabilitySummaryResult['data'];
@@ -19,17 +21,19 @@ interface SalesTaxLiabilitySummaryBootProps {
   children?: ReactNode;
 }
 
-const SalesTaxLiabilitySummaryContext = createContext<SalesTaxLiabilitySummaryContextValue | undefined>(undefined);
+const SalesTaxLiabilitySummaryContext = createContext<
+  SalesTaxLiabilitySummaryContextValue | undefined
+>(undefined);
 
 /**
  * Sales tax liability summary boot.
  */
-function SalesTaxLiabilitySummaryBoot({ filter, ...props }: SalesTaxLiabilitySummaryBootProps) {
+function SalesTaxLiabilitySummaryBoot({
+  filter,
+  ...props
+}: SalesTaxLiabilitySummaryBootProps) {
   // Transformes the given filter to query.
-  const query = useMemo(
-    () => transformFilterFormToQuery(filter),
-    [filter],
-  );
+  const query = useMemo(() => transformFilterFormToQuery(filter), [filter]);
   // Fetches the sales tax liability summary report.
   const {
     data: salesTaxLiabilitySummary,
@@ -54,10 +58,14 @@ function SalesTaxLiabilitySummaryBoot({ filter, ...props }: SalesTaxLiabilitySum
   );
 }
 
-const useSalesTaxLiabilitySummaryContext = (): SalesTaxLiabilitySummaryContextValue => {
-  const ctx = useContext(SalesTaxLiabilitySummaryContext);
-  if (!ctx) throw new Error('useSalesTaxLiabilitySummaryContext must be used within a SalesTaxLiabilitySummaryBoot');
-  return ctx;
-};
+const useSalesTaxLiabilitySummaryContext =
+  (): SalesTaxLiabilitySummaryContextValue => {
+    const ctx = useContext(SalesTaxLiabilitySummaryContext);
+    if (!ctx)
+      throw new Error(
+        'useSalesTaxLiabilitySummaryContext must be used within a SalesTaxLiabilitySummaryBoot',
+      );
+    return ctx;
+  };
 
 export { SalesTaxLiabilitySummaryBoot, useSalesTaxLiabilitySummaryContext };

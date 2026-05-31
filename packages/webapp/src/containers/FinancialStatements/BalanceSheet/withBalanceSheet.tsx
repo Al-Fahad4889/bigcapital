@@ -7,7 +7,9 @@ export interface WithBalanceSheetProps {
   balanceSheetDrawerFilter: ReturnType<typeof getBalanceSheetFilterDrawer>;
 }
 
-export const withBalanceSheet = <Props = unknown,>(mapState?: MapState<WithBalanceSheetProps, Props>) => {
+export const withBalanceSheet = <Props = unknown,>(
+  mapState?: MapState<WithBalanceSheetProps, Props>,
+) => {
   const mapStateToProps: MapStateToProps<
     WithBalanceSheetProps | Record<string, unknown>,
     Props,

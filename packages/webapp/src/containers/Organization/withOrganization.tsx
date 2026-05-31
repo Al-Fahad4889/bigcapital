@@ -12,14 +12,26 @@ import type { MapState } from '@/containers/hoc.types';
 
 export interface WithOrganizationProps {
   organization: ReturnType<ReturnType<typeof getOrganizationByIdFactory>>;
-  isOrganizationReady: ReturnType<ReturnType<typeof isOrganizationReadyFactory>>;
-  isOrganizationInitialized: ReturnType<ReturnType<typeof isOrganizationBuiltFactory>>;
-  isOrganizationSubscribed: ReturnType<ReturnType<typeof isOrganizationSubscribedFactory>>;
-  isOrganizationSetupCompleted: ReturnType<ReturnType<typeof isOrganizationCongratsFactory>>;
-  isOrganizationBuildRunning: ReturnType<ReturnType<typeof isOrganizationBuildRunningFactory>>;
+  isOrganizationReady: ReturnType<
+    ReturnType<typeof isOrganizationReadyFactory>
+  >;
+  isOrganizationInitialized: ReturnType<
+    ReturnType<typeof isOrganizationBuiltFactory>
+  >;
+  isOrganizationSubscribed: ReturnType<
+    ReturnType<typeof isOrganizationSubscribedFactory>
+  >;
+  isOrganizationSetupCompleted: ReturnType<
+    ReturnType<typeof isOrganizationCongratsFactory>
+  >;
+  isOrganizationBuildRunning: ReturnType<
+    ReturnType<typeof isOrganizationBuildRunningFactory>
+  >;
 }
 
-export function withOrganization<Props>(mapState?: MapState<WithOrganizationProps, Props>) {
+export function withOrganization<Props>(
+  mapState?: MapState<WithOrganizationProps, Props>,
+) {
   const getOrganizationById = getOrganizationByIdFactory();
   const isOrganizationReady = isOrganizationReadyFactory();
   const isOrganizationBuilt = isOrganizationBuiltFactory();
@@ -38,9 +50,14 @@ export function withOrganization<Props>(mapState?: MapState<WithOrganizationProp
       isOrganizationInitialized: isOrganizationBuilt(state, props as any),
       isOrganizationSubscribed: isOrganizationSubscribed(state, props as any),
       isOrganizationSetupCompleted: isOrganizationCongrats(state, props as any),
-      isOrganizationBuildRunning: isOrganizationBuildRunning(state, props as any),
+      isOrganizationBuildRunning: isOrganizationBuildRunning(
+        state,
+        props as any,
+      ),
     };
-    return mapState ? (mapState(mapped, state, props) as WithOrganizationProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithOrganizationProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

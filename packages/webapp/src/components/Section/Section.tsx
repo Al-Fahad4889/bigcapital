@@ -231,9 +231,7 @@ export const Section: React.FC<SectionProps> = React.forwardRef(
         )}
         {collapsible ? (
           // @ts-ignore
-          <Collapse isOpen={!isCollapsed}>
-            {children}
-          </Collapse>
+          <Collapse isOpen={!isCollapsed}>{children}</Collapse>
         ) : (
           children
         )}

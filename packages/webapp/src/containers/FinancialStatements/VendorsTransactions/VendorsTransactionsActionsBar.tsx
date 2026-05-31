@@ -14,12 +14,21 @@ import classNames from 'classnames';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { useVendorsTransactionsContext } from './VendorsTransactionsProvider';
-import { withVendorsTransaction, WithVendorsTransactionProps } from './withVendorsTransaction';
-import { withVendorsTransactionsActions, WithVendorsTransactionsActionsProps } from './withVendorsTransactionsActions';
+import {
+  withVendorsTransaction,
+  WithVendorsTransactionProps,
+} from './withVendorsTransaction';
+import {
+  withVendorsTransactionsActions,
+  WithVendorsTransactionsActionsProps,
+} from './withVendorsTransactionsActions';
 
 import { compose, saveInvoke } from '@/utils';
 import { VendorTransactionsExportMenu } from './components';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { DialogsName } from '@/constants/dialogs';
 
 interface VendorsTransactionsActionsBarOwnProps {
@@ -29,7 +38,10 @@ interface VendorsTransactionsActionsBarOwnProps {
 
 type VendorsTransactionsActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithVendorsTransactionsActionsProps, 'toggleVendorsTransactionsFilterDrawer'> &
+} & Pick<
+  WithVendorsTransactionsActionsProps,
+  'toggleVendorsTransactionsFilterDrawer'
+> &
   WithDialogActionsProps &
   VendorsTransactionsActionsBarOwnProps;
 

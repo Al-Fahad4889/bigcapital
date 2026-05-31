@@ -9,7 +9,10 @@ export const useBulkDeleteVendorCreditsDialog = () => {
     openBulkDeleteDialog,
     closeBulkDeleteDialog,
     isValidatingBulkDelete,
-  } = useBulkDeleteDialog(DialogsName.VendorCreditBulkDelete, validateBulkDeleteMutation);
+  } = useBulkDeleteDialog(
+    DialogsName.VendorCreditBulkDelete,
+    validateBulkDeleteMutation,
+  );
 
   return {
     openBulkDeleteDialog,
@@ -17,4 +20,3 @@ export const useBulkDeleteVendorCreditsDialog = () => {
     isValidatingBulkDeleteVendorCredits: isValidatingBulkDelete,
   };
 };
-

@@ -57,7 +57,11 @@ export const useCreateStripeAccountSession = (
     Error,
     CreateStripeAccountSessionBody
   >,
-): UseMutationResult<CreateStripeAccountSessionResponse, Error, CreateStripeAccountSessionBody> => {
+): UseMutationResult<
+  CreateStripeAccountSessionResponse,
+  Error,
+  CreateStripeAccountSessionBody
+> => {
   const fetcher = useApiFetcher();
 
   return useMutation({
@@ -72,11 +76,7 @@ export const useCreateStripeAccountSession = (
 // Create Stripe Account
 // ------------------------------------
 export const useCreateStripeAccount = (
-  options?: UseMutationOptions<
-    CreateStripeAccountResponse,
-    Error,
-    void
-  >,
+  options?: UseMutationOptions<CreateStripeAccountResponse, Error, void>,
 ) => {
   const fetcher = useApiFetcher();
 

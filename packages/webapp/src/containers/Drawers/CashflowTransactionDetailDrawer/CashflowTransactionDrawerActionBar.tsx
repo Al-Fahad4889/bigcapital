@@ -67,4 +67,6 @@ function CashflowTransactionDrawerActionBarInner({
   );
 }
 
-export const CashflowTransactionDrawerActionBar = compose(withAlertActions)(CashflowTransactionDrawerActionBarInner);
+export const CashflowTransactionDrawerActionBar = compose(withAlertActions)(
+  CashflowTransactionDrawerActionBarInner,
+);

@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const VendorOpeningBalanceDialogContent = React.lazy(() => import('./VendorOpeningBalanceDialogContent').then(m => ({ default: m.VendorOpeningBalanceDialogContent })));
+const VendorOpeningBalanceDialogContent = React.lazy(() =>
+  import('./VendorOpeningBalanceDialogContent').then((m) => ({
+    default: m.VendorOpeningBalanceDialogContent,
+  })),
+);
 
 /**
  * Vendor Opening balance dialog.

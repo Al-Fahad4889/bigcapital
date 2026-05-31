@@ -9,7 +9,10 @@ export const useBulkDeleteCreditNotesDialog = () => {
     openBulkDeleteDialog,
     closeBulkDeleteDialog,
     isValidatingBulkDelete,
-  } = useBulkDeleteDialog(DialogsName.CreditNoteBulkDelete, validateBulkDeleteMutation);
+  } = useBulkDeleteDialog(
+    DialogsName.CreditNoteBulkDelete,
+    validateBulkDeleteMutation,
+  );
 
   return {
     openBulkDeleteDialog,
@@ -17,4 +20,3 @@ export const useBulkDeleteCreditNotesDialog = () => {
     isValidatingBulkDeleteCreditNotes: isValidatingBulkDelete,
   };
 };
-

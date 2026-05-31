@@ -5,8 +5,10 @@ export const INVENTORY_ADJUSTMENT = 'INVENTORY_ADJUSTMENT';
 // Query key factory
 export const inventoryAdjustmentsKeys = {
   all: () => [INVENTORY_ADJUSTMENTS] as const,
-  list: (query?: Record<string, unknown>) => [INVENTORY_ADJUSTMENTS, query] as const,
-  detail: (id: number | null | undefined) => [INVENTORY_ADJUSTMENT, id] as const,
+  list: (query?: Record<string, unknown>) =>
+    [INVENTORY_ADJUSTMENTS, query] as const,
+  detail: (id: number | null | undefined) =>
+    [INVENTORY_ADJUSTMENT, id] as const,
 };
 
 // Grouped object for use in components/hooks

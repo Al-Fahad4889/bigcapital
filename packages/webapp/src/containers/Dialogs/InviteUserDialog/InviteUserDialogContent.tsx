@@ -9,11 +9,7 @@ import '@/style/pages/Users/InviteFormDialog.scss';
 /**
  * Invite user dialog content.
  */
-export function InviteUserDialogContent({
-  action,
-  userId,
-  dialogName,
-}) {
+export function InviteUserDialogContent({ action, userId, dialogName }) {
   return (
     <InviteUserFormProvider isEditMode={action} dialogName={dialogName}>
       <InviteUserForm />

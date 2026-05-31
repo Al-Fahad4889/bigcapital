@@ -13,11 +13,17 @@ import {
   TrialBalanceSheetLoadingBar,
 } from './components';
 
-import { withTrialBalanceActions, WithTrialBalanceActionsProps } from './withTrialBalanceActions';
+import {
+  withTrialBalanceActions,
+  WithTrialBalanceActionsProps,
+} from './withTrialBalanceActions';
 import { compose } from '@/utils';
 import { TrialBalanceSheetDialogs } from './TrialBalanceSheetDialogs';
 
-type TrialBalanceSheetProps = Pick<WithTrialBalanceActionsProps, 'toggleTrialBalanceFilterDrawer'>;
+type TrialBalanceSheetProps = Pick<
+  WithTrialBalanceActionsProps,
+  'toggleTrialBalanceFilterDrawer'
+>;
 
 /**
  * Trial balance sheet.
@@ -79,4 +85,6 @@ function TrialBalanceSheetInner({
   );
 }
 
-export const TrialBalanceSheet = compose(withTrialBalanceActions)(TrialBalanceSheetInner);
+export const TrialBalanceSheet = compose(withTrialBalanceActions)(
+  TrialBalanceSheetInner,
+);

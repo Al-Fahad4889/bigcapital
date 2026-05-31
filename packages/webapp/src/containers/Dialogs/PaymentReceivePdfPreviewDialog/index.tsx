@@ -10,7 +10,11 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const PdfPreviewDialogContent = React.lazy(() => import('./PaymentReceivePdfPreviewContent').then(m => ({ default: m.PaymentReceivePdfPreviewContent })));
+const PdfPreviewDialogContent = React.lazy(() =>
+  import('./PaymentReceivePdfPreviewContent').then((m) => ({
+    default: m.PaymentReceivePdfPreviewContent,
+  })),
+);
 
 /**
  * Payment receive PDF preview dialog.

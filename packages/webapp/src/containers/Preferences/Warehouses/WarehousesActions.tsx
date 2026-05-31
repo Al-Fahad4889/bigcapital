@@ -33,4 +33,6 @@ function WarehousesActionsInner({
   );
 }
 
-export const WarehousesActions = compose(withDialogActions)(WarehousesActionsInner);
+export const WarehousesActions = compose(withDialogActions)(
+  WarehousesActionsInner,
+);

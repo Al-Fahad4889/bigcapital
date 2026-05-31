@@ -27,7 +27,6 @@ function ProjectTaskProvider({ ...props }) {
     enabled: !!projectId,
   });
 
-
   // provider payload.
   const provider = {
     project,

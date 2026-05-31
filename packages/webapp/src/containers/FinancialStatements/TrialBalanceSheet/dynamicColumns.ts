@@ -51,6 +51,9 @@ const dynamicColumnMapper = R.curry((data: any, column: any) => {
   )(column);
 });
 
-export const trialBalancesheetDynamicColumns = (columns: any[], data: any[]) => {
+export const trialBalancesheetDynamicColumns = (
+  columns: any[],
+  data: any[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };

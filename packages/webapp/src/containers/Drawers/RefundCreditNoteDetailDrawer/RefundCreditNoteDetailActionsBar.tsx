@@ -46,4 +46,6 @@ function RefundCreditNoteDetailActionsBarInner({
   );
 }
 
-export const RefundCreditNoteDetailActionsBar = compose(withAlertActions)(RefundCreditNoteDetailActionsBarInner);
+export const RefundCreditNoteDetailActionsBar = compose(withAlertActions)(
+  RefundCreditNoteDetailActionsBarInner,
+);

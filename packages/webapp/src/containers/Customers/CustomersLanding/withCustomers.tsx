@@ -16,7 +16,9 @@ export interface WithCustomersProps {
   >;
 }
 
-export const withCustomers = <Props = unknown,>(mapState?: MapState<WithCustomersProps, Props>) => {
+export const withCustomers = <Props = unknown,>(
+  mapState?: MapState<WithCustomersProps, Props>,
+) => {
   const getCustomersTableState = getCustomersTableStateFactory();
   const customersTableStateChanged = customersTableStateChangedFactory();
 

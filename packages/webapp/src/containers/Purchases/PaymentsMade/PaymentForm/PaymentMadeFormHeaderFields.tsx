@@ -262,7 +262,9 @@ function PaymentFormVendorSelect() {
   );
 }
 
-export const PaymentMadeFormHeaderFields = compose(withCurrentOrganization())(PaymentMadeFormHeaderFieldsInner);
+export const PaymentMadeFormHeaderFields = compose(withCurrentOrganization())(
+  PaymentMadeFormHeaderFieldsInner,
+);
 
 const VendorButtonLink = styled(VendorDrawerLink)`
   font-size: 11px;

@@ -49,9 +49,9 @@ const taskSelectProps = {
 };
 
 /**
- * 
- * @param param0 
- * @returns 
+ *
+ * @param param0
+ * @returns
  */
 export function ProjectTaskSelect({ tasks, ...rest }) {
   return (

@@ -74,7 +74,6 @@ export function VendorDetailsHeader() {
         <DetailItem
           label={intl.get('vendor.drawer.label.note')}
           children={defaultTo(vendor?.note, '--')}
-
         />
       </DetailsMenu>
     </div>

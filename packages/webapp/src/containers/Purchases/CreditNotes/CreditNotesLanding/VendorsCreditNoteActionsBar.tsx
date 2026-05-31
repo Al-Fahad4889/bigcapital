@@ -110,10 +110,8 @@ function VendorsCreditNoteActionsBarInner({
     openDrawer(DRAWERS.CREDIT_NOTE_DETAILS);
   };
 
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteVendorCredits,
-  } = useBulkDeleteVendorCreditsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteVendorCredits } =
+    useBulkDeleteVendorCreditsDialog();
 
   if (!isEmpty(vendorsCreditNoteSelectedRows)) {
     const handleBulkDelete = () => {

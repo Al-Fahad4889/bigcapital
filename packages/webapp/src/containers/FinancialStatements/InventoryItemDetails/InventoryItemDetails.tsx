@@ -6,7 +6,10 @@ import { FinancialStatement, DashboardPageContent } from '@/components';
 import { InventoryItemDetailsActionsBar } from './InventoryItemDetailsActionsBar';
 import { InventoryItemDetailsHeader } from './InventoryItemDetailsHeader';
 
-import { withInventoryItemDetailsActions, WithInventoryItemDetailsActionsProps } from './withInventoryItemDetailsActions';
+import {
+  withInventoryItemDetailsActions,
+  WithInventoryItemDetailsActionsProps,
+} from './withInventoryItemDetailsActions';
 import { InventoryItemDetailsProvider } from './InventoryItemDetailsProvider';
 import {
   InventoryItemDetailsLoadingBar,
@@ -74,4 +77,6 @@ function InventoryItemDetailsInner({
   );
 }
 
-export const InventoryItemDetails = compose(withInventoryItemDetailsActions)(InventoryItemDetailsInner);
+export const InventoryItemDetails = compose(withInventoryItemDetailsActions)(
+  InventoryItemDetailsInner,
+);

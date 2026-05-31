@@ -17,10 +17,7 @@ interface ARAgingSummaryTableProps {
 export function ARAgingSummaryTable({
   organizationName,
 }: ARAgingSummaryTableProps) {
-  const {
-    ARAgingSummary,
-    isARAgingLoading,
-  } = useARAgingSummaryContext();
+  const { ARAgingSummary, isARAgingLoading } = useARAgingSummaryContext();
 
   const columns = useARAgingSummaryColumns();
   const table = (ARAgingSummary as any)?.table;

@@ -55,14 +55,14 @@ export function useExcludedTransactionsColumns() {
         accessor: 'formatted_deposit_amount',
         align: 'right',
         width: depositWidth,
-        money: true
+        money: true,
       },
       {
         Header: 'Withdrawal',
         accessor: 'formatted_withdrawal_amount',
         align: 'right',
         width: withdrawalWidth,
-        money: true
+        money: true,
       },
     ],
     [],

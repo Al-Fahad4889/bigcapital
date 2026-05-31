@@ -85,4 +85,6 @@ function NotifyPaymentReceiveViaSMSFormInner({
     />
   );
 }
-export const NotifyPaymentReceiveViaSMSForm = compose(withDialogActions)(NotifyPaymentReceiveViaSMSFormInner);
+export const NotifyPaymentReceiveViaSMSForm = compose(withDialogActions)(
+  NotifyPaymentReceiveViaSMSFormInner,
+);

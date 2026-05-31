@@ -29,7 +29,9 @@ function ManualJournalsListProvider({ query, tableStateChanged, ...props }) {
 
   // Detarmines the datatable empty status.
   const isEmptyStatus =
-    isEmpty(manualJournalsData?.data) && !tableStateChanged && !isManualJournalsLoading;
+    isEmpty(manualJournalsData?.data) &&
+    !tableStateChanged &&
+    !isManualJournalsLoading;
 
   // Global state.
   const state = {
@@ -38,7 +40,9 @@ function ManualJournalsListProvider({ query, tableStateChanged, ...props }) {
     journalsViews,
 
     resourceMeta,
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
 
     isManualJournalsLoading,
     isManualJournalsFetching,

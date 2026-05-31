@@ -19,7 +19,9 @@ export const getVendorsBalanceQuerySchema = () => {
   });
 };
 
-export const parseVendorsBalanceSummaryQuery = (locationQuery: Record<string, unknown>) => {
+export const parseVendorsBalanceSummaryQuery = (
+  locationQuery: Record<string, unknown>,
+) => {
   const defaultQuery = getDefaultVendorsBalanceQuery();
 
   const transformed = {

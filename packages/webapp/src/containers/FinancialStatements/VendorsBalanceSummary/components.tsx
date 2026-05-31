@@ -52,7 +52,7 @@ const percentageColumnAccessor = () => ({
   width: 140,
   textOverview: true,
   align: Align.Right,
-  money: true
+  money: true,
 });
 
 /**
@@ -65,7 +65,7 @@ const totalColumnAccessor = () => ({
   width: 140,
   textOverview: true,
   align: Align.Right,
-  money: true
+  money: true,
 });
 
 /**

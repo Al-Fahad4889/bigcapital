@@ -6,7 +6,7 @@ import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { useDrawerActions } from '@/hooks/state';
 import { SendMailViewToAddressField } from '../../Estimates/SendMailViewDrawer/SendMailViewToAddressField';
 import { SendMailViewMessageField } from '../../Estimates/SendMailViewDrawer/SendMailViewMessageField';
-import { usePaymentReceivedFormatArgsOptions, } from './_hooks';
+import { usePaymentReceivedFormatArgsOptions } from './_hooks';
 import { useSendMailItems } from '../../Estimates/SendMailViewDrawer/hooks';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 

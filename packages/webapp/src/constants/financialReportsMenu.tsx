@@ -1,7 +1,11 @@
 // @ts-nocheck
 import React from 'react';
 import { FormattedMessage as T } from '@/components';
-import { ReportsAction, AbilitySubject, AuditLogAction } from '@/constants/abilityOption';
+import {
+  ReportsAction,
+  AbilitySubject,
+  AuditLogAction,
+} from '@/constants/abilityOption';
 
 export const financialReportMenus = [
   {
@@ -173,9 +177,7 @@ export const financialReportMenus = [
       },
       {
         title: <T id={'inventory_valuation'} />,
-        desc: (
-          <T id={'summerize_your_transactions_for_each_inventory_item'} />
-        ),
+        desc: <T id={'summerize_your_transactions_for_each_inventory_item'} />,
         link: '/financial-reports/inventory-valuation',
         subject: AbilitySubject.Report,
         ability: ReportsAction.READ_INVENTORY_VALUATION_SUMMARY,

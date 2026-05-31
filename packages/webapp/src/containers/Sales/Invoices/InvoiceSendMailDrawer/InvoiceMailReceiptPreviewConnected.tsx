@@ -15,15 +15,13 @@ const invoiceMailReceiptCss = css`
   transform: scale(0.9);
   transform-origin: top;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05) !important;
-`
+`;
 
 export function InvoiceMailReceiptPreviewConnected() {
   return (
     <InvoiceSendMailPreviewWithHeader>
       <Box px={4} pt={8} pb={16}>
-        <InvoiceMailReceiptPreviewWithProps
-          className={invoiceMailReceiptCss}
-        />
+        <InvoiceMailReceiptPreviewWithProps className={invoiceMailReceiptCss} />
       </Box>
     </InvoiceSendMailPreviewWithHeader>
   );

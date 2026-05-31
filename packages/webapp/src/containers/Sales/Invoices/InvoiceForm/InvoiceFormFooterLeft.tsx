@@ -5,14 +5,7 @@ import styled from 'styled-components';
 import { isEmpty } from 'lodash';
 import { Button, Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
-import {
-  FFormGroup,
-  FEditableText,
-
-  Box,
-  Group,
-  Stack,
-} from '@/components';
+import { FFormGroup, FEditableText, Box, Group, Stack } from '@/components';
 import { VisaIcon } from '@/icons/Visa';
 import { MastercardIcon } from '@/icons/Mastercard';
 import { useInvoiceFormContext } from './InvoiceFormProvider';

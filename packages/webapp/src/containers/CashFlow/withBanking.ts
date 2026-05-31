@@ -15,7 +15,9 @@ export interface WithBankingProps {
   uncategorizedTransactionsFilter: ApplicationState['plaid']['uncategorizedFilter'];
 }
 
-export function withBanking<Props = unknown>(mapState?: MapState<WithBankingProps, Props>) {
+export function withBanking<Props = unknown>(
+  mapState?: MapState<WithBankingProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithBankingProps,
     Props,

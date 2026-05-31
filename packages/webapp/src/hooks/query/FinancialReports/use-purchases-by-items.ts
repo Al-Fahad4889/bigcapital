@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchPurchasesByItemsJson,
   fetchPurchasesByItemsTable,
@@ -22,7 +27,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function usePurchasesByItems(
   query: PurchasesByItemsJsonQuery,
-  props?: Omit<UseQueryOptions<PurchasesByItemsJsonResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<PurchasesByItemsJsonResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -34,7 +42,10 @@ export function usePurchasesByItems(
 
 export function usePurchasesByItemsTable(
   query: PurchasesByItemsTableQuery,
-  props?: Omit<UseQueryOptions<PurchasesByItemsTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<PurchasesByItemsTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

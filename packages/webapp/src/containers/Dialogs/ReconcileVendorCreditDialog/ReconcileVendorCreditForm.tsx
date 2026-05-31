@@ -95,4 +95,6 @@ function ReconcileVendorCreditFormInner({
     />
   );
 }
-export const ReconcileVendorCreditForm = compose(withDialogActions)(ReconcileVendorCreditFormInner);
+export const ReconcileVendorCreditForm = compose(withDialogActions)(
+  ReconcileVendorCreditFormInner,
+);

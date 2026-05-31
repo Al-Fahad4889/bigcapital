@@ -9,7 +9,10 @@ export const useBulkDeleteManualJournalsDialog = () => {
     openBulkDeleteDialog,
     closeBulkDeleteDialog,
     isValidatingBulkDelete,
-  } = useBulkDeleteDialog(DialogsName.ManualJournalBulkDelete, validateBulkDeleteMutation);
+  } = useBulkDeleteDialog(
+    DialogsName.ManualJournalBulkDelete,
+    validateBulkDeleteMutation,
+  );
 
   return {
     openBulkDeleteDialog,
@@ -17,4 +20,3 @@ export const useBulkDeleteManualJournalsDialog = () => {
     isValidatingBulkDeleteManualJournals: isValidatingBulkDelete,
   };
 };
-

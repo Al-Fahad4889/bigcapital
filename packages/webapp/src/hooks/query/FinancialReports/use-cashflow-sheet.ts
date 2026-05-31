@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchCashflowStatementTable,
   fetchCashflowStatementXlsx,
@@ -26,7 +31,10 @@ interface CashFlowStatementReport {
 
 export function useCashFlowStatementReport(
   query: CashflowStatementTableQuery,
-  props?: Omit<UseQueryOptions<CashFlowStatementReport, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<CashFlowStatementReport, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

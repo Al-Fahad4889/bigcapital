@@ -94,4 +94,6 @@ function ProjectTimeEntryFormInner({
   );
 }
 
-export const ProjectTimeEntryForm = compose(withDialogActions)(ProjectTimeEntryFormInner);
+export const ProjectTimeEntryForm = compose(withDialogActions)(
+  ProjectTimeEntryFormInner,
+);

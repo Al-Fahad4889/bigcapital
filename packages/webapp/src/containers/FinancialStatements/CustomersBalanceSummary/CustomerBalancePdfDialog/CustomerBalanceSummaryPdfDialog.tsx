@@ -9,8 +9,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const CustomerBalanceSummaryPdfDialogContent = lazy(
-  () => import('./CustomerBalanceSummaryPdfDialogContent').then(m => ({ default: m.CustomerBalanceSummaryPdfDialogContent })),
+const CustomerBalanceSummaryPdfDialogContent = lazy(() =>
+  import('./CustomerBalanceSummaryPdfDialogContent').then((m) => ({
+    default: m.CustomerBalanceSummaryPdfDialogContent,
+  })),
 );
 
 interface CustomerBalanceSummaryPdfDialogRootProps {
@@ -19,7 +21,10 @@ interface CustomerBalanceSummaryPdfDialogRootProps {
   isOpen: boolean;
 }
 
-function CashflowSheetPdfDialogRoot({ dialogName, isOpen }: CustomerBalanceSummaryPdfDialogRootProps) {
+function CashflowSheetPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: CustomerBalanceSummaryPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

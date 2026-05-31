@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const ItemDetailDrawerContent = React.lazy(() => import('./ItemDetailDrawerContent').then(m => ({ default: m.ItemDetailDrawerContent })));
+const ItemDetailDrawerContent = React.lazy(() =>
+  import('./ItemDetailDrawerContent').then((m) => ({
+    default: m.ItemDetailDrawerContent,
+  })),
+);
 
 /**
  * Item Detail drawer.

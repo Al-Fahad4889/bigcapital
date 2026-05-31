@@ -11,7 +11,9 @@ export interface WithWarehouseTransfersActionsProps {
   resetWarehouseTransferTableState: () => void;
 }
 
-export const mapDipatchToProps = (dispatch: Dispatch): WithWarehouseTransfersActionsProps => ({
+export const mapDipatchToProps = (
+  dispatch: Dispatch,
+): WithWarehouseTransfersActionsProps => ({
   setWarehouseTransferTableState: (queries: Partial<TableQuery>) =>
     dispatch(setWarehouseTransferTableState(queries)),
   resetWarehouseTransferTableState: () =>

@@ -43,7 +43,8 @@ export function ProjectProfitabilitySummaryLoadingBar() {
  */
 export function useProjectProfitabilitySummaryColumns() {
   // Balance sheet context.
-  const { projectProfitabilitySummary } = useProjectProfitabilitySummaryContext();
+  const { projectProfitabilitySummary } =
+    useProjectProfitabilitySummaryContext();
 
   const columns = (projectProfitabilitySummary as any)?.columns;
   const tableRows = (projectProfitabilitySummary as any)?.tableRows;

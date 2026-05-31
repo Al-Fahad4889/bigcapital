@@ -5,8 +5,14 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import { Tabs, Tab, Button, Intent } from '@blueprintjs/core';
 import { FormattedMessage as T } from '@/components';
 
-import { withProjectProfitabilitySummary, WithProjectProfitabilitySummaryProps } from './withProjectProfitabilitySummary';
-import { withProjectProfitabilitySummaryActions, WithProjectProfitabilitySummaryActionsProps } from './withProjectProfitabilitySummaryActions';
+import {
+  withProjectProfitabilitySummary,
+  WithProjectProfitabilitySummaryProps,
+} from './withProjectProfitabilitySummary';
+import {
+  withProjectProfitabilitySummaryActions,
+  WithProjectProfitabilitySummaryActionsProps,
+} from './withProjectProfitabilitySummaryActions';
 
 import { ProjectProfitabilitySummaryHeaderGeneralPanal } from './ProjectProfitabilitySummaryHeaderGeneralPanal';
 import { FinancialStatementHeader } from '../FinancialStatementHeader';
@@ -33,7 +39,10 @@ interface ProjectProfitabilitySummaryHeaderOwnProps {
 
 type ProjectProfitabilitySummaryHeaderProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithProjectProfitabilitySummaryActionsProps, 'toggleProjectProfitabilitySummaryFilterDrawer'> &
+} & Pick<
+  WithProjectProfitabilitySummaryActionsProps,
+  'toggleProjectProfitabilitySummaryFilterDrawer'
+> &
   ProjectProfitabilitySummaryHeaderOwnProps;
 
 /**
@@ -67,7 +76,10 @@ function ProjectProfitabilitySummaryHeaderInner({
   const validationSchema = getProjectProfitabilitySummaryValidationSchema();
 
   // Handle form submit.
-  const handleSubmit = (values: ProjectProfitabilitySummaryFormValues, { setSubmitting }: FormikHelpers<ProjectProfitabilitySummaryFormValues>) => {
+  const handleSubmit = (
+    values: ProjectProfitabilitySummaryFormValues,
+    { setSubmitting }: FormikHelpers<ProjectProfitabilitySummaryFormValues>,
+  ) => {
     onSubmitFilter(values);
     toggleFilterDrawer(false);
     setSubmitting(false);

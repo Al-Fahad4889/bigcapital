@@ -5,8 +5,10 @@ export const RESOURCE_META = 'RESOURCE_META';
 // Query key factory
 export const viewsKeys = {
   all: () => [RESOURCE_VIEW] as const,
-  view: (resourceSlug: string | null | undefined) => [RESOURCE_VIEW, resourceSlug] as const,
-  meta: (resourceSlug: string | null | undefined) => [RESOURCE_META, resourceSlug] as const,
+  view: (resourceSlug: string | null | undefined) =>
+    [RESOURCE_VIEW, resourceSlug] as const,
+  meta: (resourceSlug: string | null | undefined) =>
+    [RESOURCE_META, resourceSlug] as const,
 };
 
 // Grouped object for use in components/hooks

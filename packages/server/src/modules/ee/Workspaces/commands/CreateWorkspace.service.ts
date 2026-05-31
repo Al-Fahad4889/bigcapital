@@ -47,7 +47,10 @@ export class CreateWorkspaceService {
     // The job enqueue happens outside the transaction since it's async.
     const tenant = await this.systemKnex.transaction(async (trx) => {
       // Create the new tenant row.
-      const tenant = await this.tenantRepository.createWithUniqueOrgId(undefined, trx);
+      const tenant = await this.tenantRepository.createWithUniqueOrgId(
+        undefined,
+        trx,
+      );
 
       // Link the authenticated user as the owner of this new workspace.
       await this.userTenantModel.query(trx).insert({

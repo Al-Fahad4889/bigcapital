@@ -21,7 +21,7 @@ import {
 import { subscriptionKeys } from './query-keys';
 
 export function useCancelMainSubscription(
-  options?: UseMutationOptions<void, Error, void>
+  options?: UseMutationOptions<void, Error, void>,
 ): UseMutationResult<void, Error, void> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -36,7 +36,7 @@ export function useCancelMainSubscription(
 }
 
 export function useResumeMainSubscription(
-  options?: UseMutationOptions<void, Error, void>
+  options?: UseMutationOptions<void, Error, void>,
 ): UseMutationResult<void, Error, void> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -51,7 +51,7 @@ export function useResumeMainSubscription(
 }
 
 export function useChangeSubscriptionPlan(
-  options?: UseMutationOptions<void, Error, ChangeSubscriptionPlanBody>
+  options?: UseMutationOptions<void, Error, ChangeSubscriptionPlanBody>,
 ): UseMutationResult<void, Error, ChangeSubscriptionPlanBody> {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -76,7 +76,7 @@ export function useGetSubscriptions(
     SubscriptionsListResponse,
     Error,
     GetSubscriptionsResponse
-  >
+  >,
 ): UseQueryResult<GetSubscriptionsResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 

@@ -80,15 +80,11 @@ export class GetWorkspacesService {
 
     await Promise.all(logoPromises);
 
-    return this.transformer.transform(
-      memberships,
-      new WorkspaceTransformer(),
-      {
-        defaultTenantId,
-        includeInactive,
-        currentOrganizationId,
-        logoUris,
-      },
-    );
+    return this.transformer.transform(memberships, new WorkspaceTransformer(), {
+      defaultTenantId,
+      includeInactive,
+      currentOrganizationId,
+      logoUris,
+    });
   }
 }

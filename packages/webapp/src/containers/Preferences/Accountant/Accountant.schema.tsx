@@ -12,7 +12,7 @@ const Schema = Yup.object().shape({
     preferredDepositAccount: Yup.number().nullable(),
     preferredAdvanceDeposit: Yup.number().nullable(),
     withdrawalAccount: Yup.number().nullable(),
-  })
+  }),
 });
 
 export const AccountantSchema = Schema;

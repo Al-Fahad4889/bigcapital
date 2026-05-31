@@ -6,7 +6,9 @@ export interface WithVendorsTransactionsActionsProps {
   toggleVendorsTransactionsFilterDrawer: (toggle: boolean) => void;
 }
 
-export const mapActionsToProps = (dispatch: Dispatch): WithVendorsTransactionsActionsProps => ({
+export const mapActionsToProps = (
+  dispatch: Dispatch,
+): WithVendorsTransactionsActionsProps => ({
   toggleVendorsTransactionsFilterDrawer: (toggle: boolean) =>
     dispatch(toggleVendorsTransactionsFilterDrawer(toggle)),
 });

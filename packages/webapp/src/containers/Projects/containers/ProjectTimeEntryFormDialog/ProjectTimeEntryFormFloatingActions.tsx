@@ -42,4 +42,6 @@ function ProjectTimeEntryFormFloatingActionsInner({
   );
 }
 
-export const ProjectTimeEntryFormFloatingActions = compose(withDialogActions)(ProjectTimeEntryFormFloatingActionsInner);
+export const ProjectTimeEntryFormFloatingActions = compose(withDialogActions)(
+  ProjectTimeEntryFormFloatingActionsInner,
+);

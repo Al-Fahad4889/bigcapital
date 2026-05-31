@@ -3,7 +3,11 @@ import React, { useState, useCallback } from 'react';
 import { Button, Intent, InputGroup, MenuItem } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import { x } from '@xstyled/emotion';
-import { FormattedMessage as T, DrawerBody, DrawerActionsBar } from '@/components';
+import {
+  FormattedMessage as T,
+  DrawerBody,
+  DrawerActionsBar,
+} from '@/components';
 import { useBulkCreateInviteUsers, useRoles } from '@/hooks/query';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 import * as Yup from 'yup';
@@ -25,12 +29,17 @@ const emailValidationSchema = Yup.string()
   .email('Invalid email format')
   .required('Email is required');
 
-export default function InviteUsersStep({ organizationId, onComplete }: InviteUsersStepProps) {
+export default function InviteUsersStep({
+  organizationId,
+  onComplete,
+}: InviteUsersStepProps) {
   const isDarkMode = useIsDarkMode();
-  const { mutateAsync: bulkInviteMutate, isLoading: isSubmitting } = useBulkCreateInviteUsers();
+  const { mutateAsync: bulkInviteMutate, isLoading: isSubmitting } =
+    useBulkCreateInviteUsers();
   const { data: roles, isLoading: isRolesLoading } = useRoles();
 
-  const defaultRoleId = roles?.find(r => r.slug === 'standard')?.id || roles?.[0]?.id || '';
+  const defaultRoleId =
+    roles?.find((r) => r.slug === 'standard')?.id || roles?.[0]?.id || '';
 
   const [invites, setInvites] = useState<InviteRow[]>([
     { id: generateId(), email: '', roleId: defaultRoleId },
@@ -39,31 +48,38 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const addInviteRow = () => {
-    setInvites(prev => [...prev, { id: generateId(), email: '', roleId: defaultRoleId }]);
+    setInvites((prev) => [
+      ...prev,
+      { id: generateId(), email: '', roleId: defaultRoleId },
+    ]);
   };
 
   const removeInviteRow = (id: string) => {
-    setInvites(prev => {
+    setInvites((prev) => {
       if (prev.length === 1) {
         return [{ id: generateId(), email: '', roleId: defaultRoleId }];
       }
-      return prev.filter(invite => invite.id !== id);
+      return prev.filter((invite) => invite.id !== id);
     });
-    setErrors(prev => {
+    setErrors((prev) => {
       const newErrors = { ...prev };
       delete newErrors[id];
       return newErrors;
     });
   };
 
-  const updateInviteRow = (id: string, field: keyof InviteRow, value: string | number) => {
-    setInvites(prev =>
-      prev.map(invite =>
-        invite.id === id ? { ...invite, [field]: value } : invite
-      )
+  const updateInviteRow = (
+    id: string,
+    field: keyof InviteRow,
+    value: string | number,
+  ) => {
+    setInvites((prev) =>
+      prev.map((invite) =>
+        invite.id === id ? { ...invite, [field]: value } : invite,
+      ),
     );
     if (errors[id]) {
-      setErrors(prev => {
+      setErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[id];
         return newErrors;
@@ -76,7 +92,7 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
     const emails: string[] = [];
     let hasValidInvite = false;
 
-    invites.forEach(invite => {
+    invites.forEach((invite) => {
       if (!invite.email.trim() && !invite.roleId) {
         return;
       }
@@ -111,8 +127,8 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
     }
 
     const validInvites = invites
-      .filter(invite => invite.email.trim() && invite.roleId)
-      .map(invite => ({
+      .filter((invite) => invite.email.trim() && invite.roleId)
+      .map((invite) => ({
         email: invite.email.trim(),
         roleId: Number(invite.roleId),
       }));
@@ -137,7 +153,14 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
   return (
     <>
       <DrawerBody>
-        <x.div maxWidth="600px" w="100%" mx="auto" pt="30px" pb="20px" px="25px">
+        <x.div
+          maxWidth="600px"
+          w="100%"
+          mx="auto"
+          pt="30px"
+          pb="20px"
+          px="25px"
+        >
           <x.h3
             color={isDarkMode ? 'rgba(255, 255, 255, 0.5)' : '#868f9f'}
             mb="2rem"
@@ -165,7 +188,9 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
                 <x.div flex={1}>
                   <InputGroup
                     value={invite.email}
-                    onChange={(e) => updateInviteRow(invite.id, 'email', e.target.value)}
+                    onChange={(e) =>
+                      updateInviteRow(invite.id, 'email', e.target.value)
+                    }
                     placeholder="Email address"
                     intent={errors[invite.id] ? Intent.DANGER : Intent.NONE}
                   />
@@ -188,15 +213,24 @@ export default function InviteUsersStep({ organizationId, onComplete }: InviteUs
                         disabled={modifiers.disabled}
                       />
                     )}
-                    onItemSelect={(role) => updateInviteRow(invite.id, 'roleId', role.id)}
+                    onItemSelect={(role) =>
+                      updateInviteRow(invite.id, 'roleId', role.id)
+                    }
                     popoverProps={{ minimal: true }}
                     disabled={isRolesLoading}
                   >
                     <Button
-                      text={roles?.find(r => r.id === invite.roleId)?.name || 'Select role'}
+                      text={
+                        roles?.find((r) => r.id === invite.roleId)?.name ||
+                        'Select role'
+                      }
                       rightIcon="chevron-down"
                       fill
-                      intent={errors[invite.id] && !invite.roleId ? Intent.DANGER : Intent.NONE}
+                      intent={
+                        errors[invite.id] && !invite.roleId
+                          ? Intent.DANGER
+                          : Intent.NONE
+                      }
                     />
                   </Select>
                 </x.div>

@@ -16,7 +16,6 @@ import {
   FAccountsSuggestField,
   InputPrependText,
   FMoneyInputGroup,
-
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -152,14 +151,21 @@ function RefundVendorCreditFormFieldsInner({
       </FFormGroup>
 
       {/* --------- Statement --------- */}
-      <FFormGroup name={'description'} label={intl.get('refund_vendor_credit.dialog.description')} fill fastField>
+      <FFormGroup
+        name={'description'}
+        label={intl.get('refund_vendor_credit.dialog.description')}
+        fill
+        fastField
+      >
         <FTextArea name={'description'} growVertically fill fastField />
       </FFormGroup>
     </div>
   );
 }
 
-export const RefundVendorCreditFormFields = compose(withCurrentOrganization())(RefundVendorCreditFormFieldsInner);
+export const RefundVendorCreditFormFields = compose(withCurrentOrganization())(
+  RefundVendorCreditFormFieldsInner,
+);
 
 export const BranchRowDivider = styled.div`
   --x-divider-color: #ebf1f6;

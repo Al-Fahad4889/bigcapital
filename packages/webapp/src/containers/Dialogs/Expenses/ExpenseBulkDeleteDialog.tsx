@@ -101,4 +101,3 @@ export const ExpenseBulkDeleteDialog = compose(
   withDialogActions,
   withExpensesActions,
 )(ExpenseBulkDeleteDialogInner);
-

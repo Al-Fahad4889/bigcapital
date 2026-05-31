@@ -98,29 +98,28 @@ function VendorFormFormikBase({
   };
 
   return (
-      <Formik
-        validationSchema={
-          isNewMode ? CreateVendorFormSchema : EditVendorFormSchema
-        }
-        initialValues={initialFormValues}
-        onSubmit={handleFormSubmit}
-        >
-        <Form>
-          <VendorFormFields>
-            <VendorFormContent onCancel={onCancel} />
-          </VendorFormFields>
-        </Form>
-      </Formik>    
+    <Formik
+      validationSchema={
+        isNewMode ? CreateVendorFormSchema : EditVendorFormSchema
+      }
+      initialValues={initialFormValues}
+      onSubmit={handleFormSubmit}
+    >
+      <Form>
+        <VendorFormFields>
+          <VendorFormContent onCancel={onCancel} />
+        </VendorFormFields>
+      </Form>
+    </Formik>
   );
 }
-
 
 const VendorFormFields = styled.div`
   .bp4-form-content,
   .bp6-form-content {
     min-width: 300px;
   }
-  .bp4-form-group{
+  .bp4-form-group {
     margin-bottom: 20px;
   }
   .bp4-form-group.bp4-inline label.bp4-label {
@@ -128,4 +127,6 @@ const VendorFormFields = styled.div`
   }
 `;
 
-export const VendorFormFormik = compose(withCurrentOrganization())(VendorFormFormikBase);
+export const VendorFormFormik = compose(withCurrentOrganization())(
+  VendorFormFormikBase,
+);

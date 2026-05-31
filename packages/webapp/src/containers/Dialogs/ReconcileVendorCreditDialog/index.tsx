@@ -4,7 +4,11 @@ import { FormattedMessage as T, Dialog, DialogSuspense } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
-const ReconcileVendorCreditDialogContent = React.lazy(() => import('./ReconcileVendorCreditDialogContent').then(m => ({ default: m.ReconcileVendorCreditDialogContent })));
+const ReconcileVendorCreditDialogContent = React.lazy(() =>
+  import('./ReconcileVendorCreditDialogContent').then((m) => ({
+    default: m.ReconcileVendorCreditDialogContent,
+  })),
+);
 
 /**
  * Reconcile vendor credit dialog.

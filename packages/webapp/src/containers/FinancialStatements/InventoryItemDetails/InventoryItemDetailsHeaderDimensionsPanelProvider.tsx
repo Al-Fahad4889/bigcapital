@@ -25,7 +25,9 @@ const InventoryItemDetailsHeaderDimensionsPanelContext = createContext<
  * Inventory Item details header provider.
  * @returns
  */
-function InventoryItemDetailsHeaderDimensionsProvider({ ...props }: InventoryItemDetailsHeaderDimensionsProviderProps) {
+function InventoryItemDetailsHeaderDimensionsProvider({
+  ...props
+}: InventoryItemDetailsHeaderDimensionsProviderProps) {
   // Features guard.
   const { featureCan } = useFeatureCan();
 
@@ -64,15 +66,16 @@ function InventoryItemDetailsHeaderDimensionsProvider({ ...props }: InventoryIte
   );
 }
 
-const useInventoryItemDetailsHeaderDimensionsPanelContext = (): InventoryItemDetailsHeaderDimensionsPanelContextValue => {
-  const ctx = useContext(InventoryItemDetailsHeaderDimensionsPanelContext);
-  if (!ctx) {
-    throw new Error(
-      'useInventoryItemDetailsHeaderDimensionsPanelContext must be used within InventoryItemDetailsHeaderDimensionsProvider',
-    );
-  }
-  return ctx;
-};
+const useInventoryItemDetailsHeaderDimensionsPanelContext =
+  (): InventoryItemDetailsHeaderDimensionsPanelContextValue => {
+    const ctx = useContext(InventoryItemDetailsHeaderDimensionsPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useInventoryItemDetailsHeaderDimensionsPanelContext must be used within InventoryItemDetailsHeaderDimensionsProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   InventoryItemDetailsHeaderDimensionsProvider,

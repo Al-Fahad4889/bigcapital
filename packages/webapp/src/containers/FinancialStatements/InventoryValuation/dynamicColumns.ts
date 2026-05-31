@@ -5,7 +5,11 @@ import { useInventoryValuationContext } from './InventoryValuationProvider';
 
 const getTableCellValueAccessor = (index: number) => `cells[${index}].value`;
 
-const getReportColWidth = (data: unknown[], accessor: string, headerText?: string) => {
+const getReportColWidth = (
+  data: unknown[],
+  accessor: string,
+  headerText?: string,
+) => {
   return getColumnWidth(
     data,
     accessor,
@@ -17,66 +21,77 @@ const getReportColWidth = (data: unknown[], accessor: string, headerText?: strin
 /**
  * Common column mapper.
  */
-const commonAccessor = R.curry((data: unknown[], column: Record<string, any>) => {
-  const accessor = getTableCellValueAccessor(column.cell_index);
+const commonAccessor = R.curry(
+  (data: unknown[], column: Record<string, any>) => {
+    const accessor = getTableCellValueAccessor(column.cell_index);
 
-  return {
-    key: column.key,
-    Header: column.label,
-    accessor,
-    className: column.key,
-    textOverview: true,
-    align: Align.Left,
-  };
-});
+    return {
+      key: column.key,
+      Header: column.label,
+      accessor,
+      className: column.key,
+      textOverview: true,
+      align: Align.Left,
+    };
+  },
+);
 
 /**
  * Numeric columns accessor.
  */
-const numericColumnAccessor = R.curry((data: unknown[], column: Record<string, any>) => {
-  const accessor = getTableCellValueAccessor(column.cell_index);
-  const width = getReportColWidth(data, accessor, column.label);
+const numericColumnAccessor = R.curry(
+  (data: unknown[], column: Record<string, any>) => {
+    const accessor = getTableCellValueAccessor(column.cell_index);
+    const width = getReportColWidth(data, accessor, column.label);
 
-  return {
-    ...column,
-    align: Align.Right,
-    money: true,
-    width,
-  };
-});
+    return {
+      ...column,
+      align: Align.Right,
+      money: true,
+      width,
+    };
+  },
+);
 
 /**
  * Item name column accessor.
  */
-const itemNameColumnAccessor = R.curry((data: unknown[], column: Record<string, any>) => {
-  return {
-    ...column,
-    width: 240,
-  };
-});
+const itemNameColumnAccessor = R.curry(
+  (data: unknown[], column: Record<string, any>) => {
+    return {
+      ...column,
+      width: 240,
+    };
+  },
+);
 
 /**
  * Dynamic column mapper.
  */
-const dynamicColumnMapper = R.curry((data: unknown[], column: Record<string, any>) => {
-  const _commonAccessor = commonAccessor(data);
-  const _numericColumnAccessor = numericColumnAccessor(data);
-  const _itemNameColumnAccessor = itemNameColumnAccessor(data);
+const dynamicColumnMapper = R.curry(
+  (data: unknown[], column: Record<string, any>) => {
+    const _commonAccessor = commonAccessor(data);
+    const _numericColumnAccessor = numericColumnAccessor(data);
+    const _itemNameColumnAccessor = itemNameColumnAccessor(data);
 
-  return R.compose(
-    R.when(R.pathEq(['key'], 'item_name'), _itemNameColumnAccessor),
-    R.when(R.pathEq(['key'], 'quantity'), _numericColumnAccessor),
-    R.when(R.pathEq(['key'], 'valuation'), _numericColumnAccessor),
-    R.when(R.pathEq(['key'], 'average'), _numericColumnAccessor),
-    _commonAccessor,
-  )(column);
-});
+    return R.compose(
+      R.when(R.pathEq(['key'], 'item_name'), _itemNameColumnAccessor),
+      R.when(R.pathEq(['key'], 'quantity'), _numericColumnAccessor),
+      R.when(R.pathEq(['key'], 'valuation'), _numericColumnAccessor),
+      R.when(R.pathEq(['key'], 'average'), _numericColumnAccessor),
+      _commonAccessor,
+    )(column);
+  },
+);
 
 /**
  * Composes the fetched dynamic columns from the server to the columns to pass it
  * to the table component.
  */
-export const dynamicColumns = (columns: Record<string, any>[], data: unknown[]) => {
+export const dynamicColumns = (
+  columns: Record<string, any>[],
+  data: unknown[],
+) => {
   return R.map(dynamicColumnMapper(data), columns);
 };
 

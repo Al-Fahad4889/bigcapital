@@ -144,26 +144,29 @@ function SidebarHeadJSX({
 
               <MenuItem
                 icon={<Icon icon={'list'} size={16} />}
-                text={
-                  <T id={'workspaces.view_all_workspaces'} />
-                }
+                text={<T id={'workspaces.view_all_workspaces'} />}
                 onClick={() => openDrawer(DRAWERS.ORGANIZATIONS_LIST)}
               />
               <MenuDivider />
 
               <x.div maxHeight="240px" overflowY="auto">
                 {workspaces?.map((workspace) => {
-                  const name = workspace.metadata?.name || workspace.organizationId;
+                  const name =
+                    workspace.metadata?.name || workspace.organizationId;
                   const initials = firstLettersArgs(...(name || '').split(' '));
-                  const isActive = workspace.organizationId === currentOrganizationId;
-                  const isDisabled = !workspace.isReady || workspace.isBuildRunning;
+                  const isActive =
+                    workspace.organizationId === currentOrganizationId;
+                  const isDisabled =
+                    !workspace.isReady || workspace.isBuildRunning;
 
                   return (
                     <MenuItem
                       key={workspace.organizationId}
                       className={`org-workspace-item ${isActive ? 'is-active' : ''}`}
                       disabled={isDisabled}
-                      onClick={() => handleSwitchWorkspace(workspace.organizationId)}
+                      onClick={() =>
+                        handleSwitchWorkspace(workspace.organizationId)
+                      }
                       text={
                         <x.div
                           display="flex"

@@ -10,7 +10,10 @@ import { APAgingSummaryHeaderGeneral } from './APAgingSummaryHeaderGeneral';
 import { APAgingSummaryHeaderDimensions } from './APAgingSummaryHeaderDimensions';
 
 import { withAPAgingSummary } from './withAPAgingSummary';
-import { withAPAgingSummaryActions, WithAPAgingSummaryActionsProps } from './withAPAgingSummaryActions';
+import {
+  withAPAgingSummaryActions,
+  WithAPAgingSummaryActionsProps,
+} from './withAPAgingSummaryActions';
 
 import { transformToForm, compose } from '@/utils';
 import { useFeatureCan } from '@/hooks/state';
@@ -20,16 +23,18 @@ import {
   getDefaultAPAgingSummaryQuery,
 } from './common';
 
-type APAgingSummaryFormValues = ReturnType<typeof getDefaultAPAgingSummaryQuery>;
+type APAgingSummaryFormValues = ReturnType<
+  typeof getDefaultAPAgingSummaryQuery
+>;
 
 interface APAgingSummaryHeaderOwnProps {
   pageFilter: APAgingSummaryFormValues;
   onSubmitFilter: (values: APAgingSummaryFormValues) => void;
 }
 
-type APAgingSummaryHeaderProps = APAgingSummaryHeaderOwnProps &
-  { isFilterDrawerOpen: boolean } &
-  Pick<WithAPAgingSummaryActionsProps, 'toggleAPAgingSummaryFilterDrawer'>;
+type APAgingSummaryHeaderProps = APAgingSummaryHeaderOwnProps & {
+  isFilterDrawerOpen: boolean;
+} & Pick<WithAPAgingSummaryActionsProps, 'toggleAPAgingSummaryFilterDrawer'>;
 
 function APAgingSummaryHeaderInner({
   pageFilter,

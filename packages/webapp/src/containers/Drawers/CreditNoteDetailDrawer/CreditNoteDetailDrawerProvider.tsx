@@ -20,7 +20,7 @@ const CreditNoteDetailDrawerContext = React.createContext();
 function CreditNoteDetailDrawerProvider({ creditNoteId, ...props }) {
   // Features guard.
   const { featureCan } = useFeatureCan();
-  
+
   // Handle fetch vendor credit details.
   const { data: creditNote, isLoading: isCreditNoteLoading } = useCreditNote(
     creditNoteId,

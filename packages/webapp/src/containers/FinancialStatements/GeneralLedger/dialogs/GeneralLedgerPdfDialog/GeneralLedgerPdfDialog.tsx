@@ -9,8 +9,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const GeneralLedgerPdfDialogContent = lazy(
-  () => import('./GeneralLedgerPdfDialogContent').then((m) => ({ default: m.GeneralLedgerPdfDialogContent })),
+const GeneralLedgerPdfDialogContent = lazy(() =>
+  import('./GeneralLedgerPdfDialogContent').then((m) => ({
+    default: m.GeneralLedgerPdfDialogContent,
+  })),
 );
 
 interface GeneralLedgerPdfDialogRootProps {

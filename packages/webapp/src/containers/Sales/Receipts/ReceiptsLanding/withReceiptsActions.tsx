@@ -13,7 +13,9 @@ export interface WithReceiptsActionsProps {
   setReceiptsSelectedRows: (selectedRows: Array<unknown>) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithReceiptsActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithReceiptsActionsProps => ({
   setReceiptsTableState: (queries: Partial<TableQuery>) =>
     dispatch(setReceiptsTableState(queries)),
   resetReceiptsTableState: () => dispatch(resetReceiptsTableState()),

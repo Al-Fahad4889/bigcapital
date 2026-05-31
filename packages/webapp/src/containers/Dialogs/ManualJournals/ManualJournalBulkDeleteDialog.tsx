@@ -103,4 +103,3 @@ export const ManualJournalBulkDeleteDialog = compose(
   withDialogActions,
   withManualJournalsActions,
 )(ManualJournalBulkDeleteDialogInner);
-

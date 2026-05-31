@@ -38,14 +38,15 @@ function VendorOpeningBalanceFormInner({
     ...defaultInitialValues,
     ...vendor,
     opening_balance: defaultTo(vendor.opening_balance, ''),
-
   };
 
   // Handles the form submit.
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
     const formValues = {
       ...values,
-      opening_balance_at: moment(values.opening_balance_at).format('YYYY-MM-DD'),
+      opening_balance_at: moment(values.opening_balance_at).format(
+        'YYYY-MM-DD',
+      ),
     };
 
     // Handle request response success.
@@ -82,4 +83,6 @@ function VendorOpeningBalanceFormInner({
     />
   );
 }
-export const VendorOpeningBalanceForm = compose(withDialogActions)(VendorOpeningBalanceFormInner);
+export const VendorOpeningBalanceForm = compose(withDialogActions)(
+  VendorOpeningBalanceFormInner,
+);

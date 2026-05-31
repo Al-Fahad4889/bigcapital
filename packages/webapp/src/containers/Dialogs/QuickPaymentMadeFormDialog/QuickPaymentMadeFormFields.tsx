@@ -13,7 +13,6 @@ import {
   FieldRequiredHint,
   Col,
   Row,
-
   FAccountsSuggestField,
   InputPrependText,
   MoneyInputGroup,
@@ -164,14 +163,16 @@ function QuickPaymentMadeFormFieldsInner({
   );
 }
 
-export const QuickPaymentMadeFormFields = compose(withCurrentOrganization())(QuickPaymentMadeFormFieldsInner);
+export const QuickPaymentMadeFormFields = compose(withCurrentOrganization())(
+  QuickPaymentMadeFormFieldsInner,
+);
 
 export const BranchRowDivider = styled.div`
   height: 1px;
   background: #ebf1f6;
   margin-bottom: 15px;
 
-  .bp4-dark &{
+  .bp4-dark & {
     background: rgba(255, 255, 255, 0.1);
   }
 `;

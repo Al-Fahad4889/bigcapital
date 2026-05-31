@@ -74,4 +74,6 @@ function GeneralLedgerInner({
   );
 }
 
-export const GeneralLedger = compose(withGeneralLedgerActions)(GeneralLedgerInner);
+export const GeneralLedger = compose(withGeneralLedgerActions)(
+  GeneralLedgerInner,
+);

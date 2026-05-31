@@ -14,7 +14,9 @@ export interface WithVendorsProps {
   >;
 }
 
-export const withVendors = <Props = unknown,>(mapState?: MapState<WithVendorsProps, Props>) => {
+export const withVendors = <Props = unknown,>(
+  mapState?: MapState<WithVendorsProps, Props>,
+) => {
   const getVendorsTableState = getVendorsTableStateFactory();
   const vendorsTableStateChanged = vendorsTableStateChangedFactory();
 
@@ -28,7 +30,9 @@ export const withVendors = <Props = unknown,>(mapState?: MapState<WithVendorsPro
       vendorsTableState: getVendorsTableState(state, props as never),
       vendorsTableStateChanged: vendorsTableStateChanged(state),
     };
-    return mapState ? (mapState(mapped, state, props) as WithVendorsProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithVendorsProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 };

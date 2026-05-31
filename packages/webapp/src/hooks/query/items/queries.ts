@@ -42,13 +42,15 @@ import { useApiFetcher } from '../../useRequest';
 import { itemsKeys } from './query-keys';
 import { itemsCategoriesKeys } from '../items-categories/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: itemsKeys.all() });
   queryClient.invalidateQueries({ queryKey: itemsCategoriesKeys.all() });
 };
 
 export function useCreateItem(
-  props?: UseMutationOptions<void, Error, CreateItemBody>
+  props?: UseMutationOptions<void, Error, CreateItemBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -61,7 +63,7 @@ export function useCreateItem(
 }
 
 export function useEditItem(
-  props?: UseMutationOptions<void, Error, [number, EditItemBody]>
+  props?: UseMutationOptions<void, Error, [number, EditItemBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -77,9 +79,7 @@ export function useEditItem(
   });
 }
 
-export function useDeleteItem(
-  props?: UseMutationOptions<void, Error, number>
-) {
+export function useDeleteItem(props?: UseMutationOptions<void, Error, number>) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
@@ -94,7 +94,11 @@ export function useDeleteItem(
 }
 
 export function useBulkDeleteItems(
-  props?: UseMutationOptions<void, Error, { ids: number[]; skipUndeletable?: boolean }>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    { ids: number[]; skipUndeletable?: boolean }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -107,25 +111,29 @@ export function useBulkDeleteItems(
     }: {
       ids: number[];
       skipUndeletable?: boolean;
-    }) => bulkDeleteItems(fetcher, { ids, skipUndeletable } as BulkDeleteItemsBody),
+    }) =>
+      bulkDeleteItems(fetcher, { ids, skipUndeletable } as BulkDeleteItemsBody),
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
 
 export function useValidateBulkDeleteItems(
-  props?: UseMutationOptions<ValidateBulkDeleteItemsResponse, Error, number[]>
+  props?: UseMutationOptions<ValidateBulkDeleteItemsResponse, Error, number[]>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
     mutationFn: (ids: number[]) =>
-      validateBulkDeleteItems(fetcher, { ids, skipUndeletable: false } as BulkDeleteItemsBody),
+      validateBulkDeleteItems(fetcher, {
+        ids,
+        skipUndeletable: false,
+      } as BulkDeleteItemsBody),
   });
 }
 
 export function useActivateItem(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -141,7 +149,7 @@ export function useActivateItem(
 }
 
 export function useInactivateItem(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -158,17 +166,19 @@ export function useInactivateItem(
 
 export function useItems(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<ItemsListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ItemsListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
     ...props,
     queryKey: itemsKeys.list(query),
     queryFn: () =>
-      (fetchItems as (f: ReturnType<typeof useApiFetcher>, q?: Record<string, unknown>) => Promise<ItemsListResponse>)(
-        fetcher,
-        query
-      ),
+      (
+        fetchItems as (
+          f: ReturnType<typeof useApiFetcher>,
+          q?: Record<string, unknown>,
+        ) => Promise<ItemsListResponse>
+      )(fetcher, query),
   });
 }
 
@@ -181,7 +191,7 @@ export function useRefreshItems() {
 
 export function useItem(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Item>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Item>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -194,7 +204,10 @@ export function useItem(
 
 export function useItemAssociatedInvoiceTransactions(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<ItemAssociatedInvoicesResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<ItemAssociatedInvoicesResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -207,7 +220,10 @@ export function useItemAssociatedInvoiceTransactions(
 
 export function useItemAssociatedEstimateTransactions(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<ItemAssociatedEstimatesResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<ItemAssociatedEstimatesResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -220,7 +236,10 @@ export function useItemAssociatedEstimateTransactions(
 
 export function useItemAssociatedReceiptTransactions(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<ItemAssociatedReceiptsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<ItemAssociatedReceiptsResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -233,7 +252,10 @@ export function useItemAssociatedReceiptTransactions(
 
 export function useItemAssociatedBillTransactions(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<ItemAssociatedBillsResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<ItemAssociatedBillsResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -246,7 +268,7 @@ export function useItemAssociatedBillTransactions(
 
 export function useItemWarehouseLocation(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown[]>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<unknown[]>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -259,15 +281,19 @@ export function useItemWarehouseLocation(
 
 export function useItemInventoryCost(
   query?: GetInventoryItemsCostQuery,
-  props?: Omit<UseQueryOptions<GetInventoryItemsCostResponse['costs']>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<GetInventoryItemsCostResponse['costs']>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
     ...props,
     queryKey: itemsKeys.inventoryCost(query),
     queryFn: () =>
-      fetchInventoryCostItems(fetcher, query as GetInventoryItemsCostQuery).then(
-        (res: GetInventoryItemsCostResponse) => res.costs ?? []
-      ),
+      fetchInventoryCostItems(
+        fetcher,
+        query as GetInventoryItemsCostQuery,
+      ).then((res: GetInventoryItemsCostResponse) => res.costs ?? []),
   });
 }

@@ -12,17 +12,20 @@ import {
 } from '@blueprintjs/core';
 import classNames from 'classnames';
 import { x } from '@xstyled/emotion';
-import { If, FFormGroup, FSelect, FRadioGroup, FInputGroup } from '@/components';
+import {
+  If,
+  FFormGroup,
+  FSelect,
+  FRadioGroup,
+  FInputGroup,
+} from '@/components';
 import { handleStringChange } from '@/utils';
 import { FieldRequiredHint } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { AllocateLandedCostType } from '@/constants/allocateLandedCostType';
 
 import { AllocateLandedCostFormBody } from './AllocateLandedCostFormBody';
-import {
-  allocateCostToEntries,
-  resetAllocatedCostEntries,
-} from './utils';
+import { allocateCostToEntries, resetAllocatedCostEntries } from './utils';
 import { useAllocateLandedConstDialogContext } from './AllocateLandedCostDialogProvider';
 
 /**
@@ -30,8 +33,11 @@ import { useAllocateLandedConstDialogContext } from './AllocateLandedCostDialogP
  */
 export function AllocateLandedCostFormFields() {
   // Allocated landed cost dialog.
-  const { costTransactionEntries, landedCostTransactions, isLandedCostTransactionsLoading } =
-    useAllocateLandedConstDialogContext();
+  const {
+    costTransactionEntries,
+    landedCostTransactions,
+    isLandedCostTransactionsLoading,
+  } = useAllocateLandedConstDialogContext();
 
   const { values, setFieldValue, form } = useFormikContext();
 
@@ -108,7 +114,9 @@ export function AllocateLandedCostFormFields() {
             valueAccessor={'id'}
             textAccessor={'name'}
             labelAccessor={'formatted_unallocated_cost_amount'}
-            placeholder={intl.get('landed_cost.dialog.label_select_transaction')}
+            placeholder={intl.get(
+              'landed_cost.dialog.label_select_transaction',
+            )}
             popoverProps={{ minimal: true }}
             disabled={isLandedCostTransactionsLoading}
           />

@@ -23,9 +23,7 @@ const Schema = Yup.object().shape({
     .max(DATATYPES_LENGTH.DECIMAL_13_3)
     .when(['purchasable'], {
       is: true,
-      then: Yup.number()
-        .required()
-        .label(intl.get('cost_price_')),
+      then: Yup.number().required().label(intl.get('cost_price_')),
       otherwise: Yup.number().nullable(true),
     }),
   sell_price: Yup.number()
@@ -33,9 +31,7 @@ const Schema = Yup.object().shape({
     .max(DATATYPES_LENGTH.DECIMAL_13_3)
     .when(['sellable'], {
       is: true,
-      then: Yup.number()
-        .required()
-        .label(intl.get('sell_price_')),
+      then: Yup.number().required().label(intl.get('sell_price_')),
       otherwise: Yup.number().nullable(true),
     }),
   cost_account_id: Yup.number()

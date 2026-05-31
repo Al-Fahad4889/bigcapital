@@ -27,7 +27,7 @@ function TransactionsLockingBodyJsx({
     useTransactionsLockingContext();
 
   // Handle locking transactions.
-  const handleLockingTransactions = (module, { }, isEnabled) => {
+  const handleLockingTransactions = (module, {}, isEnabled) => {
     openDialog('locking-transactions', {
       isEnabled: isEnabled,
       module: module,

@@ -13,7 +13,10 @@ import { TrialBalanceSheetHeaderGeneralPanel } from './TrialBalanceSheetHeaderGe
 import { TrialBalanceSheetHeaderDimensionsPanel } from './TrialBalanceSheetHeaderDimensionsPanel';
 
 import { withTrialBalance, WithTrialBalanceProps } from './withTrialBalance';
-import { withTrialBalanceActions, WithTrialBalanceActionsProps } from './withTrialBalanceActions';
+import {
+  withTrialBalanceActions,
+  WithTrialBalanceActionsProps,
+} from './withTrialBalanceActions';
 
 import { compose, transformToForm } from '@/utils';
 import { useFeatureCan } from '@/hooks/state';
@@ -81,7 +84,10 @@ function TrialBalanceSheetHeaderInner({
     defaultValues,
   );
   // Handle form submit.
-  const handleSubmit = (values: TrialBalanceFormValues, { setSubmitting }: FormikHelpers<TrialBalanceFormValues>) => {
+  const handleSubmit = (
+    values: TrialBalanceFormValues,
+    { setSubmitting }: FormikHelpers<TrialBalanceFormValues>,
+  ) => {
     onSubmitFilter(values);
     setSubmitting(false);
     toggleFilterDrawer(false);

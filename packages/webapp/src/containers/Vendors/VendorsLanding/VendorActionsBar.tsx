@@ -64,7 +64,6 @@ function VendorActionsBarInner({
   const { openBulkDeleteDialog, isValidatingBulkDeleteVendors } =
     useBulkDeleteVendorsDialog();
 
-
   // Vendors list context.
   const { vendorsViews, fields } = useVendorsListContext();
 

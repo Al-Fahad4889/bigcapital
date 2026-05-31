@@ -63,7 +63,7 @@ export const useSetPrimaryBranchToForm = () => {
 };
 
 /**
- * Detarmines whether the current customer has foreign currency. 
+ * Detarmines whether the current customer has foreign currency.
  * @returns {boolean}
  */
 export const useIsCustomerForeignCurrency = () => {

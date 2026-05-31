@@ -17,7 +17,9 @@ const InventoryValuationGeneralPanelContext = createContext<
   InventoryValuationGeneralPanelContextValue | undefined
 >(undefined);
 
-function InventoryValuationGeneralPanelProvider({ ...props }: InventoryValuationGeneralPanelProviderProps) {
+function InventoryValuationGeneralPanelProvider({
+  ...props
+}: InventoryValuationGeneralPanelProviderProps) {
   // Handle fetching the items based on the given query.
   const {
     data: itemsData,
@@ -49,15 +51,16 @@ function InventoryValuationGeneralPanelProvider({ ...props }: InventoryValuation
   );
 }
 
-const useInventoryValuationGeneralPanelContext = (): InventoryValuationGeneralPanelContextValue => {
-  const ctx = useContext(InventoryValuationGeneralPanelContext);
-  if (!ctx) {
-    throw new Error(
-      'useInventoryValuationGeneralPanelContext must be used within InventoryValuationGeneralPanelProvider',
-    );
-  }
-  return ctx;
-};
+const useInventoryValuationGeneralPanelContext =
+  (): InventoryValuationGeneralPanelContextValue => {
+    const ctx = useContext(InventoryValuationGeneralPanelContext);
+    if (!ctx) {
+      throw new Error(
+        'useInventoryValuationGeneralPanelContext must be used within InventoryValuationGeneralPanelProvider',
+      );
+    }
+    return ctx;
+  };
 
 export {
   InventoryValuationGeneralPanelProvider,

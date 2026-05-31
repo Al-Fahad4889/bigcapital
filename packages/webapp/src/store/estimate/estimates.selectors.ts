@@ -5,7 +5,8 @@ import { defaultTableQuery } from './estimates.reducer';
 import { createSelector } from 'reselect';
 import type { RootState } from '@/store/reducers';
 
-const estimatesTableState = (state: RootState) => state.salesEstimates.tableState;
+const estimatesTableState = (state: RootState) =>
+  state.salesEstimates.tableState;
 
 // Retrieve estimates table query.
 export const getEstimatesTableStateFactory = () =>
@@ -25,7 +26,8 @@ export const isEstimatesTableStateChangedFactory = () =>
     return !isEqual(tableState, defaultTableQuery);
   });
 
-export const getEstimatesSelectedRowsFactory = () => createSelector(
-  (state: RootState) => state.salesEstimates.selectedRows,
-  (selectedRows) => selectedRows,
-);
+export const getEstimatesSelectedRowsFactory = () =>
+  createSelector(
+    (state: RootState) => state.salesEstimates.selectedRows,
+    (selectedRows) => selectedRows,
+  );

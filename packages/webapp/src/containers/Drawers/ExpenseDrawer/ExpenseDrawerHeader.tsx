@@ -11,7 +11,6 @@ import {
   DetailItem,
   DetailsMenu,
   ExchangeRateDetailItem,
-
 } from '@/components';
 import { useExpenseDrawerContext } from './ExpenseDrawerProvider';
 import { ExpenseDetailsStatus } from './components';
@@ -69,7 +68,7 @@ export function ExpenseDrawerHeader() {
             </DetailItem>
 
             <DetailItem label={intl.get('created_at')}>
-              {expense.formatted_created_at} 
+              {expense.formatted_created_at}
             </DetailItem>
           </DetailsMenu>
         </Col>

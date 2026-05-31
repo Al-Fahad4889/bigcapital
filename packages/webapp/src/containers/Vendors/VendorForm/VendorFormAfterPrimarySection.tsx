@@ -29,7 +29,11 @@ export function VendorFormAfterPrimarySection() {
         fastField
       >
         <ControlGroup>
-          <FInputGroup name={'work_phone'} placeholder={intl.get('work')} fastField />
+          <FInputGroup
+            name={'work_phone'}
+            placeholder={intl.get('work')}
+            fastField
+          />
           <FInputGroup
             name={'personal_phone'}
             placeholder={intl.get('mobile')}

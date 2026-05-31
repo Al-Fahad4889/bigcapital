@@ -4,12 +4,7 @@ import intl from 'react-intl-universal';
 import styled from 'styled-components';
 import { Classes, ControlGroup } from '@blueprintjs/core';
 
-import {
-  FieldRequiredHint,
-
-  FFormGroup,
-  FInputGroup,
-} from '@/components';
+import { FieldRequiredHint, FFormGroup, FInputGroup } from '@/components';
 
 /**
  * Warehouse form fields.
@@ -48,9 +43,7 @@ export function WarehouseFormFields() {
       >
         <FInputGroup
           name={'address'}
-          placeholder={intl.get(
-            'warehouse.dialog.label.warehouse_address_1',
-          )}
+          placeholder={intl.get('warehouse.dialog.label.warehouse_address_1')}
         />
       </FFormGroup>
       <WarehouseAddressWrap>

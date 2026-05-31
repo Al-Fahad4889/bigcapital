@@ -1,4 +1,9 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useMutation,
+  UseQueryOptions,
+  UseMutationOptions,
+} from '@tanstack/react-query';
 import {
   fetchTransactionsByVendorsTable,
   fetchTransactionsByVendorsXlsx,
@@ -19,7 +24,10 @@ import { financialReportsKeys } from './query-keys';
 
 export function useVendorsTransactionsReport(
   query: TransactionsByVendorsTableQuery,
-  props?: Omit<UseQueryOptions<TransactionsByVendorsTableResponse, Error>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<TransactionsByVendorsTableResponse, Error>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -57,7 +65,9 @@ export function useVendorsTransactionsCsvExport(
   });
 }
 
-export function useTransactionsByVendorsPdf(query: TransactionsByVendorsPdfQuery) {
+export function useTransactionsByVendorsPdf(
+  query: TransactionsByVendorsPdfQuery,
+) {
   const fetcher = useApiFetcher();
   return useFetcherPdf(() => fetchTransactionsByVendorsPdf(fetcher, query));
 }

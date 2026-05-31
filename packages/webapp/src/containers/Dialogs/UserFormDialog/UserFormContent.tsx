@@ -1,14 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-import {
-  Intent,
-  Classes,
-  Button,
-} from '@blueprintjs/core';
+import { Intent, Classes, Button } from '@blueprintjs/core';
 import { Form, useFormikContext } from 'formik';
 import classNames from 'classnames';
 
-import { FFormGroup, FInputGroup, FSelect, FormattedMessage as T } from '@/components';
+import {
+  FFormGroup,
+  FInputGroup,
+  FSelect,
+  FormattedMessage as T,
+} from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { FieldRequiredHint } from '@/components';
 import { useUserFormContext } from './UserFormProvider';

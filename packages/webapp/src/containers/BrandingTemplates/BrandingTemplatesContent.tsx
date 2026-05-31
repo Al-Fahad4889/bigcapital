@@ -28,19 +28,19 @@ export function BrandingTemplateContent() {
   );
 }
 
-const BrandingTemplateHeader = R.compose(withDrawerActions)(
-  ({ openDrawer }) => {
-    const handleCreateBtnClick = () => {
-      openDrawer(DRAWERS.INVOICE_CUSTOMIZE);
-    };
-    return (
-      <Group>
-        <Button intent={Intent.PRIMARY} onClick={handleCreateBtnClick}>
-          Create Invoice Branding
-        </Button>
-      </Group>
-    );
-  },
-);
+const BrandingTemplateHeader = R.compose(withDrawerActions)(({
+  openDrawer,
+}) => {
+  const handleCreateBtnClick = () => {
+    openDrawer(DRAWERS.INVOICE_CUSTOMIZE);
+  };
+  return (
+    <Group>
+      <Button intent={Intent.PRIMARY} onClick={handleCreateBtnClick}>
+        Create Invoice Branding
+      </Button>
+    </Group>
+  );
+});
 
 BrandingTemplateHeader.displayName = 'BrandingTemplateHeader';

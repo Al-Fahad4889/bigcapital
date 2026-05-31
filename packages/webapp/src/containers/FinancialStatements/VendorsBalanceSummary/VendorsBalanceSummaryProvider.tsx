@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { useVendorsBalanceSummaryReport } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UseVendorsBalanceSummaryResult = ReturnType<typeof useVendorsBalanceSummaryReport>;
+type UseVendorsBalanceSummaryResult = ReturnType<
+  typeof useVendorsBalanceSummaryReport
+>;
 
 interface VendorsBalanceSummaryContextValue {
   VendorBalanceSummary: UseVendorsBalanceSummaryResult['data'];
@@ -17,16 +19,18 @@ interface VendorsBalanceSummaryProviderProps {
   filter: Record<string, unknown>;
 }
 
-const VendorsBalanceSummaryContext = createContext<VendorsBalanceSummaryContextValue | undefined>(undefined);
+const VendorsBalanceSummaryContext = createContext<
+  VendorsBalanceSummaryContextValue | undefined
+>(undefined);
 
 /**
  * Vendors balance summary provider.
  */
-function VendorsBalanceSummaryProvider({ filter, ...props }: VendorsBalanceSummaryProviderProps & { children?: React.ReactNode }) {
-  const httpQuery = useMemo(
-    () => transformFilterFormToQuery(filter),
-    [filter],
-  );
+function VendorsBalanceSummaryProvider({
+  filter,
+  ...props
+}: VendorsBalanceSummaryProviderProps & { children?: React.ReactNode }) {
+  const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]);
   // Fetching vendors balance summary report based on the given query.
   const {
     data: VendorBalanceSummary,
@@ -53,12 +57,15 @@ function VendorsBalanceSummaryProvider({ filter, ...props }: VendorsBalanceSumma
   );
 }
 
-const useVendorsBalanceSummaryContext = (): VendorsBalanceSummaryContextValue => {
-  const ctx = useContext(VendorsBalanceSummaryContext);
-  if (!ctx) {
-    throw new Error('useVendorsBalanceSummaryContext must be used within a VendorsBalanceSummaryProvider');
-  }
-  return ctx;
-};
+const useVendorsBalanceSummaryContext =
+  (): VendorsBalanceSummaryContextValue => {
+    const ctx = useContext(VendorsBalanceSummaryContext);
+    if (!ctx) {
+      throw new Error(
+        'useVendorsBalanceSummaryContext must be used within a VendorsBalanceSummaryProvider',
+      );
+    }
+    return ctx;
+  };
 
 export { VendorsBalanceSummaryProvider, useVendorsBalanceSummaryContext };

@@ -27,7 +27,9 @@ export const getCustomersBalanceQuerySchema = () => {
   });
 };
 
-const parseCustomersBalanceSummaryQuery = (locationQuery: Record<string, unknown>) => {
+const parseCustomersBalanceSummaryQuery = (
+  locationQuery: Record<string, unknown>,
+) => {
   const defaultQuery = getDefaultARAgingSummaryQuery();
 
   const transformed = {

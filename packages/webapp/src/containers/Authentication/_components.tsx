@@ -16,7 +16,7 @@ const AuthOverlayRoot = styled.div`
   --x-color-background: rgba(252, 253, 255, 0.5);
 
   .bp4-dark & {
-    --x-color-background: rgba(37, 42, 49, 0.60);
+    --x-color-background: rgba(37, 42, 49, 0.6);
   }
   position: absolute;
   top: 0;

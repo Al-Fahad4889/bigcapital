@@ -10,7 +10,7 @@ import { SubscriptionPlansPeriod } from '@/store/plans/plans.reducer';
 import styles from './SetupSubscription.module.scss';
 
 interface SubscriptionPlansPeriodsSwitchCombinedProps
-  extends WithSubscriptionPlansActionsProps { }
+  extends WithSubscriptionPlansActionsProps {}
 
 function SubscriptionPlansPeriodSwitcherRoot({
   // #withSubscriptionPlansActions

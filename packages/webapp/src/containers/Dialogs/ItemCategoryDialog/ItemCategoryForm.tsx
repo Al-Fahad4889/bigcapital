@@ -111,4 +111,6 @@ function ItemCategoryFormInner({
   );
 }
 
-export const ItemCategoryForm = compose(withDialogActions)(ItemCategoryFormInner);
+export const ItemCategoryForm = compose(withDialogActions)(
+  ItemCategoryFormInner,
+);

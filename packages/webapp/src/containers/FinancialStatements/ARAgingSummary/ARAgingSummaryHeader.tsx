@@ -11,7 +11,10 @@ import { ARAgingSummaryHeaderGeneral } from './ARAgingSummaryHeaderGeneral';
 import { ARAgingSummaryHeaderDimensions } from './ARAgingSummaryHeaderDimensions';
 
 import { withARAgingSummary } from './withARAgingSummary';
-import { withARAgingSummaryActions, WithARAgingSummaryActionsProps } from './withARAgingSummaryActions';
+import {
+  withARAgingSummaryActions,
+  WithARAgingSummaryActionsProps,
+} from './withARAgingSummaryActions';
 
 import { compose, transformToForm } from '@/utils';
 import { useFeatureCan } from '@/hooks/state';
@@ -21,16 +24,18 @@ import {
   getDefaultARAgingSummaryQuery,
 } from './common';
 
-type ARAgingSummaryFormValues = ReturnType<typeof getDefaultARAgingSummaryQuery>;
+type ARAgingSummaryFormValues = ReturnType<
+  typeof getDefaultARAgingSummaryQuery
+>;
 
 interface ARAgingSummaryHeaderOwnProps {
   pageFilter: ARAgingSummaryFormValues;
   onSubmitFilter: (values: ARAgingSummaryFormValues) => void;
 }
 
-type ARAgingSummaryHeaderProps = ARAgingSummaryHeaderOwnProps &
-  { isFilterDrawerOpen: boolean } &
-  Pick<WithARAgingSummaryActionsProps, 'toggleARAgingSummaryFilterDrawer'>;
+type ARAgingSummaryHeaderProps = ARAgingSummaryHeaderOwnProps & {
+  isFilterDrawerOpen: boolean;
+} & Pick<WithARAgingSummaryActionsProps, 'toggleARAgingSummaryFilterDrawer'>;
 
 function ARAgingSummaryHeaderInner({
   pageFilter,

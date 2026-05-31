@@ -15,12 +15,21 @@ import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 import { InventoryItemDetailsExportMenu } from './components';
 
 import { useInventoryItemDetailsContext } from './InventoryItemDetailsProvider';
-import { withInventoryItemDetails, WithInventoryItemDetailsProps } from './withInventoryItemDetails';
-import { withInventoryItemDetailsActions, WithInventoryItemDetailsActionsProps } from './withInventoryItemDetailsActions';
+import {
+  withInventoryItemDetails,
+  WithInventoryItemDetailsProps,
+} from './withInventoryItemDetails';
+import {
+  withInventoryItemDetailsActions,
+  WithInventoryItemDetailsActionsProps,
+} from './withInventoryItemDetailsActions';
 
 import { compose, saveInvoke } from '@/utils';
 import { DialogsName } from '@/constants/dialogs';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 
 interface InventoryItemDetailsActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
@@ -29,8 +38,10 @@ interface InventoryItemDetailsActionsBarOwnProps {
 
 type InventoryItemDetailsActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} &
-  Pick<WithInventoryItemDetailsActionsProps, 'toggleInventoryItemDetailsFilterDrawer'> &
+} & Pick<
+  WithInventoryItemDetailsActionsProps,
+  'toggleInventoryItemDetailsFilterDrawer'
+> &
   WithDialogActionsProps &
   InventoryItemDetailsActionsBarOwnProps;
 

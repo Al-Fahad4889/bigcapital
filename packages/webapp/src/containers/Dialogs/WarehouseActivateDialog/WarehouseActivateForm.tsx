@@ -61,4 +61,6 @@ function WarehouseActivateFormInner({
     />
   );
 }
-export const WarehouseActivateForm = compose(withDialogActions)(WarehouseActivateFormInner);
+export const WarehouseActivateForm = compose(withDialogActions)(
+  WarehouseActivateFormInner,
+);

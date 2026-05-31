@@ -73,7 +73,7 @@ export function CreditNoteFormHeaderFields() {
           popoverProps={{ position: Position.BOTTOM_LEFT, minimal: true }}
           inputProps={{
             leftIcon: <Icon icon={'date-range'} />,
-            fill: true
+            fill: true,
           }}
           fill
           fastField

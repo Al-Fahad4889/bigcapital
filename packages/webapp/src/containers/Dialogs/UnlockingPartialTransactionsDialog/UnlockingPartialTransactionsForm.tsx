@@ -77,4 +77,6 @@ function UnlockingPartialTransactionsFormInner({
   );
 }
 
-export const UnlockingPartialTransactionsForm = compose(withDialogActions)(UnlockingPartialTransactionsFormInner);
+export const UnlockingPartialTransactionsForm = compose(withDialogActions)(
+  UnlockingPartialTransactionsFormInner,
+);

@@ -41,4 +41,6 @@ function ItemCategoryFormFooterInner({
     </div>
   );
 }
-export const ItemCategoryFormFooter = compose(withDialogActions)(ItemCategoryFormFooterInner);
+export const ItemCategoryFormFooter = compose(withDialogActions)(
+  ItemCategoryFormFooterInner,
+);

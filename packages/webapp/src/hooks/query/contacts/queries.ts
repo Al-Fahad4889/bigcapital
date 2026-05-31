@@ -18,13 +18,15 @@ import { useAuthOrganizationId } from '../../state';
 import { contactsKeys } from './query-keys';
 
 // Common invalidate queries.
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: contactsKeys.all() });
 };
 
 export function useContact(
   id: number | string | undefined | null,
-  props?: Omit<UseQueryOptions<ContactResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<ContactResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   const organizationId = useAuthOrganizationId();
@@ -39,7 +41,10 @@ export function useContact(
 }
 
 export function useAutoCompleteContacts(
-  props?: Omit<UseQueryOptions<Awaited<ReturnType<typeof fetchContactsAutoComplete>>>, 'queryKey' | 'queryFn'>
+  props?: Omit<
+    UseQueryOptions<Awaited<ReturnType<typeof fetchContactsAutoComplete>>>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
   const organizationId = useAuthOrganizationId();
@@ -52,7 +57,7 @@ export function useAutoCompleteContacts(
 }
 
 export function useActivateContact(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -68,7 +73,7 @@ export function useActivateContact(
 }
 
 export function useInactivateContact(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();

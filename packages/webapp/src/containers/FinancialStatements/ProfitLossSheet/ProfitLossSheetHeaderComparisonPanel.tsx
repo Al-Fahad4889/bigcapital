@@ -2,14 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
 
-import {
-  Flex,
-  FlexItem,
-  FieldHint,
-
-  FFormGroup,
-  FCheckbox,
-} from '@/components';
+import { Flex, FlexItem, FieldHint, FFormGroup, FCheckbox } from '@/components';
 
 import {
   handlePreviousYearCheckBoxChange,

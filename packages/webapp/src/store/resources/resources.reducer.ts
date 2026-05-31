@@ -1,5 +1,9 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { RESOURCE_COLUMNS_SET, RESOURCE_DATA_SET, RESOURCE_FIELDS_SET } from '@/store/types';;
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  RESOURCE_COLUMNS_SET,
+  RESOURCE_DATA_SET,
+  RESOURCE_FIELDS_SET,
+} from '@/store/types';
 
 interface ResourcesState {
   data: { resources: Record<string, unknown> };
@@ -28,19 +32,19 @@ const initialState: ResourcesState = {
   resourceColumns: {},
 
   metadata: {
-    'accounts': {
+    accounts: {
       label: 'Accounts',
       baseRoute: '/accounts',
     },
-    'items': {
+    items: {
       label: 'Items',
       baseRoute: '/items',
     },
-    'manual_journals': {
+    manual_journals: {
       label: 'Journals',
       baseRoute: '/manual-journals',
-    }
-  }
+    },
+  },
 };
 
 export const resourcesReducer = createReducer(initialState, {
@@ -55,7 +59,9 @@ export const resourcesReducer = createReducer(initialState, {
       ..._columns,
     };
     if (action.resource_slug) {
-      state.resourceColumns[action.resource_slug] = (action.columns ?? []).map((c) => c['id']);
+      state.resourceColumns[action.resource_slug] = (action.columns ?? []).map(
+        (c) => c['id'],
+      );
     }
   },
 
@@ -70,7 +76,9 @@ export const resourcesReducer = createReducer(initialState, {
       ..._fields,
     };
     if (action.resource_slug) {
-      state.resourceFields[action.resource_slug] = (action.fields ?? []).map((f) => f['key']);
+      state.resourceFields[action.resource_slug] = (action.fields ?? []).map(
+        (f) => f['key'],
+      );
     }
   },
 
@@ -84,7 +92,7 @@ export const resourcesReducer = createReducer(initialState, {
     const order = data.map((item) => item['id']);
 
     state.data.resources[resourceKey] = {
-      ...(state.data.resources[resourceKey] as Record<string, unknown> || {}),
+      ...((state.data.resources[resourceKey] as Record<string, unknown>) || {}),
       data: _data,
       order,
     };

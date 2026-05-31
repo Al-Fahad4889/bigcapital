@@ -101,4 +101,3 @@ export const CreditNoteBulkDeleteDialog = compose(
   withDialogActions,
   withCreditNotesActions,
 )(CreditNoteBulkDeleteDialogInner);
-

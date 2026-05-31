@@ -19,9 +19,7 @@ export function VendorsBalanceSummaryTable({
   //#ownProps
   organizationName,
 }: VendorsBalanceSummaryTableProps) {
-  const {
-    VendorBalanceSummary,
-  } = useVendorsBalanceSummaryContext();
+  const { VendorBalanceSummary } = useVendorsBalanceSummaryContext();
 
   const table = (VendorBalanceSummary as any)?.table;
   const meta = (VendorBalanceSummary as any)?.meta;

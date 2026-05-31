@@ -9,8 +9,8 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const TrialBalanceSheetPdfDialogContent = lazy(
-  () => import('./TrialBalanceSheetPdfDialogContent').then((m) => ({
+const TrialBalanceSheetPdfDialogContent = lazy(() =>
+  import('./TrialBalanceSheetPdfDialogContent').then((m) => ({
     default: m.TrialBalanceSheetPdfDialogContent,
   })),
 );
@@ -25,7 +25,11 @@ interface TrialBalanceSheetPdfDialogRootProps {
  * Trial balance sheet pdf preview dialog.
  * @returns {React.ReactNode}
  */
-function TrialBalanceSheetPdfDialogRoot({ dialogName, payload, isOpen }: TrialBalanceSheetPdfDialogRootProps) {
+function TrialBalanceSheetPdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: TrialBalanceSheetPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

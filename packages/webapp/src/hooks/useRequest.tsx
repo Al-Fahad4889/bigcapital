@@ -128,7 +128,9 @@ export default function useApiRequest() {
  * @param options - Optional configuration
  * @param options.enableCamelCaseTransform - If true, automatically transforms response data from snake_case to camelCase
  */
-export function useApiFetcher(options?: { enableCamelCaseTransform?: boolean }) {
+export function useApiFetcher(options?: {
+  enableCamelCaseTransform?: boolean;
+}) {
   const token = useAuthToken();
   const organizationId = useAuthOrganizationId();
   const currentLocale = getCookie('locale');

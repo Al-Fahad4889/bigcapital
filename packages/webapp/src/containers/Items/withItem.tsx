@@ -25,7 +25,9 @@ export function withItem<Props extends WithItemOwnProps = WithItemOwnProps>(
         props.itemId,
       ),
     };
-    return mapState ? (mapState(mapped, state, props) as WithItemProps) : mapped;
+    return mapState
+      ? (mapState(mapped, state, props) as WithItemProps)
+      : mapped;
   };
   return connect(mapStateToProps);
 }

@@ -22,7 +22,7 @@ export default function NumberFormatDropdown({
     divideOn1000: false,
     negativeFormat: 'mines',
     precision: 2,
-    ...numberFormat
+    ...numberFormat,
   };
   // Handle cancel button click.
   const handleCancelClick = useCallback(() => {}, []);

@@ -5,7 +5,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const ExpenseDrawerContent = lazy(() => import('./ExpenseDrawerContent').then(m => ({ default: m.ExpenseDrawerContent })));
+const ExpenseDrawerContent = lazy(() =>
+  import('./ExpenseDrawerContent').then((m) => ({
+    default: m.ExpenseDrawerContent,
+  })),
+);
 
 /**
  * Expense drawer.

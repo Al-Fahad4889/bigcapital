@@ -12,7 +12,7 @@ import { InventoryAdjustmentForm } from './InventoryAdjustmentForm';
 export function InventoryAdjustmentFormDialogContent({
   // #ownProps
   dialogName,
-  itemId
+  itemId,
 }) {
   return (
     <InventoryAdjustmentFormProvider itemId={itemId} dialogName={dialogName}>

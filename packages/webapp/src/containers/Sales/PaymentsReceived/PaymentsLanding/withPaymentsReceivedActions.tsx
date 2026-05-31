@@ -13,7 +13,9 @@ export interface WithPaymentsReceivedActionsProps {
   setPaymentReceivesSelectedRows: (selectedRows: number[]) => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithPaymentsReceivedActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithPaymentsReceivedActionsProps => ({
   setPaymentReceivesTableState: (state: Partial<TableQuery>) =>
     dispatch(setPaymentReceivesTableState(state)),
 

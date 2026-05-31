@@ -32,7 +32,7 @@ function NotifyReceiptViaSMSFormInner({
   } = useNotifyReceiptViaSMSContext();
 
   const [calloutCode, setCalloutCode] = React.useState([]);
-  
+
   // Handles the form submit.
   const handleFormSubmit = (values, { setSubmitting, setErrors }) => {
     // Handle request response success.
@@ -83,4 +83,6 @@ function NotifyReceiptViaSMSFormInner({
   );
 }
 
-export const NotifyReceiptViaSMSForm = compose(withDialogActions)(NotifyReceiptViaSMSFormInner);
+export const NotifyReceiptViaSMSForm = compose(withDialogActions)(
+  NotifyReceiptViaSMSFormInner,
+);

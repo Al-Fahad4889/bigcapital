@@ -4,7 +4,10 @@ import { FinancialReportBody } from '../FinancialReportPage';
 import { FinancialSheetSkeleton } from '@/components/FinancialSheet';
 import { useSalesByItemsContext } from './SalesByItemProvider';
 import { SalesByItemsTable } from './SalesByItemsTable';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 
 interface SalesByItemsBodyJSXProps {
   organizationName: WithCurrentOrganizationProps['organization']['name'];
@@ -13,9 +16,7 @@ interface SalesByItemsBodyJSXProps {
 /**
  * Sales by items body.
  */
-function SalesByItemsBodyJSX({
-  organizationName,
-}: SalesByItemsBodyJSXProps) {
+function SalesByItemsBodyJSX({ organizationName }: SalesByItemsBodyJSXProps) {
   const { isLoading } = useSalesByItemsContext();
 
   return (

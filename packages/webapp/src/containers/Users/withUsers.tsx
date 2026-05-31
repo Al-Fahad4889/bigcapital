@@ -8,7 +8,9 @@ export interface WithUsersProps {
   usersLoading: boolean;
 }
 
-export const withUsers = <Props,>(mapState?: MapState<WithUsersProps, Props>) => {
+export const withUsers = <Props,>(
+  mapState?: MapState<WithUsersProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithUsersProps = {
       usersList: getExpensesCurrentPageFactory(state),

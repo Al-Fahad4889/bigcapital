@@ -13,7 +13,10 @@ import { compose } from '@/utils';
 
 type RealizedGainOrLossProps = {
   organizationName: string;
-} & Pick<WithRealizedGainOrLossActionsProps, 'toggleRealizedGainOrLossFilterDrawer'>;
+} & Pick<
+  WithRealizedGainOrLossActionsProps,
+  'toggleRealizedGainOrLossFilterDrawer'
+>;
 
 function RealizedGainOrLoss({
   toggleRealizedGainOrLossFilterDrawer,

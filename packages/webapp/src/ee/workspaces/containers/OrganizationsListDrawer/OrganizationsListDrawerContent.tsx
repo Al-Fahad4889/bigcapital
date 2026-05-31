@@ -5,7 +5,10 @@ import { debounce } from 'lodash';
 import { FormGroup, InputGroup, Button } from '@blueprintjs/core';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { DRAWERS } from '@/constants/drawers';
-import { useWorkspaces, useSetDefaultWorkspace } from '@/ee/workspaces/hooks/query/workspaces';
+import {
+  useWorkspaces,
+  useSetDefaultWorkspace,
+} from '@/ee/workspaces/hooks/query/workspaces';
 import { useAuthOrganizationId } from '@/hooks/state';
 import OrganizationsListTable from './OrganizationsListTable';
 import { OrganizationsListDrawerHeader } from './OrganizationsListDrawerHeader';
@@ -64,10 +67,15 @@ function OrganizationsListDrawerContentRoot({ closeDrawer, openDrawer }) {
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const activeOrganizationId = useAuthOrganizationId();
   const setDefaultWorkspace = useSetDefaultWorkspace();
-  const { data: workspaces, isLoading } = useWorkspaces({ includeInactive: true });
+  const { data: workspaces, isLoading } = useWorkspaces({
+    includeInactive: true,
+  });
 
   const isCurrentOrgDefault = useMemo(() => {
-    return workspaces?.find((w) => w.organizationId === activeOrganizationId)?.isDefault ?? false;
+    return (
+      workspaces?.find((w) => w.organizationId === activeOrganizationId)
+        ?.isDefault ?? false
+    );
   }, [workspaces, activeOrganizationId]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,7 +83,7 @@ function OrganizationsListDrawerContentRoot({ closeDrawer, openDrawer }) {
     debounce((value) => {
       setDebouncedSearch(value);
     }, 200),
-    []
+    [],
   );
 
   const handleSearchChange = (e) => {
@@ -108,11 +116,21 @@ function OrganizationsListDrawerContentRoot({ closeDrawer, openDrawer }) {
       <OrganizationsListDrawerHeader
         isCurrentOrgDefault={isCurrentOrgDefault}
         activeOrganizationId={activeOrganizationId}
-        onSetDefaultWorkspace={(organizationId) => setDefaultWorkspace.mutate({ organizationId })}
+        onSetDefaultWorkspace={(organizationId) =>
+          setDefaultWorkspace.mutate({ organizationId })
+        }
         onClose={handleClose}
       />
 
-      <x.div flex={1} overflow="auto" minHeight={0} w={'100%'} maxWidth={'1000px'} mx="auto" pt={10}>
+      <x.div
+        flex={1}
+        overflow="auto"
+        minHeight={0}
+        w={'100%'}
+        maxWidth={'1000px'}
+        mx="auto"
+        pt={10}
+      >
         <x.div
           display="flex"
           flexWrap="wrap"
@@ -121,7 +139,13 @@ function OrganizationsListDrawerContentRoot({ closeDrawer, openDrawer }) {
           gap="16px"
           mb="16px"
         >
-          <x.h2 m={0} fontSize="20px" fontWeight={400} color="#fff" letterSpacing="-0.02em">
+          <x.h2
+            m={0}
+            fontSize="20px"
+            fontWeight={400}
+            color="#fff"
+            letterSpacing="-0.02em"
+          >
             {intl.get('workspaces.organizations_list_count_title', {
               count: filteredWorkspaces.length,
             })}
@@ -135,7 +159,10 @@ function OrganizationsListDrawerContentRoot({ closeDrawer, openDrawer }) {
             justifyContent="flex-end"
             minWidth={0}
           >
-            <FormGroup label={null} className={organizationsDrawerSearchFormGroupCss}>
+            <FormGroup
+              label={null}
+              className={organizationsDrawerSearchFormGroupCss}
+            >
               <InputGroup
                 leftIcon="search"
                 placeholder={intl.get('workspaces.search_workspaces_short', {

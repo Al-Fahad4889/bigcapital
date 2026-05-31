@@ -57,7 +57,7 @@ export function RegisterUserForm() {
         const {
           data: { errors },
         } = response;
-        
+
         const formErrors = transformRegisterErrorsToForm(errors);
         const toastMessages = transformRegisterToastMessages(errors);
 

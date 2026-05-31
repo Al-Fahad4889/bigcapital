@@ -9,7 +9,10 @@ import { FinancialStatementHeader } from '@/containers/FinancialStatements/Finan
 import { PurchasesByItemsGeneralPanel } from './PurchasesByItemsGeneralPanel';
 
 import { withPurchasesByItems } from './withPurchasesByItems';
-import { withPurchasesByItemsActions, WithPurchasesByItemsActionsProps } from './withPurchasesByItemsActions';
+import {
+  withPurchasesByItemsActions,
+  WithPurchasesByItemsActionsProps,
+} from './withPurchasesByItemsActions';
 
 import { compose, transformToForm } from '@/utils';
 import {
@@ -33,7 +36,10 @@ interface PurchasesByItemsHeaderOwnProps {
 
 type PurchasesByItemsHeaderProps = PurchasesByItemsHeaderOwnProps & {
   purchasesByItemsDrawerFilter: boolean;
-} & Pick<WithPurchasesByItemsActionsProps, 'togglePurchasesByItemsFilterDrawer'>;
+} & Pick<
+    WithPurchasesByItemsActionsProps,
+    'togglePurchasesByItemsFilterDrawer'
+  >;
 
 /**
  * Purchases by items header.
@@ -66,7 +72,10 @@ function PurchasesByItemsHeaderInner({
   ) as PurchasesByItemsFormValues;
 
   // Handle form submit.
-  const handleSubmit = (values: PurchasesByItemsFormValues, { setSubmitting }: FormikHelpers<PurchasesByItemsFormValues>) => {
+  const handleSubmit = (
+    values: PurchasesByItemsFormValues,
+    { setSubmitting }: FormikHelpers<PurchasesByItemsFormValues>,
+  ) => {
     onSubmitFilter(values);
     setSubmitting(false);
     togglePurchasesByItemsFilterDrawer(false);

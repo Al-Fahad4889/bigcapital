@@ -83,7 +83,7 @@ export function TransactionLockingSkeletonList() {
  * Transactions locking skeleton item.
  * @returns {React.JSX}
  */
-export const TransactionLockingItemSkeleton = ({ }) => {
+export const TransactionLockingItemSkeleton = ({}) => {
   return (
     <TransactionLockingWrapp>
       <TransLockingInner>

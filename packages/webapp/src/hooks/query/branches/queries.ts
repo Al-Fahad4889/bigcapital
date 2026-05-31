@@ -24,13 +24,15 @@ import { useApiFetcher } from '../../useRequest';
 import { branchesKeys } from './query-keys';
 import { usersKeys } from '../users/query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: branchesKeys.all() });
   queryClient.invalidateQueries({ queryKey: usersKeys.dashboardMeta() });
 };
 
 export function useCreateBranch(
-  props?: UseMutationOptions<void, Error, CreateBranchBody>
+  props?: UseMutationOptions<void, Error, CreateBranchBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -43,7 +45,7 @@ export function useCreateBranch(
 }
 
 export function useEditBranch(
-  props?: UseMutationOptions<void, Error, [number | string, EditBranchBody]>
+  props?: UseMutationOptions<void, Error, [number | string, EditBranchBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -60,7 +62,7 @@ export function useEditBranch(
 }
 
 export function useDeleteBranch(
-  props?: UseMutationOptions<void, Error, number | string>
+  props?: UseMutationOptions<void, Error, number | string>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -77,7 +79,7 @@ export function useDeleteBranch(
 
 export function useBranches(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<BranchesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<BranchesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -90,7 +92,7 @@ export function useBranches(
 export function useBranch(
   id: number | string | null | undefined,
   props?: Omit<UseQueryOptions<Branch>, 'queryKey' | 'queryFn'>,
-  _requestProps?: Record<string, unknown>
+  _requestProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -102,7 +104,7 @@ export function useBranch(
 }
 
 export function useActivateBranches(
-  props?: UseMutationOptions<void, Error, number | string>
+  props?: UseMutationOptions<void, Error, number | string>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -115,14 +117,15 @@ export function useActivateBranches(
 }
 
 export function useMarkBranchAsPrimary(
-  props?: UseMutationOptions<void, Error, number | string>
+  props?: UseMutationOptions<void, Error, number | string>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: (id: number | string) => markBranchAsPrimary(fetcher, String(id)),
+    mutationFn: (id: number | string) =>
+      markBranchAsPrimary(fetcher, String(id)),
     onSuccess: (_data, id) => {
       queryClient.invalidateQueries({ queryKey: branchesKeys.detail(id) });
       commonInvalidateQueries(queryClient);

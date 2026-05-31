@@ -38,4 +38,6 @@ function CurrencyFormFooterInner({
   );
 }
 
-export const CurrencyFormFooter = compose(withDialogActions)(CurrencyFormFooterInner);
+export const CurrencyFormFooter = compose(withDialogActions)(
+  CurrencyFormFooterInner,
+);

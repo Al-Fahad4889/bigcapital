@@ -20,11 +20,17 @@ export class InactivateWorkspaceService {
    * @param {string} organizationId - Organization ID of the workspace to inactivate.
    * @returns {Promise<void>}
    */
-  async inactivateWorkspace(userId: number, organizationId: string): Promise<void> {
+  async inactivateWorkspace(
+    userId: number,
+    organizationId: string,
+  ): Promise<void> {
     const tenant = await this.tenantModel.query().findOne({ organizationId });
 
     if (!tenant) {
-      throw new ServiceError(WorkspacesError.WORKSPACE_NOT_FOUND, 'Workspace not found');
+      throw new ServiceError(
+        WorkspacesError.WORKSPACE_NOT_FOUND,
+        'Workspace not found',
+      );
     }
     const membership = await this.userTenantModel
       .query()
@@ -32,7 +38,10 @@ export class InactivateWorkspaceService {
       .withGraphFetched('tenant');
 
     if (!membership) {
-      throw new ServiceError(WorkspacesError.WORKSPACE_NOT_FOUND, 'Workspace not found');
+      throw new ServiceError(
+        WorkspacesError.WORKSPACE_NOT_FOUND,
+        'Workspace not found',
+      );
     }
     if (membership.role !== 'owner') {
       throw new ServiceError(
@@ -40,12 +49,9 @@ export class InactivateWorkspaceService {
         'Only the workspace owner can inactivate the workspace',
       );
     }
-    await this.tenantModel
-      .query()
-      .findById(tenant.id)
-      .patch({
-        isInactive: true,
-      });
+    await this.tenantModel.query().findById(tenant.id).patch({
+      isInactive: true,
+    });
   }
 
   /**
@@ -54,11 +60,17 @@ export class InactivateWorkspaceService {
    * @param {string} organizationId - Organization ID of the workspace to reactivate.
    * @returns {Promise<void>}
    */
-  async activateWorkspace(userId: number, organizationId: string): Promise<void> {
+  async activateWorkspace(
+    userId: number,
+    organizationId: string,
+  ): Promise<void> {
     const tenant = await this.tenantModel.query().findOne({ organizationId });
 
     if (!tenant) {
-      throw new ServiceError(WorkspacesError.WORKSPACE_NOT_FOUND, 'Workspace not found');
+      throw new ServiceError(
+        WorkspacesError.WORKSPACE_NOT_FOUND,
+        'Workspace not found',
+      );
     }
     const membership = await this.userTenantModel
       .query()
@@ -66,7 +78,10 @@ export class InactivateWorkspaceService {
       .withGraphFetched('tenant');
 
     if (!membership) {
-      throw new ServiceError(WorkspacesError.WORKSPACE_NOT_FOUND, 'Workspace not found');
+      throw new ServiceError(
+        WorkspacesError.WORKSPACE_NOT_FOUND,
+        'Workspace not found',
+      );
     }
     if (membership.role !== 'owner') {
       throw new ServiceError(
@@ -75,11 +90,8 @@ export class InactivateWorkspaceService {
       );
     }
 
-    await this.tenantModel
-      .query()
-      .findById(tenant.id)
-      .patch({
-        isInactive: false,
-      });
+    await this.tenantModel.query().findById(tenant.id).patch({
+      isInactive: false,
+    });
   }
 }

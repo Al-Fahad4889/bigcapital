@@ -4,7 +4,6 @@ import { FastField, ErrorMessage } from 'formik';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import classNames from 'classnames';
 import {
-
   FAccountsSuggestField,
   InputPrependText,
   FieldRequiredHint,

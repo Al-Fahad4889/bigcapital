@@ -11,7 +11,9 @@ export interface WithPaymentMadeActionsProps {
   resetPaymentMadesTableState: () => void;
 }
 
-export const mapDispatchToProps = (dispatch: Dispatch): WithPaymentMadeActionsProps => ({
+export const mapDispatchToProps = (
+  dispatch: Dispatch,
+): WithPaymentMadeActionsProps => ({
   setPaymentMadesTableState: (state: Partial<TableQuery>) =>
     dispatch(setPaymentMadesTableState(state)),
 

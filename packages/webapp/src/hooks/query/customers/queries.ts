@@ -25,13 +25,15 @@ import {
 import { useApiFetcher } from '../../useRequest';
 import { customersKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: customersKeys.all() });
 };
 
 export function useCustomers(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<CustomersListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<CustomersListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -42,7 +44,7 @@ export function useCustomers(
 }
 
 export function useEditCustomer(
-  props?: UseMutationOptions<void, Error, [number, EditCustomerBody]>
+  props?: UseMutationOptions<void, Error, [number, EditCustomerBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -59,7 +61,7 @@ export function useEditCustomer(
 }
 
 export function useDeleteCustomer(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -75,14 +77,22 @@ export function useDeleteCustomer(
 }
 
 export function useBulkDeleteCustomers(
-  props?: UseMutationOptions<void, Error, { ids: number[]; skipUndeletable?: boolean }>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    { ids: number[]; skipUndeletable?: boolean }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ({ ids, skipUndeletable = false }: { ids: number[];
+    mutationFn: ({
+      ids,
+      skipUndeletable = false,
+    }: {
+      ids: number[];
       skipUndeletable?: boolean;
     }) =>
       bulkDeleteCustomers(fetcher, {
@@ -94,7 +104,11 @@ export function useBulkDeleteCustomers(
 }
 
 export function useValidateBulkDeleteCustomers(
-  props?: UseMutationOptions<ValidateBulkDeleteCustomersResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeleteCustomersResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -106,7 +120,7 @@ export function useValidateBulkDeleteCustomers(
 }
 
 export function useCreateCustomer(
-  props?: UseMutationOptions<void, Error, CreateCustomerBody>
+  props?: UseMutationOptions<void, Error, CreateCustomerBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -120,7 +134,7 @@ export function useCreateCustomer(
 
 export function useCustomer(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Customer>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Customer>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -132,7 +146,7 @@ export function useCustomer(
 }
 
 export function useEditCustomerOpeningBalance(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -140,7 +154,11 @@ export function useEditCustomerOpeningBalance(
   return useMutation({
     ...props,
     mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
-      editCustomerOpeningBalance(fetcher, id, values as Parameters<typeof editCustomerOpeningBalance>[2]),
+      editCustomerOpeningBalance(
+        fetcher,
+        id,
+        values as Parameters<typeof editCustomerOpeningBalance>[2],
+      ),
     onSuccess: (_data, [id]) => {
       queryClient.invalidateQueries({ queryKey: customersKeys.detail(id) });
       commonInvalidateQueries(queryClient);
@@ -151,6 +169,7 @@ export function useEditCustomerOpeningBalance(
 export function useRefreshCustomers() {
   const queryClient = useQueryClient();
   return {
-    refresh: () => queryClient.invalidateQueries({ queryKey: customersKeys.all() }),
+    refresh: () =>
+      queryClient.invalidateQueries({ queryKey: customersKeys.all() }),
   };
 }

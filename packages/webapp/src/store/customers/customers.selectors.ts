@@ -5,7 +5,8 @@ import { createDeepEqualSelector } from '@/utils';
 import { defaultTableQueryState } from './customers.reducer';
 import type { RootState } from '@/store/reducers';
 
-const customerTableStateSelector = (state: RootState) => state.customers.tableState;
+const customerTableStateSelector = (state: RootState) =>
+  state.customers.tableState;
 
 export const getCustomersTableStateFactory = () =>
   createDeepEqualSelector(
@@ -23,4 +24,3 @@ export const customersTableStateChangedFactory = () =>
   createDeepEqualSelector(customerTableStateSelector, (tableState) => {
     return !isEqual(tableState, defaultTableQueryState);
   });
-  

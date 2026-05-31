@@ -6,7 +6,11 @@ import { withDrawers } from '@/containers/Drawer/withDrawers';
 
 import { compose } from '@/utils';
 
-const CashFlowTransactionDrawerContent = React.lazy(() => import('./CashflowTransactionDrawerContent').then(m => ({ default: m.CashflowTransactionDrawerContent })));
+const CashFlowTransactionDrawerContent = React.lazy(() =>
+  import('./CashflowTransactionDrawerContent').then((m) => ({
+    default: m.CashflowTransactionDrawerContent,
+  })),
+);
 
 /**
  * Cash flow transaction drawer

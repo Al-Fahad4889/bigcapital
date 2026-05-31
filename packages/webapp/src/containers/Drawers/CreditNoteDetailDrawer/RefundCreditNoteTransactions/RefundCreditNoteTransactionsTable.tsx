@@ -45,4 +45,6 @@ function RefundCreditNoteTransactionsTableInner({
   );
 }
 
-export const RefundCreditNoteTransactionsTable = compose(withAlertActions)(RefundCreditNoteTransactionsTableInner);
+export const RefundCreditNoteTransactionsTable = compose(withAlertActions)(
+  RefundCreditNoteTransactionsTableInner,
+);

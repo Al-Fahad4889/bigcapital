@@ -11,7 +11,6 @@ import classNames from 'classnames';
 import {
   If,
   Icon,
-
   ExchangeRateMutedField,
   BranchSelect,
   FeatureCan,
@@ -111,4 +110,6 @@ function CustomerOpeningBalanceFieldsInner({
     </div>
   );
 }
-export const CustomerOpeningBalanceFields = compose(withCurrentOrganization())(CustomerOpeningBalanceFieldsInner);
+export const CustomerOpeningBalanceFields = compose(withCurrentOrganization())(
+  CustomerOpeningBalanceFieldsInner,
+);

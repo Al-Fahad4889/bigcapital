@@ -26,13 +26,15 @@ import {
 import { useApiFetcher } from '../../useRequest';
 import { vendorsKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: vendorsKeys.all() });
 };
 
 export function useVendors(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<VendorsListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<VendorsListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -43,7 +45,7 @@ export function useVendors(
 }
 
 export function useEditVendor(
-  props?: UseMutationOptions<void, Error, [number, EditVendorBody]>
+  props?: UseMutationOptions<void, Error, [number, EditVendorBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -60,7 +62,7 @@ export function useEditVendor(
 }
 
 export function useDeleteVendor(
-  props?: UseMutationOptions<void, Error, number>
+  props?: UseMutationOptions<void, Error, number>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -76,7 +78,11 @@ export function useDeleteVendor(
 }
 
 export function useBulkDeleteVendors(
-  props?: UseMutationOptions<void, Error, { ids: number[]; skipUndeletable?: boolean }>
+  props?: UseMutationOptions<
+    void,
+    Error,
+    { ids: number[]; skipUndeletable?: boolean }
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -95,19 +101,26 @@ export function useBulkDeleteVendors(
 }
 
 export function useValidateBulkDeleteVendors(
-  props?: UseMutationOptions<ValidateBulkDeleteVendorsResponse, Error, number[]>
+  props?: UseMutationOptions<
+    ValidateBulkDeleteVendorsResponse,
+    Error,
+    number[]
+  >,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useMutation({
     ...props,
     mutationFn: (ids: number[]) =>
-      validateBulkDeleteVendors(fetcher, { ids, skipUndeletable: false } as BulkDeleteVendorsBody),
+      validateBulkDeleteVendors(fetcher, {
+        ids,
+        skipUndeletable: false,
+      } as BulkDeleteVendorsBody),
   });
 }
 
 export function useCreateVendor(
-  props?: UseMutationOptions<void, Error, CreateVendorBody>
+  props?: UseMutationOptions<void, Error, CreateVendorBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -121,7 +134,7 @@ export function useCreateVendor(
 
 export function useVendor(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<Vendor>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<Vendor>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -133,7 +146,7 @@ export function useVendor(
 }
 
 export function useEditVendorOpeningBalance(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>
+  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -141,7 +154,11 @@ export function useEditVendorOpeningBalance(
   return useMutation({
     ...props,
     mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
-      editVendorOpeningBalance(fetcher, id, values as Parameters<typeof editVendorOpeningBalance>[2]),
+      editVendorOpeningBalance(
+        fetcher,
+        id,
+        values as Parameters<typeof editVendorOpeningBalance>[2],
+      ),
     onSuccess: (_data: unknown, [id]: [number, Record<string, unknown>]) => {
       queryClient.invalidateQueries({ queryKey: vendorsKeys.detail(id) });
       commonInvalidateQueries(queryClient);
@@ -152,6 +169,7 @@ export function useEditVendorOpeningBalance(
 export function useRefreshVendors() {
   const queryClient = useQueryClient();
   return {
-    refresh: () => queryClient.invalidateQueries({ queryKey: vendorsKeys.all() }),
+    refresh: () =>
+      queryClient.invalidateQueries({ queryKey: vendorsKeys.all() }),
   };
 }

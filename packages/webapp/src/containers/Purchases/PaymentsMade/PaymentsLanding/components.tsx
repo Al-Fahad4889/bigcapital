@@ -29,7 +29,7 @@ export function ActionsMenu({
 }) {
   return (
     <Menu>
-    <MenuItem
+      <MenuItem
         icon={<Icon icon="reader-18" />}
         text={intl.get('view_details')}
         onClick={safeCallback(onViewDetails, original)}

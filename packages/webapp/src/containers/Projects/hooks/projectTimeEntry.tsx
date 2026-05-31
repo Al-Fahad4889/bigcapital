@@ -16,38 +16,41 @@ export function useCreateProjectTimeEntry(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: ([id, values]) => apiRequest.post(`/projects/tasks/${id}/times`, values),
-          onSuccess: () => {
-        // Common invalidate queries.
-        commonInvalidateQueries(queryClient);
-      },
-      ...props,
+  return useMutation({
+    mutationFn: ([id, values]) =>
+      apiRequest.post(`/projects/tasks/${id}/times`, values),
+    onSuccess: () => {
+      // Common invalidate queries.
+      commonInvalidateQueries(queryClient);
     },
-  );
+    ...props,
+  });
 }
 
 export function useEditProjectTimeEntry(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: ([id, values]) => apiRequest.put(`projects/times/${id}`, values),
-          onSuccess: (res, [id, values]) => {
-        // Invalidate specific project time entry.
-        queryClient.invalidateQueries({ queryKey: [t.PROJECT_TIME_ENTRY, id] });
+  return useMutation({
+    mutationFn: ([id, values]) =>
+      apiRequest.put(`projects/times/${id}`, values),
+    onSuccess: (res, [id, values]) => {
+      // Invalidate specific project time entry.
+      queryClient.invalidateQueries({ queryKey: [t.PROJECT_TIME_ENTRY, id] });
 
-        commonInvalidateQueries(queryClient);
-      },
-      ...props,
+      commonInvalidateQueries(queryClient);
     },
-  );
+    ...props,
+  });
 }
 
 export function useDeleteProjectTimeEntry(props) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
 
-  return useMutation({ mutationFn: (id) => apiRequest.delete(`projects/times/${id}`),
-        onSuccess: (res, id) => {
+  return useMutation({
+    mutationFn: (id) => apiRequest.delete(`projects/times/${id}`),
+    onSuccess: (res, id) => {
       // Invalidate specific project task.
       queryClient.invalidateQueries({ queryKey: [t.PROJECT_TASK, id] });
 

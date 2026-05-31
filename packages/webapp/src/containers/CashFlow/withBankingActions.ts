@@ -114,8 +114,9 @@ const mapDipatchToProps = (
   resetCategorizedTransactionsSelected: () =>
     dispatch(resetCategorizedTransactionsSelected()),
 
-  setUncategorizedTransactionsFilter: (filter: UncategorizedTransactionsFilter) =>
-    dispatch(setUncategorizedTransactionsFilter({ filter })),
+  setUncategorizedTransactionsFilter: (
+    filter: UncategorizedTransactionsFilter,
+  ) => dispatch(setUncategorizedTransactionsFilter({ filter })),
 
   resetUncategorizedTranasctionsFilter: () =>
     dispatch(resetUncategorizedTranasctionsFilter()),

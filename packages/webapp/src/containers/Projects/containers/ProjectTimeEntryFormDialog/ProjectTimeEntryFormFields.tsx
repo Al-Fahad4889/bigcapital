@@ -12,7 +12,6 @@ import {
   FDateInput,
   FTextArea,
   FieldRequiredHint,
-
   Stack,
 } from '@/components';
 import { useProjectTimeEntryFormContext } from './ProjectTimeEntryFormProvider';

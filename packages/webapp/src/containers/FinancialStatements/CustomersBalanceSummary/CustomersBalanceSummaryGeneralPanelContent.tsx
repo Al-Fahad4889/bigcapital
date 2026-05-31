@@ -1,6 +1,5 @@
 import { Position } from '@blueprintjs/core';
 import {
-
   Row,
   Col,
   FieldHint,

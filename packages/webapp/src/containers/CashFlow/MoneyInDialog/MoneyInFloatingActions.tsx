@@ -71,4 +71,6 @@ function MoneyInFloatingActionsInner({
   );
 }
 
-export const MoneyInFloatingActions = compose(withDialogActions)(MoneyInFloatingActionsInner);
+export const MoneyInFloatingActions = compose(withDialogActions)(
+  MoneyInFloatingActionsInner,
+);

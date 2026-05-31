@@ -9,11 +9,17 @@ interface FinancialStatementProps {
   className?: string;
 }
 
-export function FinancialStatement({ children, className }: FinancialStatementProps) {
+export function FinancialStatement({
+  children,
+  className,
+}: FinancialStatementProps) {
   return <FinancialStatementRoot children={children} className={className} />;
 }
 
-export function FinancialStatementBody({ children, className }: FinancialStatementProps) {
+export function FinancialStatementBody({
+  children,
+  className,
+}: FinancialStatementProps) {
   return (
     <FinancialStatementBodyRoot children={children} className={className} />
   );

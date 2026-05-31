@@ -5,7 +5,11 @@ import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from 'redux';
 
-const BadDebtDialogContent = React.lazy(() => import('./BadDebtDialogContent').then(m => ({ default: m.BadDebtDialogContent })));
+const BadDebtDialogContent = React.lazy(() =>
+  import('./BadDebtDialogContent').then((m) => ({
+    default: m.BadDebtDialogContent,
+  })),
+);
 
 /**
  * Bad debt dialog.

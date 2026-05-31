@@ -23,25 +23,28 @@ import {
 import { useApiFetcher } from '../../useRequest';
 import { rolesKeys } from './query-keys';
 
-const commonInvalidateQueries = (queryClient: ReturnType<typeof useQueryClient>) => {
+const commonInvalidateQueries = (
+  queryClient: ReturnType<typeof useQueryClient>,
+) => {
   queryClient.invalidateQueries({ queryKey: rolesKeys.all() });
   queryClient.invalidateQueries({ queryKey: rolesKeys.permissionsSchema() });
 };
 
 export function useEditRolePermissionSchema(
-  props?: UseMutationOptions<void, Error, [number, EditRoleBody]>
+  props?: UseMutationOptions<void, Error, [number, EditRoleBody]>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
   return useMutation({
     ...props,
-    mutationFn: ([id, values]: [number, EditRoleBody]) => editRole(fetcher, id, values),
+    mutationFn: ([id, values]: [number, EditRoleBody]) =>
+      editRole(fetcher, id, values),
     onSuccess: () => commonInvalidateQueries(queryClient),
   });
 }
 
 export function useCreateRolePermissionSchema(
-  props?: UseMutationOptions<void, Error, CreateRoleBody>
+  props?: UseMutationOptions<void, Error, CreateRoleBody>,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
@@ -67,7 +70,7 @@ export function useDeleteRole(props?: UseMutationOptions<void, Error, number>) {
 
 export function usePermissionsSchema(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<RolePermissionsSchema>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<RolePermissionsSchema>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -80,7 +83,7 @@ export function usePermissionsSchema(
 export function useRolePermission(
   role_id: number | null | undefined,
   props?: Omit<UseQueryOptions<Role>, 'queryKey' | 'queryFn'>,
-  _requestProps?: Record<string, unknown>
+  _requestProps?: Record<string, unknown>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({
@@ -93,7 +96,7 @@ export function useRolePermission(
 
 export function useRoles(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<RolesListResponse>, 'queryKey' | 'queryFn'>
+  props?: Omit<UseQueryOptions<RolesListResponse>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher();
   return useQuery({

@@ -43,7 +43,7 @@ function EstimateDetailActionsBarInner({
 
   // #withDrawerActions
   closeDrawer,
-  openDrawer
+  openDrawer,
 }) {
   // Estimate details drawer context.
   const { estimateId, estimate } = useEstimateDetailDrawerContext();

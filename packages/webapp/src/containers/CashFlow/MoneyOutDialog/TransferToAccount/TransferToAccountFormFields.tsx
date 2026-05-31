@@ -19,10 +19,7 @@ import {
   FDateInput,
 } from '@/components';
 import { ACCOUNT_TYPE } from '@/constants/accountTypes';
-import {
-  inputIntent,
-  momentFormatter,
-} from '@/utils';
+import { inputIntent, momentFormatter } from '@/utils';
 import { Features } from '@/constants';
 import { CLASSES } from '@/constants/classes';
 import { useMoneyOutDialogContext } from '../MoneyOutDialogProvider';
@@ -112,9 +109,7 @@ export function TransferToAccountFormFields() {
           {/*------------ transfer from account -----------*/}
           <FFormGroup
             name={'credit_account_id'}
-            label={
-              <T id={'cash_flow_transaction.label_transfer_to_account'} />
-            }
+            label={<T id={'cash_flow_transaction.label_transfer_to_account'} />}
             labelInfo={<FieldRequiredHint />}
           >
             <FAccountsSuggestField

@@ -22,7 +22,7 @@ interface AttachmentFileCommon {
   size: number;
   mimeType: string;
 }
-interface AttachmentFileLoaded extends AttachmentFileCommon { }
+interface AttachmentFileLoaded extends AttachmentFileCommon {}
 interface AttachmentFileLoading extends AttachmentFileCommon {
   loading: boolean;
 }

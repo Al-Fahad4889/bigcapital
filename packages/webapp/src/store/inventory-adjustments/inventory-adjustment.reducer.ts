@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
-import { RESET } from '@/store/types';;
+import { RESET } from '@/store/types';
 
 interface InventoryAdjustmentsState {
   tableState: { pageSize: number; pageIndex: number; sortBy: Array<unknown> };
@@ -34,4 +34,7 @@ const reducerInstance = createReducer(initialState, {
   },
 });
 
-export const inventoryAdjustmentsPersistReducer = persistReducer(CONFIG, reducerInstance);
+export const inventoryAdjustmentsPersistReducer = persistReducer(
+  CONFIG,
+  reducerInstance,
+);

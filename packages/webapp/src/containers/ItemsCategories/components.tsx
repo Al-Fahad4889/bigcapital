@@ -20,8 +20,6 @@ export function ActionMenuList({
   row: { original },
   payload: { onEditCategory, onDeleteCategory },
 }) {
-  
-
   return (
     <Menu>
       <MenuItem
@@ -58,8 +56,6 @@ export function TableActionsCell(props) {
  * Retrieve the items categories table columns.
  */
 export function useItemsCategoriesTableColumns() {
-  
-
   return React.useMemo(
     () => [
       {
@@ -68,7 +64,7 @@ export function useItemsCategoriesTableColumns() {
         accessor: 'name',
         width: 220,
       },
-      
+
       {
         id: 'count',
         Header: intl.get('count'),
@@ -82,7 +78,7 @@ export function useItemsCategoriesTableColumns() {
         accessor: 'description',
         className: 'description',
         width: 220,
-      }
+      },
     ],
     [],
   );

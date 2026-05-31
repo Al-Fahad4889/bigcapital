@@ -8,8 +8,14 @@ import { InventoryValuationBody } from './InventoryValuationBody';
 import { InventoryValuationLoadingBar } from './components';
 import { useInventoryValuationQuery } from './utils';
 import { compose } from '@/utils';
-import { withInventoryValuationActions, WithInventoryValuationActionsProps } from './withInventoryValuationActions';
-import { withCurrentOrganization, WithCurrentOrganizationProps } from '@/containers/Organization/withCurrentOrganization';
+import {
+  withInventoryValuationActions,
+  WithInventoryValuationActionsProps,
+} from './withInventoryValuationActions';
+import {
+  withCurrentOrganization,
+  WithCurrentOrganizationProps,
+} from '@/containers/Organization/withCurrentOrganization';
 import { InventoryValuationDialogs } from './InventoryValuationDialogs';
 
 interface InventoryValuationProps {

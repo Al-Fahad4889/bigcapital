@@ -8,14 +8,18 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithReceiptsProps {
-  receiptTableState: ReturnType<ReturnType<typeof getReceiptsTableStateFactory>>;
-  receiptsTableStateChanged: ReturnType<ReturnType<typeof receiptsTableStateChangedFactory>>;
-  receiptSelectedRows: ReturnType<ReturnType<typeof getReceiptsSelectedRowsFactory>>;
+  receiptTableState: ReturnType<
+    ReturnType<typeof getReceiptsTableStateFactory>
+  >;
+  receiptsTableStateChanged: ReturnType<
+    ReturnType<typeof receiptsTableStateChangedFactory>
+  >;
+  receiptSelectedRows: ReturnType<
+    ReturnType<typeof getReceiptsSelectedRowsFactory>
+  >;
 }
 
-export const withReceipts = <
-  Props extends { location?: { search: string } },
->(
+export const withReceipts = <Props extends { location?: { search: string } }>(
   mapState?: MapState<WithReceiptsProps, Props>,
 ) => {
   const getReceiptsTableState = getReceiptsTableStateFactory();

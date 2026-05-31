@@ -38,7 +38,10 @@ export function FinancialStatementsFilter({
   label = <T id={'filter_accounts'} />,
   ...restProps
 }: FinancialStatementsFilterProps) {
-  const filterRenderer = (item: FilterItem, { handleClick }: { handleClick: () => void }) => {
+  const filterRenderer = (
+    item: FilterItem,
+    { handleClick }: { handleClick: () => void },
+  ) => {
     return (
       <Tooltip
         interactionKind={PopoverInteractionKind.HOVER}

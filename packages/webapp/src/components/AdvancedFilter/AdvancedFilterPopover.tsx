@@ -14,11 +14,7 @@ export function AdvancedFilterPopover({
   return (
     <Popover
       minimal={true}
-      content={
-        <AdvancedFilterDropdown
-          {...advancedFilterProps}
-        />
-      }
+      content={<AdvancedFilterDropdown {...advancedFilterProps} />}
       interactionKind={PopoverInteractionKind.CLICK}
       position={Position.BOTTOM_LEFT}
       canOutsideClickClose={true}

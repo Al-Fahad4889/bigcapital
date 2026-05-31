@@ -5,7 +5,9 @@ import { FinancialHeaderLoadingSkeleton } from '../FinancialHeaderLoadingSkeleto
 type UseItemsResult = ReturnType<typeof useItems>;
 
 interface SalesByItemGeneralPanelContextValue {
-  items: UseItemsResult['data'] extends { items?: infer I } | undefined ? I : unknown;
+  items: UseItemsResult['data'] extends { items?: infer I } | undefined
+    ? I
+    : unknown;
   isItemsLoading: boolean;
   isItemsFetching: boolean;
 }
@@ -14,12 +16,16 @@ interface SalesByItemGeneralPanelProviderProps {
   children?: React.ReactNode;
 }
 
-const SalesByItemGeneralPanelContext = createContext<SalesByItemGeneralPanelContextValue | undefined>(undefined);
+const SalesByItemGeneralPanelContext = createContext<
+  SalesByItemGeneralPanelContextValue | undefined
+>(undefined);
 
 /**
  * Sales by items - General panel - Booting.
  */
-function SalesByItemGeneralPanelProvider({ ...props }: SalesByItemGeneralPanelProviderProps) {
+function SalesByItemGeneralPanelProvider({
+  ...props
+}: SalesByItemGeneralPanelProviderProps) {
   // Handle fetching the items based on the given query.
   const {
     data: itemsData,
@@ -46,10 +52,11 @@ function SalesByItemGeneralPanelProvider({ ...props }: SalesByItemGeneralPanelPr
   );
 }
 
-const useSalesByItemsGeneralPanelContext = (): SalesByItemGeneralPanelContextValue => {
-  const ctx = useContext(SalesByItemGeneralPanelContext);
-  if (!ctx) throw new Error('SalesByItemGeneralPanelContext is not provided');
-  return ctx;
-};
+const useSalesByItemsGeneralPanelContext =
+  (): SalesByItemGeneralPanelContextValue => {
+    const ctx = useContext(SalesByItemGeneralPanelContext);
+    if (!ctx) throw new Error('SalesByItemGeneralPanelContext is not provided');
+    return ctx;
+  };
 
 export { SalesByItemGeneralPanelProvider, useSalesByItemsGeneralPanelContext };

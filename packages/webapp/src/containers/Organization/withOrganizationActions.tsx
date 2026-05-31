@@ -19,9 +19,10 @@ export const mapDispatchToProps = (
 export function withOrganizationActions<P>(
   WrappedComponent: ComponentType<P>,
 ): ComponentType<Omit<P, keyof WithOrganizationActionsProps>> {
-  const Connected = connect(null, mapDispatchToProps)(
-    WrappedComponent as ComponentType<any>,
-  );
+  const Connected = connect(
+    null,
+    mapDispatchToProps,
+  )(WrappedComponent as ComponentType<any>);
   return Connected as unknown as ComponentType<
     Omit<P, keyof WithOrganizationActionsProps>
   >;

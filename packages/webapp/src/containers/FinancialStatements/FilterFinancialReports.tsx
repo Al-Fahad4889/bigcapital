@@ -12,7 +12,9 @@ interface FinancialSection {
   reports: FinancialReport[];
 }
 
-export function useFilterFinancialReports(financialSection: FinancialSection[]) {
+export function useFilterFinancialReports(
+  financialSection: FinancialSection[],
+) {
   const ability = useAbilityContext();
 
   const section = financialSection
@@ -30,4 +32,3 @@ export function useFilterFinancialReports(financialSection: FinancialSection[]) 
 
   return section;
 }
-

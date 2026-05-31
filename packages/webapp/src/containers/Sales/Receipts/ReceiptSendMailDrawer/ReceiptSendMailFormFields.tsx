@@ -1,13 +1,13 @@
-import { Button, Intent } from "@blueprintjs/core";
-import { useFormikContext } from "formik";
-import { FCheckbox, FFormGroup, FInputGroup, Group, Stack } from "@/components";
-import { SendMailViewToAddressField } from "../../Estimates/SendMailViewDrawer/SendMailViewToAddressField";
-import { SendMailViewMessageField } from "../../Estimates/SendMailViewDrawer/SendMailViewMessageField";
-import { useDrawerActions } from "@/hooks/state";
-import { useDrawerContext } from "@/components/Drawer/DrawerProvider";
-import { useSendReceiptFormatArgsOptions } from "./_hooks";
-import { useSendMailItems } from "../../Estimates/SendMailViewDrawer/hooks";
-import { useIsDarkMode } from "@/hooks/useDarkMode";
+import { Button, Intent } from '@blueprintjs/core';
+import { useFormikContext } from 'formik';
+import { FCheckbox, FFormGroup, FInputGroup, Group, Stack } from '@/components';
+import { SendMailViewToAddressField } from '../../Estimates/SendMailViewDrawer/SendMailViewToAddressField';
+import { SendMailViewMessageField } from '../../Estimates/SendMailViewDrawer/SendMailViewMessageField';
+import { useDrawerActions } from '@/hooks/state';
+import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
+import { useSendReceiptFormatArgsOptions } from './_hooks';
+import { useSendMailItems } from '../../Estimates/SendMailViewDrawer/hooks';
+import { useIsDarkMode } from '@/hooks/useDarkMode';
 
 export function ReceiptSendMailFormFields() {
   const argsOptions = useSendReceiptFormatArgsOptions();

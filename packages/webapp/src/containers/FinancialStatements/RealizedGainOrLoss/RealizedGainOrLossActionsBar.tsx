@@ -14,7 +14,10 @@ import classNames from 'classnames';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { withRealizedGainOrLoss } from './withRealizedGainOrLoss';
-import { withRealizedGainOrLossActions, WithRealizedGainOrLossActionsProps } from './withRealizedGainOrLossActions';
+import {
+  withRealizedGainOrLossActions,
+  WithRealizedGainOrLossActionsProps,
+} from './withRealizedGainOrLossActions';
 
 import { compose, saveInvoke } from '@/utils';
 
@@ -25,7 +28,10 @@ interface RealizedGainOrLossActionsBarOwnProps {
 
 type RealizedGainOrLossActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithRealizedGainOrLossActionsProps, 'toggleRealizedGainOrLossFilterDrawer'> &
+} & Pick<
+  WithRealizedGainOrLossActionsProps,
+  'toggleRealizedGainOrLossFilterDrawer'
+> &
   RealizedGainOrLossActionsBarOwnProps;
 
 function RealizedGainOrLossActionsBarInner({

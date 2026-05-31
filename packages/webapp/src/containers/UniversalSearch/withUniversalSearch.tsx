@@ -9,7 +9,9 @@ export interface WithUniversalSearchProps {
   searchSelectedResourceId: unknown;
 }
 
-export const withUniversalSearch = <Props,>(mapState?: MapState<WithUniversalSearchProps, Props>) => {
+export const withUniversalSearch = <Props,>(
+  mapState?: MapState<WithUniversalSearchProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const { globalSearch } = state;
 

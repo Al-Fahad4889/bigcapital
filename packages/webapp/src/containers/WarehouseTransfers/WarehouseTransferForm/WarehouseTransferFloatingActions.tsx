@@ -78,7 +78,9 @@ export function WarehouseTransferFloatingActions() {
     <div className={classNames(CLASSES.PAGE_FORM_FLOATING_ACTIONS)}>
       <Group spacing={10}>
         {/* ----------- Save Intitate & transferred ----------- */}
-        <If condition={!warehouseTransfer || !warehouseTransfer?.is_transferred}>
+        <If
+          condition={!warehouseTransfer || !warehouseTransfer?.is_transferred}
+        >
           <ButtonGroup>
             <Button
               disabled={isSubmitting}

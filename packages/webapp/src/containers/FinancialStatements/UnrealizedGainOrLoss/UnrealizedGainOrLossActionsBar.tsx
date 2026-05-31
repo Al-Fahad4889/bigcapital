@@ -15,7 +15,10 @@ import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
 import { useUnrealizedGainOrLossContext } from './UnrealizedGainOrLossProvider';
 import { withUnrealizedGainOrLoss } from './withUnrealizedGainOrLoss';
-import { withUnrealizedGainOrLossActions, WithUnrealizedGainOrLossActionsProps } from './withUnrealizedGainOrLossActions';
+import {
+  withUnrealizedGainOrLossActions,
+  WithUnrealizedGainOrLossActionsProps,
+} from './withUnrealizedGainOrLossActions';
 
 import { compose, saveInvoke } from '@/utils';
 
@@ -26,7 +29,10 @@ interface UnrealizedGainOrLossActionsBarOwnProps {
 
 type UnrealizedGainOrLossActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} & Pick<WithUnrealizedGainOrLossActionsProps, 'toggleUnrealizedGainOrLossFilterDrawer'> &
+} & Pick<
+  WithUnrealizedGainOrLossActionsProps,
+  'toggleUnrealizedGainOrLossFilterDrawer'
+> &
   UnrealizedGainOrLossActionsBarOwnProps;
 
 function UnrealizedGainOrLossActionsBarInner({

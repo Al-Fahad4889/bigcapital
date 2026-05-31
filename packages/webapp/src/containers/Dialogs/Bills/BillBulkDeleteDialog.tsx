@@ -97,4 +97,3 @@ export const BillBulkDeleteDialog = compose(
   withDialogActions,
   withBillsActions,
 )(BillBulkDeleteDialogInner);
-

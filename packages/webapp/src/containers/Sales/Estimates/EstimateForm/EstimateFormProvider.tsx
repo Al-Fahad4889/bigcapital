@@ -24,7 +24,9 @@ type UseWarehousesResult = ReturnType<typeof useWarehouses>;
 type UseGetPdfTemplatesResult = ReturnType<typeof useGetPdfTemplates>;
 type UseCreateEstimateResult = ReturnType<typeof useCreateEstimate>;
 type UseEditEstimateResult = ReturnType<typeof useEditEstimate>;
-type UseGetSaleEstimatesStateResult = ReturnType<typeof useGetSaleEstimatesState>;
+type UseGetSaleEstimatesStateResult = ReturnType<
+  typeof useGetSaleEstimatesState
+>;
 
 type EstimateFormSubmitPayload = Record<string, unknown>;
 
@@ -71,9 +73,9 @@ type EstimateFormProviderProps = {
   children?: React.ReactNode;
 };
 
-const EstimateFormContext = createContext<
-  EstimateFormContextValue | undefined
->(undefined);
+const EstimateFormContext = createContext<EstimateFormContextValue | undefined>(
+  undefined,
+);
 
 /**
  * Estimate form provider.
@@ -168,7 +170,9 @@ function EstimateFormProvider({
     customers: customersData?.data ?? [],
     branches,
     warehouses,
-    projects: (projectsData as { data?: { projects?: unknown[] } })?.data?.projects ?? [],
+    projects:
+      (projectsData as { data?: { projects?: unknown[] } })?.data?.projects ??
+      [],
     isNewMode,
 
     isItemsFetching,

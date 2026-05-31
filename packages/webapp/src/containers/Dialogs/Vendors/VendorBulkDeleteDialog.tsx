@@ -100,4 +100,3 @@ export const VendorBulkDeleteDialog = compose(
   withDialogActions,
   withVendorsActions,
 )(VendorBulkDeleteDialogInner);
-

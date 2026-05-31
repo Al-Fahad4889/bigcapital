@@ -7,8 +7,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const VendorBalancePdfDialogContent = lazy(
-  () => import('./VendorBalancePdfDialogContent').then((m) => ({ default: m.VendorBalancePdfDialogContent })),
+const VendorBalancePdfDialogContent = lazy(() =>
+  import('./VendorBalancePdfDialogContent').then((m) => ({
+    default: m.VendorBalancePdfDialogContent,
+  })),
 );
 
 interface VendorBalancePdfDialogRootProps {
@@ -21,7 +23,11 @@ interface VendorBalancePdfDialogRootProps {
  * Vendor balance sheet pdf preview dialog.
  * @returns {React.ReactNode}
  */
-function VendorBalancePdfDialogRoot({ dialogName, payload, isOpen }: VendorBalancePdfDialogRootProps) {
+function VendorBalancePdfDialogRoot({
+  dialogName,
+  payload,
+  isOpen,
+}: VendorBalancePdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

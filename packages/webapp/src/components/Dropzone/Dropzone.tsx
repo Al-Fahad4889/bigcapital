@@ -20,11 +20,11 @@ export type DropzoneStylesNames = 'root' | 'inner';
 export type DropzoneVariant = 'filled' | 'light';
 export type DropzoneCssVariables = {
   root:
-  | '--dropzone-radius'
-  | '--dropzone-accept-color'
-  | '--dropzone-accept-bg'
-  | '--dropzone-reject-color'
-  | '--dropzone-reject-bg';
+    | '--dropzone-radius'
+    | '--dropzone-accept-color'
+    | '--dropzone-accept-bg'
+    | '--dropzone-reject-color'
+    | '--dropzone-reject-bg';
 };
 
 export interface DropzoneProps {
@@ -239,9 +239,9 @@ export const Dropzone = (_props: DropzoneProps) => {
             styles.root,
             {
               [styles.dropzoneAccept]: isDragAccept,
-              [styles.dropzoneReject]: isDragReject
+              [styles.dropzoneReject]: isDragReject,
             },
-            classNames?.root
+            classNames?.root,
           ),
         })}
         // {...getStyles('root', { focusable: true })}
@@ -273,7 +273,6 @@ Dropzone.displayName = '@mantine/dropzone/Dropzone';
 Dropzone.Accept = DropzoneAccept;
 Dropzone.Idle = DropzoneIdle;
 Dropzone.Reject = DropzoneReject;
-
 
 type PossibleRef<T> = Ref<T> | undefined;
 

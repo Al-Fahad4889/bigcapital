@@ -12,7 +12,6 @@ export function LockingTransactionsDialogContent({
   moduleName,
   isEnabled,
 }) {
-
   return (
     <LockingTransactionsFormProvider
       isEnabled={isEnabled}

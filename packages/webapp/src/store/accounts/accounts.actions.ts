@@ -1,4 +1,8 @@
-import { ACCOUNTS_TABLE_STATE_RESET, ACCOUNTS_TABLE_STATE_SET, ACCOUNTS_SET_SELECTED_ROWS } from '@/store/types';;
+import {
+  ACCOUNTS_TABLE_STATE_RESET,
+  ACCOUNTS_TABLE_STATE_SET,
+  ACCOUNTS_SET_SELECTED_ROWS,
+} from '@/store/types';
 import type { TableQuery } from '@/store/store.types';
 
 export const setAccountsTableState = (queries: Partial<TableQuery>) => {

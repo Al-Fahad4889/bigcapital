@@ -76,22 +76,22 @@ export const CreditNoteSyncIncrementSettingsToForm = R.compose(
  * as an indication the entries rates have been re-calculated.
  * @returns {React.ReactNode}
  */
-export const CreditNoteExchangeRateSync = R.compose(withDialogActions)(
-  ({ openDialog }) => {
-    const subtotal = useCreditNoteSubtotal();
-    const timeout = useRef();
+export const CreditNoteExchangeRateSync = R.compose(withDialogActions)(({
+  openDialog,
+}) => {
+  const subtotal = useCreditNoteSubtotal();
+  const timeout = useRef();
 
-    useSyncExRateToForm({
-      onSynced: () => {
-        // If the total bigger then zero show alert to the user after adjusting entries.
-        if (subtotal > 0) {
-          clearTimeout(timeout.current);
-          timeout.current = setTimeout(() => {
-            openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
-          }, 500);
-        }
-      },
-    });
-    return null;
-  },
-);
+  useSyncExRateToForm({
+    onSynced: () => {
+      // If the total bigger then zero show alert to the user after adjusting entries.
+      if (subtotal > 0) {
+        clearTimeout(timeout.current);
+        timeout.current = setTimeout(() => {
+          openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
+        }, 500);
+      }
+    },
+  });
+  return null;
+});

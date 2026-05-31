@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import {
-
   FAccountsSuggestField,
   FieldRequiredHint,
   Col,
@@ -20,7 +19,8 @@ import intl from 'react-intl-universal';
  */
 export function TransactionTypeFields() {
   // Money in dialog context.
-  const { cashflowAccounts, setAccountId, accountId } = useMoneyInDailogContext();
+  const { cashflowAccounts, setAccountId, accountId } =
+    useMoneyInDailogContext();
 
   // Retrieves the add money in button options.
   const addMoneyInOptions = useMemo(() => getAddMoneyInOptions(), []);

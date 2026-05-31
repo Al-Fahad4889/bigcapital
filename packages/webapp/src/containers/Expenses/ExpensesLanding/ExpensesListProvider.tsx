@@ -40,7 +40,9 @@ function ExpensesListProvider({ query, tableStateChanged, ...props }) {
     expenses: expensesData?.data,
     pagination: expensesData?.pagination,
 
-    fields: resourceMeta?.fields ? getFieldsFromResourceMeta(resourceMeta.fields) : [],
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     resourceMeta,
     isResourceMetaLoading,
     isResourceMetaFetching,

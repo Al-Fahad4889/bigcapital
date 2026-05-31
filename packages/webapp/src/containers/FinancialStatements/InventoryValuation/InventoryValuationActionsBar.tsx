@@ -13,9 +13,18 @@ import { DashboardActionsBar, Icon, FormattedMessage as T } from '@/components';
 
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 
-import { withInventoryValuation, WithInventoryValuationProps } from './withInventoryValuation';
-import { withInventoryValuationActions, WithInventoryValuationActionsProps } from './withInventoryValuationActions';
-import { withDialogActions, WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import {
+  withInventoryValuation,
+  WithInventoryValuationProps,
+} from './withInventoryValuation';
+import {
+  withInventoryValuationActions,
+  WithInventoryValuationActionsProps,
+} from './withInventoryValuationActions';
+import {
+  withDialogActions,
+  WithDialogActionsProps,
+} from '@/containers/Dialog/withDialogActions';
 import { useInventoryValuationContext } from './InventoryValuationProvider';
 
 import { compose, saveInvoke } from '@/utils';
@@ -29,8 +38,10 @@ interface InventoryValuationActionsBarOwnProps {
 
 type InventoryValuationActionsBarProps = {
   isFilterDrawerOpen: boolean;
-} &
-  Pick<WithInventoryValuationActionsProps, 'toggleInventoryValuationFilterDrawer'> &
+} & Pick<
+  WithInventoryValuationActionsProps,
+  'toggleInventoryValuationFilterDrawer'
+> &
   WithDialogActionsProps &
   InventoryValuationActionsBarOwnProps;
 

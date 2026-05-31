@@ -73,7 +73,10 @@ function BranchesDataTableInner({
   );
 }
 
-export const BranchesDataTable = compose(withDialogActions, withAlertActions)(BranchesDataTableInner);
+export const BranchesDataTable = compose(
+  withDialogActions,
+  withAlertActions,
+)(BranchesDataTableInner);
 
 const BranchesTableCard = styled(Card)`
   padding: 0;

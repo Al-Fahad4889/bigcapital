@@ -14,7 +14,9 @@ export interface WithDashboardProps {
   splashScreenCompleted: boolean;
 }
 
-export function withDashboard<Props = unknown>(mapState?: MapState<WithDashboardProps, Props>) {
+export function withDashboard<Props = unknown>(
+  mapState?: MapState<WithDashboardProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithDashboardProps,
     Props,

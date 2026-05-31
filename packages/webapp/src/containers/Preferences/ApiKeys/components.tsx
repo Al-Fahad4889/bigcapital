@@ -17,10 +17,7 @@ import { FormatDateCell } from '@/components/Utils/FormatDate';
 /**
  * API Keys table actions menu.
  */
-export function ActionsMenu({
-  row: { original },
-  payload: { onRevoke },
-}) {
+export function ActionsMenu({ row: { original }, payload: { onRevoke } }) {
   return (
     <Menu>
       <MenuItem
@@ -38,11 +35,7 @@ export function ActionsMenu({
  * Displays the token value in a Tag component.
  */
 function TokenAccessor(apiKey) {
-  return (
-    <Tag minimal={true}>
-      {apiKey.token || ''}
-    </Tag>
-  );
+  return <Tag minimal={true}>{apiKey.token || ''}</Tag>;
 }
 
 /**

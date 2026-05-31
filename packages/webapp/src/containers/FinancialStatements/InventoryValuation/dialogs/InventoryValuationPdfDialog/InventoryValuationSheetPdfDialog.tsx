@@ -7,8 +7,10 @@ import { CLASSES } from '@/constants/classes';
 import { compose } from '@/utils';
 
 // Lazy loading the content.
-const InventoryValuationPdfDialogContent = lazy(
-  () => import('./InventoryValuationSheetPdfDialogContent').then(m => ({ default: m.InventoryValuationSheetPdfDialogContent })),
+const InventoryValuationPdfDialogContent = lazy(() =>
+  import('./InventoryValuationSheetPdfDialogContent').then((m) => ({
+    default: m.InventoryValuationSheetPdfDialogContent,
+  })),
 );
 
 interface InventoryValuationSheetPdfDialogRootProps {
@@ -21,7 +23,10 @@ interface InventoryValuationSheetPdfDialogRootProps {
  * Inventory valuation sheet pdf preview dialog.
  * @returns {React.ReactNode}
  */
-function InventoryValuationSheetPdfDialogRoot({ dialogName, isOpen }: InventoryValuationSheetPdfDialogRootProps) {
+function InventoryValuationSheetPdfDialogRoot({
+  dialogName,
+  isOpen,
+}: InventoryValuationSheetPdfDialogRootProps) {
   return (
     <Dialog
       name={dialogName}

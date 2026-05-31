@@ -1,7 +1,11 @@
 // @ts-nocheck
 import React from 'react';
 
-const UncategorizeTransactionAlert = React.lazy(() => import('./UncategorizeTransactionAlert/UncategorizeTransactionAlert').then(m => ({ default: m.UncategorizeTransactionAlert })));
+const UncategorizeTransactionAlert = React.lazy(() =>
+  import('./UncategorizeTransactionAlert/UncategorizeTransactionAlert').then(
+    (m) => ({ default: m.UncategorizeTransactionAlert }),
+  ),
+);
 
 /**
  * Cashflow alerts.

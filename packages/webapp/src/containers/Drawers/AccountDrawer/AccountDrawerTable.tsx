@@ -67,7 +67,9 @@ function AccountDrawerDataTable() {
   );
 }
 
-export const AccountDrawerTable = compose(withDrawerActions)(AccountDrawerTableInner);
+export const AccountDrawerTable = compose(withDrawerActions)(
+  AccountDrawerTableInner,
+);
 
 const TableFooter = styled.div`
   --x-border-color: #d2dde2;

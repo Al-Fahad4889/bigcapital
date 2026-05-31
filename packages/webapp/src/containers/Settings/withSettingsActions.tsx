@@ -11,7 +11,9 @@ import type { RootState } from '@/store/reducers';
 import type { SettingOption } from '@/store/settings/settings.type';
 
 export interface WithSettingsActionsProps {
-  requestSubmitOptions: (form: { options?: Array<SettingOption> }) => Promise<unknown>;
+  requestSubmitOptions: (form: {
+    options?: Array<SettingOption>;
+  }) => Promise<unknown>;
   requestFetchOptions: () => Promise<unknown>;
   addSetting: (group: string, key: string, value: unknown) => void;
 }

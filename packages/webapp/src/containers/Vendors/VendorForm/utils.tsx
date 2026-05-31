@@ -43,7 +43,7 @@ export const defaultInitialValues = {
   opening_balance: '',
   opening_balance_at: moment(new Date()).format('YYYY-MM-DD'),
   opening_balance_branch_id: '',
-  opening_balance_exchange_rate: ''
+  opening_balance_exchange_rate: '',
 };
 
 export const useSetPrimaryBranchToForm = () => {

@@ -17,7 +17,7 @@ export function DashboardInsider({
   name,
   mount = false,
   className,
-  style
+  style,
 }: DashboardInsiderProps) {
   return (
     <div
@@ -26,7 +26,6 @@ export function DashboardInsider({
           dashboard__insider: true,
           'dashboard__insider--loading': loading,
           [`dashboard__insider--${name}`]: !!name,
-
         },
         className,
       )}

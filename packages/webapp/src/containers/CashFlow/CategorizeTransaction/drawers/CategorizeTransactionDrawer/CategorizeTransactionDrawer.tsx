@@ -34,4 +34,6 @@ function CategorizeTransactionDrawerInner({
   );
 }
 
-export const CategorizeTransactionDrawer = compose(withDrawers())(CategorizeTransactionDrawerInner);
+export const CategorizeTransactionDrawer = compose(withDrawers())(
+  CategorizeTransactionDrawerInner,
+);

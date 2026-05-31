@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
-import {
-  Flex,
-  FlexItem,
-  FieldHint,
-
-  FFormGroup,
-  FCheckbox,
-} from '@/components';
+import { Flex, FlexItem, FieldHint, FFormGroup, FCheckbox } from '@/components';
 import {
   handlePreviousYearCheckBoxChange,
   handlePreviousYearChangeCheckboxChange,
@@ -45,7 +38,6 @@ function BalanceSheetHeaderComparisonPanalFields() {
           >
             <FCheckbox
               inline={true}
-              small={true}
               label={intl.get('balance_sheet.total_change')}
               name={'previousYearAmountChange'}
               onChange={handlePreviousYearChangeCheckboxChange(form)}
@@ -72,7 +64,6 @@ function BalanceSheetHeaderComparisonPanalFields() {
       <FFormGroup name={'previousPeriod'} labelInfo={<FieldHint />}>
         <FCheckbox
           inline={true}
-          small={true}
           label={intl.get('balance_sheet.previous_period')}
           name={'previousPeriod'}
           onChange={handlePreviousPeriodCheckBoxChange(form)}
@@ -87,7 +78,6 @@ function BalanceSheetHeaderComparisonPanalFields() {
           >
             <FCheckbox
               inline={true}
-              small={true}
               label={intl.get('balance_sheet.total_change')}
               name={'previousPeriodAmountChange'}
               onChange={handlePreviousPeriodChangeCheckboxChange(form)}
@@ -114,7 +104,6 @@ function BalanceSheetHeaderComparisonPanalFields() {
       <FFormGroup name={'percentageOfColumn'} labelInfo={<FieldHint />}>
         <FCheckbox
           inline={true}
-          small={true}
           label={intl.get('balance_sheet.percentage_of_column')}
           name={'percentageOfColumn'}
         />
@@ -124,7 +113,6 @@ function BalanceSheetHeaderComparisonPanalFields() {
       <FFormGroup name={'percentageOfRow'} labelInfo={<FieldHint />}>
         <FCheckbox
           inline={true}
-          small={true}
           label={intl.get('balance_sheet.percentage_of_row')}
           name={'percentageOfRow'}
         />

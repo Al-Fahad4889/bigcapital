@@ -6,9 +6,7 @@ import { useIsFetching } from '@tanstack/react-query';
 function AppProgress() {
   const isFetching = useIsFetching();
 
-  return (
-    <Progress isAnimating={isFetching} />
-  );
-};
- 
+  return <Progress isAnimating={isFetching} />;
+}
+
 export default AppProgress;

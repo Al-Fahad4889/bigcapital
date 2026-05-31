@@ -77,7 +77,11 @@ export const useBalanceSheetColumns = () => {
   const { balanceSheet } = useBalanceSheetContext();
 
   return React.useMemo(
-    () => dynamicColumns(balanceSheet?.table?.columns ?? [], balanceSheet?.table?.rows ?? []),
+    () =>
+      dynamicColumns(
+        balanceSheet?.table?.columns ?? [],
+        balanceSheet?.table?.rows ?? [],
+      ),
     [balanceSheet?.table],
   );
 };

@@ -3,7 +3,9 @@ import { FinancialReportPage } from '../FinancialReportPage';
 import { usePurchasesByItemsTable } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
 
-type UsePurchasesByItemsTableResult = ReturnType<typeof usePurchasesByItemsTable>;
+type UsePurchasesByItemsTableResult = ReturnType<
+  typeof usePurchasesByItemsTable
+>;
 
 type PurchasesByItemsContextValue = {
   purchaseByItems: UsePurchasesByItemsTableResult['data'];
@@ -18,9 +20,14 @@ interface PurchasesByItemsProviderProps {
   children?: React.ReactNode;
 }
 
-const PurchasesByItemsContext = createContext<PurchasesByItemsContextValue | undefined>(undefined);
+const PurchasesByItemsContext = createContext<
+  PurchasesByItemsContextValue | undefined
+>(undefined);
 
-function PurchasesByItemsProvider({ query, ...props }: PurchasesByItemsProviderProps) {
+function PurchasesByItemsProvider({
+  query,
+  ...props
+}: PurchasesByItemsProviderProps) {
   // Transforms the report query to http query.
   const httpQuery = useMemo(() => transformFilterFormToQuery(query), [query]);
 

@@ -4,15 +4,18 @@ import { ApplicationState } from '@/store/reducers';
 import type { MapState } from '@/containers/hoc.types';
 
 export interface WithVendorsTransactionProps {
-  vendorsTransactionsDrawerFilter: ReturnType<typeof getVendorsTransactionsFilterDrawer>;
+  vendorsTransactionsDrawerFilter: ReturnType<
+    typeof getVendorsTransactionsFilterDrawer
+  >;
 }
 
-export const withVendorsTransaction = <Props,>(mapState?: MapState<WithVendorsTransactionProps, Props>) => {
+export const withVendorsTransaction = <Props,>(
+  mapState?: MapState<WithVendorsTransactionProps, Props>,
+) => {
   const mapStateToProps = (state: ApplicationState, props: Props) => {
     const mapped: WithVendorsTransactionProps = {
-      vendorsTransactionsDrawerFilter: getVendorsTransactionsFilterDrawer(
-        state,
-      ),
+      vendorsTransactionsDrawerFilter:
+        getVendorsTransactionsFilterDrawer(state),
     };
     return mapState ? mapState(mapped, state, props) : mapped;
   };

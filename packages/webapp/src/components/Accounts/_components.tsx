@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { AccountSelect } from "./AccountsMultiSelect";
+import { AccountSelect } from './AccountsMultiSelect';
 
 // Filters accounts items.
 export const accountPredicate = (

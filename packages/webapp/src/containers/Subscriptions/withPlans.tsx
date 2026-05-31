@@ -11,7 +11,9 @@ export interface WithPlansProps {
   plansPeriod: ReturnType<ReturnType<typeof getPlansPeriodSelector>>;
 }
 
-export function withPlans<Props = unknown>(mapState?: MapState<WithPlansProps, Props>) {
+export function withPlans<Props = unknown>(
+  mapState?: MapState<WithPlansProps, Props>,
+) {
   const mapStateToProps: MapStateToProps<
     WithPlansProps,
     Props,
