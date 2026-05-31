@@ -110,7 +110,11 @@ export class TenantRepository extends TenantBaseRepository {
    * @param {Record<string, any>} metadata - The metadata to save.
    * @param {Knex.Transaction} trx - Knex transaction.
    */
-  async saveMetadata(tenantId: number, metadata: Record<string, any>, trx?: Knex.Transaction) {
+  async saveMetadata(
+    tenantId: number,
+    metadata: Record<string, any>,
+    trx?: Knex.Transaction,
+  ) {
     const foundMetadata = await this.tenantMetadataModel
       .query(trx)
       .findOne({ tenantId });

@@ -9,9 +9,7 @@ import { PermissionGuard } from '@/modules/Roles/Permission.guard';
 import { RegisterTenancyModel } from '@/modules/Tenancy/TenancyModels/Tenancy.module';
 import { AuditLog } from './models/AuditLog.model';
 
-const models = [
-  RegisterTenancyModel(AuditLog)
-];
+const models = [RegisterTenancyModel(AuditLog)];
 @Module({
   imports: [...models],
   controllers: [AuditLogsController],

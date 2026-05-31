@@ -137,12 +137,8 @@ import {
   IBankRuleEventEditedPayload,
   IBankRuleEventDeletedPayload,
 } from '@/modules/BankRules/types';
-import {
-  IUncategorizedTransactionCreatedEventPayload,
-} from '@/modules/BankingCategorize/types/BankingCategorize.types';
-import {
-  IPlaidTransactionsSyncedEventPayload,
-} from '@/modules/BankingPlaid/types/BankingPlaid.types';
+import { IUncategorizedTransactionCreatedEventPayload } from '@/modules/BankingCategorize/types/BankingCategorize.types';
+import { IPlaidTransactionsSyncedEventPayload } from '@/modules/BankingPlaid/types/BankingPlaid.types';
 import {
   IBankTransactionExcludedEventPayload,
   IBankTransactionUnexcludedEventPayload,
@@ -197,24 +193,33 @@ export class FinancialAuditLogSubscriber {
 
   // --- Sale invoices ---
   @OnEvent(events.saleInvoice.onCreated)
-  async onSaleInvoiceCreated({
-    saleInvoice,
-    trx,
-  }: ISaleInvoiceCreatedPayload) {
-    await this.write(trx, 'created', AbilitySubject.SaleInvoice, saleInvoice.id, {
-      invoiceNumber: saleInvoice.invoiceNo,
-      balance: saleInvoice.balance,
-      currencyCode: saleInvoice.currencyCode,
-    });
+  async onSaleInvoiceCreated({ saleInvoice, trx }: ISaleInvoiceCreatedPayload) {
+    await this.write(
+      trx,
+      'created',
+      AbilitySubject.SaleInvoice,
+      saleInvoice.id,
+      {
+        invoiceNumber: saleInvoice.invoiceNo,
+        balance: saleInvoice.balance,
+        currencyCode: saleInvoice.currencyCode,
+      },
+    );
   }
 
   @OnEvent(events.saleInvoice.onEdited)
   async onSaleInvoiceEdited({ saleInvoice, trx }: ISaleInvoiceEditedPayload) {
-    await this.write(trx, 'edited', AbilitySubject.SaleInvoice, saleInvoice.id, {
-      invoiceNumber: saleInvoice.invoiceNo,
-      balance: saleInvoice.balance,
-      currencyCode: saleInvoice.currencyCode,
-    });
+    await this.write(
+      trx,
+      'edited',
+      AbilitySubject.SaleInvoice,
+      saleInvoice.id,
+      {
+        invoiceNumber: saleInvoice.invoiceNo,
+        balance: saleInvoice.balance,
+        currencyCode: saleInvoice.currencyCode,
+      },
+    );
   }
 
   @OnEvent(events.saleInvoice.onDeleted)
@@ -237,9 +242,15 @@ export class FinancialAuditLogSubscriber {
     saleInvoice,
     trx,
   }: ISaleInvoiceEventDeliveredPayload) {
-    await this.write(trx, 'delivered', AbilitySubject.SaleInvoice, saleInvoice.id, {
-      invoiceNumber: saleInvoice.invoiceNo,
-    });
+    await this.write(
+      trx,
+      'delivered',
+      AbilitySubject.SaleInvoice,
+      saleInvoice.id,
+      {
+        invoiceNumber: saleInvoice.invoiceNo,
+      },
+    );
   }
 
   @OnEvent(events.saleInvoice.onWrittenoff)
@@ -247,9 +258,15 @@ export class FinancialAuditLogSubscriber {
     saleInvoice,
     trx,
   }: ISaleInvoiceWriteoffCreatePayload) {
-    await this.write(trx, 'writtenoff', AbilitySubject.SaleInvoice, saleInvoice.id, {
-      invoiceNumber: saleInvoice.invoiceNo,
-    });
+    await this.write(
+      trx,
+      'writtenoff',
+      AbilitySubject.SaleInvoice,
+      saleInvoice.id,
+      {
+        invoiceNumber: saleInvoice.invoiceNo,
+      },
+    );
   }
 
   @OnEvent(events.saleInvoice.onWrittenoffCanceled)
@@ -269,20 +286,32 @@ export class FinancialAuditLogSubscriber {
   // --- Sale receipts ---
   @OnEvent(events.saleReceipt.onCreated)
   async onSaleReceiptCreated({ saleReceipt, trx }: ISaleReceiptCreatedPayload) {
-    await this.write(trx, 'created', AbilitySubject.SaleReceipt, saleReceipt.id, {
-      receiptNumber: saleReceipt.receiptNumber,
-      amount: saleReceipt.total,
-      currencyCode: saleReceipt.currencyCode,
-    });
+    await this.write(
+      trx,
+      'created',
+      AbilitySubject.SaleReceipt,
+      saleReceipt.id,
+      {
+        receiptNumber: saleReceipt.receiptNumber,
+        amount: saleReceipt.total,
+        currencyCode: saleReceipt.currencyCode,
+      },
+    );
   }
 
   @OnEvent(events.saleReceipt.onEdited)
   async onSaleReceiptEdited({ saleReceipt, trx }: ISaleReceiptEditedPayload) {
-    await this.write(trx, 'edited', AbilitySubject.SaleReceipt, saleReceipt.id, {
-      receiptNumber: saleReceipt.receiptNumber,
-      amount: saleReceipt.total,
-      currencyCode: saleReceipt.currencyCode,
-    });
+    await this.write(
+      trx,
+      'edited',
+      AbilitySubject.SaleReceipt,
+      saleReceipt.id,
+      {
+        receiptNumber: saleReceipt.receiptNumber,
+        amount: saleReceipt.total,
+        currencyCode: saleReceipt.currencyCode,
+      },
+    );
   }
 
   @OnEvent(events.saleReceipt.onDeleted)
@@ -420,14 +449,22 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.expenses.onDeleted)
-  async onExpenseDeleted({ expenseId, oldExpense, trx }: IExpenseEventDeletePayload) {
+  async onExpenseDeleted({
+    expenseId,
+    oldExpense,
+    trx,
+  }: IExpenseEventDeletePayload) {
     await this.write(trx, 'deleted', AbilitySubject.Expense, expenseId, {
       amount: oldExpense.totalAmount,
     });
   }
 
   @OnEvent(events.expenses.onPublished)
-  async onExpensePublished({ expense, expenseId, trx }: IExpenseEventPublishedPayload) {
+  async onExpensePublished({
+    expense,
+    expenseId,
+    trx,
+  }: IExpenseEventPublishedPayload) {
     await this.write(trx, 'published', AbilitySubject.Expense, expenseId, {
       amount: expense.totalAmount,
       currencyCode: expense.currencyCode,
@@ -458,13 +495,9 @@ export class FinancialAuditLogSubscriber {
     oldCreditNote,
     trx,
   }: ICreditNoteDeletedPayload) {
-    await this.write(
-      trx,
-      'deleted',
-      AbilitySubject.CreditNote,
-      creditNoteId,
-      { creditNoteNumber: oldCreditNote.creditNoteNumber },
-    );
+    await this.write(trx, 'deleted', AbilitySubject.CreditNote, creditNoteId, {
+      creditNoteNumber: oldCreditNote.creditNoteNumber,
+    });
   }
 
   @OnEvent(events.creditNote.onOpened)
@@ -480,15 +513,24 @@ export class FinancialAuditLogSubscriber {
     refundCreditNote,
     creditNote,
   }: IRefundCreditNoteCreatedPayload) {
-    await this.write(trx, 'refund_created', 'CreditNoteRefund', refundCreditNote.id, {
-      creditNoteId: creditNote.id,
-      amount: refundCreditNote.amount,
-    });
+    await this.write(
+      trx,
+      'refund_created',
+      'CreditNoteRefund',
+      refundCreditNote.id,
+      {
+        creditNoteId: creditNote.id,
+        amount: refundCreditNote.amount,
+      },
+    );
   }
 
   // --- Vendor credits ---
   @OnEvent(events.vendorCredit.onCreated)
-  async onVendorCreditCreated({ vendorCredit, trx }: IVendorCreditCreatedPayload) {
+  async onVendorCreditCreated({
+    vendorCredit,
+    trx,
+  }: IVendorCreditCreatedPayload) {
     await this.write(
       trx,
       'created',
@@ -503,7 +545,10 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.vendorCredit.onEdited)
-  async onVendorCreditEdited({ vendorCredit, trx }: IVendorCreditEditedPayload) {
+  async onVendorCreditEdited({
+    vendorCredit,
+    trx,
+  }: IVendorCreditEditedPayload) {
     await this.write(
       trx,
       'edited',
@@ -537,9 +582,15 @@ export class FinancialAuditLogSubscriber {
     vendorCreditId,
     trx,
   }: IVendorCreditOpenedPayload) {
-    await this.write(trx, 'opened', AbilitySubject.VendorCredit, vendorCreditId, {
-      vendorCreditNumber: vendorCredit.vendorCreditNumber,
-    });
+    await this.write(
+      trx,
+      'opened',
+      AbilitySubject.VendorCredit,
+      vendorCreditId,
+      {
+        vendorCreditNumber: vendorCredit.vendorCreditNumber,
+      },
+    );
   }
 
   @OnEvent(events.vendorCredit.onRefundCreated)
@@ -598,7 +649,13 @@ export class FinancialAuditLogSubscriber {
     manualJournalId,
     trx,
   }: IManualJournalEventDeletedPayload) {
-    await this.write(trx, 'deleted', AbilitySubject.ManualJournal, manualJournalId, {});
+    await this.write(
+      trx,
+      'deleted',
+      AbilitySubject.ManualJournal,
+      manualJournalId,
+      {},
+    );
   }
 
   @OnEvent(events.manualJournals.onPublished)
@@ -621,10 +678,16 @@ export class FinancialAuditLogSubscriber {
     cashflowTransaction,
     trx,
   }: ICommandCashflowCreatedPayload) {
-    await this.write(trx, 'created', AbilitySubject.Cashflow, cashflowTransaction.id, {
-      amount: cashflowTransaction.amount,
-      currencyCode: cashflowTransaction.currencyCode,
-    });
+    await this.write(
+      trx,
+      'created',
+      AbilitySubject.Cashflow,
+      cashflowTransaction.id,
+      {
+        amount: cashflowTransaction.amount,
+        currencyCode: cashflowTransaction.currencyCode,
+      },
+    );
   }
 
   @OnEvent(events.cashflow.onTransactionDeleted)
@@ -632,7 +695,13 @@ export class FinancialAuditLogSubscriber {
     cashflowTransactionId,
     trx,
   }: ICommandCashflowDeletedPayload) {
-    await this.write(trx, 'deleted', AbilitySubject.Cashflow, cashflowTransactionId, {});
+    await this.write(
+      trx,
+      'deleted',
+      AbilitySubject.Cashflow,
+      cashflowTransactionId,
+      {},
+    );
   }
 
   @OnEvent(events.cashflow.onTransactionCategorized)
@@ -651,7 +720,11 @@ export class FinancialAuditLogSubscriber {
 
   // --- GL accounts ---
   @OnEvent(events.accounts.onCreated)
-  async onAccountCreated({ account, accountId, trx }: IAccountEventCreatedPayload) {
+  async onAccountCreated({
+    account,
+    accountId,
+    trx,
+  }: IAccountEventCreatedPayload) {
     await this.write(trx, 'created', AbilitySubject.Account, accountId, {
       name: account.name,
       code: account.code,
@@ -659,7 +732,11 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.accounts.onDeleted)
-  async onAccountDeleted({ accountId, oldAccount, trx }: IAccountEventDeletedPayload) {
+  async onAccountDeleted({
+    accountId,
+    oldAccount,
+    trx,
+  }: IAccountEventDeletedPayload) {
     await this.write(trx, 'deleted', AbilitySubject.Account, accountId, {
       name: oldAccount.name,
       code: oldAccount.code,
@@ -667,17 +744,37 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.accounts.onActivated)
-  async onAccountActivated({ accountId, activate, account, trx }: IAccountEventActivatedPayload) {
-    await this.write(trx, activate ? 'activated' : 'inactivated', AbilitySubject.Account, accountId, {
-      name: account.name,
-      code: account.code,
-    });
+  async onAccountActivated({
+    accountId,
+    activate,
+    account,
+    trx,
+  }: IAccountEventActivatedPayload) {
+    await this.write(
+      trx,
+      activate ? 'activated' : 'inactivated',
+      AbilitySubject.Account,
+      accountId,
+      {
+        name: account.name,
+        code: account.code,
+      },
+    );
   }
 
   // --- Contacts (Customers/Vendors) ---
   @OnEvent(events.contacts.onActivated)
-  async onContactActivated({ contactId, contact }: { contactId: number; contact: any }) {
-    const subject = contact.contactService === 'vendor' ? AbilitySubject.Vendor : AbilitySubject.Customer;
+  async onContactActivated({
+    contactId,
+    contact,
+  }: {
+    contactId: number;
+    contact: any;
+  }) {
+    const subject =
+      contact.contactService === 'vendor'
+        ? AbilitySubject.Vendor
+        : AbilitySubject.Customer;
     await this.write(null, 'activated', subject, contactId, {
       displayName: contact.displayName,
       email: contact.email,
@@ -685,8 +782,17 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.contacts.onInactivated)
-  async onContactInactivated({ contactId, contact }: { contactId: number; contact: any }) {
-    const subject = contact.contactService === 'vendor' ? AbilitySubject.Vendor : AbilitySubject.Customer;
+  async onContactInactivated({
+    contactId,
+    contact,
+  }: {
+    contactId: number;
+    contact: any;
+  }) {
+    const subject =
+      contact.contactService === 'vendor'
+        ? AbilitySubject.Vendor
+        : AbilitySubject.Customer;
     await this.write(null, 'inactivated', subject, contactId, {
       displayName: contact.displayName,
       email: contact.email,
@@ -761,16 +867,10 @@ export class FinancialAuditLogSubscriber {
     warehouseTransfer,
     trx,
   }: IWarehouseTransferEditedPayload) {
-    await this.write(
-      trx,
-      'edited',
-      'WarehouseTransfer',
-      warehouseTransfer.id,
-      {
-        transactionNumber: (warehouseTransfer as { transactionNumber?: string })
-          .transactionNumber,
-      },
-    );
+    await this.write(trx, 'edited', 'WarehouseTransfer', warehouseTransfer.id, {
+      transactionNumber: (warehouseTransfer as { transactionNumber?: string })
+        .transactionNumber,
+    });
   }
 
   @OnEvent(events.warehouseTransfer.onDeleted)
@@ -828,13 +928,22 @@ export class FinancialAuditLogSubscriber {
   ) {
     const meta: Record<string, unknown> = { module: payload.module };
     if ('transactionLockingDTO' in payload && payload.transactionLockingDTO) {
-      meta.lockToDate = (payload.transactionLockingDTO as { lockToDate?: Date })
-        .lockToDate;
+      meta.lockToDate = (
+        payload.transactionLockingDTO as { lockToDate?: Date }
+      ).lockToDate;
     }
     if ('cancelLockingDTO' in payload && payload.cancelLockingDTO) {
-      meta.cancelReason = (payload.cancelLockingDTO as { reason?: string }).reason;
+      meta.cancelReason = (
+        payload.cancelLockingDTO as { reason?: string }
+      ).reason;
     }
-    await this.write(undefined, 'locking_changed', 'TransactionsLocking', null, meta);
+    await this.write(
+      undefined,
+      'locking_changed',
+      'TransactionsLocking',
+      null,
+      meta,
+    );
   }
 
   // --- Sale estimates ---
@@ -932,7 +1041,11 @@ export class FinancialAuditLogSubscriber {
 
   // --- Customers ---
   @OnEvent(events.customers.onCreated)
-  async onCustomerCreated({ customer, customerId, trx }: ICustomerEventCreatedPayload) {
+  async onCustomerCreated({
+    customer,
+    customerId,
+    trx,
+  }: ICustomerEventCreatedPayload) {
     await this.write(trx, 'created', AbilitySubject.Customer, customerId, {
       displayName: customer.displayName,
       email: customer.email,
@@ -940,7 +1053,11 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.customers.onEdited)
-  async onCustomerEdited({ customer, customerId, trx }: ICustomerEventEditedPayload) {
+  async onCustomerEdited({
+    customer,
+    customerId,
+    trx,
+  }: ICustomerEventEditedPayload) {
     await this.write(trx, 'edited', AbilitySubject.Customer, customerId, {
       displayName: customer.displayName,
       email: customer.email,
@@ -948,7 +1065,11 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.customers.onDeleted)
-  async onCustomerDeleted({ customerId, oldCustomer, trx }: ICustomerEventDeletedPayload) {
+  async onCustomerDeleted({
+    customerId,
+    oldCustomer,
+    trx,
+  }: ICustomerEventDeletedPayload) {
     await this.write(trx, 'deleted', AbilitySubject.Customer, customerId, {
       displayName: oldCustomer.displayName,
       email: oldCustomer.email,
@@ -973,7 +1094,11 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.vendors.onDeleted)
-  async onVendorDeleted({ vendorId, oldVendor, trx }: IVendorEventDeletedPayload) {
+  async onVendorDeleted({
+    vendorId,
+    oldVendor,
+    trx,
+  }: IVendorEventDeletedPayload) {
     await this.write(trx, 'deleted', AbilitySubject.Vendor, vendorId, {
       displayName: oldVendor.displayName,
       email: oldVendor.email,
@@ -1038,14 +1163,22 @@ export class FinancialAuditLogSubscriber {
 
   // --- Warehouse ---
   @OnEvent(events.warehouse.onCreated)
-  async onWarehouseCreated({ warehouse, warehouseDTO, trx }: IWarehouseCreatedPayload) {
+  async onWarehouseCreated({
+    warehouse,
+    warehouseDTO,
+    trx,
+  }: IWarehouseCreatedPayload) {
     await this.write(trx, 'created', AbilitySubject.Warehouse, warehouse.id, {
       code: warehouseDTO.code,
     });
   }
 
   @OnEvent(events.warehouse.onEdited)
-  async onWarehouseEdited({ warehouse, warehouseDTO, trx }: IWarehouseEditedPayload) {
+  async onWarehouseEdited({
+    warehouse,
+    warehouseDTO,
+    trx,
+  }: IWarehouseEditedPayload) {
     await this.write(trx, 'edited', AbilitySubject.Warehouse, warehouse.id, {
       code: warehouseDTO.code,
     });
@@ -1059,23 +1192,41 @@ export class FinancialAuditLogSubscriber {
   // --- Branches ---
   @OnEvent(events.branch.onActivated)
   async onBranchActivated({ primaryBranch, trx }: IBranchesActivatedPayload) {
-    await this.write(trx, 'activated', AbilitySubject.Branch, primaryBranch.id, {
-      name: primaryBranch.name,
-      code: primaryBranch.code,
-    });
+    await this.write(
+      trx,
+      'activated',
+      AbilitySubject.Branch,
+      primaryBranch.id,
+      {
+        name: primaryBranch.name,
+        code: primaryBranch.code,
+      },
+    );
   }
 
   @OnEvent(events.branch.onMarkedPrimary)
-  async onBranchMarkedPrimary({ markedBranch, trx }: IBranchMarkedAsPrimaryPayload) {
-    await this.write(trx, 'marked_primary', AbilitySubject.Branch, markedBranch.id, {
-      name: markedBranch.name,
-      code: markedBranch.code,
-    });
+  async onBranchMarkedPrimary({
+    markedBranch,
+    trx,
+  }: IBranchMarkedAsPrimaryPayload) {
+    await this.write(
+      trx,
+      'marked_primary',
+      AbilitySubject.Branch,
+      markedBranch.id,
+      {
+        name: markedBranch.name,
+        code: markedBranch.code,
+      },
+    );
   }
 
   // --- Item Category ---
   @OnEvent(events.itemCategory.onCreated)
-  async onItemCategoryCreated({ itemCategory, trx }: IItemCategoryCreatedPayload) {
+  async onItemCategoryCreated({
+    itemCategory,
+    trx,
+  }: IItemCategoryCreatedPayload) {
     await this.write(trx, 'created', 'ItemCategory', itemCategory.id, {
       name: itemCategory.name,
       description: itemCategory.description,
@@ -1083,7 +1234,10 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.itemCategory.onEdited)
-  async onItemCategoryEdited({ oldItemCategory, trx }: IItemCategoryEditedPayload) {
+  async onItemCategoryEdited({
+    oldItemCategory,
+    trx,
+  }: IItemCategoryEditedPayload) {
     await this.write(trx, 'edited', 'ItemCategory', oldItemCategory.id, {
       name: oldItemCategory.name,
       description: oldItemCategory.description,
@@ -1091,7 +1245,10 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.itemCategory.onDeleted)
-  async onItemCategoryDeleted({ itemCategoryId, oldItemCategory }: IItemCategoryDeletedPayload) {
+  async onItemCategoryDeleted({
+    itemCategoryId,
+    oldItemCategory,
+  }: IItemCategoryDeletedPayload) {
     await this.write(undefined, 'deleted', 'ItemCategory', itemCategoryId, {
       name: oldItemCategory.name,
     });
@@ -1107,7 +1264,11 @@ export class FinancialAuditLogSubscriber {
   }
 
   @OnEvent(events.bankRules.onEdited)
-  async onBankRuleEdited({ bankRule, oldBankRule, trx }: IBankRuleEventEditedPayload) {
+  async onBankRuleEdited({
+    bankRule,
+    oldBankRule,
+    trx,
+  }: IBankRuleEventEditedPayload) {
     await this.write(trx, 'edited', 'BankRule', bankRule.id, {
       name: bankRule.name,
       applyIfAccountId: bankRule.applyIfAccountId,
@@ -1125,13 +1286,19 @@ export class FinancialAuditLogSubscriber {
     uncategorizedTransaction,
     trx,
   }: IUncategorizedTransactionCreatedEventPayload) {
-    await this.write(trx, 'created', 'UncategorizedTransaction', uncategorizedTransaction.id, {
-      amount: uncategorizedTransaction.amount,
-      currencyCode: uncategorizedTransaction.currencyCode,
-      payee: uncategorizedTransaction.payee,
-      description: uncategorizedTransaction.description,
-      plaidTransactionId: uncategorizedTransaction.plaidTransactionId,
-    });
+    await this.write(
+      trx,
+      'created',
+      'UncategorizedTransaction',
+      uncategorizedTransaction.id,
+      {
+        amount: uncategorizedTransaction.amount,
+        currencyCode: uncategorizedTransaction.currencyCode,
+        payee: uncategorizedTransaction.payee,
+        description: uncategorizedTransaction.description,
+        plaidTransactionId: uncategorizedTransaction.plaidTransactionId,
+      },
+    );
   }
 
   // --- Plaid Sync Events ---
@@ -1154,13 +1321,19 @@ export class FinancialAuditLogSubscriber {
     uncategorizedTransaction,
     trx,
   }: IBankTransactionExcludedEventPayload) {
-    await this.write(trx, 'excluded', 'BankTransaction', uncategorizedTransactionId, {
-      amount: uncategorizedTransaction?.amount,
-      currencyCode: uncategorizedTransaction?.currencyCode,
-      payee: uncategorizedTransaction?.payee,
-      description: uncategorizedTransaction?.description,
-      accountId: uncategorizedTransaction?.accountId,
-    });
+    await this.write(
+      trx,
+      'excluded',
+      'BankTransaction',
+      uncategorizedTransactionId,
+      {
+        amount: uncategorizedTransaction?.amount,
+        currencyCode: uncategorizedTransaction?.currencyCode,
+        payee: uncategorizedTransaction?.payee,
+        description: uncategorizedTransaction?.description,
+        accountId: uncategorizedTransaction?.accountId,
+      },
+    );
   }
 
   @OnEvent(events.bankTransactions.onUnexcluded)
@@ -1169,12 +1342,18 @@ export class FinancialAuditLogSubscriber {
     uncategorizedTransaction,
     trx,
   }: IBankTransactionUnexcludedEventPayload) {
-    await this.write(trx, 'unexcluded', 'BankTransaction', uncategorizedTransactionId, {
-      amount: uncategorizedTransaction?.amount,
-      currencyCode: uncategorizedTransaction?.currencyCode,
-      payee: uncategorizedTransaction?.payee,
-      description: uncategorizedTransaction?.description,
-      accountId: uncategorizedTransaction?.accountId,
-    });
+    await this.write(
+      trx,
+      'unexcluded',
+      'BankTransaction',
+      uncategorizedTransactionId,
+      {
+        amount: uncategorizedTransaction?.amount,
+        currencyCode: uncategorizedTransaction?.currencyCode,
+        payee: uncategorizedTransaction?.payee,
+        description: uncategorizedTransaction?.description,
+        accountId: uncategorizedTransaction?.accountId,
+      },
+    );
   }
 }

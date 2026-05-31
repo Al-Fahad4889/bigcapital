@@ -16,10 +16,16 @@ export class BillPaymentPageEntryDto {
   @ApiProperty({ description: 'The outstanding due amount', example: 1500 })
   dueAmount: number;
 
-  @ApiProperty({ description: 'The total payment amount applied', example: 500 })
+  @ApiProperty({
+    description: 'The total payment amount applied',
+    example: 500,
+  })
   totalPaymentAmount: number;
 
-  @ApiProperty({ description: 'The payment amount for this entry', example: 500 })
+  @ApiProperty({
+    description: 'The payment amount for this entry',
+    example: 500,
+  })
   paymentAmount: number;
 
   @ApiProperty({ description: 'The currency code', example: 'USD' })

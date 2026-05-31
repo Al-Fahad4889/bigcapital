@@ -48,9 +48,7 @@ export class SetDefaultWorkspaceService {
       .first();
 
     if (!membership) {
-      throw new NotFoundException(
-        'User does not belong to this organization',
-      );
+      throw new NotFoundException('User does not belong to this organization');
     }
     // Update the user's default tenant
     await this.systemUserModel

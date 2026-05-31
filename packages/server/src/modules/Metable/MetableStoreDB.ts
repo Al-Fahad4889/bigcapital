@@ -209,16 +209,10 @@ export class MetableDBStore
    * @param {String} parseType -
    */
   mapMetadata(metadata: IMetadata) {
-    const metaType = this.config.getMetaType(
-      metadata.key,
-      metadata.group,
-    );
+    const metaType = this.config.getMetaType(metadata.key, metadata.group);
     return {
       key: metadata.key,
-      value: MetableDBStore.parseMetaValue(
-        String(metadata.value),
-        metaType,
-      ),
+      value: MetableDBStore.parseMetaValue(String(metadata.value), metaType),
       ...this.extraColumns.reduce((obj, extraCol: string) => {
         obj[extraCol] = metadata[extraCol] || null;
         return obj;

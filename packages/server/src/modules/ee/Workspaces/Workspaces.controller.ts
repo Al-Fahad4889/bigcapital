@@ -9,7 +9,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiExtraModels, ApiOperation, ApiResponse, ApiTags, getSchemaPath } from '@nestjs/swagger';
+import {
+  ApiExtraModels,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import { ClsService } from 'nestjs-cls';
 import { TenantAgnosticRoute } from '@/modules/Tenancy/TenancyGlobal.guard';
 import { IgnoreUserVerifiedRoute } from '@/modules/Auth/guards/EnsureUserVerified.guard';
@@ -35,7 +41,11 @@ import { WorkspacesError } from './Workspaces.constants';
 
 @ApiTags('Workspaces')
 @Controller('workspaces')
-@ApiExtraModels(WorkspaceDto, CreateWorkspaceResponseDto, WorkspaceBuildJobResponseDto)
+@ApiExtraModels(
+  WorkspaceDto,
+  CreateWorkspaceResponseDto,
+  WorkspaceBuildJobResponseDto,
+)
 export class WorkspacesController {
   constructor(
     private readonly createWorkspaceService: CreateWorkspaceService,
@@ -55,7 +65,9 @@ export class WorkspacesController {
   @Get()
   @TenantAgnosticRoute()
   @IgnoreUserVerifiedRoute()
-  @ApiOperation({ summary: 'List workspaces the authenticated user belongs to' })
+  @ApiOperation({
+    summary: 'List workspaces the authenticated user belongs to',
+  })
   @ApiResponse({
     status: 200,
     description: 'Returns the list of workspaces',
@@ -133,7 +145,10 @@ export class WorkspacesController {
         'Cannot delete the current organization',
       );
     }
-    return this.deleteWorkspaceJobService.initiateDelete(userId, organizationId);
+    return this.deleteWorkspaceJobService.initiateDelete(
+      userId,
+      organizationId,
+    );
   }
 
   /**
@@ -155,7 +170,10 @@ export class WorkspacesController {
     @Param('organizationId') organizationId: string,
   ): Promise<void> {
     const userId = this.cls.get<number>('userId');
-    return this.inactivateWorkspaceService.inactivateWorkspace(userId, organizationId);
+    return this.inactivateWorkspaceService.inactivateWorkspace(
+      userId,
+      organizationId,
+    );
   }
 
   /**
@@ -177,7 +195,10 @@ export class WorkspacesController {
     @Param('organizationId') organizationId: string,
   ): Promise<void> {
     const userId = this.cls.get<number>('userId');
-    return this.inactivateWorkspaceService.activateWorkspace(userId, organizationId);
+    return this.inactivateWorkspaceService.activateWorkspace(
+      userId,
+      organizationId,
+    );
   }
 
   /**
@@ -194,7 +215,9 @@ export class WorkspacesController {
       $ref: getSchemaPath(WorkspaceBuildJobResponseDto),
     },
   })
-  async buildJobStatus(@Param('buildJobId') buildJobId: string): Promise<WorkspaceBuildJobResponseDto> {
+  async buildJobStatus(
+    @Param('buildJobId') buildJobId: string,
+  ): Promise<WorkspaceBuildJobResponseDto> {
     return this.getWorkspaceBuildJobService.getJobDetails(buildJobId);
   }
 

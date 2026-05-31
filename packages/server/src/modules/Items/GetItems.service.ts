@@ -65,10 +65,7 @@ export class GetItemsService {
       .pagination(filter.page - 1, filter.pageSize);
 
     // Retrieves the transformed items.
-    const data = await this.transformer.transform(
-      items,
-      new ItemTransformer(),
-    );
+    const data = await this.transformer.transform(items, new ItemTransformer());
     return {
       data,
       pagination,

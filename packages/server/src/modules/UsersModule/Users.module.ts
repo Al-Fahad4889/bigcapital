@@ -63,6 +63,10 @@ const models = [InjectSystemModel(UserInvite)];
     SendInviteUsersMailMessage,
     UsersApplication,
   ],
-  controllers: [UsersController, UsersInviteController, UsersInvitePublicController],
+  controllers: [
+    UsersController,
+    UsersInviteController,
+    UsersInvitePublicController,
+  ],
 })
 export class UsersModule {}

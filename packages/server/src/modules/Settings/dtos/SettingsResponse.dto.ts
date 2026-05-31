@@ -1,7 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class SettingItemDto {
-  @ApiProperty({ description: 'The setting key', example: 'invoices_from_name' })
+  @ApiProperty({
+    description: 'The setting key',
+    example: 'invoices_from_name',
+  })
   key: string;
 
   @ApiProperty({ description: 'The setting value', example: 'My Company' })

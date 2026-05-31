@@ -638,7 +638,7 @@ export class Bill extends TenantBaseModel {
 
     return this.query(trx)
       .where('id', billId)
-    [changeMethod]('payment_amount', Math.abs(amount));
+      [changeMethod]('payment_amount', Math.abs(amount));
   }
 
   /**

@@ -193,7 +193,8 @@ export class WorkspaceTransformer extends Transformer<UserTenant> {
     }
 
     return result.sort((a, b) => {
-      const currentOrganizationId = this.options?.currentOrganizationId as string;
+      const currentOrganizationId = this.options
+        ?.currentOrganizationId as string;
       if (currentOrganizationId) {
         if (a.organizationId === currentOrganizationId) return -1;
         if (b.organizationId === currentOrganizationId) return 1;
