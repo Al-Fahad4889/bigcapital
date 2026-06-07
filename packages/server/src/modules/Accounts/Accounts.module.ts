@@ -3,13 +3,12 @@ import { TenancyDatabaseModule } from '../Tenancy/TenancyDB/TenancyDB.module';
 import { AccountsController } from './Accounts.controller';
 import { AccountsApplication } from './AccountsApplication.service';
 import { CreateAccountService } from './CreateAccount.service';
-import { TenancyContext } from '../Tenancy/TenancyContext.service';
+import { TenancyModule } from '../Tenancy/Tenancy.module';
 import { CommandAccountValidators } from './CommandAccountValidators.service';
 import { AccountRepository } from './repositories/Account.repository';
 import { EditAccount } from './EditAccount.service';
 import { DeleteAccount } from './DeleteAccount.service';
 import { GetAccount } from './GetAccount.service';
-import { TransformerInjectable } from '../Transformer/TransformerInjectable.service';
 import { ActivateAccount } from './ActivateAccount.service';
 import { GetAccountTypesService } from './GetAccountTypes.service';
 import { GetAccountTransactionsService } from './GetAccountTransactions.service';
@@ -26,19 +25,17 @@ import { AccountsSettingsService } from './AccountsSettings.service';
 const models = [RegisterTenancyModel(BankAccount)];
 
 @Module({
-  imports: [TenancyDatabaseModule, DynamicListModule, ...models],
+  imports: [TenancyModule, TenancyDatabaseModule, DynamicListModule, ...models],
   controllers: [AccountsController],
   providers: [
     AccountsApplication,
     AccountsSettingsService,
     CreateAccountService,
-    TenancyContext,
     CommandAccountValidators,
     AccountRepository,
     EditAccount,
     DeleteAccount,
     GetAccount,
-    TransformerInjectable,
     ActivateAccount,
     GetAccountTypesService,
     GetAccountTransactionsService,
