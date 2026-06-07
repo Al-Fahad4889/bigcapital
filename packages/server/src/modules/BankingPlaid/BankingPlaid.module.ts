@@ -16,7 +16,7 @@ import { AccountsModule } from '../Accounts/Accounts.module';
 import { BankingCategorizeModule } from '../BankingCategorize/BankingCategorize.module';
 import { BankingTransactionsModule } from '../BankingTransactions/BankingTransactions.module';
 import { PlaidItemService } from './command/PlaidItem';
-import { TenancyContext } from '../Tenancy/TenancyContext.service';
+import { TenancyModule } from '../Tenancy/Tenancy.module';
 import { InjectSystemModel } from '../System/SystemModels/SystemModels.module';
 import { SystemPlaidItem } from './models/SystemPlaidItem';
 import { BankingPlaidController } from './BankingPlaid.controller';
@@ -30,6 +30,7 @@ const models = [RegisterTenancyModel(PlaidItem)];
 
 @Module({
   imports: [
+    TenancyModule,
     SocketModule,
     PlaidModule,
     AccountsModule,
@@ -52,7 +53,6 @@ const models = [RegisterTenancyModel(PlaidItem)];
     PlaidApplication,
     SetupPlaidItemTenantService,
     PlaidWebhookVerificationService,
-    TenancyContext,
     PlaidFetchTransactionsProcessor,
     PlaidUpdateTransactionsOnItemCreatedSubscriber,
   ],

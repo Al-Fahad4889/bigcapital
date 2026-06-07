@@ -9,7 +9,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { OrganizationBuildQueue } from './Organization.types';
 import { OrganizationBuildProcessor } from './processors/OrganizationBuild.processor';
 import { CommandOrganizationValidators } from './commands/CommandOrganizationValidators.service';
-import { TenancyContext } from '../Tenancy/TenancyContext.service';
+import { TenancyModule } from '../Tenancy/Tenancy.module';
 import { TenantDBManagerModule } from '../TenantDBManager/TenantDBManager.module';
 import { OrganizationBaseCurrencyLocking } from './Organization/OrganizationBaseCurrencyLocking.service';
 import { SyncSystemUserToTenantService } from './commands/SyncSystemUserToTenant.service';
@@ -22,7 +22,6 @@ import { OrganizationBuiltSubscriber } from './subscribers/OrganizationBuilt.sub
 
 @Module({
   providers: [
-    TenancyContext,
     GetCurrentOrganizationService,
     BuildOrganizationService,
     UpdateOrganizationService,
@@ -35,6 +34,7 @@ import { OrganizationBuiltSubscriber } from './subscribers/OrganizationBuilt.sub
     OrganizationBuiltSubscriber,
   ],
   imports: [
+    TenancyModule,
     BullModule.registerQueue({ name: OrganizationBuildQueue }),
     BullBoardModule.forFeature({
       name: OrganizationBuildQueue,
