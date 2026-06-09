@@ -44,11 +44,10 @@ export class GenerateApiKey {
    */
   async revoke(apiKeyId: number) {
     const tenant = await this.tenancyContext.getTenant();
-    const user = await this.tenancyContext.getSystemUser();
 
     const affected = await this.apiKeyModel
       .query()
-      .where({ id: apiKeyId, tenantId: tenant.id, userId: user.id })
+      .where({ id: apiKeyId, tenantId: tenant.id })
       .patch({ revokedAt: new Date() });
 
     if (affected === 0) {
