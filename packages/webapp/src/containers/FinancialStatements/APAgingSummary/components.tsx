@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import classNames from 'classnames';
 import { AppToaster, If, Stack } from '@/components';
 import { FinancialLoadingBar } from '../FinancialLoadingBar';
@@ -16,6 +15,10 @@ import {
   useAPAgingSheetCsvExport,
   useAPAgingSheetXlsxExport,
 } from '@/hooks/query';
+import type {
+  PayableAgingXlsxQuery,
+  PayableAgingCsvQuery,
+} from '@bigcapital/sdk-ts';
 
 export const useAPAgingSummaryColumns = () => {
   const { APAgingSummary } = useAPAgingSummaryContext();
@@ -37,70 +40,54 @@ export function APAgingSummarySheetLoadingBar() {
 }
 
 export function APAgingSummaryExportMenu() {
-  const toastKey = useRef<string | undefined>(undefined);
   const commonToastConfig = { isCloseButtonShown: true, timeout: 2000 };
   const { httpQuery } = useAPAgingSummaryContext();
 
-  const openProgressToast = (amount: number) => {
+  const renderToast = (done: boolean) => {
     return (
       <Stack spacing={8}>
-        <Text>The report has been exported successfully.</Text>
+        <Text>
+          {done
+            ? 'The report has been exported successfully.'
+            : 'Exporting the report…'}
+        </Text>
         <ProgressBar
           className={classNames('toast-progress', {
-            [Classes.PROGRESS_NO_STRIPES]: amount >= 100,
+            [Classes.PROGRESS_NO_STRIPES]: done,
           })}
-          intent={amount < 100 ? Intent.PRIMARY : Intent.SUCCESS}
-          value={amount / 100}
+          intent={done ? Intent.SUCCESS : Intent.PRIMARY}
+          value={done ? 1 : undefined}
         />
       </Stack>
     );
   };
 
-  const { mutateAsync: xlsxExport } = useAPAgingSheetXlsxExport(httpQuery, {
-    onDownloadProgress: (xlsxExportProgress: number) => {
-      if (!toastKey.current) {
-        toastKey.current = AppToaster.show({
-          message: openProgressToast(xlsxExportProgress),
-          ...commonToastConfig,
-        });
-      } else {
-        AppToaster.show(
-          {
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          },
-          toastKey.current,
-        );
-      }
-    },
-  });
+  const { mutateAsync: xlsxExport } = useAPAgingSheetXlsxExport(
+    httpQuery as PayableAgingXlsxQuery,
+  );
+  const { mutateAsync: csvExport } = useAPAgingSheetCsvExport(
+    httpQuery as PayableAgingCsvQuery,
+  );
 
-  const { mutateAsync: csvExport } = useAPAgingSheetCsvExport(httpQuery, {
-    onDownloadProgress: (xlsxExportProgress: number) => {
-      if (!toastKey.current) {
-        toastKey.current = AppToaster.show({
-          message: openProgressToast(xlsxExportProgress),
-          ...commonToastConfig,
-        });
-      } else {
-        AppToaster.show(
-          {
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          },
-          toastKey.current,
-        );
-      }
-    },
-  });
-
-  const handleCsvExportBtnClick = () => {
-    csvExport();
+  const runExport = async (mutate: () => Promise<unknown>) => {
+    const key = AppToaster.show({
+      message: renderToast(false),
+      ...commonToastConfig,
+      timeout: 0,
+    });
+    try {
+      await mutate();
+      AppToaster.show(
+        { message: renderToast(true), ...commonToastConfig },
+        key,
+      );
+    } catch {
+      AppToaster.dismiss(key);
+    }
   };
 
-  const handleXlsxExportBtnClick = () => {
-    xlsxExport();
-  };
+  const handleCsvExportBtnClick = () => runExport(csvExport);
+  const handleXlsxExportBtnClick = () => runExport(xlsxExport);
 
   return (
     <Menu>

@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import classNames from 'classnames';
 import {
   Classes,
@@ -16,6 +15,10 @@ import {
   usePurchasesByItemsCsvExport,
   usePurchasesByItemsXlsxExport,
 } from '@/hooks/query';
+import type {
+  PurchasesByItemsXlsxQuery,
+  PurchasesByItemsCsvQuery,
+} from '@bigcapital/sdk-ts';
 
 /**
  * Purchases by items progress loading bar.
@@ -34,70 +37,54 @@ export function PurchasesByItemsLoadingBar() {
  * Retrieves the purchases by items export menu.
  */
 export const PurchasesByItemsExportMenu = () => {
-  const toastKey = useRef<string | number | undefined>(undefined);
   const commonToastConfig = { isCloseButtonShown: true, timeout: 2000 };
   const { httpQuery } = usePurchaseByItemsContext();
 
-  const openProgressToast = (amount: number) => {
+  const renderToast = (done: boolean) => {
     return (
       <Stack spacing={8}>
-        <Text>The report has been exported successfully.</Text>
+        <Text>
+          {done
+            ? 'The report has been exported successfully.'
+            : 'Exporting the report…'}
+        </Text>
         <ProgressBar
           className={classNames('toast-progress', {
-            [Classes.PROGRESS_NO_STRIPES]: amount >= 100,
+            [Classes.PROGRESS_NO_STRIPES]: done,
           })}
-          intent={amount < 100 ? Intent.PRIMARY : Intent.SUCCESS}
-          value={amount / 100}
+          intent={done ? Intent.SUCCESS : Intent.PRIMARY}
+          value={done ? 1 : undefined}
         />
       </Stack>
     );
   };
-  // Export the report to xlsx.
-  const { mutateAsync: xlsxExport } = usePurchasesByItemsXlsxExport(httpQuery, {
-    onDownloadProgress: (xlsxExportProgress: number) => {
-      if (!toastKey.current) {
-        toastKey.current = AppToaster.show({
-          message: openProgressToast(xlsxExportProgress),
-          ...commonToastConfig,
-        });
-      } else {
-        AppToaster.show(
-          {
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          },
-          toastKey.current,
-        );
-      }
-    },
-  });
-  // Export the report to csv.
-  const { mutateAsync: csvExport } = usePurchasesByItemsCsvExport(httpQuery, {
-    onDownloadProgress: (xlsxExportProgress: number) => {
-      if (!toastKey.current) {
-        toastKey.current = AppToaster.show({
-          message: openProgressToast(xlsxExportProgress),
-          ...commonToastConfig,
-        });
-      } else {
-        AppToaster.show(
-          {
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          },
-          toastKey.current,
-        );
-      }
-    },
-  });
-  // Handle csv export button click.
-  const handleCsvExportBtnClick = () => {
-    csvExport();
+
+  const { mutateAsync: xlsxExport } = usePurchasesByItemsXlsxExport(
+    httpQuery as PurchasesByItemsXlsxQuery,
+  );
+  const { mutateAsync: csvExport } = usePurchasesByItemsCsvExport(
+    httpQuery as PurchasesByItemsCsvQuery,
+  );
+
+  const runExport = async (mutate: () => Promise<unknown>) => {
+    const key = AppToaster.show({
+      message: renderToast(false),
+      ...commonToastConfig,
+      timeout: 0,
+    });
+    try {
+      await mutate();
+      AppToaster.show(
+        { message: renderToast(true), ...commonToastConfig },
+        key,
+      );
+    } catch {
+      AppToaster.dismiss(key);
+    }
   };
-  // Handle xlsx export button click.
-  const handleXlsxExportBtnClick = () => {
-    xlsxExport();
-  };
+
+  const handleCsvExportBtnClick = () => runExport(csvExport);
+  const handleXlsxExportBtnClick = () => runExport(xlsxExport);
 
   return (
     <Menu>

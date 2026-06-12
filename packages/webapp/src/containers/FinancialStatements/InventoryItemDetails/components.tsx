@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
   Button,
   Classes,
@@ -23,6 +23,10 @@ import {
   useInventoryItemDetailsCsvExport,
   useInventoryItemDetailsXlsxExport,
 } from '@/hooks/query';
+import type {
+  InventoryItemDetailsXlsxQuery,
+  InventoryItemDetailsCsvQuery,
+} from '@bigcapital/sdk-ts';
 import { useInventoryItemDetailsContext } from './InventoryItemDetailsProvider';
 import { FinancialComputeAlert } from '../FinancialReportPage';
 import { useInventoryValuationHttpQuery } from './utils2';
@@ -95,80 +99,57 @@ export function InventoryItemDetailsAlerts() {
  * @returns {JSX.Element}
  */
 export function InventoryItemDetailsExportMenu() {
-  const toastKey = useRef<string | number | undefined>(undefined);
   const commonToastConfig = {
     isCloseButtonShown: true,
     timeout: 2000,
   };
   const httpQuery = useInventoryValuationHttpQuery();
 
-  const openProgressToast = (amount: number) => {
+  const renderToast = (done: boolean) => {
     return (
       <Stack spacing={8}>
-        <Text>The report has been exported successfully.</Text>
+        <Text>
+          {done
+            ? 'The report has been exported successfully.'
+            : 'Exporting the report…'}
+        </Text>
         <ProgressBar
           className={classNames('toast-progress', {
-            [Classes.PROGRESS_NO_STRIPES]: amount >= 100,
+            [Classes.PROGRESS_NO_STRIPES]: done,
           })}
-          intent={amount < 100 ? Intent.PRIMARY : Intent.SUCCESS}
-          value={amount / 100}
+          intent={done ? Intent.SUCCESS : Intent.PRIMARY}
+          value={done ? 1 : undefined}
         />
       </Stack>
     );
   };
 
-  // Export the report to xlsx.
   const { mutateAsync: xlsxExport } = useInventoryItemDetailsXlsxExport(
-    httpQuery,
-    {
-      onDownloadProgress: (xlsxExportProgress: number) => {
-        if (!toastKey.current) {
-          toastKey.current = AppToaster.show({
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          });
-        } else {
-          AppToaster.show(
-            {
-              message: openProgressToast(xlsxExportProgress),
-              ...commonToastConfig,
-            },
-            toastKey.current,
-          );
-        }
-      },
-    },
+    httpQuery as InventoryItemDetailsXlsxQuery,
   );
-  // Export the report to csv.
   const { mutateAsync: csvExport } = useInventoryItemDetailsCsvExport(
-    httpQuery,
-    {
-      onDownloadProgress: (xlsxExportProgress: number) => {
-        if (!toastKey.current) {
-          toastKey.current = AppToaster.show({
-            message: openProgressToast(xlsxExportProgress),
-            ...commonToastConfig,
-          });
-        } else {
-          AppToaster.show(
-            {
-              message: openProgressToast(xlsxExportProgress),
-              ...commonToastConfig,
-            },
-            toastKey.current,
-          );
-        }
-      },
-    },
+    httpQuery as InventoryItemDetailsCsvQuery,
   );
-  // Handle csv export button click.
-  const handleCsvExportBtnClick = () => {
-    csvExport();
+
+  const runExport = async (mutate: () => Promise<unknown>) => {
+    const key = AppToaster.show({
+      message: renderToast(false),
+      ...commonToastConfig,
+      timeout: 0,
+    });
+    try {
+      await mutate();
+      AppToaster.show(
+        { message: renderToast(true), ...commonToastConfig },
+        key,
+      );
+    } catch {
+      AppToaster.dismiss(key);
+    }
   };
-  // Handle xlsx export button click.
-  const handleXlsxExportBtnClick = () => {
-    xlsxExport();
-  };
+
+  const handleCsvExportBtnClick = () => runExport(csvExport);
+  const handleXlsxExportBtnClick = () => runExport(xlsxExport);
 
   return (
     <Menu>
