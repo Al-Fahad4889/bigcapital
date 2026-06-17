@@ -6,7 +6,6 @@ import {
   UseMutationOptions,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import useApiRequest from '../../useRequest';
 import { useApiFetcher } from '../../useRequest';
 import { downloadFile } from '../../useDownloadFile';
 import { importKeys } from './query-keys';
@@ -29,26 +28,53 @@ import type {
   ImportPreviewResponse,
   ImportFileMetaResponse,
   ImportProcessResponse,
+  ImportFileUploadResponse,
 } from '@bigcapital/sdk-ts';
 import {
   fetchImportPreview,
   fetchImportFileMeta,
   importMapping,
   importProcess,
+  uploadImportFile,
+  downloadImportSample,
 } from '@bigcapital/sdk-ts';
 
 /**
- * Upload import file (multipart/form-data). Uses apiRequest because SDK does not support FormData.
+ * Input accepted by the import file upload mutation. Callers may pass either a
+ * ready FormData (with file/resource/params parts) or a plain object that we
+ * serialize into FormData on their behalf.
  */
-export function useImportFileUpload(props = {}) {
-  const queryClient = useQueryClient();
-  const apiRequest = useApiRequest();
+export type ImportFileUploadInput = FormData | {
+  file: File;
+  resource: string;
+  params?: Record<string, unknown>;
+};
 
+function toImportFormData(values: ImportFileUploadInput): FormData {
+  if (values instanceof FormData) {
+    return values;
+  }
+  const formData = new FormData();
+  formData.append('file', values.file);
+  formData.append('resource', values.resource);
+  if (values.params) {
+    formData.append('params', JSON.stringify(values.params));
+  }
+  return formData;
+}
+
+/**
+ * Upload an import file (multipart/form-data) and return the parsed response
+ * (import id, sheet columns, resource columns).
+ */
+export function useImportFileUpload(
+  props?: UseMutationOptions<ImportFileUploadResponse, Error, ImportFileUploadInput>,
+) {
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useMutation({
     ...props,
-    mutationFn: (values: FormData | Record<string, unknown>) =>
-      apiRequest.post(`import/file`, values),
-    onSuccess: () => {},
+    mutationFn: (values: ImportFileUploadInput) =>
+      uploadImportFile(fetcher, toImportFormData(values)),
   });
 }
 
@@ -57,7 +83,6 @@ export function useImportFileMapping(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: ([importId, values]: [string, ImportMappingBody]) =>
@@ -75,7 +100,7 @@ export function useImportFileMapping(
 
 export function useImportFilePreview(
   importId: string,
-  props?: UseQueryOptions<ImportPreviewResponse, Error, unknown>,
+  props?: Omit<UseQueryOptions<ImportPreviewResponse, Error, unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -89,7 +114,7 @@ export function useImportFilePreview(
 
 export function useImportFileMeta(
   importId: string,
-  props?: UseQueryOptions<ImportFileMetaResponse, Error, unknown>,
+  props?: Omit<UseQueryOptions<ImportFileMetaResponse, Error, unknown>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
@@ -124,29 +149,19 @@ export interface SampleSheetImportQuery {
 }
 
 /**
- * Download import sample sheet (blob). Uses apiRequest for blob response.
+ * Download import sample sheet (csv/xlsx) as a Blob and trigger a browser save.
  */
 export const useSampleSheetImport = () => {
-  const apiRequest = useApiRequest();
+  const fetcher = useApiFetcher();
 
   return useMutation({
     mutationFn: (data: SampleSheetImportQuery) =>
-      apiRequest
-        .get('/import/sample', {
-          responseType: 'blob',
-          headers: {
-            accept:
-              data.format === 'xlsx' ? 'application/xlsx' : 'application/csv',
-          },
-          params: {
-            resource: data.resource,
-            format: data.format,
-          },
-        })
-        .then((res) => {
-          downloadFile(res.data, `${data.filename}.${data.format}`);
-          return res;
-        }),
+      downloadImportSample(fetcher, {
+        resource: data.resource,
+        format: data.format,
+      }).then((blob) => {
+        downloadFile(blob, `${data.filename}.${data.format}`);
+      }),
   });
 };
 

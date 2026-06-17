@@ -5,7 +5,6 @@ import { transformFilterFormToQuery } from '../common';
 import type { JournalTableQuery } from '@bigcapital/sdk-ts';
 
 type UseJournalSheetResult = ReturnType<typeof useJournalSheet>;
-
 type JournalSheetContextValue = {
   journalSheet: UseJournalSheetResult['data'];
   isLoading: boolean;
@@ -19,8 +18,8 @@ interface JournalSheetProviderProps {
   children?: React.ReactNode;
 }
 
-const JournalSheetContext = createContext<JournalSheetContextValue | undefined>(
-  undefined,
+const JournalSheetContext = createContext<JournalSheetContextValue>(
+  {} as JournalSheetContextValue
 );
 
 /**

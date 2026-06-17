@@ -9,7 +9,7 @@ import type {
   Vendor,
   CreateVendorBody,
   EditVendorBody,
-  BulkDeleteVendorsBody,
+  EditVendorOpeningBalanceBody,
   ValidateBulkDeleteVendorsResponse,
 } from '@bigcapital/sdk-ts';
 import type { VendorsListResponse } from '@bigcapital/sdk-ts';
@@ -115,7 +115,7 @@ export function useValidateBulkDeleteVendors(
       validateBulkDeleteVendors(fetcher, {
         ids,
         skipUndeletable: false,
-      } as BulkDeleteVendorsBody),
+      }),
   });
 }
 
@@ -146,20 +146,23 @@ export function useVendor(
 }
 
 export function useEditVendorOpeningBalance(
-  props?: UseMutationOptions<unknown, Error, [number, Record<string, unknown>]>,
+  props?: UseMutationOptions<
+    unknown,
+    Error,
+    [number, EditVendorOpeningBalanceBody]
+  >,
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
 
   return useMutation({
     ...props,
-    mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
-      editVendorOpeningBalance(
-        fetcher,
-        id,
-        values as Parameters<typeof editVendorOpeningBalance>[2],
-      ),
-    onSuccess: (_data: unknown, [id]: [number, Record<string, unknown>]) => {
+    mutationFn: ([id, values]: [number, EditVendorOpeningBalanceBody]) =>
+      editVendorOpeningBalance(fetcher, id, values),
+    onSuccess: (
+      _data: unknown,
+      [id]: [number, EditVendorOpeningBalanceBody],
+    ) => {
       queryClient.invalidateQueries({ queryKey: vendorsKeys.detail(id) });
       commonInvalidateQueries(queryClient);
     },

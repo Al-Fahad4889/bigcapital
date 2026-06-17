@@ -28,7 +28,6 @@ function GLHeaderGeneralPanelProvider({
     accounts,
     isAccountsLoading,
   };
-
   const loading = isAccountsLoading;
 
   return loading ? (

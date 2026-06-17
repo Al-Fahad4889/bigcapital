@@ -28,7 +28,6 @@ import { useTaxRates } from '@/hooks/query/tax-rates';
 type BillFormSubmitPayload = {
   redirect?: boolean;
 };
-
 type BillFormContextValue = {
   accounts: AccountsList | undefined;
   vendors: any[] | undefined;

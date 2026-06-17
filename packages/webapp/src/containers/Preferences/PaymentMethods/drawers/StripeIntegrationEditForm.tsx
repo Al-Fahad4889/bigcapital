@@ -45,6 +45,13 @@ export function StripeIntegrationEditForm({
     values: StripeIntegrationFormValues,
     { setSubmitting }: FormikHelpers<StripeIntegrationFormValues>,
   ) => {
+    if (!paymentMethodId) {
+      AppToaster.show({
+        message: 'Payment method ID is missing.',
+        intent: Intent.DANGER,
+      });
+      return;
+    }
     setSubmitting(true);
     updatePaymentMethod({
       paymentMethodId,
@@ -65,7 +72,7 @@ export function StripeIntegrationEditForm({
         setSubmitting(false);
         AppToaster.show({
           message: 'Something went wrong.',
-          intent: Intent.SUCCESS,
+          intent: Intent.DANGER,
         });
       });
   };

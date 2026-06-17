@@ -1,4 +1,3 @@
-// @ts-nocheck
 export enum DialogsName {
   AccountForm = 'account-form',
   CurrencyForm = 'currency-form',
@@ -92,7 +91,6 @@ export enum DialogsName {
   DisconnectBankAccountConfirmation = 'DisconnectBankAccountConfirmation',
   SharePaymentLink = 'SharePaymentLink',
   SelectPaymentMethod = 'SelectPaymentMethodsDialog',
-
   StripeSetup = 'StripeSetup',
   ApiKeysGenerate = 'api-keys-generate',
   WorkspaceDelete = 'workspace-delete',

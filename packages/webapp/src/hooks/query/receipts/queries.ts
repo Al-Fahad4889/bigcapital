@@ -77,7 +77,6 @@ export function useCreateReceipt(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: (values: CreateSaleReceiptBody) =>
@@ -182,7 +181,6 @@ export function useReceipt(
   props?: UseQueryOptions<SaleReceipt, Error>,
 ) {
   const fetcher = useApiFetcher();
-
   return useQuery({
     ...props,
     queryKey: receiptsKeys.detail(id),
@@ -211,7 +209,6 @@ export function useCreateNotifyReceiptBySMS(
 ) {
   const queryClient = useQueryClient();
   const apiRequest = useApiRequest();
-
   return useMutation({
     ...props,
     mutationFn: ([id, values]: [number, Record<string, unknown>]) =>
