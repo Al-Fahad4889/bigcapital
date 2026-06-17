@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useMemo } from 'react';
+import { TransactionsByVendorsTableQuery } from '@bigcapital/sdk-ts';
 import { FinancialReportPage } from '../FinancialReportPage';
 import { useVendorsTransactionsReport } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
@@ -13,7 +14,7 @@ interface VendorsTransactionsContextValue {
   isVendorsTransactionFetching: boolean;
   refetch: UseVendorsTransactionsResult['refetch'];
   filter: Record<string, unknown>;
-  httpQuery: Record<string, unknown>;
+  httpQuery: TransactionsByVendorsTableQuery;
 }
 
 interface VendorsTransactionsProviderProps {
@@ -21,8 +22,8 @@ interface VendorsTransactionsProviderProps {
 }
 
 const VendorsTransactionsContext = createContext<
-  VendorsTransactionsContextValue | undefined
->(undefined);
+  VendorsTransactionsContextValue
+>({} as VendorsTransactionsContextValue);
 
 /**
  * Vendors transactions provider.
@@ -31,7 +32,7 @@ function VendorsTransactionsProvider({
   filter,
   ...props
 }: VendorsTransactionsProviderProps & { children?: React.ReactNode }) {
-  const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]);
+  const httpQuery = useMemo(() => transformFilterFormToQuery(filter), [filter]) as TransactionsByVendorsTableQuery;
 
   // Fetch vendors transactions based on the given query.
   const {
@@ -39,9 +40,7 @@ function VendorsTransactionsProvider({
     isFetching: isVendorsTransactionFetching,
     isLoading: isVendorsTransactionsLoading,
     refetch,
-  } = useVendorsTransactionsReport(httpQuery, {
-    placeholderData: (prev) => prev,
-  });
+  } = useVendorsTransactionsReport(httpQuery);
 
   const provider: VendorsTransactionsContextValue = {
     vendorsTransactions,

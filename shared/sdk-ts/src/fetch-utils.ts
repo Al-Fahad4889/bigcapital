@@ -94,6 +94,28 @@ export function normalizeApiPath(path: string): string {
 }
 
 /**
+ * Fetcher configuration as exposed by `openapi-typescript-fetch` at runtime.
+ * The library does not surface this in its public types, so we declare the
+ * shape we depend on in one place rather than re-asserting it at each call site.
+ */
+interface FetcherRuntimeConfig {
+  baseUrl: string;
+  init?: RequestInit;
+}
+
+interface FetcherWithConfig {
+  config?: FetcherRuntimeConfig;
+}
+
+function getFetcherConfig(fetcher: ApiFetcher): FetcherRuntimeConfig {
+  const config = (fetcher as FetcherWithConfig).config;
+  return {
+    baseUrl: config?.baseUrl ?? '',
+    init: config?.init,
+  };
+}
+
+/**
  * Makes a raw API request using the fetcher's configuration (baseUrl, headers, middleware).
  * Use this for endpoints not defined in the OpenAPI schema.
  */
@@ -104,16 +126,13 @@ export async function rawRequest<T = unknown>(
   body?: Record<string, unknown>,
   headers?: Record<string, string>
 ): Promise<T> {
-  // Access the fetcher's internal configuration
-  const fetcherConfig = (fetcher as unknown as { config?: { baseUrl: string; init?: RequestInit } }).config;
-  const baseUrl = fetcherConfig?.baseUrl ?? '';
-  const init = fetcherConfig?.init ?? {};
+  const { baseUrl, init } = getFetcherConfig(fetcher);
 
   const url = `${baseUrl}${path}`;
   const mergedHeaders: Record<string, string> = {
     'Accept': 'application/json',
-    ...(init.headers as Record<string, string> || {}),
-    ...(headers || {}),
+    ...((init?.headers as Record<string, string> | undefined) ?? {}),
+    ...(headers ?? {}),
   };
 
   const requestInit: RequestInit = {
@@ -132,4 +151,63 @@ export async function rawRequest<T = unknown>(
     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
   }
   return response.json() as Promise<T>;
+}
+
+/**
+ * Sends a multipart/form-data request using the fetcher's configured baseUrl
+ * and headers. Use for endpoints that accept file uploads where the generated
+ * client's typed JSON body is the wrong shape (FormData carries File/Blob parts).
+ * `formData` is passed untouched to `fetch`, which sets the multipart boundary.
+ */
+export async function postFormData<T>(
+  fetcher: ApiFetcher,
+  path: string,
+  formData: FormData,
+  headers?: Record<string, string>
+): Promise<T> {
+  const { baseUrl, init } = getFetcherConfig(fetcher);
+  const url = `${baseUrl}${path}`;
+
+  const response = await fetch(url, {
+    ...init,
+    method: 'POST',
+    headers: {
+      ...((init?.headers as Record<string, string> | undefined) ?? {}),
+      ...(headers ?? {}),
+    },
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+  }
+  return (await response.json()) as T;
+}
+
+/**
+ * Downloads a binary resource as a Blob using the fetcher's configured baseUrl
+ * and headers. Use for endpoints that return files (csv/xlsx/pdf) where the
+ * generated client's JSON parser would corrupt the payload.
+ */
+export async function getBlob(
+  fetcher: ApiFetcher,
+  path: string,
+  params?: Record<string, string>,
+  headers?: Record<string, string>
+): Promise<Blob> {
+  const { baseUrl, init } = getFetcherConfig(fetcher);
+  const query = params ? `?${new URLSearchParams(params).toString()}` : '';
+  const url = `${baseUrl}${path}${query}`;
+
+  const response = await fetch(url, {
+    ...init,
+    method: 'GET',
+    headers: {
+      ...((init?.headers as Record<string, string> | undefined) ?? {}),
+      ...(headers ?? {}),
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+  }
+  return response.blob();
 }

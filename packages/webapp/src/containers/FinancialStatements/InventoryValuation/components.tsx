@@ -1,6 +1,10 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import intl from 'react-intl-universal';
 import classNames from 'classnames';
+import type {
+  InventoryValuationXlsxQuery,
+  InventoryValuationCsvQuery,
+} from '@bigcapital/sdk-ts';
 import { AppToaster, If, Stack } from '@/components';
 import { Align } from '@/constants';
 import { getColumnWidth } from '@/utils';
@@ -19,14 +23,7 @@ import {
   useInventoryValuationCsvExport,
   useInventoryValuationXlsxExport,
 } from '@/hooks/query';
-import type {
-  InventoryValuationXlsxQuery,
-  InventoryValuationCsvQuery,
-} from '@bigcapital/sdk-ts';
 
-/**
- * Retrieve inventory valuation table columns.
- */
 export const useInventoryValuationTableColumns = () => {
   // inventory valuation context
   const { inventoryValuation } = useInventoryValuationContext();

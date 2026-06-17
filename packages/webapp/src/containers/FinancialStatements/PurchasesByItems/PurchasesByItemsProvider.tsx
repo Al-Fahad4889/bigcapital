@@ -2,6 +2,7 @@ import React, { createContext, useContext, useMemo } from 'react';
 import { FinancialReportPage } from '../FinancialReportPage';
 import { usePurchasesByItemsTable } from '@/hooks/query';
 import { transformFilterFormToQuery } from '../common';
+import { PurchasesByItemsTableQuery } from '@bigcapital/sdk-ts';
 
 type UsePurchasesByItemsTableResult = ReturnType<
   typeof usePurchasesByItemsTable
@@ -12,11 +13,11 @@ type PurchasesByItemsContextValue = {
   isFetching: boolean;
   isLoading: boolean;
   refetchSheet: UsePurchasesByItemsTableResult['refetch'];
-  httpQuery: Record<string, unknown>;
+  httpQuery: PurchasesByItemsTableQuery;
 };
 
 interface PurchasesByItemsProviderProps {
-  query: Record<string, unknown>;
+  query: PurchasesByItemsTableQuery;
   children?: React.ReactNode;
 }
 
@@ -29,15 +30,15 @@ function PurchasesByItemsProvider({
   ...props
 }: PurchasesByItemsProviderProps) {
   // Transforms the report query to http query.
-  const httpQuery = useMemo(() => transformFilterFormToQuery(query), [query]);
+  const httpQuery = useMemo(() => transformFilterFormToQuery(query), [query]) as PurchasesByItemsTableQuery;
 
   // Handle fetching the purchases by items report based on the given query.
-  const {
+const {
     data: purchaseByItems,
     isFetching,
     isLoading,
     refetch,
-  } = usePurchasesByItemsTable(httpQuery, { placeholderData: (prev) => prev });
+  } = usePurchasesByItemsTable(httpQuery);
 
   const provider: PurchasesByItemsContextValue = {
     purchaseByItems,

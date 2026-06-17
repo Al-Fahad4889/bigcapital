@@ -11,10 +11,7 @@ import {
 import classNames from 'classnames';
 import { DashboardActionsBar, Icon, FormattedMessage as T } from '@/components';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
-import {
-  withInventoryValuation,
-  WithInventoryValuationProps,
-} from './withInventoryValuation';
+import { withInventoryValuation } from './withInventoryValuation';
 import {
   withInventoryValuationActions,
   WithInventoryValuationActionsProps,
@@ -24,9 +21,9 @@ import {
   WithDialogActionsProps,
 } from '@/containers/Dialog/withDialogActions';
 import { useInventoryValuationContext } from './InventoryValuationProvider';
-import { compose, saveInvoke } from '@/utils';
 import { InventoryValuationExportMenu } from './components';
 import { DialogsName } from '@/constants/dialogs';
+import { compose, saveInvoke } from '@/utils';
 
 interface InventoryValuationActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
@@ -111,9 +108,9 @@ function InventoryValuationActionsBarInner({
               submitDisabled={isLoading}
             />
           }
-          minimal={true}
           interactionKind={PopoverInteractionKind.CLICK}
           position={Position.BOTTOM_LEFT}
+          minimal
         >
           <Button
             className={classNames(Classes.MINIMAL, 'button--filter')}

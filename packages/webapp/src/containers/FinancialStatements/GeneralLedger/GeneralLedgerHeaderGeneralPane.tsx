@@ -1,16 +1,13 @@
 import React from 'react';
 import { Classes } from '@blueprintjs/core';
-
+import intl from 'react-intl-universal';
 import { AccountsMultiSelect, Row, Col, FFormGroup } from '@/components';
-
 import { RadiosAccountingBasis } from '../RadiosAccountingBasis';
 import { FinancialStatementsFilter } from '../FinancialStatementsFilter';
 import { FinancialStatementDateRange } from '../FinancialStatementDateRange';
-
 import { filterAccountsOptions } from './common';
 import { useGLGeneralPanelContext } from './GLHeaderGeneralPaneProvider';
 import { GLHeaderGeneralPanelProvider } from './GLHeaderGeneralPaneProvider';
-import intl from 'react-intl-universal';
 
 /**
  * General ledger (GL) - Header - General panel.

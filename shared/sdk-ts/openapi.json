@@ -5378,9 +5378,43 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "resource": {
+                    "type": "string"
+                  },
+                  "params": {
+                    "type": "string",
+                    "description": "Optional JSON-encoded params"
+                  }
+                },
+                "required": [
+                  "file",
+                  "resource"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "File uploaded successfully"
+            "description": "File uploaded successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportFileUploadResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5560,7 +5594,15 @@
         ],
         "responses": {
           "200": {
-            "description": "Sample data"
+            "description": "Sample sheet file (csv or xlsx)",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -7671,7 +7713,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "The vendors have been successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorsListResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -7714,7 +7763,14 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "The vendor has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -7757,7 +7813,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "The vendor details have been successfully retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -7808,7 +7871,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "The vendor has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -7849,7 +7919,7 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "The vendor has been successfully deleted."
           }
         },
         "tags": [
@@ -7902,7 +7972,14 @@
         },
         "responses": {
           "200": {
-            "description": ""
+            "description": "The vendor opening balance has been successfully updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VendorResponseDto"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -28221,6 +28298,80 @@
           "attachments"
         ]
       },
+      "ImportFileUploadResourceDto": {
+        "type": "object",
+        "properties": {
+          "importId": {
+            "type": "string",
+            "description": "Unique import identifier"
+          },
+          "resource": {
+            "type": "string",
+            "description": "Resource name (e.g. Customer, Bill)"
+          }
+        },
+        "required": [
+          "importId",
+          "resource"
+        ]
+      },
+      "ImportFileUploadResourceColumnDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Resource column key"
+          },
+          "name": {
+            "type": "string",
+            "description": "Resource column display name"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the column is required"
+          },
+          "hint": {
+            "type": "string",
+            "description": "Column hint text"
+          }
+        },
+        "required": [
+          "key",
+          "name"
+        ]
+      },
+      "ImportFileUploadResponseDto": {
+        "type": "object",
+        "properties": {
+          "import": {
+            "description": "Created import identifier and resource",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImportFileUploadResourceDto"
+              }
+            ]
+          },
+          "sheetColumns": {
+            "description": "Columns detected in the uploaded sheet",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "resourceColumns": {
+            "description": "Columns defined by the target resource",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportFileUploadResourceColumnDto"
+            }
+          }
+        },
+        "required": [
+          "import",
+          "sheetColumns",
+          "resourceColumns"
+        ]
+      },
       "ModelMetaDefaultSortDto": {
         "type": "object",
         "properties": {
@@ -30184,6 +30335,222 @@
         },
         "required": [
           "ids"
+        ]
+      },
+      "VendorResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "Vendor id."
+          },
+          "balance": {
+            "type": "number",
+            "example": 1500
+          },
+          "currencyCode": {
+            "type": "string",
+            "example": "USD"
+          },
+          "openingBalance": {
+            "type": "number",
+            "example": 1000
+          },
+          "openingBalanceAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "openingBalanceExchangeRate": {
+            "type": "number",
+            "example": 1
+          },
+          "openingBalanceBranchId": {
+            "type": "number",
+            "example": 1
+          },
+          "salutation": {
+            "type": "string",
+            "example": "Mr."
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Acme Corporation"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "John Doe - Acme Corporation"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@acme.com"
+          },
+          "workPhone": {
+            "type": "string",
+            "example": "+1 (555) 123-4567"
+          },
+          "personalPhone": {
+            "type": "string",
+            "example": "+1 (555) 987-6543"
+          },
+          "website": {
+            "type": "string",
+            "example": "https://www.acme.com"
+          },
+          "billingAddress1": {
+            "type": "string",
+            "example": "123 Business Ave"
+          },
+          "billingAddress2": {
+            "type": "string",
+            "example": "Suite 100"
+          },
+          "billingAddressCity": {
+            "type": "string",
+            "example": "New York"
+          },
+          "billingAddressCountry": {
+            "type": "string",
+            "example": "United States"
+          },
+          "billingAddressEmail": {
+            "type": "string",
+            "example": "billing@acme.com"
+          },
+          "billingAddressPostcode": {
+            "type": "string",
+            "example": "10001"
+          },
+          "billingAddressPhone": {
+            "type": "string",
+            "example": "+1 (555) 111-2222"
+          },
+          "billingAddressState": {
+            "type": "string",
+            "example": "NY"
+          },
+          "shippingAddress1": {
+            "type": "string",
+            "example": "456 Shipping St"
+          },
+          "shippingAddress2": {
+            "type": "string",
+            "example": "Unit 200"
+          },
+          "shippingAddressCity": {
+            "type": "string",
+            "example": "Los Angeles"
+          },
+          "shippingAddressCountry": {
+            "type": "string",
+            "example": "United States"
+          },
+          "shippingAddressEmail": {
+            "type": "string",
+            "example": "shipping@acme.com"
+          },
+          "shippingAddressPostcode": {
+            "type": "string",
+            "example": "90001"
+          },
+          "shippingAddressPhone": {
+            "type": "string",
+            "example": "+1 (555) 333-4444"
+          },
+          "shippingAddressState": {
+            "type": "string",
+            "example": "CA"
+          },
+          "note": {
+            "type": "string",
+            "example": "Important supplier with regular monthly orders"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "localOpeningBalance": {
+            "type": "number",
+            "example": 1000
+          },
+          "closingBalance": {
+            "type": "number",
+            "example": 1500
+          }
+        },
+        "required": [
+          "id",
+          "balance",
+          "currencyCode",
+          "openingBalance",
+          "openingBalanceAt",
+          "openingBalanceExchangeRate",
+          "displayName",
+          "note",
+          "active",
+          "createdAt",
+          "updatedAt",
+          "localOpeningBalance",
+          "closingBalance"
+        ]
+      },
+      "VendorsPaginationDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "pageSize": {
+            "type": "number",
+            "example": 12
+          },
+          "total": {
+            "type": "number",
+            "example": 42
+          }
+        },
+        "required": [
+          "page",
+          "pageSize",
+          "total"
+        ]
+      },
+      "VendorsListResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VendorResponseDto"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/VendorsPaginationDto"
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
         ]
       },
       "ValidateBulkDeleteVendorsResponseDto": {
