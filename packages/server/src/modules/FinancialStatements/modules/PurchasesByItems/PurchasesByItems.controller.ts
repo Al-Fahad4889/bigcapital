@@ -21,7 +21,11 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 @Controller('/reports/purchases-by-items')
 @ApiTags('Reports')
 @ApiCommonHeaders()
-@ApiExtraModels(PurchasesByItemsResponseDto, PurchasesByItemsTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  PurchasesByItemsResponseDto,
+  PurchasesByItemsTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class PurchasesByItemReportController {
   constructor(
     private readonly purchasesByItemsApp: PurchasesByItemsApplication,

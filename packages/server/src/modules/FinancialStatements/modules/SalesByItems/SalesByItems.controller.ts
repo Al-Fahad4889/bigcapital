@@ -29,7 +29,11 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 @Controller('/reports/sales-by-items')
 @ApiTags('Reports')
 @ApiCommonHeaders()
-@ApiExtraModels(SalesByItemsResponseDto, SalesByItemsTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  SalesByItemsResponseDto,
+  SalesByItemsTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class SalesByItemsController {
   constructor(private readonly salesByItemsApp: SalesByItemsApplication) {}
 

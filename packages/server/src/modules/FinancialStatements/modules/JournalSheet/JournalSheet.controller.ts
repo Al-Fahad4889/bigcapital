@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(JournalSheetResponseDto, JournalSheetTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  JournalSheetResponseDto,
+  JournalSheetTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class JournalSheetController {
   constructor(private readonly journalSheetApp: JournalSheetApplication) {}
 

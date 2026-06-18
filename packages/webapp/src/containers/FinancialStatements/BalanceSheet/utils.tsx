@@ -40,7 +40,9 @@ export const getDefaultBalanceSheetQuery = (): BalanceSheetTableQuery => ({
   branchesIds: [],
 });
 
-const parseBalanceSheetQuery = (locationQuery: Record<string, unknown>): BalanceSheetTableQuery => {
+const parseBalanceSheetQuery = (
+  locationQuery: Record<string, unknown>,
+): BalanceSheetTableQuery => {
   const defaultQuery = getDefaultBalanceSheetQuery();
   const transformed = {
     ...defaultQuery,

@@ -24,7 +24,11 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 @Controller('reports/trial-balance-sheet')
 @ApiTags('Reports')
 @ApiCommonHeaders()
-@ApiExtraModels(TrialBalanceSheetResponseDto, TrialBalanceSheetTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  TrialBalanceSheetResponseDto,
+  TrialBalanceSheetTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class TrialBalanceSheetController {
   constructor(
     private readonly trialBalanceSheetApp: TrialBalanceSheetApplication,

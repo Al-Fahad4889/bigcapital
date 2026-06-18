@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import moment from 'moment';
 import * as Yup from 'yup';
 import intl from 'react-intl-universal';
-import { SalesByItemsTableQuery } from '@bigcapital/sdk-ts'
+import { SalesByItemsTableQuery } from '@bigcapital/sdk-ts';
 import { transformToForm } from '@/utils';
 import { useAppQueryString } from '@/hooks';
 import { salesTaxLiabilitySummaryDynamicColumns } from './dynamicColumns';

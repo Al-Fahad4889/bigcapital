@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(ARAgingSummaryResponseDto, ARAgingSummaryTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  ARAgingSummaryResponseDto,
+  ARAgingSummaryTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class ARAgingSummaryController {
   constructor(private readonly ARAgingSummaryApp: ARAgingSummaryApplication) {}
 

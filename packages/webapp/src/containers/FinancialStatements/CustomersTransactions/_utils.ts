@@ -24,7 +24,9 @@ export const getCustomersTransactionsDefaultQuery = () => ({
   filterByOption: 'with-transactions',
 });
 
-const parseCustomersTransactionsQuery = (query: Record<string, any>): TransactionsByCustomersTableQuery => {
+const parseCustomersTransactionsQuery = (
+  query: Record<string, any>,
+): TransactionsByCustomersTableQuery => {
   const defaultQuery = getCustomersTransactionsDefaultQuery();
 
   const transformedQuery = {

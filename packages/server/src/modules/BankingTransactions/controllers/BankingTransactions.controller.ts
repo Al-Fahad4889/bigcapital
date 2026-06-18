@@ -27,7 +27,11 @@ import { ApiCommonHeaders } from '@/common/decorators/ApiCommonHeaders';
 
 @Controller('banking/transactions')
 @ApiTags('Banking Transactions')
-@ApiExtraModels(BankTransactionResponseDto, PaginatedResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  BankTransactionResponseDto,
+  PaginatedResponseDto,
+  NumberFormatQueryDto,
+)
 @ApiCommonHeaders()
 export class BankingTransactionsController {
   constructor(

@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(CashflowStatementResponseDto, CashflowStatementTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  CashflowStatementResponseDto,
+  CashflowStatementTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class CashflowController {
   constructor(private readonly cashflowSheetApp: CashflowSheetApplication) {}
 

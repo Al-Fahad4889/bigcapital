@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(APAgingSummaryResponseDto, APAgingSummaryTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  APAgingSummaryResponseDto,
+  APAgingSummaryTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class APAgingSummaryController {
   constructor(private readonly APAgingSummaryApp: APAgingSummaryApplication) {}
 

@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(GeneralLedgerResponseDto, GeneralLedgerTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  GeneralLedgerResponseDto,
+  GeneralLedgerTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class GeneralLedgerController {
   constructor(
     private readonly generalLedgerApplication: GeneralLedgerApplication,

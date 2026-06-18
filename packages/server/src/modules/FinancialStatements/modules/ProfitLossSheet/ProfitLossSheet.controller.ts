@@ -36,7 +36,11 @@ import { ReportsAction } from '../../types/Report.types';
 @ApiTags('Reports')
 @ApiCommonHeaders()
 @UseGuards(AuthorizationGuard, PermissionGuard)
-@ApiExtraModels(ProfitLossSheetResponseDto, ProfitLossSheetTableResponseDto, NumberFormatQueryDto)
+@ApiExtraModels(
+  ProfitLossSheetResponseDto,
+  ProfitLossSheetTableResponseDto,
+  NumberFormatQueryDto,
+)
 export class ProfitLossSheetController {
   constructor(
     private readonly profitLossSheetApp: ProfitLossSheetApplication,
