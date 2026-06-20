@@ -67,7 +67,7 @@ function RecognizedTransactionsTableBootRoot({
   ]);
   // Provider payload.
   const provider = {
-    recognizedTransactions,
+    recognizedTransactions: recognizedTransactions ?? [],
     isRecognizedTransactionsFetching,
     isRecongizedTransactionsLoading,
   };

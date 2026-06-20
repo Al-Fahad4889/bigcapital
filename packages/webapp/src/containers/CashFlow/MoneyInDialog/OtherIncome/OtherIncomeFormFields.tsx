@@ -105,7 +105,7 @@ export function OtherIncomeFormFields() {
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
-              <InputPrependText text={account.currency_code} />
+              <InputPrependText text={account?.currency_code} />
               <FMoneyInputGroup name={'amount'} minimal={true} />
             </ControlGroup>
           </FFormGroup>

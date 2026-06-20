@@ -55,8 +55,8 @@ function MoneyInDialogProvider({
 
   // Provider data.
   const provider = {
-    accounts,
-    branches,
+    accounts: accounts ?? [],
+    branches: branches ?? [],
 
     accountId,
     defaultAccountId,
@@ -66,7 +66,7 @@ function MoneyInDialogProvider({
     isAccountsLoading,
     isBranchesSuccess,
 
-    cashflowAccounts,
+    cashflowAccounts: cashflowAccounts ?? [],
 
     submitPayload,
     dialogName,

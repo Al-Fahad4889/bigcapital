@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React from 'react';
 import { Form } from 'formik';
-
 import { MoneyInFormFields } from './MoneyInFormFields';
 import { MoneyInFormDialog } from './MoneyInFormDialog';
 import { MoneyInFloatingActions } from './MoneyInFloatingActions';

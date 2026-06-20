@@ -47,13 +47,12 @@ function AccountTransactionsProvider({ query, ...props }) {
   // Provider payload.
   const provider = {
     accountId,
-    cashflowAccounts,
+    cashflowAccounts: cashflowAccounts ?? [],
     currentAccount,
     bankAccountMetaSummary,
 
     isCashFlowAccountsFetching,
     isCashFlowAccountsLoading,
-
     isCurrentAccountFetching,
     isCurrentAccountLoading,
 

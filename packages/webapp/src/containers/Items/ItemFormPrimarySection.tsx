@@ -32,7 +32,6 @@ import intl from 'react-intl-universal';
 export function ItemFormPrimarySection() {
   // Item form context.
   const { isNewMode, item, itemsCategories } = useItemFormContext();
-
   const nameFieldRef = useRef(null);
 
   useEffect(() => {

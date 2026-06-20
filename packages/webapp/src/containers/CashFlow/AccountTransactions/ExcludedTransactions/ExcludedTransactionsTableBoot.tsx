@@ -68,7 +68,7 @@ function ExcludedBankTransactionsTableBootRoot({
   ]);
   // Provider payload.
   const provider = {
-    excludedBankTransactions,
+    excludedBankTransactions: excludedBankTransactions ?? [],
     isExcludedTransactionsFetching,
     isExcludedTransactionsLoading,
   };

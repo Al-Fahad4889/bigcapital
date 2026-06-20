@@ -30,7 +30,6 @@ function AccountTransactionsAllProvider({
     hasNextPage: hasCashflowTransactionsNextPgae,
   } = useAccountTransactionsInfinity(accountId, {
     page_size: 50,
-    account_id: accountId,
   });
   // Memorized the cashflow account transactions.
   const cashflowTransactions = useFlattenInfinityPages(
@@ -49,7 +48,7 @@ function AccountTransactionsAllProvider({
   ]);
   // Provider payload.
   const provider = {
-    cashflowTransactions,
+    cashflowTransactions: cashflowTransactions ?? [],
     isCashFlowTransactionsFetching,
     isCashFlowTransactionsLoading,
   };
