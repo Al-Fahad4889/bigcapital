@@ -6,7 +6,7 @@ import * as R from 'ramda';
 
 import { FFormGroup, Icon, InputPrependButton } from '@/components';
 import { useUpdateEffect } from '@/hooks';
-
+import { FormattedMessage as T } from '@/components';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { transactionNumber } from '@/utils';

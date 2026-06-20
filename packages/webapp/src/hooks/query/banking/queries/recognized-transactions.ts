@@ -15,6 +15,8 @@ import {
 import type {
   BankTransactionsListPage,
   ExcludedBankTransactionsListPage,
+  GetExcludedBankTransactionsQuery,
+  RecognizedTransactionResponse,
 } from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../../useRequest';
 import { bankingKeys } from '../query-keys';
@@ -25,8 +27,8 @@ import {
 
 export function useGetRecognizedBankTransaction(
   uncategorizedTransactionId: number,
-  options?: UseQueryOptions<unknown, Error>,
-): UseQueryResult<unknown, Error> {
+  options?: UseQueryOptions<RecognizedTransactionResponse, Error>,
+): UseQueryResult<RecognizedTransactionResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useQuery({
@@ -74,7 +76,7 @@ export function useRecognizedBankTransactionsInfinity(
 }
 
 export function useExcludedBankTransactionsInfinity(
-  query: Record<string, unknown>,
+  query: GetExcludedBankTransactionsQuery,
   infinityProps?: Omit<
     UseInfiniteQueryOptions<
       ExcludedBankTransactionsListPage,

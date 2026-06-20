@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import intl from 'react-intl-universal';
 import {
   AccountsSelect,
   FFormGroup,
@@ -7,13 +8,11 @@ import {
   Col,
   Row,
 } from '@/components';
-
 import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
 import { accountsFieldShouldUpdate } from './utils';
 import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { useItemFormContext } from './ItemFormProvider';
 import { compose } from '@/utils';
-import intl from 'react-intl-universal';
 
 /**
  * Item form inventory sections.

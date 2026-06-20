@@ -57,7 +57,7 @@ function AccountUncategorizedTransactionsBootRoot({
   ]);
   // Provider payload.
   const provider = {
-    uncategorizedTransactions,
+    uncategorizedTransactions: uncategorizedTransactions ?? [],
     isUncategorizedTransactionFetching,
     isUncategorizedTransactionsLoading,
   };

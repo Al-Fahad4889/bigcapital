@@ -10,10 +10,13 @@ import {
   QueryKey,
 } from '@tanstack/react-query';
 import type {
+  BankingAccountsListResponse,
+  BankingTransactionResponse,
   CreateCashflowTransactionBody,
   CashflowAccountTransactionsQuery,
   CashflowAccountUncategorizedTransactionsQuery,
   CategorizeTransactionBody,
+  UncategorizedTransactionResponse,
 } from '@bigcapital/sdk-ts';
 import {
   fetchCashflowAccounts,
@@ -68,13 +71,16 @@ const commonInvalidateQueries = (
 
 export function useCashflowAccounts(
   query?: Record<string, unknown>,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<BankingAccountsListResponse, Error, BankingAccountsListResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
-  return useQuery({
+  return useQuery<BankingAccountsListResponse, Error, BankingAccountsListResponse>({
     ...props,
     queryKey: cashflowAccountsKeys.list(query),
-    queryFn: () => fetchCashflowAccounts(fetcher, query ?? {}),
+    queryFn: () => fetchCashflowAccounts(fetcher),
   });
 }
 
@@ -96,11 +102,14 @@ export function useCreateCashflowTransaction(
 
 export function useCashflowTransaction(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<BankingTransactionResponse, Error, BankingTransactionResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
 
-  return useQuery({
+  return useQuery<BankingTransactionResponse, Error, BankingTransactionResponse>({
     ...props,
     queryKey: cashflowAccountsKeys.transaction(id),
     queryFn: () => fetchCashflowTransaction(fetcher, id!),
@@ -161,7 +170,6 @@ export function useAccountTransactionsInfinity(
     queryFn: ({ pageParam }) =>
       fetchAccountTransactionsInfinity(fetcher, accountId, {
         ...query,
-        accountId,
         page: pageParam,
       }),
     initialPageParam: 1,
@@ -228,11 +236,14 @@ export function useRefreshCashflowTransactions() {
 
 export function useUncategorizedTransaction(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<UncategorizedTransactionResponse, Error, UncategorizedTransactionResponse>,
+    'queryKey' | 'queryFn'
+  >,
 ) {
   const fetcher = useApiFetcher();
 
-  return useQuery({
+  return useQuery<UncategorizedTransactionResponse, Error, UncategorizedTransactionResponse>({
     ...props,
     queryKey: cashflowAccountsKeys.uncategorizedTransaction(id),
     queryFn: () => fetchUncategorizedTransaction(fetcher, id!),

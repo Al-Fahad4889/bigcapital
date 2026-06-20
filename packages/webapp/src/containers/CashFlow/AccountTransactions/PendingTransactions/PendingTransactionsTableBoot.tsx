@@ -42,7 +42,7 @@ function PendingTransactionsBoot({ children }) {
   ]);
   // Provider payload.
   const provider = {
-    pendingTransactions,
+    pendingTransactionsL: pendingTransactions ?? [],
     isPendingTransactionFetching,
     isPendingTransactionsLoading,
   };

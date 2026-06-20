@@ -81,6 +81,7 @@ export function TransferFromAccountFormFields() {
           <MoneyInOutTransactionNoField />
         </Col>
       </Row>
+
       {/*------------ Amount -----------*/}
       <Row>
         <Col xs={10}>
@@ -89,7 +90,7 @@ export function TransferFromAccountFormFields() {
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
-              <InputPrependText text={account.currency_code || '--'} />
+              <InputPrependText text={account?.currency_code || '--'} />
               <FMoneyInputGroup name={'amount'} minimal={true} />
             </ControlGroup>
           </FormGroup>
@@ -111,7 +112,7 @@ export function TransferFromAccountFormFields() {
           >
             <FAccountsSuggestField
               name={'credit_account_id'}
-              items={accounts as any[]}
+              items={accounts}
               filterByTypes={[
                 ACCOUNT_TYPE.CASH,
                 ACCOUNT_TYPE.BANK,

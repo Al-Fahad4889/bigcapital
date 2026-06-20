@@ -8,7 +8,10 @@ import {
   QueryKey,
 } from '@tanstack/react-query';
 import { fetchPendingTransactions } from '@bigcapital/sdk-ts';
-import type { PendingBankTransactionsListPage } from '@bigcapital/sdk-ts';
+import type {
+  GetPendingTransactionsQuery,
+  PendingBankTransactionsListPage,
+} from '@bigcapital/sdk-ts';
 import { useApiFetcher } from '../../../useRequest';
 import { bankingKeys } from '../query-keys';
 import {
@@ -33,7 +36,7 @@ export function usePendingBankAccountTransactions(
 }
 
 export function usePendingBankTransactionsInfinity(
-  query: Record<string, unknown>,
+  query: GetPendingTransactionsQuery,
   infinityProps?: Omit<
     UseInfiniteQueryOptions<
       PendingBankTransactionsListPage,

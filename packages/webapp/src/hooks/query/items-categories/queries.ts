@@ -28,9 +28,6 @@ const commonInvalidateQueries = (
   queryClient.invalidateQueries({ queryKey: itemsCategoriesKeys.all() });
 };
 
-/**
- * Creates a new item category.
- */
 export function useCreateItemCategory(
   props?: UseMutationOptions<void, Error, CreateItemCategoryBody>,
 ) {
@@ -45,9 +42,6 @@ export function useCreateItemCategory(
   });
 }
 
-/**
- * Edits the item category.
- */
 export function useEditItemCategory(
   props?: UseMutationOptions<void, Error, [number, EditItemCategoryBody]>,
 ) {
@@ -67,9 +61,6 @@ export function useEditItemCategory(
   });
 }
 
-/**
- * Deletes the given item category.
- */
 export function useDeleteItemCategory(
   props?: UseMutationOptions<void, Error, number>,
 ) {
@@ -88,48 +79,27 @@ export function useDeleteItemCategory(
   });
 }
 
-function transformCategories(
-  data: ItemCategoriesListResponse,
-): ItemsCategoriesListResult {
-  const arr = Array.isArray(data)
-    ? data
-    : ((data as { data?: ItemCategory[] })?.data ?? []);
-  const pagination =
-    (data as { pagination?: Record<string, unknown> })?.pagination ?? {};
-  return {
-    itemsCategories: arr as ItemCategory[],
-    pagination,
-  };
-}
-
-/**
- * Retrieve the items categories.
- */
 export function useItemsCategories(
   query?: Record<string, unknown>,
   props?: Omit<
     UseQueryOptions<
       ItemCategoriesListResponse,
       Error,
-      ItemsCategoriesListResult
+      ItemCategoriesListResponse
     >,
     'queryKey' | 'queryFn' | 'select'
   >,
 ) {
   const fetcher = useApiFetcher();
-  return useQuery<ItemCategoriesListResponse, Error, ItemsCategoriesListResult>(
+  return useQuery<ItemCategoriesListResponse, Error, ItemCategoriesListResponse>(
     {
       ...props,
       queryKey: [...itemsCategoriesKeys.all(), query],
       queryFn: () => fetchItemCategories(fetcher),
-      select: transformCategories,
     },
   );
 }
 
-/**
- * Retrieve the item category details.
- */
 export function useItemCategory(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<ItemCategory>, 'queryKey' | 'queryFn'>,
