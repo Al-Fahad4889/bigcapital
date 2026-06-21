@@ -13,9 +13,7 @@ import { withOrganizationActions } from '@/containers/Organization/withOrganizat
 /**
  * Setup initializing step form.
  */
-function SetupInitializingFormInner({
-  setOrganizationSetupCompleted,
-}) {
+function SetupInitializingFormInner({ setOrganizationSetupCompleted }) {
   const {
     data: organization,
     refetch,
@@ -25,13 +23,13 @@ function SetupInitializingFormInner({
   // Job done state.
   const [isJobDone, setIsJobDone] = React.useState(false);
 
-  const {
-    data: jobState,
-    isFetching: isJobFetching,
-  } = useJob(organization?.buildJobId, {
-    refetchInterval: 2000,
-    enabled: !!organization?.buildJobId,
-  });
+  const { data: jobState, isFetching: isJobFetching } = useJob(
+    organization?.buildJobId,
+    {
+      refetchInterval: 2000,
+      enabled: !!organization?.buildJobId,
+    },
+  );
   const isRunning = Boolean(jobState?.isRunning);
   const isWaiting = Boolean(jobState?.isWaiting);
   const isFailed = Boolean(jobState?.isFailed);

@@ -20,9 +20,7 @@ export default function EnsureSubscriptionsIsActive({
   exclude,
 }: EnsureSubscriptionsIsActiveProps) {
   const { data } = useGetSubscriptions();
-  const isSubscriptionsActive = !!data?.subscriptions?.some(
-    (s) => s.active,
-  );
+  const isSubscriptionsActive = !!data?.subscriptions?.some((s) => s.active);
 
   return !isSubscriptionsActive || includes(exclude, routePath) ? (
     <>{children}</>

@@ -27,9 +27,7 @@ function SubscriptionRoot({ openAlert, openDrawer }) {
     openAlert('resume-main-subscription');
   };
   const handleUpdatePaymentMethod = () => {
-    window.LemonSqueezy.Url.Open(
-      lemonSubscription?.urls?.updatePaymentMethod,
-    );
+    window.LemonSqueezy.Url.Open(lemonSubscription?.urls?.updatePaymentMethod);
   };
   // Handle upgrade button click.
   const handleUpgradeBtnClick = () => {
