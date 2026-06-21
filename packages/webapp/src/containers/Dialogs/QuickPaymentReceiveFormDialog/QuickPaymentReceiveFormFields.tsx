@@ -37,8 +37,7 @@ import { withSettings } from '@/containers/Settings/withSettings';
  */
 function QuickPaymentReceiveFormFieldsInner({ paymentReceiveAutoIncrement }) {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
-
-  const { accounts, branches, baseCurrency } = useQuickPaymentReceiveContext();
+  const { accounts, branches } = useQuickPaymentReceiveContext();
 
   // Intl context.
   const { values } = useFormikContext();

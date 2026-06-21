@@ -38,8 +38,7 @@ import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
  */
 function QuickPaymentMadeFormFieldsInner() {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
-
-  const { accounts, branches, baseCurrency } = useQuickPaymentMadeContext();
+  const { accounts, branches } = useQuickPaymentMadeContext();
 
   // Intl context.
   const { values } = useFormikContext();

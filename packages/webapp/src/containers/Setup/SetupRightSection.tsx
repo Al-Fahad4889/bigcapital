@@ -1,14 +1,8 @@
-// @ts-nocheck
 import React from 'react';
 import { x } from '@xstyled/emotion';
-
 import { SetupWizardContent } from './SetupWizardContent';
-
-import { useCurrentOrganization } from '@/hooks/query';
-import {
-  useSubscription,
-  useIsOrganizationSetupCompleted,
-} from '@/hooks/state';
+import { useCurrentOrganization, useSubscription } from '@/hooks/query';
+import { useIsOrganizationSetupCompleted } from '@/hooks/state';
 
 /**
  * Wizard setup right section.
@@ -30,7 +24,7 @@ export function SetupRightSection() {
     { condition: isOrganizationSetupCompleted, step: 'congrats' },
   ];
   const setupStep = scenarios.find((scenario) => scenario.condition);
-  const setupStepId = setupStep?.step;
+  const setupStepId = setupStep?.step ?? '';
   const setupStepIndex = setupStep ? scenarios.indexOf(setupStep) : -1;
 
   return (

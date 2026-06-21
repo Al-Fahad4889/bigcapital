@@ -9,10 +9,12 @@ import styles from './BillingSubscription.module.scss';
 import { withDrawerActions } from '../Drawer/withDrawerActions';
 import { DRAWERS } from '@/constants/drawers';
 import { useBillingPageBoot } from './BillingPageBoot';
+import { useLemonSubscription } from '@/hooks/query/subscription';
 import { getSubscriptionStatusText } from './_utils';
 
 function SubscriptionRoot({ openAlert, openDrawer }) {
   const { mainSubscription } = useBillingPageBoot();
+  const lemonSubscription = useLemonSubscription('main');
 
   // Can't continue if the main subscription is not loaded.
   if (!mainSubscription) {
@@ -26,7 +28,7 @@ function SubscriptionRoot({ openAlert, openDrawer }) {
   };
   const handleUpdatePaymentMethod = () => {
     window.LemonSqueezy.Url.Open(
-      mainSubscription.lemonUrls?.updatePaymentMethod,
+      lemonSubscription?.urls?.updatePaymentMethod,
     );
   };
   // Handle upgrade button click.

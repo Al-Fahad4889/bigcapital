@@ -107,5 +107,4 @@ function VendorOpeningBalanceFormFieldsInner() {
   );
 }
 
-export const VendorOpeningBalanceFormFields =
-  VendorOpeningBalanceFormFieldsInner;
+export const VendorOpeningBalanceFormFields = VendorOpeningBalanceFormFieldsInner;
