@@ -14601,6 +14601,89 @@ export interface components {
             /** @description The permissions of the role */
             permissions: components["schemas"]["EditRolePermissionDto"][];
         };
+        SubscriptionResponseDto: {
+            /** @example main */
+            slug: string;
+            /**
+             * @example active
+             * @enum {string}
+             */
+            status: "active" | "inactive" | "on_trial" | "canceled";
+            /** @example true */
+            active: boolean;
+            /** @example false */
+            inactive: boolean;
+            /** @example false */
+            onTrial: boolean;
+            /** @example false */
+            canceled: boolean;
+            /** @example false */
+            ended: boolean;
+            /**
+             * @example succeed
+             * @enum {string}
+             */
+            paymentStatus: "succeed" | "failed";
+            /**
+             * Format: date-time
+             * @example 2024-01-01T00:00:00.000Z
+             */
+            startsAt?: string | null;
+            /**
+             * Format: date-time
+             * @example 2024-02-01T00:00:00.000Z
+             */
+            endsAt?: string | null;
+            /**
+             * Format: date-time
+             * @example null
+             */
+            canceledAt?: string | null;
+            /**
+             * Format: date-time
+             * @example 2024-01-07T00:00:00.000Z
+             */
+            trialEndsAt?: string | null;
+            /** @example Active */
+            statusFormatted: string;
+            /** @example null */
+            canceledAtFormatted?: string | null;
+            /** @example Jan 1, 2024 */
+            endsAtFormatted?: string | null;
+            /** @example null */
+            trialStartsAtFormatted?: string | null;
+            /** @example Jan 7, 2024 */
+            trialEndsAtFormatted?: string | null;
+            /** @example Standard */
+            planName: string;
+            /** @example standard */
+            planSlug: string;
+            /** @example 10 */
+            planPrice: number;
+            /** @example USD */
+            planPriceCurrency: string;
+            /** @example $10 */
+            planPriceFormatted: string;
+            /** @example month */
+            planPeriod: string;
+        };
+        SubscriptionsListResponseDto: {
+            subscriptions: components["schemas"]["SubscriptionResponseDto"][];
+        };
+        LemonSubscriptionUrlsDto: {
+            /** @example https://.../update-payment-method */
+            updatePaymentMethod?: string | null;
+            /** @example https://.../customer-portal */
+            customerPortal?: string | null;
+        };
+        LemonSubscriptionResponseDto: {
+            /** @example main */
+            slug: string;
+            urls: components["schemas"]["LemonSubscriptionUrlsDto"];
+        };
+        LemonSubscriptionsListResponseDto: {
+            lemonSubscriptions: components["schemas"]["LemonSubscriptionResponseDto"][];
+        };
         OrgBaseCurrencyMutateLockDto: {
             /**
              * @description The model name that prevents base currency mutation
@@ -14761,47 +14844,6 @@ export interface components {
              * @example false
              */
             isUpgradeRunning: boolean;
-        };
-        SubscriptionResponseDto: {
-            id?: number;
-            slug: string;
-            status: string;
-            active: boolean;
-            inactive: boolean;
-            onTrial: boolean;
-            canceled: boolean;
-            ended: boolean;
-            paymentStatus: string;
-            startsAt?: string | null;
-            endsAt?: string | null;
-            canceledAt?: string | null;
-            trialEndsAt?: string | null;
-            statusFormatted: string;
-            canceledAtFormatted?: string | null;
-            endsAtFormatted?: string | null;
-            trialStartsAtFormatted?: string | null;
-            trialEndsAtFormatted?: string | null;
-            planName: string;
-            planSlug: string;
-            planPrice: number;
-            planPriceCurrency: string;
-            planPriceFormatted: string;
-            planPeriod: string;
-        };
-        SubscriptionsListResponseDto: {
-            subscriptions: components["schemas"]["SubscriptionResponseDto"][];
-        };
-        LemonSubscriptionUrlsDto: {
-            updatePaymentMethod?: string;
-            customerPortal?: string;
-            [key: string]: unknown;
-        };
-        LemonSubscriptionResponseDto: {
-            slug: string;
-            urls: components["schemas"]["LemonSubscriptionUrlsDto"];
-        };
-        LemonSubscriptionsListResponseDto: {
-            lemonSubscriptions: components["schemas"]["LemonSubscriptionResponseDto"][];
         };
         BuildOrganizationDto: {
             /**
