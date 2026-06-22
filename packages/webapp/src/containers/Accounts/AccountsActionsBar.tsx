@@ -1,6 +1,5 @@
-// @ts-nocheck
 import React from 'react';
-import { isEmpty, isUndefined } from 'lodash';
+import { isEmpty } from 'lodash';
 import {
   Button,
   NavbarGroup,
@@ -9,15 +8,9 @@ import {
   Intent,
   Switch,
   Alignment,
-  ProgressBar,
-  ToastProps,
-  Text,
 } from '@blueprintjs/core';
-import clsx from 'classnames';
-
 import {
   AdvancedFilterPopover,
-  If,
   Can,
   Icon,
   FormattedMessage as T,
@@ -26,51 +19,52 @@ import {
   DashboardRowsHeightButton,
   DashboardActionsBar,
 } from '@/components';
-
 import { AccountAction, AbilitySubject } from '@/constants/abilityOption';
 import { DialogsName } from '@/constants/dialogs';
-
 import { useHistory } from 'react-router-dom';
 import { useRefreshAccounts } from '@/hooks/query/accounts';
 import { useAccountsChartContext } from './AccountsChartProvider';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { useBulkDeleteAccountsDialog } from './hooks/use-bulk-delete-accounts-dialog';
-
 import { withAccounts } from './withAccounts';
 import { withAccountsTableActions } from './withAccountsTableActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
+import type { WithAccountsProps } from './withAccounts';
+import type { WithAccountsTableActionsProps } from './withAccountsTableActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
+import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
 
 import { compose } from '@/utils';
+
+interface AccountsActionsBarInnerProps {
+  openDialog: WithDialogActionsProps['openDialog'];
+  openAlert: WithAlertActionsProps['openAlert'];
+  addSetting: WithSettingsActionsProps['addSetting'];
+  setAccountsTableState: WithAccountsTableActionsProps['setAccountsTableState'];
+  accountsSelectedRows: WithAccountsProps['accountsSelectedRows'];
+  accountsInactiveMode: boolean | undefined;
+  accountsFilterConditions: unknown[];
+  accountsTableSize: unknown;
+}
 
 /**
  * Accounts actions bar.
  */
 function AccountsActionsBarInner({
-  // #withDialogActions
   openDialog,
-
-  // #withAccounts
   accountsSelectedRows,
   accountsInactiveMode,
   accountsFilterConditions,
-
-  // #withAlertActions
   openAlert,
-
-  // #withAccountsTableActions
   setAccountsTableState,
-
-  // #withSettings
   accountsTableSize,
-
-  // #withSettingsActions
   addSetting,
-}) {
+}: AccountsActionsBarInnerProps) {
   const history = useHistory();
-
   const { resourceViews, fields } = useAccountsChartContext();
 
   // Exports pdf document.
@@ -98,11 +92,13 @@ function AccountsActionsBarInner({
     });
   };
   // Handle tab changing.
-  const handleTabChange = (view) => {
+  const handleTabChange = (view: { slug?: string | null } | null) => {
     setAccountsTableState({ viewSlug: view ? view.slug : null });
   };
   // Handle inactive switch changing.
-  const handleInactiveSwitchChange = (event) => {
+  const handleInactiveSwitchChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const checked = event.target.checked;
     setAccountsTableState({ inactiveMode: checked });
   };
@@ -111,7 +107,7 @@ function AccountsActionsBarInner({
     refresh();
   };
   // Handle table row size change.
-  const handleTableRowSizeChange = (size) => {
+  const handleTableRowSizeChange = (size: unknown) => {
     addSetting('accounts', 'tableSize', size);
   };
   // handle the import button click.
@@ -180,11 +176,12 @@ function AccountsActionsBarInner({
           />
         </Can>
         <AdvancedFilterPopover
+          popoverProps={{ minimal: true }}
           advancedFilterProps={{
             conditions: accountsFilterConditions,
             defaultFieldKey: 'name',
             fields: fields,
-            onFilterChange: (filterConditions) => {
+            onFilterChange: (filterConditions: unknown[]) => {
               setAccountsTableState({ filterRoles: filterConditions });
             },
           }}
@@ -217,6 +214,7 @@ function AccountsActionsBarInner({
         <NavbarDivider />
         <DashboardRowsHeightButton
           initialValue={accountsTableSize}
+          value={accountsTableSize}
           onChange={handleTableRowSizeChange}
         />
         <NavbarDivider />
@@ -249,7 +247,7 @@ export const AccountsActionsBar = compose(
     accountsFilterConditions: accountsTableState.filterRoles,
   })),
   withSettings(({ accountsSettings }) => ({
-    accountsTableSize: accountsSettings.tableSize,
+    accountsTableSize: accountsSettings?.tableSize,
   })),
   withAccountsTableActions,
 )(AccountsActionsBarInner);

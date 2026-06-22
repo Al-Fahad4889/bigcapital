@@ -84,7 +84,7 @@ function AccountsDataTableInner({
     openDialog(DialogsName.AccountForm, {
       action: AccountDialogAction.NewChild,
       parentAccountId: account.id,
-      accountType: account.account_type,
+      accountType: account.accountType,
     });
   };
   // Handle cell click.

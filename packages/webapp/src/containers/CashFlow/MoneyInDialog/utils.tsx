@@ -37,8 +37,8 @@ export const useForeignAccount = () => {
   const { account } = useMoneyInFieldsContext();
 
   return (
-    !isEqual(account.currency_code, values.currency_code) &&
-    !isNull(account.currency_code)
+    !isEqual(account.currencyCode, values.currency_code) &&
+    !isNull(account.currencyCode)
   );
 };
 

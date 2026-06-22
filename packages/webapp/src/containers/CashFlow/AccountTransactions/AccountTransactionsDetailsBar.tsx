@@ -42,7 +42,7 @@ function AccountSwitchItem() {
   const items = cashflowAccounts.map((account) => (
     <AccountSwitchMenuItem
       name={account.name}
-      balance={account.formatted_amount}
+      balance={account.formattedAmount}
       onClick={handleItemClick(account)}
       active={account.id === accountId}
     />
@@ -66,7 +66,7 @@ function AccountBalanceItem() {
     <AccountBalanceItemWrap>
       {intl.get('cash_flow_transaction.balance_in_bigcapital')} {''}
       <AccountBalanceAmount>
-        {currentAccount.formatted_amount}
+        {currentAccount.formattedAmount}
       </AccountBalanceAmount>
     </AccountBalanceItemWrap>
   );
@@ -79,7 +79,7 @@ function AccountBankBalanceItem() {
     <AccountBalanceItemWrap>
       Balance in Bank Account
       <AccountBalanceAmount>
-        {currentAccount.bank_balance_formatted}
+        {currentAccount.bankBalanceFormatted}
       </AccountBalanceAmount>
     </AccountBalanceItemWrap>
   );
@@ -88,11 +88,11 @@ function AccountBankBalanceItem() {
 function AccountNumberItem() {
   const { currentAccount } = useAccountTransactionsContext();
 
-  if (!currentAccount.account_mask) return null;
+  if (!currentAccount.accountMask) return null;
 
   return (
     <AccountBalanceItemWrap>
-      Account Number: xxx{currentAccount.account_mask}
+      Account Number: xxx{currentAccount.accountMask}
     </AccountBalanceItemWrap>
   );
 }

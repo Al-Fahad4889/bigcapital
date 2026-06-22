@@ -90,7 +90,7 @@ export function OwnerDrawingsFormFields() {
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
-              <InputPrependText text={account.currency_code} />
+              <InputPrependText text={account.currencyCode} />
               <FMoneyInputGroup name={'amount'} minimal={true} />
             </ControlGroup>
           </FormGroup>

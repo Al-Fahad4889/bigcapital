@@ -71,7 +71,7 @@ const mergeWithAccount = R.curry((transformed, account) => {
  * Default account payload transformer.
  */
 const defaultPayloadTransform = (account, payload) => ({
-  subaccount: !!account.parent_account_id,
+  subaccount: !!account?.parentAccountId,
 });
 
 /**

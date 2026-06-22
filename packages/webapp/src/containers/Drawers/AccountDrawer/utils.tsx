@@ -14,19 +14,19 @@ export const useAccountReadEntriesColumns = () => {
     () => [
       {
         Header: intl.get('transaction_date'),
-        accessor: 'formatted_date',
+        accessor: 'formattedDate',
         width: 110,
         textOverview: true,
       },
       {
         Header: intl.get('transaction_type'),
-        accessor: 'transaction_type_formatted',
+        accessor: 'transactionTypeFormatted',
         width: 100,
         textOverview: true,
       },
       {
         Header: intl.get('debit'),
-        accessor: isFCYCurrencyType ? 'formatted_fc_debit' : 'formatted_debit',
+        accessor: isFCYCurrencyType ? 'formattedFcDebit' : 'formattedDebit',
         width: 80,
         className: 'debit',
         align: 'right',
@@ -35,8 +35,8 @@ export const useAccountReadEntriesColumns = () => {
       {
         Header: intl.get('credit'),
         accessor: isFCYCurrencyType
-          ? 'formatted_fc_credit'
-          : 'formatted_credit',
+          ? 'formattedFcCredit'
+          : 'formattedCredit',
         width: 80,
         className: 'credit',
         align: 'right',

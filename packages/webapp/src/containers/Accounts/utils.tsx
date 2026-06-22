@@ -82,7 +82,7 @@ export const useAccountsTableColumns = () => {
       {
         id: 'type',
         Header: intl.get('type'),
-        accessor: 'account_type_label',
+        accessor: 'accountTypeLabel',
         className: clsx('type', Classes.TEXT_MUTED),
         width: 140,
         clickable: true,
@@ -92,7 +92,7 @@ export const useAccountsTableColumns = () => {
         id: 'normal',
         Header: intl.get('account_normal'),
         Cell: NormalCell,
-        accessor: 'account_normal',
+        accessor: 'accountNormal',
         className: 'normal',
         width: 80,
         clickable: true,
@@ -100,7 +100,7 @@ export const useAccountsTableColumns = () => {
       {
         id: 'currency',
         Header: intl.get('currency'),
-        accessor: 'currency_code',
+        accessor: 'currencyCode',
         className: clsx(Classes.TEXT_MUTED),
         width: 75,
         clickable: true,
@@ -108,7 +108,7 @@ export const useAccountsTableColumns = () => {
       {
         id: 'bank_balance',
         Header: 'Bank Balance',
-        accessor: 'bank_balance_formatted',
+        accessor: 'bankBalanceFormatted',
         Cell: BankBalanceCell,
         width: 150,
         clickable: true,
