@@ -13,7 +13,7 @@ export interface WithAccountsProps {
   accountsTableStateChanged: ReturnType<
     ReturnType<typeof accountsTableStateChangedFactory>
   >;
-  accountsSelectedRows: unknown[];
+  accountsSelectedRows: number[];
 }
 
 export function withAccounts<Props = unknown>(

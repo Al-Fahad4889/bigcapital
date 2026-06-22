@@ -955,22 +955,22 @@ export const filterAccountsByQuery = (accounts, queryProps) => {
 
   if (!isEmpty(query.filterByParentTypes)) {
     filteredAccounts = filteredAccounts.filter((account) =>
-      includes(query.filterByParentTypes, account.account_parent_type),
+      includes(query.filterByParentTypes, account.accountParentType),
     );
   }
   if (!isEmpty(query.filterByTypes)) {
     filteredAccounts = filteredAccounts.filter((account) =>
-      includes(query.filterByTypes, account.account_type),
+      includes(query.filterByTypes, account.accountType),
     );
   }
   if (!isEmpty(query.filterByNormal)) {
     filteredAccounts = filteredAccounts.filter((account) =>
-      includes(query.filterByTypes, account.account_normal),
+      includes(query.filterByTypes, account.accountNormal),
     );
   }
   if (!isEmpty(query.filterByRootTypes)) {
     filteredAccounts = filteredAccounts.filter((account) =>
-      includes(query.filterByRootTypes, account.account_root_type),
+      includes(query.filterByRootTypes, account.accountRootType),
     );
   }
   return filteredAccounts;

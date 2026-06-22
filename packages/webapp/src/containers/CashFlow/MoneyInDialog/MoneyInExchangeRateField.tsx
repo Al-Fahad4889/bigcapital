@@ -17,7 +17,7 @@ export function MoneyInExchangeRateField() {
     <ExchangeRateMutedField
       name={'exchange_rate'}
       fromCurrency={values.currency_code}
-      toCurrency={account.currency_code}
+      toCurrency={account.currencyCode}
       formGroupProps={{ label: '', inline: false }}
       date={values.date}
       exchangeRate={values.exchange_rate}

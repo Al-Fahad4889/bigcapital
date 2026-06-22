@@ -7,7 +7,7 @@ import type { TableQuery } from '@/store/store.types';
 
 interface AccountsState {
   tableState: Partial<TableQuery>;
-  selectedRows: Array<unknown>;
+  selectedRows: number[];
 }
 
 export const defaultTableQuery: Partial<TableQuery> = {
@@ -34,7 +34,7 @@ const reducerInstance = createReducer(initialState, {
 
   [ACCOUNTS_SET_SELECTED_ROWS]: (
     state: AccountsState,
-    action: { payload: Array<unknown> },
+    action: { payload: number[] },
   ) => {
     state.selectedRows = action.payload;
   },

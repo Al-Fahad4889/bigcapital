@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import '@/style/pages/Accounts/List.scss';
 
@@ -9,22 +8,28 @@ import { AccountsActionsBar } from './AccountsActionsBar';
 import { AccountsDataTable } from './AccountsDataTable';
 
 import { withAccounts } from '@/containers/Accounts/withAccounts';
+import type { WithAccountsProps } from '@/containers/Accounts/withAccounts';
 import { withAccountsTableActions } from './withAccountsTableActions';
+import type { WithAccountsTableActionsProps } from './withAccountsTableActions';
 
 import { transformAccountsStateToQuery } from './utils';
 import { compose } from '@/utils';
+
+interface AccountsChartInnerProps {
+  accountsTableState: WithAccountsProps['accountsTableState'];
+  accountsTableStateChanged: WithAccountsProps['accountsTableStateChanged'];
+  resetAccountsTableState: WithAccountsTableActionsProps['resetAccountsTableState'];
+}
 
 /**
  * Accounts chart list.
  */
 function AccountsChartInner({
-  // #withAccounts
   accountsTableState,
   accountsTableStateChanged,
 
-  // #withAccountsActions
   resetAccountsTableState,
-}) {
+}: AccountsChartInnerProps) {
   // Resets the accounts table state once the page unmount.
   useEffect(
     () => () => {

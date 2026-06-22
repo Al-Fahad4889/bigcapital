@@ -3,4 +3,5 @@ export interface TableQuery {
   pageIndex: number;
   filterRoles: Array<unknown>;
   viewSlug?: string | null;
+  inactiveMode?: boolean;
 }

@@ -43,7 +43,7 @@ export function useAccounts(
   query?: GetAccountsQuery | null,
   props?: Omit<UseQueryOptions<AccountsList>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: accountsKeys.list(query),
@@ -55,7 +55,7 @@ export function useAccount(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<Account>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: accountsKeys.detail(id),
@@ -67,7 +67,7 @@ export function useAccount(
 export function useAccountsTypes(
   props?: Omit<UseQueryOptions<AccountTypesList>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: accountsKeys.types(),
@@ -201,7 +201,7 @@ export function useAccountTransactions(
     'queryKey' | 'queryFn'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: accountsKeys.transactions(id),

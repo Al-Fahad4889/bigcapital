@@ -84,9 +84,9 @@ function AccountTransactionsActionsBarInner({
   const addMoneyInOptions = useMemo(() => getAddMoneyInOptions(), []);
   const addMoneyOutOptions = useMemo(() => getAddMoneyOutOptions(), []);
 
-  const isFeedsActive = !!currentAccount?.is_feeds_active;
-  const isFeedsPaused = currentAccount?.is_feeds_paused;
-  const isSyncingOwner = currentAccount?.is_syncing_owner;
+  const isFeedsActive = !!currentAccount?.isFeedsActive;
+  const isFeedsPaused = currentAccount?.isFeedsPaused;
+  const isSyncingOwner = currentAccount?.isSyncingOwner;
 
   // Handle table row size change.
   const handleTableRowSizeChange = (size) => {
