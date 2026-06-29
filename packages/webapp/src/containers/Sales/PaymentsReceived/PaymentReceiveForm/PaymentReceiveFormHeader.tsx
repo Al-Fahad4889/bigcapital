@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import classNames from 'classnames';
 import { useFormikContext } from 'formik';
@@ -8,12 +7,22 @@ import { FormattedMessage as T } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { PaymentReceiveHeaderFields } from './PaymentReceiveHeaderFields';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
+import type { PaymentReceiveFormValues } from './utils';
 
 /**
  * Payment receive form header.
  */
 export function PaymentReceiveFormHeader() {
   const isDarkMode = useIsDarkMode();
+
+  const headerStyle = {
+    '--x-header-background': isDarkMode
+      ? 'var(--color-dark-gray1)'
+      : 'var(--color-white)',
+    '--x-header-border': isDarkMode
+      ? 'rgba(255, 255, 255, 0.1)'
+      : '#d2dce2',
+  } as React.CSSProperties;
 
   return (
     <Group
@@ -22,14 +31,7 @@ export function PaymentReceiveFormHeader() {
       p="25px 32px"
       bg="var(--x-header-background)"
       borderBottom="1px solid var(--x-header-border)"
-      style={{
-        '--x-header-background': isDarkMode
-          ? 'var(--color-dark-gray1)'
-          : 'var(--color-white)',
-        '--x-header-border': isDarkMode
-          ? 'rgba(255, 255, 255, 0.1)'
-          : '#d2dce2',
-      }}
+      style={headerStyle}
     >
       <PaymentReceiveHeaderFields />
       <PaymentReceiveFormBigTotal />
@@ -39,22 +41,20 @@ export function PaymentReceiveFormHeader() {
 
 /**
  * Big total amount of payment receive form.
- * @returns {React.ReactNode}
  */
 function PaymentReceiveFormBigTotal() {
-  // Formik form context.
   const {
-    values: { currency_code, amount },
-  } = useFormikContext();
+    values: { currencyCode, amount },
+  } = useFormikContext<PaymentReceiveFormValues>();
 
   return (
     <div className={classNames(CLASSES.PAGE_FORM_HEADER_BIG_NUMBERS)}>
-      <div class="big-amount">
-        <span class="big-amount__label">
+      <div className="big-amount">
+        <span className="big-amount__label">
           <T id={'amount_received'} />
         </span>
-        <h1 class="big-amount__number">
-          <Money amount={amount} currency={currency_code} />
+        <h1 className="big-amount__number">
+          <Money amount={amount} currency={currencyCode} />
         </h1>
       </div>
     </div>

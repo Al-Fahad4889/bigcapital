@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
@@ -17,13 +16,14 @@ import {
   useReceiptSubtotalFormatted,
   useReceiptTotalFormatted,
 } from './utils';
+import type { ReceiptFormValues } from './utils';
 import { DiscountTotalLine } from '../../Invoices/InvoiceForm/DiscountTotalLine';
 import { AdjustmentTotalLine } from '../../Invoices/InvoiceForm/AdjustmentTotalLine';
 
 export function ReceiptFormFooterRight() {
   const {
     values: { currencyCode },
-  } = useFormikContext();
+  } = useFormikContext<ReceiptFormValues>();
 
   const paidAmountFormatted = useReceiptPaidAmountFormatted();
   const dueAmountFormatted = useReceiptDueAmountFormatted();

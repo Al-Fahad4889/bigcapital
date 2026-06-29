@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import {
   Intent,
@@ -15,6 +14,7 @@ import { useFormikContext } from 'formik';
 import { If, Icon, FormattedMessage as T, Group, FSelect } from '@/components';
 import { useInvoiceFormContext } from './InvoiceFormProvider';
 import { useInvoiceFormBrandingTemplatesOptions } from './utils';
+import type { InvoiceFormValues } from './utils';
 import { useDrawerActions } from '@/hooks/state';
 import {
   BrandingThemeFormGroup,
@@ -34,54 +34,55 @@ export function InvoiceFloatingActions() {
   const { openDrawer } = useDrawerActions();
 
   // Formik context.
-  const { resetForm, submitForm, isSubmitting } = useFormikContext();
+  const { resetForm, submitForm, isSubmitting } =
+    useFormikContext<InvoiceFormValues>();
 
   // Invoice form context.
   const { setSubmitPayload, invoice } = useInvoiceFormContext();
 
   // Handle submit & deliver button click.
-  const handleSubmitDeliverBtnClick = (event) => {
+  const handleSubmitDeliverBtnClick = () => {
     setSubmitPayload({ redirect: true, deliver: true });
     submitForm();
   };
 
   // Handle submit, deliver & new button click.
-  const handleSubmitDeliverAndNewBtnClick = (event) => {
+  const handleSubmitDeliverAndNewBtnClick = () => {
     setSubmitPayload({ redirect: false, deliver: true, resetForm: true });
     submitForm();
   };
 
   // Handle submit, deliver & continue editing button click.
-  const handleSubmitDeliverContinueEditingBtnClick = (event) => {
+  const handleSubmitDeliverContinueEditingBtnClick = () => {
     setSubmitPayload({ redirect: false, deliver: true });
     submitForm();
   };
 
   // Handle submit as draft button click.
-  const handleSubmitDraftBtnClick = (event) => {
+  const handleSubmitDraftBtnClick = () => {
     setSubmitPayload({ redirect: true, deliver: false });
     submitForm();
   };
 
   // Handle submit as draft & new button click.
-  const handleSubmitDraftAndNewBtnClick = (event) => {
+  const handleSubmitDraftAndNewBtnClick = () => {
     setSubmitPayload({ redirect: false, deliver: false, resetForm: true });
     submitForm();
   };
 
   // Handle submit as draft & continue editing button click.
-  const handleSubmitDraftContinueEditingBtnClick = (event) => {
+  const handleSubmitDraftContinueEditingBtnClick = () => {
     setSubmitPayload({ redirect: false, deliver: false });
     submitForm();
   };
 
   // Handle cancel button click.
-  const handleCancelBtnClick = (event) => {
+  const handleCancelBtnClick = () => {
     history.goBack();
   };
 
   // Handle clear button click.
-  const handleClearBtnClick = (event) => {
+  const handleClearBtnClick = () => {
     resetForm();
   };
 
@@ -96,7 +97,7 @@ export function InvoiceFloatingActions() {
     <PageForm.FooterActions spacing={10} position={'apart'}>
       <Group spacing={10}>
         {/* ----------- Save And Deliver ----------- */}
-        <If condition={!invoice || !invoice?.isDelivered}>
+        <If condition={!invoice || !invoice?.delivered}>
           <ButtonGroup>
             <Button
               disabled={isSubmitting}
@@ -164,7 +165,7 @@ export function InvoiceFloatingActions() {
         </If>
 
         {/* ----------- Save and New ----------- */}
-        <If condition={invoice && invoice?.isDelivered}>
+        <If condition={!!invoice && !!invoice?.delivered}>
           <ButtonGroup>
             <Button
               disabled={isSubmitting}
@@ -223,7 +224,7 @@ export function InvoiceFloatingActions() {
           <FSelect
             name={'pdfTemplateId'}
             items={brandingTemplatesOptions}
-            input={({ activeItem, text, label, value }) => (
+            input={({ text }: { text?: string }) => (
               <BrandingThemeSelectButton text={text || 'Brand Theme'} />
             )}
             filterable={false}

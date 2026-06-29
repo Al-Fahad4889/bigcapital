@@ -1,4 +1,3 @@
-// @ts-nocheck
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
 import {
@@ -15,6 +14,7 @@ import {
   useBillPaidAmountFormatted,
   useBillSubtotalFormatted,
   useBillTotalFormatted,
+  type BillFormValues,
 } from './utils';
 import { TaxType } from '@/interfaces/TaxRates';
 import { AdjustmentTotalLine } from '@/containers/Sales/Invoices/InvoiceForm/AdjustmentTotalLine';
@@ -23,7 +23,7 @@ import { DiscountTotalLine } from '@/containers/Sales/Invoices/InvoiceForm/Disco
 export function BillFormFooterRight() {
   const {
     values: { inclusiveExclusiveTax, currencyCode },
-  } = useFormikContext();
+  } = useFormikContext<BillFormValues>();
 
   const dueAmountFormatted = useBillDueAmountFormatted();
   const paidAmountFormatted = useBillPaidAmountFormatted();
@@ -50,7 +50,7 @@ export function BillFormFooterRight() {
         discountAmount={discountAmount}
       />
       <AdjustmentTotalLine adjustmentAmount={adjustmentAmount} />
-      {taxEntries.map((tax, index) => (
+      {taxEntries.map((tax: { label: string; taxAmountFormatted: string }, index: number) => (
         <TotalLine
           key={index}
           title={tax.label}

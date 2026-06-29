@@ -1,10 +1,9 @@
-// @ts-nocheck
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
 import { FFormGroup, FSelect } from '@/components';
 import { InclusiveTaxOptions } from '@/constants/InclusiveTaxOptions';
 
-import { composeEntriesOnEditInclusiveTax } from './utils';
+import { composeEntriesOnEditInclusiveTax, type BillFormValues } from './utils';
 import { EntriesActionsBar } from '@/containers/Entries/EntriesActionBar';
 
 export function BillFormEntriesActions() {
@@ -15,14 +14,16 @@ export function BillFormEntriesActions() {
   );
 }
 
+type InclusiveTaxOption = { key: string; label: string };
+
 /**
  * Bill exclusive/inclusive select.
  * @returns {React.ReactNode}
  */
-export function BillExclusiveInclusiveSelect(props) {
-  const { values, setFieldValue } = useFormikContext();
+export function BillExclusiveInclusiveSelect(props: Record<string, unknown>) {
+  const { values, setFieldValue } = useFormikContext<BillFormValues>();
 
-  const handleItemSelect = (item) => {
+  const handleItemSelect = (item: InclusiveTaxOption) => {
     const newEntries = composeEntriesOnEditInclusiveTax(
       item.key,
       values.entries,

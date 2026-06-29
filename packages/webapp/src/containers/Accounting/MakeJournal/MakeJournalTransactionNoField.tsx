@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import * as R from 'ramda';
 import {
   FieldHint,
   FieldRequiredHint,
@@ -13,31 +11,35 @@ import {
   FFormGroup,
 } from '@/components';
 
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import { compose } from '@/utils';
 import intl from 'react-intl-universal';
+import type { MakeJournalFormValues } from './utils';
+
+interface MakeJournalTransactionNoFieldProps
+  extends Pick<WithDialogActionsProps, 'openDialog'> {
+  journalAutoIncrement?: boolean;
+}
 
 /**
  * Journal number field of make journal form.
  */
-export const MakeJournalTransactionNoField = R.compose(
+export const MakeJournalTransactionNoField = compose(
   withDialogActions,
   withSettings(({ manualJournalsSettings }) => ({
     journalAutoIncrement: manualJournalsSettings?.autoIncrement,
   })),
-)(({
-  // #withDialog
-  openDialog,
-
-  // #withSettings
-  journalAutoIncrement,
-}) => {
-  const { setFieldValue, values } = useFormikContext();
+)(({ openDialog, journalAutoIncrement }: MakeJournalTransactionNoFieldProps) => {
+  const { setFieldValue, values } = useFormikContext<MakeJournalFormValues>();
 
   const handleJournalNumberChange = () => {
     openDialog('journal-number-form');
   };
-  const handleJournalNoBlur = (event) => {
+  const handleJournalNoBlur = (
+    event: React.FocusEvent<HTMLInputElement>,
+  ) => {
     const newValue = event.target.value;
 
     if (values.journalNumber !== newValue && journalAutoIncrement) {
@@ -64,7 +66,6 @@ export const MakeJournalTransactionNoField = R.compose(
           <FieldHint />
         </>
       }
-      fill={true}
       inline={true}
       fastField={true}
     >

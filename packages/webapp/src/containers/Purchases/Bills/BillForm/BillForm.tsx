@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React, { useMemo } from 'react';
 import intl from 'react-intl-universal';
-import classNames from 'classnames';
-import { Formik, Form } from 'formik';
+import { Formik, Form, type FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'lodash';
@@ -26,9 +24,14 @@ import {
   transformToEditForm,
   transformFormValuesToRequest,
   handleErrors,
+  type BillFormValues,
 } from './utils';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { BillFormEntriesActions } from './BillFormEntriesActions';
+
+type BillSubmitError = {
+  data?: { errors?: { type: string }[] };
+};
 
 /**
  * Bill form.
@@ -43,15 +46,13 @@ function BillFormInner() {
     useBillFormContext();
 
   // Initial values in create and edit mode.
-  const initialValues = useMemo(
+  const initialValues = useMemo<BillFormValues>(
     () => ({
       ...(!isEmpty(bill)
-        ? {
-            ...transformToEditForm(bill),
-          }
+        ? transformToEditForm(bill!)
         : {
             ...defaultBill,
-            currencyCode: baseCurrency,
+            currencyCode: baseCurrency ?? '',
           }),
     }),
     [bill, baseCurrency],
@@ -59,8 +60,8 @@ function BillFormInner() {
 
   // Handles form submit.
   const handleFormSubmit = (
-    values,
-    { setSubmitting, setErrors, resetForm },
+    values: BillFormValues,
+    { setSubmitting, setErrors, resetForm }: FormikHelpers<BillFormValues>,
   ) => {
     const entries = filterNonZeroEntries(values.entries);
     const totalQuantity = safeSumBy(entries, 'quantity');
@@ -78,7 +79,7 @@ function BillFormInner() {
       open: submitPayload.status,
     };
     // Handle the request success.
-    const onSuccess = (response) => {
+    const onSuccess = () => {
       AppToaster.show({
         message: intl.get(
           isNewMode
@@ -97,14 +98,14 @@ function BillFormInner() {
       }
     };
     // Handle the request error.
-    const onError = ({ data: { errors } }) => {
-      handleErrors(errors, { setErrors });
+    const onError = (error: BillSubmitError) => {
+      handleErrors(error?.data?.errors ?? [], { setErrors });
       setSubmitting(false);
     };
     if (isNewMode) {
       createBillMutate(form).then(onSuccess).catch(onError);
     } else {
-      editBillMutate([bill.id, form]).then(onSuccess).catch(onError);
+      editBillMutate([bill!.id, form]).then(onSuccess).catch(onError);
     }
   };
 

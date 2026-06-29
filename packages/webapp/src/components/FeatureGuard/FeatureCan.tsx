@@ -1,13 +1,21 @@
 // @ts-nocheck
 import React from 'react';
-import * as R from 'ramda';
 import { withFeatureCan } from './withFeatureCan';
+import { compose } from '@/utils';
 
-function FeatureCanJSX({ feature, children, isFeatureCan }) {
+function FeatureCanJSX({
+  feature,
+  children,
+  isFeatureCan,
+}: {
+  feature: string;
+  children?: React.ReactNode;
+  isFeatureCan?: boolean;
+}) {
   return isFeatureCan && children;
 }
 
-export const FeatureCan = R.compose(
+export const FeatureCan = compose(
   withFeatureCan(({ isFeatureCan }) => ({
     isFeatureCan,
   })),

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useRef, useEffect } from 'react';
+import type { DependencyList } from 'react';
 
 /**
  * A custom useEffect hook that only triggers on updates, not on initial mount
@@ -7,7 +8,7 @@ import { useRef, useEffect } from 'react';
  * @param {Function} effect
  * @param {Array<any>} dependencies
  */
-export function useUpdateEffect(effect, dependencies = []) {
+export function useUpdateEffect(effect: () => void | (() => void), dependencies: DependencyList = []) {
   const isInitialMount = useRef(true);
 
   useEffect(() => {

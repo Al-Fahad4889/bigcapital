@@ -26,6 +26,13 @@ interface ItemsEntriesTableProps {
   taxRates?: any[];
   minLinesNumber?: number;
   enableTaxRates?: boolean;
+  items?: unknown[];
+  itemType?: string;
+  errors?: unknown;
+  linesNumber?: number;
+  currencyCode?: string;
+  isInclusiveTax?: boolean;
+  landedCost?: boolean;
 }
 
 /**

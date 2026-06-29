@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import {
   Alignment,
@@ -78,9 +77,9 @@ function BillFormSelectBranch() {
 
 function BillFormSelectWarehouse() {
   // Bill form context.
-  const { warehouses, isWarehouesLoading } = useBillFormContext();
+  const { warehouses, isWarehousesLoading } = useBillFormContext();
 
-  return isWarehouesLoading ? (
+  return isWarehousesLoading ? (
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <WarehouseSelect

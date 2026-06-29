@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as Yup from 'yup';
 import moment from 'moment';
 import intl from 'react-intl-universal';
@@ -36,14 +35,15 @@ const BillFormSchema = Yup.object().shape({
         .nullable()
         .max(DATATYPES_LENGTH.INT_10)
         .when(['rate'], {
-          is: (rate) => rate,
+          is: (rate: unknown) => rate,
           then: Yup.number().required(),
         }),
       rate: Yup.number().nullable().max(DATATYPES_LENGTH.INT_10),
       itemId: Yup.number()
         .nullable()
         .when(['quantity', 'rate'], {
-          is: (quantity, rate) => !isBlank(quantity) && !isBlank(rate),
+          is: (quantity: unknown, rate: unknown) =>
+            !isBlank(quantity) && !isBlank(rate),
           then: Yup.number().required(),
         }),
       total: Yup.number().nullable(),

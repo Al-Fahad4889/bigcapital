@@ -1,41 +1,35 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import { useHistory } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import { defaultTo, isEmpty } from 'lodash';
 import { css } from '@emotion/css';
-
 import {
   CreateCreditNoteFormSchema,
   EditCreditNoteFormSchema,
 } from './CreditNoteForm.schema';
-
 import { CreditNoteFormHeader } from './CreditNoteFormHeader';
 import { CreditNoteItemsEntriesEditorField } from './CreditNoteItemsEntriesEditorField';
 import { CreditNoteFormFooter } from './CreditNoteFormFooter';
 import { CreditNoteFloatingActions } from './CreditNoteFloatingActions';
 import { CreditNoteFormDialogs } from './CreditNoteFormDialogs';
 import { CreditNoteFormTopbar as CreditNoteFormTopBar } from './CreditNoteFormTopBar';
-
 import { AppToaster } from '@/components';
-
 import { useCreditNoteFormContext } from './CreditNoteFormProvider';
 import {
-  filterNonZeroEntries,
   transformToEditForm,
   transformFormValuesToRequest,
   defaultCreditNote,
+  type CreditNoteFormValues,
+  type CreditNoteEntry,
 } from './utils';
-
 import {
   compose,
   orderingLinesIndexes,
   transactionNumber,
   safeSumBy,
 } from '@/utils';
-
 import { withSettings } from '@/containers/Settings/withSettings';
 import {
   CreditNoteExchangeRateSync,
@@ -44,17 +38,24 @@ import {
 import { PageForm } from '@/components/PageForm';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
+type CreditNoteFormInnerProps = {
+  creditAutoIncrement?: boolean;
+  creditNumberPrefix?: string;
+  creditNextNumber?: number;
+  creditCustomerNotes?: string;
+  creditTermsConditions?: string;
+};
+
 /**
  * Credit note form.
  */
 function CreditNoteFormInner({
-  // #withSettings
   creditAutoIncrement,
   creditNumberPrefix,
   creditNextNumber,
   creditCustomerNotes,
   creditTermsConditions,
-}) {
+}: CreditNoteFormInnerProps) {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const history = useHistory();
@@ -74,29 +75,29 @@ function CreditNoteFormInner({
   const creditNumber = transactionNumber(creditNumberPrefix, creditNextNumber);
 
   // Initial values.
-  const initialValues = {
-    ...(!isEmpty(creditNote)
-      ? { ...transformToEditForm(creditNote) }
-      : {
-          ...defaultCreditNote,
-          ...(creditAutoIncrement && {
-            credit_note_number: creditNumber,
-          }),
-          entries: orderingLinesIndexes(defaultCreditNote.entries),
-          currency_code: baseCurrency,
-          terms_conditions: defaultTo(creditTermsConditions, ''),
-          note: defaultTo(creditCustomerNotes, ''),
-          pdf_template_id: creditNoteState?.defaultTemplateId,
-          ...newCreditNote,
+  const initialValues: CreditNoteFormValues = !isEmpty(creditNote)
+    ? transformToEditForm(creditNote)
+    : {
+        ...defaultCreditNote,
+        ...(creditAutoIncrement && {
+          creditNoteNumber: creditNumber,
         }),
-  };
+        entries: orderingLinesIndexes(defaultCreditNote.entries),
+        currencyCode: baseCurrency ?? '',
+        termsConditions: defaultTo(creditTermsConditions, ''),
+        note: defaultTo(creditCustomerNotes, ''),
+        pdfTemplateId: creditNoteState?.defaultTemplateId ?? '',
+        ...(Array.isArray(newCreditNote) ? {} : newCreditNote),
+      };
 
   // Handles form submit.
   const handleFormSubmit = (
-    values,
-    { setSubmitting, setErrors, resetForm },
+    values: CreditNoteFormValues,
+    { setSubmitting, resetForm }: FormikHelpers<CreditNoteFormValues>,
   ) => {
-    const entries = filterNonZeroEntries(values.entries);
+    const entries = values.entries.filter(
+      (item: CreditNoteEntry) => item.itemId && item.quantity,
+    );
     const totalQuantity = safeSumBy(entries, 'quantity');
 
     if (totalQuantity === 0) {
@@ -109,7 +110,7 @@ function CreditNoteFormInner({
     }
     const form = {
       ...transformFormValuesToRequest(values),
-      open: submitPayload.open,
+      open: submitPayload?.open ?? false,
     };
     // Handle the request success.
     const onSuccess = () => {
@@ -123,20 +124,20 @@ function CreditNoteFormInner({
       });
       setSubmitting(false);
 
-      if (submitPayload.redirect) {
+      if (submitPayload?.redirect) {
         history.push('/credit-notes');
       }
-      if (submitPayload.resetForm) {
+      if (submitPayload?.resetForm) {
         resetForm();
       }
     };
     // Handle the request error.
-    const onError = ({ data: { errors } }) => {
+    const onError = () => {
       setSubmitting(false);
     };
     if (isNewMode) {
       createCreditNoteMutate(form).then(onSuccess).catch(onError);
-    } else {
+    } else if (creditNote) {
       editCreditNoteMutate([creditNote.id, form])
         .then(onSuccess)
         .catch(onError);
@@ -144,7 +145,7 @@ function CreditNoteFormInner({
   };
 
   return (
-    <Formik
+    <Formik<CreditNoteFormValues>
       validationSchema={
         isNewMode ? CreateCreditNoteFormSchema : EditCreditNoteFormSchema
       }

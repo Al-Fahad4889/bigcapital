@@ -1,12 +1,10 @@
-// @ts-nocheck
 import React from 'react';
-import classNames from 'classnames';
 import styled from 'styled-components';
-import { FormGroup, InputGroup, Position } from '@blueprintjs/core';
+import { Position } from '@blueprintjs/core';
 import { DateInput } from '@blueprintjs/datetime';
 import { FastField, ErrorMessage, useFormikContext } from 'formik';
 import { css } from '@emotion/css';
-import { useTheme } from '@emotion/react';
+import { Theme, useTheme } from '@emotion/react';
 
 import { CLASSES } from '@/constants/classes';
 import {
@@ -15,11 +13,13 @@ import {
   FormattedMessage as T,
   CustomerDrawerLink,
   FFormGroup,
+  FInputGroup,
   CustomersSelect,
   Stack,
   FDateInput,
 } from '@/components';
 import { customerNameFieldShouldUpdate } from './utils';
+import type { CreditNoteFormValues } from './utils';
 
 import { useCreditNoteFormContext } from './CreditNoteFormProvider';
 import { CreditNoteExchangeRateInputField } from './components';
@@ -27,7 +27,7 @@ import { CreditNoteTransactionNoField } from './CreditNoteTransactionNoField';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 import intl from 'react-intl-universal';
 
-const getCreditNoteFieldsStyle = (theme: Theme) => css`
+const getCreditNoteFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;
 
@@ -60,14 +60,14 @@ export function CreditNoteFormHeaderFields() {
 
       {/* ----------- Credit note date ----------- */}
       <FFormGroup
-        name={'credit_note_date'}
+        name={'creditNoteDate'}
         label={intl.get('credit_note.label_credit_note_date')}
         labelInfo={<FieldRequiredHint />}
         inline
         fastField
       >
         <FDateInput
-          name={'credit_note_date'}
+          name={'creditNoteDate'}
           formatDate={(date) => date.toLocaleDateString()}
           parseDate={(str) => new Date(str)}
           popoverProps={{ position: Position.BOTTOM_LEFT, minimal: true }}
@@ -84,44 +84,42 @@ export function CreditNoteFormHeaderFields() {
       <CreditNoteTransactionNoField />
 
       {/* ----------- Reference ----------- */}
-      <FormGroup label={intl.get('reference_no')} name={'reference_no'} inline>
-        <InputGroup name={'reference_no'} minimal />
-      </FormGroup>
+      <FFormGroup name={'referenceNo'} label={intl.get('reference_no')} inline>
+        <FInputGroup name={'referenceNo'} />
+      </FFormGroup>
     </Stack>
   );
 }
 
 /**
  * Customer select field of credit note form.
- * @returns {React.ReactNode}
  */
 function CreditNoteCustomersSelect() {
   // Credit note form context.
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext<CreditNoteFormValues>();
   const { customers } = useCreditNoteFormContext();
 
   const updateEntries = useCustomerUpdateExRate();
 
   // Handles item change.
-  const handleItemChange = (customer) => {
-    setFieldValue('customer_id', customer.id);
-    setFieldValue('currency_code', customer?.currency_code);
+  const handleItemChange = (customer: { id: number; currency_code: string }) => {
+    setFieldValue('customerId', customer.id);
+    setFieldValue('currencyCode', customer?.currency_code);
 
     updateEntries(customer);
   };
 
   return (
     <FFormGroup
-      name={'customer_id'}
+      name={'customerId'}
       label={intl.get('customer_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
       fastField={true}
-      shouldUpdate={customerNameFieldShouldUpdate}
-      shouldUpdateDeps={{ items: customers }}
     >
+      <>
       <CustomersSelect
-        name={'customer_id'}
+        name={'customerId'}
         items={customers}
         placeholder={<T id={'select_customer_account'} />}
         onItemChange={handleItemChange}
@@ -131,11 +129,12 @@ function CreditNoteCustomersSelect() {
         shouldUpdate={customerNameFieldShouldUpdate}
         shouldUpdateDeps={{ items: customers }}
       />
-      {values.customer_id && (
-        <CustomerButtonLink customerId={values.customer_id}>
+      {values.customerId && (
+        <CustomerButtonLink customerId={values.customerId}>
           <T id={'view_customer_details'} />
         </CustomerButtonLink>
       )}
+      </>
     </FFormGroup>
   );
 }

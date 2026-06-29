@@ -1,10 +1,11 @@
-// @ts-nocheck
 import React from 'react';
 import { FastField } from 'formik';
+import type { FieldProps } from 'formik';
 import { x } from '@xstyled/emotion';
 import { ItemsEntriesTable } from '@/containers/Entries/ItemsEntriesTable';
 import { useInvoiceFormContext } from './InvoiceFormProvider';
 import { entriesFieldShouldUpdate } from './utils';
+import type { InvoiceFormValues } from './utils';
 import { TaxType } from '@/interfaces/TaxRates';
 import { ITEM_TYPE } from '@/containers/Entries/utils';
 
@@ -24,8 +25,8 @@ export function InvoiceItemsEntriesEditorField() {
       {({
         form: { values, setFieldValue },
         field: { value },
-        meta: { error, touched },
-      }) => (
+        meta: { error },
+      }: FieldProps<any[], InvoiceFormValues>) => (
         <ItemsEntriesTable
           value={value}
           onChange={(entries) => {

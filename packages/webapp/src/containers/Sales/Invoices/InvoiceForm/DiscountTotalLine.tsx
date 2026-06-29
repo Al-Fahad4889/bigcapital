@@ -1,4 +1,4 @@
-// @ts-nocheck
+import type { CSSProperties } from 'react';
 import { css } from '@emotion/css';
 import { x } from '@xstyled/emotion';
 import {
@@ -9,6 +9,13 @@ import {
 } from '@/components';
 import { Button } from '@blueprintjs/core';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
+
+const borderColorStyle = (isDarkMode: boolean): CSSProperties =>
+  ({
+    '--x-border-bottom-color': isDarkMode
+      ? 'rgba(255, 255, 255, 0.1)'
+      : 'rgb(210, 221, 226)',
+  }) as CSSProperties;
 
 const inputGroupCss = css`
   & .bp4-input {
@@ -22,14 +29,14 @@ const formGroupCss = css`
 
 interface DiscountTotalLineProps {
   currencyCode: string;
-  discountAmount: number;
+  discountAmount: string | number;
 }
 
 export function DiscountTotalLine({
   currencyCode,
   discountAmount,
 }: DiscountTotalLineProps) {
-  const discountButtonInput = ({ text }) => (
+  const discountButtonInput = ({ text }: { text: string }) => (
     <Button
       small
       minimal
@@ -54,11 +61,7 @@ export function DiscountTotalLine({
     <TotalLinePrimitive>
       <TotalLinePrimitive.Title
         borderBottom={'1px solid var(--x-border-bottom-color)'}
-        style={{
-          '--x-border-bottom-color': isDarkMode
-            ? 'rgba(255, 255, 255, 0.1)'
-            : 'rgb(210, 221, 226)',
-        }}
+        style={borderColorStyle(isDarkMode)}
       >
         <x.div
           display={'flex'}
@@ -92,11 +95,7 @@ export function DiscountTotalLine({
       <TotalLinePrimitive.Amount
         textAlign={'right'}
         borderBottom={'1px solid var(--x-border-bottom-color)'}
-        style={{
-          '--x-border-bottom-color': isDarkMode
-            ? 'rgba(255, 255, 255, 0.1)'
-            : 'rgb(210, 221, 226)',
-        }}
+        style={borderColorStyle(isDarkMode)}
       >
         {discountAmount}
       </TotalLinePrimitive.Amount>

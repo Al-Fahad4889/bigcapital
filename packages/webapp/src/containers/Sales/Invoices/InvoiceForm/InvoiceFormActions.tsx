@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
@@ -6,6 +5,8 @@ import { InclusiveButtonOptions } from './constants';
 import { FFormGroup, FSelect } from '@/components';
 import { EntriesActionsBar } from '@/containers/Entries/EntriesActionBar';
 import { composeEntriesOnEditInclusiveTax } from './utils';
+import type { InvoiceFormValues } from './utils';
+import { TaxType } from '@/interfaces/TaxRates';
 
 /**
  * Invoice form actions.
@@ -23,10 +24,12 @@ export function InvoiceFormActions() {
  * Invoice exclusive/inclusive select.
  * @returns {React.ReactNode}
  */
-export function InvoiceExclusiveInclusiveSelect(props) {
-  const { values, setFieldValue } = useFormikContext();
+export function InvoiceExclusiveInclusiveSelect(
+  props: React.ComponentProps<typeof FSelect>,
+) {
+  const { values, setFieldValue } = useFormikContext<InvoiceFormValues>();
 
-  const handleItemSelect = (item) => {
+  const handleItemSelect = (item: { key: TaxType }) => {
     const newEntries = composeEntriesOnEditInclusiveTax(
       item.key,
       values.entries,

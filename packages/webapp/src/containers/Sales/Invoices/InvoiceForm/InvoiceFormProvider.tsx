@@ -36,6 +36,8 @@ import { useGetPaymentServices } from '@/hooks/query/payment-services';
 
 type InvoiceFormSubmitPayload = {
   redirect?: boolean;
+  deliver?: boolean;
+  resetForm?: boolean;
 };
 
 type InvoiceFormContextValue = {

@@ -1,7 +1,5 @@
-// @ts-nocheck
 import React from 'react';
 import classNames from 'classnames';
-
 import { CLASSES } from '@/constants/classes';
 import { Row, Col, Paper } from '@/components';
 import { MakeJournalFormFooterLeft } from './MakeJournalFormFooterLeft';

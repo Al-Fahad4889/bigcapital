@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import * as R from 'ramda';
 import {
   FFormGroup,
   FieldRequiredHint,
@@ -14,12 +12,20 @@ import {
 
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import { compose } from '@/utils';
 import intl from 'react-intl-universal';
+import type { ReceiptFormValues } from './utils';
+
+type ReceiptFormReceiptNumberFieldProps = {
+  openDialog: WithDialogActionsProps['openDialog'];
+  receiptAutoIncrement?: boolean;
+};
 
 /**
  * Receipt number field of receipt form.
  */
-export const ReceiptFormReceiptNumberField = R.compose(
+export const ReceiptFormReceiptNumberField = compose(
   withDialogActions,
   withSettings(({ receiptSettings }) => ({
     receiptAutoIncrement: receiptSettings?.autoIncrement,
@@ -30,14 +36,16 @@ export const ReceiptFormReceiptNumberField = R.compose(
 
   // #withSettings
   receiptAutoIncrement,
-}) => {
-  const { values, setFieldValue } = useFormikContext();
+}: ReceiptFormReceiptNumberFieldProps) => {
+  const { values, setFieldValue } = useFormikContext<ReceiptFormValues>();
 
   const handleReceiptNumberChange = () => {
     openDialog('receipt-number-form', {});
   };
 
-  const handleReceiptNoBlur = (event) => {
+  const handleReceiptNoBlur: React.FocusEventHandler<HTMLInputElement> = (
+    event,
+  ) => {
     const newValue = event.target.value;
 
     // Show the confirmation dialog if the value has changed and auto-increment
@@ -68,9 +76,7 @@ export const ReceiptFormReceiptNumberField = R.compose(
       <ControlGroup fill={true}>
         <FInputGroup
           name={'receiptNumber'}
-          minimal={true}
           value={values.receiptNumber}
-          asyncControl={true}
           onBlur={handleReceiptNoBlur}
           onChange={() => {}}
         />
@@ -85,9 +91,6 @@ export const ReceiptFormReceiptNumberField = R.compose(
               <T id={'setting_your_auto_generated_payment_receive_number'} />
             ),
             position: Position.BOTTOM_LEFT,
-          }}
-          inputProps={{
-            leftIcon: <Icon icon={'date-range'} />,
           }}
         />
       </ControlGroup>

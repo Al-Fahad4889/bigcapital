@@ -1,18 +1,25 @@
-// @ts-nocheck
 import React from 'react';
 import { useFormikContext } from 'formik';
 import { index as ReceiptNumberDialog } from '@/containers/Dialogs/ReceiptNumberDialog';
 import { InvoiceExchangeRateChangeDialog } from '@/containers/Sales/Invoices/InvoiceForm/Dialogs/InvoiceExchangeRateChangeDialog';
 import { DialogsName } from '@/constants/dialogs';
+import type { ReceiptFormValues } from './utils';
+
+type ReceiptNumberFormSettings = {
+  transactionNumber: string;
+  incrementMode: string;
+};
 
 /**
  * Receipt form dialogs.
  */
 export function ReceiptFormDialogs() {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<ReceiptFormValues>();
 
   // Update the form once the receipt number form submit confirm.
-  const handleReceiptNumberFormConfirm = (settings) => {
+  const handleReceiptNumberFormConfirm = (
+    settings: ReceiptNumberFormSettings,
+  ) => {
     // Set the receipt transaction no. that cames from dialog to the form.
     // the `receipt_no_manually` will be empty except the increment mode is not auto.
     setFieldValue('receiptNumber', settings.transactionNumber);

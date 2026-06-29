@@ -1,5 +1,4 @@
-// @ts-nocheck
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import moment from 'moment';
 import intl from 'react-intl-universal';
 import { Button } from '@blueprintjs/core';
@@ -9,28 +8,44 @@ import * as R from 'ramda';
 import { Money, ExchangeRateInputGroup, MoneyFieldCell } from '@/components';
 
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
-import { useEstimateIsForeignCustomer } from './utils';
+import {
+  useEstimateIsForeignCustomer,
+  type PaymentReceiveEntry,
+  type PaymentReceiveFormValues,
+} from './utils';
 import { transactionNumber } from '@/utils';
 import { withSettings } from '@/containers/Settings/withSettings';
+
+type InvoiceDateCellProps = {
+  value?: string | number | Date | null;
+};
 
 /**
  * Invoice date cell.
  */
-function InvoiceDateCell({ value }) {
+function InvoiceDateCell({ value }: InvoiceDateCellProps) {
   return <span>{moment(value).format('YYYY MMM DD')}</span>;
 }
 
 /**
  * Invoice number table cell accessor.
  */
-function InvNumberCellAccessor(row) {
+function InvNumberCellAccessor(row: PaymentReceiveEntry): string {
   return row?.invoiceNo ? `#${row?.invoiceNo || ''}` : '-';
 }
+
+type MoneyTableCellProps = {
+  row: { original: PaymentReceiveEntry };
+  value: string | number;
+};
 
 /**
  * Mobey table cell.
  */
-function MoneyTableCell({ row: { original }, value }) {
+function MoneyTableCell({
+  row: { original },
+  value,
+}: MoneyTableCellProps) {
   return <Money amount={value} currency={original.currencyCode} />;
 }
 
@@ -85,40 +100,55 @@ export const usePaymentReceiveEntriesColumns = () => {
   );
 };
 
+type ExchangeRateInputFieldProps = Omit<
+  React.ComponentProps<typeof ExchangeRateInputGroup>,
+  'fromCurrency' | 'toCurrency'
+>;
+
 /**
  * payment receive exchange rate input field.
- * @returns {JSX.Element}
  */
-export function PaymentReceiveExchangeRateInputField({ ...props }) {
+export function PaymentReceiveExchangeRateInputField({
+  ...props
+}: ExchangeRateInputFieldProps) {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<PaymentReceiveFormValues>();
 
   const isForeignCustomer = useEstimateIsForeignCustomer();
 
-  // Can't continue if the customer is not foreign.
   if (!isForeignCustomer) {
     return null;
   }
   return (
     <ExchangeRateInputGroup
       fromCurrency={values.currencyCode}
-      toCurrency={baseCurrency}
+      toCurrency={baseCurrency ?? ''}
       {...props}
     />
   );
 }
 
+type ProjectSelectButtonProps = {
+  label?: string;
+};
+
 /**
  * payment receive project select.
- * @returns {JSX.Element}
  */
-export function PaymentReceiveProjectSelectButton({ label }) {
+export function PaymentReceiveProjectSelectButton({
+  label,
+}: ProjectSelectButtonProps) {
   return <Button text={label ?? intl.get('select_project')} />;
 }
 
+type SyncIncrementSettingsProps = {
+  paymentReceiveNextNumber?: number;
+  paymentReceiveNumberPrefix?: string;
+  paymentReceiveAutoIncrement?: boolean;
+};
+
 /**
  * Syncs the auto-increment settings to payment receive form.
- * @returns {React.ReactNode}
  */
 export const PaymentReceiveSyncIncrementSettingsToForm = R.compose(
   withSettings(({ paymentReceiveSettings }) => ({
@@ -130,8 +160,8 @@ export const PaymentReceiveSyncIncrementSettingsToForm = R.compose(
   paymentReceiveNextNumber,
   paymentReceiveNumberPrefix,
   paymentReceiveAutoIncrement,
-}) => {
-  const { setFieldValue } = useFormikContext();
+}: SyncIncrementSettingsProps) => {
+  const { setFieldValue } = useFormikContext<PaymentReceiveFormValues>();
 
   useLayoutEffect(() => {
     if (!paymentReceiveAutoIncrement) return;

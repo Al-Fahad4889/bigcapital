@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -11,7 +10,7 @@ export function ReceiptFormFooterLeft() {
       <ReceiptMsgFormGroup
         name={'receiptMessage'}
         label={intl.get('receipt_form.label.receipt_message')}
-        hintText={'Will be displayed on the Receipt'}
+        helperText={'Will be displayed on the Receipt'}
       >
         <FEditableText
           name={'receiptMessage'}

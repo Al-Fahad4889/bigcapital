@@ -1,6 +1,4 @@
-// @ts-nocheck
 import React from 'react';
-import * as R from 'ramda';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
 import {
@@ -10,39 +8,41 @@ import {
   Icon,
   InputPrependButton,
 } from '@/components';
+import { compose } from '@/utils';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import intl from 'react-intl-universal';
+import type { EstimateFormValues } from './utils';
+
+type EstimateNumberFieldProps = {
+  openDialog: WithDialogActionsProps['openDialog'];
+  estimateAutoIncrement?: boolean;
+};
 
 /**
  * Estimate number field of estimate form.
  */
-export const EstimateFormEstimateNumberField = R.compose(
+export const EstimateFormEstimateNumberField = compose(
   withDialogActions,
-  withSettings(({ estimatesSettings }) => ({
+  withSettings(({ estimatesSettings }: { estimatesSettings?: Record<string, unknown> }) => ({
     estimateNextNumber: estimatesSettings?.nextNumber,
     estimateNumberPrefix: estimatesSettings?.numberPrefix,
     estimateAutoIncrement: estimatesSettings?.autoIncrement,
   })),
-)(({
-  // #withDialogActions
-  openDialog,
-
-  // #withSettings
-  estimateAutoIncrement,
-}) => {
-  const { values, setFieldValue } = useFormikContext();
+)(({ openDialog, estimateAutoIncrement }: EstimateNumberFieldProps) => {
+  const { values, setFieldValue } = useFormikContext<EstimateFormValues>();
 
   const handleEstimateNumberBtnClick = () => {
     openDialog('estimate-number-form', {});
   };
   // Handle estimate no. field blur.
-  const handleEstimateNoBlur = (event) => {
+  const handleEstimateNoBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     // Show the confirmation dialog if the value has changed and auto-increment
     // mode is enabled.
-    if (values.estimate_number !== newValue && estimateAutoIncrement) {
+    if (values.estimateNumber !== newValue && estimateAutoIncrement) {
       openDialog('estimate-number-form', {
         initialFormValues: {
           onceManualNumber: newValue,
@@ -53,21 +53,20 @@ export const EstimateFormEstimateNumberField = R.compose(
     // Setting the estimate number to the form will be manually in case
     // auto-increment is disable.
     if (!estimateAutoIncrement) {
-      setFieldValue('estimate_number', newValue);
-      setFieldValue('estimate_number_manually', newValue);
+      setFieldValue('estimateNumber', newValue);
+      setFieldValue('estimateNumberManually', newValue);
     }
   };
 
   return (
     <FFormGroup
-      name={'estimate_number'}
+      name={'estimateNumber'}
       label={intl.get('estimate')}
       inline={true}
     >
       <ControlGroup fill={true}>
         <FInputGroup
-          name={'estimate_number'}
-          minimal={true}
+          name={'estimateNumber'}
           asyncControl={true}
           onBlur={handleEstimateNoBlur}
           onChange={() => {}}

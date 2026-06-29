@@ -1,13 +1,12 @@
-// @ts-nocheck
 import React from 'react';
 import { Position } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { useTheme } from '@emotion/react';
+import { Theme } from '@xstyled/emotion';
 import { css } from '@emotion/css';
 
 import { CLASSES } from '@/constants/classes';
-import {} from '@/utils';
 import {
   Hint,
   FieldRequiredHint,
@@ -22,6 +21,7 @@ import {
 import { useMakeJournalFormContext } from './MakeJournalProvider';
 import { JournalExchangeRateInputField } from './components';
 import { MakeJournalTransactionNoField } from './MakeJournalTransactionNoField';
+import type { MakeJournalFormValues } from './utils';
 import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
@@ -42,11 +42,11 @@ const getFieldsStyle = (theme: Theme) => css`
 `;
 
 /**
- * Make journal entries header.
+ * Make journal entries header fields.
  */
-export function MakeJournalEntriesHeader({}) {
+export function MakeJournalEntriesHeader() {
   const { currencies } = useMakeJournalFormContext();
-  const form = useFormikContext();
+  const form = useFormikContext<MakeJournalFormValues>();
   const theme = useTheme();
   const fieldsClassName = getFieldsStyle(theme);
 
@@ -86,6 +86,7 @@ export function MakeJournalEntriesHeader({}) {
         label={intl.get('reference')}
         labelInfo={
           <Hint
+            // @ts-expect-error Hint.content is typed as string but renders ReactNode via Tooltip
             content={<T id={'journal_reference_hint'} />}
             position={Position.RIGHT}
           />
@@ -93,17 +94,17 @@ export function MakeJournalEntriesHeader({}) {
         inline
         fastField
       >
-        <FInputGroup name={'reference'} minimal fill />
+        <FInputGroup name={'reference'} fill />
       </FFormGroup>
 
-      {/*------------ Journal type  -----------*/}
+      {/*------------ Journal type  ----------- */}
       <FFormGroup
         name={'journalType'}
         label={intl.get('journal_type')}
         inline
         fastField
       >
-        <FInputGroup name={'journalType'} minimal fill />
+        <FInputGroup name={'journalType'} fill />
       </FFormGroup>
 
       {/*------------ Currency  -----------*/}
@@ -116,7 +117,7 @@ export function MakeJournalEntriesHeader({}) {
         <FSelect
           name={'currencyCode'}
           items={currencies}
-          onItemChange={(currencyItem) => {
+          onItemChange={(currencyItem: Record<string, unknown>) => {
             form.setFieldValue('currencyCode', currencyItem.currency_code);
             form.setFieldValue('exchangeRate', '');
           }}

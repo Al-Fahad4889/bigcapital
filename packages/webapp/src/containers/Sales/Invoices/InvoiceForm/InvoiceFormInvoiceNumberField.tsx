@@ -1,8 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import * as R from 'ramda';
 import {
   FFormGroup,
   FormattedMessage as T,
@@ -14,12 +12,20 @@ import {
 import { DialogsName } from '@/constants/dialogs';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import intl from 'react-intl-universal';
+import { compose } from '@/utils';
+import type { InvoiceFormValues } from './utils';
+
+type InvoiceFormInvoiceNumberFieldProps = {
+  openDialog: WithDialogActionsProps['openDialog'];
+  invoiceAutoIncrement?: boolean;
+};
 
 /**
  * Invoice number field of invoice form.
  */
-export const InvoiceFormInvoiceNumberField = R.compose(
+export const InvoiceFormInvoiceNumberField = compose(
   withDialogActions,
   withSettings(({ invoiceSettings }) => ({
     invoiceAutoIncrement: invoiceSettings?.autoIncrement,
@@ -30,16 +36,16 @@ export const InvoiceFormInvoiceNumberField = R.compose(
 
   // #withSettings
   invoiceAutoIncrement,
-}) => {
+}: InvoiceFormInvoiceNumberFieldProps) => {
   // Formik context.
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext<InvoiceFormValues>();
 
   // Handle invoice number changing.
   const handleInvoiceNumberChange = () => {
     openDialog(DialogsName.InvoiceNumberSettings);
   };
   // Handle invoice no. field blur.
-  const handleInvoiceNoBlur = (event) => {
+  const handleInvoiceNoBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     // Show the confirmation dialog if the value has changed and auto-increment
@@ -71,8 +77,6 @@ export const InvoiceFormInvoiceNumberField = R.compose(
       <ControlGroup fill={true}>
         <FInputGroup
           name={'invoiceNo'}
-          minimal={true}
-          asyncControl={true}
           onBlur={handleInvoiceNoBlur}
           onChange={() => {}}
         />

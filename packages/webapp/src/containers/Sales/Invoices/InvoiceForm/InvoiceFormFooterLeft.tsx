@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -70,7 +69,7 @@ export function InvoiceFormFooterLeft() {
               Setup payment gateways
             </PaymentOptionsButton>
           ) : (
-            <PaymentOptionsButtonPopver paymentMethods={paymentServices}>
+            <PaymentOptionsButtonPopver paymentMethods={paymentServices ?? []}>
               <PaymentOptionsButton intent={Intent.PRIMARY} small minimal>
                 Payment Options
               </PaymentOptionsButton>

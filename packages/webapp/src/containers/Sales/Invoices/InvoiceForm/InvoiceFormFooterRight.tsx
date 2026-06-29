@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
@@ -21,11 +20,12 @@ import {
 import { TaxType } from '@/interfaces/TaxRates';
 import { AdjustmentTotalLine } from './AdjustmentTotalLine';
 import { DiscountTotalLine } from './DiscountTotalLine';
+import type { InvoiceFormValues } from './utils';
 
 export function InvoiceFormFooterRight() {
   const {
     values: { inclusiveExclusiveTax, currencyCode },
-  } = useFormikContext();
+  } = useFormikContext<InvoiceFormValues>();
 
   const taxEntries = useInvoiceAggregatedTaxRates();
   const adjustmentAmount = useInvoiceAdjustmentAmountFormatted();

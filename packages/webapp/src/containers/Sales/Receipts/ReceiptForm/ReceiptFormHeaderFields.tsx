@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import classNames from 'classnames';
@@ -25,6 +24,7 @@ import {
 import { ProjectsSelect } from '@/containers/Projects/components';
 import { useReceiptFormContext } from './ReceiptFormProvider';
 import { accountsFieldShouldUpdate, customersFieldShouldUpdate } from './utils';
+import type { ReceiptFormValues } from './utils';
 import {
   ReceiptExchangeRateInputField,
   ReceiptProjectSelectButton,
@@ -33,7 +33,7 @@ import { ReceiptFormReceiptNumberField } from './ReceiptFormReceiptNumberField';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 import intl from 'react-intl-universal';
 
-const getEstimateFieldsStyle = (theme: Theme) => css`
+const getEstimateFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;
 
@@ -72,9 +72,6 @@ export function ReceiptFormHeader() {
         inline={true}
         labelInfo={<FieldRequiredHint />}
         name={'depositAccountId'}
-        items={accounts}
-        fastField={true}
-        shouldUpdate={accountsFieldShouldUpdate}
       >
         <AccountsSelect
           items={accounts}
@@ -122,7 +119,7 @@ export function ReceiptFormHeader() {
         inline={true}
         name={'referenceNo'}
       >
-        <FInputGroup minimal={true} name={'referenceNo'} />
+        <FInputGroup name={'referenceNo'} />
       </FFormGroup>
 
       {/*------------ Project name -----------*/}
@@ -150,13 +147,14 @@ export function ReceiptFormHeader() {
  * @returns {React.ReactNode}
  */
 function ReceiptFormCustomerSelect() {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } =
+    useFormikContext<ReceiptFormValues>();
   const { customers } = useReceiptFormContext();
 
   const updateEntries = useCustomerUpdateExRate();
 
   // Handles the customer item change.
-  const handleItemChange = (customer) => {
+  const handleItemChange = (customer: { id: number; currency_code: string }) => {
     setFieldValue('customerId', customer.id);
     setFieldValue('currencyCode', customer?.currency_code);
 
@@ -169,26 +167,25 @@ function ReceiptFormCustomerSelect() {
       label={intl.get('customer_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
-      fastField={true}
-      shouldUpdate={customersFieldShouldUpdate}
-      shouldUpdateDeps={{ items: customers }}
     >
-      <CustomersSelect
-        name={'customerId'}
-        items={customers}
-        placeholder={<T id={'select_customer_account'} />}
-        onItemChange={handleItemChange}
-        popoverFill={true}
-        allowCreate={true}
-        fastField={true}
-        shouldUpdate={customersFieldShouldUpdate}
-        shouldUpdateDeps={{ items: customers }}
-      />
-      {values.customerId && (
-        <CustomerButtonLink customerId={values.customerId}>
-          <T id={'view_customer_details'} />
-        </CustomerButtonLink>
-      )}
+      <>
+        <CustomersSelect
+          name={'customerId'}
+          items={customers}
+          placeholder={<T id={'select_customer_account'} />}
+          onItemChange={handleItemChange}
+          popoverFill={true}
+          allowCreate={true}
+          fastField={true}
+          shouldUpdate={customersFieldShouldUpdate}
+          shouldUpdateDeps={{ items: customers }}
+        />
+        {values.customerId && (
+          <CustomerButtonLink customerId={values.customerId}>
+            <T id={'view_customer_details'} />
+          </CustomerButtonLink>
+        )}
+      </>
     </FFormGroup>
   );
 }

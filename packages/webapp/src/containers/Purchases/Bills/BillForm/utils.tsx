@@ -1,13 +1,14 @@
-// @ts-nocheck
 import React from 'react';
 import moment from 'moment';
 import intl from 'react-intl-universal';
 import * as R from 'ramda';
 import { first, chain } from 'lodash';
 import { Intent } from '@blueprintjs/core';
-import { useFormikContext } from 'formik';
+import { useFormikContext, type FormikErrors } from 'formik';
+import type { Bill, CreateBillBody } from '@bigcapital/sdk-ts';
 import { AppToaster } from '@/components';
 import {
+  compose,
   defaultFastFieldShouldUpdate,
   transformToForm,
   repeatValue,
@@ -35,8 +36,43 @@ import {
 
 export const MIN_LINES_NUMBER = 1;
 
+export type BillFormEntry = {
+  index: number;
+  itemId: string | number;
+  rate: string | number;
+  discount: string | number;
+  quantity: string | number;
+  description: string;
+  amount: string | number;
+  landedCost: boolean;
+  landedCostDisabled?: boolean;
+  taxRateId: string | number;
+  taxRate: string | number;
+  taxAmount: string | number;
+};
+
+export type BillFormValues = {
+  vendorId: string | number;
+  billNumber: string;
+  billDate: string;
+  dueDate: string;
+  referenceNo: string;
+  inclusiveExclusiveTax: TaxType;
+  note: string;
+  open: boolean | '';
+  branchId: string | number;
+  warehouseId: string | number;
+  exchangeRate: string | number;
+  currencyCode: string;
+  entries: BillFormEntry[];
+  attachments: unknown[];
+  adjustment: string | number;
+  discount: string | number;
+  discountType: 'amount' | 'percentage';
+};
+
 // Default bill entry.
-export const defaultBillEntry = {
+export const defaultBillEntry: BillFormEntry = {
   index: 0,
   itemId: '',
   rate: '',
@@ -51,7 +87,7 @@ export const defaultBillEntry = {
 };
 
 // Default bill.
-export const defaultBill = {
+export const defaultBill: BillFormValues = {
   vendorId: '',
   billNumber: '',
   billDate: moment(new Date()).format('YYYY-MM-DD'),
@@ -82,11 +118,14 @@ export const ERRORS = {
     'ENTRIES_ALLOCATED_COST_COULD_NOT_DELETED',
   BILL_AMOUNT_SMALLER_THAN_PAID_AMOUNT: 'BILL_AMOUNT_SMALLER_THAN_PAID_AMOUNT',
 };
+
+type BillErrorResponse = { type: string };
+
 /**
  * Transformes the bill to initial values of edit form.
  */
-export const transformToEditForm = (bill) => {
-  const initialEntries = [
+export const transformToEditForm = (bill: Bill): BillFormValues => {
+  const initialEntries: BillFormEntry[] = [
     ...bill.entries.map((entry) => ({
       ...transformToForm(entry, defaultBillEntry),
       landedCostDisabled: isLandedCostDisabled(entry.item),
@@ -96,7 +135,7 @@ export const transformToEditForm = (bill) => {
       Math.max(MIN_LINES_NUMBER - bill.entries.length, 0),
     ),
   ];
-  const entries = R.compose(
+  const entries = compose(
     ensureEntriesHaveEmptyLine(defaultBillEntry),
     updateItemsEntriesTotal,
   )(initialEntries);
@@ -104,7 +143,8 @@ export const transformToEditForm = (bill) => {
   const attachments = transformAttachmentsToForm(bill);
 
   return {
-    ...transformToForm(bill, defaultBill),
+    ...defaultBill,
+    ...(transformToForm(bill, defaultBill) as Partial<BillFormValues>),
     inclusiveExclusiveTax: bill.isInclusiveTax
       ? TaxType.Inclusive
       : TaxType.Exclusive,
@@ -116,40 +156,47 @@ export const transformToEditForm = (bill) => {
 /**
  * Transformes bill entries to submit request.
  */
-export const transformEntriesToSubmit = (entries) => {
-  const transformBillEntry = R.compose(
+export const transformEntriesToSubmit = (
+  entries: BillFormEntry[],
+): Record<string, unknown>[] => {
+  const transformBillEntry = compose(
     R.omit(['amount']),
     R.curry(transformToForm)(R.__, defaultBillEntry),
   );
-  return R.compose(orderingLinesIndexes, R.map(transformBillEntry))(entries);
+  return compose(orderingLinesIndexes, R.map(transformBillEntry))(entries);
 };
 
 /**
  * Filters the givne non-zero entries.
  */
-export const filterNonZeroEntries = (entries) => {
+export const filterNonZeroEntries = (
+  entries: BillFormEntry[],
+): BillFormEntry[] => {
   return entries.filter((item) => item.itemId && item.quantity);
 };
 
 /**
  * Transformes form values to request body.
  */
-export const transformFormValuesToRequest = (values) => {
+export const transformFormValuesToRequest = (
+  values: BillFormValues,
+): CreateBillBody => {
   const entries = filterNonZeroEntries(values.entries);
   const attachments = transformAttachmentsToRequest(values);
 
   return {
     ...values,
+    isInclusiveTax: values.inclusiveExclusiveTax === TaxType.Inclusive,
     entries: transformEntriesToSubmit(entries),
     open: false,
     attachments,
-  };
+  } as unknown as CreateBillBody;
 };
 
 /**
  * Handle delete errors.
  */
-export const handleDeleteErrors = (errors) => {
+export const handleDeleteErrors = (errors: BillErrorResponse[]) => {
   if (
     errors.find((error) => error.type === 'BILL_HAS_ASSOCIATED_PAYMENT_ENTRIES')
   ) {
@@ -180,28 +227,43 @@ export const handleDeleteErrors = (errors) => {
   }
 };
 
+type FieldShouldUpdateProps = {
+  items?: unknown[];
+  shouldUpdateDeps?: { items?: unknown[] };
+  [key: string]: unknown;
+};
+
 /**
  * Detarmines vendors fast field should update
  */
-export const vendorsFieldShouldUpdate = (newProps, oldProps) => {
+export const vendorsFieldShouldUpdate = (
+  newProps: FieldShouldUpdateProps,
+  oldProps: FieldShouldUpdateProps,
+): boolean => {
   return (
-    newProps.shouldUpdateDeps.items !== oldProps.shouldUpdateDeps.items ||
-    defaultFastFieldShouldUpdate(newProps, oldProps)
+    newProps.shouldUpdateDeps?.items !== oldProps.shouldUpdateDeps?.items ||
+    (defaultFastFieldShouldUpdate(newProps, oldProps) as boolean)
   );
 };
 
 /**
  * Detarmines entries fast field should update.
  */
-export const entriesFieldShouldUpdate = (newProps, oldProps) => {
+export const entriesFieldShouldUpdate = (
+  newProps: FieldShouldUpdateProps,
+  oldProps: FieldShouldUpdateProps,
+): boolean => {
   return (
     newProps.items !== oldProps.items ||
-    defaultFastFieldShouldUpdate(newProps, oldProps)
+    (defaultFastFieldShouldUpdate(newProps, oldProps) as boolean)
   );
 };
 
 // Transform response error to fields.
-export const handleErrors = (errors, { setErrors }) => {
+export const handleErrors = (
+  errors: BillErrorResponse[],
+  { setErrors }: { setErrors: (errors: FormikErrors<BillFormValues>) => void },
+) => {
   if (errors.some((e) => e.type === ERRORS.BILL_NUMBER_EXISTS)) {
     setErrors({
       billNumber: intl.get('bill_number_exists'),
@@ -212,12 +274,10 @@ export const handleErrors = (errors, { setErrors }) => {
       (e) => e.type === ERRORS.ENTRIES_ALLOCATED_COST_COULD_NOT_DELETED,
     )
   ) {
-    setErrors(
-      AppToaster.show({
-        intent: Intent.DANGER,
-        message: 'ENTRIES_ALLOCATED_COST_COULD_NOT_DELETED',
-      }),
-    );
+    AppToaster.show({
+      intent: Intent.DANGER,
+      message: 'ENTRIES_ALLOCATED_COST_COULD_NOT_DELETED',
+    });
   }
   if (
     errors.some((e) => e.type === ERRORS.BILL_AMOUNT_SMALLER_THAN_PAID_AMOUNT)
@@ -230,7 +290,7 @@ export const handleErrors = (errors, { setErrors }) => {
 };
 
 export const useSetPrimaryBranchToForm = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<BillFormValues>();
   const { branches, isBranchesSuccess, isNewMode } = useBillFormContext();
 
   React.useEffect(() => {
@@ -245,7 +305,7 @@ export const useSetPrimaryBranchToForm = () => {
 };
 
 export const useSetPrimaryWarehouseToForm = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<BillFormValues>();
   const { warehouses, isWarehousesSuccess, isNewMode } = useBillFormContext();
 
   React.useEffect(() => {
@@ -264,8 +324,8 @@ export const useSetPrimaryWarehouseToForm = () => {
  * Detarmines whether the bill has foreign customer.
  * @returns {boolean}
  */
-export const useBillIsForeignCustomer = () => {
-  const { values } = useFormikContext();
+export const useBillIsForeignCustomer = (): boolean => {
+  const { values } = useFormikContext<BillFormValues>();
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const isForeignCustomer = React.useMemo(
@@ -281,11 +341,11 @@ export const useBillIsForeignCustomer = () => {
  */
 export const composeEntriesOnEditInclusiveTax = (
   inclusiveExclusiveTax: string,
-  entries,
-) => {
-  return R.compose(
-    assignEntriesTaxAmount(inclusiveExclusiveTax === 'inclusive'),
-  )(entries);
+  entries: BillFormEntry[],
+): BillFormEntry[] => {
+  return assignEntriesTaxAmount(
+    inclusiveExclusiveTax === 'inclusive',
+  )(entries) as BillFormEntry[];
 };
 
 /**
@@ -293,7 +353,7 @@ export const composeEntriesOnEditInclusiveTax = (
  * @returns {Array}
  */
 export const useBillAggregatedTaxRates = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
   const { taxRates } = useBillFormContext();
 
   const aggregateTaxRates = React.useMemo(
@@ -310,10 +370,10 @@ export const useBillAggregatedTaxRates = () => {
  * Retrieves the bill subtotal.
  * @returns {number}
  */
-export const useBillSubtotal = () => {
+export const useBillSubtotal = (): number => {
   const {
     values: { entries },
-  } = useFormikContext();
+  } = useFormikContext<BillFormValues>();
 
   // Calculate the total due amount of bill entries.
   return React.useMemo(() => getEntriesTotal(entries), [entries]);
@@ -323,9 +383,9 @@ export const useBillSubtotal = () => {
  * Retrieves the bill subtotal formatted.
  * @returns {string}
  */
-export const useBillSubtotalFormatted = () => {
+export const useBillSubtotalFormatted = (): string => {
   const subtotal = useBillSubtotal();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(subtotal, values.currencyCode);
 };
@@ -334,8 +394,8 @@ export const useBillSubtotalFormatted = () => {
  * Retrieves the bill discount amount.
  * @returns {number}
  */
-export const useBillDiscountAmount = () => {
-  const { values } = useFormikContext();
+export const useBillDiscountAmount = (): number => {
+  const { values } = useFormikContext<BillFormValues>();
   const subtotal = useBillSubtotal();
   const discount = toSafeNumber(values.discount);
 
@@ -348,9 +408,9 @@ export const useBillDiscountAmount = () => {
  * Retrieves the bill discount amount formatted.
  * @returns {string}
  */
-export const useBillDiscountAmountFormatted = () => {
+export const useBillDiscountAmountFormatted = (): string => {
   const discountAmount = useBillDiscountAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(discountAmount, values.currencyCode);
 };
@@ -359,8 +419,8 @@ export const useBillDiscountAmountFormatted = () => {
  * Retrieves the bill adjustment amount.
  * @returns {number}
  */
-export const useBillAdjustmentAmount = () => {
-  const { values } = useFormikContext();
+export const useBillAdjustmentAmount = (): number => {
+  const { values } = useFormikContext<BillFormValues>();
 
   return toSafeNumber(values.adjustment);
 };
@@ -369,9 +429,9 @@ export const useBillAdjustmentAmount = () => {
  * Retrieves the bill adjustment amount formatted.
  * @returns {string}
  */
-export const useBillAdjustmentAmountFormatted = () => {
+export const useBillAdjustmentAmountFormatted = (): string => {
   const adjustmentAmount = useBillAdjustmentAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(adjustmentAmount, values.currencyCode);
 };
@@ -380,12 +440,12 @@ export const useBillAdjustmentAmountFormatted = () => {
  * Retrieves the bill total tax amount.
  * @returns {number}
  */
-export const useBillTotalTaxAmount = () => {
-  const { values } = useFormikContext();
+export const useBillTotalTaxAmount = (): number => {
+  const { values } = useFormikContext<BillFormValues>();
 
   return React.useMemo(() => {
     return chain(values.entries)
-      .filter((entry) => entry.taxAmount)
+      .filter((entry) => Boolean(entry.taxAmount))
       .sumBy('taxAmount')
       .value();
   }, [values.entries]);
@@ -395,8 +455,8 @@ export const useBillTotalTaxAmount = () => {
  * Detarmines whether the tax is exclusive.
  * @returns {boolean}
  */
-export const useIsBillTaxExclusive = () => {
-  const { values } = useFormikContext();
+export const useIsBillTaxExclusive = (): boolean => {
+  const { values } = useFormikContext<BillFormValues>();
 
   return values.inclusiveExclusiveTax === TaxType.Exclusive;
 };
@@ -405,27 +465,27 @@ export const useIsBillTaxExclusive = () => {
  * Retrieves the bill total.
  * @returns {number}
  */
-export const useBillTotal = () => {
+export const useBillTotal = (): number => {
   const subtotal = useBillSubtotal();
   const totalTaxAmount = useBillTotalTaxAmount();
   const isExclusiveTax = useIsBillTaxExclusive();
   const discountAmount = useBillDiscountAmount();
   const adjustmentAmount = useBillAdjustmentAmount();
 
-  return R.compose(
-    R.when(R.always(isExclusiveTax), R.add(totalTaxAmount)),
-    R.subtract(R.__, discountAmount),
-    R.add(R.__, adjustmentAmount),
-  )(subtotal);
+  let total = subtotal + adjustmentAmount - discountAmount;
+  if (isExclusiveTax) {
+    total += totalTaxAmount;
+  }
+  return total;
 };
 
 /**
  * Retrieves the bill total formatted.
  * @returns {string}
  */
-export const useBillTotalFormatted = () => {
+export const useBillTotalFormatted = (): string => {
   const total = useBillTotal();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(total, values.currencyCode);
 };
@@ -434,8 +494,8 @@ export const useBillTotalFormatted = () => {
  * Retrieves the bill paid amount.
  * @returns {number}
  */
-export const useBillPaidAmount = () => {
-  const { values } = useFormikContext();
+export const useBillPaidAmount = (): number => {
+  const { values } = useFormikContext<BillFormValues>();
 
   return toSafeNumber(0);
 };
@@ -444,9 +504,9 @@ export const useBillPaidAmount = () => {
  * Retrieves the bill paid amount formatted.
  * @returns {string}
  */
-export const useBillPaidAmountFormatted = () => {
+export const useBillPaidAmountFormatted = (): string => {
   const paidAmount = useBillPaidAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(paidAmount, values.currencyCode);
 };
@@ -455,7 +515,7 @@ export const useBillPaidAmountFormatted = () => {
  * Retrieves the bill due amount.
  * @returns {number}
  */
-export const useBillDueAmount = () => {
+export const useBillDueAmount = (): number => {
   const total = useBillTotal();
   const paidAmount = useBillPaidAmount();
 
@@ -466,9 +526,9 @@ export const useBillDueAmount = () => {
  * Retrieves the bill due amount formatted.
  * @returns {string}
  */
-export const useBillDueAmountFormatted = () => {
+export const useBillDueAmountFormatted = (): string => {
   const dueAmount = useBillDueAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   return formattedAmount(dueAmount, values.currencyCode);
 };

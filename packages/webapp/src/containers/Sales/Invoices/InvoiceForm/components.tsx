@@ -1,37 +1,39 @@
-// @ts-nocheck
 import { useRef } from 'react';
 import intl from 'react-intl-universal';
-import * as R from 'ramda';
 import { Button } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import { ExchangeRateInputGroup, FormatNumber } from '@/components';
+import { ExchangeRateInputGroup } from '@/components';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import {
-  useInvoiceCurrencyCode,
-  useInvoiceDueAmount,
   useInvoiceIsForeignCustomer,
-  useInvoicePaidAmount,
-  useInvoiceSubtotal,
   useInvoiceTotal,
 } from './utils';
+import type { InvoiceFormValues } from './utils';
 import { useUpdateEffect } from '@/hooks';
 import { transactionNumber } from '@/utils';
 import { DialogsName } from '@/constants/dialogs';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import {
   useSyncExRateToForm,
   withExchangeRateFetchingLoading,
   withExchangeRateItemEntriesPriceRecalc,
 } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
+import { compose } from '@/utils';
+
+type InvoiceExchangeRateInputFieldRootProps =
+  React.ComponentProps<typeof ExchangeRateInputGroup>;
 
 /**
  * Invoice exchange rate input field.
  * @returns {JSX.Element}
  */
-const InvoiceExchangeRateInputFieldRoot = ({ ...props }) => {
+const InvoiceExchangeRateInputFieldRoot = ({
+  ...props
+}: InvoiceExchangeRateInputFieldRootProps) => {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<InvoiceFormValues>();
   const isForeignCustomer = useInvoiceIsForeignCustomer();
 
   // Can't continue if the customer is not foreign.
@@ -40,12 +42,12 @@ const InvoiceExchangeRateInputFieldRoot = ({ ...props }) => {
   }
   return (
     <ExchangeRateInputGroup
+      {...props}
       name={'exchangeRate'}
       fromCurrency={values.currencyCode}
-      toCurrency={baseCurrency}
+      toCurrency={baseCurrency ?? ''}
       formGroupProps={{ label: ' ', inline: true }}
       withPopoverRecalcConfirm
-      {...props}
     />
   );
 };
@@ -54,7 +56,7 @@ const InvoiceExchangeRateInputFieldRoot = ({ ...props }) => {
  * Invoice exchange rate input field.
  * @returns {JSX.Element}
  */
-export const InvoiceExchangeRateInputField = R.compose(
+export const InvoiceExchangeRateInputField = compose(
   withExchangeRateFetchingLoading,
   withExchangeRateItemEntriesPriceRecalc,
 )(InvoiceExchangeRateInputFieldRoot);
@@ -63,25 +65,35 @@ export const InvoiceExchangeRateInputField = R.compose(
  * Invoice project select.
  * @returns {JSX.Element}
  */
-export function InvoiceProjectSelectButton({ label }) {
+export function InvoiceProjectSelectButton({ label }: { label?: string }) {
   return <Button text={label ?? intl.get('select_project')} />;
 }
+
+type InvoiceNoSyncSettingsToFormProps = {
+  invoiceAutoIncrement?: boolean;
+  invoiceNextNumber?: number;
+  invoiceNumberPrefix?: string;
+};
 
 /**
  * Syncs invoice auto-increment settings to invoice form once update.
  */
-export const InvoiceNoSyncSettingsToForm = R.compose(
+export const InvoiceNoSyncSettingsToForm = compose(
   withSettings(({ invoiceSettings }) => ({
     invoiceAutoIncrement: invoiceSettings?.autoIncrement,
     invoiceNextNumber: invoiceSettings?.nextNumber,
     invoiceNumberPrefix: invoiceSettings?.numberPrefix,
   })),
-)(({ invoiceAutoIncrement, invoiceNextNumber, invoiceNumberPrefix }) => {
-  const { setFieldValue } = useFormikContext();
+)(({
+  invoiceAutoIncrement,
+  invoiceNextNumber,
+  invoiceNumberPrefix,
+}: InvoiceNoSyncSettingsToFormProps) => {
+  const { setFieldValue } = useFormikContext<InvoiceFormValues>();
 
   useUpdateEffect(() => {
     // Do not update if the invoice auto-increment mode is disabled.
-    if (!invoiceAutoIncrement) return null;
+    if (!invoiceAutoIncrement) return;
 
     setFieldValue(
       'invoiceNo',
@@ -92,27 +104,33 @@ export const InvoiceNoSyncSettingsToForm = R.compose(
   return null;
 });
 
+type InvoiceExchangeRateSyncProps = {
+  openDialog: WithDialogActionsProps['openDialog'];
+};
+
 /**
  * Syncs the realtime exchange rate to the invoice form and shows up popup to the user
  * as an indication the entries rates have been re-calculated.
  * @returns {React.ReactNode}
  */
-export const InvoiceExchangeRateSync = R.compose(withDialogActions)(({
-  openDialog,
-}) => {
-  const total = useInvoiceTotal();
-  const timeout = useRef();
+export const InvoiceExchangeRateSync = compose(withDialogActions)(
+  ({ openDialog }: InvoiceExchangeRateSyncProps) => {
+    const total = useInvoiceTotal();
+    const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(
+      undefined,
+    );
 
-  useSyncExRateToForm({
-    onSynced: () => {
-      // If the total bigger then zero show alert to the user after adjusting entries.
-      if (total > 0) {
-        clearTimeout(timeout.current);
-        timeout.current = setTimeout(() => {
-          openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
-        }, 500);
-      }
-    },
-  });
-  return null;
-});
+    useSyncExRateToForm({
+      onSynced: () => {
+        // If the total bigger then zero show alert to the user after adjusting entries.
+        if (total > 0) {
+          if (timeout.current) clearTimeout(timeout.current);
+          timeout.current = setTimeout(() => {
+            openDialog(DialogsName.InvoiceExchangeRateChangeNotice);
+          }, 500);
+        }
+      },
+    });
+    return null;
+  },
+);

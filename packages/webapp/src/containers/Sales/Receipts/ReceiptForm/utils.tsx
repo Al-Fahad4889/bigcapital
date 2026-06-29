@@ -1,10 +1,9 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import moment from 'moment';
-import * as R from 'ramda';
 import { omit, first } from 'lodash';
 import { useFormikContext } from 'formik';
+import type { SaleReceipt, CreateSaleReceiptBody } from '@bigcapital/sdk-ts';
 import {
   defaultFastFieldShouldUpdate,
   repeatValue,
@@ -16,9 +15,9 @@ import { useReceiptFormContext } from './ReceiptFormProvider';
 import {
   updateItemsEntriesTotal,
   ensureEntriesHaveEmptyLine,
+  getEntriesTotal,
 } from '@/containers/Entries/utils';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
-import { getEntriesTotal } from '@/containers/Entries/utils';
 import {
   transformAttachmentsToForm,
   transformAttachmentsToRequest,
@@ -27,7 +26,40 @@ import { convertBrandingTemplatesToOptions } from '@/containers/BrandingTemplate
 
 export const MIN_LINES_NUMBER = 1;
 
-export const defaultReceiptEntry = {
+export type ReceiptEntry = {
+  index: number;
+  itemId: string | number;
+  rate: string | number;
+  discount: string | number;
+  quantity: string | number;
+  description: string;
+  amount: string | number;
+};
+
+export type ReceiptFormValues = {
+  customerId: string | number;
+  depositAccountId: string | number;
+  receiptNumber: string;
+  // Holds the receipt number that entered manually only.
+  receiptNumberManually: string;
+  receiptDate: string;
+  referenceNo: string;
+  receiptMessage: string;
+  termsConditions: string;
+  closed: boolean | '';
+  branchId: string | number;
+  warehouseId: string | number;
+  exchangeRate: number;
+  currencyCode: string;
+  entries: ReceiptEntry[];
+  attachments: unknown[];
+  pdfTemplateId: string | number;
+  discount: string | number;
+  discountType: 'amount' | 'percentage';
+  adjustment: string | number;
+};
+
+export const defaultReceiptEntry: ReceiptEntry = {
   index: 0,
   itemId: '',
   rate: '',
@@ -46,11 +78,10 @@ const defaultReceiptEntryReq = {
   description: '',
 };
 
-export const defaultReceipt = {
+export const defaultReceipt: ReceiptFormValues = {
   customerId: '',
   depositAccountId: '',
   receiptNumber: '',
-  // Holds the receipt number that entered manually only.
   receiptNumberManually: '',
   receiptDate: moment(new Date()).format('YYYY-MM-DD'),
   referenceNo: '',
@@ -74,10 +105,22 @@ const ERRORS = {
   SALE_RECEIPT_NO_IS_REQUIRED: 'SALE_RECEIPT_NO_IS_REQUIRED',
 };
 
+type FastFieldShouldUpdateProps = {
+  shouldUpdateDeps?: { items?: unknown[] };
+  items?: unknown;
+  [key: string]: unknown;
+};
+
+type ReceiptFormErrors = { type: string };
+
+type SetErrors = (errors: Partial<Record<keyof ReceiptFormValues, string>>) => void;
+
 /**
  * Transform to form in edit mode.
  */
-export const transformToEditForm = (receipt) => {
+export function transformToEditForm(
+  receipt: Partial<SaleReceipt> & { entries: SaleReceipt['entries'] },
+): ReceiptFormValues {
   const initialEntries = [
     ...receipt.entries.map((entry) => ({
       ...transformToForm(entry, defaultReceiptEntry),
@@ -87,24 +130,27 @@ export const transformToEditForm = (receipt) => {
       Math.max(MIN_LINES_NUMBER - receipt.entries.length, 0),
     ),
   ];
-  const entries = R.compose(
-    ensureEntriesHaveEmptyLine(defaultReceiptEntry),
-    updateItemsEntriesTotal,
-  )(initialEntries);
+  const entries = updateItemsEntriesTotal(
+    ensureEntriesHaveEmptyLine(defaultReceiptEntry)(initialEntries),
+  );
 
   const attachments = transformAttachmentsToForm(receipt);
 
   return {
-    ...transformToForm(receipt, defaultReceipt),
+    ...defaultReceipt,
+    ...(transformToForm(receipt, defaultReceipt) as Partial<ReceiptFormValues>),
     entries,
     attachments,
   };
-};
+}
 
 /**
  * Detarmines entries fast field should update.
  */
-export const entriesFieldShouldUpdate = (newProps, oldProps) => {
+export const entriesFieldShouldUpdate = (
+  newProps: FastFieldShouldUpdateProps,
+  oldProps: FastFieldShouldUpdateProps,
+): boolean => {
   return (
     newProps.items !== oldProps.items ||
     defaultFastFieldShouldUpdate(newProps, oldProps)
@@ -114,7 +160,10 @@ export const entriesFieldShouldUpdate = (newProps, oldProps) => {
 /**
  * Detarmines accounts fast field should update.
  */
-export const accountsFieldShouldUpdate = (newProps, oldProps) => {
+export const accountsFieldShouldUpdate = (
+  newProps: FastFieldShouldUpdateProps,
+  oldProps: FastFieldShouldUpdateProps,
+): boolean => {
   return (
     newProps.items !== oldProps.items ||
     defaultFastFieldShouldUpdate(newProps, oldProps)
@@ -124,9 +173,12 @@ export const accountsFieldShouldUpdate = (newProps, oldProps) => {
 /**
  * Detarmines customers fast field should update.
  */
-export const customersFieldShouldUpdate = (newProps, oldProps) => {
+export const customersFieldShouldUpdate = (
+  newProps: FastFieldShouldUpdateProps,
+  oldProps: FastFieldShouldUpdateProps,
+): boolean => {
   return (
-    newProps.shouldUpdateDeps.items !== oldProps.shouldUpdateDeps.items ||
+    newProps.shouldUpdateDeps?.items !== oldProps.shouldUpdateDeps?.items ||
     defaultFastFieldShouldUpdate(newProps, oldProps)
   );
 };
@@ -134,7 +186,10 @@ export const customersFieldShouldUpdate = (newProps, oldProps) => {
 /**
  * Transform response error to fields.
  */
-export const handleErrors = (errors, { setErrors }) => {
+export const handleErrors = (
+  errors: ReceiptFormErrors[],
+  { setErrors }: { setErrors: SetErrors },
+) => {
   if (errors.some((e) => e.type === ERRORS.SALE_RECEIPT_NUMBER_NOT_UNIQUE)) {
     setErrors({
       receiptNumber: intl.get('sale_receipt_number_not_unique'),
@@ -149,16 +204,22 @@ export const handleErrors = (errors, { setErrors }) => {
 
 /**
  * Transformes the form values to request body.
- * @param {*} values
- * @returns
+ *
+ * `as unknown as CreateSaleReceiptBody` mirrors `InvoiceForm/utils.tsx`:
+ * the SDK request type reuses the response `ItemEntryDto`, which carries
+ * server-computed fields the client never sends. Coercing every field would
+ * change the runtime payload, so we assemble the body as-is and assert the
+ * type.
  */
-export const transformFormValuesToRequest = (values) => {
+export const transformFormValuesToRequest = (
+  values: ReceiptFormValues,
+): CreateSaleReceiptBody => {
   const entries = values.entries.filter(
     (item) => item.itemId && item.quantity,
   );
   const attachments = transformAttachmentsToRequest(values);
 
-  return {
+  return ({
     ...omit(values, ['receiptNumberManually', 'receiptNumber']),
     ...(values.receiptNumberManually && {
       receiptNumber: values.receiptNumber,
@@ -168,11 +229,11 @@ export const transformFormValuesToRequest = (values) => {
     })),
     closed: false,
     attachments,
-  };
+  } as unknown) as CreateSaleReceiptBody;
 };
 
 export const useSetPrimaryWarehouseToForm = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<ReceiptFormValues>();
   const { warehouses, isWarehousesSuccess, isNewMode } =
     useReceiptFormContext();
 
@@ -189,7 +250,7 @@ export const useSetPrimaryWarehouseToForm = () => {
 };
 
 export const useSetPrimaryBranchToForm = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<ReceiptFormValues>();
   const { branches, isBranchesSuccess, isNewMode } = useReceiptFormContext();
 
   React.useEffect(() => {
@@ -210,7 +271,7 @@ export const useSetPrimaryBranchToForm = () => {
 export const useReceiptSubtotal = () => {
   const {
     values: { entries },
-  } = useFormikContext();
+  } = useFormikContext<ReceiptFormValues>();
 
   // Retrieves the invoice entries total.
   const subtotal = React.useMemo(() => getEntriesTotal(entries), [entries]);
@@ -224,7 +285,7 @@ export const useReceiptSubtotal = () => {
  */
 export const useReceiptSubtotalFormatted = () => {
   const subtotal = useReceiptSubtotal();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
 
   return formattedAmount(subtotal, values.currencyCode, { money: true });
 };
@@ -234,7 +295,7 @@ export const useReceiptSubtotalFormatted = () => {
  * @returns {number}
  */
 export const useReceiptDiscountAmount = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
   const subtotal = useReceiptSubtotal();
   const discount = toSafeNumber(values.discount);
 
@@ -248,7 +309,7 @@ export const useReceiptDiscountAmount = () => {
  * @returns {string}
  */
 export const useReceiptDiscountAmountFormatted = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
   const discount = useReceiptDiscountAmount();
 
   return formattedAmount(discount, values.currencyCode);
@@ -259,7 +320,7 @@ export const useReceiptDiscountAmountFormatted = () => {
  * @returns {number}
  */
 export const useReceiptAdjustmentAmount = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
   const adjustment = toSafeNumber(values.adjustment);
 
   return adjustment;
@@ -270,7 +331,7 @@ export const useReceiptAdjustmentAmount = () => {
  * @returns {string}
  */
 export const useReceiptAdjustmentFormatted = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
   const adjustment = useReceiptAdjustmentAmount();
 
   return formattedAmount(adjustment, values.currencyCode);
@@ -285,10 +346,7 @@ export const useReceiptTotal = () => {
   const adjustmentAmount = useReceiptAdjustmentAmount();
   const discountAmount = useReceiptDiscountAmount();
 
-  return R.compose(
-    R.add(R.__, adjustmentAmount),
-    R.subtract(R.__, discountAmount),
-  )(subtotal);
+  return subtotal - discountAmount + adjustmentAmount;
 };
 
 /**
@@ -297,7 +355,7 @@ export const useReceiptTotal = () => {
  */
 export const useReceiptTotalFormatted = () => {
   const total = useReceiptTotal();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
 
   return formattedAmount(total, values.currencyCode);
 };
@@ -316,7 +374,7 @@ export const useReceiptPaidAmount = () => {
  */
 export const useReceiptPaidAmountFormatted = () => {
   const paidAmount = useReceiptPaidAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
 
   return formattedAmount(paidAmount, values.currencyCode);
 };
@@ -338,7 +396,7 @@ export const useReceiptDueAmount = () => {
  */
 export const useReceiptDueAmountFormatted = () => {
   const dueAmount = useReceiptDueAmount();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
 
   return formattedAmount(dueAmount, values.currencyCode);
 };
@@ -348,7 +406,7 @@ export const useReceiptDueAmountFormatted = () => {
  * @returns {boolean}
  */
 export const useReceiptIsForeignCustomer = () => {
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ReceiptFormValues>();
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const isForeignCustomer = React.useMemo(
@@ -358,13 +416,21 @@ export const useReceiptIsForeignCustomer = () => {
   return isForeignCustomer;
 };
 
-export const resetFormState = ({ initialValues, values, resetForm }) => {
+export const resetFormState = ({
+  initialValues,
+  values,
+  resetForm,
+}: {
+  initialValues: ReceiptFormValues;
+  values: ReceiptFormValues;
+  resetForm: (next?: { values: ReceiptFormValues }) => void;
+}) => {
   resetForm({
     values: {
-      // Reset the all values except the warehouse and brand id.
+      // Reset the all values except the warehouse and branch id.
       ...initialValues,
       warehouseId: values.warehouseId,
-      brandId: values.brandId,
+      branchId: values.branchId,
     },
   });
 };
@@ -373,7 +439,7 @@ export const useReceiptFormBrandingTemplatesOptions = () => {
   const { brandingTemplates } = useReceiptFormContext();
 
   return React.useMemo(
-    () => convertBrandingTemplatesToOptions(brandingTemplates),
+    () => convertBrandingTemplatesToOptions(brandingTemplates ?? []),
     [brandingTemplates],
   );
 };

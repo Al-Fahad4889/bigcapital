@@ -1,12 +1,9 @@
-// @ts-nocheck
 import React from 'react';
-import intl from 'react-intl-universal';
-import { Button, Alignment, NavbarGroup, Classes } from '@blueprintjs/core';
+import { Alignment, NavbarGroup, Classes } from '@blueprintjs/core';
 import { useSetPrimaryBranchToForm } from './utils';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import {
-  Icon,
   BranchSelect,
   FeatureCan,
   FormTopbar,

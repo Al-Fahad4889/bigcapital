@@ -84,7 +84,7 @@ export const TotalLinesRoot = styled.div`
   `}
 `;
 
-export const TotalLinePrimitive = styled.div`
+const TotalLinePrimitiveBase = styled.div`
   --x-color-divider: #d2dde2;
   --x-color-divider-dark: #000;
 
@@ -115,7 +115,7 @@ export const TotalLinePrimitive = styled.div`
       border-bottom-color: transparent;
     `}
     ${(props) =>
-      props.textStyle === TotalLineTextStyle.Bold &&
+      props.textStyle === TotalLineBorderStyle.Bold &&
       `
       font-weight: 600;
     `}
@@ -138,9 +138,11 @@ const TotalLineAmount = (props) => {
   );
 };
 
-export const TotalLineTitle = (props) => {
+const TotalLineTitle = (props) => {
   return <x.div display={'table-cell'} padding={'8px'} {...props} />;
 };
 
-TotalLinePrimitive.Amount = TotalLineAmount;
-TotalLinePrimitive.Title = TotalLineTitle;
+export const TotalLinePrimitive = Object.assign(TotalLinePrimitiveBase, {
+  Amount: TotalLineAmount,
+  Title: TotalLineTitle,
+});

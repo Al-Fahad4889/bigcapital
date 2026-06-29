@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import moment from 'moment';
 import intl from 'react-intl-universal';
@@ -21,8 +20,66 @@ import {
 } from '@/containers/Attachments/utils';
 import { convertBrandingTemplatesToOptions } from '@/containers/BrandingTemplates/BrandingTemplatesSelectFields';
 
+export type PaymentReceiveEntry = {
+  index: string | number;
+  paymentAmount: string | number;
+  invoiceId: string | number;
+  invoiceNo: string;
+  dueAmount: string | number;
+  date: string;
+  amount: string | number;
+  currencyCode: string;
+  entryType?: string;
+  branchId?: string | number;
+  totalPaymentAmount?: string | number;
+};
+
+export type PaymentReceiveFormValues = {
+  customerId: string | number;
+  depositAccountId: string | number;
+  paymentDate: string;
+  referenceNo: string;
+  paymentReceiveNo: string;
+  paymentReceiveNoManually: string;
+  statement: string;
+  amount: string | number;
+  currencyCode: string;
+  exchangeRate: number;
+  entries: PaymentReceiveEntry[];
+  attachments: unknown[];
+  branchId: string | number;
+  pdfTemplateId: string | number;
+};
+
+export type PaymentReceiveRequestEntry = {
+  index: string | number;
+  paymentAmount: string | number;
+  invoiceId: string | number;
+};
+
+export type PaymentReceiveRequestBody = {
+  customerId: string | number;
+  depositAccountId: string | number;
+  paymentDate: string;
+  paymentReceiveNo?: string;
+  branchId: string | number;
+  statement: string;
+  entries: PaymentReceiveRequestEntry[];
+  attachments: unknown[];
+};
+
+export type PaymentReceiveErrorResponse = {
+  type: string;
+  indexes?: number[];
+  meta?: unknown[];
+};
+
+type PaymentReceiveEditPage = NonNullable<
+  ReturnType<typeof usePaymentReceiveFormContext>['paymentReceiveEditPage']
+>;
+
 // Default payment receive entry.
-export const defaultPaymentReceiveEntry = {
+export const defaultPaymentReceiveEntry: PaymentReceiveEntry = {
   index: '',
   paymentAmount: '',
   invoiceId: '',
@@ -34,13 +91,12 @@ export const defaultPaymentReceiveEntry = {
 };
 
 // Form initial values.
-export const defaultPaymentReceive = {
+export const defaultPaymentReceive: PaymentReceiveFormValues = {
   customerId: '',
   depositAccountId: '',
   paymentDate: moment(new Date()).format('YYYY-MM-DD'),
   referenceNo: '',
   paymentReceiveNo: '',
-  // Holds the payment number that entered manually only.
   paymentReceiveNoManually: '',
   statement: '',
   amount: '',
@@ -52,13 +108,13 @@ export const defaultPaymentReceive = {
   pdfTemplateId: '',
 };
 
-export const defaultRequestPaymentEntry = {
+export const defaultRequestPaymentEntry: PaymentReceiveRequestEntry = {
   index: '',
   paymentAmount: '',
   invoiceId: '',
 };
 
-export const defaultRequestPayment = {
+export const defaultRequestPayment: PaymentReceiveRequestBody = {
   customerId: '',
   depositAccountId: '',
   paymentDate: '',
@@ -66,12 +122,31 @@ export const defaultRequestPayment = {
   branchId: '',
   statement: '',
   entries: [],
+  attachments: [],
 };
+
+type InvoiceRow = {
+  id: string | number;
+  due_amount: string | number;
+  invoice_date: string;
+  balance: string | number;
+  currency_code: string;
+  invoice_no: string;
+  branch_id: string | number;
+  payment_amount?: string | number;
+};
+
+export type PaymentReceiveEditEntry = {
+  paymentAmount?: string | number;
+} & Partial<PaymentReceiveEntry>;
 
 /**
  * Transformes the edit payment receive to initial values of the form.
  */
-export const transformToEditForm = (paymentReceive, paymentReceiveEntries) => ({
+export const transformToEditForm = (
+  paymentReceive: PaymentReceiveEditPage | Record<string, unknown>,
+  paymentReceiveEntries: PaymentReceiveEditEntry[],
+): PaymentReceiveFormValues => ({
   ...transformToForm(paymentReceive, defaultPaymentReceive),
   entries: [
     ...paymentReceiveEntries.map((paymentReceiveEntry) => ({
@@ -80,40 +155,48 @@ export const transformToEditForm = (paymentReceive, paymentReceiveEntries) => ({
     })),
   ],
   attachments: transformAttachmentsToForm(paymentReceive),
-});
+}) as PaymentReceiveFormValues;
 
 /**
  * Transformes the given invoices to the new page receivable entries.
  */
-export const transformInvoicesNewPageEntries = (invoices) => [
-  ...invoices.map((invoice, index) => ({
-    index: index + 1,
-    invoiceId: invoice.id,
-    entryType: 'invoice',
-    dueAmount: invoice.due_amount,
-    date: invoice.invoice_date,
-    amount: invoice.balance,
-    currencyCode: invoice.currency_code,
-    paymentAmount: '',
-    invoiceNo: invoice.invoice_no,
-    branchId: invoice.branch_id,
-    totalPaymentAmount: invoice.payment_amount,
-  })),
-];
+export const transformInvoicesNewPageEntries = (
+  invoices: InvoiceRow[],
+): PaymentReceiveEntry[] =>
+  [
+    ...invoices.map((invoice, index) => ({
+      index: index + 1,
+      invoiceId: invoice.id,
+      entryType: 'invoice',
+      dueAmount: invoice.due_amount,
+      date: invoice.invoice_date,
+      amount: invoice.balance,
+      currencyCode: invoice.currency_code,
+      paymentAmount: '',
+      invoiceNo: invoice.invoice_no,
+      branchId: invoice.branch_id,
+      totalPaymentAmount: invoice.payment_amount,
+    })),
+  ] as PaymentReceiveEntry[];
 
-export const transformEntriesToEditForm = (receivableEntries) => [
-  ...transformInvoicesNewPageEntries([...(receivableEntries || [])]),
-];
+export const transformEntriesToEditForm = (
+  receivableEntries: InvoiceRow[],
+): PaymentReceiveEntry[] =>
+  [...transformInvoicesNewPageEntries([...(receivableEntries || [])])];
 
-export const clearAllPaymentEntries = (entries) => [
-  ...entries.map((entry) => ({ ...entry, paymentAmount: 0 })),
-];
+export const clearAllPaymentEntries = (
+  entries: PaymentReceiveEntry[],
+): PaymentReceiveEntry[] =>
+  [...entries.map((entry) => ({ ...entry, paymentAmount: 0 }))];
 
-export const amountPaymentEntries = (amount, entries) => {
+export const amountPaymentEntries = (
+  amount: number,
+  entries: PaymentReceiveEntry[],
+): PaymentReceiveEntry[] => {
   let total = amount;
 
   return entries.map((item) => {
-    const diff = Math.min(item.dueAmount, total);
+    const diff = Math.min(Number(item.dueAmount), total);
     total -= Math.max(diff, 0);
 
     return {
@@ -123,27 +206,49 @@ export const amountPaymentEntries = (amount, entries) => {
   });
 };
 
-export const fullAmountPaymentEntries = (entries) => {
+export const fullAmountPaymentEntries = (
+  entries: PaymentReceiveEntry[],
+): PaymentReceiveEntry[] => {
   return entries.map((item) => ({
     ...item,
     paymentAmount: item.dueAmount,
   }));
 };
 
+type FieldShouldUpdateDeps = {
+  items?: unknown[];
+  accounts?: unknown[];
+  shouldUpdateDeps?: {
+    items?: unknown[];
+    accounts?: unknown[];
+  };
+};
+
 /**
  * Detarmines the customers fast-field should update.
  */
-export const customersFieldShouldUpdate = (newProps, oldProps) => {
+export const customersFieldShouldUpdate = (
+  newProps: FieldShouldUpdateDeps,
+  oldProps: FieldShouldUpdateDeps,
+): boolean => {
   return (
-    newProps.shouldUpdateDeps.items !== oldProps.shouldUpdateDeps.items ||
+    newProps.shouldUpdateDeps?.items !== oldProps.shouldUpdateDeps?.items ||
     defaultFastFieldShouldUpdate(newProps, oldProps)
   );
+};
+
+type AccountsFieldShouldUpdateProps = {
+  items?: unknown[];
+  shouldUpdateDeps?: { items?: unknown[] };
 };
 
 /**
  * Detarmines the accounts fast-field should update.
  */
-export const accountsFieldShouldUpdate = (newProps, oldProps) => {
+export const accountsFieldShouldUpdate = (
+  newProps: AccountsFieldShouldUpdateProps,
+  oldProps: AccountsFieldShouldUpdateProps,
+): boolean => {
   return (
     newProps.items !== oldProps.items ||
     defaultFastFieldShouldUpdate(newProps, oldProps)
@@ -153,35 +258,34 @@ export const accountsFieldShouldUpdate = (newProps, oldProps) => {
 /**
  * Tranformes form values to request.
  */
-export const transformFormToRequest = (form) => {
-  // Filters entries that have no `invoiceId` and `paymentAmount`.
+export const transformFormToRequest = (
+  form: PaymentReceiveFormValues,
+): PaymentReceiveRequestBody => {
   const entries = form.entries
     .filter((entry) => entry.invoiceId && entry.paymentAmount)
     .map((entry) => ({
       ...pick(entry, Object.keys(defaultRequestPaymentEntry)),
-    }));
+    })) as PaymentReceiveRequestEntry[];
 
   const attachments = transformAttachmentsToRequest(form);
 
   return {
     ...omit(form, ['paymentReceiveNoManually', 'paymentReceiveNo']),
-    // The `paymentReceiveNoManually` will be presented just if the auto-increment
-    // is disable, always both attributes hold the same value in manual mode.
     ...(form.paymentReceiveNoManually && {
       paymentReceiveNo: form.paymentReceiveNo,
     }),
     entries: orderingLinesIndexes(entries),
     attachments,
-  };
+  } as PaymentReceiveRequestBody;
 };
 
 export const useSetPrimaryBranchToForm = () => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue } = useFormikContext<PaymentReceiveFormValues>();
   const { branches, isBranchesSuccess, isNewMode } =
     usePaymentReceiveFormContext();
 
   React.useEffect(() => {
-    if (isBranchesSuccess && isNewMode) {
+    if (isBranchesSuccess && isNewMode && branches) {
       const primaryBranch = branches.find((b) => b.primary) || first(branches);
 
       if (primaryBranch) {
@@ -194,8 +298,14 @@ export const useSetPrimaryBranchToForm = () => {
 /**
  * Transformes the response errors types.
  */
-export const transformErrors = (errors, { setFieldError }) => {
-  const getError = (errorType) => errors.find((e) => e.type === errorType);
+export const transformErrors = (
+  errors: PaymentReceiveErrorResponse[],
+  {
+    setFieldError,
+  }: { setFieldError: (field: string, message: string) => void },
+): void => {
+  const getError = (errorType: string) =>
+    errors.find((e) => e.type === errorType);
 
   if (getError('PAYMENT_RECEIVE_NO_EXISTS')) {
     setFieldError(
@@ -225,20 +335,17 @@ export const transformErrors = (errors, { setFieldError }) => {
 export const usePaymentReceiveTotals = () => {
   const {
     values: { entries, currencyCode },
-  } = useFormikContext();
+  } = useFormikContext<PaymentReceiveFormValues>();
 
-  // Retrieves the invoice entries total.
   const total = React.useMemo(
-    () => sumBy(entries, 'paymentAmount'),
+    () => safeSumBy(entries, 'paymentAmount'),
     [entries],
   );
 
-  // Retrieves the formatted total money.
   const formattedTotal = React.useMemo(
     () => formattedAmount(total, currencyCode),
     [total, currencyCode],
   );
-  // Retrieves the formatted subtotal.
   const formattedSubtotal = React.useMemo(
     () => formattedAmount(total, currencyCode, { money: false }),
     [total, currencyCode],
@@ -251,36 +358,34 @@ export const usePaymentReceiveTotals = () => {
   };
 };
 
-export const usePaymentReceivedTotalAppliedAmount = () => {
+export const usePaymentReceivedTotalAppliedAmount = (): number => {
   const {
     values: { entries },
-  } = useFormikContext();
+  } = useFormikContext<PaymentReceiveFormValues>();
 
-  // Retrieves the invoice entries total.
   return React.useMemo(() => sumBy(entries, 'paymentAmount'), [entries]);
 };
 
 export const usePaymentReceivedTotalAmount = () => {
   const {
     values: { amount },
-  } = useFormikContext();
+  } = useFormikContext<PaymentReceiveFormValues>();
 
   return amount;
 };
 
-export const usePaymentReceivedTotalExceededAmount = () => {
+export const usePaymentReceivedTotalExceededAmount = (): number => {
   const totalAmount = usePaymentReceivedTotalAmount();
   const totalApplied = usePaymentReceivedTotalAppliedAmount();
 
-  return Math.abs(totalAmount - totalApplied);
+  return Math.abs(Number(totalAmount) - totalApplied);
 };
 
 /**
  * Detarmines whether the payment has foreign customer.
- * @returns {boolean}
  */
-export const useEstimateIsForeignCustomer = () => {
-  const { values } = useFormikContext();
+export const useEstimateIsForeignCustomer = (): boolean => {
+  const { values } = useFormikContext<PaymentReceiveFormValues>();
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const isForeignCustomer = React.useMemo(
@@ -290,19 +395,30 @@ export const useEstimateIsForeignCustomer = () => {
   return isForeignCustomer;
 };
 
-export const resetFormState = ({ initialValues, values, resetForm }) => {
+type ResetFormStateArgs = {
+  initialValues: PaymentReceiveFormValues;
+  values: PaymentReceiveFormValues;
+  resetForm: (nextState?: { values: PaymentReceiveFormValues }) => void;
+};
+
+export const resetFormState = ({
+  initialValues,
+  values,
+  resetForm,
+}: ResetFormStateArgs) => {
   resetForm({
     values: {
-      // Reset the all values except the brand id.
       ...initialValues,
-      brandId: values.brandId,
+      branchId: values.branchId,
     },
   });
 };
 
-export const getExceededAmountFromValues = (values) => {
+export const getExceededAmountFromValues = (
+  values: PaymentReceiveFormValues,
+): number => {
   const totalApplied = sumBy(values.entries, 'paymentAmount');
-  const totalAmount = values.amount;
+  const totalAmount = Number(values.amount);
 
   return totalAmount - totalApplied;
 };
@@ -311,7 +427,12 @@ export const usePaymentReceivedFormBrandingTemplatesOptions = () => {
   const { brandingTemplates } = usePaymentReceiveFormContext();
 
   return React.useMemo(
-    () => convertBrandingTemplatesToOptions(brandingTemplates),
+    () =>
+      convertBrandingTemplatesToOptions(
+        (brandingTemplates ?? []) as Parameters<
+          typeof convertBrandingTemplatesToOptions
+        >[0],
+      ),
     [brandingTemplates],
   );
 };

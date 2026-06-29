@@ -1,11 +1,12 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import classNames from 'classnames';
 import { useFormikContext } from 'formik';
+import intl from 'react-intl-universal';
 import { Classes, Position } from '@blueprintjs/core';
 import { css } from '@emotion/css';
-
+import { useTheme } from '@emotion/react';
+import { Theme } from '@xstyled/emotion';
 import { FeatureCan, Stack, FormattedMessage as T } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import {
@@ -17,9 +18,8 @@ import {
   FDateInput,
   FInputGroup,
 } from '@/components';
-
 import { useBillFormContext } from './BillFormProvider';
-import { vendorsFieldShouldUpdate } from './utils';
+import { vendorsFieldShouldUpdate, type BillFormValues } from './utils';
 import {
   BillExchangeRateInputField,
   BillProjectSelectButton,
@@ -28,8 +28,6 @@ import { ProjectsSelect } from '@/containers/Projects/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { momentFormatter, compose } from '@/utils';
 import { Features } from '@/constants';
-import { useTheme } from '@emotion/react';
-import intl from 'react-intl-universal';
 
 const getBillFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
@@ -65,7 +63,6 @@ function BillFormHeader() {
 
       {/* ----------- Exchange rate ----------- */}
       <BillExchangeRateInputField
-        name={'exchangeRate'}
         formGroupProps={{ label: ' ', inline: true }}
       />
 
@@ -93,7 +90,6 @@ function BillFormHeader() {
         name={'dueDate'}
         label={intl.get('due_date')}
         inline
-        fill
         fastField
       >
         <FDateInput
@@ -113,10 +109,9 @@ function BillFormHeader() {
         name={'billNumber'}
         label={intl.get('bill_number')}
         inline
-        fill
         fastField
       >
-        <FInputGroup name={'billNumber'} minimal={true} fastField />
+        <FInputGroup name={'billNumber'} />
       </FFormGroup>
 
       {/* ------- Reference ------- */}
@@ -124,10 +119,9 @@ function BillFormHeader() {
         name={'referenceNo'}
         label={intl.get('reference')}
         inline={true}
-        fill
         fastField
       >
-        <FInputGroup name={'referenceNo'} minimal={true} fastField />
+        <FInputGroup name={'referenceNo'} />
       </FFormGroup>
 
       {/*------------ Project name -----------*/}
@@ -150,12 +144,14 @@ function BillFormHeader() {
   );
 }
 
+type VendorOption = { id: number; currency_code?: string };
+
 /**
  * Vendor select field of bill form.
  * @returns {JSX.Element}
  */
 function BillFormVendorField() {
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext<BillFormValues>();
   const { vendors } = useBillFormContext();
 
   return (
@@ -165,27 +161,27 @@ function BillFormVendorField() {
       inline={true}
       labelInfo={<FieldRequiredHint />}
       fastField={true}
-      shouldUpdate={vendorsFieldShouldUpdate}
-      shouldUpdateDeps={{ items: vendors }}
     >
-      <VendorsSelect
-        name={'vendorId'}
-        items={vendors}
-        placeholder={<T id={'select_vender_account'} />}
-        onItemChange={(contact) => {
-          setFieldValue('vendorId', contact.id);
-          setFieldValue('currencyCode', contact?.currency_code);
-        }}
-        allowCreate={true}
-        fastField={true}
-        shouldUpdate={vendorsFieldShouldUpdate}
-        shouldUpdateDeps={{ items: vendors }}
-      />
-      {values.vendorId && (
-        <VendorButtonLink vendorId={values.vendorId}>
-          <T id={'view_vendor_details'} />
-        </VendorButtonLink>
-      )}
+      <>
+        <VendorsSelect
+          name={'vendorId'}
+          items={vendors}
+          placeholder={<T id={'select_vender_account'} />}
+          onItemChange={(contact: VendorOption) => {
+            setFieldValue('vendorId', contact.id);
+            setFieldValue('currencyCode', contact?.currency_code);
+          }}
+          allowCreate={true}
+          fastField={true}
+          shouldUpdate={vendorsFieldShouldUpdate}
+          shouldUpdateDeps={{ items: vendors }}
+        />
+        {values.vendorId && (
+          <VendorButtonLink vendorId={Number(values.vendorId)}>
+            <T id={'view_vendor_details'} />
+          </VendorButtonLink>
+        )}
+      </>
     </FFormGroup>
   );
 }
