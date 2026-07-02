@@ -124,8 +124,7 @@ function InvoicesDataTableInner({
 
   const handleSelectedRowsChange = useCallback(
     (selectedFlatRows: Array<{ original: InvoiceTableRow }>) => {
-      const selectedIds =
-        selectedFlatRows?.map((row) => row.original.id) || [];
+      const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
       setInvoicesSelectedRows(selectedIds);
     },
     [setInvoicesSelectedRows],

@@ -76,16 +76,17 @@ export const AccountUncategorizedDateFilter = compose(
 )(AccountUncategorizedDateFilterRoot);
 
 interface UncategorizedTransactionsDateFilterProps
-  extends Pick<
-      WithBankingActionsProps,
-      'setUncategorizedTransactionsFilter'
-    >,
+  extends Pick<WithBankingActionsProps, 'setUncategorizedTransactionsFilter'>,
     Pick<WithBankingProps, 'uncategorizedTransactionsFilter'> {
   onSubmit?: (values: UncategorizedTransactionsFilter) => void;
 }
 
 const toDateFilterString = (value: string | Date | null): string | undefined =>
-  value == null ? undefined : typeof value === 'string' ? value : value.toISOString();
+  value == null
+    ? undefined
+    : typeof value === 'string'
+      ? value
+      : value.toISOString();
 
 export const UncategorizedTransactionsDateFilter = compose(
   withBankingActions,
@@ -108,17 +109,18 @@ export const UncategorizedTransactionsDateFilter = compose(
     toDate: uncategorizedTransactionsFilter?.toDate ?? '',
   };
 
-  const handleSubmit: FormikConfig<AccountTransactionsDateFilterFormValues>['onSubmit'] = (
-    values: AccountTransactionsDateFilterFormValues,
-    _helpers: FormikHelpers<AccountTransactionsDateFilterFormValues>,
-  ) => {
-    const filter: UncategorizedTransactionsFilter = {
-      fromDate: toDateFilterString(values.fromDate),
-      toDate: toDateFilterString(values.toDate),
+  const handleSubmit: FormikConfig<AccountTransactionsDateFilterFormValues>['onSubmit'] =
+    (
+      values: AccountTransactionsDateFilterFormValues,
+      _helpers: FormikHelpers<AccountTransactionsDateFilterFormValues>,
+    ) => {
+      const filter: UncategorizedTransactionsFilter = {
+        fromDate: toDateFilterString(values.fromDate),
+        toDate: toDateFilterString(values.toDate),
+      };
+      setUncategorizedTransactionsFilter(filter);
+      onSubmit?.(filter);
     };
-    setUncategorizedTransactionsFilter(filter);
-    onSubmit?.(filter);
-  };
 
   return (
     <AccountTransactionsDateFilterForm

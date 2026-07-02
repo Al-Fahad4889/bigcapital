@@ -49,13 +49,12 @@ function ItemsCategoriesProvider({
     isLoading: isCategoriesLoading,
   } = useItemsCategories(query);
   // FIXME: see interface note — SDK schema is wrong about response shape.
-  const itemsCategoriesData =
-    itemsCategoriesDataRaw as unknown as
-      | {
-          itemsCategories?: ItemCategoryTableRow[];
-          pagination?: { total?: number; [key: string]: unknown };
-        }
-      | undefined;
+  const itemsCategoriesData = itemsCategoriesDataRaw as unknown as
+    | {
+        itemsCategories?: ItemCategoryTableRow[];
+        pagination?: { total?: number; [key: string]: unknown };
+      }
+    | undefined;
 
   // Fetch the accounts resource fields.
   const {

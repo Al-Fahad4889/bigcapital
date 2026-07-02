@@ -83,9 +83,7 @@ export function TransferFromAccountFormFields() {
             labelInfo={<FieldRequiredHint />}
           >
             <ControlGroup>
-              <InputPrependText
-                text={account?.currencyCode || '--'}
-              />
+              <InputPrependText text={account?.currencyCode || '--'} />
               <FMoneyInputGroup name={'amount'} minimal={true} fastField />
             </ControlGroup>
           </FormGroup>

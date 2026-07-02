@@ -21,7 +21,9 @@ import {
 } from '@/constants/abilityOption';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-export type InvoiceTableRow = NonNullable<SaleInvoicesListResponse['data']>[number];
+export type InvoiceTableRow = NonNullable<
+  SaleInvoicesListResponse['data']
+>[number];
 
 interface InvoiceActionsPayload {
   onEdit: (invoice: InvoiceTableRow) => void;

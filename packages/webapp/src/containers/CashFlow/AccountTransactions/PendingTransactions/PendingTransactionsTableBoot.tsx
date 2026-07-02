@@ -19,9 +19,10 @@ interface PendingTransactionsBootProps {
   children: React.ReactNode;
 }
 
-const PendingTransactionsContext = React.createContext<PendingTransactionsContextValue>(
-  {} as PendingTransactionsContextValue,
-);
+const PendingTransactionsContext =
+  React.createContext<PendingTransactionsContextValue>(
+    {} as PendingTransactionsContextValue,
+  );
 
 /**
  * Account pending transctions provider.

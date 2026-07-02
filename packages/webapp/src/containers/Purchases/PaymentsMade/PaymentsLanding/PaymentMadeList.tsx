@@ -20,9 +20,9 @@ interface WithPaymentMadeActionsProps {
 
 interface PaymentMadeListProps
   extends Pick<
-    WithPaymentMadeProps,
-    'paymentMadesTableState' | 'paymentsTableStateChanged'
-  >,
+      WithPaymentMadeProps,
+      'paymentMadesTableState' | 'paymentsTableStateChanged'
+    >,
     WithPaymentMadeActionsProps {}
 
 function PaymentMadeListInner({

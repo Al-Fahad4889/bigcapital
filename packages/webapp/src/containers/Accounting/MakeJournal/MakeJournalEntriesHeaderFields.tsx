@@ -1,11 +1,9 @@
-import React from 'react';
+import intl from 'react-intl-universal';
 import { Position } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
 import { useTheme } from '@emotion/react';
 import { Theme } from '@xstyled/emotion';
 import { css } from '@emotion/css';
-
-import { CLASSES } from '@/constants/classes';
 import {
   Hint,
   FieldRequiredHint,
@@ -21,7 +19,6 @@ import { useMakeJournalFormContext } from './MakeJournalProvider';
 import { JournalExchangeRateInputField } from './components';
 import { MakeJournalTransactionNoField } from './MakeJournalTransactionNoField';
 import type { MakeJournalFormValues } from './utils';
-import intl from 'react-intl-universal';
 
 const getFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {

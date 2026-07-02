@@ -95,10 +95,7 @@ export function AccountTransactionsDateFilterForm({
               />
             </FFormGroup>
 
-            <FormGroup
-              label={'To Date'}
-              style={{ marginBottom: 0, flex: '1' }}
-            >
+            <FormGroup label={'To Date'} style={{ marginBottom: 0, flex: '1' }}>
               <FDateInput
                 name={'toDate'}
                 popoverProps={{ position: Position.BOTTOM, minimal: true }}

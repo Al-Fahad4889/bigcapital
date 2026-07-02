@@ -7,9 +7,10 @@ interface TableIndeterminateCheckboxRowProps {
   row: Row<any>;
 }
 
-type TableIndeterminateCheckboxRowComponent = React.FC<TableIndeterminateCheckboxRowProps> & {
-  cellType: string;
-};
+type TableIndeterminateCheckboxRowComponent =
+  React.FC<TableIndeterminateCheckboxRowProps> & {
+    cellType: string;
+  };
 
 const TableIndeterminateCheckboxRow: TableIndeterminateCheckboxRowComponent = ({
   row,

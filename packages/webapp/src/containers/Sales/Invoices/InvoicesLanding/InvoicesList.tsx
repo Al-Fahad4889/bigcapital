@@ -17,7 +17,10 @@ interface WithInvoiceActionsProps {
 }
 
 interface InvoicesListProps
-  extends Pick<WithInvoicesProps, 'invoicesTableState' | 'invoicesTableStateChanged'>,
+  extends Pick<
+      WithInvoicesProps,
+      'invoicesTableState' | 'invoicesTableStateChanged'
+    >,
     WithInvoiceActionsProps {}
 
 function InvoicesListInner({

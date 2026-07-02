@@ -92,11 +92,15 @@ export const QuantityOnHandCell = ({ cell: { value } }: CellProps) => {
 };
 
 export const CostPriceCell = ({ cell: { value } }: CellProps) => {
-  return !isBlank(value) ? <Money amount={value as number} currency={'USD'} /> : null;
+  return !isBlank(value) ? (
+    <Money amount={value as number} currency={'USD'} />
+  ) : null;
 };
 
 export const SellPriceCell = ({ cell: { value } }: CellProps) => {
-  return !isBlank(value) ? <Money amount={value as number} currency={'USD'} /> : null;
+  return !isBlank(value) ? (
+    <Money amount={value as number} currency={'USD'} />
+  ) : null;
 };
 
 export const ItemTypeAccessor = (row: ItemTableRow) => {

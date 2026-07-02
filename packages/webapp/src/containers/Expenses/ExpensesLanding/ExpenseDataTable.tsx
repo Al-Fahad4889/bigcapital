@@ -136,8 +136,7 @@ function ExpensesDataTable({
   const handleSelectedRowsChange = (
     selectedFlatRows: Array<{ original: ExpenseTableRow }>,
   ) => {
-    const selectedIds =
-      selectedFlatRows?.map((row) => row.original.id) || [];
+    const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
     setExpensesSelectedRows(selectedIds);
   };
 

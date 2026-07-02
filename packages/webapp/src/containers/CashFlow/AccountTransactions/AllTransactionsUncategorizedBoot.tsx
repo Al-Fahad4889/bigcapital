@@ -19,9 +19,10 @@ interface AccountUncategorizedTransactionsBootRootProps
   children?: React.ReactNode;
 }
 
-const AccountUncategorizedTransactionsContext = React.createContext<AccountUncategorizedTransactionsContextValue>(
-  {} as AccountUncategorizedTransactionsContextValue,
-);
+const AccountUncategorizedTransactionsContext =
+  React.createContext<AccountUncategorizedTransactionsContextValue>(
+    {} as AccountUncategorizedTransactionsContextValue,
+  );
 
 /**
  * Account un-categorized transactions provider.
@@ -55,7 +56,8 @@ function AccountUncategorizedTransactionsBootRoot({
       ? uncategorizedTransactionsPage
       : undefined,
     (page) =>
-      ((page as { transactions?: unknown[] })?.transactions ?? []) as UncategorizedTransactionResponse[],
+      ((page as { transactions?: unknown[] })?.transactions ??
+        []) as UncategorizedTransactionResponse[],
   );
   // Handle the observer inersection.
   const handleObserverInteract = React.useCallback(() => {

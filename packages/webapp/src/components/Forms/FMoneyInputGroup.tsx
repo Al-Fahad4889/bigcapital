@@ -52,9 +52,10 @@ interface FMoneyInputGroupProps {
   [key: string]: unknown;
 }
 
-export function FMoneyInputGroup({ fastField, ...props }: FMoneyInputGroupProps) {
+export function FMoneyInputGroup({
+  fastField,
+  ...props
+}: FMoneyInputGroupProps) {
   const FieldComponent = fastField ? FastField : Field;
-  return (
-    <FieldComponent {...props} component={FieldToMoneyInputGroup} />
-  );
+  return <FieldComponent {...props} component={FieldToMoneyInputGroup} />;
 }

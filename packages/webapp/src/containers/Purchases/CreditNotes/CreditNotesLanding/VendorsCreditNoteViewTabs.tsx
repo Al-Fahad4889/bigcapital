@@ -46,7 +46,9 @@ function VendorsCreditNoteViewTabsInner({
 
 export const VendorsCreditNoteViewTabs = compose(
   withVendorsCreditNotesActions,
-  withVendorsCreditNotes(({ vendorsCreditNoteTableState }: WithVendorsCreditNotesProps) => ({
-    vendorCreditCurrentView: vendorsCreditNoteTableState.viewSlug,
-  })),
+  withVendorsCreditNotes(
+    ({ vendorsCreditNoteTableState }: WithVendorsCreditNotesProps) => ({
+      vendorCreditCurrentView: vendorsCreditNoteTableState.viewSlug,
+    }),
+  ),
 )(VendorsCreditNoteViewTabsInner);

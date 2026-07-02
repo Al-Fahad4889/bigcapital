@@ -17,9 +17,9 @@ interface WithCreditNotesActionsProps {
 
 interface CreditNotesListProps
   extends Pick<
-    WithCreditNotesProps,
-    'creditNoteTableState' | 'creditNoteTableStateChanged'
-  >,
+      WithCreditNotesProps,
+      'creditNoteTableState' | 'creditNoteTableStateChanged'
+    >,
     WithCreditNotesActionsProps {}
 
 function CreditNotesListInner({

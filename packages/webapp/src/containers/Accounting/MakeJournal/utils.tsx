@@ -112,9 +112,10 @@ export function transformToEditForm(
     ),
   ];
 
-  const entries = ensureEntriesHasEmptyLine(MIN_LINES_NUMBER, defaultEntry)(
-    initialEntries,
-  );
+  const entries = ensureEntriesHasEmptyLine(
+    MIN_LINES_NUMBER,
+    defaultEntry,
+  )(initialEntries);
 
   const attachments = transformAttachmentsToForm(manualJournal);
 
@@ -170,11 +171,7 @@ function adjustmentEntries(entries: MakeJournalEntry[]): {
  * Adjustment credit/debit entries.
  */
 export const updateAdjustEntries =
-  (
-    rowIndex: number,
-    columnId: string,
-    value: string | number,
-  ) =>
+  (rowIndex: number, columnId: string, value: string | number) =>
   (rows: MakeJournalEntry[]): MakeJournalEntry[] => {
     let newRows = [...rows];
 
@@ -185,14 +182,14 @@ export const updateAdjustEntries =
       const adjustment = adjustmentEntries(rows);
 
       if (adjustment.credit) {
-        newRows = updateTableCell(rowIndex, 'credit', adjustment.credit)(
-          newRows,
-        );
+        newRows = updateTableCell(
+          rowIndex,
+          'credit',
+          adjustment.credit,
+        )(newRows);
       }
       if (adjustment.debit) {
-        newRows = updateTableCell(rowIndex, 'debit', adjustment.debit)(
-          newRows,
-        );
+        newRows = updateTableCell(rowIndex, 'debit', adjustment.debit)(newRows);
       }
     }
     return newRows;
@@ -220,11 +217,7 @@ export const transformErrors = (
     entries: [],
   };
 
-  const setEntriesErrors = (
-    indexes: number[],
-    prop: string,
-    message: string,
-  ) =>
+  const setEntriesErrors = (indexes: number[], prop: string, message: string) =>
     indexes.forEach((i) => {
       const index = Math.max(i - 1, 0);
       newErrors = setWith(newErrors, `entries.[${index}].${prop}`, message);

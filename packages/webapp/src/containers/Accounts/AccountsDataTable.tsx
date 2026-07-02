@@ -8,7 +8,6 @@ import {
 } from '@/components';
 import { useAccountsTableColumns, rowClassNames } from './utils';
 import { ActionsMenu } from './components';
-import type { AccountTableRow } from './components';
 import { AccountDialogAction } from '@/containers/Dialogs/AccountDialog/utils';
 import { useAccountsChartContext } from './AccountsChartProvider';
 import { useMemorizedColumnsWidths } from '@/hooks';
@@ -16,15 +15,16 @@ import { TABLES } from '@/constants/tables';
 import { DialogsName } from '@/constants/dialogs';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
-import type { WithDrawerActionsProps } from '@/containers/Drawer/withDrawerActions';
 import { withAccountsTableActions } from './withAccountsTableActions';
-import type { WithAccountsTableActionsProps } from './withAccountsTableActions';
 import { compose } from '@/utils';
 import { DRAWERS } from '@/constants/drawers';
+import type { AccountTableRow } from './components';
+import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithDrawerActionsProps } from '@/containers/Drawer/withDrawerActions';
+import type { WithAccountsTableActionsProps } from './withAccountsTableActions';
 
 interface WithSettingsProps {
   accountsTableSize?: string | null;
@@ -124,8 +124,7 @@ function AccountsDataTableInner({
   const handleSelectedRowsChange = (
     selectedFlatRows: Array<{ original: AccountTableRow }>,
   ) => {
-    const selectedIds =
-      selectedFlatRows?.map((row) => row.original.id) || [];
+    const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
     setAccountsSelectedRows(selectedIds);
   };
 

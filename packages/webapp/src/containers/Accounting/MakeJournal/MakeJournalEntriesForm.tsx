@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Formik, Form, type FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import intl from 'react-intl-universal';
@@ -6,7 +6,6 @@ import { sumBy, round, isEmpty } from 'lodash';
 import classNames from 'classnames';
 import { css } from '@emotion/css';
 import { useHistory } from 'react-router-dom';
-
 import { CLASSES } from '@/constants/classes';
 import {
   CreateJournalSchema,
@@ -19,10 +18,8 @@ import { MakeJournalEntriesField } from './MakeJournalEntriesField';
 import { MakeJournalFormFooter } from './MakeJournalFormFooter';
 import { MakeJournalFormDialogs } from './MakeJournalFormDialogs';
 import { MakeJournalFormTopBar } from './MakeJournalFormTopBar';
-
 import { withSettings } from '@/containers/Settings/withSettings';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
-
 import { AppToaster } from '@/components';
 import { PageForm } from '@/components/PageForm';
 import { compose, transactionNumber } from '@/utils';
@@ -92,7 +89,11 @@ function MakeJournalEntriesFormInner({
   // Handle the form submiting.
   const handleSubmit = (
     values: MakeJournalFormValues,
-    { setErrors, setSubmitting, resetForm }: FormikHelpers<MakeJournalFormValues>,
+    {
+      setErrors,
+      setSubmitting,
+      resetForm,
+    }: FormikHelpers<MakeJournalFormValues>,
   ) => {
     setSubmitting(true);
     const entries = values.entries.filter(

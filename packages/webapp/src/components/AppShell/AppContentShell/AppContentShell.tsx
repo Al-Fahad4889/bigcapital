@@ -50,16 +50,17 @@ interface AppContentShellMainProps extends BoxProps {}
 /**
  * Main content of the app shell.
  */
-const AppContentShellMain = forwardRef<HTMLDivElement, AppContentShellMainProps>(
-  (props, ref) => {
-    const { hideMain } = useAppShellContext();
+const AppContentShellMain = forwardRef<
+  HTMLDivElement,
+  AppContentShellMainProps
+>((props, ref) => {
+  const { hideMain } = useAppShellContext();
 
-    if (hideMain === true) {
-      return null;
-    }
-    return <Box {...props} className={styles.main} ref={ref} />;
-  },
-);
+  if (hideMain === true) {
+    return null;
+  }
+  return <Box {...props} className={styles.main} ref={ref} />;
+});
 
 AppContentShellMain.displayName = 'AppContentShellMain';
 

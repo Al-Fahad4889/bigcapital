@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
   Button,
   NavbarGroup,
@@ -18,19 +17,15 @@ import {
 import { useRefreshCashflowAccounts } from '@/hooks/query';
 import { useOpenPlaidConnect } from '@/hooks/utils/useOpenPlaidConnect';
 import { CashflowAction, AbilitySubject } from '@/constants/abilityOption';
-
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withCashflowAccountsTableActions } from '../AccountTransactions/withCashflowAccountsTableActions';
-import type { WithCashflowAccountsTableActionsProps } from '../AccountTransactions/withCashflowAccountsTableActions';
-
 import { AccountDialogAction } from '@/containers/Dialogs/AccountDialog/utils';
-
 import { ACCOUNT_TYPE, Features } from '@/constants';
 import { DialogsName } from '@/constants/dialogs';
 import { CreditCard2Icon } from '@/icons/CreditCard2';
-
 import { compose } from '@/utils';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithCashflowAccountsTableActionsProps } from '../AccountTransactions/withCashflowAccountsTableActions';
 
 interface CashFlowAccountsActionsBarInnerProps
   extends Pick<WithDialogActionsProps, 'openDialog'>,

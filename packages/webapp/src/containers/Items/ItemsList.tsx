@@ -17,10 +17,7 @@ import { withItemsActions } from './withItemsActions';
 import type { WithItemsActionsProps } from './withItemsActions';
 
 interface ItemsListInnerProps
-  extends Pick<
-      WithItemsProps,
-      'itemsTableState' | 'itemsTableStateChanged'
-    >,
+  extends Pick<WithItemsProps, 'itemsTableState' | 'itemsTableStateChanged'>,
     WithItemsActionsProps {}
 
 /**

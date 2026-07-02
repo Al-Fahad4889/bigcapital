@@ -18,10 +18,7 @@ import { Features, ACCOUNT_TYPE } from '@/constants';
 import type { Account } from '@bigcapital/sdk-ts';
 import { momentFormatter } from '@/utils';
 import { useMoneyOutDialogContext } from '../MoneyOutDialogProvider';
-import {
-  useSetPrimaryBranchToForm,
-  BranchRowDivider,
-} from '../utils';
+import { useSetPrimaryBranchToForm, BranchRowDivider } from '../utils';
 import { MoneyInOutTransactionNoField } from '../../_components';
 import { useMoneyOutFieldsContext } from '../MoneyOutFieldsProvider';
 import { MoneyOutExchangeRateField } from '../MoneyOutExchangeRateField';
@@ -80,7 +77,10 @@ export function OwnerDrawingsFormFields() {
       {/*------------ Amount -----------*/}
       <Row>
         <Col xs={10}>
-          <FormGroup label={intl.get('amount')} labelInfo={<FieldRequiredHint />}>
+          <FormGroup
+            label={intl.get('amount')}
+            labelInfo={<FieldRequiredHint />}
+          >
             <ControlGroup>
               <InputPrependText
                 text={(account as Account | undefined)?.currencyCode}

@@ -36,8 +36,7 @@ export const useForeignAccount = () => {
 
   const accountCurrency = (account as Account | undefined)?.currencyCode;
   return (
-    !isEqual(accountCurrency, values.currencyCode) &&
-    !isNull(accountCurrency)
+    !isEqual(accountCurrency, values.currencyCode) && !isNull(accountCurrency)
   );
 };
 

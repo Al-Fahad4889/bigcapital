@@ -31,9 +31,7 @@ export function MatchTransactionCheckbox({
     handleChange(!_active);
   };
 
-  const handleCheckboxChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleChange(!event.target.checked);
   };
 

@@ -9,7 +9,9 @@ import { safeCallback } from '@/utils';
 import { CreditNoteAction, AbilitySubject } from '@/constants/abilityOption';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-export type CreditNoteTableRow = NonNullable<CreditNotesListResponse['data']>[number];
+export type CreditNoteTableRow = NonNullable<
+  CreditNotesListResponse['data']
+>[number];
 
 interface CreditNoteActionsPayload {
   onEdit: (creditNote: CreditNoteTableRow) => void;

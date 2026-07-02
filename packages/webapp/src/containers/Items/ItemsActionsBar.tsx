@@ -48,10 +48,7 @@ interface WithSettingsProps {
 }
 
 interface ItemsActionsBarInnerProps
-  extends Pick<
-      WithItemsProps,
-      'itemsSelectedRows' | 'itemsTableState'
-    >,
+  extends Pick<WithItemsProps, 'itemsSelectedRows' | 'itemsTableState'>,
     WithItemsActionsProps,
     WithSettingsProps,
     WithSettingsActionsProps,

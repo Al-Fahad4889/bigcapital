@@ -49,11 +49,7 @@ interface WithInvoiceActionsProps {
 }
 
 interface WithSettingsActionsProps {
-  addSetting: (
-    group: string,
-    key: string,
-    value: any,
-  ) => void;
+  addSetting: (group: string, key: string, value: any) => void;
 }
 
 interface WithSettingsProps {

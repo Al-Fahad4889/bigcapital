@@ -15,9 +15,10 @@ interface AccountTransactionsAllProviderProps {
   children: React.ReactNode;
 }
 
-const AccountTransactionsAllBootContext = React.createContext<AccountTransactionsAllContextValue>(
-  {} as AccountTransactionsAllContextValue,
-);
+const AccountTransactionsAllBootContext =
+  React.createContext<AccountTransactionsAllContextValue>(
+    {} as AccountTransactionsAllContextValue,
+  );
 
 /**
  * Account transctions all provider.
@@ -42,8 +43,7 @@ function AccountTransactionsAllProvider({
   // Memorized the cashflow account transactions.
   const cashflowTransactions = useFlattenInfinityPages(
     isCashflowTransactionsSuccess ? cashflowTransactionsPages : undefined,
-    (page) =>
-      (page?.transactions ?? []) as BankingTransactionResponse[],
+    (page) => (page?.transactions ?? []) as BankingTransactionResponse[],
   );
   // Handle the observer inersection.
   const handleObserverInteract = React.useCallback(() => {

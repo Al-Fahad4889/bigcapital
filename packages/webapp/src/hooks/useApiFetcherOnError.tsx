@@ -60,4 +60,3 @@ export function useApiFetcherOnError() {
     [setGlobalErrors, setLogout],
   );
 }
-

@@ -29,7 +29,10 @@ export const defaultInitialValues: CategorizeTransactionFormValues = {
 };
 
 export const transformToCategorizeForm = (
-  autofillCategorizeTransaction: GetAutofillCategorizeTransaction | null | undefined,
+  autofillCategorizeTransaction:
+    | GetAutofillCategorizeTransaction
+    | null
+    | undefined,
 ) => {
   return transformToForm(autofillCategorizeTransaction, defaultInitialValues);
 };
@@ -60,20 +63,21 @@ export const tranformToRequest = (
 /**
  * Categorize transaction form initial values.
  */
-export const useCategorizeTransactionFormInitialValues = (): CategorizeTransactionFormValues => {
-  const { primaryBranch, autofillCategorizeValues } =
-    useCategorizeTransactionBoot();
+export const useCategorizeTransactionFormInitialValues =
+  (): CategorizeTransactionFormValues => {
+    const { primaryBranch, autofillCategorizeValues } =
+      useCategorizeTransactionBoot();
 
-  return {
-    ...defaultInitialValues,
-    /**
-     * We only care about the fields in the form. Previously unfilled optional
-     * values such as `notes` come back from the API as null, so remove those
-     * as well.
-     */
-    ...transformToCategorizeForm(autofillCategorizeValues),
+    return {
+      ...defaultInitialValues,
+      /**
+       * We only care about the fields in the form. Previously unfilled optional
+       * values such as `notes` come back from the API as null, so remove those
+       * as well.
+       */
+      ...transformToCategorizeForm(autofillCategorizeValues),
 
-    /** Assign the primary branch id as default value. */
-    branchId: primaryBranch?.id || null,
+      /** Assign the primary branch id as default value. */
+      branchId: primaryBranch?.id || null,
+    };
   };
-};

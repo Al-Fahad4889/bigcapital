@@ -175,61 +175,62 @@ export const ActionsCell = (props: ActionsMenuProps) => {
 /**
  * Retrieve inventory adjustments columns.
  */
-export const useInventoryAdjustmentsColumns = (): DataTableColumn<InventoryAdjustmentTableRow>[] => {
-  return React.useMemo(
-    () =>
-      [
-        {
-          id: 'date',
-          Header: intl.get('date'),
-          accessor: (r: InventoryAdjustmentTableRow) =>
-            moment(r.date).format('YYYY MMM DD'),
-          width: 115,
-          className: 'date',
-          clickable: true,
-        },
-        {
-          id: 'type',
-          Header: intl.get('type'),
-          accessor: TypeAccessor,
-          className: 'type',
-          width: 100,
-          clickable: true,
-        },
-        {
-          id: 'reason',
-          Header: intl.get('reason'),
-          accessor: 'reason',
-          className: 'reason',
-          width: 115,
-          clickable: true,
-        },
-        {
-          id: 'reference_no',
-          Header: intl.get('reference_no'),
-          accessor: 'referenceNo',
-          className: 'reference_no',
-          width: 100,
-          clickable: true,
-        },
-        {
-          id: 'published_at',
-          Header: intl.get('status'),
-          accessor: PublishAccessor,
-          width: 95,
-          className: 'publish',
-          clickable: true,
-        },
-        {
-          id: 'created_at',
-          Header: intl.get('created_at'),
-          accessor: (r: InventoryAdjustmentTableRow) =>
-            moment(r.createdAt).format('YYYY MMM DD'),
-          width: 125,
-          className: 'created_at',
-          clickable: true,
-        },
-      ] as DataTableColumn<InventoryAdjustmentTableRow>[],
-    [],
-  );
-};
+export const useInventoryAdjustmentsColumns =
+  (): DataTableColumn<InventoryAdjustmentTableRow>[] => {
+    return React.useMemo(
+      () =>
+        [
+          {
+            id: 'date',
+            Header: intl.get('date'),
+            accessor: (r: InventoryAdjustmentTableRow) =>
+              moment(r.date).format('YYYY MMM DD'),
+            width: 115,
+            className: 'date',
+            clickable: true,
+          },
+          {
+            id: 'type',
+            Header: intl.get('type'),
+            accessor: TypeAccessor,
+            className: 'type',
+            width: 100,
+            clickable: true,
+          },
+          {
+            id: 'reason',
+            Header: intl.get('reason'),
+            accessor: 'reason',
+            className: 'reason',
+            width: 115,
+            clickable: true,
+          },
+          {
+            id: 'reference_no',
+            Header: intl.get('reference_no'),
+            accessor: 'referenceNo',
+            className: 'reference_no',
+            width: 100,
+            clickable: true,
+          },
+          {
+            id: 'published_at',
+            Header: intl.get('status'),
+            accessor: PublishAccessor,
+            width: 95,
+            className: 'publish',
+            clickable: true,
+          },
+          {
+            id: 'created_at',
+            Header: intl.get('created_at'),
+            accessor: (r: InventoryAdjustmentTableRow) =>
+              moment(r.createdAt).format('YYYY MMM DD'),
+            width: 125,
+            className: 'created_at',
+            clickable: true,
+          },
+        ] as DataTableColumn<InventoryAdjustmentTableRow>[],
+      [],
+    );
+  };

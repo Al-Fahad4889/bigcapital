@@ -4,10 +4,7 @@ import intl from 'react-intl-universal';
 import { DataTable, TableSkeletonRows } from '@/components';
 
 import { useItemsCategoriesContext } from './ItemsCategoriesProvider';
-import {
-  useItemsCategoriesTableColumns,
-  ActionMenuList,
-} from './components';
+import { useItemsCategoriesTableColumns, ActionMenuList } from './components';
 import type { ItemCategoryTableRow } from './components';
 
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
@@ -17,7 +14,9 @@ import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActio
 
 import { compose } from '@/utils';
 
-interface ItemsCategoryTableProps extends WithAlertActionsProps, WithDialogActionsProps {
+interface ItemsCategoryTableProps
+  extends WithAlertActionsProps,
+    WithDialogActionsProps {
   tableProps?: Record<string, unknown>;
 }
 

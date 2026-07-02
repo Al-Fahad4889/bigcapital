@@ -20,8 +20,9 @@ import {
 import type { PaymentsReceivedListResponse } from '@bigcapital/sdk-ts';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-export type PaymentReceiveTableRow =
-  NonNullable<PaymentsReceivedListResponse['data']>[number];
+export type PaymentReceiveTableRow = NonNullable<
+  PaymentsReceivedListResponse['data']
+>[number];
 
 interface PaymentReceiveActionsPayload {
   onEdit: (paymentReceive: PaymentReceiveTableRow) => void;

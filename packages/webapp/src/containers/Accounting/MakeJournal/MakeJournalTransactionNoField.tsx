@@ -1,6 +1,7 @@
 import React from 'react';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
+import intl from 'react-intl-universal';
 import {
   FieldHint,
   FieldRequiredHint,
@@ -10,18 +11,19 @@ import {
   FInputGroup,
   FFormGroup,
 } from '@/components';
-
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
-import intl from 'react-intl-universal';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import type { MakeJournalFormValues } from './utils';
 
-interface MakeJournalTransactionNoFieldProps
-  extends Pick<WithDialogActionsProps, 'openDialog'> {
+interface MakeJournalTransactionNoFieldOwnProps {
   journalAutoIncrement?: boolean;
 }
+
+interface MakeJournalTransactionNoFieldProps
+  extends Pick<WithDialogActionsProps, 'openDialog'>,
+    MakeJournalTransactionNoFieldOwnProps {}
 
 /**
  * Journal number field of make journal form.
@@ -31,15 +33,16 @@ export const MakeJournalTransactionNoField = compose(
   withSettings(({ manualJournalsSettings }) => ({
     journalAutoIncrement: manualJournalsSettings?.autoIncrement,
   })),
-)(({ openDialog, journalAutoIncrement }: MakeJournalTransactionNoFieldProps) => {
+)(({
+  openDialog,
+  journalAutoIncrement,
+}: MakeJournalTransactionNoFieldProps) => {
   const { setFieldValue, values } = useFormikContext<MakeJournalFormValues>();
 
   const handleJournalNumberChange = () => {
     openDialog('journal-number-form');
   };
-  const handleJournalNoBlur = (
-    event: React.FocusEvent<HTMLInputElement>,
-  ) => {
+  const handleJournalNoBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     if (values.journalNumber !== newValue && journalAutoIncrement) {

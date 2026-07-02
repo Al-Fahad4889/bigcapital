@@ -93,8 +93,7 @@ function CreditNotesDataTableInner({
 
   const handleSelectedRowsChange = React.useCallback(
     (selectedFlatRows: Array<{ original: CreditNoteTableRow }>) => {
-      const selectedIds =
-        selectedFlatRows?.map((row) => row.original.id) || [];
+      const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
       setCreditNotesSelectedRows(selectedIds);
     },
     [setCreditNotesSelectedRows],

@@ -70,10 +70,7 @@ interface CashFlowTransactionReference {
   referenceId: number;
 }
 
-type OpenDrawer = (
-  name: string,
-  payload?: Record<string, unknown>,
-) => void;
+type OpenDrawer = (name: string, payload?: Record<string, unknown>) => void;
 
 export const handleCashFlowTransactionType = (
   reference: CashFlowTransactionReference,

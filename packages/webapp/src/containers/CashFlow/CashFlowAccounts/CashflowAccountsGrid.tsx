@@ -145,7 +145,9 @@ function CashflowBankAccount({
         />
       }
     >
-      <CashflowAccountAnchor to={`/cashflow-accounts/${account.id}/transactions`}>
+      <CashflowAccountAnchor
+        to={`/cashflow-accounts/${account.id}/transactions`}
+      >
         <BankAccount
           title={account.name}
           code={account.code}
@@ -172,7 +174,9 @@ const CashflowBankAccountEnhanced = compose(
 /**
  * Cashflow accounts grid items.
  */
-function CashflowAccountsGridItems({ accounts }: CashflowAccountsGridItemsProps) {
+function CashflowAccountsGridItems({
+  accounts,
+}: CashflowAccountsGridItemsProps) {
   return (
     <>
       {accounts.map((account) => (
@@ -241,7 +245,9 @@ function CashflowAccountMoneyInContextMenu({ onClick }: MoneyContextMenuProps) {
 /**
  * Cashflow account money in context menu.
  */
-function CashflowAccountMoneyOutContextMenu({ onClick }: MoneyContextMenuProps) {
+function CashflowAccountMoneyOutContextMenu({
+  onClick,
+}: MoneyContextMenuProps) {
   // Retreives the add money out button options.
   const addMoneyOutOptions = useMemo(() => getAddMoneyOutOptions(), []);
 

@@ -58,10 +58,7 @@ interface WithSettingsProps {
 }
 
 interface PaymentsReceivedActionsBarProps
-  extends Pick<
-      WithPaymentsReceivedProps,
-      'paymentReceivesSelectedRows'
-    >,
+  extends Pick<WithPaymentsReceivedProps, 'paymentReceivesSelectedRows'>,
     WithPaymentsReceivedActionsProps,
     WithSettingsActionsProps,
     WithDialogActionsProps,

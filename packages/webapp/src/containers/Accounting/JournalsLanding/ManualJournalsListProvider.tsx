@@ -1,10 +1,9 @@
 import React, { createContext } from 'react';
 import { isEmpty } from 'lodash';
-import type { ManualJournalsListQuery } from '@bigcapital/sdk-ts';
-
 import { DashboardInsider } from '@/components';
 import { useResourceViews, useResourceMeta, useJournals } from '@/hooks/query';
 import { getFieldsFromResourceMeta } from '@/utils';
+import type { ManualJournalsListQuery } from '@bigcapital/sdk-ts';
 import type { ManualJournalTableRow } from './components';
 
 // FIXME: SDK schema declares the manual-journals list endpoint as returning
@@ -55,14 +54,13 @@ function ManualJournalsListProvider({
     isLoading: isManualJournalsLoading,
     isFetching: isManualJournalsFetching,
   } = useJournals(query);
-  const manualJournalsData =
-    manualJournalsDataRaw as unknown as ManualJournalsRuntimeResponse | undefined;
+  const manualJournalsData = manualJournalsDataRaw as unknown as
+    | ManualJournalsRuntimeResponse
+    | undefined;
 
   // Fetch the accounts resource fields.
-  const {
-    data: resourceMeta,
-    isLoading: isResourceMetaLoading,
-  } = useResourceMeta('manual_journals');
+  const { data: resourceMeta, isLoading: isResourceMetaLoading } =
+    useResourceMeta('manual_journals');
 
   // Detarmines the datatable empty status.
   const isEmptyStatus =

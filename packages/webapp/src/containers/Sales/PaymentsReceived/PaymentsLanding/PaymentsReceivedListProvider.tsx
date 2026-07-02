@@ -62,9 +62,7 @@ function PaymentsReceivedListProvider({
     | undefined;
 
   const isEmptyStatus =
-    isEmpty(listData?.data) &&
-    !isPaymentReceivesLoading &&
-    !tableStateChanged;
+    isEmpty(listData?.data) && !isPaymentReceivesLoading && !tableStateChanged;
 
   const state: PaymentsReceivedListContextValue = {
     paymentReceives: listData?.data,

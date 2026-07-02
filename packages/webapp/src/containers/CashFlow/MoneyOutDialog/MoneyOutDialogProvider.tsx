@@ -47,9 +47,10 @@ interface MoneyOutProviderProps {
   children?: React.ReactNode;
 }
 
-const MoneyOutDialogContentContext = React.createContext<MoneyOutDialogContentValue>(
-  {} as MoneyOutDialogContentValue,
-);
+const MoneyOutDialogContentContext =
+  React.createContext<MoneyOutDialogContentValue>(
+    {} as MoneyOutDialogContentValue,
+  );
 
 /**
  * Money out dialog provider.

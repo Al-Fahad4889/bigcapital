@@ -34,7 +34,9 @@ export interface MoneyInDialogContentValue {
   cashflowAccounts: BankingAccountsListResponse;
   submitPayload: SubmitPayload;
   dialogName?: string;
-  createCashflowTransactionMutate: (body: CreateCashflowTransactionBody) => Promise<void>;
+  createCashflowTransactionMutate: (
+    body: CreateCashflowTransactionBody,
+  ) => Promise<void>;
   setSubmitPayload: React.Dispatch<React.SetStateAction<SubmitPayload>>;
 }
 

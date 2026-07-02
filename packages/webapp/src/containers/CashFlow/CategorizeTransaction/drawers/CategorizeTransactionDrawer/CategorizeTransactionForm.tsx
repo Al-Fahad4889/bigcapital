@@ -46,7 +46,10 @@ function CategorizeTransactionFormRoot({
   // Callbacks handles form submit.
   const handleFormSubmit = (
     values: CategorizeTransactionFormValues,
-    { setSubmitting, setErrors }: FormikHelpers<CategorizeTransactionFormValues>,
+    {
+      setSubmitting,
+      setErrors,
+    }: FormikHelpers<CategorizeTransactionFormValues>,
   ) => {
     const _values = tranformToRequest(values, uncategorizedTransactionIds);
 
@@ -61,24 +64,28 @@ function CategorizeTransactionFormRoot({
         });
         closeMatchingTransactionAside();
       })
-      .catch((err: { response?: { data?: { errors?: Array<{ type: string }> } } }) => {
-        setSubmitting(false);
-        if (
-          err.response?.data?.errors?.some(
-            (e) => e.type === 'BRANCH_ID_REQUIRED',
-          )
-        ) {
-          setErrors({
-            ...({} as CategorizeTransactionFormValues),
-            branchId: 'The branch is required.',
-          });
-        } else {
-          AppToaster.show({
-            message: 'Something went wrong!',
-            intent: Intent.DANGER,
-          });
-        }
-      });
+      .catch(
+        (err: {
+          response?: { data?: { errors?: Array<{ type: string }> } };
+        }) => {
+          setSubmitting(false);
+          if (
+            err.response?.data?.errors?.some(
+              (e) => e.type === 'BRANCH_ID_REQUIRED',
+            )
+          ) {
+            setErrors({
+              ...({} as CategorizeTransactionFormValues),
+              branchId: 'The branch is required.',
+            });
+          } else {
+            AppToaster.show({
+              message: 'Something went wrong!',
+              intent: Intent.DANGER,
+            });
+          }
+        },
+      );
   };
 
   return (

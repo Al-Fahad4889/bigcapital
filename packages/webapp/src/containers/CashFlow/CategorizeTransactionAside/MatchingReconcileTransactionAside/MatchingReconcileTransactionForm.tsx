@@ -1,11 +1,6 @@
 import React from 'react';
 import { Button, Intent, Position, Tag } from '@blueprintjs/core';
-import {
-  Form,
-  Formik,
-  FormikHelpers,
-  useFormikContext,
-} from 'formik';
+import { Form, Formik, FormikHelpers, useFormikContext } from 'formik';
 import moment from 'moment';
 import { round } from 'lodash';
 import {
@@ -47,14 +42,8 @@ interface ReconcileSubmitSuccessPayload {
 }
 
 interface MatchingReconcileTransactionFormProps
-  extends Pick<
-      WithBankingActionsProps,
-      'closeReconcileMatchingTransaction'
-    >,
-    Pick<
-      WithBankingProps,
-      'reconcileMatchingTransactionPendingAmount'
-    > {
+  extends Pick<WithBankingActionsProps, 'closeReconcileMatchingTransaction'>,
+    Pick<WithBankingProps, 'reconcileMatchingTransactionPendingAmount'> {
   onSubmitSuccess?: (values: ReconcileSubmitSuccessPayload) => void;
 }
 
@@ -78,7 +67,10 @@ function MatchingReconcileTransactionFormRoot({
   // Handle the form submitting.
   const handleSubmit = (
     values: MatchingReconcileTransactionValues,
-    { setSubmitting, setErrors }: FormikHelpers<MatchingReconcileTransactionValues>,
+    {
+      setSubmitting,
+      setErrors,
+    }: FormikHelpers<MatchingReconcileTransactionValues>,
   ) => {
     setSubmitting(true);
     const _values = transformToReq(values, accountId);
@@ -96,24 +88,28 @@ function MatchingReconcileTransactionFormRoot({
         // so we can't forward the new transaction id. Caller's auto-mark effect
         // won't fire — users manually match after creating.
       })
-      .catch((error: { response?: { data?: { errors?: Array<{ type: string }> } } }) => {
-        setSubmitting(false);
-        if (
-          error.response?.data?.errors?.find(
-            (e) => e.type === 'BRANCH_ID_REQUIRED',
-          )
-        ) {
-          setErrors({
-            ...({} as MatchingReconcileTransactionValues),
-            branchId: 'The branch is required.',
-          });
-        } else {
-          AppToaster.show({
-            message: 'Something went wrong.',
-            intent: Intent.DANGER,
-          });
-        }
-      });
+      .catch(
+        (error: {
+          response?: { data?: { errors?: Array<{ type: string }> } };
+        }) => {
+          setSubmitting(false);
+          if (
+            error.response?.data?.errors?.find(
+              (e) => e.type === 'BRANCH_ID_REQUIRED',
+            )
+          ) {
+            setErrors({
+              ...({} as MatchingReconcileTransactionValues),
+              branchId: 'The branch is required.',
+            });
+          } else {
+            AppToaster.show({
+              message: 'Something went wrong.',
+              intent: Intent.DANGER,
+            });
+          }
+        },
+      );
   };
 
   const _initialValues: MatchingReconcileTransactionValues = {
@@ -279,9 +275,7 @@ function MatchingReconcileCategoryField() {
           },
           boundary: 'viewport',
         }}
-        filterByRootTypes={
-          values.type === 'deposit' ? ['income'] : ['expense']
-        }
+        filterByRootTypes={values.type === 'deposit' ? ['income'] : ['expense']}
         fastField
       />
     </FFormGroup>

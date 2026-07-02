@@ -18,9 +18,10 @@ interface CashFlowAccountsProviderProps {
   children?: React.ReactNode;
 }
 
-const CashFlowAccountsContext = React.createContext<CashFlowAccountsContextValue>(
-  {} as CashFlowAccountsContextValue,
-);
+const CashFlowAccountsContext =
+  React.createContext<CashFlowAccountsContextValue>(
+    {} as CashFlowAccountsContextValue,
+  );
 
 /**
  * Cash Flow data provider.

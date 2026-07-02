@@ -5,9 +5,7 @@ import { useAccounts, useBranches } from '@/hooks/query';
 import { useFeatureCan } from '@/hooks/state';
 import { Features } from '@/constants';
 import type { AccountsList, BranchesListResponse } from '@bigcapital/sdk-ts';
-import type {
-  GetAutofillCategorizeTransaction,
-} from '@/hooks/query/banking';
+import type { GetAutofillCategorizeTransaction } from '@/hooks/query/banking';
 import { useGetAutofillCategorizeTransaction } from '@/hooks/query/banking';
 
 interface CategorizeTransactionBootProps {

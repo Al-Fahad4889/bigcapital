@@ -105,7 +105,9 @@ function AccountTransactionsDataTableInner({
       });
   };
   // Handle uncategorize transaction.
-  const handleUncategorizeTransaction = (transaction: AccountTransactionRow) => {
+  const handleUncategorizeTransaction = (
+    transaction: AccountTransactionRow,
+  ) => {
     uncategorizeTransaction(transaction.uncategorizedTransactionId)
       .then(() => {
         AppToaster.show({

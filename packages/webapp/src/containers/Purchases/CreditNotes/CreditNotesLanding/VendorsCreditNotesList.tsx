@@ -17,9 +17,9 @@ interface WithVendorsCreditNotesActionsProps {
 
 interface VendorsCreditNotesListProps
   extends Pick<
-    WithVendorsCreditNotesProps,
-    'vendorsCreditNoteTableState' | 'vendorsCreditNoteTableStateChanged'
-  >,
+      WithVendorsCreditNotesProps,
+      'vendorsCreditNoteTableState' | 'vendorsCreditNoteTableStateChanged'
+    >,
     WithVendorsCreditNotesActionsProps {}
 
 function VendorsCreditNotesListInner({

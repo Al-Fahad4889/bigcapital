@@ -20,9 +20,10 @@ interface ExcludedBankTransactionsTableBootProps
   children: React.ReactNode;
 }
 
-const ExcludedTransactionsContext = React.createContext<ExcludedBankTransactionsContextValue>(
-  {} as ExcludedBankTransactionsContextValue,
-);
+const ExcludedTransactionsContext =
+  React.createContext<ExcludedBankTransactionsContextValue>(
+    {} as ExcludedBankTransactionsContextValue,
+  );
 
 /**
  * Account excluded transactions provider.
@@ -60,10 +61,7 @@ function ExcludedBankTransactionsTableBootRoot({
   );
   // Handle the observer ineraction.
   const handleObserverInteract = React.useCallback(() => {
-    if (
-      !isExcludedTransactionsFetching &&
-      hasExcludedTransactionsNextPage
-    ) {
+    if (!isExcludedTransactionsFetching && hasExcludedTransactionsNextPage) {
       fetchNextExcludedTransactionsPage();
     }
   }, [

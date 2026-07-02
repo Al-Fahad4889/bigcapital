@@ -115,8 +115,7 @@ function BillsDataTable({
 
   const handleSelectedRowsChange = useCallback(
     (selectedFlatRows: Array<{ original: BillTableRow }>) => {
-      const selectedIds =
-        selectedFlatRows?.map((row) => row.original.id) || [];
+      const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
       setBillsSelectedRows(selectedIds);
     },
     [setBillsSelectedRows],

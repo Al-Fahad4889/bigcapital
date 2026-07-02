@@ -38,7 +38,8 @@ function UncategorizeTransactionAlertInner({
   const { mutateAsync: uncategorizeTransaction, isPending: isLoading } =
     useUncategorizeTransaction();
 
-  const uncategorizedTransactionId = payload?.uncategorizedTransactionId as number;
+  const uncategorizedTransactionId =
+    payload?.uncategorizedTransactionId as number;
 
   // handle cancel delete project alert.
   const handleCancelDeleteAlert = () => {

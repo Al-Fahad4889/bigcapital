@@ -44,8 +44,7 @@ export const MoneyInOutSyncIncrementSettingsToForm = compose(
   transactionNextNumber,
   transactionNumberPrefix,
 }: WithSettingsProps) => {
-  const { setFieldValue } =
-    useFormikContext<CashflowTransactionNoFormValues>();
+  const { setFieldValue } = useFormikContext<CashflowTransactionNoFormValues>();
 
   useUpdateEffect(() => {
     // Do not update if the invoice auto-increment is disabled.
@@ -95,10 +94,7 @@ export const MoneyInOutTransactionNoField = compose(
   ) => {
     const newValue = event.target.value;
 
-    if (
-      values.transactionNumber !== newValue &&
-      transactionAutoIncrement
-    ) {
+    if (values.transactionNumber !== newValue && transactionAutoIncrement) {
       openDialog('transaction-number-form', {
         initialFormValues: {
           onceManualNumber: newValue,

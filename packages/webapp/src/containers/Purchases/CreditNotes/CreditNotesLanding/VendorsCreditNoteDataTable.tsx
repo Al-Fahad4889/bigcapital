@@ -127,8 +127,7 @@ function VendorsCreditNoteDataTableInner({
   const handleSelectedRowsChange = (
     selectedFlatRows: Array<{ original: VendorCreditTableRow }>,
   ) => {
-    const selectedIds =
-      selectedFlatRows?.map((row) => row.original.id) || [];
+    const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
     setVendorsCreditNoteSelectedRows(selectedIds);
   };
 

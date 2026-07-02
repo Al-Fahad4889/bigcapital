@@ -101,7 +101,10 @@ function ManualJournalsDataTableInner({
     });
   };
   // Handle cell click.
-  const handleCellClick = (cell: { row: { original: ManualJournalTableRow } }, _event: React.MouseEvent) => {
+  const handleCellClick = (
+    cell: { row: { original: ManualJournalTableRow } },
+    _event: React.MouseEvent,
+  ) => {
     openDrawer(DRAWERS.JOURNAL_DETAILS, {
       manualJournalId: cell.row.original.id,
     });
@@ -135,8 +138,7 @@ function ManualJournalsDataTableInner({
   const handleSelectedRowsChange = (
     selectedFlatRows: Array<{ original: ManualJournalTableRow }>,
   ) => {
-    const selectedIds =
-      selectedFlatRows?.map((row) => row.original.id) || [];
+    const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
     setManualJournalsSelectedRows(selectedIds);
     onSelectedRowsChange?.(selectedFlatRows);
   };

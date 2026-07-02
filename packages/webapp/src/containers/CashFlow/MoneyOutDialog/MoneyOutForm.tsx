@@ -47,9 +47,7 @@ const defaultInitialValues: MoneyOutFormValues = {
   exchangeRate: 1,
 };
 
-const toNumber = (
-  v: string | number | undefined,
-): number | undefined =>
+const toNumber = (v: string | number | undefined): number | undefined =>
   v == null || v === ''
     ? undefined
     : typeof v === 'number'

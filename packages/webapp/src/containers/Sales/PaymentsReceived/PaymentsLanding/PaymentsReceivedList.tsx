@@ -17,9 +17,9 @@ interface WithPaymentsReceivedActionsProps {
 
 interface PaymentsReceivedListProps
   extends Pick<
-    WithPaymentsReceivedProps,
-    'paymentReceivesTableState' | 'paymentsTableStateChanged'
-  >,
+      WithPaymentsReceivedProps,
+      'paymentReceivesTableState' | 'paymentsTableStateChanged'
+    >,
     WithPaymentsReceivedActionsProps {}
 
 function PaymentsReceivedListInner({

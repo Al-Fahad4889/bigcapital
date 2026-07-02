@@ -68,9 +68,7 @@ function VendorsCreditNoteListProvider({
     | undefined;
 
   const isEmptyStatus =
-    isEmpty(listData?.data) &&
-    !isVendorCreditsLoading &&
-    !tableStateChanged;
+    isEmpty(listData?.data) && !isVendorCreditsLoading && !tableStateChanged;
 
   const provider: VendorsCreditNoteListContextValue = {
     vendorCredits: listData?.data,

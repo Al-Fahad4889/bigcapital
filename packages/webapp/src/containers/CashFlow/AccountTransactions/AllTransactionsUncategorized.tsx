@@ -49,9 +49,11 @@ const AccountRecognizedTransactions = lazy(
 );
 const AccountUncategorizedTransactions = lazy(
   () =>
-    import('./UncategorizedTransactions/AccountUncategorizedTransactionsAll').then(
-      (module) => ({ default: module.AccountUncategorizedTransactionsAll }),
-    ) as Promise<{ default: ComponentType }>,
+    import(
+      './UncategorizedTransactions/AccountUncategorizedTransactionsAll'
+    ).then((module) => ({
+      default: module.AccountUncategorizedTransactionsAll,
+    })) as Promise<{ default: ComponentType }>,
 );
 
 const PendingTransactions = lazy(

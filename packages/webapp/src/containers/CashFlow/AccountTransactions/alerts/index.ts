@@ -1,16 +1,18 @@
 import type { ComponentType, LazyExoticComponent } from 'react';
 import { lazy } from 'react';
 
-const ResumeFeedsBankAccountAlert: LazyExoticComponent<ComponentType> = lazy(() =>
-  import('./ResumeFeedsBankAccount').then((m) => ({
-    default: m.ResumeFeedsBankAccount,
-  })),
+const ResumeFeedsBankAccountAlert: LazyExoticComponent<ComponentType> = lazy(
+  () =>
+    import('./ResumeFeedsBankAccount').then((m) => ({
+      default: m.ResumeFeedsBankAccount,
+    })),
 );
 
-const PauseFeedsBankAccountAlert: LazyExoticComponent<ComponentType> = lazy(() =>
-  import('./PauseFeedsBankAccount').then((m) => ({
-    default: m.PauseFeedsBankAccount,
-  })),
+const PauseFeedsBankAccountAlert: LazyExoticComponent<ComponentType> = lazy(
+  () =>
+    import('./PauseFeedsBankAccount').then((m) => ({
+      default: m.PauseFeedsBankAccount,
+    })),
 );
 
 const UncategorizeTransactionsBulkAlert: LazyExoticComponent<ComponentType> =

@@ -94,16 +94,14 @@ export const AmountPopoverContentLine = ({
       <Choose.When condition={isDebit}>
         <div>
           C. <Money amount={journalEntry.debit} currency={currencyCode} /> -{' '}
-          {account?.name}{' '}
-          <If condition={!!account?.code}>({account?.code})</If>
+          {account?.name} <If condition={!!account?.code}>({account?.code})</If>
         </div>
       </Choose.When>
 
       <Choose.When condition={isCredit}>
         <div>
           D. <Money amount={journalEntry.credit} currency={currencyCode} /> -{' '}
-          {account?.name}{' '}
-          <If condition={!!account?.code}>({account?.code})</If>
+          {account?.name} <If condition={!!account?.code}>({account?.code})</If>
         </div>
       </Choose.When>
     </Choose>

@@ -52,9 +52,7 @@ declare module 'react-table' {
     extends DataTableColumnMeta,
       UseSortByColumnProps<D>,
       UseResizeColumnsColumnProps<D> {}
-  interface Row<D>
-    extends UseExpandedRowProps<D>,
-      UseRowSelectRowProps<D> {}
+  interface Row<D> extends UseExpandedRowProps<D>, UseRowSelectRowProps<D> {}
   interface TableInstance<D>
     extends UseSortByInstanceProps<D>,
       UseExpandedInstanceProps<D>,

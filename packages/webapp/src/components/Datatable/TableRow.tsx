@@ -60,11 +60,7 @@ interface TableRowProps {
   TableCellRenderer?: React.ComponentType<any>;
 }
 
-export default function TableRow({
-  row,
-  className,
-  style,
-}: TableRowProps) {
+export default function TableRow({ row, className, style }: TableRowProps) {
   const {
     props: {
       TableCellRenderer,

@@ -46,7 +46,9 @@ function AccountTransactionsMain() {
   const { setScrollableRef } = useAccountTransactionsContext();
 
   return (
-    <AppContentShell.Main ref={(e: HTMLDivElement | null) => setScrollableRef(e)}>
+    <AppContentShell.Main
+      ref={(e: HTMLDivElement | null) => setScrollableRef(e)}
+    >
       <AccountTransactionsActionsBar />
       <AccountTransactionsLoadingBar />
       <AccountTransactionsDetailsBar />

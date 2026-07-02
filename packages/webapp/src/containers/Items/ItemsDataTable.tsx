@@ -25,10 +25,7 @@ import { withItems } from './withItems';
 import type { WithItemsProps } from './withItems';
 
 import { useItemsListContext } from './ItemsListProvider';
-import {
-  useItemsTableColumns,
-  ItemsActionMenuList,
-} from './components';
+import { useItemsTableColumns, ItemsActionMenuList } from './components';
 import type { ItemTableRow } from './components';
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { compose } from '@/utils';
@@ -129,8 +126,7 @@ function ItemsDataTableInner({
   // Handle selected rows change.
   const handleSelectedRowsChange = React.useCallback(
     (selectedFlatRows: Array<{ original: ItemTableRow }>) => {
-      const selectedIds =
-        selectedFlatRows?.map((row) => row.original.id) || [];
+      const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
       setItemsSelectedRows(selectedIds);
     },
     [setItemsSelectedRows],

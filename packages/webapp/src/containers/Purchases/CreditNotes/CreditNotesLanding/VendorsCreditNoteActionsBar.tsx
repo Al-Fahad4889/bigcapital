@@ -62,10 +62,7 @@ interface WithSettingsProps {
 }
 
 interface VendorsCreditNoteActionsBarProps
-  extends Pick<
-      WithVendorsCreditNotesProps,
-      'vendorsCreditNoteSelectedRows'
-    >,
+  extends Pick<WithVendorsCreditNotesProps, 'vendorsCreditNoteSelectedRows'>,
     WithVendorsCreditNotesActionsProps,
     WithVendorActionsProps,
     WithSettingsActionsProps,

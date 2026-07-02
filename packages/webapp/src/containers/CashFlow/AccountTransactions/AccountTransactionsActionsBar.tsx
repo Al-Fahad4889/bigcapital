@@ -44,9 +44,7 @@ import type { WithSettingsActionsProps } from '@/containers/Settings/withSetting
 import { withBankingActions } from '../withBankingActions';
 import type { WithBankingActionsProps } from '../withBankingActions';
 import { withBanking } from '../withBanking';
-import type { WithBankingProps } from '../withBanking';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
 import {
   useUpdateBankAccount,
   useExcludeUncategorizedTransactions,
@@ -54,6 +52,8 @@ import {
 } from '@/hooks/query/banking';
 import { DialogsName } from '@/constants/dialogs';
 import { compose } from '@/utils';
+import type { WithBankingProps } from '../withBanking';
+import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
 
 interface WithSettingsProps {
   cashflowTansactionsTableSize?: string | null;

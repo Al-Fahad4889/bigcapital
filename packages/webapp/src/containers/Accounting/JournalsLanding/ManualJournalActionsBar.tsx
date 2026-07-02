@@ -23,21 +23,19 @@ import {
 import { useRefreshJournals } from '@/hooks/query/manual-journals';
 import { useManualJournalsContext } from './ManualJournalsListProvider';
 import { ManualJournalAction, AbilitySubject } from '@/constants/abilityOption';
-
 import { withManualJournals } from './withManualJournals';
-import type { WithManualJournalsProps } from './withManualJournals';
 import { withManualJournalsActions } from './withManualJournalsActions';
-import type { WithManualJournalsActionsProps } from './withManualJournalsActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
-import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
-
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 import { DialogsName } from '@/constants/dialogs';
 import { useBulkDeleteManualJournalsDialog } from './hooks/use-bulk-delete-manual-journals-dialog';
+import type { WithManualJournalsProps } from './withManualJournals';
+import type { WithManualJournalsActionsProps } from './withManualJournalsActions';
+import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 
 interface WithSettingsProps {
   manualJournalsTableSize?: string | null;

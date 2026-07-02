@@ -16,9 +16,10 @@ export interface InventoryAdjustmentsContextValue {
   isAdjustmentsFetching: boolean;
 }
 
-const InventoryAdjustmentsContext = createContext<InventoryAdjustmentsContextValue>(
-  {} as InventoryAdjustmentsContextValue,
-);
+const InventoryAdjustmentsContext =
+  createContext<InventoryAdjustmentsContextValue>(
+    {} as InventoryAdjustmentsContextValue,
+  );
 
 /**
  * Accounts chart data provider.

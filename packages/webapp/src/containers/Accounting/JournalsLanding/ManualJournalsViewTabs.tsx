@@ -17,7 +17,8 @@ interface WithManualJournalsActionsProps {
   setManualJournalsTableState: (state: Record<string, unknown>) => void;
 }
 
-interface ManualJournalsViewTabsInnerProps extends WithManualJournalsActionsProps {
+interface ManualJournalsViewTabsInnerProps
+  extends WithManualJournalsActionsProps {
   // The selector merges `paginationLocationQuery` (page_size, page, custom_view_id)
   // with `TableQuery`. Use a looser type so `customViewId` access doesn't fight
   // the SDK-shaped `TableQuery` (matches the latent-bug preserve rule).

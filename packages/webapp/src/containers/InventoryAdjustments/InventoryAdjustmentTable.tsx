@@ -4,10 +4,7 @@ import intl from 'react-intl-universal';
 import { DataTable } from '@/components';
 import { TABLES } from '@/constants/tables';
 import { useMemorizedColumnsWidths } from '@/hooks';
-import {
-  useInventoryAdjustmentsColumns,
-  ActionsMenu,
-} from './components';
+import { useInventoryAdjustmentsColumns, ActionsMenu } from './components';
 import type { InventoryAdjustmentTableRow } from './components';
 import { useInventoryAdjustmentsContext } from './InventoryAdjustmentsProvider';
 
@@ -25,10 +22,7 @@ import { DRAWERS } from '@/constants/drawers';
 import type { TableQuery } from '@/store/store.types';
 
 interface InventoryAdjustmentDataTableProps
-  extends Pick<
-      WithInventoryAdjustmentsProps,
-      'inventoryAdjustmentTableState'
-    >,
+  extends Pick<WithInventoryAdjustmentsProps, 'inventoryAdjustmentTableState'>,
     WithInventoryAdjustmentActionsProps,
     WithAlertActionsProps,
     WithDrawerActionsProps {

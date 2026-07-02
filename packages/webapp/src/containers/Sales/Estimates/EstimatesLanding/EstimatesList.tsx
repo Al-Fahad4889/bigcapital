@@ -17,9 +17,9 @@ interface WithEstimatesActionsProps {
 
 interface EstimatesListProps
   extends Pick<
-    WithEstimatesProps,
-    'estimatesTableState' | 'estimatesTableStateChanged'
-  >,
+      WithEstimatesProps,
+      'estimatesTableState' | 'estimatesTableStateChanged'
+    >,
     WithEstimatesActionsProps {}
 
 function EstimatesListInner({

@@ -13,9 +13,7 @@ import {
   MatchingTransactionBoot,
   useMatchingTransactionBoot,
 } from './MatchingTransactionBoot';
-import {
-  MatchTransactionCheckbox,
-} from './MatchTransactionCheckbox';
+import { MatchTransactionCheckbox } from './MatchTransactionCheckbox';
 import type { MatchTransactionCheckboxProps } from './MatchTransactionCheckbox';
 import { useMatchUncategorizedTransaction } from '@/hooks/query/banking';
 import type { MatchingTransactionFormValues } from './types';
@@ -39,10 +37,7 @@ const initialValues: MatchingTransactionFormValues = {
 };
 
 interface MatchingBankTransactionRootProps
-  extends Pick<
-      WithBankingActionsProps,
-      'closeMatchingTransactionAside'
-    >,
+  extends Pick<WithBankingActionsProps, 'closeMatchingTransactionAside'>,
     Pick<WithBankingProps, 'transactionsToCategorizeIdsSelected'> {}
 
 interface ReconcileSubmitPayload {
@@ -86,25 +81,29 @@ function MatchingBankTransactionRoot({
         setSubmitting(false);
         closeMatchingTransactionAside();
       })
-      .catch((err: { response?: { data?: { errors?: Array<{ type: string }> } } }) => {
-        if (
-          err.response?.data?.errors?.find(
-            (e) => e.type === 'TOTAL_MATCHING_TRANSACTIONS_INVALID',
-          )
-        ) {
+      .catch(
+        (err: {
+          response?: { data?: { errors?: Array<{ type: string }> } };
+        }) => {
+          if (
+            err.response?.data?.errors?.find(
+              (e) => e.type === 'TOTAL_MATCHING_TRANSACTIONS_INVALID',
+            )
+          ) {
+            AppToaster.show({
+              message: `The total amount does not equal the uncategorized transaction.`,
+              intent: Intent.DANGER,
+            });
+            setSubmitting(false);
+            return;
+          }
           AppToaster.show({
-            message: `The total amount does not equal the uncategorized transaction.`,
             intent: Intent.DANGER,
+            message: 'Something went wrong.',
           });
           setSubmitting(false);
-          return;
-        }
-        AppToaster.show({
-          intent: Intent.DANGER,
-          message: 'Something went wrong.',
-        });
-        setSubmitting(false);
-      });
+        },
+      );
   };
 
   return (
@@ -126,10 +125,7 @@ export const MatchingBankTransaction = compose(
 )(MatchingBankTransactionRoot);
 
 interface MatchingBankTransactionFormContentProps
-  extends Pick<
-    WithBankingProps,
-    'openReconcileMatchingTransaction'
-  > {}
+  extends Pick<WithBankingProps, 'openReconcileMatchingTransaction'> {}
 
 /**
  * Matching bank transaction form content.
@@ -149,8 +145,7 @@ const MatchingBankTransactionFormContent = compose(
   } = useMatchingTransactionBoot();
   const [pending, setPending] = useState<ReconcileSubmitPayload | null>(null);
 
-  const { setFieldValue } =
-    useFormikContext<MatchingTransactionFormValues>();
+  const { setFieldValue } = useFormikContext<MatchingTransactionFormValues>();
 
   // This effect is responsible for automatically marking a transaction as matched
   // when the matching process is successful and not currently fetching.
@@ -178,7 +173,9 @@ const MatchingBankTransactionFormContent = compose(
     setFieldValue,
   ]);
 
-  const handleReconcileFormSubmitSuccess = (payload: ReconcileSubmitPayload) => {
+  const handleReconcileFormSubmitSuccess = (
+    payload: ReconcileSubmitPayload,
+  ) => {
     setPending({ refId: payload.refId, refType: payload.refType });
   };
 
@@ -370,7 +367,12 @@ const MatchTransactionFooter = compose(withBankingActions)(({
             }}
             tagName="span"
           >
-            Pending <FormatNumber value={totalPending} currency={'USD'} noZero={false} />
+            Pending{' '}
+            <FormatNumber
+              value={totalPending}
+              currency={'USD'}
+              noZero={false}
+            />
           </Text>
         </Group>
       </Box>

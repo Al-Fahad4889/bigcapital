@@ -126,8 +126,7 @@ function EstimatesDataTableInner({
 
   const handleSelectedRowsChange = useCallback(
     (selectedFlatRows: Array<{ original: EstimateTableRow }>) => {
-      const selectedIds =
-        selectedFlatRows?.map((row) => row.original.id) || [];
+      const selectedIds = selectedFlatRows?.map((row) => row.original.id) || [];
       setEstimatesSelectedRows(selectedIds);
     },
     [setEstimatesSelectedRows],

@@ -3,7 +3,6 @@ import intl from 'react-intl-universal';
 import { Menu, MenuItem, Position, Button, Intent } from '@blueprintjs/core';
 import { Popover2 } from '@blueprintjs/popover2';
 import { useFormikContext } from 'formik';
-
 import {
   ExchangeRateInputGroup,
   Icon,
@@ -18,9 +17,7 @@ import {
   BranchesListFieldCell,
   ProjectsListFieldCell,
 } from '@/components/DataTableCells';
-
 import { CellType, Features, Align } from '@/constants';
-
 import { useFeatureCan } from '@/hooks/state';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { useJournalIsForeign, type MakeJournalFormValues } from './utils';

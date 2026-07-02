@@ -78,7 +78,9 @@ function ExcludedTransactionsTableRoot({
     selected: Array<{ original: ExcludedTransactionRow }>,
   ) => {
     const selectedIds =
-      selected?.map((row) => row.original.id).filter((id): id is number => id != null) ?? [];
+      selected
+        ?.map((row) => row.original.id)
+        .filter((id): id is number => id != null) ?? [];
     setExcludedTransactionsSelected(selectedIds);
   };
 

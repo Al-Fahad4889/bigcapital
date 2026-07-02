@@ -6,7 +6,9 @@ interface PaymentView {
   [key: string]: any;
 }
 
-export const transformPaymentViewsToTabs = (paymentMadeViews: PaymentView[]) => {
+export const transformPaymentViewsToTabs = (
+  paymentMadeViews: PaymentView[],
+) => {
   return paymentMadeViews.map((view) => ({
     ...pick(view, ['name', 'id']),
   }));

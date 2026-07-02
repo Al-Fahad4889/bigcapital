@@ -20,9 +20,10 @@ interface RecognizedTransactionsTableBootProps
   children: React.ReactNode;
 }
 
-const RecognizedTransactionsContext = React.createContext<RecognizedTransactionsContextValue>(
-  {} as RecognizedTransactionsContextValue,
-);
+const RecognizedTransactionsContext =
+  React.createContext<RecognizedTransactionsContextValue>(
+    {} as RecognizedTransactionsContextValue,
+  );
 
 /**
  * Account recognized transactions provider.

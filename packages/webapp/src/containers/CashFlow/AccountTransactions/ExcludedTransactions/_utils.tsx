@@ -35,8 +35,16 @@ const descriptionAccessor = (transaction: ExcludedTransactionRow) => {
 export function useExcludedTransactionsColumns(): DataTableColumn<ExcludedTransactionRow>[] {
   const { excludedBankTransactions: data } = useExcludedTransactionsBoot();
 
-  const withdrawalWidth = getReportColWidth(data ?? [], 'formattedWithdrawalAmount', 'Withdrawal');
-  const depositWidth = getReportColWidth(data ?? [], 'formattedDepositAmount', 'Deposit');
+  const withdrawalWidth = getReportColWidth(
+    data ?? [],
+    'formattedWithdrawalAmount',
+    'Withdrawal',
+  );
+  const depositWidth = getReportColWidth(
+    data ?? [],
+    'formattedDepositAmount',
+    'Deposit',
+  );
 
   return React.useMemo(
     () => [

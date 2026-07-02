@@ -17,7 +17,9 @@ import {
 import { safeCallback } from '@/utils';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-export type EstimateTableRow = NonNullable<SaleEstimatesListResponse['data']>[number];
+export type EstimateTableRow = NonNullable<
+  SaleEstimatesListResponse['data']
+>[number];
 
 interface EstimateActionsPayload {
   onEdit: (estimate: EstimateTableRow) => void;

@@ -47,9 +47,10 @@ interface AccountTransactionsProviderProps {
   children?: React.ReactNode;
 }
 
-const AccountTransactionsContext = React.createContext<AccountTransactionsContextValue>(
-  {} as AccountTransactionsContextValue,
-);
+const AccountTransactionsContext =
+  React.createContext<AccountTransactionsContextValue>(
+    {} as AccountTransactionsContextValue,
+  );
 
 /**
  * Account transctions provider.

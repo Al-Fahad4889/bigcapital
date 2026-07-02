@@ -17,7 +17,9 @@ import { PaymentMadeAction, AbilitySubject } from '@/constants/abilityOption';
 import { safeCallback } from '@/utils';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-export type PaymentMadeTableRow = NonNullable<BillPaymentsListResponse['data']>[number];
+export type PaymentMadeTableRow = NonNullable<
+  BillPaymentsListResponse['data']
+>[number];
 
 export function AmountAccessor(row: PaymentMadeTableRow) {
   return <Money amount={row.amount} currency={row.currencyCode} />;
