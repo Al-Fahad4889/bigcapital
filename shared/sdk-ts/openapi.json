@@ -25428,6 +25428,11 @@
             "description": "The date when the adjustment was published",
             "example": "2024-03-20T10:00:00Z"
           },
+          "isPublished": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether the inventory adjustment is published"
+          },
           "branchId": {
             "type": "number",
             "description": "The ID of the branch where the adjustment was made",
@@ -25460,6 +25465,7 @@
           "reason",
           "referenceNo",
           "userId",
+          "isPublished",
           "branchId",
           "warehouseId",
           "createdAt",
@@ -26837,19 +26843,6 @@
           "name"
         ]
       },
-      "CustomerLinkDto": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "type": "string",
-            "description": "The display name of the customer",
-            "example": "Acme Inc."
-          }
-        },
-        "required": [
-          "displayName"
-        ]
-      },
       "AttachmentLinkDto": {
         "type": "object",
         "properties": {}
@@ -26871,6 +26864,182 @@
         "required": [
           "paymentIntegrationId",
           "enable"
+        ]
+      },
+      "CustomerResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "Customer id."
+          },
+          "balance": {
+            "type": "number",
+            "example": 1500
+          },
+          "currencyCode": {
+            "type": "string",
+            "example": "USD"
+          },
+          "openingBalance": {
+            "type": "number",
+            "example": 1000
+          },
+          "openingBalanceAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "openingBalanceExchangeRate": {
+            "type": "number",
+            "example": 1
+          },
+          "openingBalanceBranchId": {
+            "type": "number",
+            "example": 1
+          },
+          "salutation": {
+            "type": "string",
+            "example": "Mr."
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "companyName": {
+            "type": "string",
+            "example": "Acme Corporation"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "John Doe - Acme Corporation"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@acme.com"
+          },
+          "workPhone": {
+            "type": "string",
+            "example": "+1 (555) 123-4567"
+          },
+          "personalPhone": {
+            "type": "string",
+            "example": "+1 (555) 987-6543"
+          },
+          "website": {
+            "type": "string",
+            "example": "https://www.acme.com"
+          },
+          "billingAddress1": {
+            "type": "string",
+            "example": "123 Business Ave"
+          },
+          "billingAddress2": {
+            "type": "string",
+            "example": "Suite 100"
+          },
+          "billingAddressCity": {
+            "type": "string",
+            "example": "New York"
+          },
+          "billingAddressCountry": {
+            "type": "string",
+            "example": "United States"
+          },
+          "billingAddressEmail": {
+            "type": "string",
+            "example": "billing@acme.com"
+          },
+          "billingAddressPostcode": {
+            "type": "string",
+            "example": "10001"
+          },
+          "billingAddressPhone": {
+            "type": "string",
+            "example": "+1 (555) 111-2222"
+          },
+          "billingAddressState": {
+            "type": "string",
+            "example": "NY"
+          },
+          "shippingAddress1": {
+            "type": "string",
+            "example": "456 Shipping St"
+          },
+          "shippingAddress2": {
+            "type": "string",
+            "example": "Unit 200"
+          },
+          "shippingAddressCity": {
+            "type": "string",
+            "example": "Los Angeles"
+          },
+          "shippingAddressCountry": {
+            "type": "string",
+            "example": "United States"
+          },
+          "shippingAddressEmail": {
+            "type": "string",
+            "example": "shipping@acme.com"
+          },
+          "shippingAddressPostcode": {
+            "type": "string",
+            "example": "90001"
+          },
+          "shippingAddressPhone": {
+            "type": "string",
+            "example": "+1 (555) 333-4444"
+          },
+          "shippingAddressState": {
+            "type": "string",
+            "example": "CA"
+          },
+          "note": {
+            "type": "string",
+            "example": "Important client with regular monthly orders"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "localOpeningBalance": {
+            "type": "number",
+            "example": 1000
+          },
+          "closingBalance": {
+            "type": "number",
+            "example": 1500
+          }
+        },
+        "required": [
+          "id",
+          "balance",
+          "currencyCode",
+          "openingBalance",
+          "openingBalanceAt",
+          "openingBalanceExchangeRate",
+          "displayName",
+          "note",
+          "active",
+          "createdAt",
+          "updatedAt",
+          "localOpeningBalance",
+          "closingBalance"
         ]
       },
       "SaleInvoiceResponseDto": {
@@ -26973,14 +27142,6 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/BranchLinkDto"
-              }
-            ]
-          },
-          "customer": {
-            "description": "The nested customer summary",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomerLinkDto"
               }
             ]
           },
@@ -27183,6 +27344,29 @@
             "type": "string",
             "description": "Formatted adjustment amount",
             "example": "$5.00"
+          },
+          "customer": {
+            "description": "The customer of the invoice",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerResponseDto"
+              }
+            ]
+          },
+          "isDelivered": {
+            "type": "boolean",
+            "description": "Whether the invoice has been delivered",
+            "example": false
+          },
+          "overdueDays": {
+            "type": "number",
+            "description": "Number of days the invoice is overdue",
+            "example": 0
+          },
+          "remainingDays": {
+            "type": "number",
+            "description": "Number of days remaining until the invoice is due",
+            "example": 15
           }
         },
         "required": [
@@ -27218,7 +27402,11 @@
           "totalLocalFormatted",
           "discountAmountFormatted",
           "discountPercentageFormatted",
-          "adjustmentFormatted"
+          "adjustmentFormatted",
+          "customer",
+          "isDelivered",
+          "overdueDays",
+          "remainingDays"
         ]
       },
       "CreateSaleInvoiceDto": {
@@ -28109,6 +28297,14 @@
               }
             ]
           },
+          "customer": {
+            "description": "The customer of the payment received",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerResponseDto"
+              }
+            ]
+          },
           "branchId": {
             "type": "number",
             "description": "The ID of the branch",
@@ -28213,6 +28409,7 @@
           "formattedExchangeRate",
           "depositAccountId",
           "depositAccount",
+          "customer",
           "userId",
           "createdAt",
           "formattedCreatedAt",
@@ -30049,182 +30246,6 @@
           "nonDeletableIds"
         ]
       },
-      "CustomerResponseDto": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "example": 1,
-            "description": "Customer id."
-          },
-          "balance": {
-            "type": "number",
-            "example": 1500
-          },
-          "currencyCode": {
-            "type": "string",
-            "example": "USD"
-          },
-          "openingBalance": {
-            "type": "number",
-            "example": 1000
-          },
-          "openingBalanceAt": {
-            "format": "date-time",
-            "type": "string",
-            "example": "2024-01-01T00:00:00Z"
-          },
-          "openingBalanceExchangeRate": {
-            "type": "number",
-            "example": 1
-          },
-          "openingBalanceBranchId": {
-            "type": "number",
-            "example": 1
-          },
-          "salutation": {
-            "type": "string",
-            "example": "Mr."
-          },
-          "firstName": {
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Doe"
-          },
-          "companyName": {
-            "type": "string",
-            "example": "Acme Corporation"
-          },
-          "displayName": {
-            "type": "string",
-            "example": "John Doe - Acme Corporation"
-          },
-          "email": {
-            "type": "string",
-            "example": "john.doe@acme.com"
-          },
-          "workPhone": {
-            "type": "string",
-            "example": "+1 (555) 123-4567"
-          },
-          "personalPhone": {
-            "type": "string",
-            "example": "+1 (555) 987-6543"
-          },
-          "website": {
-            "type": "string",
-            "example": "https://www.acme.com"
-          },
-          "billingAddress1": {
-            "type": "string",
-            "example": "123 Business Ave"
-          },
-          "billingAddress2": {
-            "type": "string",
-            "example": "Suite 100"
-          },
-          "billingAddressCity": {
-            "type": "string",
-            "example": "New York"
-          },
-          "billingAddressCountry": {
-            "type": "string",
-            "example": "United States"
-          },
-          "billingAddressEmail": {
-            "type": "string",
-            "example": "billing@acme.com"
-          },
-          "billingAddressPostcode": {
-            "type": "string",
-            "example": "10001"
-          },
-          "billingAddressPhone": {
-            "type": "string",
-            "example": "+1 (555) 111-2222"
-          },
-          "billingAddressState": {
-            "type": "string",
-            "example": "NY"
-          },
-          "shippingAddress1": {
-            "type": "string",
-            "example": "456 Shipping St"
-          },
-          "shippingAddress2": {
-            "type": "string",
-            "example": "Unit 200"
-          },
-          "shippingAddressCity": {
-            "type": "string",
-            "example": "Los Angeles"
-          },
-          "shippingAddressCountry": {
-            "type": "string",
-            "example": "United States"
-          },
-          "shippingAddressEmail": {
-            "type": "string",
-            "example": "shipping@acme.com"
-          },
-          "shippingAddressPostcode": {
-            "type": "string",
-            "example": "90001"
-          },
-          "shippingAddressPhone": {
-            "type": "string",
-            "example": "+1 (555) 333-4444"
-          },
-          "shippingAddressState": {
-            "type": "string",
-            "example": "CA"
-          },
-          "note": {
-            "type": "string",
-            "example": "Important client with regular monthly orders"
-          },
-          "active": {
-            "type": "boolean",
-            "example": true
-          },
-          "createdAt": {
-            "format": "date-time",
-            "type": "string",
-            "example": "2024-01-01T00:00:00Z"
-          },
-          "updatedAt": {
-            "format": "date-time",
-            "type": "string",
-            "example": "2024-01-01T00:00:00Z"
-          },
-          "localOpeningBalance": {
-            "type": "number",
-            "example": 1000
-          },
-          "closingBalance": {
-            "type": "number",
-            "example": 1500
-          }
-        },
-        "required": [
-          "id",
-          "balance",
-          "currencyCode",
-          "openingBalance",
-          "openingBalanceAt",
-          "openingBalanceExchangeRate",
-          "displayName",
-          "note",
-          "active",
-          "createdAt",
-          "updatedAt",
-          "localOpeningBalance",
-          "closingBalance"
-        ]
-      },
       "CustomersPaginationDto": {
         "type": "object",
         "properties": {
@@ -31383,6 +31404,39 @@
             "items": {
               "$ref": "#/components/schemas/AttachmentLinkDto"
             }
+          },
+          "customer": {
+            "description": "The customer of the estimate",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerResponseDto"
+              }
+            ]
+          },
+          "isApproved": {
+            "type": "boolean",
+            "description": "Whether the estimate is approved",
+            "example": false
+          },
+          "isRejected": {
+            "type": "boolean",
+            "description": "Whether the estimate is rejected",
+            "example": false
+          },
+          "isExpired": {
+            "type": "boolean",
+            "description": "Whether the estimate is expired",
+            "example": false
+          },
+          "isDelivered": {
+            "type": "boolean",
+            "description": "Whether the estimate is delivered",
+            "example": false
+          },
+          "isConvertedToInvoice": {
+            "type": "boolean",
+            "description": "Whether the estimate is converted to invoice",
+            "example": false
           }
         },
         "required": [
@@ -31416,7 +31470,13 @@
           "totalLocalFormatted",
           "formattedCreatedAt",
           "entries",
-          "attachments"
+          "attachments",
+          "customer",
+          "isApproved",
+          "isRejected",
+          "isExpired",
+          "isDelivered",
+          "isConvertedToInvoice"
         ]
       },
       "SaleEstiamteStateResponseDto": {
@@ -32522,19 +32582,6 @@
           "paymentAccountSlug"
         ]
       },
-      "VendorLinkDto": {
-        "type": "object",
-        "properties": {
-          "displayName": {
-            "type": "string",
-            "description": "The display name of the vendor",
-            "example": "Acme Supplies Ltd."
-          }
-        },
-        "required": [
-          "displayName"
-        ]
-      },
       "BillResponseDto": {
         "type": "object",
         "properties": {
@@ -32569,14 +32616,6 @@
             "type": "number",
             "description": "The ID of the vendor",
             "example": 1001
-          },
-          "vendor": {
-            "description": "The nested vendor summary",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/VendorLinkDto"
-              }
-            ]
           },
           "exchangeRate": {
             "type": "number",
@@ -32817,6 +32856,26 @@
             "type": "string",
             "description": "Formatted adjustment amount",
             "example": "$50.00"
+          },
+          "vendor": {
+            "description": "The vendor of the bill",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorResponseDto"
+              }
+            ]
+          },
+          "overdueDays": {
+            "type": "number",
+            "description": "Number of days the bill is overdue",
+            "example": 0,
+            "nullable": true
+          },
+          "remainingDays": {
+            "type": "number",
+            "description": "Number of days remaining until the bill is due",
+            "example": 15,
+            "nullable": true
           }
         },
         "required": [
@@ -32834,7 +32893,10 @@
           "isOverdue",
           "isPartiallyPaid",
           "isFullyPaid",
-          "createdAt"
+          "createdAt",
+          "vendor",
+          "overdueDays",
+          "remainingDays"
         ]
       },
       "BillEntryDto": {
@@ -33734,14 +33796,6 @@
               }
             ]
           },
-          "customer": {
-            "description": "The nested customer summary",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomerLinkDto"
-              }
-            ]
-          },
           "attachments": {
             "description": "The attachments of the credit note",
             "type": "array",
@@ -33899,6 +33953,14 @@
             "type": "string",
             "description": "Formatted total in local currency",
             "example": "$1,000.00"
+          },
+          "customer": {
+            "description": "The customer of the credit note",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerResponseDto"
+              }
+            ]
           }
         },
         "required": [
@@ -33924,7 +33986,8 @@
           "adjustmentFormatted",
           "adjustmentLocalFormatted",
           "totalFormatted",
-          "totalLocalFormatted"
+          "totalLocalFormatted",
+          "customer"
         ]
       },
       "CreateCreditNoteDto": {
@@ -35225,6 +35288,22 @@
             "items": {
               "$ref": "#/components/schemas/AttachmentLinkDto"
             }
+          },
+          "vendor": {
+            "description": "The vendor of the bill payment",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VendorResponseDto"
+              }
+            ]
+          },
+          "paymentAccount": {
+            "description": "The payment account of the bill payment",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AccountResponseDto"
+              }
+            ]
           }
         },
         "required": [
@@ -35239,7 +35318,9 @@
           "formattedSubtotal",
           "createdAt",
           "formattedCreatedAt",
-          "entries"
+          "entries",
+          "vendor",
+          "paymentAccount"
         ]
       },
       "BillPaymentPageEntryDto": {

@@ -36,7 +36,6 @@ export function useCreateInventoryAdjustment(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: (values: CreateQuickInventoryAdjustmentBody) =>
@@ -56,24 +55,24 @@ export function useDeleteInventoryAdjustment(
   return useMutation({
     ...props,
     mutationFn: (id: number) => deleteInventoryAdjustment(fetcher, id),
-    onSuccess: (_res, id) => {
+    onSuccess: (_res, _id) => {
       commonInvalidateQueries(queryClient);
     },
   });
 }
 
 export function useInventoryAdjustments(
-  query: GetInventoryAdjustmentsQuery,
+  query?: GetInventoryAdjustmentsQuery | null,
   props?: Omit<
     UseQueryOptions<InventoryAdjustmentsListResponse>,
     'queryKey' | 'queryFn'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
-    queryKey: inventoryAdjustmentsKeys.list(query),
-    queryFn: () => fetchInventoryAdjustments(fetcher, query),
+    queryKey: inventoryAdjustmentsKeys.list(query ?? undefined),
+    queryFn: () => fetchInventoryAdjustments(fetcher, query ?? {}),
   });
 }
 
@@ -100,10 +99,10 @@ export function useInventoryAdjustment(
   props?: Omit<UseQueryOptions<InventoryAdjustment>, 'queryKey' | 'queryFn'>,
 ) {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
-
   return useQuery({
     ...props,
     queryKey: inventoryAdjustmentsKeys.detail(id),
     queryFn: () => fetchInventoryAdjustment(fetcher, id!),
+    enabled: id != null,
   });
 }

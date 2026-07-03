@@ -169,7 +169,7 @@ export function useItems(
   query?: Record<string, unknown>,
   props?: Omit<UseQueryOptions<ItemsListResponse>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: itemsKeys.list(query),

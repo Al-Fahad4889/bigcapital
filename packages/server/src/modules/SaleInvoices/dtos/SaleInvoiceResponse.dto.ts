@@ -1,8 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import { ItemEntryDto } from '@/modules/TransactionItemEntry/dto/ItemEntry.dto';
 import { AttachmentLinkDto } from '@/modules/Attachments/dtos/Attachment.dto';
 import { CustomerLinkDto } from '@/modules/Customers/dtos/CustomerLink.dto';
 import { BranchLinkDto } from '@/modules/Branches/dtos/BranchLink.dto';
+import { CustomerResponseDto } from '@/modules/Customers/dtos/CustomerResponse.dto';
 import { PaymentMethodDto } from '../dtos/SaleInvoice.dto';
 import { SaleInvoiceTaxEntryDto } from './SaleInvoiceTaxEntry.dto';
 import { DiscountType } from '@/common/types/Discount';
@@ -126,13 +128,6 @@ export class SaleInvoiceResponseDto {
     required: false,
   })
   branch?: BranchLinkDto;
-
-  @ApiProperty({
-    description: 'The nested customer summary',
-    type: CustomerLinkDto,
-    required: false,
-  })
-  customer?: CustomerLinkDto;
 
   @ApiProperty({
     description: 'The ID of the project',
@@ -366,4 +361,29 @@ export class SaleInvoiceResponseDto {
     example: '$5.00',
   })
   adjustmentFormatted: string;
+  
+  @ApiProperty({
+    description: 'The customer of the invoice',
+    type: () => CustomerResponseDto,
+  })
+  @Type(() => CustomerResponseDto)
+  customer: CustomerResponseDto;
+
+  @ApiProperty({
+    description: 'Whether the invoice has been delivered',
+    example: false,
+  })
+  isDelivered: boolean;
+
+  @ApiProperty({
+    description: 'Number of days the invoice is overdue',
+    example: 0,
+  })
+  overdueDays: number;
+
+  @ApiProperty({
+    description: 'Number of days remaining until the invoice is due',
+    example: 15,
+  })
+  remainingDays: number;
 }

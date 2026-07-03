@@ -1,4 +1,4 @@
-// @ts-nocheck
+import React from 'react';
 import { Position } from '@blueprintjs/core';
 import {
   AccountsSelect,
@@ -20,8 +20,8 @@ export function CategorizeTransactionOtherIncome() {
         <FDateInput
           name={'date'}
           popoverProps={{ position: Position.BOTTOM, minimal: true }}
-          formatDate={(date) => date.toLocaleDateString()}
-          parseDate={(str) => new Date(str)}
+          formatDate={(date: Date) => date.toLocaleDateString()}
+          parseDate={(str: string) => new Date(str)}
           inputProps={{ fill: true, leftElement: <Icon icon={'date-range'} /> }}
         />
       </FFormGroup>
@@ -34,7 +34,7 @@ export function CategorizeTransactionOtherIncome() {
       >
         <AccountsSelect
           name={'debitAccountId'}
-          items={accounts}
+          items={accounts ?? []}
           fastField
           fill
           allowCreate
@@ -50,7 +50,7 @@ export function CategorizeTransactionOtherIncome() {
       >
         <AccountsSelect
           name={'creditAccountId'}
-          items={accounts}
+          items={accounts ?? []}
           filterByRootTypes={['income']}
           fastField
           fill

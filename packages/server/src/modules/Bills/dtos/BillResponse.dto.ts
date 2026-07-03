@@ -3,8 +3,8 @@ import { Type } from 'class-transformer';
 import { ItemEntryDto } from '@/modules/TransactionItemEntry/dto/ItemEntry.dto';
 import { AttachmentLinkDto } from '@/modules/Attachments/dtos/Attachment.dto';
 import { BranchResponseDto } from '@/modules/Branches/dtos/BranchResponse.dto';
-import { VendorLinkDto } from '@/modules/Vendors/dtos/VendorLink.dto';
 import { SaleInvoiceTaxEntryDto } from '@/modules/SaleInvoices/dtos/SaleInvoiceTaxEntry.dto';
+import { VendorResponseDto } from '@/modules/Vendors/dtos/VendorResponse.dto';
 import { DiscountType } from '@/common/types/Discount';
 
 export class BillResponseDto {
@@ -44,13 +44,6 @@ export class BillResponseDto {
     example: 1001,
   })
   vendorId: number;
-
-  @ApiProperty({
-    description: 'The nested vendor summary',
-    type: VendorLinkDto,
-    required: false,
-  })
-  vendor?: VendorLinkDto;
 
   @ApiProperty({
     description: 'The exchange rate for currency conversion',
@@ -359,4 +352,25 @@ export class BillResponseDto {
     required: false,
   })
   adjustmentFormatted?: string;
+  
+  @ApiProperty({
+    description: 'The vendor of the bill',
+    type: () => VendorResponseDto,
+  })
+  @Type(() => VendorResponseDto)
+  vendor: VendorResponseDto;
+
+  @ApiProperty({
+    description: 'Number of days the bill is overdue',
+    example: 0,
+    nullable: true,
+  })
+  overdueDays: number;
+
+  @ApiProperty({
+    description: 'Number of days remaining until the bill is due',
+    example: 15,
+    nullable: true,
+  })
+  remainingDays: number;
 }

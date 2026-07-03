@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { Formik, Form, type FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import intl from 'react-intl-universal';

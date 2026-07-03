@@ -1,5 +1,4 @@
-import React from 'react';
-import { FastField, type FormikContextType } from 'formik';
+import { FastField, type FieldProps } from 'formik';
 import classNames from 'classnames';
 import { CLASSES } from '@/constants/classes';
 import {
@@ -12,15 +11,6 @@ import {
 import { useMakeJournalFormContext } from './MakeJournalProvider';
 import { MakeJournalEntriesTable } from './MakeJournalEntriesTable';
 
-type EntriesFieldRenderProps = {
-  form: FormikContextType<MakeJournalFormValues>;
-  field: { value: MakeJournalEntry[] };
-  meta: { error?: unknown; touched?: boolean };
-};
-
-/**
- * Make journal entries field.
- */
 export function MakeJournalEntriesField() {
   const { accounts, contacts, branches, projects } =
     useMakeJournalFormContext();
@@ -39,12 +29,12 @@ export function MakeJournalEntriesField() {
           form: { values, setFieldValue },
           field: { value },
           meta: { error },
-        }: EntriesFieldRenderProps) => (
+        }: FieldProps<MakeJournalEntry[], MakeJournalFormValues>) => (
           <MakeJournalEntriesTable
             onChange={(entries) => {
               setFieldValue('entries', entries);
             }}
-            entries={value}
+            entries={value ?? []}
             defaultEntry={defaultEntry}
             initialLinesNumber={MIN_LINES_NUMBER}
             error={error}

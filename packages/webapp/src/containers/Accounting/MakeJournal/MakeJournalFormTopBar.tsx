@@ -5,7 +5,6 @@ import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import {
   BranchSelect,
-  FeatureCan,
   FormTopbar,
   DetailsBarSkeletonBase,
   FormBranchSelectButton,
@@ -14,7 +13,6 @@ import { useMakeJournalFormContext } from './MakeJournalProvider';
 
 /**
  * Make journal form topbar.
- * @returns
  */
 export function MakeJournalFormTopBar() {
   // Features guard.
@@ -23,24 +21,22 @@ export function MakeJournalFormTopBar() {
   // Sets the primary branch to form.
   useSetPrimaryBranchToForm();
 
-  // Can't display the navigation bar if  branches feature is not enabled.
+  // Can't display the navigation bar if branches feature is not enabled.
   if (!featureCan(Features.Branches)) {
     return null;
   }
 
   return (
+    // @ts-expect-error FormTopbar is untyped and infers a required className prop that is unused at runtime
     <FormTopbar>
       <NavbarGroup align={Alignment.LEFT}>
-        <FeatureCan feature={Features.Branches}>
-          <MakeJournalFormSelectBranch />
-        </FeatureCan>
+        <MakeJournalFormSelectBranch />
       </NavbarGroup>
     </FormTopbar>
   );
 }
 
 function MakeJournalFormSelectBranch() {
-  // Invoice form context.
   const { branches, isBranchesLoading } = useMakeJournalFormContext();
 
   return isBranchesLoading ? (

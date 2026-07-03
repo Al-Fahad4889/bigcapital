@@ -56,8 +56,7 @@ export function useRecognizedBankTransactionsInfinity(
     | 'getPreviousPageParam'
   >,
 ) {
-  const fetcher = useApiFetcher();
-
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useInfiniteQuery<
     BankTransactionsListPage,
     Error,
@@ -92,8 +91,7 @@ export function useExcludedBankTransactionsInfinity(
     | 'getPreviousPageParam'
   >,
 ) {
-  const fetcher = useApiFetcher();
-
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useInfiniteQuery<
     ExcludedBankTransactionsListPage,
     Error,

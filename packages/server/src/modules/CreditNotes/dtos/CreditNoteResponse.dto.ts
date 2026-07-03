@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import { ItemEntryDto } from '@/modules/TransactionItemEntry/dto/ItemEntry.dto';
 import { AttachmentLinkDto } from '@/modules/Attachments/dtos/Attachment.dto';
-import { CustomerLinkDto } from '@/modules/Customers/dtos/CustomerLink.dto';
 import { BranchLinkDto } from '@/modules/Branches/dtos/BranchLink.dto';
+import { CustomerResponseDto } from '@/modules/Customers/dtos/CustomerResponse.dto';
 import { DiscountType } from '@/common/types/Discount';
 
 export class CreditNoteResponseDto {
@@ -111,14 +112,7 @@ export class CreditNoteResponseDto {
     required: false,
   })
   branch?: BranchLinkDto;
-
-  @ApiProperty({
-    description: 'The nested customer summary',
-    type: CustomerLinkDto,
-    required: false,
-  })
-  customer?: CustomerLinkDto;
-
+  
   @ApiProperty({
     description: 'The attachments of the credit note',
     type: [AttachmentLinkDto],
@@ -293,4 +287,11 @@ export class CreditNoteResponseDto {
     example: '$1,000.00',
   })
   totalLocalFormatted: string;
+
+  @ApiProperty({
+    description: 'The customer of the credit note',
+    type: () => CustomerResponseDto,
+  })
+  @Type(() => CustomerResponseDto)
+  customer: CustomerResponseDto;
 }

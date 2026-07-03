@@ -1,22 +1,19 @@
-// @ts-nocheck
 import React from 'react';
-import { withFeatureCan } from './withFeatureCan';
-import { compose } from '@/utils';
+import { useSelector } from 'react-redux';
+import { getDashboardFeaturesSelector } from '@/store/dashboard/dashboard.selectors';
 
-function FeatureCanJSX({
-  feature,
-  children,
-  isFeatureCan,
-}: {
+interface FeatureCanProps {
   feature: string;
   children?: React.ReactNode;
-  isFeatureCan?: boolean;
-}) {
-  return isFeatureCan && children;
 }
 
-export const FeatureCan = compose(
-  withFeatureCan(({ isFeatureCan }) => ({
-    isFeatureCan,
-  })),
-)(FeatureCanJSX);
+export function FeatureCan({ feature, children }: FeatureCanProps) {
+  const features = useSelector(getDashboardFeaturesSelector()) as Record<
+    string,
+    unknown
+  >;
+
+  const isFeatureCan = !!(feature && features[feature]);
+
+  return isFeatureCan ? <>{children}</> : null;
+}

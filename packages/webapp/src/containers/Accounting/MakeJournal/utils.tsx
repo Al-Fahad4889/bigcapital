@@ -112,9 +112,10 @@ export function transformToEditForm(
     ),
   ];
 
-  const entries = ensureEntriesHasEmptyLine(MIN_LINES_NUMBER, defaultEntry)(
-    initialEntries,
-  );
+  const entries = ensureEntriesHasEmptyLine(
+    MIN_LINES_NUMBER,
+    defaultEntry,
+  )(initialEntries);
 
   const attachments = transformAttachmentsToForm(manualJournal);
 
@@ -175,6 +176,7 @@ export const updateAdjustEntries =
     columnId: string,
     value: string | number,
   ) =>
+
   (rows: MakeJournalEntry[]): MakeJournalEntry[] => {
     let newRows = [...rows];
 
@@ -185,14 +187,14 @@ export const updateAdjustEntries =
       const adjustment = adjustmentEntries(rows);
 
       if (adjustment.credit) {
-        newRows = updateTableCell(rowIndex, 'credit', adjustment.credit)(
-          newRows,
-        );
+        newRows = updateTableCell(
+          rowIndex,
+          'credit',
+          adjustment.credit,
+        )(newRows);
       }
       if (adjustment.debit) {
-        newRows = updateTableCell(rowIndex, 'debit', adjustment.debit)(
-          newRows,
-        );
+        newRows = updateTableCell(rowIndex, 'debit', adjustment.debit)(newRows);
       }
     }
     return newRows;

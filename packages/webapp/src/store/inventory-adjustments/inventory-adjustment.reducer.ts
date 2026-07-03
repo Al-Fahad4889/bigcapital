@@ -3,18 +3,22 @@ import { persistReducer, purgeStoredState } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createTableStateReducers } from '@/store/table-state.reducer';
 import { RESET } from '@/store/types';
+import type { TableQuery } from '@/store/store.types';
 
 interface InventoryAdjustmentsState {
-  tableState: { pageSize: number; pageIndex: number; sortBy: Array<unknown> };
+  tableState: Partial<TableQuery>;
   selectedRows: Array<unknown>;
 }
 
+const defaultTableQuery: Partial<TableQuery> = {
+  pageSize: 20,
+  pageIndex: 0,
+  sortBy: [],
+  filterRoles: [],
+};
+
 const initialState: InventoryAdjustmentsState = {
-  tableState: {
-    pageSize: 20,
-    pageIndex: 0,
-    sortBy: [],
-  },
+  tableState: defaultTableQuery,
   selectedRows: [],
 };
 
@@ -27,7 +31,7 @@ const CONFIG = {
 };
 
 const reducerInstance = createReducer(initialState, {
-  ...createTableStateReducers('INVENTORY_ADJUSTMENTS'),
+  ...createTableStateReducers('INVENTORY_ADJUSTMENTS', defaultTableQuery),
 
   [RESET]: () => {
     purgeStoredState(CONFIG);

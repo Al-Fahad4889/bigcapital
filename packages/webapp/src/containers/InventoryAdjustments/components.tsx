@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import moment from 'moment';
@@ -12,7 +11,7 @@ import {
   Button,
   Popover,
 } from '@blueprintjs/core';
-
+import type { InventoryAdjustment } from '@bigcapital/sdk-ts';
 import { isNumber } from 'lodash';
 import { Icon, Money, If, FormattedMessage as T, Can } from '@/components';
 import { isBlank, safeCallback } from '@/utils';
@@ -21,11 +20,26 @@ import {
   AbilitySubject,
 } from '@/constants/abilityOption';
 
+interface ActionsMenuPayload {
+  onDelete: (row: InventoryAdjustment) => void;
+  onPublish: (row: InventoryAdjustment) => void;
+  onViewDetails: (row: InventoryAdjustment) => void;
+}
+
+interface ActionsMenuProps {
+  row: { original: InventoryAdjustment };
+  payload: ActionsMenuPayload;
+}
+
+interface CellProps {
+  cell: { value: unknown };
+}
+
 /**
  * Publish accessor
  */
-export const PublishAccessor = (r) => {
-  return r.publishedAt ? (
+export const PublishAccessor = (r: InventoryAdjustment) => {
+  return r.isPublished ? (
     <Tag minimal={true} round={true}>
       <T id={'published'} />
     </Tag>
@@ -39,7 +53,7 @@ export const PublishAccessor = (r) => {
 /**
  * Type column accessor.
  */
-export const TypeAccessor = (row) => {
+export const TypeAccessor = (row: InventoryAdjustment) => {
   return row.formattedType ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {row.formattedType}
@@ -52,7 +66,7 @@ export const TypeAccessor = (row) => {
 /**
  * Item type accessor.
  */
-export const ItemCodeAccessor = (row) =>
+export const ItemCodeAccessor = (row: InventoryAdjustment) =>
   row.type ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {intl.get(row.type)}
@@ -64,7 +78,7 @@ export const ItemCodeAccessor = (row) =>
 /**
  * Quantity on hand cell.
  */
-export const QuantityOnHandCell = ({ cell: { value } }) => {
+export const QuantityOnHandCell = ({ cell: { value } }: CellProps) => {
   return isNumber(value) ? (
     <span className={'quantity_on_hand'}>{value}</span>
   ) : null;
@@ -73,21 +87,21 @@ export const QuantityOnHandCell = ({ cell: { value } }) => {
 /**
  * Cost price cell.
  */
-export const CostPriceCell = ({ cell: { value } }) => {
+export const CostPriceCell = ({ cell: { value } }: CellProps) => {
   return !isBlank(value) ? <Money amount={value} currency={'USD'} /> : null;
 };
 
 /**
  * Sell price cell.
  */
-export const SellPriceCell = ({ cell: { value } }) => {
+export const SellPriceCell = ({ cell: { value } }: CellProps) => {
   return !isBlank(value) ? <Money amount={value} currency={'USD'} /> : null;
 };
 
 /**
  * Item type accessor.
  */
-export const ItemTypeAccessor = (row) => {
+export const ItemTypeAccessor = (row: InventoryAdjustment) => {
   return row.type ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {intl.get(row.type)}
@@ -98,7 +112,7 @@ export const ItemTypeAccessor = (row) => {
 export const ActionsMenu = ({
   row: { original },
   payload: { onDelete, onPublish, onViewDetails },
-}) => {
+}: ActionsMenuProps) => {
   return (
     <Menu>
       <MenuItem
@@ -112,9 +126,13 @@ export const ActionsMenu = ({
         a={AbilitySubject.InventoryAdjustment}
       >
         <MenuDivider />
-        <If condition={!original.publishedAt}>
+        <If condition={!original.isPublished}>
           <MenuItem
-            icon={<Icon icon={'arrow-to-top'} size={16} />}
+            icon={
+              // Icon wants `iconSize`, not `size`; preserved from @ts-nocheck.
+              // @ts-expect-error see comment above
+              <Icon icon={'arrow-to-top'} size={16} />
+            }
             text={intl.get('publish_adjustment')}
             onClick={safeCallback(onPublish, original)}
           />
@@ -135,7 +153,7 @@ export const ActionsMenu = ({
   );
 };
 
-export const ActionsCell = (props) => {
+export const ActionsCell = (props: ActionsMenuProps) => {
   return (
     <Popover
       content={<ActionsMenu {...props} />}

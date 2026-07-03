@@ -3,7 +3,6 @@ import intl from 'react-intl-universal';
 import { Menu, MenuItem, Position, Button, Intent } from '@blueprintjs/core';
 import { Popover2 } from '@blueprintjs/popover2';
 import { useFormikContext } from 'formik';
-
 import {
   ExchangeRateInputGroup,
   Icon,
@@ -18,9 +17,7 @@ import {
   BranchesListFieldCell,
   ProjectsListFieldCell,
 } from '@/components/DataTableCells';
-
 import { CellType, Features, Align } from '@/constants';
-
 import { useFeatureCan } from '@/hooks/state';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { useJournalIsForeign, type MakeJournalFormValues } from './utils';
@@ -30,7 +27,7 @@ import { useUpdateEffect } from '@/hooks';
 
 type JournalExchangeRateInputFieldRootProps = Omit<
   React.ComponentProps<typeof ExchangeRateInputGroup>,
-  'fromCurrency' | 'toCurrency'
+  'fromCurrency' | 'toCurrency' | 'onCancel' | 'onRecalcConfirm'
 >;
 
 /**
@@ -238,7 +235,12 @@ export const JournalSyncIncrementSettingsToForm = compose(
     journalNextNumber: manualJournalsSettings?.nextNumber,
     journalNumberPrefix: manualJournalsSettings?.numberPrefix,
   })),
-)(({ journalAutoIncrement, journalNextNumber, journalNumberPrefix }: JournalSyncIncrementSettingsToFormProps) => {
+
+)(({
+  journalAutoIncrement,
+  journalNextNumber,
+  journalNumberPrefix,
+}: JournalSyncIncrementSettingsToFormProps) => {
   const { setFieldValue } = useFormikContext<MakeJournalFormValues>();
 
   useUpdateEffect(() => {

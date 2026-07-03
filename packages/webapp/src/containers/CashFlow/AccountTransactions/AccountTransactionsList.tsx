@@ -1,12 +1,7 @@
-// @ts-nocheck
-import * as R from 'ramda';
+import React, { Suspense, lazy } from 'react';
 import { Spinner } from '@blueprintjs/core';
-import { Suspense, lazy } from 'react';
-
 import '@/style/pages/CashFlow/AccountTransactions/List.scss';
-
 import { DashboardPageContent } from '@/components';
-
 import { AccountTransactionsActionsBar } from './AccountTransactionsActionsBar';
 import {
   AccountTransactionsProvider,
@@ -19,6 +14,11 @@ import { AccountTransactionsAside } from './AccountTransactionsAside';
 import { AccountTransactionsLoadingBar } from './components';
 import { withBanking } from '../withBanking';
 import { CashFlowDrawers } from '@/containers/CashFlow/CashFlowDrawers';
+import { compose } from '@/utils';
+import type { WithBankingProps } from '../withBanking';
+
+interface AccountTransactionsListRootProps
+  extends Pick<WithBankingProps, 'openMatchingTransactionAside'> {}
 
 /**
  * Account transactions list.
@@ -26,7 +26,7 @@ import { CashFlowDrawers } from '@/containers/CashFlow/CashFlowDrawers';
 function AccountTransactionsListRoot({
   // #withBanking
   openMatchingTransactionAside,
-}) {
+}: AccountTransactionsListRootProps) {
   return (
     <AccountTransactionsProvider>
       <CashFlowDrawers />
@@ -43,7 +43,9 @@ function AccountTransactionsMain() {
   const { setScrollableRef } = useAccountTransactionsContext();
 
   return (
-    <AppContentShell.Main ref={(e) => setScrollableRef(e)}>
+    <AppContentShell.Main
+      ref={(e: HTMLDivElement | null) => setScrollableRef(e)}
+    >
       <AccountTransactionsActionsBar />
       <AccountTransactionsLoadingBar />
       <AccountTransactionsDetailsBar />
@@ -59,7 +61,7 @@ function AccountTransactionsMain() {
   );
 }
 
-export const AccountTransactionsList = R.compose(
+export const AccountTransactionsList = compose(
   withBanking(
     ({ selectedUncategorizedTransactionId, openMatchingTransactionAside }) => ({
       selectedUncategorizedTransactionId,
