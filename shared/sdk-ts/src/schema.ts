@@ -6813,13 +6813,6 @@ export interface components {
              */
             name: string;
         };
-        CustomerLinkDto: {
-            /**
-             * @description The display name of the customer
-             * @example Acme Inc.
-             */
-            displayName: string;
-        };
         AttachmentLinkDto: Record<string, never>;
         PaymentMethodDto: {
             /**
@@ -7008,8 +7001,6 @@ export interface components {
             branchId?: number;
             /** @description The nested branch summary */
             branch?: components["schemas"]["BranchLinkDto"];
-            /** @description The nested customer summary */
-            customer?: components["schemas"]["CustomerLinkDto"];
             /**
              * @description The ID of the project
              * @example 1
@@ -7197,6 +7188,23 @@ export interface components {
              * @example $5.00
              */
             adjustmentFormatted: string;
+            /** @description The customer of the invoice */
+            customer: components["schemas"]["CustomerResponseDto"];
+            /**
+             * @description Whether the invoice has been delivered
+             * @example false
+             */
+            isDelivered: boolean;
+            /**
+             * @description Number of days the invoice is overdue
+             * @example 0
+             */
+            overdueDays: number;
+            /**
+             * @description Number of days remaining until the invoice is due
+             * @example 15
+             */
+            remainingDays: number;
         };
         CreateSaleInvoiceDto: {
             /**
@@ -10583,13 +10591,6 @@ export interface components {
              */
             paymentAccountSlug: string;
         };
-        VendorLinkDto: {
-            /**
-             * @description The display name of the vendor
-             * @example Acme Supplies Ltd.
-             */
-            displayName: string;
-        };
         BillResponseDto: {
             /**
              * @description The unique identifier of the bill
@@ -10623,8 +10624,6 @@ export interface components {
              * @example 1001
              */
             vendorId: number;
-            /** @description The nested vendor summary */
-            vendor?: components["schemas"]["VendorLinkDto"];
             /**
              * @description The exchange rate for currency conversion
              * @example 1.25
@@ -10729,11 +10728,6 @@ export interface components {
              * @example false
              */
             isOverdue: boolean;
-            /**
-             * @description Whether the bill is open
-             * @example true
-             */
-            isOpen: boolean;
             /**
              * @description Whether the bill is partially paid
              * @example true
@@ -10846,6 +10840,18 @@ export interface components {
              * @example $50.00
              */
             adjustmentFormatted?: string;
+            /** @description The vendor of the bill */
+            vendor: components["schemas"]["VendorResponseDto"];
+            /**
+             * @description Number of days the bill is overdue
+             * @example 0
+             */
+            overdueDays: number | null;
+            /**
+             * @description Number of days remaining until the bill is due
+             * @example 15
+             */
+            remainingDays: number | null;
         };
         BillEntryDto: {
             /**
@@ -11520,8 +11526,6 @@ export interface components {
             branchId?: number;
             /** @description The nested branch summary */
             branch?: components["schemas"]["BranchLinkDto"];
-            /** @description The nested customer summary */
-            customer?: components["schemas"]["CustomerLinkDto"];
             /** @description The attachments of the credit note */
             attachments?: components["schemas"]["AttachmentLinkDto"][];
             /**
@@ -11674,16 +11678,6 @@ export interface components {
             totalLocalFormatted: string;
             /** @description The customer of the credit note */
             customer: components["schemas"]["CustomerResponseDto"];
-            /**
-             * @description Whether the credit note is draft
-             * @example false
-             */
-            isDraft: boolean;
-            /**
-             * @description Whether the credit note is published
-             * @example true
-             */
-            isPublished: boolean;
         };
         CreateCreditNoteDto: {
             /**
