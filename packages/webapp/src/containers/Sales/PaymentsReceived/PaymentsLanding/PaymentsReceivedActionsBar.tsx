@@ -228,7 +228,7 @@ export const PaymentsReceivedActionsBar = compose(
       paymentReceivesSelectedRows,
     }),
   ),
-  withSettings(({ paymentReceiveSettings }: any) => ({
+  withSettings(({ paymentReceiveSettings }) => ({
     paymentReceivesTableSize: paymentReceiveSettings?.tableSize,
   })),
   withDialogActions,

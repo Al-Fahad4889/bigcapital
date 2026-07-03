@@ -8,19 +8,17 @@ import {
   AppToaster,
 } from '@/components';
 import { TABLES } from '@/constants/tables';
-
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { useExcludedTransactionsColumns } from './_utils';
-import type { ExcludedTransactionRow } from './_utils';
 import { useExcludedTransactionsBoot } from './ExcludedTransactionsTableBoot';
 import { useAccountTransactionsContext } from '../AccountTransactionsProvider';
 import { useUnexcludeUncategorizedTransaction } from '@/hooks/query/banking';
-
 import { ActionsMenu } from './_components';
 import { BankAccountDataTable } from '../components/BankAccountDataTable';
 import { withBankingActions } from '../../withBankingActions';
-import type { WithBankingActionsProps } from '../../withBankingActions';
 import { compose } from '@/utils';
+import type { ExcludedTransactionRow } from './_utils';
+import type { WithBankingActionsProps } from '../../withBankingActions';
 
 interface ExcludeTransactionsTableProps
   extends Pick<WithBankingActionsProps, 'setExcludedTransactionsSelected'> {}

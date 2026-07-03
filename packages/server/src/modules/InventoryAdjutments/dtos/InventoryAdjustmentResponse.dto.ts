@@ -66,6 +66,12 @@ export class InventoryAdjustmentResponseDto {
   publishedAt?: string;
 
   @ApiProperty({
+    example: true,
+    description: 'Whether the inventory adjustment is published',
+  })
+  isPublished: boolean;
+
+  @ApiProperty({
     description: 'The ID of the branch where the adjustment was made',
     example: 1,
   })

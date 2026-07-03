@@ -28,7 +28,6 @@ import type { WithExpensesProps } from './withExpenses';
 import { ActionsMenu, useExpensesTableColumns } from './components';
 import type { ExpenseTableRow } from './components';
 import { DRAWERS } from '@/constants/drawers';
-import type { TableQuery } from '@/store/store.types';
 
 interface WithSettingsProps {
   expensesTableSize?: string | null;
@@ -91,13 +90,11 @@ function ExpensesDataTable({
       pageSize: number;
       sortBy: Array<{ id: string; desc: boolean }>;
     }) => {
-      // `sortBy` is not on `TableQuery` but the reducer accepts it; preserved
-      // from @ts-nocheck original.
       setExpensesTableState({
         pageIndex,
         pageSize,
         sortBy,
-      } as Partial<TableQuery>);
+      });
     },
     [setExpensesTableState],
   );

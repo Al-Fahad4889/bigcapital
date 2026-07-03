@@ -79,7 +79,6 @@ export function useCreateInvoice(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: (values: CreateSaleInvoiceBody) =>
@@ -100,7 +99,6 @@ export function useEditInvoice(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: ([id, values]: [number, EditSaleInvoiceBody]) =>
@@ -207,7 +205,6 @@ export function useInvoice(
   props?: UseQueryOptions<SaleInvoice, Error>,
 ) {
   const fetcher = useApiFetcher();
-
   return useQuery({
     ...props,
     queryKey: invoicesKeys.detail(invoiceId),
@@ -230,7 +227,6 @@ export function useInvoiceHtml(
   options?: UseQueryOptions<SaleInvoiceHtmlContentResponse, Error>,
 ): UseQueryResult<SaleInvoiceHtmlContentResponse, Error> {
   const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
-
   return useQuery({
     ...options,
     queryKey: invoicesKeys.html(invoiceId),
@@ -243,7 +239,6 @@ export function useDueInvoices(
   props?: UseQueryOptions<unknown, Error>,
 ) {
   const fetcher = useApiFetcher();
-
   return useQuery({
     ...props,
     queryKey: invoicesKeys.due(customerId),

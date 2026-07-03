@@ -1,8 +1,7 @@
 import React, { createContext } from 'react';
-import type { GetInventoryAdjustmentsQuery } from '@bigcapital/sdk-ts';
+import type { GetInventoryAdjustmentsQuery, InventoryAdjustment } from '@bigcapital/sdk-ts';
 import { DashboardInsider } from '@/components/Dashboard';
 import { useInventoryAdjustments } from '@/hooks/query';
-import type { InventoryAdjustmentTableRow } from './components';
 
 interface InventoryAdjustmentsProviderProps {
   query?: GetInventoryAdjustmentsQuery | null;
@@ -10,7 +9,7 @@ interface InventoryAdjustmentsProviderProps {
 }
 
 export interface InventoryAdjustmentsContextValue {
-  inventoryAdjustments: InventoryAdjustmentTableRow[] | undefined;
+  inventoryAdjustments: InventoryAdjustment[] | undefined;
   pagination: { total?: number; [key: string]: unknown } | undefined;
   isAdjustmentsLoading: boolean;
   isAdjustmentsFetching: boolean;

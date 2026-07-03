@@ -22,20 +22,14 @@ import {
 } from '@/constants/abilityOption';
 import type { DataTableColumn } from '@/components/Datatable/types';
 
-// SDK `InventoryAdjustment` has `publishedAt` but not `isPublished`; the server
-// also returns the boolean. Augment locally.
-export type InventoryAdjustmentTableRow = InventoryAdjustment & {
-  isPublished?: boolean;
-};
-
 interface ActionsMenuPayload {
-  onDelete: (row: InventoryAdjustmentTableRow) => void;
-  onPublish: (row: InventoryAdjustmentTableRow) => void;
-  onViewDetails: (row: InventoryAdjustmentTableRow) => void;
+  onDelete: (row: InventoryAdjustment) => void;
+  onPublish: (row: InventoryAdjustment) => void;
+  onViewDetails: (row: InventoryAdjustment) => void;
 }
 
 interface ActionsMenuProps {
-  row: { original: InventoryAdjustmentTableRow };
+  row: { original: InventoryAdjustment };
   payload: ActionsMenuPayload;
 }
 
@@ -46,7 +40,7 @@ interface CellProps {
 /**
  * Publish accessor
  */
-export const PublishAccessor = (r: InventoryAdjustmentTableRow) => {
+export const PublishAccessor = (r: InventoryAdjustment) => {
   return r.isPublished ? (
     <Tag minimal={true} round={true}>
       <T id={'published'} />
@@ -61,7 +55,7 @@ export const PublishAccessor = (r: InventoryAdjustmentTableRow) => {
 /**
  * Type column accessor.
  */
-export const TypeAccessor = (row: InventoryAdjustmentTableRow) => {
+export const TypeAccessor = (row: InventoryAdjustment) => {
   return row.formattedType ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {row.formattedType}
@@ -74,7 +68,7 @@ export const TypeAccessor = (row: InventoryAdjustmentTableRow) => {
 /**
  * Item type accessor.
  */
-export const ItemCodeAccessor = (row: InventoryAdjustmentTableRow) =>
+export const ItemCodeAccessor = (row: InventoryAdjustment) =>
   row.type ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {intl.get(row.type)}
@@ -109,7 +103,7 @@ export const SellPriceCell = ({ cell: { value } }: CellProps) => {
 /**
  * Item type accessor.
  */
-export const ItemTypeAccessor = (row: InventoryAdjustmentTableRow) => {
+export const ItemTypeAccessor = (row: InventoryAdjustment) => {
   return row.type ? (
     <Tag minimal={true} round={true} intent={Intent.NONE}>
       {intl.get(row.type)}
@@ -176,14 +170,14 @@ export const ActionsCell = (props: ActionsMenuProps) => {
  * Retrieve inventory adjustments columns.
  */
 export const useInventoryAdjustmentsColumns =
-  (): DataTableColumn<InventoryAdjustmentTableRow>[] => {
+  (): DataTableColumn<InventoryAdjustment>[] => {
     return React.useMemo(
       () =>
         [
           {
             id: 'date',
             Header: intl.get('date'),
-            accessor: (r: InventoryAdjustmentTableRow) =>
+            accessor: (r: InventoryAdjustment) =>
               moment(r.date).format('YYYY MMM DD'),
             width: 115,
             className: 'date',
@@ -224,13 +218,13 @@ export const useInventoryAdjustmentsColumns =
           {
             id: 'created_at',
             Header: intl.get('created_at'),
-            accessor: (r: InventoryAdjustmentTableRow) =>
+            accessor: (r: InventoryAdjustment) =>
               moment(r.createdAt).format('YYYY MMM DD'),
             width: 125,
             className: 'created_at',
             clickable: true,
           },
-        ] as DataTableColumn<InventoryAdjustmentTableRow>[],
+        ] as DataTableColumn<InventoryAdjustment>[],
       [],
     );
   };

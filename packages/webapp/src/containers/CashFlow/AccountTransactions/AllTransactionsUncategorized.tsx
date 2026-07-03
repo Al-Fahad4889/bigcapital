@@ -55,7 +55,6 @@ const AccountUncategorizedTransactions = lazy(
       default: module.AccountUncategorizedTransactionsAll,
     })) as Promise<{ default: ComponentType }>,
 );
-
 const PendingTransactions = lazy(
   () =>
     import('./PendingTransactions/PendingTransactions').then((module) => ({

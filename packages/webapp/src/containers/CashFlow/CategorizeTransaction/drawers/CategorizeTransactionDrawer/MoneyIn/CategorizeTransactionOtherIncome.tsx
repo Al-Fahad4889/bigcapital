@@ -34,9 +34,7 @@ export function CategorizeTransactionOtherIncome() {
       >
         <AccountsSelect
           name={'debitAccountId'}
-          // @ts-expect-error AccountsSelect expects AccountSelectModel[]; boot
-          // provides raw Account[] — runtime tolerates.
-          items={accounts}
+          items={accounts ?? []}
           fastField
           fill
           allowCreate
@@ -52,9 +50,7 @@ export function CategorizeTransactionOtherIncome() {
       >
         <AccountsSelect
           name={'creditAccountId'}
-          // @ts-expect-error AccountsSelect expects AccountSelectModel[]; boot
-          // provides raw Account[] — runtime tolerates.
-          items={accounts}
+          items={accounts ?? []}
           filterByRootTypes={['income']}
           fastField
           fill

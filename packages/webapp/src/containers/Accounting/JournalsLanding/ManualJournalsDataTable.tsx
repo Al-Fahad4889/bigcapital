@@ -23,7 +23,6 @@ import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions'
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import type { WithDrawerActionsProps } from '@/containers/Drawer/withDrawerActions';
 import { withSettings } from '@/containers/Settings/withSettings';
-import type { TableQuery } from '@/store/store.types';
 
 import { useManualJournalsContext } from './ManualJournalsListProvider';
 import { useMemorizedColumnsWidths } from '@/hooks';
@@ -124,13 +123,11 @@ function ManualJournalsDataTableInner({
       pageIndex: number;
       sortBy: Array<{ id: string; desc: boolean }>;
     }) => {
-      // `sortBy` is not on `TableQuery` but the reducer accepts it; preserved
-      // from the @ts-nocheck original.
       setManualJournalsTableState({
         pageIndex,
         pageSize,
         sortBy,
-      } as Partial<TableQuery>);
+      });
     },
     [setManualJournalsTableState],
   );

@@ -2,6 +2,7 @@ import type { CategorizeTransactionBody } from '@bigcapital/sdk-ts';
 import { transformToForm } from '@/utils';
 import { useCategorizeTransactionBoot } from './CategorizeTransactionBoot';
 import type { GetAutofillCategorizeTransaction } from '@/hooks/query/banking';
+import { toNumber } from 'lodash';
 
 export interface CategorizeTransactionFormValues {
   amount: string;
@@ -35,13 +36,6 @@ export const transformToCategorizeForm = (
     | undefined,
 ) => {
   return transformToForm(autofillCategorizeTransaction, defaultInitialValues);
-};
-
-const toNumber = (
-  value: string | number | null | undefined,
-): number | undefined => {
-  if (value == null || value === '') return undefined;
-  return typeof value === 'number' ? value : Number(value) || undefined;
 };
 
 export const tranformToRequest = (

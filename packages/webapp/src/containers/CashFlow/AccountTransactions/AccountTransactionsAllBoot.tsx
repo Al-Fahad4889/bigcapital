@@ -43,7 +43,7 @@ function AccountTransactionsAllProvider({
   // Memorized the cashflow account transactions.
   const cashflowTransactions = useFlattenInfinityPages(
     isCashflowTransactionsSuccess ? cashflowTransactionsPages : undefined,
-    (page) => (page?.transactions ?? []) as BankingTransactionResponse[],
+    (page) => page?.transactions ?? [],
   );
   // Handle the observer inersection.
   const handleObserverInteract = React.useCallback(() => {

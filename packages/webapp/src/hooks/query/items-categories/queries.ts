@@ -10,6 +10,7 @@ import type {
   ItemCategoriesListResponse,
   CreateItemCategoryBody,
   EditItemCategoryBody,
+  GetItemCategoriesQuery,
 } from '@bigcapital/sdk-ts';
 import {
   fetchItemCategories,
@@ -79,7 +80,7 @@ export function useDeleteItemCategory(
 }
 
 export function useItemsCategories(
-  query?: Record<string, unknown>,
+  query?: GetItemCategoriesQuery,
   props?: Omit<
     UseQueryOptions<
       ItemCategoriesListResponse,
@@ -97,9 +98,7 @@ export function useItemsCategories(
   >({
     ...props,
     queryKey: [...itemsCategoriesKeys.all(), query],
-    // FIXME: `fetchItemCategories` ignores the `query` arg — preserved from
-    // the @ts-nocheck original.
-    queryFn: () => fetchItemCategories(fetcher),
+    queryFn: () => fetchItemCategories(fetcher, query),
   });
 }
 

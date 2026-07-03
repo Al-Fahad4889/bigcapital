@@ -14,6 +14,9 @@ import { CategorizeTransactionBranchField } from '../CategorizeTransactionBranch
 export function CategorizeTransactionToAccount() {
   const { accounts } = useCategorizeTransactionBoot();
 
+  if (!accounts) {
+    return null;
+  }
   return (
     <>
       <FFormGroup name={'date'} label={'Date'} fastField inline>
@@ -34,8 +37,6 @@ export function CategorizeTransactionToAccount() {
       >
         <AccountsSelect
           name={'debitAccountId'}
-          // @ts-expect-error AccountsSelect expects AccountSelectModel[]; boot
-          // provides raw Account[] — runtime tolerates.
           items={accounts}
           fastField
           fill
@@ -52,8 +53,6 @@ export function CategorizeTransactionToAccount() {
       >
         <AccountsSelect
           name={'creditAccountId'}
-          // @ts-expect-error AccountsSelect expects AccountSelectModel[]; boot
-          // provides raw Account[] — runtime tolerates.
           items={accounts}
           filterByRootTypes={['asset']}
           fastField

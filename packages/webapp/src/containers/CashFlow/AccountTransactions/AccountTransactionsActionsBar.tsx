@@ -25,9 +25,7 @@ import {
   AppToaster,
   If,
 } from '@/components';
-
 import { CashFlowMenuItems } from './utils';
-import type { CashFlowMenuItem } from './utils';
 import {
   getAddMoneyOutOptions,
   getAddMoneyInOptions,
@@ -37,12 +35,9 @@ import { useAccountTransactionsContext } from './AccountTransactionsProvider';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useAppShellContext } from '@/components/AppShell/AppContentShell/AppContentShellProvider';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
-import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
 import { withBankingActions } from '../withBankingActions';
-import type { WithBankingActionsProps } from '../withBankingActions';
 import { withBanking } from '../withBanking';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import {
@@ -52,6 +47,10 @@ import {
 } from '@/hooks/query/banking';
 import { DialogsName } from '@/constants/dialogs';
 import { compose } from '@/utils';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
+import type { WithBankingActionsProps } from '../withBankingActions';
+import type { CashFlowMenuItem } from './utils';
 import type { WithBankingProps } from '../withBanking';
 import type { WithAlertActionsProps } from '@/containers/Alert/withAlertActions';
 

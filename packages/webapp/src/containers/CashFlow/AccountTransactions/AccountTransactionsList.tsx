@@ -1,10 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Spinner } from '@blueprintjs/core';
-
 import '@/style/pages/CashFlow/AccountTransactions/List.scss';
-
 import { DashboardPageContent } from '@/components';
-
 import { AccountTransactionsActionsBar } from './AccountTransactionsActionsBar';
 import {
   AccountTransactionsProvider,
@@ -16,9 +13,9 @@ import { AppContentShell } from '@/components/AppShell';
 import { AccountTransactionsAside } from './AccountTransactionsAside';
 import { AccountTransactionsLoadingBar } from './components';
 import { withBanking } from '../withBanking';
-import type { WithBankingProps } from '../withBanking';
 import { CashFlowDrawers } from '@/containers/CashFlow/CashFlowDrawers';
 import { compose } from '@/utils';
+import type { WithBankingProps } from '../withBanking';
 
 interface AccountTransactionsListRootProps
   extends Pick<WithBankingProps, 'openMatchingTransactionAside'> {}

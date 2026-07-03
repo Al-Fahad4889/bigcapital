@@ -1,16 +1,12 @@
 import React from 'react';
 
 import '@/style/pages/InventoryAdjustments/List.scss';
-
 import { DashboardContentTable, DashboardPageContent } from '@/components';
-
 import { InventoryAdjustmentsProvider } from './InventoryAdjustmentsProvider';
 import { InventoryAdjustmentTable } from './InventoryAdjustmentTable';
 import { InventoryAdjustmentListDrawers } from './InventoryAdjustmentListDrawers';
-
 import { withInventoryAdjustments } from './withInventoryAdjustments';
 import type { WithInventoryAdjustmentsProps } from './withInventoryAdjustments';
-
 import { compose, transformTableStateToQuery } from '@/utils';
 
 interface InventoryAdjustmentListInnerProps

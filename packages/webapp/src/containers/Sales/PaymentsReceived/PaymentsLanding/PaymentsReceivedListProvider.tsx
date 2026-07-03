@@ -54,19 +54,12 @@ function PaymentsReceivedListProvider({
     isFetching: isPaymentReceivesFetching,
   } = usePaymentReceives(query);
 
-  const listData = paymentReceivesData as
-    | {
-        data?: PaymentReceiveTableRow[];
-        pagination?: { total?: number; [key: string]: any };
-      }
-    | undefined;
-
   const isEmptyStatus =
-    isEmpty(listData?.data) && !isPaymentReceivesLoading && !tableStateChanged;
+    isEmpty(paymentReceivesData?.data) && !isPaymentReceivesLoading && !tableStateChanged;
 
   const state: PaymentsReceivedListContextValue = {
-    paymentReceives: listData?.data,
-    pagination: listData?.pagination,
+    paymentReceives: paymentReceivesData?.data,
+    pagination: paymentReceivesData?.pagination,
 
     resourceMeta,
     fields: resourceMeta?.fields

@@ -80,7 +80,7 @@ export function useCashflowAccounts(
     'queryKey' | 'queryFn'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery<
     BankingAccountsListResponse,
     Error,
@@ -172,7 +172,7 @@ export function useAccountTransactionsInfinity(
     'queryKey' | 'queryFn' | 'initialPageParam' | 'getNextPageParam'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true});
 
   return useInfiniteQuery<
     AccountTransactionsInfinityPage,

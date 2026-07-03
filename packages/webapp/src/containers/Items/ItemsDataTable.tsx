@@ -30,7 +30,6 @@ import type { ItemTableRow } from './components';
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { compose } from '@/utils';
 import { DRAWERS } from '@/constants/drawers';
-import type { TableQuery } from '@/store/store.types';
 
 interface WithSettingsProps {
   itemsTableSize?: string | null;
@@ -112,13 +111,11 @@ function ItemsDataTableInner({
       pageIndex: number;
       sortBy: Array<{ id: string; desc: boolean }>;
     }) => {
-      // `sortBy` is not on `TableQuery` but the reducer accepts it; preserved
-      // from the @ts-nocheck original.
       setItemsTableState({
         pageIndex,
         pageSize,
         sortBy,
-      } as Partial<TableQuery>);
+      });
     },
     [setItemsTableState],
   );
