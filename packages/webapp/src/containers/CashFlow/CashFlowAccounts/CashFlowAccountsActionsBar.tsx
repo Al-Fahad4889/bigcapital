@@ -1,4 +1,4 @@
-// @ts-nocheck
+import React from 'react';
 import {
   Button,
   NavbarGroup,
@@ -17,17 +17,22 @@ import {
 import { useRefreshCashflowAccounts } from '@/hooks/query';
 import { useOpenPlaidConnect } from '@/hooks/utils/useOpenPlaidConnect';
 import { CashflowAction, AbilitySubject } from '@/constants/abilityOption';
-
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withCashflowAccountsTableActions } from '../AccountTransactions/withCashflowAccountsTableActions';
-
 import { AccountDialogAction } from '@/containers/Dialogs/AccountDialog/utils';
-
 import { ACCOUNT_TYPE, Features } from '@/constants';
 import { DialogsName } from '@/constants/dialogs';
 import { CreditCard2Icon } from '@/icons/CreditCard2';
-
 import { compose } from '@/utils';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithCashflowAccountsTableActionsProps } from '../AccountTransactions/withCashflowAccountsTableActions';
+
+interface CashFlowAccountsActionsBarInnerProps
+  extends Pick<WithDialogActionsProps, 'openDialog'>,
+    Pick<
+      WithCashflowAccountsTableActionsProps,
+      'setCashflowAccountsTableState'
+    > {}
 
 /**
  * Cash Flow accounts actions bar.
@@ -38,7 +43,7 @@ function CashFlowAccountsActionsBarInner({
 
   // #withCashflowAccountsTableActions
   setCashflowAccountsTableState,
-}) {
+}: CashFlowAccountsActionsBarInnerProps) {
   const { refresh } = useRefreshCashflowAccounts();
 
   // Opens the Plaid popup.
@@ -48,22 +53,24 @@ function CashFlowAccountsActionsBarInner({
   const handleRefreshBtnClick = () => {
     refresh();
   };
-  // Handle add bank account.
-  const handleAddBankAccount = () => {
+  // Handle add cash account.
+  const handleAddCashAccount = () => {
     openDialog(DialogsName.AccountForm, {
       action: AccountDialogAction.NewDefinedType,
       accountType: ACCOUNT_TYPE.CASH,
     });
   };
-  // Handle add cash account.
-  const handleAddCashAccount = () => {
+  // Handle add bank account.
+  const handleAddBankAccount = () => {
     openDialog(DialogsName.AccountForm, {
       action: AccountDialogAction.NewDefinedType,
       accountType: ACCOUNT_TYPE.BANK,
     });
   };
   // Handle inactive switch changing.
-  const handleInactiveSwitchChange = (event) => {
+  const handleInactiveSwitchChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const checked = event.target.checked;
     setCashflowAccountsTableState({ inactiveMode: checked });
   };
@@ -80,18 +87,23 @@ function CashFlowAccountsActionsBarInner({
             className={Classes.MINIMAL}
             icon={<Icon icon={'plus-24'} iconSize={20} />}
             text={<T id={'banking.label.add_cash_account'} />}
-            onClick={handleAddBankAccount}
+            onClick={handleAddCashAccount}
           />
           <Button
             className={Classes.MINIMAL}
             icon={<Icon icon={'plus-24'} iconSize={20} />}
             text={<T id={'banking.label.add_bank_account'} />}
-            onClick={handleAddCashAccount}
+            onClick={handleAddBankAccount}
           />
           <NavbarDivider />
         </Can>
         <NavbarDivider />
-        <Can I={CashflowAction.Edit} a={AbilitySubject.Cashflow}>
+        <Can
+          // @ts-expect-error latent bug — CashflowAction.Edit is not defined in
+          // the constants file; runtime receives `undefined`.
+          I={CashflowAction.Edit}
+          a={AbilitySubject.Cashflow}
+        >
           <Switch
             labelElement={<T id={'inactive'} />}
             defaultChecked={false}

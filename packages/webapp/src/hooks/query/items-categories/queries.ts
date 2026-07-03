@@ -8,9 +8,9 @@ import {
 import type {
   ItemCategory,
   ItemCategoriesListResponse,
-  ItemsCategoriesListResult,
   CreateItemCategoryBody,
   EditItemCategoryBody,
+  GetItemCategoriesQuery,
 } from '@bigcapital/sdk-ts';
 import {
   fetchItemCategories,
@@ -80,7 +80,7 @@ export function useDeleteItemCategory(
 }
 
 export function useItemsCategories(
-  query?: Record<string, unknown>,
+  query?: GetItemCategoriesQuery,
   props?: Omit<
     UseQueryOptions<
       ItemCategoriesListResponse,
@@ -90,7 +90,7 @@ export function useItemsCategories(
     'queryKey' | 'queryFn' | 'select'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery<
     ItemCategoriesListResponse,
     Error,
@@ -98,7 +98,7 @@ export function useItemsCategories(
   >({
     ...props,
     queryKey: [...itemsCategoriesKeys.all(), query],
-    queryFn: () => fetchItemCategories(fetcher),
+    queryFn: () => fetchItemCategories(fetcher, query),
   });
 }
 
