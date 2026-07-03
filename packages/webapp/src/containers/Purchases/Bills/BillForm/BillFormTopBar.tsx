@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import {
   Alignment,
@@ -67,7 +66,7 @@ function BillFormSelectBranch() {
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <BranchSelect
-      name={'branch_id'}
+      name={'branchId'}
       branches={branches}
       input={FormBranchSelectButton}
       popoverProps={{ minimal: true }}
@@ -78,13 +77,13 @@ function BillFormSelectBranch() {
 
 function BillFormSelectWarehouse() {
   // Bill form context.
-  const { warehouses, isWarehouesLoading } = useBillFormContext();
+  const { warehouses, isWarehousesLoading } = useBillFormContext();
 
-  return isWarehouesLoading ? (
+  return isWarehousesLoading ? (
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <WarehouseSelect
-      name={'warehouse_id'}
+      name={'warehouseId'}
       warehouses={warehouses}
       input={FormWarehouseSelectButton}
       popoverProps={{ minimal: true }}

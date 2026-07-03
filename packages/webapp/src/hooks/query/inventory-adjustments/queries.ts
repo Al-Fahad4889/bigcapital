@@ -5,11 +5,12 @@ import {
   UseMutationOptions,
   UseQueryOptions,
 } from '@tanstack/react-query';
+import { useApiFetcher } from '../../useRequest';
 import type {
-  CreateQuickInventoryAdjustmentBody,
-  GetInventoryAdjustmentsQuery,
   InventoryAdjustment,
   InventoryAdjustmentsListResponse,
+  CreateQuickInventoryAdjustmentBody,
+  GetInventoryAdjustmentsQuery,
 } from '@bigcapital/sdk-ts';
 import {
   createQuickInventoryAdjustment,
@@ -18,7 +19,6 @@ import {
   fetchInventoryAdjustments,
   fetchInventoryAdjustment,
 } from '@bigcapital/sdk-ts';
-import { useApiFetcher } from '../../useRequest';
 import { inventoryAdjustmentsKeys } from './query-keys';
 
 const commonInvalidateQueries = (
@@ -32,7 +32,6 @@ export function useCreateInventoryAdjustment(
 ) {
   const queryClient = useQueryClient();
   const fetcher = useApiFetcher();
-
   return useMutation({
     ...props,
     mutationFn: (values: CreateQuickInventoryAdjustmentBody) =>
@@ -95,8 +94,7 @@ export function useInventoryAdjustment(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<InventoryAdjustment>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
-
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: inventoryAdjustmentsKeys.detail(id),

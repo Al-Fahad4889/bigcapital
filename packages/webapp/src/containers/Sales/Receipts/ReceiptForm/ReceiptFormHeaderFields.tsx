@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import styled from 'styled-components';
 import classNames from 'classnames';
@@ -25,6 +24,7 @@ import {
 import { ProjectsSelect } from '@/containers/Projects/components';
 import { useReceiptFormContext } from './ReceiptFormProvider';
 import { accountsFieldShouldUpdate, customersFieldShouldUpdate } from './utils';
+import type { ReceiptFormValues } from './utils';
 import {
   ReceiptExchangeRateInputField,
   ReceiptProjectSelectButton,
@@ -33,7 +33,7 @@ import { ReceiptFormReceiptNumberField } from './ReceiptFormReceiptNumberField';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 import intl from 'react-intl-universal';
 
-const getEstimateFieldsStyle = (theme: Theme) => css`
+const getEstimateFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;
 
@@ -71,14 +71,11 @@ export function ReceiptFormHeader() {
         label={intl.get('deposit_account')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
-        name={'deposit_account_id'}
-        items={accounts}
-        fastField={true}
-        shouldUpdate={accountsFieldShouldUpdate}
+        name={'depositAccountId'}
       >
         <AccountsSelect
           items={accounts}
-          name={'deposit_account_id'}
+          name={'depositAccountId'}
           placeholder={<T id={'select_deposit_account'} />}
           filterByTypes={[
             ACCOUNT_TYPE.CASH,
@@ -94,13 +91,13 @@ export function ReceiptFormHeader() {
 
       {/* ----------- Receipt date ----------- */}
       <FFormGroup
-        name={'receipt_date'}
+        name={'receiptDate'}
         label={intl.get('receipt_date')}
         inline
         fastField
       >
         <FDateInput
-          name={'receipt_date'}
+          name={'receiptDate'}
           formatDate={(date) => date.toLocaleDateString()}
           parseDate={(str) => new Date(str)}
           popoverProps={{ position: Position.BOTTOM_LEFT, minimal: true }}
@@ -120,21 +117,21 @@ export function ReceiptFormHeader() {
       <FFormGroup
         label={intl.get('reference')}
         inline={true}
-        name={'reference_no'}
+        name={'referenceNo'}
       >
-        <FInputGroup minimal={true} name={'reference_no'} />
+        <FInputGroup name={'referenceNo'} />
       </FFormGroup>
 
       {/*------------ Project name -----------*/}
       <FeatureCan feature={Features.Projects}>
         <FFormGroup
-          name={'project_id'}
+          name={'projectId'}
           label={intl.get('receipt.project_name.label')}
           inline={true}
           className={classNames('form-group--select-list', Classes.FILL)}
         >
           <ProjectsSelect
-            name={'project_id'}
+            name={'projectId'}
             projects={projects}
             input={ReceiptProjectSelectButton}
             popoverFill={true}
@@ -150,45 +147,47 @@ export function ReceiptFormHeader() {
  * @returns {React.ReactNode}
  */
 function ReceiptFormCustomerSelect() {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext<ReceiptFormValues>();
   const { customers } = useReceiptFormContext();
 
   const updateEntries = useCustomerUpdateExRate();
 
   // Handles the customer item change.
-  const handleItemChange = (customer) => {
-    setFieldValue('customer_id', customer.id);
-    setFieldValue('currency_code', customer?.currency_code);
+  const handleItemChange = (customer: {
+    id: number;
+    currency_code: string;
+  }) => {
+    setFieldValue('customerId', customer.id);
+    setFieldValue('currencyCode', customer?.currency_code);
 
     updateEntries(customer);
   };
 
   return (
     <FFormGroup
-      name={'customer_id'}
+      name={'customerId'}
       label={intl.get('customer_name')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
-      fastField={true}
-      shouldUpdate={customersFieldShouldUpdate}
-      shouldUpdateDeps={{ items: customers }}
     >
-      <CustomersSelect
-        name={'customer_id'}
-        items={customers}
-        placeholder={<T id={'select_customer_account'} />}
-        onItemChange={handleItemChange}
-        popoverFill={true}
-        allowCreate={true}
-        fastField={true}
-        shouldUpdate={customersFieldShouldUpdate}
-        shouldUpdateDeps={{ items: customers }}
-      />
-      {values.customer_id && (
-        <CustomerButtonLink customerId={values.customer_id}>
-          <T id={'view_customer_details'} />
-        </CustomerButtonLink>
-      )}
+      <>
+        <CustomersSelect
+          name={'customerId'}
+          items={customers}
+          placeholder={<T id={'select_customer_account'} />}
+          onItemChange={handleItemChange}
+          popoverFill={true}
+          allowCreate={true}
+          fastField={true}
+          shouldUpdate={customersFieldShouldUpdate}
+          shouldUpdateDeps={{ items: customers }}
+        />
+        {values.customerId && (
+          <CustomerButtonLink customerId={values.customerId}>
+            <T id={'view_customer_details'} />
+          </CustomerButtonLink>
+        )}
+      </>
     </FFormGroup>
   );
 }

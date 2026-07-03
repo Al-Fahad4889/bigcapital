@@ -8,7 +8,13 @@ import { Navbar } from '@blueprintjs/core';
  * @param   {JSX.Element} children
  * @returns {JSX.Element}
  */
-export function FormTopbar({ className, children }) {
+export function FormTopbar({
+  className,
+  children,
+}: {
+  className?: string;
+  children?: React.ReactNode;
+}) {
   return <FormTopBarRoot className={className}>{children}</FormTopBarRoot>;
 }
 

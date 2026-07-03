@@ -1,5 +1,3 @@
-// @ts-nocheck
-import React from 'react';
 import styled from 'styled-components';
 import { useFormikContext } from 'formik';
 import { T, TotalLines, TotalLine, TotalLineTextStyle } from '@/components';
@@ -11,11 +9,12 @@ import {
 } from './utils';
 import { AdjustmentTotalLine } from '../../Invoices/InvoiceForm/AdjustmentTotalLine';
 import { DiscountTotalLine } from '../../Invoices/InvoiceForm/DiscountTotalLine';
+import type { EstimateFormValues } from './utils';
 
 export function EstimateFormFooterRight() {
   const {
-    values: { currency_code },
-  } = useFormikContext();
+    values: { currencyCode },
+  } = useFormikContext<EstimateFormValues>();
   const subtotalFormatted = useEstimateSubtotalFormatted();
   const totalFormatted = useEstimateTotalFormatted();
   const discountAmountFormatted = useEstimateDiscountFormatted();
@@ -28,7 +27,7 @@ export function EstimateFormFooterRight() {
         value={subtotalFormatted}
       />
       <DiscountTotalLine
-        currencyCode={currency_code}
+        currencyCode={currencyCode}
         discountAmount={discountAmountFormatted}
       />
       <AdjustmentTotalLine adjustmentAmount={adjustmentAmountFormatted} />

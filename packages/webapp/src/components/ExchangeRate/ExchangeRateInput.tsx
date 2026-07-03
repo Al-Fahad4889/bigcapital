@@ -31,8 +31,8 @@ interface ExchangeRateInputGroupProps {
 
   withPopoverRecalcConfirm?: boolean;
 
-  onRecalcConfirm: (bag: ExchangeRateValuesBag) => void;
-  onCancel: (bag: ExchangeRateValuesBag) => void;
+  onRecalcConfirm?: (bag: ExchangeRateValuesBag) => void;
+  onCancel?: (bag: ExchangeRateValuesBag) => void;
 
   isConfirmPopoverOpen?: boolean;
   initialConfirmPopoverOpen?: boolean;

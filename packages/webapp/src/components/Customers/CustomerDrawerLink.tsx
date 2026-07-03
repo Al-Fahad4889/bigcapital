@@ -1,6 +1,5 @@
 // @ts-nocheck
 import React from 'react';
-import * as R from 'ramda';
 
 import { ButtonLink } from '../Button';
 import {
@@ -8,6 +7,7 @@ import {
   WithDrawerActionsProps,
 } from '@/containers/Drawer/withDrawerActions';
 import { DRAWERS } from '@/constants/drawers';
+import { compose } from '@/utils';
 
 interface CustomerDrawerLinkComponentProps extends WithDrawerActionsProps {
   children?: React.ReactNode;
@@ -37,6 +37,6 @@ function CustomerDrawerLinkComponent({
   );
 }
 
-export const CustomerDrawerLink = R.compose(withDrawerActions)(
+export const CustomerDrawerLink = compose(withDrawerActions)(
   CustomerDrawerLinkComponent,
 );

@@ -11,10 +11,10 @@ import {
   FInputGroup,
   FFormGroup,
 } from '@/components';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
-import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
 import type { MakeJournalFormValues } from './utils';
 
 interface MakeJournalTransactionNoFieldOwnProps {

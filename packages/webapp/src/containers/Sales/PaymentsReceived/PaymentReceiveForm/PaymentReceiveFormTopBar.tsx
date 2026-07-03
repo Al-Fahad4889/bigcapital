@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import { Alignment, NavbarGroup, Classes } from '@blueprintjs/core';
 import { useSetPrimaryBranchToForm } from './utils';
@@ -15,16 +14,12 @@ import { Features } from '@/constants';
 
 /**
  * Payment receive from top bar.
- * @returns {JSX.Element}
  */
 export function PaymentReceiveFormTopBar() {
-  // Features guard.
   const { featureCan } = useFeatureCan();
 
-  // Sets the primary branch to form.
   useSetPrimaryBranchToForm();
 
-  // Can't display the navigation bar if  branches feature is not enabled.
   if (!featureCan(Features.Branches)) {
     return null;
   }
@@ -41,17 +36,15 @@ export function PaymentReceiveFormTopBar() {
 
 /**
  * Branch select of payment receive form.
- * @returns {JSX.Element}
  */
 function PaymentReceiveFormSelectBranch() {
-  // payment receive form context.
   const { branches, isBranchesLoading } = usePaymentReceiveFormContext();
 
   return isBranchesLoading ? (
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <BranchSelect
-      name={'branch_id'}
+      name={'branchId'}
       branches={branches}
       input={FormBranchSelectButton}
       popoverProps={{ minimal: true }}

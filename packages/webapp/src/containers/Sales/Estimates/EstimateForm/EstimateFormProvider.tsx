@@ -1,6 +1,4 @@
 import React, { createContext, useContext } from 'react';
-import type { Item, Customer } from '@bigcapital/sdk-ts';
-
 import {
   useEstimate,
   useCustomers,
@@ -17,6 +15,8 @@ import { useGetPdfTemplates } from '@/hooks/query/pdf-templates';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import { ITEMS_FILTER_ROLES } from './utils';
+import type { PdfTemplateResponse } from '@bigcapital/sdk-ts';
+import type { Item, Customer } from '@bigcapital/sdk-ts';
 
 type UseEstimateResult = ReturnType<typeof useEstimate>;
 type UseBranchesResult = ReturnType<typeof useBranches>;
@@ -28,7 +28,11 @@ type UseGetSaleEstimatesStateResult = ReturnType<
   typeof useGetSaleEstimatesState
 >;
 
-type EstimateFormSubmitPayload = Record<string, unknown>;
+type EstimateFormSubmitPayload = {
+  redirect?: boolean;
+  deliver?: boolean;
+  resetForm?: boolean;
+};
 
 interface EstimateFormContextValue {
   estimateId?: number;
@@ -47,6 +51,8 @@ interface EstimateFormContextValue {
   isItemsLoading: boolean;
   isEstimateLoading: boolean;
   isFeatureLoading: boolean;
+  isBranchesLoading: boolean;
+  isWarehouesLoading: boolean;
   isBranchesSuccess: boolean;
   isWarehousesSuccess: boolean;
 
@@ -58,7 +64,7 @@ interface EstimateFormContextValue {
   createEstimateMutate: UseCreateEstimateResult['mutateAsync'];
   editEstimateMutate: UseEditEstimateResult['mutateAsync'];
 
-  brandingTemplates: UseGetPdfTemplatesResult['data'];
+  brandingTemplates: PdfTemplateResponse[];
   isBrandingTemplatesLoading: boolean;
 
   saleEstimateState: UseGetSaleEstimatesStateResult['data'];
@@ -170,9 +176,7 @@ function EstimateFormProvider({
     customers: customersData?.data ?? [],
     branches,
     warehouses,
-    projects:
-      (projectsData as { data?: { projects?: unknown[] } })?.data?.projects ??
-      [],
+    projects: projectsData?.data?.projects ?? [],
     isNewMode,
 
     isItemsFetching,
@@ -182,6 +186,8 @@ function EstimateFormProvider({
     isItemsLoading,
     isEstimateLoading,
     isFeatureLoading,
+    isBranchesLoading,
+    isWarehouesLoading,
     isBranchesSuccess,
     isWarehousesSuccess,
     submitPayload,
@@ -190,7 +196,7 @@ function EstimateFormProvider({
     createEstimateMutate,
     editEstimateMutate,
 
-    brandingTemplates,
+    brandingTemplates: brandingTemplates?.templates ?? [],
     isBrandingTemplatesLoading,
 
     saleEstimateState,

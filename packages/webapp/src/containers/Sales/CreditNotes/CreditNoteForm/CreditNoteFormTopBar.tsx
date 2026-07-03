@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 
 import {
@@ -26,7 +25,6 @@ import { useCreditNoteFormContext } from './CreditNoteFormProvider';
 
 /**
  * Credit note form topbar .
- * @returns {JSX.Element}
  */
 export function CreditNoteFormTopbar() {
   // Features guard.
@@ -68,7 +66,7 @@ function CreditNoteFormSelectBranch() {
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <BranchSelect
-      name={'branch_id'}
+      name={'branchId'}
       branches={branches}
       input={FormBranchSelectButton}
       popoverProps={{ minimal: true }}
@@ -85,7 +83,7 @@ function CreditFormSelectWarehouse() {
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <WarehouseSelect
-      name={'warehouse_id'}
+      name={'warehouseId'}
       warehouses={warehouses}
       input={FormWarehouseSelectButton}
       popoverProps={{ minimal: true }}

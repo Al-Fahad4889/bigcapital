@@ -102,7 +102,7 @@ export function usePaymentMadeEditPage(
     'queryKey' | 'queryFn'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: paymentMadesKeys.editPage(id),
@@ -119,7 +119,7 @@ export function usePaymentMadeNewPageEntries(
     'queryKey' | 'queryFn' | 'enabled'
   >,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: paymentMadesKeys.newEntries(vendorId),
@@ -141,7 +141,7 @@ export function usePaymentMade(
   id: number | null | undefined,
   props?: Omit<UseQueryOptions<BillPayment>, 'queryKey' | 'queryFn'>,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
   return useQuery({
     ...props,
     queryKey: paymentMadesKeys.detail(id),

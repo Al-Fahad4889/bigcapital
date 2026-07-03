@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import styled from 'styled-components';
@@ -23,11 +22,11 @@ export function InvoiceFormFooterLeft() {
     <Stack spacing={20}>
       {/* --------- Invoice message --------- */}
       <InvoiceMsgFormGroup
-        name={'invoice_message'}
+        name={'invoiceMessage'}
         label={intl.get('invoice_message')}
       >
         <FEditableText
-          name={'invoice_message'}
+          name={'invoiceMessage'}
           placeholder={intl.get('invoice_form.invoice_message.placeholder')}
           fastField
           multiline
@@ -37,10 +36,10 @@ export function InvoiceFormFooterLeft() {
       {/* --------- Terms and conditions --------- */}
       <TermsConditsFormGroup
         label={intl.get('invoice_form.label.terms_conditions')}
-        name={'terms_conditions'}
+        name={'termsConditions'}
       >
         <FEditableText
-          name={'terms_conditions'}
+          name={'termsConditions'}
           placeholder={intl.get(
             'invoice_form.terms_and_conditions.placeholder',
           )}
@@ -52,7 +51,7 @@ export function InvoiceFormFooterLeft() {
       {/* --------- Payment Options --------- */}
       <PaymentOptionsFormGroup
         label={'Payment Options'}
-        name={'payment_method_id'}
+        name={'paymentMethodId'}
       >
         <PaymentOptionsText>
           Select an online payment option to get paid faster{' '}
@@ -70,7 +69,7 @@ export function InvoiceFormFooterLeft() {
               Setup payment gateways
             </PaymentOptionsButton>
           ) : (
-            <PaymentOptionsButtonPopver paymentMethods={paymentServices}>
+            <PaymentOptionsButtonPopver paymentMethods={paymentServices ?? []}>
               <PaymentOptionsButton intent={Intent.PRIMARY} small minimal>
                 Payment Options
               </PaymentOptionsButton>

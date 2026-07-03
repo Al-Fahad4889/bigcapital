@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import type { PaymentReceiveEditPageResponse } from '@bigcapital/sdk-ts';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import { useProjects } from '@/containers/Projects/hooks';
@@ -16,27 +17,43 @@ import { useGetPdfTemplates } from '@/hooks/query/pdf-templates';
 
 type UseAccountsResult = ReturnType<typeof useAccounts>;
 type UseBranchesResult = ReturnType<typeof useBranches>;
+type UseCustomersResult = ReturnType<typeof useCustomers>;
+type UseProjectsResult = ReturnType<typeof useProjects>;
 type UseGetPdfTemplatesResult = ReturnType<typeof useGetPdfTemplates>;
 type UseCreatePaymentReceiveResult = ReturnType<typeof useCreatePaymentReceive>;
 type UseEditPaymentReceiveResult = ReturnType<typeof useEditPaymentReceive>;
 type UsePaymentReceivedStateResult = ReturnType<typeof usePaymentReceivedState>;
 
-type PaymentReceiveSubmitPayload = Record<string, unknown>;
+type PaymentReceiveSubmitPayload = {
+  redirect?: boolean;
+  resetForm?: boolean;
+  publish?: boolean;
+};
+
+type PaymentReceiveEditPageData =
+  | PaymentReceiveEditPageResponse['data']
+  | undefined;
+type PaymentReceiveEditPageEntries =
+  | PaymentReceiveEditPageResponse['entries']
+  | undefined;
 
 interface PaymentReceiveFormContextValue {
   paymentReceiveId?: number;
-  paymentReceiveEditPage: any;
-  paymentEntriesEditPage: any;
+  paymentReceiveEditPage: PaymentReceiveEditPageData;
+  paymentEntriesEditPage: PaymentReceiveEditPageEntries extends Array<infer T>
+    ? T[]
+    : PaymentReceiveEditPageEntries;
   accounts: UseAccountsResult['data'];
-  customers: any;
+  customers: NonNullable<UseCustomersResult['data']>['data'];
   branches: UseBranchesResult['data'];
-  projects: any;
+  projects: NonNullable<NonNullable<UseProjectsResult['data']>['projects']>;
 
   isPaymentLoading: boolean;
   isAccountsLoading: boolean;
   isPaymentFetching: boolean;
   isCustomersLoading: boolean;
   isFeatureLoading: boolean;
+  isBranchesLoading: boolean;
   isBranchesSuccess: boolean;
   isNewMode: boolean;
 
@@ -162,6 +179,7 @@ function PaymentReceiveFormProvider({
     isPaymentFetching,
     isCustomersLoading,
     isFeatureLoading,
+    isBranchesLoading,
     isBranchesSuccess,
     isNewMode,
 

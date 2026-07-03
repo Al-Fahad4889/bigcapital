@@ -12,7 +12,6 @@ import {
   Popover,
 } from '@blueprintjs/core';
 import type { InventoryAdjustment } from '@bigcapital/sdk-ts';
-
 import { isNumber } from 'lodash';
 import { Icon, Money, If, FormattedMessage as T, Can } from '@/components';
 import { isBlank, safeCallback } from '@/utils';
@@ -20,7 +19,6 @@ import {
   InventoryAdjustmentAction,
   AbilitySubject,
 } from '@/constants/abilityOption';
-import type { DataTableColumn } from '@/components/Datatable/types';
 
 interface ActionsMenuPayload {
   onDelete: (row: InventoryAdjustment) => void;
@@ -169,62 +167,58 @@ export const ActionsCell = (props: ActionsMenuProps) => {
 /**
  * Retrieve inventory adjustments columns.
  */
-export const useInventoryAdjustmentsColumns =
-  (): DataTableColumn<InventoryAdjustment>[] => {
-    return React.useMemo(
-      () =>
-        [
-          {
-            id: 'date',
-            Header: intl.get('date'),
-            accessor: (r: InventoryAdjustment) =>
-              moment(r.date).format('YYYY MMM DD'),
-            width: 115,
-            className: 'date',
-            clickable: true,
-          },
-          {
-            id: 'type',
-            Header: intl.get('type'),
-            accessor: TypeAccessor,
-            className: 'type',
-            width: 100,
-            clickable: true,
-          },
-          {
-            id: 'reason',
-            Header: intl.get('reason'),
-            accessor: 'reason',
-            className: 'reason',
-            width: 115,
-            clickable: true,
-          },
-          {
-            id: 'reference_no',
-            Header: intl.get('reference_no'),
-            accessor: 'referenceNo',
-            className: 'reference_no',
-            width: 100,
-            clickable: true,
-          },
-          {
-            id: 'published_at',
-            Header: intl.get('status'),
-            accessor: PublishAccessor,
-            width: 95,
-            className: 'publish',
-            clickable: true,
-          },
-          {
-            id: 'created_at',
-            Header: intl.get('created_at'),
-            accessor: (r: InventoryAdjustment) =>
-              moment(r.createdAt).format('YYYY MMM DD'),
-            width: 125,
-            className: 'created_at',
-            clickable: true,
-          },
-        ] as DataTableColumn<InventoryAdjustment>[],
-      [],
-    );
-  };
+export const useInventoryAdjustmentsColumns = () => {
+  return React.useMemo(
+    () => [
+      {
+        id: 'date',
+        Header: intl.get('date'),
+        accessor: (r) => moment(r.date).format('YYYY MMM DD'),
+        width: 115,
+        className: 'date',
+        clickable: true,
+      },
+      {
+        id: 'type',
+        Header: intl.get('type'),
+        accessor: TypeAccessor,
+        className: 'type',
+        width: 100,
+        clickable: true,
+      },
+      {
+        id: 'reason',
+        Header: intl.get('reason'),
+        accessor: 'reason',
+        className: 'reason',
+        width: 115,
+        clickable: true,
+      },
+      {
+        id: 'reference_no',
+        Header: intl.get('reference_no'),
+        accessor: 'referenceNo',
+        className: 'reference_no',
+        width: 100,
+        clickable: true,
+      },
+      {
+        id: 'published_at',
+        Header: intl.get('status'),
+        accessor: PublishAccessor,
+        width: 95,
+        className: 'publish',
+        clickable: true,
+      },
+      {
+        id: 'created_at',
+        Header: intl.get('created_at'),
+        accessor: (r) => moment(r.createdAt).format('YYYY MMM DD'),
+        width: 125,
+        className: 'created_at',
+        clickable: true,
+      },
+    ],
+    [],
+  );
+};

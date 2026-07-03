@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import {
   Alignment,
@@ -67,7 +66,7 @@ function EstimateFormSelectBranch() {
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <BranchSelect
-      name={'branch_id'}
+      name={'branchId'}
       branches={branches}
       input={FormBranchSelectButton}
       popoverProps={{ minimal: true }}
@@ -84,7 +83,7 @@ function EstimateFormSelectWarehouse() {
     <DetailsBarSkeletonBase className={Classes.SKELETON} />
   ) : (
     <WarehouseSelect
-      name={'warehouse_id'}
+      name={'warehouseId'}
       warehouses={warehouses}
       input={FormWarehouseSelectButton}
       popoverProps={{ minimal: true }}

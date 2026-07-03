@@ -44,17 +44,10 @@ function ItemsCategoriesProvider({
 
   // Items categories list.
   const {
-    data: itemsCategoriesDataRaw,
+    data: itemsCategoriesData,
     isFetching: isCategoriesFetching,
     isLoading: isCategoriesLoading,
   } = useItemsCategories(query);
-  // FIXME: see interface note — SDK schema is wrong about response shape.
-  const itemsCategoriesData = itemsCategoriesDataRaw as unknown as
-    | {
-        itemsCategories?: ItemCategoryTableRow[];
-        pagination?: { total?: number; [key: string]: unknown };
-      }
-    | undefined;
 
   // Fetch the accounts resource fields.
   const {
@@ -74,8 +67,7 @@ function ItemsCategoriesProvider({
     isResourceLoading,
     isResourceFetching,
 
-    itemsCategories: itemsCategoriesData?.itemsCategories,
-    pagination: itemsCategoriesData?.pagination,
+    itemsCategories: itemsCategoriesData,
     query,
   };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { FastField, type FieldProps } from 'formik';
 import classNames from 'classnames';
 import { CLASSES } from '@/constants/classes';
@@ -12,9 +11,6 @@ import {
 import { useMakeJournalFormContext } from './MakeJournalProvider';
 import { MakeJournalEntriesTable } from './MakeJournalEntriesTable';
 
-/**
- * Make journal entries field.
- */
 export function MakeJournalEntriesField() {
   const { accounts, contacts, branches, projects } =
     useMakeJournalFormContext();

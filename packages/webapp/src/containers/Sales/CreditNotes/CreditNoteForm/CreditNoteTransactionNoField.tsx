@@ -1,8 +1,7 @@
-// @ts-nocheck
 import React from 'react';
-import * as R from 'ramda';
 import { Position, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
+import intl from 'react-intl-universal';
 import {
   FieldRequiredHint,
   InputPrependButton,
@@ -13,38 +12,35 @@ import {
 } from '@/components';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import intl from 'react-intl-universal';
+import { compose } from '@/utils';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { CreditNoteFormValues } from './utils';
+
+interface CreditNoteTransactionNoFieldProps
+  extends Pick<WithDialogActionsProps, 'openDialog'> {
+  creditAutoIncrement?: boolean;
+}
 
 /**
  * Credit note transaction number field.
  */
-export const CreditNoteTransactionNoField = R.compose(
-  withDialogActions,
-  withSettings(({ creditNoteSettings }) => ({
-    creditAutoIncrement: creditNoteSettings?.autoIncrement,
-    creditNextNumber: creditNoteSettings?.nextNumber,
-    creditNumberPrefix: creditNoteSettings?.numberPrefix,
-  })),
-)(({
-  // #withDialogActions
+const CreditNoteTransactionNoFieldInner = ({
   openDialog,
-
-  // #withSettings
   creditAutoIncrement,
-}) => {
-  const { values, setFieldValue } = useFormikContext();
+}: CreditNoteTransactionNoFieldProps) => {
+  const { values, setFieldValue } = useFormikContext<CreditNoteFormValues>();
 
   // Handle credit number changing.
   const handleCreditNumberChange = () => {
     openDialog('credit-number-form');
   };
   // Handle credit note no. field blur.
-  const handleCreditNoBlur = (event) => {
+  const handleCreditNoBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
 
     // Show the confirmation dialog if the value has changed and auto-increment
     // mode is enabled.
-    if (values.credit_note_no !== newValue && creditAutoIncrement) {
+    if (values.creditNoteNumber !== newValue && creditAutoIncrement) {
       openDialog('credit-number-form', {
         initialFormValues: {
           onceManualNumber: newValue,
@@ -55,23 +51,21 @@ export const CreditNoteTransactionNoField = R.compose(
     // Setting the credit note number to the form will be manually in case
     // auto-increment is disable.
     if (!creditAutoIncrement) {
-      setFieldValue('credit_note_number', newValue);
-      setFieldValue('credit_note_number_manually', newValue);
+      setFieldValue('creditNoteNumber', newValue);
+      setFieldValue('creditNoteNumberManually', newValue);
     }
   };
 
   return (
     <FFormGroup
-      name={'credit_note_number'}
+      name={'creditNoteNumber'}
       label={intl.get('credit_note.label_credit_note')}
       labelInfo={<FieldRequiredHint />}
       inline={true}
     >
       <ControlGroup fill={true}>
         <FInputGroup
-          name={'credit_note_number'}
-          minimal={true}
-          value={values.credit_note_number}
+          name={'creditNoteNumber'}
           asyncControl={true}
           onBlur={handleCreditNoBlur}
           onChange={() => {}}
@@ -92,6 +86,15 @@ export const CreditNoteTransactionNoField = R.compose(
       </ControlGroup>
     </FFormGroup>
   );
-});
+};
+
+export const CreditNoteTransactionNoField = compose(
+  withDialogActions,
+  withSettings(({ creditNoteSettings }) => ({
+    creditAutoIncrement: creditNoteSettings?.autoIncrement,
+    creditNextNumber: creditNoteSettings?.nextNumber,
+    creditNumberPrefix: creditNoteSettings?.numberPrefix,
+  })),
+)(CreditNoteTransactionNoFieldInner);
 
 CreditNoteTransactionNoField.displayName = 'CreditNoteTransactionNoField';

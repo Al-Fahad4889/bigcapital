@@ -1,19 +1,25 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import { Button } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
 import { ExchangeRateInputGroup } from '@/components';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
-import { useBillIsForeignCustomer } from './utils';
+import { useBillIsForeignCustomer, type BillFormValues } from './utils';
+
+type BillExchangeRateInputFieldProps = Omit<
+  React.ComponentProps<typeof ExchangeRateInputGroup>,
+  'fromCurrency' | 'toCurrency' | 'name' | 'onCancel' | 'onRecalcConfirm'
+>;
 
 /**
  * bill exchange rate input field.
  * @returns {JSX.Element}
  */
-export function BillExchangeRateInputField({ ...props }) {
+export function BillExchangeRateInputField({
+  ...props
+}: BillExchangeRateInputFieldProps) {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<BillFormValues>();
 
   const isForeignCustomer = useBillIsForeignCustomer();
 
@@ -23,8 +29,9 @@ export function BillExchangeRateInputField({ ...props }) {
   }
   return (
     <ExchangeRateInputGroup
-      fromCurrency={values.currency_code}
-      toCurrency={baseCurrency}
+      name={'exchangeRate'}
+      fromCurrency={values.currencyCode}
+      toCurrency={baseCurrency ?? ''}
       {...props}
     />
   );
@@ -34,6 +41,6 @@ export function BillExchangeRateInputField({ ...props }) {
  * bill project select.
  * @returns {JSX.Element}
  */
-export function BillProjectSelectButton({ label }) {
+export function BillProjectSelectButton({ label }: { label?: string }) {
   return <Button text={label ?? intl.get('select_project')} />;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { isEmpty, pick } from 'lodash';
-import { transformToEditForm } from './utils';
+import { transformToEditForm, type CreditNoteFormValues } from './utils';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import type {
@@ -31,6 +31,8 @@ import { useGetPdfTemplates } from '@/hooks/query/pdf-templates';
 
 type CreditNoteFormSubmitPayload = {
   redirect?: boolean;
+  open?: boolean;
+  resetForm?: boolean;
 };
 
 type CreditNoteFormContextValue = {
@@ -39,7 +41,7 @@ type CreditNoteFormContextValue = {
   customers: Customer[];
   branches: Branch[];
   warehouses: Warehouse[];
-  newCreditNote: ReturnType<typeof transformToEditForm> | [];
+  newCreditNote: CreditNoteFormValues | [];
   submitPayload: CreditNoteFormSubmitPayload | undefined;
   brandingTemplates: PdfTemplateResponse[];
   isNewMode: boolean;
@@ -150,7 +152,7 @@ function CreditNoteFormProvider({
 
   const newCreditNote = !isEmpty(invoice)
     ? transformToEditForm({
-        ...pick(invoice, ['customer_id', 'currency_code', 'entries']),
+        ...pick(invoice, ['customerId', 'currencyCode', 'entries']),
       })
     : ([] as []);
 

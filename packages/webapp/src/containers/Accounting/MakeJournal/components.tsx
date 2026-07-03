@@ -216,8 +216,6 @@ export function JournalExchangeRateInputField({
       {...props}
       fromCurrency={values.currencyCode}
       toCurrency={baseCurrency ?? ''}
-      onCancel={() => {}}
-      onRecalcConfirm={() => {}}
     />
   );
 }

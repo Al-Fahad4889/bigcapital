@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 
@@ -18,14 +17,16 @@ export function EstimateFormHeader() {
       p="25px 32px"
       bg="var(--x-estimate-form-header-background)"
       borderBottom="1px solid var(--x-estimate-form-header-border)"
-      style={{
-        '--x-estimate-form-header-background': isDarkMode
-          ? 'var(--color-dark-gray1)'
-          : 'var(--color-white)',
-        '--x-estimate-form-header-border': isDarkMode
-          ? 'rgba(255, 255, 255, 0.1)'
-          : '#d2dce2',
-      }}
+      style={
+        {
+          '--x-estimate-form-header-background': isDarkMode
+            ? 'var(--color-dark-gray1)'
+            : 'var(--color-white)',
+          '--x-estimate-form-header-border': isDarkMode
+            ? 'rgba(255, 255, 255, 0.1)'
+            : '#d2dce2',
+        } as React.CSSProperties
+      }
     >
       <EstimateFormHeaderFields />
       <EstimateFormBigTotal />

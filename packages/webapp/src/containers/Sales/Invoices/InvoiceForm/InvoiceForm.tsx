@@ -1,7 +1,6 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import { sumBy, isEmpty, defaultTo } from 'lodash';
 import { useHistory } from 'react-router-dom';
@@ -10,17 +9,14 @@ import {
   getCreateInvoiceFormSchema,
   getEditInvoiceFormSchema,
 } from './InvoiceForm.schema';
-
 import { InvoiceFormHeader } from './InvoiceFormHeader';
 import { InvoiceItemsEntriesEditorField } from './InvoiceItemsEntriesEditorField';
 import { InvoiceFloatingActions } from './InvoiceFloatingActions';
 import { InvoiceFormFooter } from './InvoiceFormFooter';
 import { InvoiceFormDialogs } from './InvoiceFormDialogs';
 import { InvoiceFormTopBar } from './InvoiceFormTopBar';
-
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withSettings } from '@/containers/Settings/withSettings';
-
 import { AppToaster, Box } from '@/components';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { compose, orderingLinesIndexes, transactionNumber } from '@/utils';
@@ -33,11 +29,20 @@ import {
   transformValueToRequest,
   resetFormState,
 } from './utils';
+import type { InvoiceFormValues } from './utils';
 import {
   InvoiceExchangeRateSync,
   InvoiceNoSyncSettingsToForm,
 } from './components';
 import { PageForm } from '@/components/PageForm';
+
+type InvoiceFormRootProps = {
+  invoiceNextNumber?: number;
+  invoiceNumberPrefix?: string;
+  invoiceAutoIncrementMode?: boolean;
+  invoiceCustomerNotes?: string;
+  invoiceTermsConditions?: string;
+};
 
 /**
  * Invoice form.
@@ -49,7 +54,7 @@ function InvoiceFormRoot({
   invoiceAutoIncrementMode,
   invoiceCustomerNotes,
   invoiceTermsConditions,
-}) {
+}: InvoiceFormRootProps) {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const history = useHistory();
@@ -72,32 +77,36 @@ function InvoiceFormRoot({
     invoiceNextNumber,
   );
   // Form initial values.
-  const initialValues = {
-    ...(!isEmpty(invoice)
-      ? { ...transformToEditForm(invoice) }
-      : {
-          ...defaultInvoice,
-          // If the auto-increment mode is enabled, take the next invoice
-          // number from the settings.
-          ...(invoiceAutoIncrementMode && {
-            invoice_no: invoiceNumber,
-          }),
-          entries: orderingLinesIndexes(defaultInvoice.entries),
-          currency_code: baseCurrency,
-          invoice_message: defaultTo(invoiceCustomerNotes, ''),
-          terms_conditions: defaultTo(invoiceTermsConditions, ''),
-          pdf_template_id: saleInvoiceState?.defaultTemplateId,
-          ...newInvoice,
+  const isEditMode = !isEmpty(invoice) && !!invoice;
+  const initialValues: InvoiceFormValues = isEditMode
+    ? transformToEditForm(invoice)
+    : {
+        ...defaultInvoice,
+        // If the auto-increment mode is enabled, take the next invoice
+        // number from the settings.
+        ...(invoiceAutoIncrementMode && {
+          invoiceNo: invoiceNumber,
         }),
-  };
+        entries: orderingLinesIndexes(defaultInvoice.entries),
+        currencyCode: baseCurrency ?? '',
+        invoiceMessage: defaultTo(invoiceCustomerNotes, ''),
+        termsConditions: defaultTo(invoiceTermsConditions, ''),
+        pdfTemplateId: saleInvoiceState?.defaultTemplateId ?? '',
+        ...(Array.isArray(newInvoice) ? {} : newInvoice),
+      };
   // Handles form submit.
-  const handleSubmit = (values, { setSubmitting, setErrors, resetForm }) => {
+  const handleSubmit = (
+    values: InvoiceFormValues,
+    { setSubmitting, setErrors, resetForm }: FormikHelpers<InvoiceFormValues>,
+  ) => {
     setSubmitting(true);
 
     const entries = values.entries.filter(
-      (item) => item.item_id && item.quantity,
+      (item) => item.itemId && item.quantity,
     );
-    const totalQuantity = sumBy(entries, (entry) => parseInt(entry.quantity));
+    const totalQuantity = sumBy(entries, (entry) =>
+      parseInt(String(entry.quantity)),
+    );
 
     // Throw danger toaster in case total quantity equals zero.
     if (totalQuantity === 0) {
@@ -111,8 +120,8 @@ function InvoiceFormRoot({
     // Transformes the values of the form to request.
     const form = {
       ...transformValueToRequest(values),
-      delivered: submitPayload.deliver,
-      from_estimate_id: estimateId,
+      delivered: submitPayload?.deliver ?? false,
+      fromEstimateId: estimateId ? Number(estimateId) : undefined,
     };
     // Handle the request success.
     const onSuccess = () => {
@@ -121,27 +130,31 @@ function InvoiceFormRoot({
           isNewMode
             ? 'the_invoice_has_been_created_successfully'
             : 'the_invoice_has_been_edited_successfully',
-          { number: values.invoice_no },
+          { number: values.invoiceNo },
         ),
         intent: Intent.SUCCESS,
       });
       setSubmitting(false);
 
-      if (submitPayload.redirect) {
+      if (submitPayload?.redirect) {
         history.push('/invoices');
       }
-      if (submitPayload.resetForm) {
+      if (submitPayload?.resetForm) {
         resetFormState({ resetForm, initialValues, values });
       }
     };
     // Handle the request error.
-    const onError = ({ data: { errors } }) => {
+    const onError = ({
+      data: { errors },
+    }: {
+      data: { errors: Array<{ type: string }> };
+    }) => {
       if (errors) {
         transformErrors(errors, { setErrors });
       }
       setSubmitting(false);
     };
-    if (!isEmpty(invoice)) {
+    if (isEditMode && invoice) {
       editInvoiceMutate([invoice.id, form]).then(onSuccess).catch(onError);
     } else {
       createInvoiceMutate(form).then(onSuccess).catch(onError);
@@ -154,7 +167,7 @@ function InvoiceFormRoot({
   const EditInvoiceFormSchema = getEditInvoiceFormSchema();
 
   return (
-    <Formik
+    <Formik<InvoiceFormValues>
       validationSchema={
         isNewMode ? CreateInvoiceFormSchema : EditInvoiceFormSchema
       }

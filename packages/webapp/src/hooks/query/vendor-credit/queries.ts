@@ -13,6 +13,8 @@ import type {
   CreateRefundVendorCreditBody,
   ApplyVendorCreditToBillsBody,
   ValidateBulkDeleteVendorCreditsResponse,
+  VendorCreditRefund,
+  VendorCreditAppliedBill,
   VendorCreditsListResponse,
   VendorCredit,
 } from '@bigcapital/sdk-ts';
@@ -184,10 +186,10 @@ export function useVendorCredits(
 
 export function useVendorCredit(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<UseQueryOptions<VendorCredit>, 'queryKey' | 'queryFn'>,
   _requestProps?: unknown,
 ) {
-  const fetcher = useApiFetcher();
+  const fetcher = useApiFetcher({ enableCamelCaseTransform: true });
 
   return useQuery({
     ...props,
@@ -246,7 +248,7 @@ export function useDeleteRefundVendorCredit(
 
 export function useRefundVendorCredit(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<UseQueryOptions<VendorCreditRefund[]>, 'queryKey' | 'queryFn'>,
   _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
@@ -313,7 +315,10 @@ export function useReconcileVendorCredit(
 
 export function useReconcileVendorCredits(
   id: number | null | undefined,
-  props?: Omit<UseQueryOptions<unknown>, 'queryKey' | 'queryFn'>,
+  props?: Omit<
+    UseQueryOptions<VendorCreditAppliedBill[]>,
+    'queryKey' | 'queryFn'
+  >,
   _requestProps?: unknown,
 ) {
   const fetcher = useApiFetcher();
