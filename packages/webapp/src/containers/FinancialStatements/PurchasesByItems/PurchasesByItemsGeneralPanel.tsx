@@ -7,7 +7,7 @@ import {
   PurchasesByItemsGeneralPanelProvider,
   usePurchaseByItemsGeneralPanelContext,
 } from './PurchasesByItemsGeneralPanelProvider';
-import { Row, Col, ItemsMultiSelect, FFormGroup } from '@/components';
+import { Row, Col, FItemsMultiSelect, FFormGroup } from '@/components';
 
 /**
  *
@@ -43,7 +43,7 @@ function PurchasesByItemsGeneralPanelContent() {
       <Row>
         <Col xs={4}>
           <FFormGroup name={'itemsIds'} label={intl.get('Specific items')}>
-            <ItemsMultiSelect name={'itemsIds'} items={items} />
+            <FItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>
       </Row>

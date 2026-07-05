@@ -7,7 +7,7 @@ import {
   useInventoryValuationGeneralPanelContext,
 } from './InventoryValuationHeaderGeneralPanelProvider';
 import {
-  ItemsMultiSelect,
+  FItemsMultiSelect,
   Row,
   Col,
   FieldHint,
@@ -68,7 +68,7 @@ function InventoryValuationHeaderGeneralPanelContent() {
       <Row>
         <Col xs={4}>
           <FFormGroup name={'itemsIds'} label={intl.get('Specific items')}>
-            <ItemsMultiSelect name={'itemsIds'} items={items} />
+            <FItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>
       </Row>

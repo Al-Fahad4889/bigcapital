@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Button } from '@blueprintjs/core';
-import { FormikSelect } from '@blueprintjs-formik/select';
+import { FormikSelect, Select } from '@blueprintjs-formik/select';
 import clsx from 'classnames';
 import React from 'react';
 import styled from 'styled-components';
@@ -17,6 +17,20 @@ export function FSelect<T extends SelectOptionProps = SelectOptionProps>({
     />
   );
   return <FormikSelect<T> input={input} fill={true} {...props} />;
+}
+
+export function BPSelect<T extends SelectOptionProps = SelectOptionProps>({
+  ...props
+}) {
+  const input = ({ activeItem, text, label, value }) => (
+    <SelectButton
+      text={text || props.placeholder || 'Select an item ...'}
+      disabled={props.disabled || false}
+      {...props.buttonProps}
+      className={clsx({ 'is-selected': !!text }, props.className)}
+    />
+  );
+  return <Select<T> input={input} fill={true} {...props} />;
 }
 
 export const SelectButton = styled(Button)`

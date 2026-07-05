@@ -1,13 +1,10 @@
 import React, { createContext, useContext } from 'react';
 import { FinancialHeaderLoadingSkeleton } from '../FinancialHeaderLoadingSkeleton';
+import type { Item } from '@bigcapital/sdk-ts';
 import { useItems } from '@/hooks/query';
 
-type UseItemsResult = ReturnType<typeof useItems>;
-
 interface PurchasesByItemsGeneralPanelContextValue {
-  items: UseItemsResult['data'] extends { items?: infer I } | undefined
-    ? I
-    : unknown;
+  items: Item[] | undefined;
   isItemsLoading: boolean;
   isItemsFetching: boolean;
 }
