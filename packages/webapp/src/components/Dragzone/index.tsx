@@ -5,7 +5,6 @@ import { useDropzone } from 'react-dropzone';
 import intl from 'react-intl-universal';
 import { Icon } from '@/components/Icon';
 
-
 // const initialFile: {
 //   file: ?File,
 //   preview: string,

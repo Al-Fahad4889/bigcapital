@@ -45,9 +45,6 @@ import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { ProjectsSelect } from '@/containers/Projects/components';
 import { safeSumBy } from '@/utils';
 
-
-
-
 const getHeaderFieldsStyle = (theme: Theme) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;

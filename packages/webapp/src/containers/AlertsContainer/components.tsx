@@ -9,7 +9,6 @@ import { AppToaster } from '@/components';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 
-
 function AlertLazyFallbackMessage({ amount }) {
   return (
     <React.Fragment>

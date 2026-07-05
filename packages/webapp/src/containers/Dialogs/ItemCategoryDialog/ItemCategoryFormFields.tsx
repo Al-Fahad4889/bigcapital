@@ -10,7 +10,6 @@ import {
 } from '@/components';
 import { useAutofocus } from '@/hooks';
 
-
 /**
  * Item category form fields.
  */

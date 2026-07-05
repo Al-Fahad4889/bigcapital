@@ -11,7 +11,6 @@ import { useSwitchOrganization } from '@/ee/workspaces/hooks/useSwitchOrganizati
 import { useAuthOrganizationId } from '@/hooks/state';
 import { firstLettersArgs } from '@/utils';
 
-
 import '@/ee/workspaces/style/containers/Dashboard/WorkspacesSidebar.scss';
 
 /**

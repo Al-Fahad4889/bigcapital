@@ -11,7 +11,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { useGenerateApiKey } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 const defaultInitialValues = {
   name: '',
 };

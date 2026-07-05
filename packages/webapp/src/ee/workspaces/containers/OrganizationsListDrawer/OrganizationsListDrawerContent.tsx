@@ -16,7 +16,6 @@ import {
 } from '@/ee/workspaces/hooks/query';
 import { useAuthOrganizationId } from '@/hooks/state';
 
-
 import '@/ee/workspaces/style/containers/Workspaces/OrganizationsListDrawer.scss';
 
 const organizationsDrawerSearchFormGroupCss = css`

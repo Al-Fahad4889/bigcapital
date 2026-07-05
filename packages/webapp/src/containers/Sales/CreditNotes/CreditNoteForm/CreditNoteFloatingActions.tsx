@@ -30,7 +30,6 @@ import {
 import { useDrawerActions } from '@/hooks/state';
 import { MoreIcon } from '@/icons/More';
 
-
 /**
  * Credit note floating actions.
  */

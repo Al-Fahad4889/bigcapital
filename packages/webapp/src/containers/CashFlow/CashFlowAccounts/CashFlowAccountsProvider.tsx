@@ -6,8 +6,6 @@ import type { BankingAccountsListResponse } from '@bigcapital/sdk-ts';
 import { DashboardInsider } from '@/components/Dashboard';
 import { useCashflowAccounts } from '@/hooks/query';
 
-
-
 export interface CashFlowAccountsContextValue {
   cashflowAccounts?: BankingAccountsListResponse;
   isCashFlowAccountsFetching: boolean;

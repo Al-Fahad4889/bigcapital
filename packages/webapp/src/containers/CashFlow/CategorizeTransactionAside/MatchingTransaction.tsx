@@ -32,10 +32,6 @@ import { useMatchUncategorizedTransaction } from '@/hooks/query/banking';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 import { compose } from '@/utils';
 
-
-
-
-
 const initialValues: MatchingTransactionFormValues = {
   matched: {},
 };

@@ -15,7 +15,6 @@ import { CLASSES } from '@/constants/classes';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
 function InviteUserFormContentInner({
   // #withDialogActions
   closeDialog,

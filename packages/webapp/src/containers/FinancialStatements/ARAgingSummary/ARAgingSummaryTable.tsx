@@ -7,7 +7,6 @@ import { ReportDataTable, FinancialSheet } from '@/components';
 import { TableStyle } from '@/constants';
 import { tableRowTypesToClassnames } from '@/utils';
 
-
 interface ARAgingSummaryTableProps {
   organizationName: string;
 }

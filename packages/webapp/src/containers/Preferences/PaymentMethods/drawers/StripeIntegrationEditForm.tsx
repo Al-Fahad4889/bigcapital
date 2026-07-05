@@ -10,7 +10,6 @@ import { useUpdatePaymentMethod } from '@/hooks/query/payment-services';
 import { useDrawerActions } from '@/hooks/state';
 import { transformToForm } from '@/utils';
 
-
 interface StripeIntegrationFormValues {
   bankAccountId: string;
   clearingAccountId: string;

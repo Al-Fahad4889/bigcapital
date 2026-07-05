@@ -22,7 +22,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { compose } from '@/utils';
 
-
 /**
  * Project detail actions bar.
  * @returns

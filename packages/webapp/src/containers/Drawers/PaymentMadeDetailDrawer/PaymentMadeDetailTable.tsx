@@ -4,7 +4,6 @@ import { usePaymentMadeEntriesColumns } from './utils';
 import { CommercialDocEntriesTable } from '@/components';
 import { TableStyle } from '@/constants';
 
-
 /**
  * Payment made read-only details table.
  */

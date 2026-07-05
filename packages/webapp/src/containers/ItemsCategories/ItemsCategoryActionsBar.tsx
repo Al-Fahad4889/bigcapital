@@ -26,8 +26,6 @@ import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
-
 interface ItemsCategoryActionsBarInnerProps
   extends WithItemCategoriesActionsProps,
     WithDialogActionsProps,

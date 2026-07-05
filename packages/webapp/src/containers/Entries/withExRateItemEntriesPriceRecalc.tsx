@@ -4,7 +4,6 @@ import { useAutoExRateContext } from './AutoExchangeProvider';
 import { useUpdateEntriesOnExchangeRateChange } from './useUpdateEntriesOnExchangeRateChange';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-
 export interface WithExchangeRateItemEntriesPriceRecalcProps {
   onRecalcConfirm: (args: {
     exchangeRate: number;

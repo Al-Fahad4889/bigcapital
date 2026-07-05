@@ -26,8 +26,6 @@ import { PageForm } from '@/components/PageForm';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { safeSumBy } from '@/utils';
 
-
-
 type BillSubmitError = {
   data?: { errors?: { type: string }[] };
 };

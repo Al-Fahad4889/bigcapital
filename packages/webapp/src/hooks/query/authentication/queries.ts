@@ -30,7 +30,6 @@ import {
 import { useAuthApiFetcher, useApiFetcher } from '../../useRequest';
 import { authenticationKeys } from './query-keys';
 
-
 /**
  * Saves the response data to cookies.
  */

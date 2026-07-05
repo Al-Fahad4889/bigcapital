@@ -16,7 +16,6 @@ import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { useItemAssociatedBillTransactions } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 interface BillPaymentTransactionsInnerProps
   extends Pick<WithAlertActionsProps, 'openAlert'>,
     Pick<WithDrawerActionsProps, 'closeDrawer'> {}

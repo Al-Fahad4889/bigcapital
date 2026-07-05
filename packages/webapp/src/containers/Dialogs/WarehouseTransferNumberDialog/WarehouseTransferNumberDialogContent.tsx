@@ -13,7 +13,6 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { useSaveSettings } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * Warehouse transfer no dialog content.
  */

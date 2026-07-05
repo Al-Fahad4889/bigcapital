@@ -16,7 +16,6 @@ import {
 import { useUncontrolled } from '@/hooks/useUncontrolled';
 import { formatBytes } from '@/utils/format-bytes';
 
-
 interface AttachmentFileCommon {
   originName: string;
   key: string;

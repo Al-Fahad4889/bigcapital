@@ -11,7 +11,6 @@ import { SMSMessageFormFloatingActions } from './SMSMessageFormFloatingActions';
 import { SMSMessagePreview } from '@/components';
 import { getSMSUnits } from '@/containers/NotifyViaSMS/utils';
 
-
 /**
  * SMS message form content.
  */

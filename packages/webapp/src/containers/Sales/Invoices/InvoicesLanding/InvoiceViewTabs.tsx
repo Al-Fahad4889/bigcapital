@@ -8,7 +8,6 @@ import type { WithInvoicesProps } from './withInvoices';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 interface WithInvoiceActionsProps {
   setInvoicesTableState: (state: Record<string, any>) => void;
 }

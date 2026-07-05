@@ -19,7 +19,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { momentFormatter, compose } from '@/utils';
 
-
 /**
  * Warehouse transfer form header fields.
  */

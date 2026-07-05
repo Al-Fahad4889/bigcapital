@@ -8,7 +8,6 @@ import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { useDrawerActions } from '@/hooks/state';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
-
 export function InvoiceSendMailFields() {
   const items = useInvoiceMailItems();
   const argsOptions = useSendInvoiceFormatArgsOptions();

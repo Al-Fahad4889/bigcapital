@@ -20,7 +20,6 @@ import {
   handleDateChange,
 } from '@/utils';
 
-
 /**
  * Vendors balance header - General panel - Content.
  */

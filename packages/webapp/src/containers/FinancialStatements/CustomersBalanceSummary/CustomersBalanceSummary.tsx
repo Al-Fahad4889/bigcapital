@@ -15,7 +15,6 @@ import {
 import { FinancialStatement, DashboardPageContent } from '@/components';
 import { DialogsName } from '@/constants/dialogs';
 
-
 type CustomersBalanceSummaryProps = Pick<
   WithCustomersBalanceSummaryActionsProps,
   'toggleCustomerBalanceFilterDrawer'

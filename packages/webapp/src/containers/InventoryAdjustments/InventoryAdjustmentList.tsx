@@ -9,7 +9,6 @@ import type { WithInventoryAdjustmentsProps } from './withInventoryAdjustments';
 import { DashboardContentTable, DashboardPageContent } from '@/components';
 import { compose, transformTableStateToQuery } from '@/utils';
 
-
 interface InventoryAdjustmentListInnerProps
   extends Pick<
     WithInventoryAdjustmentsProps,

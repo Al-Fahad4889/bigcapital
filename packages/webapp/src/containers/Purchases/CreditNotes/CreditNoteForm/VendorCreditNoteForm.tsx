@@ -29,9 +29,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { compose, safeSumBy, transactionNumber } from '@/utils';
 
-
-
-
 interface VendorCreditNoteFormInnerProps {
   vendorcreditAutoIncrement?: boolean;
   vendorcreditNumberPrefix?: string;

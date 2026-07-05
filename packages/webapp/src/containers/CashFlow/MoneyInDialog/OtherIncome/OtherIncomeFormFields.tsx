@@ -25,7 +25,6 @@ import {
 import { ACCOUNT_TYPE, Features } from '@/constants';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Other income form fields.
  */

@@ -21,8 +21,6 @@ import { AppToaster, FormattedMessage as T } from '@/components';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose, transformToForm } from '@/utils';
 
-
-
 const defaultValues = {
   role_name: '',
   role_description: '',

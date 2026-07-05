@@ -5,7 +5,6 @@ import { useEstimateTotalFormatted } from './utils';
 import { Group, PageFormBigNumber } from '@/components';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
-
 // Estimate form top header.
 export function EstimateFormHeader() {
   const isDarkMode = useIsDarkMode();

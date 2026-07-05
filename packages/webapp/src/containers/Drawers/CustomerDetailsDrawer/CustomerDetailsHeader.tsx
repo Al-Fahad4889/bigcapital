@@ -7,7 +7,6 @@ import Style from './CustomerDetailsDrawer.module.scss';
 import { useCustomerDetailsDrawerContext } from './CustomerDetailsDrawerProvider';
 import { DetailsMenu, DetailItem, T } from '@/components';
 
-
 /**
  * Customer details header.
  */

@@ -11,7 +11,6 @@ import { useSubscriptionPlans } from '@/hooks/constants/useSubscriptionPlans';
 import { useChangeSubscriptionPlan } from '@/hooks/query/subscription';
 import { SubscriptionPlansPeriod } from '@/store/plans/plans.reducer';
 
-
 export function ChangeSubscriptionPlans() {
   const subscriptionPlans = useSubscriptionPlans();
 

@@ -7,7 +7,6 @@ import { DrawerMainTabs, FormattedMessage as T } from '@/components';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 
-
 export function ItemDetailTab() {
   const { featureCan } = useFeatureCan();
 

@@ -21,7 +21,6 @@ import {
 import { CLASSES } from '@/constants/classes';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Project expense form fields.
  * @returns

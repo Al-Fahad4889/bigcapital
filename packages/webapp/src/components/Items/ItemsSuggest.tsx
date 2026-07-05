@@ -175,6 +175,4 @@ const ItemsSuggestWithLogic = withItemsSuggestLogic(Suggest);
 const FItemsSuggestWithLogic = withItemsSuggestLogic(FSuggest);
 
 export const ItemsSuggest = withDrawerActions(ItemsSuggestWithLogic);
-export const FItemsSuggest = withDrawerActions(
-  FItemsSuggestWithLogic,
-);
+export const FItemsSuggest = withDrawerActions(FItemsSuggestWithLogic);

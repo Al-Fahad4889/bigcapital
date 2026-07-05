@@ -10,7 +10,6 @@ import type { WithItemCategoriesProps } from './withItemCategories';
 import { DashboardContentTable, DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 interface ItemCategoryListProps
   extends Pick<WithItemCategoriesProps, 'itemsCategoriesTableState'> {}
 

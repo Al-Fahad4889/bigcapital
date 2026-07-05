@@ -8,7 +8,6 @@ import {
 import { withPaymentReceivedMailReceiptPreviewProps } from './withPaymentReceivedMailReceiptPreviewProps';
 import { Stack } from '@/components';
 
-
 const mailReceiptCss = css`
   margin: 0 auto;
   border-radius: 5px !important;

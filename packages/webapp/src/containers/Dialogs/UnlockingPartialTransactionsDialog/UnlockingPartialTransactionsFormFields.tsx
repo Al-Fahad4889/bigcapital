@@ -15,7 +15,6 @@ import { CLASSES } from '@/constants/classes';
 import { useAutofocus } from '@/hooks';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Parial Unlocking transactions form fields.
  */

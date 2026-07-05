@@ -15,7 +15,6 @@ import type { FormikHelpers } from 'formik';
 import { FormattedMessage as T } from '@/components';
 import { compose, transformToForm } from '@/utils';
 
-
 interface RealizedGainOrLossHeaderOwnProps {
   onSubmitFilter: (values: Record<string, unknown>) => void;
   pageFilter: Record<string, unknown>;

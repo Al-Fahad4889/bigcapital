@@ -6,7 +6,6 @@ import intl from 'react-intl-universal';
 import { FSelect } from '@/components';
 import { CLASSES } from '@/constants/classes';
 
-
 /**
  *
  * @param {*} query

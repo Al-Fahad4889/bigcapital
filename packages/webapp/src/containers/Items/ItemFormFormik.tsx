@@ -21,7 +21,6 @@ import { AppToaster } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { safeInvoke } from '@/utils';
 
-
 /**
  * Item form.
  */

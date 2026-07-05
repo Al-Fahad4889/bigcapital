@@ -14,7 +14,6 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { useSaveSettings } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * invoice number dialog's content.
  */

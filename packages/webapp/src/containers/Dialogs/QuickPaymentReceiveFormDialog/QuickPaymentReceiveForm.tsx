@@ -17,7 +17,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { compose, transactionNumber } from '@/utils';
 
-
 /**
  * Quick payment receive form.
  */

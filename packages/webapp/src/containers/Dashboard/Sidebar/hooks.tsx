@@ -18,7 +18,6 @@ import {
 } from '@/hooks/state';
 import { filterValuesDeep, deepdash } from '@/utils';
 
-
 const deepDashConfig = {
   childrenPath: 'children',
   pathFormat: 'array',

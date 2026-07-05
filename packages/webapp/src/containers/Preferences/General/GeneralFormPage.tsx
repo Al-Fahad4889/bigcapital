@@ -13,7 +13,6 @@ import { AppToaster } from '@/components';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose, transformToForm } from '@/utils';
 
-
 const defaultValues = {
   name: '',
   industry: '',

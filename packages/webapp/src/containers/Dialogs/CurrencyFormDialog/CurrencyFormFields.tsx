@@ -16,7 +16,6 @@ import { CLASSES } from '@/constants/classes';
 import { useAutofocus } from '@/hooks';
 import { currenciesOptions } from '@/utils';
 
-
 /**
  * Currency form fields.
  */

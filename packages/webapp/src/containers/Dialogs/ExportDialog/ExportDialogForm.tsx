@@ -10,7 +10,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { useResourceExport } from '@/hooks/query/FinancialReports/use-export';
 import { compose, transformToForm } from '@/utils';
 
-
 // Default initial form values.
 const defaultInitialValues = {
   resource: '',

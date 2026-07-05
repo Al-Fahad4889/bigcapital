@@ -5,7 +5,6 @@ import { MoneyInFloatingActions } from './MoneyInFloatingActions';
 import { MoneyInFormDialog } from './MoneyInFormDialog';
 import { MoneyInFormFields } from './MoneyInFormFields';
 
-
 /**
  * Money In form content.
  */

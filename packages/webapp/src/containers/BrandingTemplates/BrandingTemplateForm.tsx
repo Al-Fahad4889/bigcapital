@@ -22,7 +22,6 @@ import {
 } from '@/hooks/query/pdf-templates';
 import { excludePrivateProps } from '@/utils';
 
-
 interface BrandingTemplateFormProps<
   T extends BrandingTemplateValues,
   Y extends BrandingState,

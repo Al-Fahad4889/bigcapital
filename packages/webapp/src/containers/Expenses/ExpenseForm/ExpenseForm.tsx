@@ -29,7 +29,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * Expense form.
  */

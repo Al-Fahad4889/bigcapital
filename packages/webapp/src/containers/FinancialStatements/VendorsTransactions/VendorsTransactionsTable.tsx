@@ -7,7 +7,6 @@ import { DataTable, FinancialSheet } from '@/components';
 import { TableStyle } from '@/constants';
 import { defaultExpanderReducer, tableRowTypesToClassnames } from '@/utils';
 
-
 interface VendorsTransactionsTableProps {
   companyName: any;
 }

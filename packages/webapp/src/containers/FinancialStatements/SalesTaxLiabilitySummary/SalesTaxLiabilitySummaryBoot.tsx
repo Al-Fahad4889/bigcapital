@@ -7,7 +7,6 @@ import { transformFilterFormToQuery } from '../common';
 import { FinancialReportPage } from '../FinancialReportPage';
 import { useSalesTaxLiabilitySummary } from '@/hooks/query';
 
-
 type UseSalesTaxLiabilitySummaryResult = ReturnType<
   typeof useSalesTaxLiabilitySummary
 >;

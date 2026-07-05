@@ -25,7 +25,6 @@ import type {
 } from '@bigcapital/sdk-ts';
 import type { CustomersListResponse } from '@bigcapital/sdk-ts';
 
-
 const commonInvalidateQueries = (
   queryClient: ReturnType<typeof useQueryClient>,
 ) => {

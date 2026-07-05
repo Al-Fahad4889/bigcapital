@@ -13,7 +13,6 @@ import { CLASSES } from '@/constants/classes';
 import { useAutofocus } from '@/hooks';
 import { momentFormatter } from '@/utils';
 
-
 /**
  *  locking Transactions form fields.
  */

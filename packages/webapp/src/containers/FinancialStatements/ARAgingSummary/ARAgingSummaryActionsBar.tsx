@@ -25,8 +25,6 @@ import {
 } from '@/containers/Dialog/withDialogActions';
 import { compose, safeInvoke } from '@/utils';
 
-
-
 interface ARAgingSummaryActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (numberFormat: Record<string, unknown>) => void;

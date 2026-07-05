@@ -20,7 +20,6 @@ import {
   formattedAmount,
 } from '@/utils';
 
-
 export type PaymentReceiveEntry = {
   index: string | number;
   paymentAmount: string | number;

@@ -15,7 +15,6 @@ import { useApiFetcher } from '../../useRequest';
 import { getNextPageFromPagination } from '../utils/infinite-pagination';
 import { AUDIT_LOGS, AUDIT_LOG_FILTER_OPTIONS } from './query-keys';
 
-
 export { AuditLogsQueryKeys } from './query-keys';
 
 function auditLogStringListParam(value: string | string[] | null | undefined) {

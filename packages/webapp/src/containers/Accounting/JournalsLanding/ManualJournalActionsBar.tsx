@@ -37,7 +37,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshJournals } from '@/hooks/query/manual-journals';
 import { compose } from '@/utils';
 
-
 interface WithSettingsProps {
   manualJournalsTableSize?: string | null;
 }

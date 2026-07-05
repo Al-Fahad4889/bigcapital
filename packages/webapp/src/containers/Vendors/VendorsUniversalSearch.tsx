@@ -5,7 +5,6 @@ import { AbilitySubject, VendorAction } from '@/constants/abilityOption';
 import { DRAWERS } from '@/constants/drawers';
 import { RESOURCES_TYPES } from '@/constants/resourcesTypes';
 
-
 /**
  * Vendor univesal search item select action.
  */

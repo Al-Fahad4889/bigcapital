@@ -26,7 +26,6 @@ import {
 } from '@/hooks/query';
 import { useFeatureCan } from '@/hooks/state';
 
-
 type VendorCreditFormSubmitPayload = {
   redirect?: boolean;
   open?: boolean;

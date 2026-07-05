@@ -7,7 +7,6 @@ import type { FieldProps } from 'formik';
 import { Box } from '@/components';
 import { ItemsEntriesTable } from '@/containers/Entries/ItemsEntriesTable';
 
-
 /**
  * Credit note items entries editor field.
  */

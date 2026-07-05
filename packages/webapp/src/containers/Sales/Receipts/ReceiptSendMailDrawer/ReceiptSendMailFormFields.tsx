@@ -9,8 +9,6 @@ import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { useDrawerActions } from '@/hooks/state';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
-
-
 export function ReceiptSendMailFormFields() {
   const argsOptions = useSendReceiptFormatArgsOptions();
   const items = useSendMailItems();

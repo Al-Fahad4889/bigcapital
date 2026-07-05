@@ -32,7 +32,6 @@ import {
 } from '@/containers/Drawer/withDrawerActions';
 import { compose } from '@/utils';
 
-
 interface CreditNoteDetailActionsBarInnerProps
   extends WithDialogActionsProps,
     WithAlertActionsProps,

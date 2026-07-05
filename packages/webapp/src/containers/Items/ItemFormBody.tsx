@@ -30,7 +30,6 @@ import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { inputIntent } from '@/utils';
 
-
 /**
  * Item form body.
  */

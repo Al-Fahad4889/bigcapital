@@ -7,7 +7,6 @@ import CreateWorkspaceForm from './CreateWorkspaceForm';
 import InviteUsersStep from './InviteUsersStep';
 import { Stepper } from '@/components/Stepper';
 
-
 interface CreateWorkspaceStepperProps {
   onClose: () => void;
 }

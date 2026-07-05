@@ -11,7 +11,6 @@ import {
 } from '@/components';
 import { getColumnWidth } from '@/utils';
 
-
 /**
  * Retrieves the readonly warehouse transfer entries columns.
  */

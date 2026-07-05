@@ -39,7 +39,6 @@ import { useRefreshAccounts } from '@/hooks/query/accounts';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 
-
 interface AccountsActionsBarInnerProps {
   openDialog: WithDialogActionsProps['openDialog'];
   openAlert: WithAlertActionsProps['openAlert'];

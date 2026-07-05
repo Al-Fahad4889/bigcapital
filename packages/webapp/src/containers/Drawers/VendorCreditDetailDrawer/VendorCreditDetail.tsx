@@ -10,7 +10,6 @@ import { DrawerMainTabs } from '@/components';
 import { VendorCreditAction, AbilitySubject } from '@/constants/abilityOption';
 import { useAbilityContext } from '@/hooks/utils';
 
-
 /**
  * Vendor credit view detail.
  *

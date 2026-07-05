@@ -4,7 +4,6 @@ import { useGeneralLedgerContext } from './GeneralLedgerProvider';
 import { Align, CLASSES } from '@/constants';
 import { getColumnWidth } from '@/utils';
 
-
 interface CellProps {
   cell: { value: React.ReactNode };
 }

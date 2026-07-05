@@ -7,7 +7,6 @@ import type { WithBillsProps } from './withBills';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 interface WithBillsActionsProps {
   setBillsTableState: (state: Record<string, any>) => void;
 }

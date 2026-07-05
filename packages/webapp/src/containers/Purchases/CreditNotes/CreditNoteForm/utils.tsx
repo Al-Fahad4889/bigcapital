@@ -26,9 +26,6 @@ import {
   compose,
 } from '@/utils';
 
-
-
-
 export const MIN_LINES_NUMBER = 1;
 
 export type VendorCreditEntry = {

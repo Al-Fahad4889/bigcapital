@@ -26,7 +26,6 @@ import { Features } from '@/constants';
 import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Transfer to account form fields.
  */

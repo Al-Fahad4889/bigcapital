@@ -72,7 +72,9 @@ const itemRenderer: ItemItemRenderer = (
   );
 };
 
-export interface ItemMultiSelectModel extends Partial<Item>, SelectOptionProps {}
+export interface ItemMultiSelectModel
+  extends Partial<Item>,
+    SelectOptionProps {}
 
 interface ItemsMultiSelectOwnProps {
   // #withDrawerActions
@@ -168,6 +170,4 @@ const ItemsMultiSelectWithLogic = withItemsMultiSelectLogic(MultiSelect);
 const FItemsMultiSelectWithLogic = withItemsMultiSelectLogic(FMultiSelect);
 
 export const ItemsMultiSelect = withDrawerActions(ItemsMultiSelectWithLogic);
-export const FItemsMultiSelect = withDrawerActions(
-  FItemsMultiSelectWithLogic,
-);
+export const FItemsMultiSelect = withDrawerActions(FItemsMultiSelectWithLogic);

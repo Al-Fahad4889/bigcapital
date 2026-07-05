@@ -16,7 +16,6 @@ import {
 import { getEntriesTotal } from '@/containers/Entries/utils';
 import { formattedAmount } from '@/utils';
 
-
 export function ReconcileVendorCreditFormFields() {
   const {
     vendorCredit: { formatted_credits_remaining },

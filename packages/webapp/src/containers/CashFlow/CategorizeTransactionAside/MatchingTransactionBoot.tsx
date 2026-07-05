@@ -4,7 +4,6 @@ import * as R from 'ramda';
 import React, { createContext } from 'react';
 import { useGetBankTransactionsMatches } from '@/hooks/query/banking';
 
-
 interface MatchingTransactionBootValues {
   isMatchingTransactionsLoading: boolean;
   isMatchingTransactionsFetching: boolean;

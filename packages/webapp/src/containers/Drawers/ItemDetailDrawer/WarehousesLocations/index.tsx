@@ -6,7 +6,6 @@ import { DataTable, TableSkeletonRows, Card } from '@/components';
 import { TableStyle } from '@/constants';
 import { useItemWarehouseLocation } from '@/hooks/query';
 
-
 /**
  * Warehouses locations table columns.
  */

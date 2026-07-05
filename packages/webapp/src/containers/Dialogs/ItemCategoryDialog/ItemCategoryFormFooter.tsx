@@ -7,7 +7,6 @@ import { FormattedMessage as T } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
 /**
  * Item category form footer.
  */

@@ -18,7 +18,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { useDeleteWorkspace } from '@/ee/workspaces/hooks/query';
 import { compose } from '@/utils';
 
-
 function WorkspaceDeleteDialog({
   dialogName,
   isOpen,

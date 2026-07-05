@@ -9,9 +9,6 @@ import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { useOrganizationSetup } from '@/hooks/query';
 import { setCookie, compose, transfromToSnakeCase } from '@/utils';
 
-
-
-
 // Initial values.
 const defaultValues = {
   name: '',

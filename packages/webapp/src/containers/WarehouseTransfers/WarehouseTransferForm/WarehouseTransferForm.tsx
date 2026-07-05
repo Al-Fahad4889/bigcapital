@@ -29,8 +29,6 @@ import { withDashboardActions } from '@/containers/Dashboard/withDashboardAction
 import { withSettings } from '@/containers/Settings/withSettings';
 import { compose, orderingLinesIndexes, transactionNumber } from '@/utils';
 
-
-
 function WarehouseTransferFormInner({
   // #withSettings
   warehouseTransferNextNumber,

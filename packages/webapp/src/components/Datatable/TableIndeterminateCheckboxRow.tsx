@@ -3,7 +3,6 @@ import React from 'react';
 import type { Row } from 'react-table';
 import { CellType } from '@/constants';
 
-
 interface TableIndeterminateCheckboxRowProps {
   row: Row<any>;
 }

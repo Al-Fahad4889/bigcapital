@@ -6,7 +6,6 @@ import { transformFilterFormToQuery } from '../common';
 import { useAppQueryString } from '@/hooks';
 import { transformToForm } from '@/utils';
 
-
 /**
  * Retrieves the default trial balance query.
  */

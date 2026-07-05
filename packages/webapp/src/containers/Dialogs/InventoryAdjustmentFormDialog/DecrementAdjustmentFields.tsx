@@ -15,7 +15,6 @@ import {
 import { useAutofocus } from '@/hooks';
 import { inputIntent, toSafeNumber } from '@/utils';
 
-
 /**
  * Decrement adjustment fields.
  */

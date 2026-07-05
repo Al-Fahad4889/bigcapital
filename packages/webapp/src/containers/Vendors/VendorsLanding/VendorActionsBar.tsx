@@ -34,7 +34,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshVendors } from '@/hooks/query/vendors';
 import { compose } from '@/utils';
 
-
 /**
  * Vendors actions bar.
  */

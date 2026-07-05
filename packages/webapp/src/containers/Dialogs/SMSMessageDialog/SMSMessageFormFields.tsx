@@ -8,7 +8,6 @@ import { useSMSMessageDialogContext } from './SMSMessageDialogProvider';
 import { FormattedMessage as T } from '@/components';
 import { inputIntent } from '@/utils';
 
-
 /**
  *
  */

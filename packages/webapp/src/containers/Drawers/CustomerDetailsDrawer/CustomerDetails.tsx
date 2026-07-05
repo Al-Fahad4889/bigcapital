@@ -6,7 +6,6 @@ import Style from './CustomerDetailsDrawer.module.scss';
 import { CustomerDetailsHeader } from './CustomerDetailsHeader';
 import { Card } from '@/components';
 
-
 /**
  * contact detail.
  */

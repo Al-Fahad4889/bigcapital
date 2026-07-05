@@ -13,8 +13,6 @@ import { ElementCustomizeTabsControllerProvider } from './ElementCustomizeTabsCo
 import { Group } from '@/components';
 import { extractChildren } from '@/utils/extract-children';
 
-
-
 export interface ElementCustomizeProps<T, Y>
   extends ElementCustomizeFormProps<T, Y> {
   brandingState?: Y;

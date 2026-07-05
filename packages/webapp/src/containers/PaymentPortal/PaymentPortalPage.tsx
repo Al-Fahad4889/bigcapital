@@ -9,8 +9,6 @@ import styles from './PaymentPortal.module.scss';
 import { PaymentPortalBoot, usePaymentPortalBoot } from './PaymentPortalBoot';
 import { DRAWERS } from '@/constants/drawers';
 
-
-
 export function PaymentPortalPage() {
   const { linkId } = useParams<{ linkId: string }>();
 

@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 import { useAppQueryString } from '@/hooks';
 import { transformToForm } from '@/utils';
 
-
 /**
  * Retrieves the purchases by items query.
  */

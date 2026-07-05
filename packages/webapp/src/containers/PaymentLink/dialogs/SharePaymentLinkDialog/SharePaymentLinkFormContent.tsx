@@ -24,7 +24,6 @@ import { useDialogContext } from '@/components/Dialog/DialogProvider';
 import { useDialogActions } from '@/hooks/state';
 import { useClipboard } from '@/hooks/utils/useClipboard';
 
-
 export function SharePaymentLinkFormContent() {
   const { url } = useSharePaymentLink();
   const { closeDialog } = useDialogActions();

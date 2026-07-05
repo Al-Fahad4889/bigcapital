@@ -24,7 +24,6 @@ import {
 import { Features, ACCOUNT_TYPE } from '@/constants';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Owner drawings form fields.
  */

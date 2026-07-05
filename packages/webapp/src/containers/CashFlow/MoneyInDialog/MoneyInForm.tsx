@@ -4,7 +4,6 @@ import moment from 'moment';
 import React from 'react';
 import intl from 'react-intl-universal';
 
-
 import '@/style/pages/CashFlow/CashflowTransactionForm.scss';
 
 import { useMoneyInDailogContext } from './MoneyInDialogProvider';

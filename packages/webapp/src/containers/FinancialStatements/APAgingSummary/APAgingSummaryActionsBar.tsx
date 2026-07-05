@@ -28,7 +28,6 @@ import {
 } from '@/containers/Dialog/withDialogActions';
 import { saveInvoke, compose } from '@/utils';
 
-
 interface APAgingSummaryActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (numberFormat: Record<string, unknown>) => void;

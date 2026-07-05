@@ -8,7 +8,6 @@ import { InvoiceCustomizeFormValues } from './types';
 import { Box } from '@/components';
 import { useElementCustomizeContext } from '@/containers/ElementCustomize/ElementCustomizeProvider';
 
-
 /**
  * Injects the `InvoicePaperTemplate` component props from the form and branding states.
  * @param {React.ComponentType<P>} Component

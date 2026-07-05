@@ -14,7 +14,6 @@ import {
   defaultFastFieldShouldUpdate,
 } from '@/utils';
 
-
 /**
  * Error types for item operations.
  */

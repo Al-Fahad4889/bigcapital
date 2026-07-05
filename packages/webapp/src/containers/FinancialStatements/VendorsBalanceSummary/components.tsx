@@ -12,7 +12,6 @@ import {
   useVendorBalanceSummaryXlsxExport,
 } from '@/hooks/query';
 
-
 interface ColumnDef {
   key: string;
   [prop: string]: unknown;

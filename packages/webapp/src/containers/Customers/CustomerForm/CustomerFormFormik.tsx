@@ -11,8 +11,6 @@ import { AppToaster } from '@/components';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { transformToForm, saveInvoke, parseBoolean } from '@/utils';
 
-
-
 type CustomerFormValues = {
   customer_type: string;
   salutation: string;

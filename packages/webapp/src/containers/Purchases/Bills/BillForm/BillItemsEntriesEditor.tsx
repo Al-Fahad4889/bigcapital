@@ -5,7 +5,6 @@ import type { ItemEntry } from '@/interfaces/ItemEntries';
 import { ItemsEntriesTable } from '@/containers/Entries/ItemsEntriesTable';
 import { ITEM_TYPE } from '@/containers/Entries/utils';
 
-
 type EntriesFieldRenderProps = {
   form: {
     values: { currencyCode: string };

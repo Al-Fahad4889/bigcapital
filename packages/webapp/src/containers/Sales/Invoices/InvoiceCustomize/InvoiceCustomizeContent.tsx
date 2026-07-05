@@ -15,9 +15,6 @@ import { BrandingTemplateForm } from '@/containers/BrandingTemplates/BrandingTem
 import { useIsTemplateNamedFilled } from '@/containers/BrandingTemplates/utils';
 import { useDrawerActions } from '@/hooks/state';
 
-
-
-
 const InvoiceCustomizePaymentPreview = lazy(() =>
   import('./InvoiceCustomizePaymentPreview').then((module) => ({
     default: module.InvoiceCustomizePaymentPreview,

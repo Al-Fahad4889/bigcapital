@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 import { useAppQueryString } from '@/hooks';
 import { transformToForm } from '@/utils';
 
-
 export const getCustomersTransactionsQuerySchema = () => {
   return Yup.object().shape({
     fromDate: Yup.date().required().label(intl.get('fromDate')),

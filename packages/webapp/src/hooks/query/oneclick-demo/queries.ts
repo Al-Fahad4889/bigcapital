@@ -16,7 +16,6 @@ import {
 import useApiRequest from '../../useRequest';
 import { setAuthLoginCookies } from '../authentication';
 
-
 interface CreateOneClickDemoValues {}
 interface CreateOneClickDemoRes {
   email: string;

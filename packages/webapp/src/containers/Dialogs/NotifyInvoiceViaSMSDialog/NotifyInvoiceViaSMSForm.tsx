@@ -10,7 +10,6 @@ import { NotifyViaSMSForm } from '@/containers/NotifyViaSMS/NotifyViaSMSForm';
 import { transformErrors } from '@/containers/NotifyViaSMS/utils';
 import { compose } from '@/utils';
 
-
 const transformFormValuesToRequest = (values) => {
   return pick(values, ['notification_key']);
 };

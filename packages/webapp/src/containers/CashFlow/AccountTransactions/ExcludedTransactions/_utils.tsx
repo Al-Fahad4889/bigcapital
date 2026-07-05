@@ -5,7 +5,6 @@ import type { ExcludedBankTransactionsListPage } from '@bigcapital/sdk-ts';
 import { CLASSES } from '@/constants';
 import { getColumnWidth } from '@/utils';
 
-
 export type ExcludedTransactionRow = NonNullable<
   ExcludedBankTransactionsListPage['data']
 >[number] & {

@@ -15,7 +15,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
 const defaultInitialValues = {
   date: moment(new Date()).format('YYYY-MM-DD'),
   type: 'decrement',

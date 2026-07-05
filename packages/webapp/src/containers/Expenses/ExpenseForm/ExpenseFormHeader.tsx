@@ -5,7 +5,6 @@ import { ExpenseFormHeader as ExpenseFormHeaderFields } from './ExpenseFormHeade
 import { useExpenseTotalFormatted } from './utils';
 import { PageForm, PageFormBigNumber } from '@/components';
 
-
 // Expense form header.
 export function ExpenseFormHeader() {
   const totalFormatted = useExpenseTotalFormatted();

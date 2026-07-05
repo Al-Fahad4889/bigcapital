@@ -15,7 +15,6 @@ import {
 } from '@/containers/Drawer/withDrawerActions';
 import { compose } from '@/utils';
 
-
 interface LocatedLandedCostTableInnerProps
   extends WithAlertActionsProps,
     WithDrawerActionsProps {}

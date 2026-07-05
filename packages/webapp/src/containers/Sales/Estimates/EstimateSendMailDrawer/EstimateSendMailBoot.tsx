@@ -4,7 +4,6 @@ import React, { createContext, useContext } from 'react';
 import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { useSaleEstimateMailState } from '@/hooks/query';
 
-
 interface EstimateSendMailBootValues {
   estimateId: number;
 

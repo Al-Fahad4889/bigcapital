@@ -12,7 +12,6 @@ import { withCustomersActions } from './withCustomersActions';
 import { DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 /**
  * Customers list.
  */

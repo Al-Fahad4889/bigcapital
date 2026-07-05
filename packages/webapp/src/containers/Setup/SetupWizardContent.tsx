@@ -8,7 +8,6 @@ import { SetupOrganizationPage } from './SetupOrganizationPage';
 import { SetupSubscription } from './SetupSubscription/SetupSubscription';
 import { Stepper } from '@/components/Stepper';
 
-
 interface SetupWizardContentProps {
   stepIndex: number;
   stepId: string;

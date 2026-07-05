@@ -4,7 +4,6 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { handleStringChange } from '@/utils';
 
-
 interface RadiosAccountingBasisProps {
   key?: string;
   [key: string]: unknown;

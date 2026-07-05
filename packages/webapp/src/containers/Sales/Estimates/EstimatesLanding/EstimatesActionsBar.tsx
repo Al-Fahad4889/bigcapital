@@ -42,7 +42,6 @@ import { useRefreshEstimates } from '@/hooks/query/estimates';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 
-
 interface WithEstimatesActionsProps {
   setEstimatesTableState: (state: Record<string, any>) => void;
 }

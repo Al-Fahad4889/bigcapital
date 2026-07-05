@@ -3,7 +3,6 @@ import React, { cloneElement } from 'react';
 import { DropzoneContextValue, useDropzoneContext } from './DropzoneProvider';
 import { isElement } from '@/utils/is-element';
 
-
 export interface DropzoneStatusProps {
   children: React.ReactNode;
 }

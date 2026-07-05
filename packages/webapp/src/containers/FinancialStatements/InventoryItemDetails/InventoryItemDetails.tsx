@@ -17,7 +17,6 @@ import {
 import { FinancialStatement, DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 interface InventoryItemDetailsProps {
   toggleInventoryItemDetailsFilterDrawer: WithInventoryItemDetailsActionsProps['toggleInventoryItemDetailsFilterDrawer'];
 }

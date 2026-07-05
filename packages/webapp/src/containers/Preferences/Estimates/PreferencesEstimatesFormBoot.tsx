@@ -7,8 +7,6 @@ import { Card } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { useSettings } from '@/hooks/query';
 
-
-
 const PreferencesEstimatesFormContext = React.createContext();
 
 function PreferencesEstimatesBoot({ ...props }) {

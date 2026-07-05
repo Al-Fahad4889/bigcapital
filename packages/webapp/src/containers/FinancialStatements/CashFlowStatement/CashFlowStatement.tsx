@@ -17,9 +17,6 @@ import {
 import { FinancialStatement, DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
-
-
 type CashFlowStatementProps = Pick<
   WithCashFlowStatementActionsProps,
   'toggleCashFlowStatementFilterDrawer'

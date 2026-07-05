@@ -26,8 +26,6 @@ import { useIsDarkMode } from '@/hooks/useDarkMode';
 import { MoreIcon } from '@/icons/More';
 import { StripeLogo } from '@/icons/StripeLogo';
 
-
-
 export function StripePaymentMethod() {
   const { openDialog } = useDialogActions();
   const { openDrawer } = useDrawerActions();

@@ -22,7 +22,6 @@ import {
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 
-
 /**
  * Receipt form topbar .
  * @returns {JSX.Element}

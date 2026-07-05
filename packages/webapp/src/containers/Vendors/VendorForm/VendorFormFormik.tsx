@@ -17,9 +17,6 @@ import { CLASSES } from '@/constants/classes';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { transformToForm, safeInvoke, parseBoolean } from '@/utils';
 
-
-
-
 /**
  * Vendor form.
  */

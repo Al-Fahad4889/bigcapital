@@ -4,7 +4,6 @@ import { x } from '@xstyled/emotion';
 import React from 'react';
 import { FormattedMessage as T } from '@/components';
 
-
 interface BulkDeleteDialogContentProps {
   totalSelected: number;
   deletableCount: number;

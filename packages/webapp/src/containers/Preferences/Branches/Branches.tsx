@@ -7,7 +7,6 @@ import { useBranchesContext } from './BranchesProvider';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose } from '@/utils';
 
-
 function BranchesInner({
   // #withDashboardActions
   changePreferencesPageTitle,

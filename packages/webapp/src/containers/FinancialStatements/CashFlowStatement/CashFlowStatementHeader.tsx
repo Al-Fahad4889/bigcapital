@@ -22,7 +22,6 @@ import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import { compose, transformToForm } from '@/utils';
 
-
 type CashFlowSheetFormValues = ReturnType<typeof getDefaultCashFlowSheetQuery>;
 
 interface CashFlowStatementHeaderOwnProps {

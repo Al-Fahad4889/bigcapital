@@ -9,7 +9,6 @@ import type { WithItemsActionsProps } from './withItemsActions';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 interface ItemsViewsTabsInnerProps extends WithItemsActionsProps {
   itemsCurrentView: WithItemsProps['itemsTableState']['viewSlug'];
 }

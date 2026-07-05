@@ -13,7 +13,6 @@ import { FormattedMessage as T } from '@/components';
 import { FinancialStatementHeader } from '@/containers/FinancialStatements/FinancialStatementHeader';
 import { compose } from '@/utils';
 
-
 interface JournalHeaderFormValues {
   fromDate: Date;
   toDate: Date;

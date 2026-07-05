@@ -40,9 +40,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshItems } from '@/hooks/query/items';
 import { compose } from '@/utils';
 
-
-
-
 interface WithSettingsProps {
   itemsTableSize?: string | null;
 }

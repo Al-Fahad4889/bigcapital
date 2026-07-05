@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { FormattedMessage as T, FFormGroup, FTextArea } from '@/components';
 
-
 /**
  * Preferences general form.
  */

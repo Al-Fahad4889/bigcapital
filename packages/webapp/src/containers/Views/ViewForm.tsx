@@ -24,7 +24,6 @@ import { If, Icon, AppToaster } from '@/components';
 import ErrorMessage from '@/components/ErrorMessage';
 import { ViewFormContainer } from '@/containers/Views/ViewForm.container';
 
-
 function ViewFormInner({
   requestSubmitView,
   requestEditView,

@@ -7,7 +7,6 @@ import { WithRealizedGainOrLossActionsProps } from './withRealizedGainOrLossActi
 import { FinancialStatement, DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 type RealizedGainOrLossProps = {
   organizationName: string;
 } & Pick<

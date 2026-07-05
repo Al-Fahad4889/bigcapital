@@ -41,7 +41,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshInvoices } from '@/hooks/query/invoices';
 import { compose } from '@/utils';
 
-
 interface WithInvoiceActionsProps {
   setInvoicesTableState: (state: Record<string, any>) => void;
 }

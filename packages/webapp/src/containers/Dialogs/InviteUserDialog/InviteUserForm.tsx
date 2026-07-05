@@ -12,7 +12,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose, objectKeysTransform } from '@/utils';
 
-
 const initialValues = {
   email: '',
   role_id: '',

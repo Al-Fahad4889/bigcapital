@@ -29,7 +29,6 @@ import { CLASSES } from '@/constants/classes';
 import { useAutofocus } from '@/hooks';
 import { inputIntent } from '@/utils';
 
-
 /**
  * Bad debt form fields.
  */

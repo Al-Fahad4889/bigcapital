@@ -7,7 +7,6 @@ import type { WithVendorsCreditNotesProps } from './withVendorsCreditNotes';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 interface WithVendorsCreditNotesActionsProps {
   setVendorsCreditNoteTableState: (state: Record<string, any>) => void;
 }

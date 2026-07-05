@@ -21,7 +21,6 @@ import { useIsTemplateNamedFilled } from '@/containers/BrandingTemplates/utils';
 import { useElementCustomizeContext } from '@/containers/ElementCustomize/ElementCustomizeProvider';
 import { useDrawerActions } from '@/hooks/state';
 
-
 export function PaymentReceivedCustomizeContent() {
   const { payload, name } = useDrawerContext();
   const { closeDrawer } = useDrawerActions();

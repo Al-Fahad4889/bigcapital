@@ -5,7 +5,6 @@ import React from 'react';
 import { updateItemsEntriesTotal } from './utils';
 import type { ItemEntry } from '@/interfaces/ItemEntries';
 
-
 /**
  * Convert the given rate to the local currency.
  * @param {number} rate

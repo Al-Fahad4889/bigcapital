@@ -9,7 +9,6 @@ import {
 import { DashboardInsider } from '@/components';
 import { AutoExchangeRateProvider } from '@/containers/Entries/AutoExchangeProvider';
 
-
 /**
  * Receipt form page.
  */

@@ -9,7 +9,6 @@ import { NotifyViaSMSForm } from '@/containers/NotifyViaSMS/NotifyViaSMSForm';
 import { transformErrors } from '@/containers/NotifyViaSMS/utils';
 import { compose } from '@/utils';
 
-
 const notificationType = {
   key: 'payment-receive-details',
   label: intl.get('sms_notification.payment_details.type'),

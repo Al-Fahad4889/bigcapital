@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import { useAppQueryString } from '@/hooks';
 import { transformToForm } from '@/utils';
 
-
 /**
  * The validation schema of vendors transactions.
  */

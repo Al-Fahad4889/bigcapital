@@ -12,7 +12,6 @@ import {
 } from '@/containers/Alert/withAlertActions';
 import { compose } from '@/utils';
 
-
 /**
  * Roles data table.
  */

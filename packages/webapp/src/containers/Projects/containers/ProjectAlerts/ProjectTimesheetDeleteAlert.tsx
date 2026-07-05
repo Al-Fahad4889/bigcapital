@@ -9,7 +9,6 @@ import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { compose } from '@/utils';
 
-
 /**
  * Project timesheet delete alert.
  * @returns

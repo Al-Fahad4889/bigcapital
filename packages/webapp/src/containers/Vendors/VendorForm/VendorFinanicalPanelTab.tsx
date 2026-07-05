@@ -25,8 +25,6 @@ import {
 import { Features } from '@/constants';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-
-
 /**
  * Vendor Finaniceal Panel Tab.
  */

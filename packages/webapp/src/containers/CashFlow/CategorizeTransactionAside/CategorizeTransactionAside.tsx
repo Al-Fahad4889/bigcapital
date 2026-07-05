@@ -8,7 +8,6 @@ import type { WithBankingActionsProps } from '../withBankingActions';
 import { Aside } from '@/components/Aside/Aside';
 import { compose } from '@/utils';
 
-
 interface CategorizeTransactionAsideProps
   extends Pick<
       WithBankingActionsProps,

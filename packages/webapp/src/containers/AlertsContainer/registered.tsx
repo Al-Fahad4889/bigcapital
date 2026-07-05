@@ -33,8 +33,6 @@ import { VendorsAlerts } from '@/containers/Vendors/VendorsAlerts';
 import { WarehousesTransfersAlerts } from '@/containers/WarehouseTransfers/WarehousesTransfersAlerts';
 import WorkspacesAlerts from '@/ee/workspaces/containers/Alerts/WorkspacesAlerts';
 
-
-
 export const registered = [
   ...AccountsAlerts,
   ...ItemsAlerts,

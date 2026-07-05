@@ -8,7 +8,6 @@ import { DashboardViewsTabs } from '@/components';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 /**
  * Customers views tabs.
  */

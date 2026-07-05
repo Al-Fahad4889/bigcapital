@@ -15,7 +15,6 @@ import { FinancialStatement, DashboardPageContent } from '@/components';
 import { DialogsName } from '@/constants/dialogs';
 import { compose } from '@/utils';
 
-
 type APAgingSummaryProps = Pick<
   WithAPAgingSummaryActionsProps,
   'toggleAPAgingSummaryFilterDrawer'

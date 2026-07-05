@@ -7,7 +7,6 @@ import { Card } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { useSettings } from '@/hooks/query';
 
-
 const PreferencesCreditNotesFormContext = React.createContext();
 
 function PreferencesCreditNotesBoot({ ...props }) {

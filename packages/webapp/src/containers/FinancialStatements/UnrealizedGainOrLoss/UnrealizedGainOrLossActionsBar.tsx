@@ -19,7 +19,6 @@ import { DashboardActionsBar, FormattedMessage as T, Icon } from '@/components';
 import NumberFormatDropdown from '@/components/NumberFormatDropdown';
 import { compose, saveInvoke } from '@/utils';
 
-
 interface UnrealizedGainOrLossActionsBarOwnProps {
   numberFormat?: Record<string, unknown>;
   onNumberFormatSubmit?: (values: Record<string, unknown>) => void;

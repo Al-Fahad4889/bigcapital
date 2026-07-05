@@ -8,7 +8,6 @@ import {
 } from '@/containers/JournalEntriesTable/JournalEntriesTable';
 import { useTransactionsByReference } from '@/hooks/query';
 
-
 /**
  * Journal entries table.
  */

@@ -5,7 +5,6 @@ import React, { useMemo } from 'react';
 import intl from 'react-intl-universal';
 import { useInventoryAdjContext } from './InventoryAdjustmentFormProvider';
 
-
 export const decrementQuantity = (newQuantity, quantityOnHand) => {
   return quantityOnHand - newQuantity;
 };

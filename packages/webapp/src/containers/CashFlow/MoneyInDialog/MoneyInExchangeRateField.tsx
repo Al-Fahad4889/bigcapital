@@ -6,8 +6,6 @@ import type { MoneyInFormValues } from './types';
 import type { Account } from '@bigcapital/sdk-ts';
 import { ExchangeRateMutedField } from '@/components';
 
-
-
 export function MoneyInExchangeRateField() {
   const { account } = useMoneyInFieldsContext();
   const { values } = useFormikContext<MoneyInFormValues>();

@@ -11,7 +11,6 @@ import { DrawerMainTabs } from '@/components';
 import { CreditNoteAction, AbilitySubject } from '@/constants/abilityOption';
 import { useAbilityContext } from '@/hooks/utils';
 
-
 /**
  * Credit Note view detail.
  */

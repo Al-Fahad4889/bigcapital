@@ -38,9 +38,6 @@ import {
   safeSumBy,
 } from '@/utils';
 
-
-
-
 type CreditNoteFormInnerProps = {
   creditAutoIncrement?: boolean;
   creditNumberPrefix?: string;

@@ -10,7 +10,6 @@ import { Group, FormattedMessage as T } from '@/components';
 import { CLASSES } from '@/constants/classes';
 import { saveInvoke } from '@/utils';
 
-
 /**
  * Item form floating actions.
  */

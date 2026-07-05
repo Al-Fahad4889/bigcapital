@@ -7,7 +7,6 @@ import {
   ElementCustomizeContentItemFieldGroup,
 } from '@/containers/ElementCustomize/ElementCustomizeFieldsGroup';
 
-
 export function InvoiceCustomizeContentFields() {
   return (
     <Stack

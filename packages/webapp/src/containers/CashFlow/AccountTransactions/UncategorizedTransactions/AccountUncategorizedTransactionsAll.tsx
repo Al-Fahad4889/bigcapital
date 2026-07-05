@@ -8,7 +8,6 @@ import { AccountUncategorizedTransactionsBoot } from '../AllTransactionsUncatego
 import { AccountTransactionsCard } from './AccountTransactionsCard';
 import { AccountTransactionsUncategorizedTable } from './AccountTransactionsUncategorizedTable';
 
-
 interface AccountUncategorizedTransactionsAllRootProps
   extends WithBankingActionsProps {}
 

@@ -7,7 +7,6 @@ import { Group } from '@/components';
 import { TagsControl } from '@/components/TagsControl';
 import { useAppQueryString } from '@/hooks';
 
-
 interface TagsControlOption {
   value: string;
   label: React.ReactNode;

@@ -27,7 +27,6 @@ import {
   updateTableCell,
 } from '@/utils';
 
-
 export const MIN_LINES_NUMBER = 1;
 
 // Default warehouse transfer entry.

@@ -12,7 +12,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { compose } from '@/utils';
 
-
 /**
  * Porject sales datatable.
  * @returns

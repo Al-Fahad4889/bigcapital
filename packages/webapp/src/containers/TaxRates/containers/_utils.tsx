@@ -4,7 +4,6 @@ import clsx from 'classnames';
 import React from 'react';
 import { Align } from '@/constants';
 
-
 const codeAccessor = (taxRate) => {
   return (
     <Tag minimal={true} round={false} intent={Intent.NONE} interactive={true}>

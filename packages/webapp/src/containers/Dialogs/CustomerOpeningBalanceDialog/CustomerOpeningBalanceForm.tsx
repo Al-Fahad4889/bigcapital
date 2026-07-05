@@ -12,8 +12,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
-
 const defaultInitialValues = {
   opening_balance: '0',
   opening_balance_branch_id: '',

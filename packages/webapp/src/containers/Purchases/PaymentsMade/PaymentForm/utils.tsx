@@ -20,8 +20,6 @@ import {
   formattedAmount,
 } from '@/utils';
 
-
-
 export type PaymentMadeEntry = {
   index?: string | number;
   billId: string | number;

@@ -5,7 +5,6 @@ import { FMultiSelect } from '../Forms';
 import { DRAWERS } from '@/constants/drawers';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 
-
 /**
  * Contacts multi-select component.
  */

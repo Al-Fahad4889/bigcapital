@@ -7,7 +7,6 @@ import { CLASSES } from '@/constants/classes';
 import { useBranches } from '@/hooks/query';
 import { useFeatureCan } from '@/hooks/state';
 
-
 interface BranchesContextValue {
   branches: BranchesListResponse | undefined;
   isBranchesLoading: boolean;

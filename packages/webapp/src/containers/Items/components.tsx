@@ -23,7 +23,6 @@ import {
 } from '@/constants/abilityOption';
 import { isBlank, safeCallback } from '@/utils';
 
-
 export type ItemTableRow = Item & {
   // Runtime-only fields not declared on the SDK type.
   isPublished?: boolean;

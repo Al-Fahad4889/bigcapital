@@ -15,8 +15,6 @@ import {
 } from '@/components';
 import { momentFormatter } from '@/utils';
 
-
-
 export function APAgingSummaryHeaderGeneralContent() {
   const { vendors } = useAPAgingSummaryGeneralContext();
 

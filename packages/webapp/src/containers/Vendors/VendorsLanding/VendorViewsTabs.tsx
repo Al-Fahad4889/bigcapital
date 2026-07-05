@@ -7,7 +7,6 @@ import { withVendorsActions } from './withVendorsActions';
 import { DashboardViewsTabs } from '@/components';
 import { transfromViewsToTabs, compose } from '@/utils';
 
-
 /**
  * Vendors views tabs.
  */

@@ -9,7 +9,6 @@ import { withPaymentsReceivedActions } from './withPaymentsReceivedActions';
 import { FormattedMessage as T, DashboardViewsTabs } from '@/components';
 import { compose } from '@/utils';
 
-
 /**
  * Payment receive view tabs.
  */

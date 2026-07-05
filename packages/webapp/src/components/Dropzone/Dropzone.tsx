@@ -16,7 +16,6 @@ import styles from './Dropzone.module.css';
 import { DropzoneProvider } from './DropzoneProvider';
 import { DropzoneAccept, DropzoneIdle, DropzoneReject } from './DropzoneStatus';
 
-
 export type DropzoneStylesNames = 'root' | 'inner';
 export type DropzoneVariant = 'filled' | 'light';
 export type DropzoneCssVariables = {

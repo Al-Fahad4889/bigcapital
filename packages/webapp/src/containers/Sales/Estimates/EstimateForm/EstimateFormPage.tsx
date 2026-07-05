@@ -8,7 +8,6 @@ import {
 import { DashboardInsider } from '@/components';
 import { AutoExchangeRateProvider } from '@/containers/Entries/AutoExchangeProvider';
 
-
 /**
  * Estimate form page.
  */

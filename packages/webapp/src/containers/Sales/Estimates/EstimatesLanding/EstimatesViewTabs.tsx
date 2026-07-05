@@ -7,8 +7,6 @@ import type { WithEstimatesProps } from './withEstimates';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
-
 interface WithEstimatesActionsProps {
   setEstimatesTableState: (state: Record<string, any>) => void;
 }

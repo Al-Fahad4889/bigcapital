@@ -13,7 +13,6 @@ import { DRAWERS } from '@/constants/drawers';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 
-
 /**
  * Quick create/edit item drawer form.
  */

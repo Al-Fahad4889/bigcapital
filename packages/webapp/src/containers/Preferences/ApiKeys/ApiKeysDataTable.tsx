@@ -9,7 +9,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { useApiKeys, useRevokeApiKey } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * API Keys datatable.
  */

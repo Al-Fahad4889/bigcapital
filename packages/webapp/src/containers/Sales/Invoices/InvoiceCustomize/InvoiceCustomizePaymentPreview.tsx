@@ -9,7 +9,6 @@ import {
   InvoicePaymentPagePreviewProps,
 } from '@/containers/PaymentPortal/InvoicePaymentPagePreview';
 
-
 const withInvoicePaymentPreviewPageProps = <P extends Object>(
   Component: React.ComponentType<P>,
 ) => {

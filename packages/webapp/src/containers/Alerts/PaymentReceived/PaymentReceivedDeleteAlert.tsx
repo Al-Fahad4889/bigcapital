@@ -15,7 +15,6 @@ import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { useDeletePaymentReceive } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * Payment receive delete alert.
  */

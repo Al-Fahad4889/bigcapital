@@ -8,7 +8,6 @@ import {
   useAuthenticatedAccount,
 } from '@/hooks/query';
 
-
 const UserFormContext = createContext();
 
 /**

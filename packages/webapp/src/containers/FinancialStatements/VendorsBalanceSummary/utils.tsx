@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import { useAppQueryString } from '@/hooks';
 import { transformToForm } from '@/utils';
 
-
 export const getDefaultVendorsBalanceQuery = () => {
   return {
     asDate: moment().endOf('day').format('YYYY-MM-DD'),

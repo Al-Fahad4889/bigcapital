@@ -22,8 +22,6 @@ import { useMemorizedColumnsWidths } from '@/hooks';
 import { useExcludeUncategorizedTransaction } from '@/hooks/query/banking';
 import { compose } from '@/utils';
 
-
-
 interface RecognizedTransactionsTableProps
   extends Pick<
     WithBankingActionsProps,

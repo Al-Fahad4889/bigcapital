@@ -12,7 +12,6 @@ import {
 } from './utils';
 import { Flex, FlexItem, FieldHint, FFormGroup, FCheckbox } from '@/components';
 
-
 /**
  * Balance sheet header - Comparison panal - Comparisons fields.
  */

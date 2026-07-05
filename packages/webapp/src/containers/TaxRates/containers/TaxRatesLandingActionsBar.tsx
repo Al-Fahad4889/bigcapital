@@ -13,7 +13,6 @@ import { DialogsName } from '@/constants/dialogs';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
-
 /**
  * Tax rates actions bar.
  */

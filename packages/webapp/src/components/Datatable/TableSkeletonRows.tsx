@@ -4,8 +4,6 @@ import { Skeleton } from '../Skeleton';
 import TableContext from './TableContext';
 import type { ColumnInstance } from 'react-table';
 
-
-
 interface TableHeaderCellProps {
   column: ColumnInstance<any>;
 }

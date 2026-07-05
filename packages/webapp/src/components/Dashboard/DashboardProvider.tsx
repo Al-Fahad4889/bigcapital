@@ -5,7 +5,6 @@ import intl from 'react-intl-universal';
 import { DashboardAbilityProvider, AppToaster } from '../../components';
 import { useDashboardMetaBoot } from './DashboardBoot';
 
-
 /**
  * Dashboard provider.
  */

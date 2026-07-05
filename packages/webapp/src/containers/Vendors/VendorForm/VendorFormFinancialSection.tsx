@@ -25,7 +25,6 @@ import {
 import { Features } from '@/constants';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-
 export function VendorFormFinancialSection() {
   const { currencies, vendorId, branches } = useVendorFormContext();
 

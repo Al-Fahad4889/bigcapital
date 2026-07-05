@@ -8,7 +8,6 @@ import { useItemFormContext, ItemFormProvider } from './ItemFormProvider';
 import { DashboardInsider, DashboardCard } from '@/components';
 import { useDashboardPageTitle } from '@/hooks/state';
 
-
 /**
  * Item form dashboard title.
  * @returns {null}

@@ -8,7 +8,6 @@ import {
 } from './PaymentReceiveFormProvider';
 import { DashboardInsider } from '@/components';
 
-
 /**
  * Payment received form page.
  */

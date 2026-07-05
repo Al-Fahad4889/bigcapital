@@ -12,7 +12,6 @@ import {
 } from './utils';
 import { Flex, FlexItem, FieldHint, FFormGroup, FCheckbox } from '@/components';
 
-
 /**
  * Profit/loss comparisons panel fields.
  * @returns {JSX.Element}

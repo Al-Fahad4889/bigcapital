@@ -7,7 +7,6 @@ import Style from './VendorDetailsDrawer.module.scss';
 import { useVendorDetailsDrawerContext } from './VendorDetailsDrawerProvider';
 import { T, DetailsMenu, DetailItem } from '@/components';
 
-
 /**
  * Vendor details header.
  */

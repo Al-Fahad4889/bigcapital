@@ -6,7 +6,6 @@ import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { useApiFetcher } from '../../useRequest';
 import { exchangeRateKeys } from './query-keys';
 
-
 interface LatestExchangeRateQuery {
   fromCurrency?: string;
   toCurrency?: string;

@@ -8,7 +8,6 @@ import type { WithExpensesActionsProps } from './withExpensesActions';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 interface ExpenseViewTabsInnerProps extends WithExpensesActionsProps {
   expensesCurrentView: WithExpensesProps['expensesTableState']['viewSlug'];
 }

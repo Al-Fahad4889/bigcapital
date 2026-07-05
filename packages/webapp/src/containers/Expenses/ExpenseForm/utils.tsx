@@ -22,7 +22,6 @@ import {
   formattedAmount,
 } from '@/utils';
 
-
 const ERROR = {
   EXPENSE_ALREADY_PUBLISHED: 'EXPENSE.ALREADY.PUBLISHED',
   ENTRIES_ALLOCATED_COST_COULD_NOT_DELETED:

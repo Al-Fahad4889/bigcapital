@@ -33,10 +33,6 @@ import {
   ProjectBillableEntriesLink,
 } from '@/containers/Projects/components';
 
-
-
-
-
 const getInvoiceFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;

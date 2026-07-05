@@ -31,7 +31,6 @@ import { useAutofocus } from '@/hooks';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { inputIntent, momentFormatter } from '@/utils';
 
-
 /**
  * Quick payment made form fields.
  */

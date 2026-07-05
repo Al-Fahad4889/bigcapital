@@ -9,7 +9,6 @@ import { DashboardViewsTabs } from '@/components';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose } from '@/utils';
 
-
 // Local loose type mirrors the InvoicesViewTabs pattern — `customViewId` is not
 // on `TableQuery` but the reducer accepts it; preserved from @ts-nocheck original.
 interface WithManualJournalsActionsProps {

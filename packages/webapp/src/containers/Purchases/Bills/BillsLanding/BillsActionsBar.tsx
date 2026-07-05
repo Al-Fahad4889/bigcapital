@@ -35,7 +35,6 @@ import { useRefreshBills } from '@/hooks/query/bills';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 
-
 interface WithBillsActionsProps {
   setBillsTableState: (state: Record<string, any>) => void;
 }

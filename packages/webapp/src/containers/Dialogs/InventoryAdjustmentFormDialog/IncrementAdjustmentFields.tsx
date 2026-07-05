@@ -13,7 +13,6 @@ import {
 import { useAutofocus } from '@/hooks';
 import { toSafeNumber } from '@/utils';
 
-
 export function IncrementAdjustmentFields() {
   const incrementFieldRef = useAutofocus();
   const { values, setFieldValue } = useFormikContext();

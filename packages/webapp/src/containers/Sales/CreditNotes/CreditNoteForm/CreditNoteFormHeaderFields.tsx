@@ -25,9 +25,6 @@ import {
 import { CLASSES } from '@/constants/classes';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 
-
-
-
 const getCreditNoteFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;

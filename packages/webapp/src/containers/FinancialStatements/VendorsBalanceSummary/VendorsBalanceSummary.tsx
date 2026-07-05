@@ -14,7 +14,6 @@ import {
 import { FinancialStatement, DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 interface VendorsBalanceSummaryProps {
   toggleVendorSummaryFilterDrawer: WithVendorsBalanceSummaryActionsProps['toggleVendorSummaryFilterDrawer'];
 }

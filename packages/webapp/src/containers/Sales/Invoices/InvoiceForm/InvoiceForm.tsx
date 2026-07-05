@@ -36,8 +36,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { compose, orderingLinesIndexes, transactionNumber } from '@/utils';
 
-
-
 type InvoiceFormRootProps = {
   invoiceNextNumber?: number;
   invoiceNumberPrefix?: string;

@@ -5,7 +5,6 @@ import React from 'react';
 import intl from 'react-intl-universal';
 import { FFormGroup, FInputGroup, Choose } from '@/components';
 
-
 function PercentageFormField() {
   return (
     <FFormGroup

@@ -28,7 +28,6 @@ import {
 } from '@/containers/Dialog/withDialogActions';
 import { compose, saveInvoke } from '@/utils';
 
-
 interface InventoryItemDetailsActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;

@@ -19,7 +19,6 @@ import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { compose } from '@/utils';
 import { transactionNumber } from '@/utils';
 
-
 type EstimateExchangeRateInputFieldRootProps = Omit<
   React.ComponentProps<typeof ExchangeRateInputGroup>,
   'name' | 'fromCurrency' | 'toCurrency'

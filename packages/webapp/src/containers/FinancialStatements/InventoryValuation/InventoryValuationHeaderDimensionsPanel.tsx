@@ -14,7 +14,6 @@ import {
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 
-
 /**
  * Inventory Valuation header dismension panel.
  * @returns {JSX.Element}

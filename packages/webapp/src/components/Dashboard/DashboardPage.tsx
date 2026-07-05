@@ -6,7 +6,6 @@ import { withDashboardActions } from '@/containers/Dashboard/withDashboardAction
 import { withUniversalSearchActions } from '@/containers/UniversalSearch/withUniversalSearchActions';
 import { compose } from '@/utils';
 
-
 /**
  * Dashboard pages wrapper.
  */

@@ -8,7 +8,6 @@ import {
   transformTableQueryToParams,
 } from '@/utils';
 
-
 type UseItemsResult = ReturnType<typeof useItems>;
 type UseResourceViewsResult = ReturnType<typeof useResourceViews>;
 

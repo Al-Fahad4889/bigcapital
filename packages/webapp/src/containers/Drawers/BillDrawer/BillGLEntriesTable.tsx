@@ -8,7 +8,6 @@ import { useBillDrawerContext } from './BillDrawerProvider';
 import { Card } from '@/components';
 import { useTransactionsByReference } from '@/hooks/query';
 
-
 /**
  * Bill GL entries table.
  * @returns {React.JSX}

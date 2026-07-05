@@ -4,7 +4,6 @@ import type { PaymentReceiveMailStateResponse } from '@bigcapital/sdk-ts';
 import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { usePaymentReceivedMailState } from '@/hooks/query';
 
-
 interface PaymentReceivedSendMailBootValues {
   paymentReceivedId: number;
 

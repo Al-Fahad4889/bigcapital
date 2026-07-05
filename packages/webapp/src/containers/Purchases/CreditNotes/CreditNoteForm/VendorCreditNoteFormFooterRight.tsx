@@ -12,7 +12,6 @@ import { T, TotalLines, TotalLine, TotalLineTextStyle } from '@/components';
 import { AdjustmentTotalLine } from '@/containers/Sales/Invoices/InvoiceForm/AdjustmentTotalLine';
 import { DiscountTotalLine } from '@/containers/Sales/Invoices/InvoiceForm/DiscountTotalLine';
 
-
 export function VendorCreditNoteFormFooterRight() {
   const {
     values: { currencyCode },

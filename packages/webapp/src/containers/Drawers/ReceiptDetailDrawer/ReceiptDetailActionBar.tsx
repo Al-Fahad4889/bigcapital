@@ -31,7 +31,6 @@ import {
 } from '@/containers/Drawer/withDrawerActions';
 import { safeCallback, compose } from '@/utils';
 
-
 interface ReceiptDetailActionBarInnerProps
   extends WithDialogActionsProps,
     WithAlertActionsProps,

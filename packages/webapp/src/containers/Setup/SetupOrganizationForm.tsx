@@ -21,7 +21,6 @@ import { getLanguages } from '@/constants/languagesOptions';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 import { inputIntent } from '@/utils';
 
-
 const countries = getAllCountries();
 
 /**

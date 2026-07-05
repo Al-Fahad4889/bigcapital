@@ -12,7 +12,6 @@ import {
   CommercialDocHeader,
 } from '@/components';
 
-
 /**
  * Cashlflow transaction drawer detail Header.
  */

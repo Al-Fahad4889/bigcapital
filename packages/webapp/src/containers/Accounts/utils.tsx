@@ -9,7 +9,6 @@ import type { Row } from 'react-table';
 import { If, AppToaster } from '@/components';
 import { transformTableStateToQuery, isBlank } from '@/utils';
 
-
 export const DeleteAccountTypeError = {
   AccountPredefined: 'account_predefined',
   AccountHasAssociatedTransactions: 'account_has_associated_transactions',

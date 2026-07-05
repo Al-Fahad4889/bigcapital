@@ -34,7 +34,6 @@ import { useRefreshCustomers } from '@/hooks/query/customers';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 
-
 /**
  * Customers actions bar.
  */

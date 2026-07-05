@@ -27,8 +27,6 @@ import { getFiscalYear } from '@/constants/fiscalYearOptions';
 import { getLanguages } from '@/constants/languagesOptions';
 import { inputIntent } from '@/utils';
 
-
-
 const Countries = getAllCountries();
 /**
  * Preferences general form.

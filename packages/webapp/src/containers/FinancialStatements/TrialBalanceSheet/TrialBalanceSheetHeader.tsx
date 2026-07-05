@@ -18,7 +18,6 @@ import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 import { compose, transformToForm } from '@/utils';
 
-
 interface TrialBalanceFormValues {
   fromDate: Date;
   toDate: Date;

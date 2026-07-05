@@ -37,7 +37,6 @@ import { useRefreshExpenses } from '@/hooks/query/expenses';
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
 import { compose } from '@/utils';
 
-
 interface ExpensesActionsBarInnerProps
   extends Pick<WithExpensesActionsProps, 'setExpensesTableState'>,
     Pick<WithSettingsActionsProps, 'addSetting'>,

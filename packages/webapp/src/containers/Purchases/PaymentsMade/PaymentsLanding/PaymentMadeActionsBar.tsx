@@ -33,8 +33,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshPaymentMades } from '@/hooks/query/payment-mades';
 import { compose } from '@/utils';
 
-
-
 interface WithPaymentMadeActionsProps {
   setPaymentMadesTableState: (state: Record<string, any>) => void;
 }

@@ -9,7 +9,6 @@ import { BranchMultiSelect, Row, Col } from '@/components';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 
-
 /**
  * Trial balance sheet header dimension panel.
  * @returns {JSX.Element}

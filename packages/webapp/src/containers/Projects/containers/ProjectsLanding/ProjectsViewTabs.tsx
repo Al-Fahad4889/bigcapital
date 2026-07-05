@@ -7,7 +7,6 @@ import { withProjectsActions } from './withProjectsActions';
 import { DashboardViewsTabs } from '@/components';
 import { compose, transfromViewsToTabs } from '@/utils';
 
-
 /**
  * Projects views tabs.
  * @returns

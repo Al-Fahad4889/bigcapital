@@ -16,7 +16,6 @@ import {
 } from '@/components';
 import { momentFormatter } from '@/utils';
 
-
 /**
  * Inventory valuation - Drawer Header - General panel.
  */

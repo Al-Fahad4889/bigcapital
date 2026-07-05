@@ -23,7 +23,6 @@ import {
 } from '@/hooks/query';
 import { getColumnWidth } from '@/utils';
 
-
 /**
  * Retrieve customers transactions columns.
  */

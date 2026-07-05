@@ -7,7 +7,6 @@ import { ReportDataTable, FinancialSheet } from '@/components';
 import { TableStyle } from '@/constants';
 import { defaultExpanderReducer, tableRowTypesToClassnames } from '@/utils';
 
-
 interface InventoryItemDetailsTableProps {
   companyName: string;
 }

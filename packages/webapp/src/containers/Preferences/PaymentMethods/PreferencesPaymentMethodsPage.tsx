@@ -11,7 +11,6 @@ import { DialogsName } from '@/constants/dialogs';
 import { DRAWERS } from '@/constants/drawers';
 import { useChangePreferencesPageTitle } from '@/hooks/state';
 
-
 /**
  * Payment methods page.
  * @returns {JSX.Element}

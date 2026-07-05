@@ -5,7 +5,6 @@ import { useCreditNoteTotalFormatted } from './utils';
 import { Group, PageFormBigNumber } from '@/components';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
-
 /**
  * Credit note header.
  */

@@ -25,9 +25,6 @@ import {
 } from '@/containers/Dialog/withDialogActions';
 import { saveInvoke, compose } from '@/utils';
 
-
-
-
 interface VendorsBalanceSummaryActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;

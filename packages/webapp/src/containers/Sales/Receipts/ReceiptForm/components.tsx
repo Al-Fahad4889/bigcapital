@@ -19,7 +19,6 @@ import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { transactionNumber } from '@/utils';
 import { compose } from '@/utils';
 
-
 type ReceiptExchangeRateInputFieldRootProps = React.ComponentProps<
   typeof ExchangeRateInputGroup
 >;

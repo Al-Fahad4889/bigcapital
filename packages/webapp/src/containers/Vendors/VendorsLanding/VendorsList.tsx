@@ -12,7 +12,6 @@ import { withVendorsActions } from './withVendorsActions';
 import { DashboardPageContent } from '@/components';
 import { compose } from '@/utils';
 
-
 /**
  * Vendors list page.
  */

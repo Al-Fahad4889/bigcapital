@@ -10,7 +10,6 @@ import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { useSettingEditSMSNotification } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
 /**
  * SMS Message data table.
  */

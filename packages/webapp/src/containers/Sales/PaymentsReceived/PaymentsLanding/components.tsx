@@ -20,7 +20,6 @@ import {
 import { CLASSES } from '@/constants/classes';
 import { safeCallback } from '@/utils';
 
-
 export type PaymentReceiveTableRow = NonNullable<
   PaymentsReceivedListResponse['data']
 >[number];

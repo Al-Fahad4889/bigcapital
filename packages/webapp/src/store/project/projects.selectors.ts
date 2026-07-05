@@ -4,7 +4,6 @@ import type { RootState } from '@/store/reducers';
 import { paginationLocationQuery } from '@/store/selectors';
 import { createDeepEqualSelector } from '@/utils';
 
-
 const projectsTableState = (state: RootState) => state.projects.tableState;
 
 // Retrieve projects table query.

@@ -12,7 +12,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose, transformToForm } from '@/utils';
 
-
 const defaultInitialValues = {
   notification_key: '',
   is_notification_enabled: '',

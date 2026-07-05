@@ -9,7 +9,6 @@ import { withPlans } from '@/containers/Subscriptions/withPlans';
 import { useGetLemonSqueezyCheckout } from '@/hooks/query';
 import { SubscriptionPlansPeriod } from '@/store/plans/plans.reducer';
 
-
 interface SubscriptionPlansProps {
   wrapProps?: GroupProps;
   onSubscribe?: (variantId: number) => void;

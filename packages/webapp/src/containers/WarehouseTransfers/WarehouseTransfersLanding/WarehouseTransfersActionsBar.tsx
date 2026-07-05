@@ -24,7 +24,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { compose } from '@/utils';
 
-
 /**
  * Warehouse Transfers actions bar.
  */

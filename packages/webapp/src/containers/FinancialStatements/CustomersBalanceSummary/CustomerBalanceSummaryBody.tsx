@@ -5,7 +5,6 @@ import { CustomersBalanceSummaryTable } from './CustomersBalanceSummaryTable';
 import { FinancialSheetSkeleton } from '@/components/FinancialSheet';
 import { useCurrentOrganizationName } from '@/hooks/query';
 
-
 function CustomerBalanceSummaryBodyJSX() {
   const organizationName = useCurrentOrganizationName();
   const { isCustomersBalanceLoading } = useCustomersBalanceSummaryContext();

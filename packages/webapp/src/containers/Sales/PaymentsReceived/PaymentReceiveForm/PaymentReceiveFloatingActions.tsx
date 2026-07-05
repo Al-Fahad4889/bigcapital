@@ -23,7 +23,6 @@ import {
 import { useDrawerActions } from '@/hooks/state';
 import { MoreIcon } from '@/icons/More';
 
-
 type BrandingSelectInputRenderArgs = {
   activeItem?: { value: string | number; label: string };
   text?: string;

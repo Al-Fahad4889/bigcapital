@@ -25,8 +25,6 @@ import {
 } from '@/containers/Dialog/withDialogActions';
 import { compose, saveInvoke } from '@/utils';
 
-
-
 interface PurchasesByItemsActionsBarOwnProps {
   numberFormat: Record<string, unknown>;
   onNumberFormatSubmit: (values: Record<string, unknown>) => void;

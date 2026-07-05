@@ -32,7 +32,6 @@ import { ACCOUNT_TYPE } from '@/constants/accountTypes';
 import { useCustomerUpdateExRate } from '@/containers/Entries/withExRateItemEntriesPriceRecalc';
 import { ProjectsSelect } from '@/containers/Projects/components';
 
-
 const getEstimateFieldsStyle = (theme: Theme & { bpPrefix?: string }) => css`
   .${theme.bpPrefix}-form-group {
     margin-bottom: 0;

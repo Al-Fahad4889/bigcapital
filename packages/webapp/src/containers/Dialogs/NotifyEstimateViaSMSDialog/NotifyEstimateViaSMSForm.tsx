@@ -9,7 +9,6 @@ import { NotifyViaSMSForm } from '@/containers/NotifyViaSMS/NotifyViaSMSForm';
 import { transformErrors } from '@/containers/NotifyViaSMS/utils';
 import { compose } from '@/utils';
 
-
 const notificationType = {
   key: 'sale-estimate-details',
   label: intl.get('sms_notification.estimate_details.type'),

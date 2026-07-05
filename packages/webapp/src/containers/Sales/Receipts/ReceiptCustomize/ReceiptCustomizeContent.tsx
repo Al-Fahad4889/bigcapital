@@ -18,7 +18,6 @@ import {
 import { useElementCustomizeContext } from '@/containers/ElementCustomize/ElementCustomizeProvider';
 import { useDrawerActions } from '@/hooks/state';
 
-
 export function ReceiptCustomizeContent() {
   const { payload, name } = useDrawerContext();
   const { closeDrawer } = useDrawerActions();

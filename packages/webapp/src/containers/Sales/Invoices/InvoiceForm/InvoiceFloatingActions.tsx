@@ -25,7 +25,6 @@ import { useDrawerActions } from '@/hooks/state';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 import { MoreIcon } from '@/icons/More';
 
-
 /**
  * Invoice floating actions bar.
  */

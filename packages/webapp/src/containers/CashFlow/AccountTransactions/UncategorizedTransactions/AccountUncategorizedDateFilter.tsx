@@ -13,7 +13,6 @@ import type { FormikConfig, FormikHelpers } from 'formik';
 import { Box, Icon } from '@/components';
 import { compose } from '@/utils';
 
-
 interface AccountUncategorizedDateFilterRootProps
   extends Pick<WithBankingProps, 'uncategorizedTransactionsFilter'> {}
 

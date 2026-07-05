@@ -11,7 +11,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose, transformToForm } from '@/utils';
 
-
 const defaultInitialValues = {
   name: '',
   code: '',

@@ -9,7 +9,6 @@ import { BranchMultiSelect, Row, Col } from '@/components';
 import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
 
-
 /**
  * Cash flow statement dismension panel.
  * @returns

@@ -43,11 +43,6 @@ import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-
 import { useRefreshReceipts } from '@/hooks/query/receipts';
 import { compose } from '@/utils';
 
-
-
-
-
-
 /**
  * Receipts actions bar.
  */

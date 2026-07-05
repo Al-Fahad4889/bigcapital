@@ -11,8 +11,6 @@ import { AppIntlProvider } from './AppIntlProvider';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { useSplashLoading } from '@/hooks/state';
 
-
-
 const SUPPORTED_LOCALES = [
   { name: 'English', value: 'en' },
   { name: 'العربية', value: 'ar' },

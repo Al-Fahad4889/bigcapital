@@ -12,7 +12,6 @@ import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose, objectKeysTransform, transformToForm } from '@/utils';
 
-
 const initialValues = {
   first_name: '',
   last_name: '',

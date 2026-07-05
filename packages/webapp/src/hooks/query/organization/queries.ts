@@ -21,7 +21,6 @@ import type {
   OrgBaseCurrencyMutateAbilitiesResponse,
 } from '@bigcapital/sdk-ts';
 
-
 /**
  * Retrieve organizations of the authenticated user.
  * Uses useRequestQuery because organization/all is not in OpenAPI schema.

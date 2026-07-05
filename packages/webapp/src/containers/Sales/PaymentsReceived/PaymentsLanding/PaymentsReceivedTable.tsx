@@ -25,7 +25,6 @@ import { withSettings } from '@/containers/Settings/withSettings';
 import { useMemorizedColumnsWidths } from '@/hooks';
 import { compose } from '@/utils';
 
-
 interface WithPaymentsReceivedActionsProps {
   setPaymentReceivesTableState: (state: Record<string, any>) => void;
   setPaymentReceivesSelectedRows: (ids: number[]) => void;

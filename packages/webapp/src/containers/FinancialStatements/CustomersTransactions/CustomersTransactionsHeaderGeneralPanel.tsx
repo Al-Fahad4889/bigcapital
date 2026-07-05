@@ -9,7 +9,6 @@ import {
 } from './CustomersTransactionsHeaderGeneralPanelProvider';
 import { Row, Col, CustomersMultiSelect, FFormGroup } from '@/components';
 
-
 /**
  * Customers transactions header - General panel.
  */

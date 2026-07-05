@@ -3,7 +3,6 @@ import { useVendorCreditDetailDrawerContext } from './VendorCreditDetailDrawerPr
 import { CommercialDocEntriesTable } from '@/components';
 import { TableStyle } from '@/constants';
 
-
 /**
  * Vendor Credit detail table.
  */

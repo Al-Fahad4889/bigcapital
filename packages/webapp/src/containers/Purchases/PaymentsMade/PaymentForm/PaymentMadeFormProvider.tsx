@@ -14,7 +14,6 @@ import {
 } from '@/hooks/query';
 import { useFeatureCan } from '@/hooks/state';
 
-
 type UseAccountsResult = ReturnType<typeof useAccounts>;
 type UseVendorsResult = ReturnType<typeof useVendors>;
 type UseItemsResult = ReturnType<typeof useItems>;

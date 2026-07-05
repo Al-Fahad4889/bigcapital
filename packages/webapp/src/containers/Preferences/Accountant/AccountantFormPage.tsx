@@ -19,7 +19,6 @@ import {
 } from '@/containers/Settings/withSettings';
 import { compose, transformToForm, transfromToSnakeCase } from '@/utils';
 
-
 import '@/style/pages/Preferences/Accounting.scss';
 
 const defaultFormValues = flatten({

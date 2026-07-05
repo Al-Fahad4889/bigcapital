@@ -10,7 +10,6 @@ import { PaymentOptionsButtonPopver } from '@/containers/PaymentMethods/SelectPa
 import { MastercardIcon } from '@/icons/Mastercard';
 import { VisaIcon } from '@/icons/Visa';
 
-
 export function InvoiceFormFooterLeft() {
   const { paymentServices } = useInvoiceFormContext();
   const history = useHistory();

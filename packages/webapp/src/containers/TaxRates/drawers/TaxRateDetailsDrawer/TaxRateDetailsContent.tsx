@@ -6,7 +6,6 @@ import { TaxRateDetailsContentDetails } from './TaxRateDetailsContentDetails';
 import { DrawerBody, DrawerHeaderContent } from '@/components';
 import { DRAWERS } from '@/constants/drawers';
 
-
 interface TaxRateDetailsContentProps {
   taxRateid: number;
 }

@@ -12,7 +12,6 @@ import { compose } from '@/utils';
 
 import '@/style/pages/Preferences/SMSIntegration.scss';
 
-
 /**
  * SMS Integration Tabs.
  * @returns {React.JSX}

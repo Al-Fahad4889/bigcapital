@@ -5,7 +5,6 @@ import { PaymentMadeFormHeaderFields } from './PaymentMadeFormHeaderFields';
 import { usePaymentmadeTotalAmount, type PaymentMadeFormValues } from './utils';
 import { Money, PageForm, PageFormBigNumber } from '@/components';
 
-
 /**
  * Payment made header form.
  */

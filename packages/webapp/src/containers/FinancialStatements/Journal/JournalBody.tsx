@@ -5,7 +5,6 @@ import { JournalTable } from './JournalTable';
 import { FinancialSheetSkeleton } from '@/components';
 import { useCurrentOrganizationName } from '@/hooks/query';
 
-
 /**
  * Journal report body.
  * @returns {JSX.Element}

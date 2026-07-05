@@ -8,7 +8,6 @@ import { useAccounts, useBranches } from '@/hooks/query';
 import { useGetAutofillCategorizeTransaction } from '@/hooks/query/banking';
 import { useFeatureCan } from '@/hooks/state';
 
-
 interface CategorizeTransactionBootProps {
   uncategorizedTransactionsIds: Array<number>;
   children?: React.ReactNode;

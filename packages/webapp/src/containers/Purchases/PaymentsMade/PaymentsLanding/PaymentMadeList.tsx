@@ -12,7 +12,6 @@ import type { WithPaymentMadeProps } from './withPaymentMade';
 import { DashboardPageContent } from '@/components';
 import { compose, transformTableStateToQuery } from '@/utils';
 
-
 interface WithPaymentMadeActionsProps {
   resetPaymentMadesTableState: () => void;
 }

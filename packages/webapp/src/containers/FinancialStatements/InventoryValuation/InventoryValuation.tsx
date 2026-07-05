@@ -15,8 +15,6 @@ import { DashboardPageContent } from '@/components';
 import { useCurrentOrganizationName } from '@/hooks/query';
 import { compose } from '@/utils';
 
-
-
 interface InventoryValuationProps {
   toggleInventoryValuationFilterDrawer: WithInventoryValuationActionsProps['toggleInventoryValuationFilterDrawer'];
 }

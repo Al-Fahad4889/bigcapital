@@ -5,7 +5,6 @@ import { MoneyOutFloatingActions } from './MoneyOutFloatingActions';
 import { MoneyOutFormDialog } from './MoneyOutFormDialog';
 import { MoneyOutFormFields } from './MoneyOutFormFields';
 
-
 /**
  * Money out form content.
  */

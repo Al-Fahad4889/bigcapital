@@ -21,8 +21,6 @@ import { Features } from '@/constants';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 import { momentFormatter, tansformDateValue, handleDateChange } from '@/utils';
 
-
-
 /**
  * Customer Opening balance fields.
  * @returns

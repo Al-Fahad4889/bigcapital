@@ -14,7 +14,6 @@ import { DialogsName } from '@/constants/dialogs';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 
-
 /**
  * Retrieves the rules table.
  * @returns {React.ReactNode}

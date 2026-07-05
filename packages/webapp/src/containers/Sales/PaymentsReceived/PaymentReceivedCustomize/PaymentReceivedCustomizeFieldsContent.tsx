@@ -7,7 +7,6 @@ import {
   ElementCustomizeFieldsGroup,
 } from '@/containers/ElementCustomize/ElementCustomizeFieldsGroup';
 
-
 export function PaymentReceivedCustomizeContentFields() {
   return (
     <Stack

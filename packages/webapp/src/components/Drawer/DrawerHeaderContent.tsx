@@ -7,7 +7,6 @@ import { FormattedMessage as T } from '@/components';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 import { compose } from '@/utils';
 
-
 /**
  * Drawer header content.
  */

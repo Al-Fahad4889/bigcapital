@@ -9,7 +9,6 @@ import { usePreprocessingAccounts } from './_hooks';
 import { DialogsName } from '@/constants/dialogs';
 import { useDialogActions } from '@/hooks/state/dashboard';
 
-
 export interface AccountSelectModel
   extends Partial<Account>,
     SelectOptionProps {}

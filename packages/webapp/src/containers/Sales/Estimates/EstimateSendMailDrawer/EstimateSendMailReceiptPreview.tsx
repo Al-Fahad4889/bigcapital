@@ -8,7 +8,6 @@ import {
 import { withEstimateMailReceiptPreviewProps } from './withEstimateMailReceiptPreviewProps';
 import { Stack } from '@/components';
 
-
 const estimatePreviewCss = css`
   margin: 0 auto;
   border-radius: 5px !important;
