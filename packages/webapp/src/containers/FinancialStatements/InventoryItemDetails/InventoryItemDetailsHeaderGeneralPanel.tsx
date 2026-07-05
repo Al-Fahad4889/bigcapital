@@ -5,7 +5,7 @@ import {
   InventoryItemDetailsHeaderGeneralProvider,
   useInventoryItemDetailsHeaderGeneralContext,
 } from './InventoryItemDetailsHeaderGeneralProvider';
-import { ItemsMultiSelect, Row, Col, FFormGroup } from '@/components';
+import { FItemsMultiSelect, Row, Col, FFormGroup } from '@/components';
 
 /**
  * Inventory item details header - General panel.
@@ -31,7 +31,7 @@ function InventoryItemDetailsHeaderGeneralPanelContent() {
       <Row>
         <Col xs={4}>
           <FFormGroup label={intl.get('Specific items')} name={'itemsIds'}>
-            <ItemsMultiSelect name={'itemsIds'} items={items} />
+            <FItemsMultiSelect name={'itemsIds'} items={items} />
           </FFormGroup>
         </Col>
       </Row>

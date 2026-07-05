@@ -21,7 +21,7 @@ import {
   withFormikSelect,
 } from '@blueprintjs-formik/select';
 import React from 'react';
-import { FSelect } from './Select';
+import { FSelect, BPSelect } from './Select';
 
 export {
   FormGroup as FFormGroup,
@@ -31,6 +31,7 @@ export {
   RadioGroup as FRadioGroup,
   Switch as FSwitch,
   FSelect,
+  BPSelect,
   FormikMultiSelect as FMultiSelect,
   EditableText as FEditableText,
   FormikSuggest as FSuggest,

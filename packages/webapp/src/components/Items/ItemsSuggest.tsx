@@ -5,12 +5,12 @@ import intl from 'react-intl-universal';
 import type { ItemRestrictType } from './ItemsSelect';
 import type { Item } from '@bigcapital/sdk-ts';
 import type { SelectOptionProps } from '@blueprintjs-formik/select';
-import { FMultiSelect, MultiSelect, FormattedMessage as T } from '@/components';
+import { FSuggest, Suggest, FormattedMessage as T } from '@/components';
 import { DRAWERS } from '@/constants/drawers';
 import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 
-type ItemItemRenderer = ItemRenderer<ItemMultiSelectModel>;
-type ItemItemPredicate = ItemPredicate<ItemMultiSelectModel>;
+type ItemItemRenderer = ItemRenderer<ItemSuggestModel>;
+type ItemItemPredicate = ItemPredicate<ItemSuggestModel>;
 
 // Create new item renderer.
 const createNewItemRenderer = (
@@ -30,16 +30,14 @@ const createNewItemRenderer = (
 };
 
 // Create new item from the given query string.
-const createNewItemFromQuery = (
-  name: string,
-): Partial<ItemMultiSelectModel> => ({
+const createNewItemFromQuery = (name: string): Partial<ItemSuggestModel> => ({
   name,
 });
 
 // Filters items.
 const filterItemsPredicater: ItemItemPredicate = (
   query: string,
-  item: ItemMultiSelectModel,
+  item: ItemSuggestModel,
   _index?: number,
   exactMatch?: boolean,
 ): boolean => {
@@ -54,7 +52,7 @@ const filterItemsPredicater: ItemItemPredicate = (
 
 // Item renderer.
 const itemRenderer: ItemItemRenderer = (
-  item: ItemMultiSelectModel,
+  item: ItemSuggestModel,
   { handleClick, modifiers },
 ): React.ReactElement | null => {
   if (!modifiers.matchesPredicate) {
@@ -72,51 +70,59 @@ const itemRenderer: ItemItemRenderer = (
   );
 };
 
-export interface ItemMultiSelectModel extends Partial<Item>, SelectOptionProps {}
+// Input value renderer.
+const inputValueRenderer = (item: ItemSuggestModel | null): string => {
+  if (item) {
+    return item.name?.toString() ?? '';
+  }
+  return '';
+};
 
-interface ItemsMultiSelectOwnProps {
+export interface ItemSuggestModel extends Partial<Item>, SelectOptionProps {}
+
+interface ItemsSuggestOwnProps {
   // #withDrawerActions
   openDrawer: (name: string, payload?: any) => void;
 
   // #ownProps
-  items?: ItemMultiSelectModel[];
+  items: ItemSuggestModel[];
+  defaultSelectText?: string;
   sellable?: boolean;
   purchasable?: boolean;
   restrictType?: ItemRestrictType;
   allowCreate?: boolean;
 }
 
-type ProvidedMultiSelectProps =
+type ProvidedSuggestProps =
   | 'items'
-  | 'itemRenderer'
   | 'itemPredicate'
+  | 'itemRenderer'
+  | 'inputValueRenderer'
   | 'onCreateItemSelect'
   | 'valueAccessor'
   | 'textAccessor'
   | 'labelAccessor'
-  | 'tagAccessor'
-  | 'resetOnSelect'
-  | 'popoverProps'
+  | 'resetOnClose'
   | 'createNewItemRenderer'
   | 'createNewItemFromQuery';
 
 type ComponentProps<C> = C extends ComponentType<infer P> ? P : never;
 
-function withItemsMultiSelectLogic<C extends ComponentType<any>>(
+function withItemsSuggestLogic<C extends ComponentType<any>>(
   Component: C,
 ): ComponentType<
-  ItemsMultiSelectOwnProps & Omit<ComponentProps<C>, ProvidedMultiSelectProps>
+  ItemsSuggestOwnProps & Omit<ComponentProps<C>, ProvidedSuggestProps>
 > {
-  return function ItemsMultiSelectLogic({
+  return function ItemsSuggestLogic({
     openDrawer,
-    items = [],
+    items,
+    defaultSelectText = 'Select item',
     sellable = false,
     purchasable = false,
     restrictType,
     allowCreate,
-    ...rest
-  }: ItemsMultiSelectOwnProps &
-    Omit<ComponentProps<C>, ProvidedMultiSelectProps>) {
+    ...suggestProps
+  }: ItemsSuggestOwnProps & Omit<ComponentProps<C>, ProvidedSuggestProps>) {
     const filteredItems = useMemo(() => {
       return items.filter((item) => {
         if (sellable && !item.sellable) return false;
@@ -127,7 +133,7 @@ function withItemsMultiSelectLogic<C extends ComponentType<any>>(
     }, [items, sellable, purchasable, restrictType]);
 
     const handleCreateItemSelect = useCallback(
-      (item: ItemMultiSelectModel | Partial<ItemMultiSelectModel>) => {
+      (item: ItemSuggestModel | Partial<ItemSuggestModel>) => {
         if (!('id' in item) || !item.id) {
           openDrawer(DRAWERS.QUICK_CREATE_ITEM);
         }
@@ -142,32 +148,33 @@ function withItemsMultiSelectLogic<C extends ComponentType<any>>(
       ? createNewItemFromQuery
       : undefined;
 
-    const processedMultiSelectProps = {
+    const processedSuggestProps = {
       items: filteredItems,
       noResults: <MenuItem disabled={true} text={<T id={'no_results'} />} />,
       itemRenderer,
       itemPredicate: filterItemsPredicater,
+      inputValueRenderer,
       onCreateItemSelect: handleCreateItemSelect,
       valueAccessor: 'id' as const,
       textAccessor: 'name' as const,
       labelAccessor: 'code' as const,
-      tagAccessor: 'name' as const,
-      fill: true,
-      resetOnSelect: true,
-      popoverProps: { minimal: true },
+      inputProps: { placeholder: defaultSelectText },
+      resetOnClose: true,
+      popoverProps: { minimal: true, boundary: 'window' as const },
       createNewItemRenderer: maybeCreateNewItemRenderer,
       createNewItemFromQuery: maybeCreateNewItemFromQuery,
-      ...rest,
+      createNewItemPosition: 'top' as const,
+      ...suggestProps,
     } as ComponentProps<C>;
 
-    return <Component {...processedMultiSelectProps} />;
+    return <Component {...processedSuggestProps} />;
   };
 }
 
-const ItemsMultiSelectWithLogic = withItemsMultiSelectLogic(MultiSelect);
-const FItemsMultiSelectWithLogic = withItemsMultiSelectLogic(FMultiSelect);
+const ItemsSuggestWithLogic = withItemsSuggestLogic(Suggest);
+const FItemsSuggestWithLogic = withItemsSuggestLogic(FSuggest);
 
-export const ItemsMultiSelect = withDrawerActions(ItemsMultiSelectWithLogic);
-export const FItemsMultiSelect = withDrawerActions(
-  FItemsMultiSelectWithLogic,
+export const ItemsSuggest = withDrawerActions(ItemsSuggestWithLogic);
+export const FItemsSuggest = withDrawerActions(
+  FItemsSuggestWithLogic,
 );

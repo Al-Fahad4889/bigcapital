@@ -3,7 +3,7 @@ import { FormGroup, Classes, Intent } from '@blueprintjs/core';
 import classNames from 'classnames';
 import React, { useCallback, useRef } from 'react';
 import intl from 'react-intl-universal';
-import { ItemsSuggestField } from '@/components';
+import { ItemsSuggest } from '@/components';
 import { CellType } from '@/constants';
 import { useCellAutoFocus } from '@/hooks';
 
@@ -37,10 +37,10 @@ export default function ItemsListCell({
       className={classNames('form-group--select-list', Classes.FILL)}
       {...formGroupProps}
     >
-      <ItemsSuggestField
+      <ItemsSuggest
         items={items}
-        onItemSelected={handleItemSelected}
-        selectedItemId={initialValue}
+        onItemSelect={handleItemSelected}
+        selectedValue={initialValue}
         sellable={filterSellable}
         purchasable={filterPurchasable}
         inputProps={{
