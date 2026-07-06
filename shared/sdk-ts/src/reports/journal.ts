@@ -1,5 +1,6 @@
 import type { OpArgType } from 'openapi-typescript-fetch';
 import type { ApiFetcher } from '../fetch-utils';
+import { withNestedQuery } from "../fetch-utils";
 import type { paths } from '../schema';
 import {
   OpForPath,
@@ -22,7 +23,11 @@ export async function fetchJournalTable(
   query: JournalTableQuery
 ): Promise<JournalTableResponse> {
   const get = fetcher.path(JOURNAL_ROUTE).method('get').create();
-  const { data } = await get(query as Arg);
+  const { payload, init } = withNestedQuery(query);
+  const { data } = await get(payload as Arg, {
+    ...init,
+    headers: { ...init?.headers, accept: 'application/json+table' },
+  });
   return data as unknown as JournalTableResponse;
 }
 
@@ -36,7 +41,8 @@ export async function fetchJournalJson(
   query: JournalJsonQuery
 ): Promise<JournalJsonResponse> {
   const get = fetcher.path(JOURNAL_ROUTE).method('get').create();
-  const { data } = await get(query as Arg);
+  const { payload, init } = withNestedQuery(query);
+  const { data } = await get(payload as Arg, init);
   return data as unknown as JournalJsonResponse;
 }
 
@@ -49,7 +55,8 @@ export async function fetchJournalCsv(
   query: JournalCsvQuery
 ): Promise<JournalCsvResponse> {
   const get = fetcher.path(JOURNAL_ROUTE).method('get').create();
-  const response = await get({ ...query, Accept: 'application/csv' } as Arg);
+  const { payload, init } = withNestedQuery({ ...query, Accept: "application/csv" } as Record<string, unknown>);
+  const response = await get(payload as Arg, init);
   return response.data as unknown as JournalCsvResponse;
 }
 
@@ -62,7 +69,8 @@ export async function fetchJournalXlsx(
   query: JournalXlsxQuery
 ): Promise<JournalXlsxResponse> {
   const get = fetcher.path(JOURNAL_ROUTE).method('get').create();
-  const response = await get({ ...query, Accept: 'application/xlsx' } as Arg);
+  const { payload, init } = withNestedQuery({ ...query, Accept: "application/xlsx" } as Record<string, unknown>);
+  const response = await get(payload as Arg, init);
   return response.data as unknown as JournalXlsxResponse;
 }
 
@@ -75,6 +83,7 @@ export async function fetchJournalPdf(
   query: JournalPdfQuery
 ): Promise<JournalPdfResponse> {
   const get = fetcher.path(JOURNAL_ROUTE).method('get').create();
-  const response = await get({ ...query, Accept: 'application/pdf' } as Arg);
+  const { payload, init } = withNestedQuery({ ...query, Accept: "application/pdf" } as Record<string, unknown>);
+  const response = await get(payload as Arg, init);
   return response.data as unknown as JournalPdfResponse;
 }

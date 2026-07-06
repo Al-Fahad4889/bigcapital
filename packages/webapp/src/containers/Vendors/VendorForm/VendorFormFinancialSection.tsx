@@ -1,7 +1,14 @@
 // @ts-nocheck
 import { FormGroup, Position, ControlGroup } from '@blueprintjs/core';
 import { ErrorMessage, useFormikContext } from 'formik';
-import { Features } from '@/constants';
+import intl from 'react-intl-universal';
+import {
+  openingBalanceFieldShouldUpdate,
+  useIsVendorForeignCurrency,
+  useSetPrimaryBranchToForm,
+} from './utils';
+import { useVendorFormContext } from './VendorFormProvider';
+import { VendorFormSectionTitle } from './VendorFormSectionTitle';
 import {
   FFormGroup,
   FormattedMessage as T,
@@ -15,14 +22,8 @@ import {
   Icon,
   Box,
 } from '@/components';
-import { useVendorFormContext } from './VendorFormProvider';
-import {
-  openingBalanceFieldShouldUpdate,
-  useIsVendorForeignCurrency,
-  useSetPrimaryBranchToForm,
-} from './utils';
-import { useCurrentOrganization } from '@/hooks/state';
-import { VendorFormSectionTitle } from './VendorFormSectionTitle';
+import { Features } from '@/constants';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
 export function VendorFormFinancialSection() {
   const { currencies, vendorId, branches } = useVendorFormContext();
@@ -38,7 +39,7 @@ export function VendorFormFinancialSection() {
 
       <FFormGroup
         name={'currency_code'}
-        label={<T id={'currency'} />}
+        label={intl.get('currency')}
         fastField
         inline
         fill
@@ -57,7 +58,7 @@ export function VendorFormFinancialSection() {
 
       <FeatureCan feature={Features.Branches}>
         <FFormGroup
-          label={<T id={'vendor.label.opening_branch'} />}
+          label={intl.get('vendor.label.opening_branch')}
           name={'opening_balance_branch_id'}
           inline
           fill
@@ -86,7 +87,7 @@ function VendorOpeningBalanceAtField() {
   return (
     <FFormGroup
       name={'opening_balance_at'}
-      label={<T id={'opening_balance_at'} />}
+      label={intl.get('opening_balance_at')}
       inline
       fill
       helperText={<ErrorMessage name="opening_balance_at" />}
@@ -115,7 +116,7 @@ function VendorOpeningBalanceField() {
 
   return (
     <FFormGroup
-      label={<T id={'opening_balance'} />}
+      label={intl.get('opening_balance')}
       name={'opening_balance'}
       inline
       shouldUpdate={openingBalanceFieldShouldUpdate}
@@ -138,7 +139,7 @@ function VendorOpeningBalanceField() {
 function VendorOpeningBalanceExchangeRateField() {
   const { values } = useFormikContext();
   const { vendorId } = useVendorFormContext();
-  const currentOrganization = useCurrentOrganization();
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const isForeignVendor = useIsVendorForeignCurrency();
 
@@ -149,7 +150,7 @@ function VendorOpeningBalanceExchangeRateField() {
   return (
     <ExchangeRateInputGroup
       fromCurrency={values.currency_code}
-      toCurrency={currentOrganization.base_currency}
+      toCurrency={baseCurrency}
       name={'opening_balance_exchange_rate'}
       onRecalcConfirm={() => {}}
       onCancel={() => {}}

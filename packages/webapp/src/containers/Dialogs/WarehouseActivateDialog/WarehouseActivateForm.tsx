@@ -1,22 +1,18 @@
 // @ts-nocheck
+import { Intent } from '@blueprintjs/core';
+import { Formik } from 'formik';
 import React from 'react';
 import intl from 'react-intl-universal';
-
-import { Formik } from 'formik';
-import { Intent } from '@blueprintjs/core';
-
-import { AppToaster } from '@/components';
+import { WarehouseActivateFormContent } from './WarehouseActivateFormContent';
 import { useWarehouseActivateContext } from './WarehouseActivateFormProvider';
-import WarehouseActivateFormContent from './WarehouseActivateFormContent';
-
+import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-
 import { compose } from '@/utils';
 
 /**
  * warehouse activate form.
  */
-function WarehouseActivateForm({
+function WarehouseActivateFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -41,11 +37,7 @@ function WarehouseActivateForm({
     };
 
     // Handle request response errors.
-    const onError = ({
-      response: {
-        data: { errors },
-      },
-    }) => {
+    const onError = ({ data: { errors } }) => {
       if (errors) {
       }
       setSubmitting(false);
@@ -61,4 +53,6 @@ function WarehouseActivateForm({
     />
   );
 }
-export default compose(withDialogActions)(WarehouseActivateForm);
+export const WarehouseActivateForm = compose(withDialogActions)(
+  WarehouseActivateFormInner,
+);

@@ -1,12 +1,11 @@
 // @ts-nocheck
-import React from 'react';
 import { Button, Intent } from '@blueprintjs/core';
+import React from 'react';
 import { FormattedMessage as T, EmptyStatus } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-
 import { compose } from '@/utils';
 
-function WarehousesEmptyStatus({
+function WarehousesEmptyStatusInner({
   // #withDialogActions
   openDialog,
 }) {
@@ -38,4 +37,6 @@ function WarehousesEmptyStatus({
   );
 }
 
-export default compose(withDialogActions)(WarehousesEmptyStatus);
+export const WarehousesEmptyStatus = compose(withDialogActions)(
+  WarehousesEmptyStatusInner,
+);

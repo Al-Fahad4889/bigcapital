@@ -1,14 +1,13 @@
 // @ts-nocheck
+import { Intent } from '@blueprintjs/core';
+import { Formik } from 'formik';
+import { omit } from 'lodash';
 import React, { useEffect } from 'react';
 import intl from 'react-intl-universal';
-import { Formik } from 'formik';
-import { Intent } from '@blueprintjs/core';
-import { AppToaster } from '@/components';
-import { omit } from 'lodash';
 import { ItemPreferencesSchema } from './ItemPreferences.schema';
-import ItemPreferencesForm from './ItemPreferencesForm';
-
+import { ItemForm as ItemPreferencesForm } from './ItemPreferencesForm';
 import { useItemPreferencesFormContext } from './ItemPreferencesFormProvider';
+import { AppToaster } from '@/components';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import {
@@ -27,7 +26,7 @@ const defaultFormValues = {
 };
 
 // item form page preferences.
-function ItemPreferencesFormPage({
+function ItemPreferencesFormPageInner({
   // #withSettings
   itemsSettings,
 
@@ -80,7 +79,7 @@ function ItemPreferencesFormPage({
   );
 }
 
-export default compose(
+export const ItemPreferencesFormPage = compose(
   withSettings(({ itemsSettings }) => ({ itemsSettings })),
   withDashboardActions,
-)(ItemPreferencesFormPage);
+)(ItemPreferencesFormPageInner);

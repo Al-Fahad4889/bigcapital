@@ -1,19 +1,17 @@
 // @ts-nocheck
-import React, { useMemo } from 'react';
-import intl from 'react-intl-universal';
 import { Intent } from '@blueprintjs/core';
 import { Formik } from 'formik';
-
-import { AppToaster } from '@/components';
-import { useItemCategoryContext } from './ItemCategoryProvider';
-import { compose, transformToForm } from '@/utils';
+import React, { useMemo } from 'react';
+import intl from 'react-intl-universal';
 import {
   CreateItemCategoryFormSchema,
   EditItemCategoryFormSchema,
 } from './itemCategoryForm.schema';
-
+import { ItemCategoryForm as ItemCategoryFormContent } from './ItemCategoryFormContent';
+import { useItemCategoryContext } from './ItemCategoryProvider';
+import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import ItemCategoryFormContent from './ItemCategoryFormContent';
+import { compose, transformToForm } from '@/utils';
 
 const defaultInitialValues = {
   name: '',
@@ -26,7 +24,7 @@ const defaultInitialValues = {
 /**
  * Item category form.
  */
-function ItemCategoryForm({
+function ItemCategoryFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -81,9 +79,7 @@ function ItemCategoryForm({
     // Handle the response error.
     const onError = (error) => {
       const {
-        response: {
-          data: { errors },
-        },
+        data: { errors },
       } = error;
 
       transformErrors(errors, { setErrors });
@@ -111,4 +107,6 @@ function ItemCategoryForm({
   );
 }
 
-export default compose(withDialogActions)(ItemCategoryForm);
+export const ItemCategoryForm = compose(withDialogActions)(
+  ItemCategoryFormInner,
+);

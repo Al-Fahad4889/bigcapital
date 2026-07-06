@@ -1,26 +1,24 @@
 // @ts-nocheck
+import { Intent, Alert } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Intent, Alert } from '@blueprintjs/core';
 import {
   AppToaster,
   FormattedMessage as T,
   FormattedHTMLMessage,
 } from '@/components';
-import { useDeleteWarehouseTransfer } from '@/hooks/query';
-
-import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
-import { withAlertActions } from '@/containers/Alert/withAlertActions';
-import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
-
-import { compose } from '@/utils';
 import { DRAWERS } from '@/constants/drawers';
+import { withAlertActions } from '@/containers/Alert/withAlertActions';
+import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
+import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
+import { useDeleteWarehouseTransfer } from '@/hooks/query';
+import { compose } from '@/utils';
 
 /**
  * Warehouse transfer delete alert
  * @returns
  */
-function WarehouseTransferDeleteAlert({
+function WarehouseTransferDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -51,13 +49,7 @@ function WarehouseTransferDeleteAlert({
         });
         closeDrawer(DRAWERS.WAREHOUSE_TRANSFER_DETAILS);
       })
-      .catch(
-        ({
-          response: {
-            data: { errors },
-          },
-        }) => {},
-      )
+      .catch(({ data: { errors } }) => {})
       .finally(() => {
         closeAlert(name);
       });
@@ -83,8 +75,8 @@ function WarehouseTransferDeleteAlert({
   );
 }
 
-export default compose(
+export const WarehouseTransferDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
   withDrawerActions,
-)(WarehouseTransferDeleteAlert);
+)(WarehouseTransferDeleteAlertInner);

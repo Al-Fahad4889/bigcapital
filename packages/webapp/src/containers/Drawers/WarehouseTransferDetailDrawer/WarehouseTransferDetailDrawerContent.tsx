@@ -1,14 +1,13 @@
 // @ts-nocheck
 import React from 'react';
-import { DrawerBody } from '@/components';
-
-import WarehouseTransferDetail from './WarehouseTransferDetail';
+import { WarehouseTransferDetail } from './WarehouseTransferDetail';
 import { WarehouseTransferDetailDrawerProvider } from './WarehouseTransferDetailDrawerProvider';
+import { DrawerBody } from '@/components';
 
 /**
  * Warehouse transfer detail drawer content.
  */
-export default function WarehouseTransferDetailDrawerContent({
+export function WarehouseTransferDetailDrawerContent({
   // #ownProp
   warehouseTransferId,
 }) {

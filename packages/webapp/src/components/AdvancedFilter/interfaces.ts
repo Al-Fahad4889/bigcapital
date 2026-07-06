@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { ArrayHelpers } from 'formik';
 import { IPopoverProps } from '@blueprintjs/core';
+import { ArrayHelpers } from 'formik';
 
 export type IResourceFieldType = 'text' | 'number' | 'enumeration' | 'boolean';
 
@@ -105,7 +105,6 @@ export interface IAdvancedFilterPopover {
   advancedFilterProps: IAdvancedFilterDropdown;
   children: JSX.Element | JSX.Element[];
 }
-
 
 export interface IDynamicFilterCompatatorFieldProps {
   dataType: string;

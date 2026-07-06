@@ -1,17 +1,16 @@
 // @ts-nocheck
-import React from 'react';
 import { Intent, Button, Classes } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import { FormattedMessage as T } from '@/components';
-
+import React from 'react';
 import { useInventoryAdjContext } from './InventoryAdjustmentFormProvider';
+import { FormattedMessage as T } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
 /**
  * Inventory adjustment floating actions.
  */
-function InventoryAdjustmentFloatingActions({
+function InventoryAdjustmentFloatingActionsInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -71,4 +70,6 @@ function InventoryAdjustmentFloatingActions({
   );
 }
 
-export default compose(withDialogActions)(InventoryAdjustmentFloatingActions);
+export const InventoryAdjustmentFloatingActions = compose(withDialogActions)(
+  InventoryAdjustmentFloatingActionsInner,
+);

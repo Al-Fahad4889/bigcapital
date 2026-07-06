@@ -1,15 +1,15 @@
+import { Intent } from '@blueprintjs/core';
+import { Formik, Form, FormikHelpers } from 'formik';
 import { useMemo } from 'react';
 import intl from 'react-intl-universal';
-import { Formik, Form, FormikHelpers } from 'formik';
-import { Intent } from '@blueprintjs/core';
 import styled from 'styled-components';
 import { CreateCustomerForm, EditCustomerForm } from './CustomerForm.schema';
-import { compose, transformToForm, saveInvoke, parseBoolean } from '@/utils';
+import { CustomerFormContent } from './CustomerFormContent';
 import { useCustomerFormContext } from './CustomerFormProvider';
 import { defaultInitialValues } from './utils';
 import { AppToaster } from '@/components';
-import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
-import { CustomerFormContent } from './CustomerFormContent';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
+import { transformToForm, saveInvoke, parseBoolean } from '@/utils';
 
 type CustomerFormValues = {
   customer_type: string;
@@ -56,10 +56,6 @@ type CustomerFormSubmitPayload = {
 };
 
 type CustomerFormFormikRootProps = {
-  organization: {
-    base_currency: string;
-  };
-
   // #ownProps
   initialValues?: Partial<CustomerFormValues>;
   onSubmitSuccess?: (
@@ -81,8 +77,6 @@ type CustomerFormFormikRootProps = {
 const EMPTY_INITIAL_VALUES: Partial<CustomerFormValues> = {};
 
 function CustomerFormFormikRoot({
-  organization: { base_currency },
-
   // #ownProps
   initialValues: initialCustomerValues = EMPTY_INITIAL_VALUES,
   onSubmitSuccess,
@@ -90,6 +84,8 @@ function CustomerFormFormikRoot({
   // `onCancel` is accepted for compatibility but currently not used.
   className,
 }: CustomerFormFormikRootProps) {
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
+
   const {
     customer,
     submitPayload,
@@ -100,13 +96,17 @@ function CustomerFormFormikRoot({
   } = useCustomerFormContext();
 
   const initialValues = useMemo<CustomerFormValues>(
-    () => ({
-      ...defaultInitialValues,
-      currency_code: base_currency,
-      ...transformToForm(contactDuplicate ?? customer ?? {}, defaultInitialValues),
-      ...transformToForm(initialCustomerValues, defaultInitialValues),
-    }) as CustomerFormValues,
-    [customer, contactDuplicate, base_currency, initialCustomerValues],
+    () =>
+      ({
+        ...defaultInitialValues,
+        currency_code: baseCurrency,
+        ...transformToForm(
+          contactDuplicate ?? customer ?? {},
+          defaultInitialValues,
+        ),
+        ...transformToForm(initialCustomerValues, defaultInitialValues),
+      }) as CustomerFormValues,
+    [customer, contactDuplicate, baseCurrency, initialCustomerValues],
   );
 
   // Handles the form submit.
@@ -142,22 +142,25 @@ function CustomerFormFormikRoot({
       createCustomerMutate(formValues).then(onSuccess).catch(onError);
     } else {
       if (!customer) return;
-      editCustomerMutate([customer.id, formValues]).then(onSuccess).catch(onError);
+
+      editCustomerMutate([customer?.id, formValues])
+        .then(onSuccess)
+        .catch(onError);
     }
   };
 
   return (
-      <Formik<CustomerFormValues>
-        validationSchema={isNewMode ? CreateCustomerForm : EditCustomerForm}
-        initialValues={initialValues}
-        onSubmit={handleFormSubmit}
-      >
-        <Form>
-          <CustomerFormFields>
-            <CustomerFormContent />
-          </CustomerFormFields>
-        </Form>
-      </Formik>
+    <Formik<CustomerFormValues>
+      validationSchema={isNewMode ? CreateCustomerForm : EditCustomerForm}
+      initialValues={initialValues}
+      onSubmit={handleFormSubmit}
+    >
+      <Form>
+        <CustomerFormFields>
+          <CustomerFormContent />
+        </CustomerFormFields>
+      </Form>
+    </Formik>
   );
 }
 
@@ -166,7 +169,7 @@ const CustomerFormFields = styled.div`
   .bp6-form-content {
     min-width: 300px;
   }
-  .bp4-form-group{
+  .bp4-form-group {
     margin-bottom: 20px;
   }
   .bp4-form-group.bp4-inline label.bp4-label {
@@ -174,4 +177,4 @@ const CustomerFormFields = styled.div`
   }
 `;
 
-export const CustomerFormFormik = compose(withCurrentOrganization(undefined))(CustomerFormFormikRoot);
+export const CustomerFormFormik = CustomerFormFormikRoot;

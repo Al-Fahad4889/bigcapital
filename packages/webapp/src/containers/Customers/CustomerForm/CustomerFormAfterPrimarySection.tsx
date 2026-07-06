@@ -1,26 +1,21 @@
 // @ts-nocheck
+import { ControlGroup } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { ControlGroup } from '@blueprintjs/core';
-import { FormattedMessage as T, FFormGroup, FInputGroup } from '@/components';
+import { FFormGroup, FInputGroup } from '@/components';
 
-export default function CustomerFormAfterPrimarySection({}) {
+export function CustomerFormAfterPrimarySection({}) {
   return (
     <div>
       {/*------------ Customer email -----------*/}
-      <FFormGroup
-        name={'email'}
-        label={<T id={'customer_email'} />}
-        inline
-        fill
-      >
+      <FFormGroup name={'email'} label={intl.get('customer_email')} inline fill>
         <FInputGroup name={'email'} fill />
       </FFormGroup>
 
       {/*------------ Phone number -----------*/}
       <FFormGroup
         name={'personal_phone'}
-        label={<T id={'phone_number'} />}
+        label={intl.get('phone_number')}
         inline
         fill
       >
@@ -39,12 +34,7 @@ export default function CustomerFormAfterPrimarySection({}) {
       </FFormGroup>
 
       {/*------------ Customer website -----------*/}
-      <FFormGroup
-        name={'website'}
-        label={<T id={'website'} />}
-        inline
-        fill
-      >
+      <FFormGroup name={'website'} label={intl.get('website')} inline fill>
         <FInputGroup name={'website'} placeholder={'http://'} fill />
       </FFormGroup>
     </div>

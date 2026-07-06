@@ -1,16 +1,15 @@
 // @ts-nocheck
-import React from 'react';
 import { Button, Intent } from '@blueprintjs/core';
-
-import { Features } from '@/constants';
+import React from 'react';
 import { FeatureCan, FormattedMessage as T, Icon } from '@/components';
+import { Features } from '@/constants';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
 /**
  * Warehouse actions.
  */
-function WarehousesActions({
+function WarehousesActionsInner({
   //#ownProps
   openDialog,
 }) {
@@ -33,4 +32,6 @@ function WarehousesActions({
   );
 }
 
-export default compose(withDialogActions)(WarehousesActions);
+export const WarehousesActions = compose(withDialogActions)(
+  WarehousesActionsInner,
+);

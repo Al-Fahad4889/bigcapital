@@ -1,17 +1,17 @@
 // @ts-nocheck
 import React from 'react';
+import { QuickCreateItemDrawerForm } from './QuickCreateItemDrawerForm';
 import {
   DrawerHeaderContent,
   DrawerBody,
   FormattedMessage as T,
 } from '@/components';
 import { DRAWERS } from '@/constants/drawers';
-import QuickCreateItemDrawerForm from './QuickCreateItemDrawerForm';
 
 /**
  * Quick create/edit item drawer content.
  */
-export default function QuickCreateItemDrawerContent({ itemName }) {
+export function QuickCreateItemDrawerContent({ itemName }) {
   return (
     <React.Fragment>
       <DrawerHeaderContent

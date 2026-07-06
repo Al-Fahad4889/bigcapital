@@ -1,16 +1,15 @@
 // @ts-nocheck
 import React from 'react';
-
-import { TableStyle } from '@/constants';
-import { CommercialDocEntriesTable } from '@/components';
 import { useWarehouseTransferReadOnlyEntriesColumns } from './utils';
 import { useWarehouseDetailDrawerContext } from './WarehouseTransferDetailDrawerProvider';
+import { CommercialDocEntriesTable } from '@/components';
+import { TableStyle } from '@/constants';
 
 /**
  * Warehouse transfer detail table.
  * @returns {React.JSX}
  */
-export default function WarehouseTransferDetailTable() {
+export function WarehouseTransferDetailTable() {
   // Warehouse transfer entries table columns.
   const columns = useWarehouseTransferReadOnlyEntriesColumns();
 

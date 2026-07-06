@@ -1,9 +1,15 @@
 // @ts-nocheck
-import React from 'react';
-import classNames from 'classnames';
 import { FormGroup, ControlGroup, Position, Classes } from '@blueprintjs/core';
+import classNames from 'classnames';
 import { FastField, ErrorMessage, useFormikContext } from 'formik';
-import { Features } from '@/constants';
+import React from 'react';
+import intl from 'react-intl-universal';
+import {
+  openingBalanceFieldShouldUpdate,
+  useIsVendorForeignCurrency,
+  useSetPrimaryBranchToForm,
+} from './utils';
+import { useVendorFormContext } from './VendorFormProvider';
 import {
   FFormGroup,
   InputPrependText,
@@ -12,18 +18,12 @@ import {
   FeatureCan,
   Row,
   Col,
-  FormattedMessage as T,
   FMoneyInputGroup,
   ExchangeRateInputGroup,
   FDateInput,
 } from '@/components';
-import {
-  openingBalanceFieldShouldUpdate,
-  useIsVendorForeignCurrency,
-  useSetPrimaryBranchToForm,
-} from './utils';
-import { useVendorFormContext } from './VendorFormProvider';
-import { useCurrentOrganization } from '@/hooks/state';
+import { Features } from '@/constants';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
 /**
  * Vendor Finaniceal Panel Tab.
@@ -41,7 +41,7 @@ export function VendorFinanicalPanelTab() {
           {/*------------ Currency  -----------*/}
           <FFormGroup
             name={'currency_code'}
-            label={<T id={'currency'} />}
+            label={intl.get('currency')}
             fastField
             inline
             fastField
@@ -63,7 +63,7 @@ export function VendorFinanicalPanelTab() {
           {/*------------ Opening branch  -----------*/}
           <FeatureCan feature={Features.Branches}>
             <FFormGroup
-              label={<T id={'vendor.label.opening_branch'} />}
+              label={intl.get('vendor.label.opening_branch')}
               name={'opening_balance_branch_id'}
               inline={true}
             >
@@ -94,7 +94,7 @@ function VendorOpeningBalanceField() {
   return (
     <FFormGroup
       name={'opening_balance'}
-      label={<T id={'opening_balance'} />}
+      label={intl.get('opening_balance')}
       shouldUpdate={openingBalanceFieldShouldUpdate}
       shouldUpdateDeps={{ currencyCode: values.currency_code }}
       inline
@@ -125,7 +125,7 @@ function VendorOpeningBalanceAtField() {
   return (
     <FFormGroup
       name={'opening_balance_at'}
-      label={<T id={'opening_balance_at'} />}
+      label={intl.get('opening_balance_at')}
       helperText={<ErrorMessage name="opening_balance_at" />}
       inline
       fastField
@@ -151,7 +151,7 @@ function VendorOpeningBalanceExchangeRateField() {
   const { values } = useFormikContext();
   const { vendorId } = useVendorFormContext();
   const isForeignVendor = useIsVendorForeignCurrency();
-  const currentOrganization = useCurrentOrganization();
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   // Cannot continue if the current vendor does not have foreign currency.
   if (!isForeignVendor || vendorId) {
@@ -166,7 +166,7 @@ function VendorOpeningBalanceExchangeRateField() {
     >
       <ExchangeRateInputGroup
         fromCurrency={values.currency_code}
-        toCurrency={currentOrganization.base_currency}
+        toCurrency={baseCurrency}
         name={'opening_balance_exchange_rate'}
         fastField
       />

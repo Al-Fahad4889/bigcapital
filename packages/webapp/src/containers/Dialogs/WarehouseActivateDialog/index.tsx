@@ -2,11 +2,12 @@
 import React from 'react';
 import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
 import withDialogRedux from '@/components/DialogReduxConnect';
-
 import { compose } from '@/utils';
 
-const WarehouseActivateDialogContent = React.lazy(
-  () => import('./WarehouseActivateDialogContent'),
+const WarehouseActivateDialogContent = React.lazy(() =>
+  import('./WarehouseActivateDialogContent').then((m) => ({
+    default: m.WarehouseActivateDialogContent,
+  })),
 );
 
 /**
@@ -29,4 +30,4 @@ function WarehouseActivateDialog({ dialogName, payload: {}, isOpen }) {
   );
 }
 
-export default compose(withDialogRedux())(WarehouseActivateDialog);
+export const index = compose(withDialogRedux())(WarehouseActivateDialog);

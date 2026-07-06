@@ -3,16 +3,16 @@ import React from 'react';
 
 import '@/style/pages/Items/ItemAdjustmentDialog.scss';
 
+import { InventoryAdjustmentForm } from './InventoryAdjustmentForm';
 import { InventoryAdjustmentFormProvider } from './InventoryAdjustmentFormProvider';
-import InventoryAdjustmentForm from './InventoryAdjustmentForm';
 
 /**
  * Inventory adjustment form dialog content.
  */
-export default function InventoryAdjustmentFormDialogContent({
+export function InventoryAdjustmentFormDialogContent({
   // #ownProps
   dialogName,
-  itemId
+  itemId,
 }) {
   return (
     <InventoryAdjustmentFormProvider itemId={itemId} dialogName={dialogName}>

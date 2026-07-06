@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Intent,
   Button,
@@ -9,18 +8,18 @@ import {
   Menu,
   MenuItem,
 } from '@blueprintjs/core';
-import styled from 'styled-components';
 import { useFormikContext } from 'formik';
-
-import { Group, Icon, FormattedMessage as T } from '@/components';
+import styled from 'styled-components';
 import { useItemFormContext } from './ItemFormProvider';
+import type { ItemFormValues } from './types';
+import { Group, Icon, FormattedMessage as T } from '@/components';
 
 /**
  * Item form floating actions bar.
  */
 export function ItemFormFloatingActions() {
   // Formik context.
-  const { isSubmitting, submitForm } = useFormikContext();
+  const { isSubmitting, submitForm } = useFormikContext<ItemFormValues>();
 
   // Item form context.
   const { isNewMode, setSubmitPayload } = useItemFormContext();

@@ -1,33 +1,26 @@
 // @ts-nocheck
-import { useMemo } from 'react';
-import intl from 'react-intl-universal';
-import { Formik, Form } from 'formik';
 import { Intent } from '@blueprintjs/core';
 import classNames from 'classnames';
+import { Formik, Form } from 'formik';
+import { useMemo } from 'react';
+import intl from 'react-intl-universal';
 import styled from 'styled-components';
-
-import { CLASSES } from '@/constants/classes';
-import { AppToaster, Box } from '@/components';
+import { defaultInitialValues } from './utils';
 import {
   CreateVendorFormSchema,
   EditVendorFormSchema,
 } from './VendorForm.schema';
-
 import { VendorFormContent } from './VendorFormContent';
-
-import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
-
 import { useVendorFormContext } from './VendorFormProvider';
-import { compose, transformToForm, safeInvoke, parseBoolean } from '@/utils';
-import { defaultInitialValues } from './utils';
+import { AppToaster, Box } from '@/components';
+import { CLASSES } from '@/constants/classes';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
+import { transformToForm, safeInvoke, parseBoolean } from '@/utils';
 
 /**
  * Vendor form.
  */
 function VendorFormFormikBase({
-  // #withCurrentOrganization
-  organization: { base_currency },
-
   // #ownProps
   initialValues,
   onSubmitSuccess,
@@ -35,6 +28,8 @@ function VendorFormFormikBase({
   onCancel,
   className,
 }) {
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
+
   // Vendor form context.
   const {
     vendorId,
@@ -51,11 +46,11 @@ function VendorFormFormikBase({
     () => ({
       ...defaultInitialValues,
       ...transformToForm(initialValues, defaultInitialValues),
-      currency_code: base_currency,
+      currency_code: baseCurrency,
       ...transformToForm(vendor, defaultInitialValues),
       ...transformToForm(contactDuplicate, defaultInitialValues),
     }),
-    [vendor, contactDuplicate, base_currency, initialValues],
+    [vendor, contactDuplicate, baseCurrency, initialValues],
   );
 
   // Handles the form submit.
@@ -98,29 +93,28 @@ function VendorFormFormikBase({
   };
 
   return (
-      <Formik
-        validationSchema={
-          isNewMode ? CreateVendorFormSchema : EditVendorFormSchema
-        }
-        initialValues={initialFormValues}
-        onSubmit={handleFormSubmit}
-        >
-        <Form>
-          <VendorFormFields>
-            <VendorFormContent onCancel={onCancel} />
-          </VendorFormFields>
-        </Form>
-      </Formik>    
+    <Formik
+      validationSchema={
+        isNewMode ? CreateVendorFormSchema : EditVendorFormSchema
+      }
+      initialValues={initialFormValues}
+      onSubmit={handleFormSubmit}
+    >
+      <Form>
+        <VendorFormFields>
+          <VendorFormContent onCancel={onCancel} />
+        </VendorFormFields>
+      </Form>
+    </Formik>
   );
 }
-
 
 const VendorFormFields = styled.div`
   .bp4-form-content,
   .bp6-form-content {
     min-width: 300px;
   }
-  .bp4-form-group{
+  .bp4-form-group {
     margin-bottom: 20px;
   }
   .bp4-form-group.bp4-inline label.bp4-label {
@@ -128,4 +122,4 @@ const VendorFormFields = styled.div`
   }
 `;
 
-export const VendorFormFormik = compose(withCurrentOrganization())(VendorFormFormikBase);
+export const VendorFormFormik = VendorFormFormikBase;

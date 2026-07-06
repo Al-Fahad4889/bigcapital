@@ -1,12 +1,13 @@
 // @ts-nocheck
 import React, { lazy } from 'react';
 import { Dialog, DialogSuspense, FormattedMessage as T } from '@/components';
-
 import withDialogRedux from '@/components/DialogReduxConnect';
 import { compose } from '@/utils';
 
 const ItemCategoryFormDialogContent = lazy(() =>
-  import('./ItemCategoryFormDialogContent'),
+  import('./ItemCategoryFormDialogContent').then((m) => ({
+    default: m.ItemCategoryFormDialogContent,
+  })),
 );
 
 /**
@@ -43,4 +44,4 @@ function ItemCategoryFormDialog({
   );
 }
 
-export default compose(withDialogRedux())(ItemCategoryFormDialog);
+export const index = compose(withDialogRedux())(ItemCategoryFormDialog);

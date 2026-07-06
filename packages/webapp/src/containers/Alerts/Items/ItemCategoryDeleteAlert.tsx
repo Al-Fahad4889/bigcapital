@@ -1,24 +1,21 @@
 // @ts-nocheck
+import { Intent, Alert } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Intent, Alert } from '@blueprintjs/core';
 import {
   AppToaster,
   FormattedMessage as T,
   FormattedHTMLMessage,
 } from '@/components';
-
-import { useDeleteItemCategory } from '@/hooks/query';
-
-import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-
+import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
+import { useDeleteItemCategory } from '@/hooks/query';
 import { compose } from '@/utils';
 
 /**
  * Item Category delete alerts.
  */
-function ItemCategoryDeleteAlert({
+function ItemCategoryDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -71,7 +68,7 @@ function ItemCategoryDeleteAlert({
   );
 }
 
-export default compose(
+export const ItemCategoryDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(ItemCategoryDeleteAlert);
+)(ItemCategoryDeleteAlertInner);

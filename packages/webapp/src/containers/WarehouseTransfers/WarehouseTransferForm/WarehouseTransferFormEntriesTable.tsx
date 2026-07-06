@@ -1,19 +1,17 @@
 // @ts-nocheck
 import React from 'react';
-
-import { DataTableEditable } from '@/components';
-import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
 import { useWarehouseTransferTableColumns } from '../utils';
 import { useFetchItemWarehouseQuantity } from './hooks';
-import { useDeepCompareEffect } from '@/hooks/utils';
-
-import { saveInvoke } from '@/utils';
 import { mutateTableCell, mutateTableRow, deleteTableRow } from './utils';
+import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
+import { DataTableEditable } from '@/components';
+import { useDeepCompareEffect } from '@/hooks/utils';
+import { saveInvoke } from '@/utils';
 
 /**
  * Warehouse transfer form entries table.
  */
-export default function WarehouseTransferFormEntriesTable({
+export function WarehouseTransferFormEntriesTable({
   // #ownProps
   items,
   entries,

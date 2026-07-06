@@ -1,15 +1,14 @@
-// @ts-nocheck
-import { Tab, Tabs } from "@blueprintjs/core";
-import { Card, Group } from "@/components";
-import { useState } from "react";
+import { Tab, Tabs } from '@blueprintjs/core';
 import { css } from '@emotion/css';
-import { ItemFormFloatingActions } from "./ItemFormFloatingActions";
-import { ItemFormSections } from "./ItemFormFields";
+import { useState } from 'react';
+import { ItemFormSections } from './ItemFormFields';
+import { ItemFormFloatingActions } from './ItemFormFloatingActions';
+import { Card, Group } from '@/components';
 
 export function ItemFormContent() {
-  const [selectedTabId, setSelectedTabId] = useState('primary');
+  const [selectedTabId, setSelectedTabId] = useState<string>('primary');
 
-  const handleTabChange = (tabId) => {
+  const handleTabChange = (tabId: string) => {
     const sectionId = String(tabId);
     setSelectedTabId(sectionId);
 
@@ -40,5 +39,5 @@ export function ItemFormContent() {
       </Group>
       <ItemFormFloatingActions />
     </Card>
-  )
+  );
 }

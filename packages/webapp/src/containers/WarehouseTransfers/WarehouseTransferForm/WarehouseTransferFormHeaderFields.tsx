@@ -1,7 +1,11 @@
 // @ts-nocheck
-import React from 'react';
 import { Position, ControlGroup } from '@blueprintjs/core';
+import classNames from 'classnames';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import intl from 'react-intl-universal';
+import { useObserveTransferNoSettings } from './utils';
+import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
 import {
   FFormGroup,
   FormattedMessage as T,
@@ -9,20 +13,16 @@ import {
   FDateInput,
   FInputGroup,
 } from '@/components';
-import { momentFormatter, compose } from '@/utils';
-import classNames from 'classnames';
-
-import { CLASSES } from '@/constants/classes';
 import { FieldRequiredHint, Icon, InputPrependButton } from '@/components';
-import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
-import { useObserveTransferNoSettings } from './utils';
-import { withSettings } from '@/containers/Settings/withSettings';
+import { CLASSES } from '@/constants/classes';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import { withSettings } from '@/containers/Settings/withSettings';
+import { momentFormatter, compose } from '@/utils';
 
 /**
  * Warehouse transfer form header fields.
  */
-function WarehouseTransferFormHeaderFields({
+function WarehouseTransferFormHeaderFieldsInner({
   // #withDialogActions
   openDialog,
 
@@ -67,7 +67,7 @@ function WarehouseTransferFormHeaderFields({
       {/* ----------- Date ----------- */}
       <FFormGroup
         name={'date'}
-        label={<T id={'date'} />}
+        label={intl.get('date')}
         inline
         labelInfo={<FieldRequiredHint />}
         fill
@@ -88,7 +88,7 @@ function WarehouseTransferFormHeaderFields({
       {/* ----------- Transfer number ----------- */}
       <FFormGroup
         name={'transaction_number'}
-        label={<T id={'warehouse_transfer.label.transfer_no'} />}
+        label={intl.get('warehouse_transfer.label.transfer_no')}
         inline
         fill
       >
@@ -123,7 +123,7 @@ function WarehouseTransferFormHeaderFields({
       <FFormGroup
         name={'from_warehouse_id'}
         items={warehouses}
-        label={<T id={'warehouse_transfer.label.from_warehouse'} />}
+        label={intl.get('warehouse_transfer.label.from_warehouse')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
       >
@@ -139,7 +139,7 @@ function WarehouseTransferFormHeaderFields({
       {/* ----------- To Warehouse ----------- */}
       <FFormGroup
         name={'to_warehouse_id'}
-        label={<T id={'warehouse_transfer.label.to_warehouse'} />}
+        label={intl.get('warehouse_transfer.label.to_warehouse')}
         inline={true}
         labelInfo={<FieldRequiredHint />}
       >
@@ -155,11 +155,11 @@ function WarehouseTransferFormHeaderFields({
   );
 }
 
-export default compose(
+export const WarehouseTransferFormHeaderFields = compose(
   withDialogActions,
   withSettings(({ warehouseTransferSettings }) => ({
     warehouseTransferAutoIncrement: warehouseTransferSettings?.autoIncrement,
     warehouseTransferNextNumber: warehouseTransferSettings?.nextNumber,
     warehouseTransferNumberPrefix: warehouseTransferSettings?.numberPrefix,
   })),
-)(WarehouseTransferFormHeaderFields);
+)(WarehouseTransferFormHeaderFieldsInner);

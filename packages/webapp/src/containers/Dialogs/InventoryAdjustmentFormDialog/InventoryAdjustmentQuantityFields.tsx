@@ -1,11 +1,11 @@
 // @ts-nocheck
-import React from 'react';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import { DecrementAdjustmentFields } from './DecrementAdjustmentFields';
+import { IncrementAdjustmentFields } from './IncrementAdjustmentFields';
 import { Choose, If } from '@/components';
-import IncrementAdjustmentFields from './IncrementAdjustmentFields';
-import DecrementAdjustmentFields from './DecrementAdjustmentFields';
 
-export default function InventoryAdjustmentQuantityFields() {
+export function InventoryAdjustmentQuantityFields() {
   const { values } = useFormikContext();
 
   return (

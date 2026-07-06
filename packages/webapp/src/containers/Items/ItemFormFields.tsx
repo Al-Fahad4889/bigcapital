@@ -1,12 +1,10 @@
-// @ts-nocheck
 import { Divider } from '@blueprintjs/core';
 import { css } from '@emotion/css';
-import { Box } from '@/components';
-
 import { ItemFormBasicSection } from './ItemFormBasicSection';
-import { ItemFormSellingSection } from './ItemFormSellingSection';
-import { ItemFormPurchasingSection } from './ItemFormPurchasingSection';
 import { ItemFormInventorySection } from './ItemFormInventorySection';
+import { ItemFormPurchasingSection } from './ItemFormPurchasingSection';
+import { ItemFormSellingSection } from './ItemFormSellingSection';
+import { Box } from '@/components';
 
 const itemFormSectionDividerClass = css`
   margin: 20px 0;

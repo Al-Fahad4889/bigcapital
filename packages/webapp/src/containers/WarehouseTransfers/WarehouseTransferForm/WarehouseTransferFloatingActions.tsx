@@ -1,6 +1,4 @@
 // @ts-nocheck
-import React from 'react';
-import { useHistory } from 'react-router-dom';
 import {
   Intent,
   Button,
@@ -11,16 +9,18 @@ import {
   Menu,
   MenuItem,
 } from '@blueprintjs/core';
-import { If, Icon, FormattedMessage as T, Group } from '@/components';
 import classNames from 'classnames';
 import { useFormikContext } from 'formik';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useWarehouseTransferFormContext } from './WarehouseTransferFormProvider';
+import { If, Icon, FormattedMessage as T, Group } from '@/components';
 import { CLASSES } from '@/constants/classes';
 
 /**
  * Warehouse transfer floating actions bar.
  */
-export default function WarehouseTransferFloatingActions() {
+export function WarehouseTransferFloatingActions() {
   // History context.
   const history = useHistory();
 
@@ -78,7 +78,9 @@ export default function WarehouseTransferFloatingActions() {
     <div className={classNames(CLASSES.PAGE_FORM_FLOATING_ACTIONS)}>
       <Group spacing={10}>
         {/* ----------- Save Intitate & transferred ----------- */}
-        <If condition={!warehouseTransfer || !warehouseTransfer?.is_transferred}>
+        <If
+          condition={!warehouseTransfer || !warehouseTransfer?.is_transferred}
+        >
           <ButtonGroup>
             <Button
               disabled={isSubmitting}

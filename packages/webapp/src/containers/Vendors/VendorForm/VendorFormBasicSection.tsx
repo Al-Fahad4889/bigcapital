@@ -1,19 +1,22 @@
 // @ts-nocheck
+import {
+  ControlGroup,
+  Divider,
+  Icon as BlueprintIcon,
+} from '@blueprintjs/core';
 import intl from 'react-intl-universal';
-import { ControlGroup, Divider, Icon as BlueprintIcon } from '@blueprintjs/core';
+import { VendorFormSectionTitle } from './VendorFormSectionTitle';
 import {
   Hint,
   FieldRequiredHint,
   SalutationList,
   DisplayNameList,
-  FormattedMessage as T,
   FInputGroup,
   FFormGroup,
   Box,
   Icon,
   Stack,
 } from '@/components';
-import { VendorFormSectionTitle } from './VendorFormSectionTitle';
 import { useAutofocus } from '@/hooks';
 
 export function VendorFormBasicSection({}) {
@@ -26,7 +29,7 @@ export function VendorFormBasicSection({}) {
       {/**----------- Contact name -----------*/}
       <FFormGroup
         name={'salutation'}
-        label={<T id={'contact_name'} />}
+        label={intl.get('contact_name')}
         inline
         fill
         fastField
@@ -67,7 +70,7 @@ export function VendorFormBasicSection({}) {
       {/*----------- Company Name -----------*/}
       <FFormGroup
         name={'company_name'}
-        label={<T id={'company_name'} />}
+        label={intl.get('company_name')}
         inline
         fill
         fastField
@@ -78,7 +81,7 @@ export function VendorFormBasicSection({}) {
       {/*----------- Display Name -----------*/}
       <FFormGroup
         name={'display_name'}
-        label={<T id={'display_name'} />}
+        label={intl.get('display_name')}
         helperText="This is the name that appears on invoices and emails."
         inline
         fill
@@ -97,7 +100,7 @@ export function VendorFormBasicSection({}) {
       {/*------------ Vendor email -----------*/}
       <FFormGroup
         name={'email'}
-        label={<T id={'vendor_email'} />}
+        label={intl.get('vendor_email')}
         inline
         fastField
       >
@@ -112,12 +115,16 @@ export function VendorFormBasicSection({}) {
       <FFormGroup
         name={'work_phone'}
         className={'form-group--phone-number'}
-        label={<T id={'phone_number'} />}
+        label={intl.get('phone_number')}
         inline
         fastField
       >
         <Stack spacing={10}>
-          <FInputGroup name={'work_phone'} placeholder={intl.get('work')} leftIcon="phone" fastField
+          <FInputGroup
+            name={'work_phone'}
+            placeholder={intl.get('work')}
+            leftIcon="phone"
+            fastField
           />
           <FInputGroup
             name={'personal_phone'}
@@ -128,7 +135,7 @@ export function VendorFormBasicSection({}) {
       </FFormGroup>
 
       {/*------------ Vendor website -----------*/}
-      <FFormGroup name={'website'} label={<T id={'website'} />} inline fastField>
+      <FFormGroup name={'website'} label={intl.get('website')} inline fastField>
         <FInputGroup
           name={'website'}
           placeholder={'http://'}

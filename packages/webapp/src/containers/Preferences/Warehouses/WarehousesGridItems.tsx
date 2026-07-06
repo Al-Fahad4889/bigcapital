@@ -1,15 +1,13 @@
 // @ts-nocheck
-import React from 'react';
-import intl from 'react-intl-universal';
 import { Intent } from '@blueprintjs/core';
 import { ContextMenu2 } from '@blueprintjs/popover2';
-
-import { AppToaster } from '@/components';
+import React from 'react';
+import intl from 'react-intl-universal';
 import { WarehouseContextMenu, WarehousesGridItemBox } from './components';
-import { useMarkWarehouseAsPrimary } from '@/hooks/query';
-
+import { AppToaster } from '@/components';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
+import { useMarkWarehouseAsPrimary } from '@/hooks/query';
 import { compose } from '@/utils';
 
 /**
@@ -77,7 +75,7 @@ const WarehousesGridItem = compose(
 /**
  * warehouses grid items,
  */
-export default function WarehousesGridItems({ warehouses }) {
+export function WarehousesGridItems({ warehouses }) {
   return warehouses.map((warehouse) => (
     <WarehousesGridItem warehouse={warehouse} />
   ));

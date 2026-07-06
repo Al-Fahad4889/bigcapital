@@ -1,26 +1,23 @@
 // @ts-nocheck
+import { Intent, Alert } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Intent, Alert } from '@blueprintjs/core';
 import {
   AppToaster,
   FormattedMessage as T,
   FormattedHTMLMessage,
 } from '@/components';
-
-import { useDeleteWarehouse } from '@/hooks/query';
-import { handleDeleteErrors } from '@/containers/Preferences/Warehouses/utils';
-
-import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-
+import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
+import { handleDeleteErrors } from '@/containers/Preferences/Warehouses/utils';
+import { useDeleteWarehouse } from '@/hooks/query';
 import { compose } from '@/utils';
 
 /**
  * Warehouse delete alert
  * @returns
  */
-function WarehouseDeleteAlert({
+function WarehouseDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -47,15 +44,9 @@ function WarehouseDeleteAlert({
           intent: Intent.SUCCESS,
         });
       })
-      .catch(
-        ({
-          response: {
-            data: { errors },
-          },
-        }) => {
-          handleDeleteErrors(errors);
-        },
-      )
+      .catch(({ data: { errors } }) => {
+        handleDeleteErrors(errors);
+      })
       .finally(() => {
         closeAlert(name);
       });
@@ -79,7 +70,7 @@ function WarehouseDeleteAlert({
   );
 }
 
-export default compose(
+export const WarehouseDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(WarehouseDeleteAlert);
+)(WarehouseDeleteAlertInner);

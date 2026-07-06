@@ -1,16 +1,13 @@
 // @ts-nocheck
+import { Intent } from '@blueprintjs/core';
+import { Formik } from 'formik';
 import React from 'react';
 import intl from 'react-intl-universal';
-
-import { Formik } from 'formik';
-import { Intent } from '@blueprintjs/core';
-
-import { AppToaster } from '@/components';
-import { CreateWarehouseFormSchema } from './WarehouseForm.schema';
-import { useWarehouseFormContext } from './WarehouseFormProvider';
-import WarehouseFormContent from './WarehouseFormContent';
 import { transformErrors } from './utils';
-
+import { CreateWarehouseFormSchema } from './WarehouseForm.schema';
+import { WarehouseFormContent } from './WarehouseFormContent';
+import { useWarehouseFormContext } from './WarehouseFormProvider';
+import { AppToaster } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose, transformToForm } from '@/utils';
 
@@ -29,7 +26,7 @@ const defaultInitialValues = {
  * Warehouse form.
  * @returns
  */
-function WarehouseForm({
+function WarehouseFormInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -61,11 +58,7 @@ function WarehouseForm({
     };
 
     // Handle request response errors.
-    const onError = ({
-      response: {
-        data: { errors },
-      },
-    }) => {
+    const onError = ({ data: { errors } }) => {
       if (errors) {
       }
       transformErrors(errors, { setErrors });
@@ -90,4 +83,4 @@ function WarehouseForm({
   );
 }
 
-export default compose(withDialogActions)(WarehouseForm);
+export const WarehouseForm = compose(withDialogActions)(WarehouseFormInner);

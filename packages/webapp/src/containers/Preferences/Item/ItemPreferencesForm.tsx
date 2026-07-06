@@ -1,9 +1,10 @@
 // @ts-nocheck
-import React from 'react';
-import { Form, useFormikContext } from 'formik';
 import { Button, Intent } from '@blueprintjs/core';
+import { Form, useFormikContext } from 'formik';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { useItemPreferencesFormContext } from './ItemPreferencesFormProvider';
 import {
   AccountsSelect,
   FieldRequiredHint,
@@ -13,12 +14,10 @@ import {
 } from '@/components';
 import { ACCOUNT_PARENT_TYPE, ACCOUNT_TYPE } from '@/constants/accountTypes';
 
-import { useItemPreferencesFormContext } from './ItemPreferencesFormProvider';
-
 /**
  * Item preferences form.
  */
-export default function ItemForm() {
+export function ItemForm() {
   const history = useHistory();
   const { accounts } = useItemPreferencesFormContext();
 

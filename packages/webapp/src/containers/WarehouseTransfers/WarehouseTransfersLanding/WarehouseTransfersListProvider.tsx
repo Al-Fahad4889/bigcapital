@@ -1,6 +1,6 @@
 // @ts-nocheck
-import React from 'react';
 import { isEmpty } from 'lodash';
+import React from 'react';
 import { DashboardInsider } from '@/components/Dashboard';
 import {
   useResourceViews,
@@ -8,7 +8,6 @@ import {
   useWarehousesTransfers,
   useRefreshWarehouseTransfers,
 } from '@/hooks/query';
-
 import { getFieldsFromResourceMeta } from '@/utils';
 
 const WarehouseTransfersListContext = React.createContext();
@@ -26,14 +25,14 @@ function WarehouseTransfersListProvider({
 
   // Fetch warehouse transfers list according to the given custom view id.
   const {
-    data: { warehousesTransfers, pagination, filterMeta },
+    data: warehousesTransfersData,
     isFetching: isWarehouseTransfersFetching,
     isLoading: isWarehouseTransfersLoading,
   } = useWarehousesTransfers(query, { keepPreviousData: true });
 
   // Detarmines the datatable empty status.
   const isEmptyStatus =
-    isEmpty(warehousesTransfers) &&
+    isEmpty(warehousesTransfersData?.data) &&
     !tableStateChanged &&
     !isWarehouseTransfersLoading;
 
@@ -50,14 +49,16 @@ function WarehouseTransfersListProvider({
 
   // Provider payload.
   const provider = {
-    warehousesTransfers,
-    pagination,
+    warehousesTransfers: warehousesTransfersData?.data,
+    pagination: warehousesTransfersData?.pagination,
 
     WarehouseTransferView,
     refresh,
 
     resourceMeta,
-    fields: getFieldsFromResourceMeta(resourceMeta.fields),
+    fields: resourceMeta?.fields
+      ? getFieldsFromResourceMeta(resourceMeta.fields)
+      : [],
     isResourceLoading,
     isResourceFetching,
 

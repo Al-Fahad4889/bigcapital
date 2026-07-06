@@ -1,18 +1,15 @@
-// @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
 import { useHistory } from 'react-router-dom';
-
-import ItemFormFormik from './ItemFormFormik';
-
-import { useDashboardPageTitle } from '@/hooks/state';
+import { ItemFormFormik } from './ItemFormFormik';
 import { useItemFormContext, ItemFormProvider } from './ItemFormProvider';
-import { DashboardInsider } from '@/components';
-import { Box } from '@/components';
+import type { ItemFormValues, ItemFormSubmitPayload } from './types';
+import type { FormikHelpers } from 'formik';
+import { DashboardInsider, Box } from '@/components';
+import { useDashboardPageTitle } from '@/hooks/state';
 
 /**
  * Item form dashboard title.
- * @returns {null}
  */
 function ItemFormDashboardTitle() {
   // Change page title dispatcher.
@@ -33,28 +30,32 @@ function ItemFormDashboardTitle() {
 
 /**
  * Item form page loading state indicator.
- * @returns {JSX}
  */
-function ItemFormPageLoading({ children }) {
+function ItemFormPageLoading({ children }: { children: React.ReactNode }) {
   const { isFormLoading } = useItemFormContext();
 
   return (
-    <DashboardInsider loading={isFormLoading}>
-      {children}
-    </DashboardInsider>
+    <DashboardInsider loading={isFormLoading}>{children}</DashboardInsider>
   );
+}
+
+interface ItemFormProps {
+  itemId?: number;
 }
 
 /**
  * Item form of the page.
- * @returns {JSX}
  */
-export default function ItemForm({ itemId }) {
+export function ItemForm({ itemId }: ItemFormProps) {
   // History context.
   const history = useHistory();
 
   // Handle the form submit success.
-  const handleSubmitSuccess = (values, form, submitPayload) => {
+  const handleSubmitSuccess = (
+    _values: ItemFormValues,
+    _form: FormikHelpers<ItemFormValues>,
+    submitPayload: ItemFormSubmitPayload,
+  ) => {
     if (submitPayload.redirect) {
       history.push('/items');
     }
@@ -66,9 +67,7 @@ export default function ItemForm({ itemId }) {
 
       <ItemFormPageLoading>
         <Box mx={'auto'} maxWidth={800}>
-          <ItemFormFormik
-            onSubmitSuccess={handleSubmitSuccess}
-          />
+          <ItemFormFormik onSubmitSuccess={handleSubmitSuccess} />
         </Box>
       </ItemFormPageLoading>
     </ItemFormProvider>

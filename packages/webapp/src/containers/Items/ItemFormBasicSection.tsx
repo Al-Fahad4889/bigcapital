@@ -1,31 +1,44 @@
-// @ts-nocheck
-import React, { useEffect, useRef } from 'react';
 import {
   FormGroup,
   RadioGroup,
   Radio,
   Position,
   Checkbox,
+  Tooltip,
+  Intent,
 } from '@blueprintjs/core';
+import classNames from 'classnames';
 import { ErrorMessage, FastField } from 'formik';
+import React, { useRef, useEffect } from 'react';
+import intl from 'react-intl-universal';
+import { useItemFormContext } from './ItemFormProvider';
+import { ItemFormSectionTitle } from './ItemFormSectionTitle';
 import {
-  Hint,
   FieldRequiredHint,
   FormattedMessage as T,
-  FormattedHTMLMessage,
   FFormGroup,
   FSelect,
   FInputGroup,
   Box,
 } from '@/components';
+import { handleStringChange } from '@/utils';
 
-import { useItemFormContext } from './ItemFormProvider';
-import { handleStringChange, inputIntent } from '@/utils';
-import { ItemFormSectionTitle } from './ItemFormSectionTitle';
+type RadioFieldRenderArg = {
+  form: { setFieldValue: (field: string, value: unknown) => void };
+  field: { value: string };
+  meta: { touched: boolean; error?: string };
+};
+
+type CheckboxField = {
+  name: string;
+  value: boolean;
+  onChange: (e: unknown) => void;
+  onBlur: (e: unknown) => void;
+};
 
 export function ItemFormBasicSection() {
   const { isNewMode, item, itemsCategories } = useItemFormContext();
-  const nameFieldRef = useRef(null);
+  const nameFieldRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (nameFieldRef.current) {
@@ -36,10 +49,10 @@ export function ItemFormBasicSection() {
   const itemTypeHintContent = (
     <>
       <div className="mb1">
-        <FormattedHTMLMessage id={'services_that_you_provide_to_customers'} />
+        <span dangerouslySetInnerHTML={{ __html: intl.formatHTMLMessage({ id: 'services_that_you_provide_to_customers' }) }} />
       </div>
       <div className="mb1">
-        <FormattedHTMLMessage id={'products_you_buy_and_or_sell'} />
+        <span dangerouslySetInnerHTML={{ __html: intl.formatHTMLMessage({ id: 'products_you_buy_and_or_sell' }) }} />
       </div>
     </>
   );
@@ -50,34 +63,37 @@ export function ItemFormBasicSection() {
 
       {/*----------- Item type ----------*/}
       <FastField name={'type'}>
-        {({ form, field: { value }, meta: { touched, error } }) => (
+        {({
+          form,
+          field: { value },
+          meta: { touched, error },
+        }: RadioFieldRenderArg) => (
           <FormGroup
-            medium={true}
-            label={<T id={'item_type'} />}
+            label={intl.get('item_type')}
             labelInfo={
               <span>
                 <FieldRequiredHint />
-                <Hint
+                <Tooltip
                   content={itemTypeHintContent}
                   position={Position.BOTTOM_LEFT}
                 />
               </span>
             }
-            className={'form-group--item-type'}
-            intent={inputIntent({ error, touched })}
+            className={classNames('form-group--item-type')}
+            intent={touched && error ? Intent.DANGER : undefined}
             helperText={<ErrorMessage name="item_type" />}
             inline={true}
           >
             <RadioGroup
               inline={true}
-              onChange={handleStringChange((_value) => {
+              onChange={handleStringChange((_value: string) => {
                 form.setFieldValue('type', _value);
               })}
               selectedValue={value}
-              disabled={!isNewMode && item.type === 'inventory'}
+              disabled={!isNewMode && item?.type === 'inventory'}
             >
-              <Radio label={<T id={'service'} />} value="service" />
-              <Radio label={<T id={'inventory'} />} value="inventory" />
+              <Radio label={intl.get('service')} value="service" />
+              <Radio label={intl.get('inventory')} value="inventory" />
             </RadioGroup>
           </FormGroup>
         )}
@@ -89,13 +105,13 @@ export function ItemFormBasicSection() {
         label={<T id={'item_name'} />}
         labelInfo={<FieldRequiredHint />}
         inline={true}
-        fill
         fastField
       >
         <FInputGroup
           name={'name'}
-          medium={true}
-          inputRef={(ref) => (nameFieldRef.current = ref)}
+          inputRef={(ref: HTMLInputElement | null) => {
+            nameFieldRef.current = ref;
+          }}
           fastField
           fill
         />
@@ -106,10 +122,9 @@ export function ItemFormBasicSection() {
         name={'code'}
         label={<T id={'item_code'} />}
         inline={true}
-        fill
         fastField
       >
-        <FInputGroup name={'code'} medium={true} fastField fill />
+        <FInputGroup name={'code'} fastField fill />
       </FFormGroup>
 
       {/*----------- Item category ----------*/}
@@ -117,7 +132,6 @@ export function ItemFormBasicSection() {
         name={'category_id'}
         label={<T id={'category'} />}
         inline={true}
-        fill
       >
         <FSelect
           name={'category_id'}
@@ -132,16 +146,19 @@ export function ItemFormBasicSection() {
 
       {/*----------- Active ----------*/}
       <FastField name={'active'} type={'checkbox'}>
-        {({ field }) => (
-          <FormGroup inline={true} className={'form-group--active'}>
-            <Checkbox
-              inline={true}
-              label={<T id={'active'} />}
-              name={'active'}
-              {...field}
-            />
-          </FormGroup>
-        )}
+        {({ field }: { field: CheckboxField }) => {
+          const { value, ...fieldRest } = field;
+          return (
+            <FormGroup inline={true} className={classNames('form-group--active')}>
+              <Checkbox
+                inline={true}
+                labelElement={<T id={'active'} />}
+                checked={value}
+                {...fieldRest}
+              />
+            </FormGroup>
+          );
+        }}
       </FastField>
     </Box>
   );

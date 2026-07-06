@@ -1,7 +1,16 @@
-// @ts-nocheck
-import React from 'react';
-import { useFormikContext, FastField, ErrorMessage } from 'formik';
 import { FormGroup, Checkbox, ControlGroup } from '@blueprintjs/core';
+import { useFormikContext, FastField, ErrorMessage } from 'formik';
+import React from 'react';
+import intl from 'react-intl-universal';
+import { useItemFormContext } from './ItemFormProvider';
+import { ItemFormSectionTitle } from './ItemFormSectionTitle';
+import {
+  costPriceFieldShouldUpdate,
+  costAccountFieldShouldUpdate,
+  purchaseDescFieldShouldUpdate,
+  taxRateFieldShouldUpdate,
+} from './utils';
+import type { ItemFormValues } from './types';
 import {
   AccountsSelect,
   FMoneyInputGroup,
@@ -12,23 +21,21 @@ import {
   Box,
 } from '@/components';
 import { FormattedMessage as T } from '@/components';
-
-import { useItemFormContext } from './ItemFormProvider';
-import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
-import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
-import {
-  costPriceFieldShouldUpdate,
-  costAccountFieldShouldUpdate,
-  purchaseDescFieldShouldUpdate,
-  taxRateFieldShouldUpdate,
-} from './utils';
-import { compose } from '@/utils';
 import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
-import { ItemFormSectionTitle } from './ItemFormSectionTitle';
+import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
+type CheckboxField = {
+  name: string;
+  value: boolean;
+  onChange: (e: unknown) => void;
+  onBlur: (e: unknown) => void;
+};
+
+export function ItemFormPurchasingSection() {
   const { accounts, taxRates } = useItemFormContext();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ItemFormValues>();
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   return (
     <Box data-section-id="purchasing">
@@ -36,27 +43,30 @@ function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
 
       {/*------------- Purchasable checkbox ------------- */}
       <FastField name={'purchasable'} type={'checkbox'}>
-        {({ field }) => (
-          <FormGroup inline={true} className={'form-group--purchasable'}>
-            <Checkbox
-              inline={true}
-              label={<T id={'i_purchase_this_item'} />}
-              {...field}
-            />
-          </FormGroup>
-        )}
+        {({ field }: { field: CheckboxField }) => {
+          const { value, ...fieldRest } = field;
+          return (
+            <FormGroup inline={true} className={'form-group--purchasable'}>
+              <Checkbox
+                inline={true}
+                labelElement={<T id={'i_purchase_this_item'} />}
+                checked={value}
+                {...fieldRest}
+              />
+            </FormGroup>
+          );
+        }}
       </FastField>
 
       {/*------------- Cost price ------------- */}
       <FFormGroup
         name={'cost_price'}
         label={<T id={'cost_price'} />}
-        inline
-        fill
+        inline={true}
         fastField
       >
         <ControlGroup fill>
-          <InputPrependText text={base_currency} />
+          <InputPrependText text={baseCurrency} />
           <FMoneyInputGroup
             name={'cost_price'}
             shouldUpdate={costPriceFieldShouldUpdate}
@@ -71,21 +81,16 @@ function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
       {/*------------- Cost account ------------- */}
       <FFormGroup
         name={'cost_account_id'}
-        purchasable={values.purchasable}
-        items={accounts}
-        shouldUpdate={costAccountFieldShouldUpdate}
         label={<T id={'account'} />}
         labelInfo={
-          <Hint content={<T id={'item.field.cost_account.hint'} />} />
+          <Hint content={intl.get('item.field.cost_account.hint')} />
         }
         inline={true}
-        fill
-        fastField={true}
       >
         <AccountsSelect
           name={'cost_account_id'}
           items={accounts}
-          placeholder={<T id={'select_account'} />}
+          placeholder={intl.get('select_account')}
           filterByParentTypes={[ACCOUNT_PARENT_TYPE.EXPENSE]}
           popoverFill={true}
           allowCreate={true}
@@ -101,10 +106,6 @@ function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
         name={'purchase_tax_rate_id'}
         label={'Tax Rate'}
         inline={true}
-        fill
-        fastField={true}
-        shouldUpdateDeps={{ taxRates }}
-        shouldUpdate={taxRateFieldShouldUpdate}
       >
         <TaxRatesSelect
           name={'purchase_tax_rate_id'}
@@ -112,6 +113,7 @@ function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
           allowCreate={true}
           fastField={true}
           shouldUpdateDeps={{ taxRates }}
+          shouldUpdate={taxRateFieldShouldUpdate}
         />
       </FFormGroup>
 
@@ -121,22 +123,15 @@ function ItemFormPurchasingSectionBase({ organization: { base_currency } }) {
         className={'form-group--purchase-description'}
         helperText={<ErrorMessage name={'description'} />}
         inline={true}
-        fill
-        purchasable={values.purchasable}
-        shouldUpdate={purchaseDescFieldShouldUpdate}
       >
         <FTextArea
           name={'purchase_description'}
           growVertically={true}
-          height={280}
           disabled={!values.purchasable}
           fill
+          shouldUpdate={purchaseDescFieldShouldUpdate}
         />
       </FFormGroup>
     </Box>
   );
 }
-
-export const ItemFormPurchasingSection = compose(withCurrentOrganization())(
-  ItemFormPurchasingSectionBase,
-);

@@ -1,17 +1,16 @@
 // @ts-nocheck
-import React from 'react';
 import { Intent, Button, Classes } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import { FormattedMessage as T } from '@/components';
-
+import React from 'react';
 import { useWarehouseActivateContext } from './WarehouseActivateFormProvider';
+import { FormattedMessage as T } from '@/components';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { compose } from '@/utils';
 
 /**
  * warehouse activate form floating actions.
  */
-function WarehouseActivateFormFloatingActions({
+function WarehouseActivateFormFloatingActionsInner({
   // #withDialogActions
   closeDialog,
 }) {
@@ -44,4 +43,6 @@ function WarehouseActivateFormFloatingActions({
     </div>
   );
 }
-export default compose(withDialogActions)(WarehouseActivateFormFloatingActions);
+export const WarehouseActivateFormFloatingActions = compose(withDialogActions)(
+  WarehouseActivateFormFloatingActionsInner,
+);

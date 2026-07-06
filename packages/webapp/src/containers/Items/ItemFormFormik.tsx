@@ -1,36 +1,51 @@
-// @ts-nocheck
-import React from 'react';
-import { Formik, Form } from 'formik';
 import { Intent } from '@blueprintjs/core';
-import intl from 'react-intl-universal';
 import classNames from 'classnames';
+import { Formik, Form, type FormikHelpers } from 'formik';
+import intl from 'react-intl-universal';
 import styled from 'styled-components';
-
 import '@/style/pages/Items/Form.scss';
-
-import { CLASSES } from '@/constants/classes';
-import { AppToaster } from '@/components';
+import { CreateItemFormSchema, EditItemFormSchema } from './ItemForm.schema';
 import { ItemFormContent } from './ItemFormContent';
-
+import { useItemFormContext } from './ItemFormProvider';
 import {
   transformSubmitRequestErrors,
   useItemFormInitialValues,
 } from './utils';
-import { useItemFormContext } from './ItemFormProvider';
-import { EditItemFormSchema, CreateItemFormSchema } from './ItemForm.schema';
+import type { ItemFormValues, ItemFormSubmitPayload } from './types';
+import { AppToaster } from '@/components';
+import { CLASSES } from '@/constants/classes';
 import { safeInvoke } from '@/utils';
+
+type SubmitSuccessHandler = (
+  values: ItemFormValues,
+  form: FormikHelpers<ItemFormValues>,
+  submitPayload: ItemFormSubmitPayload,
+  response: void,
+) => void;
+
+type SubmitErrorHandler = (
+  errors: unknown,
+  values: ItemFormValues,
+  form: FormikHelpers<ItemFormValues>,
+  submitPayload: ItemFormSubmitPayload,
+) => void;
+
+interface ItemFormFormikProps {
+  initialValues?: Partial<ItemFormValues>;
+  onSubmitSuccess?: SubmitSuccessHandler;
+  onSubmitError?: SubmitErrorHandler;
+  className?: string;
+}
 
 /**
  * Item form.
  */
-export default function ItemFormFormik({
-  // #ownProps
+export function ItemFormFormik({
   initialValues: initialValuesComponent,
   onSubmitSuccess,
   onSubmitError,
-  onCancel,
   className,
-}) {
+}: ItemFormFormikProps) {
   // Item form context.
   const {
     itemId,
@@ -45,14 +60,17 @@ export default function ItemFormFormik({
   const initialValues = useItemFormInitialValues(item, initialValuesComponent);
 
   // Handles the form submit.
-  const handleFormSubmit = (values, form) => {
+  const handleFormSubmit = (
+    values: ItemFormValues,
+    form: FormikHelpers<ItemFormValues>,
+  ) => {
     const { setSubmitting, resetForm, setErrors } = form;
     const formValues = { ...values };
 
     setSubmitting(true);
 
     // Handle response succes.
-    const onSuccess = (response) => {
+    const onSuccess = (response: void) => {
       AppToaster.show({
         message: intl.get(
           isNewMode
@@ -70,19 +88,25 @@ export default function ItemFormFormik({
       safeInvoke(onSubmitSuccess, values, form, submitPayload, response);
     };
     // Handle response error.
-    const onError = (errors) => {
+    const onError = (errors: unknown) => {
       setSubmitting(false);
 
       if (errors) {
-        const _errors = transformSubmitRequestErrors(errors);
+        const _errors = transformSubmitRequestErrors(
+          errors as { data: { errors: Array<{ type: string }> } },
+        );
         setErrors({ ..._errors });
       }
-      safeInvoke(onSubmitError, values, form, submitPayload, errors);
+      safeInvoke(onSubmitError, errors, values, form, submitPayload);
     };
     if (isNewMode) {
-      createItemMutate(formValues).then(onSuccess).catch(onError);
+      createItemMutate(formValues as never)
+        .then(onSuccess)
+        .catch(onError);
     } else {
-      editItemMutate([itemId, formValues]).then(onSuccess).catch(onError);
+      editItemMutate([itemId!, formValues] as never)
+        .then(onSuccess)
+        .catch(onError);
     }
   };
 
@@ -90,7 +114,7 @@ export default function ItemFormFormik({
     <div
       className={classNames(CLASSES.PAGE_FORM, CLASSES.PAGE_FORM_ITEM, className)}
     >
-      <Formik
+      <Formik<ItemFormValues>
         enableReinitialize={true}
         validationSchema={isNewMode ? CreateItemFormSchema : EditItemFormSchema}
         initialValues={initialValues}

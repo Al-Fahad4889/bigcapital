@@ -1,21 +1,18 @@
 // @ts-nocheck
+import { Intent, Alert } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
 import { AppToaster, FormattedMessage as T } from '@/components';
-import { Intent, Alert } from '@blueprintjs/core';
-
-import { useTransferredWarehouseTransfer } from '@/hooks/query';
-
-import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-
+import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
+import { useTransferredWarehouseTransfer } from '@/hooks/query';
 import { compose } from '@/utils';
 
 /**
  * warehouse transfer transferred alert.
  * @returns
  */
-function TransferredWarehouseTransferAlert({
+function TransferredWarehouseTransferAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -65,7 +62,7 @@ function TransferredWarehouseTransferAlert({
   );
 }
 
-export default compose(
+export const TransferredWarehouseTransferAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(TransferredWarehouseTransferAlert);
+)(TransferredWarehouseTransferAlertInner);

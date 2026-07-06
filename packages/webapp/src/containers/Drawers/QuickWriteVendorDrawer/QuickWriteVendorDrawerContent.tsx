@@ -1,18 +1,17 @@
 // @ts-nocheck
 import React from 'react';
+import { QuickVendorFormDrawer } from './QuickVendorFormDrawer';
 import {
   DrawerHeaderContent,
   DrawerBody,
   FormattedMessage as T,
 } from '@/components';
-
-import QuickVendorFormDrawer from './QuickVendorFormDrawer';
 import { DRAWERS } from '@/constants/drawers';
 
 /**
  * Quick create/edit vendor drawer.
  */
-export default function QuickWriteVendorDrawerContent({ displayName, autofillRef }) {
+export function QuickWriteVendorDrawerContent({ displayName, autofillRef }) {
   return (
     <React.Fragment>
       <DrawerHeaderContent
@@ -20,7 +19,10 @@ export default function QuickWriteVendorDrawerContent({ displayName, autofillRef
         title={<T id={'create_a_new_vendor'} />}
       />
       <DrawerBody>
-        <QuickVendorFormDrawer displayName={displayName} autofillRef={autofillRef} />
+        <QuickVendorFormDrawer
+          displayName={displayName}
+          autofillRef={autofillRef}
+        />
       </DrawerBody>
     </React.Fragment>
   );

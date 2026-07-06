@@ -1,5 +1,3 @@
-// @ts-nocheck
-import React from 'react';
 import {
   Button,
   NavbarGroup,
@@ -9,7 +7,16 @@ import {
   Alignment,
 } from '@blueprintjs/core';
 import { isEmpty } from 'lodash';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useBulkDeleteManualJournalsDialog } from './hooks/use-bulk-delete-manual-journals-dialog';
+import { useManualJournalsContext } from './ManualJournalsListProvider';
+import { withManualJournals } from './withManualJournals';
+import { withManualJournalsActions } from './withManualJournalsActions';
+import type { WithManualJournalsProps } from './withManualJournals';
+import type { WithManualJournalsActionsProps } from './withManualJournalsActions';
+import type { WithDialogActionsProps } from '@/containers/Dialog/withDialogActions';
+import type { WithSettingsActionsProps } from '@/containers/Settings/withSettingsActions';
 import {
   Icon,
   AdvancedFilterPopover,
@@ -21,25 +28,32 @@ import {
   DashboardActionViewsList,
   DashboardActionsBar,
 } from '@/components';
-import { useRefreshJournals } from '@/hooks/query/manualJournals';
-import { useManualJournalsContext } from './ManualJournalsListProvider';
 import { ManualJournalAction, AbilitySubject } from '@/constants/abilityOption';
-
-import { withManualJournals } from './withManualJournals';
-import { withManualJournalsActions } from './withManualJournalsActions';
+import { DialogsName } from '@/constants/dialogs';
+import { withDialogActions } from '@/containers/Dialog/withDialogActions';
 import { withSettings } from '@/containers/Settings/withSettings';
 import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
-import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-
 import { useDownloadExportPdf } from '@/hooks/query/FinancialReports/use-export-pdf';
+import { useRefreshJournals } from '@/hooks/query/manual-journals';
 import { compose } from '@/utils';
-import { DialogsName } from '@/constants/dialogs';
-import { useBulkDeleteManualJournalsDialog } from './hooks/use-bulk-delete-manual-journals-dialog';
+
+interface WithSettingsProps {
+  manualJournalsTableSize?: string | null;
+}
+
+interface ManualJournalActionsBarInnerProps
+  extends Pick<WithManualJournalsProps, 'manualJournalsSelectedRows'>,
+    WithManualJournalsActionsProps,
+    WithSettingsActionsProps,
+    WithDialogActionsProps,
+    WithSettingsProps {
+  manualJournalsFilterConditions: unknown[];
+}
 
 /**
  * Manual journal actions bar.
  */
-function ManualJournalActionsBar({
+function ManualJournalActionsBarInner({
   // #withManualJournalsActions
   setManualJournalsTableState,
 
@@ -55,7 +69,7 @@ function ManualJournalActionsBar({
 
   // #withDialogActions
   openDialog,
-}) {
+}: ManualJournalActionsBarInnerProps) {
   // History context.
   const history = useHistory();
 
@@ -72,17 +86,15 @@ function ManualJournalActionsBar({
   const onClickNewManualJournal = () => {
     history.push('/make-journal-entry');
   };
-  const {
-    openBulkDeleteDialog,
-    isValidatingBulkDeleteManualJournals,
-  } = useBulkDeleteManualJournalsDialog();
+  const { openBulkDeleteDialog, isValidatingBulkDeleteManualJournals } =
+    useBulkDeleteManualJournalsDialog();
 
   const handleBulkDelete = () => {
-    openBulkDeleteDialog(manualJournalsSelectedRows);
+    openBulkDeleteDialog(manualJournalsSelectedRows as number[]);
   };
 
   // Handle tab change.
-  const handleTabChange = (view) => {
+  const handleTabChange = (view?: { slig?: string }) => {
     setManualJournalsTableState({ viewSlug: view ? view.slig : null });
   };
   // Handle click a refresh Journals
@@ -95,7 +107,7 @@ function ManualJournalActionsBar({
   };
 
   // Handle table row size change.
-  const handleTableRowSizeChange = (size) => {
+  const handleTableRowSizeChange = (size: string) => {
     addSetting('manualJournals', 'tableSize', size);
   };
 
@@ -149,8 +161,10 @@ function ManualJournalActionsBar({
             conditions: manualJournalsFilterConditions,
             defaultFieldKey: 'journal_number',
             fields,
-            onFilterChange: (filterConditions) => {
-              setManualJournalsTableState({ filterRoles: filterConditions });
+            onFilterChange: (filterConditions: unknown[]) => {
+              setManualJournalsTableState({
+                filterRoles: filterConditions,
+              });
             },
           }}
         >
@@ -206,15 +220,17 @@ function ManualJournalActionsBar({
   );
 }
 
-export default compose(
+export const ManualJournalActionsBar = compose(
   withDialogActions,
   withManualJournalsActions,
   withSettingsActions,
-  withManualJournals(({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
-    manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
-    manualJournalsSelectedRows,
-  })),
+  withManualJournals(
+    ({ manualJournalsTableState, manualJournalsSelectedRows }) => ({
+      manualJournalsFilterConditions: manualJournalsTableState.filterRoles,
+      manualJournalsSelectedRows,
+    }),
+  ),
   withSettings(({ manualJournalsSettings }) => ({
     manualJournalsTableSize: manualJournalsSettings?.tableSize,
   })),
-)(ManualJournalActionsBar);
+)(ManualJournalActionsBarInner);

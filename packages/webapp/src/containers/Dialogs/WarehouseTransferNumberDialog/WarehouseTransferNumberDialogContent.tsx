@@ -1,24 +1,22 @@
 // @ts-nocheck
 import React from 'react';
 import intl from 'react-intl-universal';
-
-import ReferenceNumberForm from '@/containers/JournalNumber/ReferenceNumberForm';
-import { useSaveSettings } from '@/hooks/query';
 import { WarehouseTransferNumberDialogProvider } from './WarehouseTransferNumberDialogProvider';
-
-import { withSettings } from '@/containers/Settings/withSettings';
-import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
 import { withDialogActions } from '@/containers/Dialog/withDialogActions';
-import { compose } from '@/utils';
+import { ReferenceNumberForm } from '@/containers/JournalNumber/ReferenceNumberForm';
 import {
   transformFormToSettings,
   transformSettingsToForm,
 } from '@/containers/JournalNumber/utils';
+import { withSettings } from '@/containers/Settings/withSettings';
+import { withSettingsActions } from '@/containers/Settings/withSettingsActions';
+import { useSaveSettings } from '@/hooks/query';
+import { compose } from '@/utils';
 
 /**
  * Warehouse transfer no dialog content.
  */
-function WarehouseTransferNumberDialogContent({
+function WarehouseTransferNumberDialogContentInner({
   // #ownProps
   initialValues,
   onConfirm,
@@ -93,7 +91,7 @@ function WarehouseTransferNumberDialogContent({
     </WarehouseTransferNumberDialogProvider>
   );
 }
-export default compose(
+export const WarehouseTransferNumberDialogContent = compose(
   withDialogActions,
   withSettingsActions,
   withSettings(({ warehouseTransferSettings }) => ({
@@ -101,4 +99,4 @@ export default compose(
     nextNumber: warehouseTransferSettings?.nextNumber,
     numberPrefix: warehouseTransferSettings?.numberPrefix,
   })),
-)(WarehouseTransferNumberDialogContent);
+)(WarehouseTransferNumberDialogContentInner);

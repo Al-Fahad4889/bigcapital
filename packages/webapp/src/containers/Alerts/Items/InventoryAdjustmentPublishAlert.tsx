@@ -1,20 +1,18 @@
 // @ts-nocheck
+import { Intent, Alert } from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { Intent, Alert } from '@blueprintjs/core';
 import { AppToaster, FormattedMessage as T } from '@/components';
-import { usePublishInventoryAdjustment } from '@/hooks/query';
-
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
 import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
-
+import { usePublishInventoryAdjustment } from '@/hooks/query';
 import { compose } from '@/utils';
 
 /**
  * Inventory Adjustment publish alert.
  */
 
-function InventoryAdjustmentPublishAlert({
+function InventoryAdjustmentPublishAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -64,7 +62,7 @@ function InventoryAdjustmentPublishAlert({
   );
 }
 
-export default compose(
+export const InventoryAdjustmentPublishAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
-)(InventoryAdjustmentPublishAlert);
+)(InventoryAdjustmentPublishAlertInner);

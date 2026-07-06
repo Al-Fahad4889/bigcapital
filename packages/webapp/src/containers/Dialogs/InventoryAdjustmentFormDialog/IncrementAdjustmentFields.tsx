@@ -1,19 +1,19 @@
 // @ts-nocheck
-import React from 'react';
 import { useFormikContext } from 'formik';
-import { useAutofocus } from '@/hooks';
+import React from 'react';
+import intl from 'react-intl-universal';
+import { decrementQuantity, incrementQuantity } from './utils';
 import {
   Row,
   Col,
   FMoneyInputGroup,
-  FormattedMessage as T,
   FFormGroup,
   FInputGroup,
 } from '@/components';
+import { useAutofocus } from '@/hooks';
 import { toSafeNumber } from '@/utils';
-import { decrementQuantity, incrementQuantity } from './utils';
 
-export default function IncrementAdjustmentFields() {
+export function IncrementAdjustmentFields() {
   const incrementFieldRef = useAutofocus();
   const { values, setFieldValue } = useFormikContext();
 
@@ -22,12 +22,12 @@ export default function IncrementAdjustmentFields() {
       {/*------------ Quantity on hand  -----------*/}
       <Col className={'col--quantity-on-hand'}>
         <FFormGroup
-          name={'quantity_on_hand'}
-          label={<T id={'qty_on_hand'} />}
+          name={'quantityOnHand'}
+          label={intl.get('qty_on_hand')}
           fastField
         >
           <FInputGroup
-            name={'quantity_on_hand'}
+            name={'quantityOnHand'}
             disabled={true}
             medium={'true'}
             fastField
@@ -44,7 +44,7 @@ export default function IncrementAdjustmentFields() {
       <Col className={'col--quantity'}>
         <FFormGroup
           name={'quantity'}
-          label={<T id={'increment'} />}
+          label={intl.get('increment')}
           fill
           fastField
         >
@@ -55,10 +55,10 @@ export default function IncrementAdjustmentFields() {
             inputRef={(ref) => (incrementFieldRef.current = ref)}
             onBlurValue={(value) => {
               setFieldValue(
-                'new_quantity',
+                'newQuantity',
                 incrementQuantity(
                   toSafeNumber(value),
-                  toSafeNumber(values.quantity_on_hand),
+                  toSafeNumber(values.quantityOnHand),
                 ),
               );
             }}
@@ -69,7 +69,7 @@ export default function IncrementAdjustmentFields() {
 
       {/*------------ Cost -----------*/}
       <Col className={'col--cost'}>
-        <FFormGroup name={'cost'} label={<T id={'cost'} />} fastField>
+        <FFormGroup name={'cost'} label={intl.get('cost')} fastField>
           <FMoneyInputGroup name={'cost'} fastField />
         </FFormGroup>
       </Col>
@@ -82,12 +82,12 @@ export default function IncrementAdjustmentFields() {
       {/*------------ New quantity -----------*/}
       <Col className={'col--quantity-on-hand'}>
         <FFormGroup
-          name={'new_quantity'}
-          label={<T id={'new_quantity'} />}
+          name={'newQuantity'}
+          label={intl.get('new_quantity')}
           fastField
         >
           <FMoneyInputGroup
-            name={'new_quantity'}
+            name={'newQuantity'}
             allowDecimals={false}
             allowNegativeValue={true}
             onBlurValue={(value) => {
@@ -95,7 +95,7 @@ export default function IncrementAdjustmentFields() {
                 'quantity',
                 decrementQuantity(
                   toSafeNumber(value),
-                  toSafeNumber(values.quantity_on_hand),
+                  toSafeNumber(values.quantityOnHand),
                 ),
               );
             }}

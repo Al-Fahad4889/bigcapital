@@ -1,26 +1,22 @@
 // @ts-nocheck
-import React from 'react';
 import * as R from 'ramda';
+import React from 'react';
 import styled from 'styled-components';
-
-import { Card, DrawerLoading } from '@/components';
-
-import ItemFormFormik from '../../Items/ItemFormFormik';
+import { ItemFormFormik } from '../../Items/ItemFormFormik';
 import {
   ItemFormProvider,
   useItemFormContext,
 } from '../../Items/ItemFormProvider';
-
-import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
-import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
-
+import { Card, DrawerLoading } from '@/components';
 import { useDrawerContext } from '@/components/Drawer/DrawerProvider';
 import { DRAWERS } from '@/constants/drawers';
+import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
+import { withDrawerActions } from '@/containers/Drawer/withDrawerActions';
 
 /**
  * Quick create/edit item drawer form.
  */
-function QuickCreateItemDrawerForm({
+function QuickCreateItemDrawerFormInner({
   itemId,
   itemName,
   closeDrawer,
@@ -72,10 +68,10 @@ function DrawerItemFormLoading({ children }) {
   return <DrawerLoading loading={isFormLoading}>{children}</DrawerLoading>;
 }
 
-export default R.compose(
+export const QuickCreateItemDrawerForm = R.compose(
   withDrawerActions,
   withDashboardActions,
-)(QuickCreateItemDrawerForm);
+)(QuickCreateItemDrawerFormInner);
 
 const ItemFormCard = styled(Card)`
   margin: 15px;

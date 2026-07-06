@@ -1,21 +1,19 @@
 // @ts-nocheck
-import React, { useState } from 'react';
-import intl from 'react-intl-universal';
-import {  FormattedMessage as T, FormattedHTMLMessage } from '@/components';
 import { Intent, Alert } from '@blueprintjs/core';
 import { size } from 'lodash';
+import React, { useState } from 'react';
+import intl from 'react-intl-universal';
+import { FormattedMessage as T, FormattedHTMLMessage } from '@/components';
 import { AppToaster } from '@/components';
-
-import { withItemCategoriesActions } from '@/containers/ItemsCategories/withItemCategoriesActions';
-import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
 import { withAlertActions } from '@/containers/Alert/withAlertActions';
-
+import { withAlertStoreConnect } from '@/containers/Alert/withAlertStoreConnect';
+import { withItemCategoriesActions } from '@/containers/ItemsCategories/withItemCategoriesActions';
 import { compose } from '@/utils';
 
 /**
  * Item category bulk delete alerts.
  */
-function ItemCategoryBulkDeleteAlert({
+function ItemCategoryBulkDeleteAlertInner({
   name,
 
   // #withAlertStoreConnect
@@ -28,7 +26,6 @@ function ItemCategoryBulkDeleteAlert({
   // #withAlertActions
   closeAlert,
 }) {
-  
   const [isLoading, setLoading] = useState(false);
 
   // handle cancel bulk delete alert.
@@ -42,7 +39,9 @@ function ItemCategoryBulkDeleteAlert({
     requestDeleteBulkItemCategories(itemCategoriesIds)
       .then(() => {
         AppToaster.show({
-          message: intl.get('the_item_categories_has_been_deleted_successfully'),
+          message: intl.get(
+            'the_item_categories_has_been_deleted_successfully',
+          ),
           intent: Intent.SUCCESS,
         });
       })
@@ -76,8 +75,8 @@ function ItemCategoryBulkDeleteAlert({
   );
 }
 
-export default compose(
+export const ItemCategoryBulkDeleteAlert = compose(
   withAlertStoreConnect(),
   withAlertActions,
   withItemCategoriesActions,
-)(ItemCategoryBulkDeleteAlert);
+)(ItemCategoryBulkDeleteAlertInner);

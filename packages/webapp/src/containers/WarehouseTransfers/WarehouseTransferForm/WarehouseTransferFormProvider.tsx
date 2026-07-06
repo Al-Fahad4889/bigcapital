@@ -1,7 +1,9 @@
 // @ts-nocheck
-import React, { createContext } from 'react';
 import { isEmpty } from 'lodash';
+import React, { createContext } from 'react';
+import { ITEMS_FILTER_ROLES_QUERY } from './utils';
 import { DashboardInsider } from '@/components';
+import { Features } from '@/constants';
 import {
   useItems,
   useWarehouses,
@@ -10,9 +12,7 @@ import {
   useEditWarehouseTransfer,
   useItemInventoryCost,
 } from '@/hooks/query';
-import { Features } from '@/constants';
 import { useFeatureCan } from '@/hooks/state';
-import { ITEMS_FILTER_ROLES_QUERY } from './utils';
 
 const WarehouseFormContext = createContext();
 
@@ -26,7 +26,7 @@ function WarehouseTransferFormProvider({ warehouseTransferId, ...props }) {
 
   // Handle fetch Items data table or list
   const {
-    data: { items },
+    data: itemsData,
     isFetching: isItemsFetching,
     isLoading: isItemsLoading,
   } = useItems({
@@ -82,7 +82,7 @@ function WarehouseTransferFormProvider({ warehouseTransferId, ...props }) {
 
   // Provider payload.
   const provider = {
-    items,
+    items: itemsData?.items,
     warehouses,
     warehouseTransfer,
 

@@ -1,7 +1,15 @@
-// @ts-nocheck
-import React from 'react';
-import { useFormikContext, FastField } from 'formik';
 import { FormGroup, Checkbox, ControlGroup } from '@blueprintjs/core';
+import { useFormikContext, FastField } from 'formik';
+import React from 'react';
+import intl from 'react-intl-universal';
+import { useItemFormContext } from './ItemFormProvider';
+import { ItemFormSectionTitle } from './ItemFormSectionTitle';
+import {
+  sellDescriptionFieldShouldUpdate,
+  sellAccountFieldShouldUpdate,
+  sellPriceFieldShouldUpdate,
+} from './utils';
+import type { ItemFormValues } from './types';
 import {
   AccountsSelect,
   FMoneyInputGroup,
@@ -12,22 +20,21 @@ import {
   Box,
 } from '@/components';
 import { FormattedMessage as T } from '@/components';
-
-import { useItemFormContext } from './ItemFormProvider';
-import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
-import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
-import {
-  sellDescriptionFieldShouldUpdate,
-  sellAccountFieldShouldUpdate,
-  sellPriceFieldShouldUpdate,
-} from './utils';
-import { compose } from '@/utils';
 import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
-import { ItemFormSectionTitle } from './ItemFormSectionTitle';
+import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
+import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-function ItemFormSellingSectionBase({ organization: { base_currency } }) {
+type CheckboxField = {
+  name: string;
+  value: boolean;
+  onChange: (e: unknown) => void;
+  onBlur: (e: unknown) => void;
+};
+
+export function ItemFormSellingSection() {
   const { accounts, taxRates } = useItemFormContext();
-  const { values } = useFormikContext();
+  const baseCurrency = useCurrentOrganizationBaseCurrency();
+  const { values } = useFormikContext<ItemFormValues>();
 
   return (
     <Box data-section-id="selling">
@@ -35,28 +42,30 @@ function ItemFormSellingSectionBase({ organization: { base_currency } }) {
 
       {/*------------- Sellable checkbox ------------- */}
       <FastField name={'sellable'} type="checkbox">
-        {({ form, field }) => (
-          <FormGroup inline={true} className={'form-group--sellable'}>
-            <Checkbox
-              inline={true}
-              label={<T id={'i_sell_this_item'} />}
-              name={'sellable'}
-              {...field}
-            />
-          </FormGroup>
-        )}
+        {({ field }: { field: CheckboxField }) => {
+          const { value, ...fieldRest } = field;
+          return (
+            <FormGroup inline={true} className={'form-group--sellable'}>
+              <Checkbox
+                inline={true}
+                labelElement={<T id={'i_sell_this_item'} />}
+                checked={value}
+                {...fieldRest}
+              />
+            </FormGroup>
+          );
+        }}
       </FastField>
 
       {/*------------- Selling price ------------- */}
       <FFormGroup
         name={'sell_price'}
         label={<T id={'selling_price'} />}
-        inline
-        fill
+        inline={true}
         fastField
       >
         <ControlGroup fill>
-          <InputPrependText text={base_currency} />
+          <InputPrependText text={baseCurrency} />
           <FMoneyInputGroup
             name={'sell_price'}
             shouldUpdate={sellPriceFieldShouldUpdate}
@@ -73,24 +82,21 @@ function ItemFormSellingSectionBase({ organization: { base_currency } }) {
         label={<T id={'account'} />}
         name={'sell_account_id'}
         labelInfo={
-          <Hint content={<T id={'item.field.sell_account.hint'} />} />
+          <Hint content={intl.get('item.field.sell_account.hint')} />
         }
         inline={true}
-        fill
-        items={accounts}
-        sellable={values.sellable}
-        shouldUpdate={sellAccountFieldShouldUpdate}
-        fastField={true}
       >
         <AccountsSelect
           name={'sell_account_id'}
           items={accounts}
-          placeholder={<T id={'select_account'} />}
+          placeholder={intl.get('select_account')}
           disabled={!values.sellable}
           filterByParentTypes={[ACCOUNT_PARENT_TYPE.INCOME]}
           fill={true}
           allowCreate={true}
           fastField={true}
+          sellable={values.sellable}
+          shouldUpdate={sellAccountFieldShouldUpdate}
         />
       </FFormGroup>
 
@@ -99,7 +105,6 @@ function ItemFormSellingSectionBase({ organization: { base_currency } }) {
         name={'sell_tax_rate_id'}
         label={'Tax Rate'}
         inline={true}
-        fill
       >
         <TaxRatesSelect
           name={'sell_tax_rate_id'}
@@ -112,24 +117,17 @@ function ItemFormSellingSectionBase({ organization: { base_currency } }) {
         name={'sell_description'}
         label={<T id={'description'} />}
         inline={true}
-        fill
-        sellable={values.sellable}
-        shouldUpdate={sellDescriptionFieldShouldUpdate}
         fastField
       >
         <FTextArea
           name={'sell_description'}
           growVertically={true}
-          height={280}
           disabled={!values.sellable}
           fill
           fastField
+          shouldUpdate={sellDescriptionFieldShouldUpdate}
         />
       </FFormGroup>
     </Box>
   );
 }
-
-export const ItemFormSellingSection = compose(withCurrentOrganization())(
-  ItemFormSellingSectionBase,
-);

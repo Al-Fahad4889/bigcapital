@@ -1,21 +1,24 @@
 // @ts-nocheck
+import {
+  ControlGroup,
+  Divider,
+  Icon as BlueprintIcon,
+} from '@blueprintjs/core';
 import React from 'react';
 import intl from 'react-intl-universal';
-import { ControlGroup, Divider, Icon as BlueprintIcon } from '@blueprintjs/core';
+import { CustomerFormSectionTitle } from './CustomerFormSectionTitle';
+import { CustomerTypeRadioField } from './CustomerTypeRadioField';
 import {
   Hint,
   FieldRequiredHint,
   SalutationList,
   DisplayNameList,
-  FormattedMessage as T,
   FInputGroup,
   FFormGroup,
   Box,
   Icon,
   Stack,
 } from '@/components';
-import { CustomerTypeRadioField } from './CustomerTypeRadioField';
-import { CustomerFormSectionTitle } from './CustomerFormSectionTitle';
 import { useAutofocus } from '@/hooks';
 
 export function CustomerFormBasicSection({}) {
@@ -31,7 +34,7 @@ export function CustomerFormBasicSection({}) {
       {/**----------- Contact name -----------*/}
       <FFormGroup
         name={'salutation'}
-        label={<T id={'contact_name'} />}
+        label={intl.get('contact_name')}
         inline
         fill
       >
@@ -53,7 +56,7 @@ export function CustomerFormBasicSection({}) {
           />
         </ControlGroup>
       </FFormGroup>
-      
+
       <FFormGroup
         name={'code'}
         label={'Customer Code'}
@@ -61,15 +64,13 @@ export function CustomerFormBasicSection({}) {
         inline
         fill
       >
-        <FInputGroup
-          name={'code'}
-          fill />
+        <FInputGroup name={'code'} fill />
       </FFormGroup>
 
       {/*----------- Company Name -----------*/}
       <FFormGroup
         name={'company_name'}
-        label={<T id={'company_name'} />}
+        label={intl.get('company_name')}
         inline
         fill
       >
@@ -79,7 +80,7 @@ export function CustomerFormBasicSection({}) {
       {/*----------- Display Name -----------*/}
       <FFormGroup
         name={'display_name'}
-        label={<T id={'display_name'} />}
+        label={intl.get('display_name')}
         helperText="This is the name that appears on invoices and emails."
         inline
         fill
@@ -91,25 +92,18 @@ export function CustomerFormBasicSection({}) {
         />
       </FFormGroup>
 
-      <Divider  style={{ margin: '20px 0' }} />
+      <Divider style={{ margin: '20px 0' }} />
 
       {/*------------ Vendor email -----------*/}
-      <FFormGroup
-        name={'email'}
-        label={<T id={'vendor_email'} />}
-        inline
-      >
-        <FInputGroup
-          name={'email'}
-          leftIcon={<Icon icon="envelope" />}
-        />
+      <FFormGroup name={'email'} label={intl.get('vendor_email')} inline>
+        <FInputGroup name={'email'} leftIcon={<Icon icon="envelope" />} />
       </FFormGroup>
 
       {/*------------ Phone number -----------*/}
       <FFormGroup
         name={'work_phone'}
         className={'form-group--phone-number'}
-        label={<T id={'phone_number'} />}
+        label={intl.get('phone_number')}
         inline={true}
       >
         <Stack spacing={10}>
@@ -126,7 +120,7 @@ export function CustomerFormBasicSection({}) {
       </FFormGroup>
 
       {/*------------ Vendor website -----------*/}
-      <FFormGroup name={'website'} label={<T id={'website'} />} inline={true}>
+      <FFormGroup name={'website'} label={intl.get('website')} inline={true}>
         <FInputGroup
           name={'website'}
           placeholder={'http://'}
