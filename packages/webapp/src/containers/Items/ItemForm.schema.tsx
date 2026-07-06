@@ -1,7 +1,8 @@
-// @ts-nocheck
 import { defaultTo } from 'lodash';
 import intl from 'react-intl-universal';
 import * as Yup from 'yup';
+import type { ItemFormValues } from './types';
+import type { Item } from '@bigcapital/sdk-ts';
 import { DATATYPES_LENGTH } from '@/constants/dataTypes';
 
 const Schema = Yup.object().shape({
@@ -50,7 +51,7 @@ const Schema = Yup.object().shape({
     .label(intl.get('sell_account_id')),
   inventory_account_id: Yup.number()
     .when(['type'], {
-      is: (value) => value === 'inventory',
+      is: (value: unknown) => value === 'inventory',
       then: Yup.number().required(),
       otherwise: Yup.number().nullable(),
     })
@@ -61,8 +62,12 @@ const Schema = Yup.object().shape({
   purchasable: Yup.boolean().required(),
 });
 
-export const transformItemFormData = (item, defaultValue) => {
+export const transformItemFormData = (
+  item: Partial<Item> | undefined,
+  defaultValue: ItemFormValues,
+): ItemFormValues & Partial<Item> => {
   return {
+    ...defaultValue,
     ...item,
     sellable: !!defaultTo(item?.sellable, defaultValue.sellable),
     purchasable: !!defaultTo(item?.purchasable, defaultValue.purchasable),

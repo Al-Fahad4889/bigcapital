@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { FormGroup, Classes, Checkbox, ControlGroup } from '@blueprintjs/core';
+import { FormGroup, Checkbox, ControlGroup } from '@blueprintjs/core';
 import { useFormikContext, FastField, ErrorMessage } from 'formik';
 import React from 'react';
 import intl from 'react-intl-universal';
@@ -13,9 +12,9 @@ import {
   purchaseDescFieldShouldUpdate,
   taxRateFieldShouldUpdate,
 } from './utils';
+import type { ItemFormValues } from './types';
 import {
   AccountsSelect,
-  MoneyInputGroup,
   FMoneyInputGroup,
   Col,
   Row,
@@ -28,44 +27,53 @@ import { FormattedMessage as T } from '@/components';
 import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
 import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
-import { inputIntent } from '@/utils';
+
+type CheckboxField = {
+  name: string;
+  value: boolean;
+  onChange: (e: unknown) => void;
+  onBlur: (e: unknown) => void;
+};
 
 /**
- * Item form body.
+ * Item form body (legacy layout — superseded by ItemFormFields).
  */
 function ItemFormBodyInner() {
   const baseCurrency = useCurrentOrganizationBaseCurrency();
 
   const { accounts, taxRates } = useItemFormContext();
-  const { values } = useFormikContext();
+  const { values } = useFormikContext<ItemFormValues>();
 
   return (
-    <div class="page-form__section page-form__section--selling-cost">
+    <div className="page-form__section page-form__section--selling-cost">
       <Row>
         <Col xs={6}>
-          {/*------------- Purchasable checbox ------------- */}
+          {/*------------- Sellable checbox ------------- */}
           <FastField name={'sellable'} type="checkbox">
-            {({ form, field }) => (
-              <FormGroup inline={true} className={'form-group--sellable'}>
-                <Checkbox
-                  inline={true}
-                  label={
-                    <h3>
-                      <T id={'i_sell_this_item'} />
-                    </h3>
-                  }
-                  name={'sellable'}
-                  {...field}
-                />
-              </FormGroup>
-            )}
+            {({ field }: { field: CheckboxField }) => {
+              const { value, ...fieldRest } = field;
+              return (
+                <FormGroup inline={true} className={'form-group--sellable'}>
+                  <Checkbox
+                    inline={true}
+                    labelElement={
+                      <h3>
+                        <T id={'i_sell_this_item'} />
+                      </h3>
+                    }
+                    checked={value}
+                    {...fieldRest}
+                  />
+                </FormGroup>
+              );
+            }}
           </FastField>
 
           {/*------------- Selling price ------------- */}
           <FFormGroup
             name={'sell_price'}
             label={intl.get('selling_price')}
-            inline
+            inline={true}
             fastField
           >
             <ControlGroup>
@@ -73,7 +81,6 @@ function ItemFormBodyInner() {
               <FMoneyInputGroup
                 name={'sell_price'}
                 shouldUpdate={sellPriceFieldShouldUpdate}
-                sellable={values.sellable}
                 inputGroupProps={{ fill: true }}
                 disabled={!values.sellable}
                 fastField
@@ -86,23 +93,21 @@ function ItemFormBodyInner() {
             label={intl.get('account')}
             name={'sell_account_id'}
             labelInfo={
-              <Hint content={<T id={'item.field.sell_account.hint'} />} />
+              <Hint content={intl.get('item.field.sell_account.hint')} />
             }
             inline={true}
-            items={accounts}
-            sellable={values.sellable}
-            shouldUpdate={sellAccountFieldShouldUpdate}
-            fastField={true}
           >
             <AccountsSelect
               name={'sell_account_id'}
               items={accounts}
-              placeholder={<T id={'select_account'} />}
+              placeholder={intl.get('select_account')}
               disabled={!values.sellable}
               filterByParentTypes={[ACCOUNT_PARENT_TYPE.INCOME]}
               fill={true}
               allowCreate={true}
               fastField={true}
+              sellable={values.sellable}
+              shouldUpdate={sellAccountFieldShouldUpdate}
             />
           </FFormGroup>
 
@@ -123,44 +128,46 @@ function ItemFormBodyInner() {
             name={'sell_description'}
             label={intl.get('description')}
             inline={true}
-            sellable={values.sellable}
-            shouldUpdate={sellDescriptionFieldShouldUpdate}
             fastField
           >
             <FTextArea
               name={'sell_description'}
               growVertically={true}
-              height={280}
               disabled={!values.sellable}
               fill
               fastField
+              shouldUpdate={sellDescriptionFieldShouldUpdate}
             />
           </FFormGroup>
         </Col>
 
         <Col xs={6}>
-          {/*------------- Sellable checkbox ------------- */}
+          {/*------------- Purchasable checkbox ------------- */}
           <FastField name={'purchasable'} type={'checkbox'}>
-            {({ field }) => (
-              <FormGroup inline={true} className={'form-group--purchasable'}>
-                <Checkbox
-                  inline={true}
-                  label={
-                    <h3>
-                      <T id={'i_purchase_this_item'} />
-                    </h3>
-                  }
-                  {...field}
-                />
-              </FormGroup>
-            )}
+            {({ field }: { field: CheckboxField }) => {
+              const { value, ...fieldRest } = field;
+              return (
+                <FormGroup inline={true} className={'form-group--purchasable'}>
+                  <Checkbox
+                    inline={true}
+                    labelElement={
+                      <h3>
+                        <T id={'i_purchase_this_item'} />
+                      </h3>
+                    }
+                    checked={value}
+                    {...fieldRest}
+                  />
+                </FormGroup>
+              );
+            }}
           </FastField>
 
           {/*------------- Cost price ------------- */}
           <FFormGroup
             name={'cost_price'}
             label={intl.get('cost_price')}
-            inline
+            inline={true}
             fastField
           >
             <ControlGroup>
@@ -169,7 +176,6 @@ function ItemFormBodyInner() {
               <FMoneyInputGroup
                 name={'cost_price'}
                 shouldUpdate={costPriceFieldShouldUpdate}
-                purchasable={values.purchasable}
                 inputGroupProps={{ medium: true }}
                 disabled={!values.purchasable}
                 fastField
@@ -180,20 +186,16 @@ function ItemFormBodyInner() {
           {/*------------- Cost account ------------- */}
           <FFormGroup
             name={'cost_account_id'}
-            purchasable={values.purchasable}
-            items={accounts}
-            shouldUpdate={costAccountFieldShouldUpdate}
             label={intl.get('account')}
             labelInfo={
-              <Hint content={<T id={'item.field.cost_account.hint'} />} />
+              <Hint content={intl.get('item.field.cost_account.hint')} />
             }
             inline={true}
-            fastField={true}
           >
             <AccountsSelect
               name={'cost_account_id'}
               items={accounts}
-              placeholder={<T id={'select_account'} />}
+              placeholder={intl.get('select_account')}
               filterByParentTypes={[ACCOUNT_PARENT_TYPE.EXPENSE]}
               popoverFill={true}
               allowCreate={true}
@@ -209,9 +211,6 @@ function ItemFormBodyInner() {
             name={'purchase_tax_rate_id'}
             label={'Tax Rate'}
             inline={true}
-            fastField={true}
-            shouldUpdateDeps={{ taxRates }}
-            shouldUpdate={taxRateFieldShouldUpdate}
           >
             <TaxRatesSelect
               name={'purchase_tax_rate_id'}
@@ -219,6 +218,7 @@ function ItemFormBodyInner() {
               allowCreate={true}
               fastField={true}
               shouldUpdateDeps={{ taxRates }}
+              shouldUpdate={taxRateFieldShouldUpdate}
             />
           </FFormGroup>
 
@@ -228,15 +228,13 @@ function ItemFormBodyInner() {
             className={'form-group--purchase-description'}
             helperText={<ErrorMessage name={'description'} />}
             inline={true}
-            purchasable={values.purchasable}
-            shouldUpdate={purchaseDescFieldShouldUpdate}
           >
             <FTextArea
               name={'purchase_description'}
               growVertically={true}
-              height={280}
               disabled={!values.purchasable}
               fill
+              shouldUpdate={purchaseDescFieldShouldUpdate}
             />
           </FFormGroup>
         </Col>
