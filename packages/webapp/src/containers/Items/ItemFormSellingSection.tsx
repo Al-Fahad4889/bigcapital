@@ -1,5 +1,5 @@
-import { FormGroup, Checkbox, ControlGroup } from '@blueprintjs/core';
-import { useFormikContext, FastField } from 'formik';
+import { ControlGroup } from '@blueprintjs/core';
+import { useFormikContext } from 'formik';
 import React from 'react';
 import intl from 'react-intl-universal';
 import { useItemFormContext } from './ItemFormProvider';
@@ -12,6 +12,7 @@ import {
 import type { ItemFormValues } from './types';
 import {
   AccountsSelect,
+  FCheckbox,
   FMoneyInputGroup,
   Hint,
   InputPrependText,
@@ -24,13 +25,6 @@ import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
 import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-type CheckboxField = {
-  name: string;
-  value: boolean;
-  onChange: (e: unknown) => void;
-  onBlur: (e: unknown) => void;
-};
-
 export function ItemFormSellingSection() {
   const { accounts, taxRates } = useItemFormContext();
   const baseCurrency = useCurrentOrganizationBaseCurrency();
@@ -41,21 +35,14 @@ export function ItemFormSellingSection() {
       <ItemFormSectionTitle>Selling details</ItemFormSectionTitle>
 
       {/*------------- Sellable checkbox ------------- */}
-      <FastField name={'sellable'} type="checkbox">
-        {({ field }: { field: CheckboxField }) => {
-          const { value, ...fieldRest } = field;
-          return (
-            <FormGroup inline={true} className={'form-group--sellable'}>
-              <Checkbox
-                inline={true}
-                labelElement={<T id={'i_sell_this_item'} />}
-                checked={value}
-                {...fieldRest}
-              />
-            </FormGroup>
-          );
-        }}
-      </FastField>
+      <FFormGroup name={'sellable'} inline={true} className={'form-group--sellable'} fastField>
+        <FCheckbox
+          name={'sellable'}
+          inline={true}
+          labelElement={<T id={'i_sell_this_item'} />}
+          fastField
+        />
+      </FFormGroup>
 
       {/*------------- Selling price ------------- */}
       <FFormGroup

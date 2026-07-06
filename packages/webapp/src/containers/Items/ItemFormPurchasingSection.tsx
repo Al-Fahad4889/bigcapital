@@ -1,5 +1,5 @@
-import { FormGroup, Checkbox, ControlGroup } from '@blueprintjs/core';
-import { useFormikContext, FastField, ErrorMessage } from 'formik';
+import { ControlGroup } from '@blueprintjs/core';
+import { useFormikContext, ErrorMessage } from 'formik';
 import React from 'react';
 import intl from 'react-intl-universal';
 import { useItemFormContext } from './ItemFormProvider';
@@ -13,6 +13,7 @@ import {
 import type { ItemFormValues } from './types';
 import {
   AccountsSelect,
+  FCheckbox,
   FMoneyInputGroup,
   Hint,
   InputPrependText,
@@ -25,13 +26,6 @@ import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
 import { ACCOUNT_PARENT_TYPE } from '@/constants/accountTypes';
 import { useCurrentOrganizationBaseCurrency } from '@/hooks/query';
 
-type CheckboxField = {
-  name: string;
-  value: boolean;
-  onChange: (e: unknown) => void;
-  onBlur: (e: unknown) => void;
-};
-
 export function ItemFormPurchasingSection() {
   const { accounts, taxRates } = useItemFormContext();
   const { values } = useFormikContext<ItemFormValues>();
@@ -42,21 +36,14 @@ export function ItemFormPurchasingSection() {
       <ItemFormSectionTitle>Purchasing details</ItemFormSectionTitle>
 
       {/*------------- Purchasable checkbox ------------- */}
-      <FastField name={'purchasable'} type={'checkbox'}>
-        {({ field }: { field: CheckboxField }) => {
-          const { value, ...fieldRest } = field;
-          return (
-            <FormGroup inline={true} className={'form-group--purchasable'}>
-              <Checkbox
-                inline={true}
-                labelElement={<T id={'i_purchase_this_item'} />}
-                checked={value}
-                {...fieldRest}
-              />
-            </FormGroup>
-          );
-        }}
-      </FastField>
+      <FFormGroup name={'purchasable'} inline={true} className={'form-group--purchasable'} fastField>
+        <FCheckbox
+          name={'purchasable'}
+          inline={true}
+          labelElement={<T id={'i_purchase_this_item'} />}
+          fastField
+        />
+      </FFormGroup>
 
       {/*------------- Cost price ------------- */}
       <FFormGroup
