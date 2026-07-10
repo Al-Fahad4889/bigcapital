@@ -68,6 +68,27 @@ export function SetupOrganizationForm({ isSubmitting, values }) {
         />
       </FFormGroup>
 
+      {/* ---------- Industry / Accounting Preset ---------- */}
+      <FFormGroup
+        name={'industry'}
+        label={'Industry / Accounting Preset'}
+        fastField={true}
+      >
+        <FSelect
+          name={'industry'}
+          items={[
+            { label: 'Standard (Default)', value: 'standard' },
+            { label: 'Travel Agency', value: 'travel-agency' },
+          ]}
+          valueAccessor={'value'}
+          textAccessor={'label'}
+          placeholder={'Select industry preset'}
+          popoverProps={{ minimal: true }}
+          buttonProps={{ large: true }}
+          fastField
+        />
+      </FFormGroup>
+
       <Row>
         <Col xs={6}>
           {/* ----------  Base currency ----------  */}

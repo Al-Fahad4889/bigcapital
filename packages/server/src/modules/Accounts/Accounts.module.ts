@@ -22,6 +22,7 @@ import { BulkActivateAccountsService } from './BulkActivateAccounts.service';
 import { BulkDeleteAccountsService } from './BulkDeleteAccounts.service';
 import { ValidateBulkDeleteAccountsService } from './ValidateBulkDeleteAccounts.service';
 import { AccountsSettingsService } from './AccountsSettings.service';
+import { ApplyPresetAccountsService } from './commands/ApplyPresetAccounts.service';
 
 const models = [RegisterTenancyModel(BankAccount)];
 
@@ -46,6 +47,7 @@ const models = [RegisterTenancyModel(BankAccount)];
     BulkDeleteAccountsService,
     BulkActivateAccountsService,
     ValidateBulkDeleteAccountsService,
+    ApplyPresetAccountsService,
   ],
   exports: [
     AccountRepository,

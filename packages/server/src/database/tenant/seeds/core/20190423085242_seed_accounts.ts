@@ -15,7 +15,7 @@ export default class SeedAccounts extends TenantSeeder {
     }));
     return knex('accounts').then(async () => {
       // Inserts seed entries.
-      return knex('accounts').insert(data);
+      return knex('accounts').insert(data).onConflict('slug').ignore();
     });
   }
 }

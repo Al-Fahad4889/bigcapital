@@ -15,6 +15,14 @@ import {
   TaxPayableAccount,
   UnearnedRevenueAccount,
 } from '../Accounts.constants';
+import {
+  AirlineConsolidatorPayablesAccount,
+  CommissionIncomeAccount,
+  ServiceFeeIncomeAccount,
+  PenaltyIncomeAccount,
+  ClientAdvancesAccount,
+  VatPayableAccount,
+} from '../Accounts.constants';
 
 @Injectable({ scope: Scope.REQUEST })
 export class AccountRepository extends TenantRepository {
@@ -378,7 +386,7 @@ export class AccountRepository extends TenantRepository {
     let result = await this.model
       .query(trx)
       .findOne({ slug: OtherExpensesAccount.slug, ..._extraAttrs });
-
+    
     if (!result) {
       result = await this.model.query(trx).insertAndFetch({
         ...OtherExpensesAccount,
@@ -386,5 +394,136 @@ export class AccountRepository extends TenantRepository {
       });
     }
     return result;
+  }
+  public async findOrCreateAirlineConsolidatorPayables(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: AirlineConsolidatorPayablesAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...AirlineConsolidatorPayablesAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
+  }
+
+  public async findOrCreateCommissionIncome(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: CommissionIncomeAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...CommissionIncomeAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
+  }
+
+  public async findOrCreateServiceFeeIncome(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: ServiceFeeIncomeAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...ServiceFeeIncomeAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
+  }
+
+  public async findOrCreatePenaltyIncome(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: PenaltyIncomeAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...PenaltyIncomeAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
+  }
+
+  public async findOrCreateClientAdvances(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: ClientAdvancesAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...ClientAdvancesAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
+  }
+
+  public async findOrCreateVatPayable(
+    extraAttrs: Record<string, string> = {},
+    trx?: Knex.Transaction,
+  ): Promise<{ account: Account; created: boolean }> {
+    const tenantMeta = await this.tenancyContext.getTenantMetadata();
+    const _extraAttrs = {
+      currencyCode: tenantMeta.baseCurrency,
+      ...extraAttrs,
+    };
+    let result = await this.model
+      .query(trx)
+      .findOne({ slug: VatPayableAccount.slug, ..._extraAttrs });
+    if (!result) {
+      result = await this.model.query(trx).insertAndFetch({
+        ...VatPayableAccount,
+        ..._extraAttrs,
+      });
+      return { account: result, created: true };
+    }
+    return { account: result, created: false };
   }
 }

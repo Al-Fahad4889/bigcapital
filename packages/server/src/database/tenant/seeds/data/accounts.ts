@@ -200,7 +200,7 @@ export const AccountsData = [
   },
   {
     name: 'Loan',
-    slug: 'owner-drawings',
+    slug: 'loan',
     account_type: 'other-current-liability',
     code: '20003',
     description: 'Money that has been borrowed from a creditor.',
@@ -269,7 +269,7 @@ export const AccountsData = [
     name: `Drawings`,
     slug: 'drawings',
     account_type: 'equity',
-    code: '30003',
+    code: '30004',
     description:
       'Goods purchased with the intention of selling these to customers',
     active: 1,

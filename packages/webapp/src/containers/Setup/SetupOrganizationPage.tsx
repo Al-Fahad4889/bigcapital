@@ -17,6 +17,7 @@ const defaultValues = {
   language: 'en',
   fiscalYear: '',
   timezone: '',
+  industry: 'standard', 
 };
 
 /**
