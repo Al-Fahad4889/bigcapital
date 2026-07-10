@@ -78,6 +78,12 @@ export function useApplicationBoot() {
     }
     // Reboot the application in case the initial locale not equal
     // the current organization language.
+    if (organization?.metadata?.primaryColor) {
+      document.documentElement.style.setProperty('--brand-primary', organization.metadata.primaryColor);
+    }
+    if (organization?.metadata?.name) {
+      document.title = organization.metadata.name;
+    }
     if (localeCookie !== organization.metadata.language) {
       window.location.reload();
     }

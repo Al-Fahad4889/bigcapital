@@ -1,12 +1,15 @@
 // @ts-nocheck
 import intl from 'react-intl-universal';
-
-export const getFooterLinks = () => [
-  {
-    title: intl.get('blog'),
-    link: 'https://docs.bigcapital.ly/blog',
-  },
-  {
+import { LEGAL_ABOUT_PATH } from '@/constants/routes';
+export const getFooterLinks = (brandingName?:string,brandingLogoUri?:string) => {
+  const logoUri = brandingLogoUri || '';
+  const name = brandingName || 'Agency';
+  return [
+    {
+      title: intl.get('blog'),
+      link: '#',
+    },
+    {
     title: intl.get('community'),
     link: 'https://discord.com/invite/c8nPBJafeb',
   },
@@ -16,10 +19,14 @@ export const getFooterLinks = () => [
   },
   {
     title: intl.get('docs'),
-    link: 'https://docs.bigcapital.ly',
+    link: '#',
   },
   {
-    title: 'Bigcapital',
-    link: 'http://bigcapital.ly',
+    title: logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>,
+    link: '#',
   },
-];
+  {
+    title: intl.get('legal_about'),
+    link: LEGAL_ABOUT_PATH,
+  },
+]};

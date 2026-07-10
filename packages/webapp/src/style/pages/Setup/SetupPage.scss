@@ -164,7 +164,7 @@
       }
 
       p.wizard-info {
-        color: #004dd0;
+        color: var(--brand-primary, #004dd0);
       }
     }
   }

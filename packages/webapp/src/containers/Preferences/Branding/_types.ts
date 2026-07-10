@@ -3,4 +3,6 @@ export interface PreferencesBrandingFormValues {
   logoUri: string;
   primaryColor: string;
   _logoFile?: any;
+  name: string;
+  
 }

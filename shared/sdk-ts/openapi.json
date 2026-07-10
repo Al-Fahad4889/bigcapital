@@ -24119,16 +24119,42 @@
           "userId"
         ]
       },
+      "AuthBrandingDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Branding name"
+          },
+          "logoUri": {
+            "type": "string",
+            "description": "Branding logo uri",
+            "nullable": true
+          },
+          "primaryColor": {
+            "type": "string",
+            "description": "Branding primary color",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
       "AuthMetaResponseDto": {
         "type": "object",
         "properties": {
           "signupDisabled": {
             "type": "boolean",
             "description": "Whether signup is disabled"
+          },
+          "branding": {
+            "$ref": "#/components/schemas/AuthBrandingDto"
           }
         },
         "required": [
-          "signupDisabled"
+          "signupDisabled",
+          "branding"
         ]
       },
       "AuthSigninDto": {

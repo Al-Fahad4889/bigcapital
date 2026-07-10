@@ -71,6 +71,7 @@ export function RegisterForm({ isSubmitting }) {
         {intl.getHTML('signing_in_or_creating', {
           terms: (msg) => <Link>{msg}</Link>,
           privacy: (msg) => <Link>{msg}</Link>,
+          legal: (msg) => <Link>{msg}</Link>,
         })}
       </TermsConditionsText>
 

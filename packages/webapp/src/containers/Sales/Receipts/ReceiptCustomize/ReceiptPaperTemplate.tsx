@@ -1,4 +1,5 @@
 import { Classes, Text } from '@blueprintjs/core';
+
 import {
   PaperTemplate,
   PaperTemplateProps,
@@ -86,7 +87,7 @@ export function ReceiptPaperTemplate({
   companyLogoUri,
 
   // # Company name
-  companyName = 'Bigcapital Technology, Inc.',
+  companyName = 'Travel Agency Technology, Inc.',
 
   // # Address
   showCustomerAddress = true,
@@ -160,8 +161,13 @@ export function ReceiptPaperTemplate({
             </PaperTemplate.TermsList>
           </Stack>
 
-          {companyLogoUri && showCompanyLogo && (
+          {companyLogoUri && showCompanyLogo ? (
             <PaperTemplate.Logo logoUri={companyLogoUri} />
+          ):(companyName && (
+            <Text style={{fontWeight : 600,color : primaryColor}}>
+              {companyName}
+            </Text>
+          )
           )}
         </Group>
 

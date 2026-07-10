@@ -8,6 +8,7 @@ import { PaymentPortal } from './PaymentPortal';
 import styles from './PaymentPortal.module.scss';
 import { PaymentPortalBoot, usePaymentPortalBoot } from './PaymentPortalBoot';
 import { DRAWERS } from '@/constants/drawers';
+import { parse } from 'path';
 
 export function PaymentPortalPage() {
   const { linkId } = useParams<{ linkId: string }>();
@@ -48,21 +49,37 @@ function PaymentPortalCssVariables() {
   const { sharableLinkMeta } = usePaymentPortalBoot();
 
   useEffect(() => {
-    if (sharableLinkMeta?.brandingTemplate?.primaryColor) {
-      const primaryColorHsl = parseToHsl(
-        sharableLinkMeta?.brandingTemplate?.primaryColor,
-      );
+    // if (sharableLinkMeta?.brandingTemplate?.primaryColor) {
+    //   const primaryColorHsl = parseToHsl(
+    //     sharableLinkMeta?.brandingTemplate?.primaryColor,
+    //   );
+    //   document.body.style.setProperty(
+    //     '--payment-page-background-color',
+    //     hsl(primaryColorHsl.hue, 0.19, 0.14),
+    //   );
+    //   document.body.style.setProperty(
+    //     '--payment-page-primary-button',
+    //     sharableLinkMeta?.brandingTemplate?.primaryColor,
+    //   );
+    //   document.body.style.setProperty(
+    //     '--payment-page-primary-button-hover',
+    //     lighten(0.05, sharableLinkMeta?.brandingTemplate?.primaryColor),
+    //   );
+    // }
+    const brandPrimary = sharableLinkMeta?.organization?.primaryColor;
+    if (brandPrimary) {
+      const h =parseToHsl(brandPrimary);
       document.body.style.setProperty(
         '--payment-page-background-color',
-        hsl(primaryColorHsl.hue, 0.19, 0.14),
+        hsl(h.hue, 0.19, 0.14),
       );
       document.body.style.setProperty(
         '--payment-page-primary-button',
-        sharableLinkMeta?.brandingTemplate?.primaryColor,
+        brandPrimary,
       );
       document.body.style.setProperty(
         '--payment-page-primary-button-hover',
-        lighten(0.05, sharableLinkMeta?.brandingTemplate?.primaryColor),
+        lighten(0.05, brandPrimary),
       );
     }
   }, [sharableLinkMeta?.brandingTemplate?.primaryColor]);

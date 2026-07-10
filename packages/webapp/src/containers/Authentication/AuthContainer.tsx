@@ -1,17 +1,20 @@
 // @ts-nocheck
 import styled from 'styled-components';
 import { Icon, FormattedMessage as T } from '@/components';
-
+import { App } from '@/constants/app';
+import { useBranding } from '@/hooks/useBranding';
 interface AuthContainerProps {
   children: React.ReactNode;
 }
-
+import { useBranding } from '@/hooks/useBranding';
 export function AuthContainer({ children }: AuthContainerProps) {
+  const { name, logoUri } = useBranding();
+
   return (
     <AuthPage>
       <AuthInsider>
         <AuthLogo>
-          <Icon icon="bigcapital" height={37} width={214} />
+          {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
         </AuthLogo>
 
         {children}

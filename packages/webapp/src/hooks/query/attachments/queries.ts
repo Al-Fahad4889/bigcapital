@@ -5,6 +5,7 @@ import {
 } from '@bigcapital/sdk-ts';
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { useApiFetcher } from '../../useRequest';
+import { useAuthToken, useAuthOrganizationId } from '../../state/authentication';
 
 type UploadAttachmentResponse = Awaited<ReturnType<typeof uploadAttachment>>;
 
@@ -28,9 +29,21 @@ export function useUploadAttachments(
   >,
 ) {
   const fetcher = useApiFetcher();
+  const token = useAuthToken();
+  const organizationId = useAuthOrganizationId();
+
   return useMutation({
     ...props,
-    mutationFn: (values) => uploadAttachment(fetcher, toFormData(values)),
+    mutationFn: (values) => {
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      if (organizationId) {
+        headers['organization-id'] = organizationId;
+      }
+      return uploadAttachment(fetcher, toFormData(values), { headers });
+    },
   });
 }
 

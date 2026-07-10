@@ -2,11 +2,10 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserHistory } from 'history';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Router, Switch, Route } from 'react-router';
-
 import '@/style/App.scss';
-
+import { useBranding } from '@/hooks/useBranding';
 import { SplashScreen, DashboardThemeProvider } from '../components';
 import { queryConfig } from '../hooks/query/base';
 import AppIntlLoader from './AppIntlLoader';
@@ -43,10 +42,22 @@ const PaymentPortalPage = lazy(() =>
   })),
 );
 
+const LegalAboutPage = lazy(() =>
+  import('@/containers/LegalAbout/LegalAboutPage').then((m) => ({
+    default: m.LegalAboutPage,
+  })),
+);
 /**
  * App inner.
  */
 function AppInsider({ history }) {
+  const { primaryColor } = useBranding();
+  useEffect(() => {
+    if (primaryColor) {
+      document.documentElement.style.setProperty('--brand-primary', primaryColor);
+    }
+  }, [primaryColor]);
+
   return (
     <div className="App">
       <DashboardThemeProvider>
@@ -71,6 +82,8 @@ function AppInsider({ history }) {
                 path={'/payment/:linkId'}
                 children={<PaymentPortalPage />}
               />
+              <Route path={'/legal/about'} children={<LegalAboutPage />} />
+
               <Route path={'/'} children={<DashboardPrivatePages />} />
             </Switch>
           </Router>

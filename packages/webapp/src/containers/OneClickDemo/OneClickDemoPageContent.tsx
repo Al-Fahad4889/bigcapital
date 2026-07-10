@@ -8,6 +8,7 @@ import {
   useCreateOneClickDemo,
   useOneClickDemoSignin,
 } from '@/hooks/query/oneclick-demo';
+import { useBranding } from '@/hooks/useBranding';
 
 export function OneClickDemoPageContent() {
   const {
@@ -40,7 +41,7 @@ export function OneClickDemoPageContent() {
   // One the job done request sign-in using the demo id.
   useEffect(() => {
     if (isJobDone) {
-      oneClickDemoSignIn({ demoId }).then((res) => {});
+      oneClickDemoSignIn({ demoId }).then((res) => { });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isJobDone]);
@@ -51,15 +52,18 @@ export function OneClickDemoPageContent() {
         setBuildJobId(data?.build_job?.job_id);
         setDemoId(data?.demo_id);
       })
-      .catch(() => {});
+      .catch(() => { });
   };
   const isLoading = running || isOneclickDemoSigningIn;
+  const { name, logoUri } = useBranding();
 
   return (
     <Box className={style.root}>
       <Box className={style.inner}>
         <Stack align={'center'} spacing={40}>
-          <Icon icon="bigcapital" height={37} width={228} />
+          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 600 }}>
+            {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
+          </h1>
 
           {isLoading && (
             <Stack align={'center'} spacing={15}>

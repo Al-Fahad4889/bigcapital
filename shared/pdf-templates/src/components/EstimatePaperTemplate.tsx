@@ -208,8 +208,13 @@ export function EstimatePaperTemplate({
             </PaperTemplate.TermsList>
           </Stack>
 
-          {companyLogoUri && showCompanyLogo && (
+          {companyLogoUri && showCompanyLogo ? (
             <PaperTemplate.Logo logoUri={companyLogoUri} />
+          ):(companyName && (
+            <Text fontSize={24} fontWeight={600} color={primaryColor}>
+              {companyName}
+            </Text>
+          )
           )}
         </Group>
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { For } from '@/components';
 import { getFooterLinks } from '@/constants/footerLinks';
-
+import { useBranding } from '@/hooks/useBranding';
 function FooterLinkItem({ title, link }) {
   return (
     <div class="">
@@ -14,7 +14,8 @@ function FooterLinkItem({ title, link }) {
 }
 
 export default function DashboardFooter() {
-  const footerLinks = getFooterLinks();
+  const { name, logoUri } = useBranding();
+  const footerLinks = getFooterLinks(name, logoUri);
 
   return (
     <div class="dashboard__footer">

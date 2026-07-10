@@ -39,7 +39,7 @@ const countries = getAllCountries();
 const defaultValues: SetupOrganizationFormValues = {
   name: '',
   location: '',
-  baseCurrency: '',
+  baseCurrency: 'BDT',
   language: 'en',
   fiscalYear: '',
   timezone: '',

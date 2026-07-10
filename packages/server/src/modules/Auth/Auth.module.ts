@@ -43,17 +43,20 @@ import { AuthApiKeysController } from './AuthApiKeys.controllers';
 import { AuthApiKeyAuthorizeService } from './commands/AuthApiKeyAuthorization.service';
 import { GenerateApiKey } from './commands/GenerateApiKey.service';
 import { GetApiKeysService } from './queries/GetApiKeys.service';
-
+import { TenantModel } from '../System/models/TenantModel';
+import { S3Module } from '../S3/S3.module';
 const models = [
   InjectSystemModel(PasswordReset),
   InjectSystemModel(ApiKeyModel),
   InjectSystemModel(UserTenant),
+  InjectSystemModel(TenantModel),
 ];
 
 @Module({
   controllers: [AuthController, AuthedController, AuthApiKeysController],
   imports: [
     MailModule,
+    S3Module,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       inject: [ConfigService],

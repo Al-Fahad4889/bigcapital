@@ -4,11 +4,11 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import type { SettingAction } from './settings.type';
 import { SETTING_ADD, SETTING_SET } from '@/store/types';
-
+import { App } from '@/constants/app';
 const initialState = {
   data: {
     organization: {
-      name: 'Bigcapital, LLC',
+      name: App.app_name,
     },
     manualJournals: {
       tableSize: 'small',

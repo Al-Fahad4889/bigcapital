@@ -4,7 +4,7 @@ import clsx from 'classnames';
 import { lighten } from 'polished';
 import styles from './PaymentPortal.module.scss';
 import { Box, Group, Stack } from '@/components';
-
+import { App } from '@/constants/app';
 export interface PaymentPageProps {
   // # Company name
   companyLogoUri: string;
@@ -113,10 +113,10 @@ export function InvoicePaymentPage({
   payInvoiceButtonProps,
 
   // # Buy note
-  buyNote = 'By confirming your payment, you allow Bigcapital Technology, Inc. to charge you for this payment and save your payment information in accordance with their terms.',
+  buyNote = 'By confirming your payment, you allow Travel Agency Technology, Inc. to charge you for this payment and save your payment information in accordance with their terms.',
 
   // # Copyright
-  copyrightText = `© 2024 Bigcapital Technology, Inc. <br /> All rights reserved.`,
+  copyrightText = `© 2024 ${App.app_name} Technology, Inc. <br /> All rights reserved.`,
   classNames,
 }: PaymentPageProps) {
   return (

@@ -87,7 +87,7 @@ export function CreditNotePaperTemplate({
   secondaryColor,
 
   // # Company
-  companyName = 'Bigcapital Technology, Inc.',
+  companyName = 'Travel Agency',
 
   showCompanyLogo = true,
   companyLogoUri = '',

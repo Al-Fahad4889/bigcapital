@@ -56,9 +56,15 @@ export interface IAuthSendedResetPassword {
   user: SystemUser;
   token: string;
 }
-
-export interface IAuthGetMetaPOJO {
+export interface IAuthBrandingPOJO {
+  name: string;
+  logoUri: string | null;
+  primaryColor: string | null;
+}
+export interface IAuthGetMetaPOJO  {
   signupDisabled: boolean;
+  branding: IAuthBrandingPOJO;
+
 }
 
 export interface IAuthSignUpVerifingEventPayload {

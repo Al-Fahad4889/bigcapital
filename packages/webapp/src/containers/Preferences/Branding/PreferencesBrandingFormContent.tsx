@@ -3,7 +3,7 @@ import { Button, Classes, Intent, Text } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
 import { PreferencesBrandingFormValues } from './_types';
 import styles from './PreferencesBranding.module.scss';
-import { FFormGroup, Group, Stack } from '@/components';
+import { FFormGroup, FInputGroup, Group, Stack } from '@/components';
 import { FColorInput } from '@/components/Forms/FColorInput';
 import { CompanyLogoUpload } from '@/containers/ElementCustomize/components/CompanyLogoUpload';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
@@ -11,6 +11,15 @@ import { useIsDarkMode } from '@/hooks/useDarkMode';
 export function PreferencesBrandingFormContent() {
   return (
     <Stack style={{ flex: '1' }} spacing={10}>
+      <FFormGroup
+        name={'name'}
+        label={'Organization Name'}
+        helperText={
+          'Note: This name will be displayed across PDF and mail templates, including the customer payment page.'
+        }
+      >
+        <FInputGroup name={'name'} />
+      </FFormGroup>
       <FFormGroup name={'companyLogo'} label={'Company Logo'}>
         <Group spacing={15} align={'left'}>
           <BrandingCompanyLogoUpload />

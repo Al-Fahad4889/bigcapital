@@ -53,7 +53,7 @@ function SidebarMenuItemComposer({ item, index }) {
 export function SidebarMenu({ menu }) {
   return (
     <div>
-      <Menu className="sidebar-menu">
+      <Menu className="sidebar-menu" color="#ffff">
         {menu.map((item, index) => (
           <SidebarMenuItemComposer key={index} index={index} item={item} />
         ))}

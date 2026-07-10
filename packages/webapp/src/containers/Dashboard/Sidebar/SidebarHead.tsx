@@ -251,12 +251,31 @@ function SidebarHeadJSX({
       </div>
 
       <div className="sidebar__head-logo">
-        <Icon
-          icon={'mini-bigcapital'}
-          width={28}
-          height={28}
-          className="bigcapital--alt"
-        />
+        {metadata?.logoUri ? (
+          <x.img
+            src={metadata?.logoUri}
+            alt={metadata?.name}
+            width={28}
+            height={28}
+            objectFit="cover"
+            borderRadius={6}
+          />
+        ) : (
+          <x.div
+            width={28}
+            height={28}
+            borderRadius={6}
+            backgroundColor="#CB22E5"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            fontSize={11}
+            fontWeight={600}
+            color="#fff"
+          >
+            {firstLettersArgs(...(metadata?.name || '').split(' '))}
+          </x.div>
+        )}
       </div>
     </div>
   );

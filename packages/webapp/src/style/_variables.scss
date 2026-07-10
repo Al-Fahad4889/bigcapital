@@ -4,7 +4,7 @@
 $ns: bp4;
 
 :root {
-  --color-primary: #8abbff;
+  --color-primary: var(--brand-primary, #8abbff);
   --color-danger: red;
 
   // Green colors
@@ -136,7 +136,7 @@ $ns: bp4;
 
   // Sidebar
   --color-sidebar-toggle: #6b8193;
-  --color-sidebar-background: #01115e;
+  --color-sidebar-background: var(--brand-primary,#01115e);
   --color-sidebar-text: #fff;
   --color-sidebar-scrollbars-background: rgba(255, 255, 255, 0.25);
   
@@ -319,7 +319,7 @@ $pt-popover-box-shadow:
   0 8px 24px rgba(16, 22, 26, 0.1);
   
 body.bp4-dark  {
-  --color-primary: #8abbff;
+  --color-primary: var(--brand-primary, #8abbff);
   --color-danger: rgb(213, 103, 103);
 
   // Green colors (dark mode - lighter variants)
@@ -457,7 +457,7 @@ body.bp4-dark  {
 
   // Sidebar
   --color-sidebar-toggle: rgba(255, 255, 255, 0.5);
-  --color-sidebar-background: var(--color-dark-gray3);
+  --color-sidebar-background: var(--brand-primary,#01115e);
   --color-sidebar-text: var(--color-white);
   --color-sidebar-scrollbars-background: rgba(255, 255, 255, 0.25);
 

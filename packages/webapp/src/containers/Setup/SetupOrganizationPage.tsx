@@ -13,7 +13,7 @@ import { setCookie, compose, transfromToSnakeCase } from '@/utils';
 const defaultValues = {
   name: '',
   location: '',
-  baseCurrency: '',
+  baseCurrency: 'BDT',
   language: 'en',
   fiscalYear: '',
   timezone: '',

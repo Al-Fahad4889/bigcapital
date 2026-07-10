@@ -4885,9 +4885,18 @@ export interface components {
             /** @description User ID */
             userId: number;
         };
+        AuthBrandingDto: {
+            /** @description Branding name */
+            name: string;
+            /** @description Branding logo uri */
+            logoUri?: string | null;
+            /** @description Branding primary color */
+            primaryColor?: string | null;
+        };
         AuthMetaResponseDto: {
             /** @description Whether signup is disabled */
             signupDisabled: boolean;
+            branding: components["schemas"]["AuthBrandingDto"];
         };
         AuthSigninDto: {
             /**

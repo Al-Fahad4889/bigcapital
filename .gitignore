@@ -9,5 +9,5 @@ node_modules/
 test-results/
 .qodo
 
-
+*.md
 .pnpm-store
