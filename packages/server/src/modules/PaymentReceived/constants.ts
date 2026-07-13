@@ -58,7 +58,7 @@ export const defaultPaymentReceivedPdfTemplateAttributes = {
   companyLogoUri: '',
 
   // # Company name
-  companyName: 'Bigcapital Technology, Inc.',
+  companyName: 'Your Organization Name',
 
   // # Customer address
   showCustomerAddress: true,

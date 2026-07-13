@@ -44,7 +44,7 @@ export abstract class BaseCommand extends CommandRunner {
       },
       migrations: {
         directory: this.configService.get('tenantDatabase.migrationsDir') || './src/database/migrations',
-        loadExtensions: ['.js'],
+        loadExtensions: ['.js', '.ts'],
       },
       seeds: {
         directory: this.configService.get('tenantDatabase.seedsDir') || './src/database/seeds/core',

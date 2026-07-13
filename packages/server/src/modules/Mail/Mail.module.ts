@@ -11,14 +11,14 @@ import { MailTransporter } from './MailTransporter.service';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         // Create reusable transporter object using the default SMTP transport
+        const user = configService.get('mail.username');
+        const pass = configService.get('mail.password');
+
         const transporter = createTransport({
           host: configService.get('mail.host'),
           port: configService.get('mail.port'),
-          secure: configService.get('mail.secure'), // true for 465, false for other ports
-          auth: {
-            user: configService.get('mail.username'),
-            pass: configService.get('mail.password'),
-          },
+          secure: configService.get('mail.secure'),
+          ...(user || pass ? { auth: { user, pass } } : {}),
         });
         return transporter;
       },

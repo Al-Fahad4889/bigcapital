@@ -23,11 +23,19 @@ export class InitialCurrenciesSeedService {
       .query()
       .findOne('currency_code', currencyCode);
     if (!foundBaseCurrency) {
-      await this.currencyModel().query().insert({
-        currencyCode: currencyMeta.code,
-        currencyName: currencyMeta.name,
-        currencySign: currencyMeta.symbol,
-      });
+      if (currencyCode === 'BDT') {
+        await this.currencyModel().query().insert({
+          currencyCode: currencyMeta.code,
+          currencyName: currencyMeta.name,
+          currencySign: currencyMeta.symbol_native || '৳',
+        });
+      } else {
+        await this.currencyModel().query().insert({
+          currencyCode: currencyMeta.code,
+          currencyName: currencyMeta.name,
+          currencySign: currencyMeta.symbol,
+        });
+      }
     }
   }
 

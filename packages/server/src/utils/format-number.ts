@@ -11,8 +11,18 @@ const getNegativeFormat = (formatName) => {
   }
 };
 
-const getCurrencySign = (currencyCode) => {
-  return get(Currencies, `${currencyCode}.symbol`);
+const getCurrencySign = (currencyCode?: string) => {
+  if(!currencyCode) {
+    return '';
+  }
+  const currency = Currencies[currencyCode];
+  if (!currency) {
+    return '';
+  }
+  if(currencyCode === 'BDT') {
+    return currency.symbol_native || '৳';
+  }
+  return currency.symbol || '';
 };
 
 export interface IFormatNumberSettings {
