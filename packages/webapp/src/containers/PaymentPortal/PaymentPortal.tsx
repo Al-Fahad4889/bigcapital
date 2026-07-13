@@ -67,11 +67,11 @@ export function PaymentPortal() {
       <Stack spacing={0} className={styles.body}>
         <Stack>
           <Group spacing={10}>
-            {sharableLinkMeta?.brandingTemplate?.companyLogoUri && (
+            {sharableLinkMeta?.organization?.companyLogoUri && (
               <Box
                 className={styles.companyLogoWrap}
                 style={{
-                  backgroundImage: `url(${sharableLinkMeta?.brandingTemplate?.companyLogoUri})`,
+                  backgroundImage: `url(${sharableLinkMeta?.organization?.companyLogoUri})`,
                 }}
               ></Box>
             )}
@@ -196,7 +196,7 @@ export function PaymentPortal() {
         </Stack>
 
         <Text className={clsx(Classes.TEXT_MUTED, styles.buyNote)}>
-          By confirming your payment, you allow Bigcapital Technology, Inc. to
+          By confirming your payment, you allow Travel Books Technology, Inc. to
           charge you for this payment and save your payment information in
           accordance with their terms.
         </Text>
@@ -210,7 +210,7 @@ export function PaymentPortal() {
         ></Box>
 
         <Stack spacing={0} className={styles.footerText}>
-          © 2024 Bigcapital Technology, Inc.
+          © 2024 Travel Books Technology, Inc.
           <br />
           All rights reserved.
         </Stack>

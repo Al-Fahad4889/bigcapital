@@ -16,12 +16,14 @@ import { useUpdateOrganization } from '@/hooks/query';
 import { usePreferencesBrandingBoot } from './PreferencesBrandingBoot';
 
 const initialValues = {
+  name: '',
   logoKey: '',
   logoUri: '',
   primaryColor: '',
 };
 
 const validationSchema = Yup.object({
+  name: Yup.string().required('Organization name is required'),
   logoKey: Yup.string().optional(),
   logoUri: Yup.string().optional(),
   primaryColor: Yup.string().required('Primary color is required'),

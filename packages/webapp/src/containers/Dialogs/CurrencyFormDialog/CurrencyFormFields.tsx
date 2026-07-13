@@ -46,7 +46,7 @@ export default function CurrencyFormFields() {
           onItemSelect={(currency) => {
             setFieldValue('currency_code', currency.currency_code);
             setFieldValue('currency_name', currency.name);
-            setFieldValue('currency_sign', currency.symbol);
+            setFieldValue('currency_sign', currency.symbol_native || currency.symbol);
           }}
           itemPredicate={filterCurrencyCode}
           disabled={isEditMode}

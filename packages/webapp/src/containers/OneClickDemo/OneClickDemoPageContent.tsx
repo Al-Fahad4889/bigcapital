@@ -8,8 +8,9 @@ import {
 import { Box, Icon, Stack } from '@/components';
 import { useJob } from '@/hooks/query';
 import style from './OneClickDemoPage.module.scss';
-
+import { useBranding } from '@/hooks/useBranding';
 export function OneClickDemoPageContent() {
+  const { logoUri, name } = useBranding();
   const {
     mutateAsync: createOneClickDemo,
     isLoading: isCreateOneClickLoading,
@@ -59,7 +60,7 @@ export function OneClickDemoPageContent() {
     <Box className={style.root}>
       <Box className={style.inner}>
         <Stack align={'center'} spacing={40}>
-          <Icon icon="bigcapital" height={37} width={228} />
+          {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
 
           {isLoading && (
             <Stack align={'center'} spacing={15}>

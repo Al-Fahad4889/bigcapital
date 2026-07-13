@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Button, Classes, Intent, Text } from '@blueprintjs/core';
 import { useFormikContext } from 'formik';
-import { FFormGroup, Group, Stack } from '@/components';
+import { FFormGroup, FInputGroup, Group, Stack } from '@/components';
 import { FColorInput } from '@/components/Forms/FColorInput';
 import { CompanyLogoUpload } from '@/containers/ElementCustomize/components/CompanyLogoUpload';
 import { PreferencesBrandingFormValues } from './_types';
@@ -11,6 +11,9 @@ import { useIsDarkMode } from '@/hooks/useDarkMode';
 export function PreferencesBrandingFormContent() {
   return (
     <Stack style={{ flex: '1' }} spacing={10}>
+      <FFormGroup name={'name'} label={'Organization Name'}>
+        <FInputGroup name={'name'} />
+      </FFormGroup>
       <FFormGroup name={'companyLogo'} label={'Company Logo'}>
         <Group spacing={15} align={'left'}>
           <BrandingCompanyLogoUpload />

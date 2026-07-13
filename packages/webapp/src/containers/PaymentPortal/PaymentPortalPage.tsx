@@ -48,9 +48,9 @@ function PaymentPortalCssVariables() {
   const { sharableLinkMeta } = usePaymentPortalBoot();
 
   useEffect(() => {
-    if (sharableLinkMeta?.brandingTemplate?.primaryColor) {
+    if (sharableLinkMeta?.organization?.primaryColor) {
       const primaryColorHsl = parseToHsl(
-        sharableLinkMeta?.brandingTemplate?.primaryColor,
+        sharableLinkMeta?.organization?.primaryColor,
       );
       document.body.style.setProperty(
         '--payment-page-background-color',
@@ -58,14 +58,14 @@ function PaymentPortalCssVariables() {
       );
       document.body.style.setProperty(
         '--payment-page-primary-button',
-        sharableLinkMeta?.brandingTemplate?.primaryColor,
+        sharableLinkMeta?.organization?.primaryColor,
       );
       document.body.style.setProperty(
         '--payment-page-primary-button-hover',
-        lighten(0.05, sharableLinkMeta?.brandingTemplate?.primaryColor),
+        lighten(0.05, sharableLinkMeta?.organization?.primaryColor),
       );
     }
-  }, [sharableLinkMeta?.brandingTemplate?.primaryColor]);
+  }, [sharableLinkMeta?.organization?.primaryColor]);
 
   return null;
 }
