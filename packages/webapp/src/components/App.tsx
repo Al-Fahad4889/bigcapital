@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense,useEffect } from 'react';
 import { Router, Switch, Route } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-
+import { useBranding } from '@/hooks/useBranding';
 import '@/style/App.scss';
 import 'moment/locale/ar-ly';
 import 'moment/locale/es-us';
@@ -35,11 +35,20 @@ const OneClickDemoPage = lazy(
 const PaymentPortalPage = lazy(
   () => import('@/containers/PaymentPortal/PaymentPortalPage'),
 );
+const LegalAboutPage = lazy(
+  () => import('@/containers/LegalAbout/LegalAboutPage'),
+);
 
 /**
  * App inner.
  */
 function AppInsider({ history }) {
+  const { primaryColor } = useBranding();
+  useEffect(() => {
+    if (primaryColor) {
+      document.documentElement.style.setProperty('--brand-primary', primaryColor);
+    }
+  }, [primaryColor]);
   return (
     <div className="App">
       <DashboardThemeProvider>
@@ -64,6 +73,7 @@ function AppInsider({ history }) {
                 path={'/payment/:linkId'}
                 children={<PaymentPortalPage />}
               />
+              <Route path={'/legal/about'} children={<LegalAboutPage />} />
               <Route path={'/'} children={<DashboardPrivatePages />} />
             </Switch>
           </Router>

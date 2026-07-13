@@ -1,17 +1,21 @@
 // @ts-nocheck
 import React from 'react';
 import moment from 'moment';
-import { Icon, If, Money } from '@/components';
+import { If, Money } from '@/components';
+import { useBranding } from '@/hooks/useBranding';
 
-export const TemplateHeader = ({ defaultLabels }) => (
-  <div className={'template__header'}>
-    <div className={'template__header--title'}>
-      <h1>{defaultLabels.name}</h1>
-      <p>info@bigcapital.ly </p>
+export const TemplateHeader = ({ defaultLabels }) => {
+  const { logoUri, name } = useBranding();
+  return (
+    <div className={'template__header'}>
+      <div className={'template__header--title'}>
+        <h1>{defaultLabels.name}</h1>
+        <p>{name}</p>
+      </div>
+      {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
     </div>
-    <Icon icon="bigcapital" height={30} width={200} />
-  </div>
-);
+  );
+};
 
 export const TemplateContent = ({
   defaultLabels,
