@@ -76,3 +76,13 @@ export interface IAuthSignUpVerifiedEventPayload {
 export interface ISignUpConfigmResendedEventPayload {
   user: SystemUser;
 }
+export interface IAuthBrandingPOJO {
+  name: string;
+  logoUri: string | null;
+  primaryColor: string | null;
+}
+
+export interface IAuthGetMetaPOJO {
+  signupDisabled: boolean;
+  branding: IAuthBrandingPOJO;
+}

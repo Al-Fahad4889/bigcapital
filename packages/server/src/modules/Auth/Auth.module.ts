@@ -19,6 +19,7 @@ import { JwtAuthGuard } from './guards/jwt.guard';
 import { AuthMailSubscriber } from './subscribers/AuthMail.subscriber';
 import { BullBoardModule } from '@bull-board/nestjs';
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
+import { TenantModel } from '../System/models/TenantModel';
 import { BullModule } from '@nestjs/bullmq';
 import {
   SendResetPasswordMailQueue,
@@ -42,8 +43,10 @@ import { AuthApiKeysController } from './AuthApiKeys.controllers';
 import { AuthApiKeyAuthorizeService } from './commands/AuthApiKeyAuthorization.service';
 import { GenerateApiKey } from './commands/GenerateApiKey.service';
 import { GetApiKeysService } from './queries/GetApiKeys.service';
+import { S3Module } from '../S3/S3.module';
 
 const models = [
+  InjectSystemModel(TenantModel),
   InjectSystemModel(PasswordReset),
   InjectSystemModel(ApiKeyModel),
 ];
@@ -51,6 +54,7 @@ const models = [
 @Module({
   controllers: [AuthController, AuthedController, AuthApiKeysController],
   imports: [
+    S3Module,
     MailModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
