@@ -60,7 +60,10 @@ export function useCurrentOrganization(props) {
     },
   );
 }
-
+export function useCurrentOrganizationMetadata(options) {
+  const { data } = useCurrentOrganization(options);
+  return data?.metadata;
+}
 /**
  * Organization setup.
  */

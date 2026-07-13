@@ -1,16 +1,6 @@
 // @ts-nocheck
 import { useMutation } from 'react-query';
 import useApiRequest from '../useRequest';
-import { transformToCamelCase } from '@/utils';
-
-interface UploadAttachmentResponse {
-  createdAt: string;
-  id: number;
-  key: string;
-  mimeType: string;
-  originName: string;
-  size: number;
-}
 
 /**
  * Uploads the given attachments.
@@ -18,11 +8,26 @@ interface UploadAttachmentResponse {
 export function useUploadAttachments(props) {
   const apiRequest = useApiRequest();
 
-  return useMutation<UploadAttachmentResponse>(
-    (values) =>
-      apiRequest
-        .post('attachments', values)
-        .then((res) => transformToCamelCase(res.data?.data)),
+  return useMutation(
+    async (values) => {
+      const formData =
+        values instanceof FormData
+          ? values
+          : (() => {
+              const fd = new FormData();
+              if (values?.file instanceof File) {
+                fd.append('file', values.file);
+              }
+              return fd;
+            })();
+
+      const res = await apiRequest.post('attachments', formData);
+      const data = res?.data?.data;
+      if (!data) {
+        throw new Error('Upload attachment: no data in response');
+      }
+      return data;
+    },
     props,
   );
 }

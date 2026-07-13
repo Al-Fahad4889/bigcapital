@@ -48,6 +48,7 @@ export default function useApiRequest() {
     instance.interceptors.response.use(
       (response) => response,
       (error) => {
+        if (!error.response) return Promise.reject(error);
         const { status, data } = error.response;
 
         if (status >= 500) {

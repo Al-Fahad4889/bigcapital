@@ -1,5 +1,6 @@
 import { useAuthMetadata } from '@/hooks/query/authentication';
 import { useCurrentOrganizationMetadata } from '@/hooks/query/organization';
+import { useIsAuthenticated } from '@/hooks/state';
 
 const NEUTRAL = {
   name: 'Agency',
@@ -8,9 +9,11 @@ const NEUTRAL = {
 };
 
 export function useBranding() {
-  const org = useCurrentOrganizationMetadata();
+  const isAuthenticated = useIsAuthenticated();
+  const orgMetadata = useCurrentOrganizationMetadata({ enabled: isAuthenticated });
   const { data: authMeta } = useAuthMetadata();
 
+  const org = isAuthenticated ? orgMetadata : null;
   const source = org ?? authMeta?.branding ?? null;
 
   return {
