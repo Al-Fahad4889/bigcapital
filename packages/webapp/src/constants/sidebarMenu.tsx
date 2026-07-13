@@ -27,6 +27,7 @@ import {
   TaxRateAction,
 } from '@/constants/abilityOption';
 import { DialogsName } from './dialogs';
+import { Legal_About_Path } from './routes';
 
 export const SidebarMenu = [
   // ---------------
@@ -809,6 +810,11 @@ export const SidebarMenu = [
           subject: AbilitySubject.Preferences,
           ability: PreferencesAbility.Mutate,
         },
+      },
+      {
+        text: 'Legal & About',
+        href: Legal_About_Path,
+        type: ISidebarMenuItemType.Link,
       },
     ],
   },
