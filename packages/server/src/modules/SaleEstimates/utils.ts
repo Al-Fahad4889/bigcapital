@@ -6,7 +6,7 @@ export const transformEstimateToPdfTemplate = (
 ): Partial<EstimatePdfBrandingAttributes> => {
   return {
     expirationDate: estimate.formattedExpirationDate,
-    estimateNumebr: estimate.estimateNumber,
+    estimateNumber: estimate.estimateNumber,
     estimateDate: estimate.formattedEstimateDate,
     lines: estimate.entries.map((entry) => ({
       item: entry.item.name,
@@ -15,7 +15,11 @@ export const transformEstimateToPdfTemplate = (
       quantity: entry.quantityFormatted,
       total: entry.totalFormatted,
     })),
-    total: estimate.formattedSubtotal,
+    total: estimate.totalFormatted,
+    taxes: estimate.taxes?.map((tax) => ({
+      label: tax.name,
+      amount: tax.taxRateAmountFormatted,
+    })),
     subtotal: estimate.formattedSubtotal,
     customerNote: estimate.note,
     termsConditions: estimate.termsConditions,

@@ -7,6 +7,7 @@ import { ImportableModel } from '@/modules/Import/decorators/Import.decorator';
 import { InjectModelMeta } from '@/modules/Tenancy/TenancyModels/decorators/InjectModelMeta.decorator';
 import { SaleEstimateMeta } from './SaleEstimate.meta';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
+import { TaxRateTransaction } from '@/modules/TaxRates/models/TaxRateTransaction.model';
 import { Document } from '@/modules/ChromiumlyTenancy/models/Document';
 import { Customer } from '@/modules/Customers/models/Customer';
 import { DiscountType } from '@/common/types/Discount';
@@ -57,6 +58,7 @@ export class SaleEstimate extends TenantBaseModel {
   public entries!: ItemEntry[];
   public attachments!: Document[];
   public customer!: Customer;
+  public taxes!: TaxRateTransaction[];
 
   /**
    * Table name
@@ -296,6 +298,17 @@ export class SaleEstimate extends TenantBaseModel {
     } = require('../../PdfTemplate/models/PdfTemplate');
 
     return {
+      taxes: {
+        relation: Model.HasManyRelation,
+        modelClass: require('../../TaxRates/models/TaxRateTransaction.model').TaxRateTransaction,
+        join: {
+          from: 'sales_estimates.id',
+          to: 'tax_rate_transactions.referenceId',
+        },
+        filter(builder) {
+          builder.where('reference_type', 'SaleEstimate');
+        },
+      },
       customer: {
         relation: Model.BelongsToOneRelation,
         modelClass: Customer,

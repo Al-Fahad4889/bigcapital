@@ -2,6 +2,7 @@ import { Transformer } from '@/modules/Transformer/Transformer';
 import { SaleEstimate } from '../models/SaleEstimate';
 import { ItemEntryTransformer } from '@/modules/TransactionItemEntry/ItemEntry.transformer';
 import { AttachmentTransformer } from '@/modules/Attachments/Attachment.transformer';
+import { SaleInvoiceTaxEntryTransformer } from '@/modules/SaleInvoices/queries/SaleInvoiceTaxEntry.transformer';
 
 export class SaleEstimateTransfromer extends Transformer {
   /**
@@ -27,6 +28,7 @@ export class SaleEstimateTransfromer extends Transformer {
       'formattedCreatedAt',
       'entries',
       'attachments',
+      'taxes',
     ];
   };
 
@@ -162,6 +164,17 @@ export class SaleEstimateTransfromer extends Transformer {
     });
   };
 
+
+  /**
+   * Retrieves the taxes of sale estimate.
+   * @param {SaleEstimate} estimate
+   * @returns {Array<{label: string, amount: string}>}
+   */
+  protected taxes = (estimate: SaleEstimate) => {
+    return this.item(estimate.taxes, new SaleInvoiceTaxEntryTransformer(), {
+      currencyCode: estimate.currencyCode,
+    });
+  };
 
   /**
    * Retrieves the entries of the sale estimate.

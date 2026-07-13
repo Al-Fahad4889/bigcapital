@@ -30,7 +30,8 @@ export class GetSaleEstimate {
       .withGraphFetched('entries.item')
       .withGraphFetched('customer')
       .withGraphFetched('branch')
-      .withGraphFetched('attachments');
+      .withGraphFetched('attachments')
+      .withGraphFetched('taxes.taxRate');
 
     // Validates the estimate existance.
     this.validators.validateEstimateExistance(estimate);

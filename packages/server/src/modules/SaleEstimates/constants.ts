@@ -217,9 +217,10 @@ export const defaultEstimatePdfBrandingAttributes = {
       total: '$1000.00',
     },
   ],
+  taxes: [] as Array<{ label: string; amount: string }>,
   showEstimateNumber: true,
   estimateNumberLabel: 'Estimate Number',
-  estimateNumebr: '346D3D40-0001',
+  estimateNumber: '346D3D40-0001',
 
   estimateDate: 'September 3, 2024',
   showEstimateDate: true,
@@ -271,10 +272,10 @@ export interface EstimatePdfBrandingAttributes {
   termsConditionsLabel: string;
 
   lines: EstimatePdfBrandingLineItem[];
-
+  taxes?: Array<{ label: string; amount: string }>;
   showEstimateNumber: boolean;
   estimateNumberLabel: string;
-  estimateNumebr: string;
+  estimateNumber: string;
 
   estimateDate: string;
   showEstimateDate: boolean;
