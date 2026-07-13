@@ -22,7 +22,7 @@ import { AccountsImportable } from './AccountsImportable.service';
 import { BulkDeleteAccountsService } from './BulkDeleteAccounts.service';
 import { ValidateBulkDeleteAccountsService } from './ValidateBulkDeleteAccounts.service';
 import { AccountsSettingsService } from './AccountsSettings.service';
-
+import { ApplyPresetAccountsService } from './commands/ApplyPresetAccounts.service';
 const models = [RegisterTenancyModel(BankAccount)];
 
 @Module({
@@ -35,6 +35,7 @@ const models = [RegisterTenancyModel(BankAccount)];
     TenancyContext,
     CommandAccountValidators,
     AccountRepository,
+    ApplyPresetAccountsService,
     EditAccount,
     DeleteAccount,
     GetAccount,

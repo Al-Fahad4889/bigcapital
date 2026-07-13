@@ -82,7 +82,66 @@ export const OtherChargesAccount = {
   index: 1,
   predefined: true,
 };
-
+export const AirlineConsolidatorPayablesAccount = {
+  name: 'Airline/Consolidator Payables',
+  slug: 'airline-consolidator-payables',
+  accountType: 'other-current-liability',
+  code: '20007',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+export const CommissionIncomeAccount = {
+  name: 'Commission Income',
+  slug: 'commission-income',
+  accountType: 'income',
+  code: '50006',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+export const ServiceFeeIncomeAccount = {
+  name: 'Service Fee Income',
+  slug: 'service-fee-income',
+  accountType: 'income',
+  code: '50007',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+export const PenaltyIncomeAccount = {
+  name: 'Penalty Income',
+  slug: 'penalty-income',
+  accountType: 'other-income',
+  code: '50008',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+export const ClientAdvancesAccount = {
+  name: 'Client Advances',
+  slug: 'client-advances',
+  accountType: 'other-current-liability',
+  code: '20008',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
+export const VatPayableAccount = {
+  name: 'VAT Payable',
+  slug: 'vat-payable',
+  accountType: 'tax-payable',
+  code: '20009',
+  description: '',
+  active: true,
+  index: 1,
+  predefined: true,
+};
 export const SeedAccounts = [
   {
     name: 'Bank Account',
