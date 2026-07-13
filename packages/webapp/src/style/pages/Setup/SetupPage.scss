@@ -9,6 +9,7 @@
   @media only screen and (max-width: 1500px) {
     grid-template-columns: 35% 65%;
   }
+
   @media only screen and (max-width: 1200px) {
     grid-template-columns: 26% 74%;
   }
@@ -20,6 +21,7 @@
     .bp4-dark & {
       background-color: #2f343c;
     }
+
     .content {
       display: flex;
       flex-direction: column;
@@ -35,7 +37,7 @@
         padding-left: 10px;
       }
 
-      &__header{
+      &__header {
         position: sticky;
         top: 0;
       }
@@ -58,7 +60,7 @@
         opacity: 0.55;
         margin-bottom: 10px;
         font-weight: 200;
-      } 
+      }
 
       &__organization {
         font-size: 16px;
@@ -156,7 +158,9 @@
       &::before {
         background-color: #75859c;
       }
+
       ~li {
+
         &:before,
         &:after {
           background: #e0e0e0;
@@ -164,7 +168,7 @@
       }
 
       p.wizard-info {
-        color: #004dd0;
+        color: var(--brand-primary, #004dd0);
       }
     }
   }

@@ -631,3 +631,14 @@ $dashboard-views-bar-height: 44px;
     }
   }
 }
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .dashboard-content-routes {
+    flex: 1;
+    overflow-y: auto;
+  }
+}

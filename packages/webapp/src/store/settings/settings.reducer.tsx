@@ -3,13 +3,13 @@ import { camelCase } from 'lodash';
 import { createReducer } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, purgeStoredState } from 'redux-persist';
-
+import { App } from '@/constants/app';
 import t from '@/store/types';
 
 const initialState = {
   data: {
     organization: {
-      name: 'Bigcapital, LLC',
+      name: App.app_name,
     },
     manualJournals: {
       tableSize: 'small',

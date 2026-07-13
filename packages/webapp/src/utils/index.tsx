@@ -189,16 +189,18 @@ export function formattedAmount(cents, currencyCode = '', props) {
   const currency = Currency[currencyCode];
 
   const parsedCurrency = {
-    symbol: '',
+    symbol_native: '',
     decimal_digits: 0,
     ...currency,
   };
+  
+  const symbol = currencyCode === 'BDT' ? parsedCurrency.symbol_native || '৳' : parsedCurrency.symbol || '';
   const parsedProps = {
     noZero: false,
     ...props,
   };
   const formatOptions = {
-    symbol: parsedCurrency.symbol,
+    symbol: symbol,
     precision: parsedCurrency.decimal_digits,
     format: {
       pos: '%s%v',

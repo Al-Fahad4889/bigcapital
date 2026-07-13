@@ -1,9 +1,14 @@
 .bp4-menu-item {
-    &:hover{
+    &:hover {
         background-color: var(--color-ui-menu-select-item-hover-background);
     }
+
     .menu-item-space {
         width: 6px;
         display: inline-block;
     }
+}
+
+.sidebar .bp4-menu {
+    background: var(--color-sidebar-background);
 }
