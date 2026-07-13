@@ -76,6 +76,12 @@ export function useApplicationBoot() {
     if (isBooted.current) {
       return;
     }
+    if (organization?.metadata?.primaryColor) {
+      document.documentElement.style.setProperty('--brand-primary', organization.metadata.primaryColor);
+    }
+    if (organization?.metadata?.name) {
+      document.title = organization.metadata.name;
+    }
     // Reboot the application in case the initial locale not equal
     // the current organization language.
     if (localeCookie !== organization.metadata.language) {
@@ -110,8 +116,8 @@ export function useApplicationBoot() {
   // Once the all requests complete change the app loading state.
   useWhen(
     isAuthUserSuccess &&
-      isCurrentOrganizationSuccess &&
-      localeCookie === organization?.metadata?.language,
+    isCurrentOrganizationSuccess &&
+    localeCookie === organization?.metadata?.language,
     () => {
       isBooted.current = true;
     },

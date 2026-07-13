@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { Button, Popover, Menu, Position } from '@blueprintjs/core';
-
+import { useBranding } from '@/hooks/useBranding';
 import { Icon } from '@/components';
+import { x } from '@xstyled/emotion';
 
 import { withCurrentOrganization } from '@/containers/Organization/withCurrentOrganization';
 import { useAuthenticatedAccount } from '@/hooks/query';
@@ -21,7 +22,7 @@ function SidebarHeadJSX({
 }) {
   // Retrieve authenticated user information.
   const { data: user } = useAuthenticatedAccount();
-
+  const { logoUri, name } = useBranding();
   return (
     <div className="sidebar__head">
       <div className="sidebar__head-organization">
@@ -52,12 +53,31 @@ function SidebarHeadJSX({
       </div>
 
       <div className="sidebar__head-logo">
-        <Icon
-          icon={'mini-bigcapital'}
-          width={28}
-          height={28}
-          className="bigcapital--alt"
-        />
+        {logoUri ? (
+          <x.img
+            src={logoUri}
+            alt={name}
+            width={28}
+            height={28}
+            objectFit="cover"
+            borderRadius={6}
+          />
+        ) : (
+          <x.div
+            width={28}
+            height={28}
+            borderRadius={6}
+            backgroundColor="#CB22E5"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            fontSize={11}
+            fontWeight={600}
+            color="#fff"
+          >
+            {firstLettersArgs(...(name || '').split(' '))}
+          </x.div>
+        )}
       </div>
     </div>
   );

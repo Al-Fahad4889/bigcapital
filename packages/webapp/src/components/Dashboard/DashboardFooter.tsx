@@ -2,10 +2,10 @@
 import React from 'react';
 import { getFooterLinks } from '@/constants/footerLinks';
 import { For } from '@/components';
-
+import { useBranding } from '@/hooks/useBranding';
 function FooterLinkItem({ title, link }) {
   return (
-    <div class="">
+    <div>
       <a href={link} target="_blank" rel="noopener noreferrer">
         {title}
       </a>
@@ -14,11 +14,11 @@ function FooterLinkItem({ title, link }) {
 }
 
 export default function DashboardFooter() {
-  const footerLinks = getFooterLinks();
-
+  const { name, logoUri } = useBranding();
+  const footerLinks = getFooterLinks(name, logoUri);
   return (
-    <div class="dashboard__footer">
-      <div class="footer-links">
+    <div className="dashboard__footer">
+      <div className="footer-links">
         <For render={FooterLinkItem} of={footerLinks} />
       </div>
     </div>

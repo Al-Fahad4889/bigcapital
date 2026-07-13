@@ -1,9 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import classNames from 'classnames';
-import { Icon } from '@/components';
-
-import '@/style/components/BigcapitalLoading.scss';
+import { Spinner } from '@blueprintjs/core';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
 
 /**
@@ -14,17 +12,11 @@ export default function BigcapitalLoading({ className }) {
 
   return (
     <div className={classNames('bigcapital-loading', className)}>
-      <div class="center">
+      <div className="center">
         {isDarkmode ? (
-          <Icon
-            icon="bigcapital-alt"
-            height={37}
-            width={228}
-            color="#fff"
-            className="bigcapital-logo"
-          />
+          <Spinner className="bp4-dark" size={37} />
         ) : (
-          <Icon icon="bigcapital" height={37} width={228} />
+          <Spinner size={37} />
         )}
       </div>
     </div>
