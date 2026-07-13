@@ -2,19 +2,24 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
 import BodyClassName from 'react-body-classname';
 import styled from 'styled-components';
-import { Suspense } from 'react';
+import { Suspense,useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { Spinner } from '@blueprintjs/core';
 
 import authenticationRoutes from '@/routes/authentication';
-import { Box, Icon, FormattedMessage as T } from '@/components';
+import { Box, FormattedMessage as T } from '@/components';
 import { AuthMetaBootProvider } from './AuthMetaBoot';
-
 import '@/style/pages/Authentication/Auth.scss';
-import { useIsDarkMode } from '@/hooks/useDarkMode';
-import { BigcapitalAlt } from '@/components/Icons/BigcapitalAlt';
+import { useBranding, useIsDarkMode } from '@/hooks';
 
 export function Authentication() {
+  const { logoUri, name, primaryColor } = useBranding();
+  useEffect(() => {
+  document.title = name;
+  if (primaryColor) {
+    document.documentElement.style.setProperty('--brand-primary', primaryColor);
+  }
+}, [name, primaryColor]);
   const isDarkMode = useIsDarkMode();
 
   return (
@@ -22,11 +27,7 @@ export function Authentication() {
       <AuthPage>
         <AuthInsider>
           <AuthLogo>
-            {isDarkMode ? (
-              <BigcapitalAlt color={"rgba(255, 255, 255, 0.6)"} height={37} width={214} />
-            ) : (
-              <Icon icon="bigcapital" height={37} width={214} />
-            )}
+            {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
           </AuthLogo>
 
           <AuthMetaBootProvider>

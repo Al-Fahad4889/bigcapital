@@ -1,7 +1,9 @@
 // @ts-nocheck
 import React from 'react';
 import { Icon } from '@/components/Icon';
+import { useBranding } from '@/hooks/useBranding';
 
 export default function AuthCopyright() {
-  return <Icon width={122} height={22} icon={'bigcapital'} />;
+  const { logoUri, name } = useBranding();
+  return logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>;
 }

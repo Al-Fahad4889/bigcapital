@@ -7,13 +7,14 @@ import { getFooterLinks } from '@/constants/footerLinks';
 import { useAuthActions } from '@/hooks/state';
 import style from './SetupLeftSection.module.scss';
 import { useAuthMetadata } from '@/hooks/query';
+import { useBranding } from '@/hooks/useBranding';
 
 /**
  * Footer item link.
  */
 function FooterLinkItem({ title, link }) {
   return (
-    <div class="content__links-item">
+    <div className="content__links-item">
       <a href={link} target="_blank">
         {title}
       </a>
@@ -24,9 +25,9 @@ function FooterLinkItem({ title, link }) {
 /**
  * Setup left section footer.
  */
-function SetupLeftSectionFooter() {
+function SetupLeftSectionFooter({ logoUri, name }) {
   // Retrieve the footer links.
-  const footerLinks = getFooterLinks();
+  const footerLinks = getFooterLinks(name, logoUri);
 
   const { data: authMeta } = useAuthMetadata();
   const demoUrl = authMeta?.meta?.one_click_demo?.demo_url;
@@ -75,7 +76,7 @@ function SetupLeftSectionHeader() {
       </p>
 
       <div className={'content__organization'}>
-        <span class="signout">
+        <span className="signout">
           <a onClick={onClickLogout} href="#">
             <T id={'sign_out'} />
           </a>
@@ -89,19 +90,15 @@ function SetupLeftSectionHeader() {
  * Wizard setup left section.
  */
 export default function SetupLeftSection() {
+  const { logoUri, name } = useBranding();
   return (
     <section className={'setup-page__left-section'}>
       <div className={'content'}>
         <div className={'content__logo'}>
-          <Icon
-            icon="bigcapital"
-            className={'bigcapital--alt'}
-            height={37}
-            width={190}
-          />
+          {logoUri ? <img src={logoUri} alt={name} /> : <h1>{name}</h1>}
         </div>
         <SetupLeftSectionHeader />
-        <SetupLeftSectionFooter />
+        <SetupLeftSectionFooter logoUri={logoUri} name={name} />
       </div>
     </section>
   );
