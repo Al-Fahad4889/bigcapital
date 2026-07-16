@@ -43,6 +43,7 @@ export interface IUserInviteTenantSyncedEventPayload {
 export interface IUserInviteResendEventPayload {
   inviteToken: string;
   user: ModelObject<TenantUser>;
+  invitingUser: ModelObject<TenantUser>;
 }
 
 export interface IAcceptInviteEventPayload {

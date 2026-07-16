@@ -90,11 +90,16 @@ export class InviteTenantUserService {
 
     // Generates a new invite token.
     const inviteToken = uniqid();
+    const authorizedUser = await this.tenancyContext.getSystemUser();
+    const invitingUser = await this.tenantUserModel()
+      .query()
+      .findOne({ systemUserId: authorizedUser.id });
 
     // Triggers `onUserSendInvite` event.
     await this.eventEmitter.emitAsync(events.inviteUser.resendInvite, {
       user,
       inviteToken,
+      invitingUser,
     } as IUserInviteResendEventPayload);
 
     return { user };
