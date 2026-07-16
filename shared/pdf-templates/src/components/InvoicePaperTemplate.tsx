@@ -17,6 +17,7 @@ import {
   DefaultPdfTemplateAddressBilledFrom,
 } from './_constants';
 
+
 interface InvoiceLine {
   item?: string;
   description?: string;
