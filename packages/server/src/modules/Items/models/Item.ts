@@ -37,7 +37,7 @@ export class Item extends TenantBaseModel {
   public readonly userId: number;
   public readonly sellTaxRateId: number;
   public readonly purchaseTaxRateId: number;
-
+  public readonly travelServiceTypeId?: number;
   public readonly warehouse!: Warehouse;
 
   static get tableName() {
@@ -242,6 +242,14 @@ export class Item extends TenantBaseModel {
         join: {
           from: 'items.purchaseTaxRateId',
           to: 'tax_rates.id',
+        },
+      },
+      travelServiceType: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: require('../../TravelServiceTypes/models/TravelServiceType.model').TravelServiceType,
+        join: {
+          from: 'items.travelServiceTypeId',
+          to: 'travel_service_types.id',
         },
       },
     };

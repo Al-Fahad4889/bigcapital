@@ -63,7 +63,7 @@ import AccountBulkDeleteDialog from '@/containers/Dialogs/Accounts/AccountBulkDe
 import ItemBulkDeleteDialog from '@/containers/Dialogs/Items/ItemBulkDeleteDialog';
 import CustomerBulkDeleteDialog from '@/containers/Dialogs/Customers/CustomerBulkDeleteDialog';
 import VendorBulkDeleteDialog from '@/containers/Dialogs/Vendors/VendorBulkDeleteDialog';
-
+import TravelServiceTypeDialog from '@/containers/TravelServiceTypes/dialogs/TravelServiceTypeDialog/index';
 /**
  * Dialogs container.
  */
@@ -149,6 +149,7 @@ export default function DialogsContainer() {
         dialogName={DialogsName.ProjectBillableEntriesForm}
       />
       <TaxRateFormDialog dialogName={DialogsName.TaxRateForm} />
+      <TravelServiceTypeDialog dialogName={DialogsName.TravelServiceTypeForm} />
       <InvoiceExchangeRateChangeDialog
         dialogName={DialogsName.InvoiceExchangeRateChangeNotice}
       />

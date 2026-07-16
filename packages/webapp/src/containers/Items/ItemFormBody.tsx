@@ -29,13 +29,32 @@ import {
 } from './utils';
 import { compose, inputIntent } from '@/utils';
 import { TaxRatesSelect } from '@/components/TaxRates/TaxRatesSelect';
+import { FSelect } from '@/components';
 
 /**
  * Item form body.
  */
 function ItemFormBody({ organization: { base_currency } }) {
-  const { accounts, taxRates } = useItemFormContext();
-  const { values } = useFormikContext();
+  const { accounts, taxRates, travelServiceTypes } = useItemFormContext();
+  const { values, setFieldValue } = useFormikContext();
+  const prevTaxRatesRef = React.useRef({ sell: '', purchase: '' });
+
+  const isService = values.type === 'service';
+  const hasTravelServiceType = !!values.travel_service_type_id;
+
+  const handleTravelServiceTypeSelect = (item) => {
+    if (item?.id) {
+      prevTaxRatesRef.current = {
+        sell: values.sell_tax_rate_id,
+        purchase: values.purchase_tax_rate_id,
+      };
+      setFieldValue('sell_tax_rate_id', '');
+      setFieldValue('purchase_tax_rate_id', '');
+    } else {
+      setFieldValue('sell_tax_rate_id', prevTaxRatesRef.current.sell);
+      setFieldValue('purchase_tax_rate_id', prevTaxRatesRef.current.purchase);
+    }
+  };
 
   return (
     <div class="page-form__section page-form__section--selling-cost">
@@ -104,18 +123,39 @@ function ItemFormBody({ organization: { base_currency } }) {
             />
           </FFormGroup>
 
+          {/*------------- Travel Service Type ------------- */}
+          {isService && (
+            <FFormGroup
+              name={'travel_service_type_id'}
+              label={'Travel Service Type'}
+              inline={true}
+            >
+              <FSelect
+                name={'travel_service_type_id'}
+                items={travelServiceTypes || []}
+                valueAccessor={'id'}
+                textAccessor={'name'}
+                placeholder={'Select service type...'}
+                onItemChange={handleTravelServiceTypeSelect}
+                fill
+              />
+            </FFormGroup>
+          )}
+
           {/*------------- Sell Tax Rate ------------- */}
-          <FFormGroup
-            name={'sell_tax_rate_id'}
-            label={'Tax Rate'}
-            inline={true}
-          >
-            <TaxRatesSelect
+          {!hasTravelServiceType && (
+            <FFormGroup
               name={'sell_tax_rate_id'}
-              items={taxRates}
-              allowCreate
-            />
-          </FFormGroup>
+              label={'Tax Rate'}
+              inline={true}
+            >
+              <TaxRatesSelect
+                name={'sell_tax_rate_id'}
+                items={taxRates}
+                allowCreate
+              />
+            </FFormGroup>
+          )}
 
           <FFormGroup
             name={'sell_description'}
@@ -203,22 +243,24 @@ function ItemFormBody({ organization: { base_currency } }) {
           </FFormGroup>
 
           {/*------------- Purchase Tax Rate ------------- */}
-          <FFormGroup
-            name={'purchase_tax_rate_id'}
-            label={'Tax Rate'}
-            inline={true}
-            fastField={true}
-            shouldUpdateDeps={{ taxRates }}
-            shouldUpdate={taxRateFieldShouldUpdate}
-          >
-            <TaxRatesSelect
+          {!hasTravelServiceType && (
+            <FFormGroup
               name={'purchase_tax_rate_id'}
-              items={taxRates}
-              allowCreate={true}
+              label={'Tax Rate'}
+              inline={true}
               fastField={true}
               shouldUpdateDeps={{ taxRates }}
-            />
-          </FFormGroup>
+              shouldUpdate={taxRateFieldShouldUpdate}
+            >
+              <TaxRatesSelect
+                name={'purchase_tax_rate_id'}
+                items={taxRates}
+                allowCreate={true}
+                fastField={true}
+                shouldUpdateDeps={{ taxRates }}
+              />
+            </FFormGroup>
+          )}
 
           <FFormGroup
             name={'purchase_description'}

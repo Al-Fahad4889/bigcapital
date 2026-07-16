@@ -8,6 +8,7 @@ import { Item } from './models/Item';
 import { UnitOfWork } from '../Tenancy/TenancyDB/UnitOfWork.service';
 import { TenantModelProxy } from '../System/models/TenantBaseModel';
 import { EditItemDto } from './dtos/Item.dto';
+import { BadRequestException } from '@nestjs/common';
 
 @Injectable()
 export class EditItemService {
@@ -25,7 +26,7 @@ export class EditItemService {
 
     @Inject(Item.name)
     private readonly itemModel: TenantModelProxy<typeof Item>,
-  ) {}
+  ) { }
 
   /**
    * Authorize the editing item.
@@ -42,6 +43,12 @@ export class EditItemService {
     // Validate whether the given item name already exists on the storage.
     await this.validators.validateItemNameUniquiness(itemDTO.name, oldItem.id);
 
+    if (itemDTO.travelServiceTypeId && (itemDTO.sellTaxRateId || itemDTO.purchaseTaxRateId)) {
+      throw new BadRequestException(
+        'An item cannot have both a travel service type and a direct tax rate assigned. '
+        + 'Clear the sell/purchase tax rate when using a travel service type.',
+      );
+    }
     if (itemDTO.categoryId) {
       await this.validators.validateItemCategoryExistance(itemDTO.categoryId);
     }
@@ -94,8 +101,8 @@ export class EditItemService {
       ...itemDTO,
       ...(itemDTO.type === 'inventory' && oldItem.type !== 'inventory'
         ? {
-            quantityOnHand: 0,
-          }
+          quantityOnHand: 0,
+        }
         : {}),
     };
   }

@@ -63,6 +63,7 @@ const Schema = Yup.object().shape({
   stock: Yup.string() || Yup.boolean(),
   sellable: Yup.boolean().required(),
   purchasable: Yup.boolean().required(),
+  travel_service_type_id: Yup.number().positive().nullable(),
 });
 
 export const transformItemFormData = (item, defaultValue) => {

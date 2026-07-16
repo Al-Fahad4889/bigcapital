@@ -1231,6 +1231,14 @@ export const getDashboardRoutes = () => [
   },
   // Bank Rules
   {
+    path: '/travel-service-types',
+    component: lazy(
+      () => import('@/containers/TravelServiceTypes/pages/TravelServiceTypesList'),
+    ),
+    pageTitle: 'Travel Service Types',
+    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
+  },
+  {
     path: '/bank-rules',
     component: lazy(
       () => import('@/containers/Banking/Rules/RulesList/RulesLandingPage'),

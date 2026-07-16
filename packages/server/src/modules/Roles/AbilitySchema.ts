@@ -16,6 +16,7 @@ import { BillAction } from "../Bills/Bills.types";
 import { AbilitySubject, ISubjectAbilitiesSchema, ISubjectAbilitySchema } from "./Roles.types";
 import { PaymentReceiveAction } from "../PaymentReceived/types/PaymentReceived.types";
 import { PreferencesAction } from "../Settings/Settings.types";
+import { TravelServiceTypeAction } from "../TravelServiceTypes/TravelServiceType.types";
 
 export const AbilitySchema: ISubjectAbilitiesSchema[] = [
   {
@@ -83,6 +84,16 @@ export const AbilitySchema: ISubjectAbilitiesSchema[] = [
         default: true,
       },
       { key: InventoryAdjustmentAction.DELETE, label: 'ability.delete' },
+    ],
+  },
+  {
+    subject: AbilitySubject.TravelServiceType,
+    subjectLabel: 'ability.travel_service_type',
+    abilities: [
+      { key: TravelServiceTypeAction.VIEW, label: 'ability.view', default: true },
+      { key: TravelServiceTypeAction.CREATE, label: 'ability.create', default: true },
+      { key: TravelServiceTypeAction.EDIT, label: 'ability.edit', default: true },
+      { key: TravelServiceTypeAction.DELETE, label: 'ability.delete', default: true },
     ],
   },
   {

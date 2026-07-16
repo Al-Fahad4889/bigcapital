@@ -83,6 +83,7 @@ export class CommandSaleInvoiceDTOTransformer {
       this.taxDTOTransformer.assocTaxRateFromTaxIdToEntries,
       // Associate tax rate id from tax code to entries.
       this.taxDTOTransformer.assocTaxRateIdFromCodeToEntries,
+      this.taxDTOTransformer.assocTaxRateFromTravelServiceType,
       // Sets default cost and sell account to invoice items entries.
       this.itemsEntriesService.setItemsEntriesDefaultAccounts,
     )(initialEntries);

@@ -33,6 +33,7 @@ export class GetItemService {
       .withGraphFetched('itemWarehouses.warehouse')
       .withGraphFetched('sellTaxRate')
       .withGraphFetched('purchaseTaxRate')
+      .withGraphFetched('travelServiceType.taxRate')
       .throwIfNotFound();
 
     const transformed = await this.transformerInjectable.transform(

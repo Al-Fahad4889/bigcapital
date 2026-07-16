@@ -162,7 +162,11 @@ function useBindSidebarItemLinkClick() {
   // Handle sidebar item click.
   const onClick = (item) => (event) => {
     closeSidebarSubmenu();
-    history.push(item.href);
+    if(item.target){
+      window.open(item.href, item.target);
+    }else{
+      history.push(item.href);
+    }
   };
   return {
     bindOnClick: (item) => {

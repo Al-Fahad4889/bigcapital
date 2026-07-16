@@ -170,6 +170,15 @@ export class CommandItemDto {
   @IsOptional()
   @ToNumber()
   @IsInt()
+  @ApiProperty({
+    description: 'ID of the travel service type',
+    required: false,
+  })
+  travelServiceTypeId?: number;
+
+  @IsOptional()
+  @ToNumber()
+  @IsInt()
   @Min(0)
   @ApiProperty({
     description: 'ID of the item category',
@@ -177,6 +186,7 @@ export class CommandItemDto {
     minimum: 0,
     example: 5,
   })
+
   categoryId?: number;
 
   @IsOptional()
@@ -211,5 +221,5 @@ export class CommandItemDto {
   mediaIds?: number[];
 }
 
-export class CreateItemDto extends CommandItemDto {}
-export class EditItemDto extends CommandItemDto {}
+export class CreateItemDto extends CommandItemDto { }
+export class EditItemDto extends CommandItemDto { }

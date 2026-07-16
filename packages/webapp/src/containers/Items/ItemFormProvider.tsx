@@ -11,6 +11,7 @@ import {
 } from '@/hooks/query';
 import { useWatchItemError } from './utils';
 import { useTaxRates } from '@/hooks/query/taxRates';
+import { useTravelServiceTypes } from '@/hooks/query/travel-service-types/queries';
 
 const ItemFormContext = createContext();
 
@@ -32,6 +33,7 @@ function ItemFormProvider({ itemId, ...props }) {
   } = useItemsCategories();
 
   const { data: taxRates, isLoading: isTaxRatesLoading } = useTaxRates();
+  const { data: travelServiceTypes, isLoading: isTravelServiceTypesLoading } = useTravelServiceTypes();
 
   // Fetches the given item details.
   const itemQuery = useItem(itemId || duplicateId, {
@@ -64,7 +66,8 @@ function ItemFormProvider({ itemId, ...props }) {
     isItemsSettingsLoading ||
     isAccountsLoading ||
     isItemsCategoriesLoading ||
-    isItemLoading;
+    isItemLoading ||
+    isTravelServiceTypesLoading;
 
   // Provider state.
   const provider = {
@@ -73,6 +76,7 @@ function ItemFormProvider({ itemId, ...props }) {
     item,
     itemsCategories,
     taxRates,
+    travelServiceTypes,
     submitPayload,
     isNewMode,
 
@@ -81,6 +85,7 @@ function ItemFormProvider({ itemId, ...props }) {
     isItemsCategoriesLoading,
     isItemLoading,
     isTaxRatesLoading,
+    isTravelServiceTypesLoading,
 
     createItemMutate,
     editItemMutate,

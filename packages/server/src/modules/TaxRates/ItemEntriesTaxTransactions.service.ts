@@ -3,10 +3,14 @@ import { keyBy, sumBy } from 'lodash';
 import { ItemEntry } from '@/modules/TransactionItemEntry/models/ItemEntry';
 import { TaxRateModel } from './models/TaxRate.model';
 import { TenantModelProxy } from '../System/models/TenantBaseModel';
+import { Item } from '../Items/models/Item';
 
 @Injectable()
 export class ItemEntriesTaxTransactions {
   constructor(
+    @Inject(Item.name)
+    private itemModel: TenantModelProxy<typeof Item>,
+
     @Inject(ItemEntry.name)
     private itemEntryModel: TenantModelProxy<typeof ItemEntry>,
 
@@ -51,7 +55,34 @@ export class ItemEntriesTaxTransactions {
       return entry;
     });
   };
+   /**
+   * If an entry's item has a travelServiceTypeId, resolve the default
+   * taxRateId from the travel service type's configured tax_rate_id.
+   * Only applies when the entry does not already have an explicit taxRateId
+   * (explicit user choice takes priority).
+   */
+  public assocTaxRateFromTravelServiceType = async (entries: ItemEntry[]) => {
+    const entriesWithoutTaxRate = entries.filter(
+      (e) => !e.taxRateId && e.itemId,
+    );
+    if (entriesWithoutTaxRate.length === 0) return entries;
 
+    const items = await this.itemModel()
+      .query()
+      .findByIds(entriesWithoutTaxRate.map((e) => e.itemId))
+      .withGraphFetched('travelServiceType.taxRate');
+    const itemsById = keyBy(items, 'id');
+
+    return entries.map((entry) => {
+      if (!entry.taxRateId && entry.itemId) {
+        const item = itemsById[entry.itemId];
+        if (item?.travelServiceType?.taxRateId) {
+          entry.taxRateId = item.travelServiceType.taxRateId;
+        }
+      }
+      return entry;
+    });
+  };
   /**
    * Associates tax rate from tax id to entries.
    * @returns {Promise<ItemEntry[]>}

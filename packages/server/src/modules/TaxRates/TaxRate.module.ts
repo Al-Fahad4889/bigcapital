@@ -23,6 +23,7 @@ import { RegisterTenancyModel } from '../Tenancy/TenancyModels/Tenancy.module';
 import { TaxRateTransaction } from './models/TaxRateTransaction.model';
 import { TaxRatesExportable } from './TaxRatesExportable';
 import { TaxRatesImportable } from './TaxRatesImportable';
+import { SyncTravelServiceTypeTaxRateOnEditTaxRate } from './SyncTravelServiceTypeTaxRateOnEditTaxRate';
 
 const models = [RegisterTenancyModel(TaxRateTransaction)];
 
@@ -41,6 +42,7 @@ const models = [RegisterTenancyModel(TaxRateTransaction)];
     TransformerInjectable,
     TenancyContext,
     TaxRatesApplication,
+    SyncTravelServiceTypeTaxRateOnEditTaxRate,
     ItemEntriesTaxTransactions,
     WriteBillTaxTransactionsSubscriber,
     WriteInvoiceTaxTransactionsSubscriber,

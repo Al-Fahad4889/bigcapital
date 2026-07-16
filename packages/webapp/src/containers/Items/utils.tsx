@@ -43,6 +43,7 @@ const defaultInitialValues = {
   sell_description: '',
   purchase_description: '',
   purchase_tax_rate_id: '',
+  travel_service_type_id: '',
 };
 
 /**

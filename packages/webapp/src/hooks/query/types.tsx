@@ -244,6 +244,9 @@ export const EXCHANGE_RATE = {
 export const API_KEYS = {
   API_KEYS: 'API_KEYS',
 };
+export const TravelServiceTypes = {
+  TRAVEL_SERVICE_TYPES: 'TRAVEL_SERVICE_TYPES',
+};
 
 export default {
   ...Authentication,
@@ -281,4 +284,5 @@ export default {
   ...TAX_RATES,
   ...EXCHANGE_RATE,
   ...API_KEYS,
+  ...TravelServiceTypes,
 };

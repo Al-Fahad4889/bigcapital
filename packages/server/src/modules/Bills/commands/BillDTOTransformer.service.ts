@@ -85,6 +85,7 @@ export class BillDTOTransformer {
       this.taxDTOTransformer.assocTaxRateFromTaxIdToEntries,
       // Associate tax rate id from tax code to entries.
       this.taxDTOTransformer.assocTaxRateIdFromCodeToEntries,
+      this.taxDTOTransformer.assocTaxRateFromTravelServiceType,
       // Sets the default cost account to the bill entries.
       this.setBillEntriesDefaultAccounts(),
     )(initialEntries);

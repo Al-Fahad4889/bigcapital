@@ -28,6 +28,7 @@ import {
 } from '@/constants/abilityOption';
 import { DialogsName } from './dialogs';
 import { Legal_About_Path } from './routes';
+import { TravelServiceTypeAction } from './abilityOption';
 
 export const SidebarMenu = [
   // ---------------
@@ -415,6 +416,15 @@ export const SidebarMenu = [
                 permission: {
                   subject: AbilitySubject.TaxRate,
                   ability: TaxRateAction.View,
+                },
+              },
+              {
+                text: 'Travel Service Types',
+                href: '/travel-service-types',
+                type: ISidebarMenuItemType.Link,
+                permission: {
+                  subject: AbilitySubject.TravelServiceType,
+                  ability: TravelServiceTypeAction.View,
                 },
               },
             ],
@@ -815,6 +825,7 @@ export const SidebarMenu = [
         text: 'Legal & About',
         href: Legal_About_Path,
         type: ISidebarMenuItemType.Link,
+        target: '_blank',
       },
     ],
   },

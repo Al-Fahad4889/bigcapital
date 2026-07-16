@@ -23,6 +23,7 @@ export const AbilitySubject = {
   Project: 'Project',
   TaxRate: 'TaxRate',
   BankRule: 'BankRule',
+  TravelServiceType: 'TravelServiceType',
 };
 
 export const ItemAction = {
@@ -197,6 +198,13 @@ export const TaxRateAction = {
 };
 
 export const BankRuleAction = {
+  View: 'View',
+  Create: 'Create',
+  Edit: 'Edit',
+  Delete: 'Delete',
+};
+
+export const TravelServiceTypeAction = {
   View: 'View',
   Create: 'Create',
   Edit: 'Edit',
