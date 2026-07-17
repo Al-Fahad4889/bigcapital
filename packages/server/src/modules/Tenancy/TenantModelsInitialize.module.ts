@@ -15,6 +15,7 @@ const RegisteredModels = [
   'Account',
   'UncategorizedBankTransaction',
   'RecognizedBankTransaction',
+  'TenantUser',
 ];
 export const TENANT_MODELS_INIT = 'TENANT_MODELS_INIT';
 
