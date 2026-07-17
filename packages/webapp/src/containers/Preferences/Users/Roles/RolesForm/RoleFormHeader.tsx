@@ -14,7 +14,7 @@ export function RoleFormHeader() {
     <Card>
       {/* ---------- Name ----------  */}
       <FFormGroup
-        name={'role_name'}
+        name={'roleName'}
         label={
           <strong>
             <T id={'roles.label.role_name'} />
@@ -25,7 +25,7 @@ export function RoleFormHeader() {
         fastField
       >
         <FInputGroup
-          name={'role_name'}
+          name={'roleName'}
           medium={true}
           inputRef={(ref) => (roleNameFieldRef.current = ref)}
           fill
@@ -35,13 +35,13 @@ export function RoleFormHeader() {
 
       {/* ---------- Description ----------  */}
       <FFormGroup
-        name={'role_description'}
+        name={'roleDescription'}
         label={<T id={'description'} />}
         inline
         fastField
       >
         <FTextArea
-          name={'role_description'}
+          name={'roleDescription'}
           growVertically={true}
           height={280}
           placeholder="Max. 500 characters"

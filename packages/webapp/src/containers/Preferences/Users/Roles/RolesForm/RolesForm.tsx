@@ -22,8 +22,8 @@ import { handleDeleteErrors } from '../utils';
 import { compose, transformToForm } from '@/utils';
 
 const defaultValues = {
-  role_name: '',
-  role_description: '',
+  roleName: '',
+  roleDescription: '',
   permissions: {},
   serviceFullAccess: {},
 };

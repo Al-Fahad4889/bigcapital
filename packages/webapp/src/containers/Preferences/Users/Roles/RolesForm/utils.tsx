@@ -62,8 +62,8 @@ export const transformToObject = (role) => {
   const serviceFullAccess = getInitialServicesFullAccess(permissions);
 
   return {
-    role_name: role.name,
-    role_description: role.description,
+    roleName: role.name,
+    roleDescription: role.description,
     permissions,
     serviceFullAccess,
   };
