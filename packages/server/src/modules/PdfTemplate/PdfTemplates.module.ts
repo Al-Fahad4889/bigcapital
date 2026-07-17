@@ -14,6 +14,7 @@ import { GetOrganizationBrandingAttributesService } from './queries/GetOrganizat
 import { GetPdfTemplates } from './queries/GetPdfTemplates.service';
 import { GetPdfTemplateBrandingState } from './queries/GetPdfTemplateBrandingState.service';
 import { AttachmentsModule } from '../Attachments/Attachment.module';
+import { S3Module } from '../S3/S3.module';
 
 @Module({
   exports: [
@@ -21,7 +22,7 @@ import { AttachmentsModule } from '../Attachments/Attachment.module';
     BrandingTemplateDTOTransformer,
     GetOrganizationBrandingAttributesService,
   ],
-  imports: [TenancyDatabaseModule, AttachmentsModule],
+  imports: [TenancyDatabaseModule, AttachmentsModule, S3Module],
   controllers: [PdfTemplatesController],
   providers: [
     PdfTemplateApplication,
@@ -35,7 +36,7 @@ import { AttachmentsModule } from '../Attachments/Attachment.module';
     TransformerInjectable,
     BrandingTemplateDTOTransformer,
     GetOrganizationBrandingAttributesService,
-    GetPdfTemplateBrandingState
+    GetPdfTemplateBrandingState,
   ],
 })
 export class PdfTemplatesModule {}
