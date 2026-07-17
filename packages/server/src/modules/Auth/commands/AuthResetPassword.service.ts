@@ -8,7 +8,7 @@ import { hashPassword } from '../Auth.utils';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { events } from '@/common/events/events';
 import { IAuthResetedPasswordEventPayload } from '../Auth.interfaces';
-
+import * as moment from 'moment'
 @Injectable()
 export class AuthResetPasswordService {
   /**
