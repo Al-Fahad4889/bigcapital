@@ -17,6 +17,7 @@ import { AbilitySubject, ISubjectAbilitiesSchema, ISubjectAbilitySchema } from "
 import { PaymentReceiveAction } from "../PaymentReceived/types/PaymentReceived.types";
 import { PreferencesAction } from "../Settings/Settings.types";
 import { TravelServiceTypeAction } from "../TravelServiceTypes/TravelServiceType.types";
+import { TaxRateAction } from "../TaxRates/TaxRates.types";
 
 export const AbilitySchema: ISubjectAbilitiesSchema[] = [
   {
@@ -94,6 +95,16 @@ export const AbilitySchema: ISubjectAbilitiesSchema[] = [
       { key: TravelServiceTypeAction.CREATE, label: 'ability.create', default: true },
       { key: TravelServiceTypeAction.EDIT, label: 'ability.edit', default: true },
       { key: TravelServiceTypeAction.DELETE, label: 'ability.delete', default: true },
+    ],
+  },
+  {
+    subject: AbilitySubject.TaxRate,
+    subjectLabel: 'ability.tax_rate',
+    abilities: [
+      { key: TaxRateAction.VIEW, label: 'ability.view', default: true },
+      { key: TaxRateAction.CREATE, label: 'ability.create', default: true },
+      { key: TaxRateAction.EDIT, label: 'ability.edit', default: true },
+      { key: TaxRateAction.DELETE, label: 'ability.delete', default: true },
     ],
   },
   {

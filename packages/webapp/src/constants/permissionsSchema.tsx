@@ -18,6 +18,8 @@ import {
   SaleReceiptAction,
   VendorAction,
   VendorCreditAction,
+  TravelServiceTypeAction,
+  TaxRateAction,
 } from './abilityOption';
 
 export const ModulePermissionsStyle = {
@@ -554,6 +556,35 @@ export const getPermissionsSchema = () => [
           },
         ],
       },
+      {
+        label: intl.get('permissions.tax_rates'),
+        subject: AbilitySubject.TaxRate,
+        permissions: [
+          {
+            label: intl.get('permissions.column.view'),
+            key: TaxRateAction.View,
+            relatedColumn: PermissionColumn.View,
+          },
+          {
+            label: intl.get('permissions.column.create'),
+            key: TaxRateAction.Create,
+            relatedColumn: PermissionColumn.Create,
+            depend: [{ key: TaxRateAction.View }],
+          },
+          {
+            label: intl.get('permissions.column.edit'),
+            key: TaxRateAction.Edit,
+            relatedColumn: PermissionColumn.Edit,
+            depend: [{ key: TaxRateAction.Create }],
+          },
+          {
+            label: intl.get('permissions.column.delete'),
+            key: TaxRateAction.Delete,
+            relatedColumn: PermissionColumn.Delete,
+            depend: [{ key: TaxRateAction.Edit }],
+          },
+        ],
+      },
     ],
   },
   {
@@ -637,6 +668,48 @@ export const getPermissionsSchema = () => [
         ],
       },
     ],
+  },
+  {
+    label: intl.get('permissions.travel'),
+    type: ModulePermissionsStyle.Columns,
+    serviceFullAccess: true,
+    columns: [
+      { label: intl.get('permissions.column.view'), key: 'view' },
+      { label: intl.get('permissions.column.create'), key: 'create' },
+      { label: intl.get('permissions.column.edit'), key: 'edit' },
+      { label: intl.get('permissions.column.delete'), key: 'delete' },
+    ],
+    services: [
+      {
+        label: intl.get('permissions.travel_service_types'),
+        subject: AbilitySubject.TravelServiceType,
+        permissions: [
+          {
+            label: intl.get('permissions.column.view'),
+            key: TravelServiceTypeAction.View,
+            relatedColumn: PermissionColumn.View,
+          },
+          {
+            label: intl.get('permissions.column.create'),
+            key: TravelServiceTypeAction.Create,
+            relatedColumn: PermissionColumn.Create,
+            depend: [{ key: TravelServiceTypeAction.View }],
+          },
+          {
+            label: intl.get('permissions.column.edit'),
+            key: TravelServiceTypeAction.Edit,
+            relatedColumn: PermissionColumn.Edit,
+            depend: [{ key: TravelServiceTypeAction.Create }],
+          },
+          {
+            label: intl.get('permissions.column.delete'),
+            key: TravelServiceTypeAction.Delete,
+            relatedColumn: PermissionColumn.Delete,
+            depend: [{ key: TravelServiceTypeAction.Edit }],
+          },
+        ],
+      }
+    ]
   },
 ];
 
