@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CommonOrganizationBrandingAttributes } from '../types';
 import { TenancyContext } from '../../Tenancy/TenancyContext.service';
-import { GetAttachmentPresignedUrl } from '@/modules/Attachments/GetAttachmentPresignedUrl';
+import { S3_CLIENT } from '@/modules/S3/S3.module';
+import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class GetOrganizationBrandingAttributesService {
   constructor(
     private readonly tenancyContext: TenancyContext,
-    private readonly getPresignedUrlService: GetAttachmentPresignedUrl,
+    @Inject(S3_CLIENT) private readonly s3Client: S3Client,
+    private readonly configService: ConfigService,
   ) {}
 
   /**
@@ -26,8 +29,15 @@ export class GetOrganizationBrandingAttributesService {
     let companyLogoUri: string | null = null;
     if (companyLogoKey) {
       try {
-        companyLogoUri =
-          await this.getPresignedUrlService.getPresignedUrl(companyLogoKey);
+        const command = new GetObjectCommand({
+          Bucket: this.configService.get('s3').bucket,
+          Key: companyLogoKey,
+        });
+        const response = await this.s3Client.send(command);
+        const bytes = await response.Body.transformToByteArray();
+        const base64 = Buffer.from(bytes).toString('base64');
+        const mimeType = response.ContentType || 'image/png';
+        companyLogoUri = `data:${mimeType};base64,${base64}`;
       } catch {
         companyLogoUri = null;
       }
