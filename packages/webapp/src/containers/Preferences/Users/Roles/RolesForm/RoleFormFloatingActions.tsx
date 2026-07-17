@@ -44,7 +44,7 @@ const RoleFormFloatingActionsRoot = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #fff;
+  background: transparent;
   padding: 14px 18px;
   border-top: 1px solid #d2dde2;
   box-shadow: 0px -1px 4px 0px rgb(0 0 0 / 5%);

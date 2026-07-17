@@ -393,7 +393,7 @@ const ModulePermissionsRoot = styled(Card)`
 `;
 
 const ModulePermissionHead = styled.div`
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid #dddada;
   height: 38px;
   padding: 0 15px;
   display: flex;
@@ -421,7 +421,7 @@ const ModulePermissionsTableRoot = styled.table`
         min-width: 70px;
       }
       &.full {
-        background-color: #fcfcfc;
+        background-color: transparent;
       }
     }
   }
@@ -459,7 +459,7 @@ const ModulePermissionsTableRoot = styled.table`
       }
 
       &.full-access-permission {
-        background-color: #fcfcfc;
+        background-color: transparent;
       }
 
       &.full-access-permission,
