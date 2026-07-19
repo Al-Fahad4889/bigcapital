@@ -3,7 +3,7 @@ import { Transformer } from './Transformer';
 import { Global, Injectable } from '@nestjs/common';
 import { TenancyContext } from '../Tenancy/TenancyContext.service';
 import { TransformerContext } from './Transformer.types';
-
+import { ClsService } from 'nestjs-cls';
 @Injectable()
 export class TransformerInjectable {
   /**
@@ -13,7 +13,8 @@ export class TransformerInjectable {
   constructor(
     private readonly tenancyContext: TenancyContext,
     private readonly i18n: I18nService,
-  ) {}
+    private readonly clsService: ClsService,
+  ) { }
 
   /**
    * Retrieves the application context of all tenant transformers.
@@ -22,11 +23,14 @@ export class TransformerInjectable {
   async getApplicationContext(): Promise<TransformerContext> {
     const tenant = await this.tenancyContext.getTenant(true);
     const organization = tenant.metadata;
+    const ability = this.clsService.get('ability');
+    const canReadUnmaskedPII = ability?.can('readUnmasked', 'PII') ?? false;
 
     return {
       organization,
       i18n: this.i18n,
       exportAls: {},
+      canReadUnmaskedPII,
     };
   }
 

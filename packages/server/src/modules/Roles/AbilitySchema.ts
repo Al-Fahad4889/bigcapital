@@ -18,6 +18,8 @@ import { PaymentReceiveAction } from "../PaymentReceived/types/PaymentReceived.t
 import { PreferencesAction } from "../Settings/Settings.types";
 import { TravelServiceTypeAction } from "../TravelServiceTypes/TravelServiceType.types";
 import { TaxRateAction } from "../TaxRates/TaxRates.types";
+import { IdentityDocumentAction } from "../IdentityDocuments/IdentityDocuments.types";
+import { BookingAction } from '../Bookings/Bookings.types';
 
 export const AbilitySchema: ISubjectAbilitiesSchema[] = [
   {
@@ -34,6 +36,19 @@ export const AbilitySchema: ISubjectAbilitiesSchema[] = [
         key: AccountAction.TransactionsLocking,
         label: 'ability.transactions_locking',
       },
+    ],
+  },
+  {
+    subject: AbilitySubject.PII,
+    subjectLabel: 'ability.pii',
+    abilities: [
+      { key: IdentityDocumentAction.VIEW, label: 'ability.view', default: true },
+      { key: IdentityDocumentAction.CREATE, label: 'ability.create', default: true },
+      { key: IdentityDocumentAction.EDIT, label: 'ability.edit', default: true },
+      { key: IdentityDocumentAction.DELETE, label: 'ability.delete', default: true },
+    ],
+    extraAbilities: [
+      { key: 'readUnmasked', label: 'ability.pii.read_unmasked', default: true },
     ],
   },
   {
@@ -325,6 +340,16 @@ export const AbilitySchema: ISubjectAbilitiesSchema[] = [
         key: PreferencesAction.Mutate,
         label: 'ability.mutate_system_preferences',
       },
+    ],
+  },
+  {
+    subject: AbilitySubject.Booking,
+    subjectLabel: 'ability.booking',
+    abilities: [
+      { key: BookingAction.VIEW, label: 'ability.view', default: true },
+      { key: BookingAction.CREATE, label: 'ability.create', default: true },
+      { key: BookingAction.EDIT, label: 'ability.edit', default: true },
+      { key: BookingAction.DELETE, label: 'ability.delete', default: true },
     ],
   },
 ];

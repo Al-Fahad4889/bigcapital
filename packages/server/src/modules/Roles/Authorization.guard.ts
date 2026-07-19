@@ -4,7 +4,7 @@ import {
   ExecutionContext,
   Inject,
 } from '@nestjs/common';
-import { Request } from 'express';
+import { request, Request } from 'express';
 import { Reflector } from '@nestjs/core';
 import { ClsService } from 'nestjs-cls';
 import { ABILITIES_CACHE, getAbilityForRole } from './TenantAbilities';
@@ -40,9 +40,9 @@ export class AuthorizationGuard implements CanActivate {
       (request as any).ability = ability;
       ABILITIES_CACHE.set(user.id, ability);
     }
+    this.clsService.set('ability', (request as any).ability);
     return true;
   }
-
   async getAbilityForUser() {
     const userId = this.clsService.get('userId');
     const tenantUser = await this.tenantUserModel()

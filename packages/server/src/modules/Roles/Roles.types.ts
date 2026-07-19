@@ -10,7 +10,7 @@ export const actions = [
   'update',
   'delete',
 ] as const;
-export const subjects = ['Article', 'all'] as const;
+export const subjects = ['Article', 'PII', 'all'] as const;
 
 export type Abilities = [
   typeof actions[number],
@@ -62,6 +62,8 @@ export enum AbilitySubject {
   Project = 'Project',
   TaxRate = 'TaxRate',
   TravelServiceType = 'TravelServiceType',
+  PII = 'PII',
+  Booking = 'Booking',
 }
 
 export interface IRoleCreatedPayload {

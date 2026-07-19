@@ -5,4 +5,5 @@ export interface TransformerContext {
   organization: TenantMetadata;
   i18n: I18nService;
   exportAls: Record<string, any>;
+  canReadUnmaskedPII?: boolean;
 }
