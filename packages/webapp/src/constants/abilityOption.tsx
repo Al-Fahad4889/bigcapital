@@ -24,6 +24,11 @@ export const AbilitySubject = {
   TaxRate: 'TaxRate',
   BankRule: 'BankRule',
   TravelServiceType: 'TravelServiceType',
+  Passenger: 'Passenger',
+  Booking: 'Booking',
+  Manifest: 'Manifest',
+  TravelDocument: 'TravelDocument',
+  PII: 'PII',
 };
 
 export const ItemAction = {
@@ -209,4 +214,27 @@ export const TravelServiceTypeAction = {
   Create: 'Create',
   Edit: 'Edit',
   Delete: 'Delete',
+};
+
+export const PassengerAction = {
+  View: 'View',
+  Create: 'Create',
+  Edit: 'Edit',
+  Delete: 'Delete',
+};
+
+export const BookingAction = {
+  View: 'View',
+  Create: 'Create',
+  Edit: 'Edit',
+  Delete: 'Delete',
+};
+
+export const ManifestAction = {
+  View: 'View',
+  Create: 'Create',
+};
+
+export const TravelDocumentAction = {
+  View: 'View',
 };

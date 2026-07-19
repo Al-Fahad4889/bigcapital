@@ -39,3 +39,7 @@ export * from './warehousesTransfers';
 export * from './plaid';
 export * from './FinancialReports';
 export * from './apiKeys';
+export * from './bookings';
+export * from './passengers';
+export * from './manifests';
+export * from './travelDocuments';

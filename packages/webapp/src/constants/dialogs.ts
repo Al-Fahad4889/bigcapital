@@ -96,4 +96,6 @@ export enum DialogsName {
   StripeSetup = 'StripeSetup',
   ApiKeysGenerate = 'api-keys-generate',
   TravelServiceTypeForm = 'travel-service-type-form',
+  BookingForm = 'booking-form',
+  PassengerForm = 'passenger-form',
 }

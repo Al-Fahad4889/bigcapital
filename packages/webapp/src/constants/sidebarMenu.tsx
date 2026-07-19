@@ -25,6 +25,9 @@ import {
   CashflowAction,
   PreferencesAbility,
   TaxRateAction,
+  BookingAction,
+  PassengerAction,
+  ManifestAction,
 } from '@/constants/abilityOption';
 import { DialogsName } from './dialogs';
 import { Legal_About_Path } from './routes';
@@ -559,6 +562,46 @@ export const SidebarMenu = [
             permission: {
               subject: AbilitySubject.Expense,
               ability: ExpenseAction.Create,
+            },
+          },
+        ],
+      },
+    ],
+  },
+  // ---------------------
+  // # Travel Management
+  // ---------------------
+  {
+    text: <T id={'sidebar.travel'} />,
+    type: ISidebarMenuItemType.Overlay,
+    overlayId: ISidebarMenuOverlayIds.Travel,
+    children: [
+      {
+        text: <T id={'sidebar.travel'} />,
+        type: ISidebarMenuItemType.Group,
+        children: [
+          {
+            text: <T id={'sidebar.bookings'} />,
+            href: '/bookings',
+            type: ISidebarMenuItemType.Link,
+            permission: {
+              subject: AbilitySubject.Booking,
+              ability: BookingAction.View,
+            },
+          },
+        ],
+      },
+      {
+        text: <T id={'sidebar.new_tasks'} />,
+        type: ISidebarMenuItemType.Group,
+        children: [
+          {
+            text: <T id={'sidebar.new_booking'} />,
+            type: ISidebarMenuItemType.Link,
+            href: '/bookings/new',
+            permission: {
+              subject: AbilitySubject.Booking,
+              ability: BookingAction.Create,
             },
           },
         ],

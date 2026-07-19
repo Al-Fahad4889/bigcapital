@@ -248,6 +248,26 @@ export const TravelServiceTypes = {
   TRAVEL_SERVICE_TYPES: 'TRAVEL_SERVICE_TYPES',
 };
 
+export const Passengers = {
+  PASSENGERS: 'PASSENGERS',
+  PASSENGER: 'PASSENGER',
+};
+
+export const Bookings = {
+  BOOKINGS: 'BOOKINGS',
+  BOOKING: 'BOOKING',
+};
+
+export const Manifests = {
+  MANIFESTS: 'MANIFESTS',
+  MANIFEST: 'MANIFEST',
+};
+
+export const TravelDocuments = {
+  TRAVEL_DOCUMENTS: 'TRAVEL_DOCUMENTS',
+  TRAVEL_DOCUMENT: 'TRAVEL_DOCUMENT',
+};
+
 export default {
   ...Authentication,
   ...ACCOUNTS,
@@ -285,4 +305,8 @@ export default {
   ...EXCHANGE_RATE,
   ...API_KEYS,
   ...TravelServiceTypes,
+  ...Passengers,
+  ...Bookings,
+  ...Manifests,
+  ...TravelDocuments,
 };
