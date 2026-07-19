@@ -34,7 +34,7 @@ import { InvoiceSendMailDrawer } from '@/containers/Sales/Invoices/InvoiceSendMa
 import { EstimateSendMailDrawer } from '@/containers/Sales/Estimates/EstimateSendMailDrawer';
 import { ReceiptSendMailDrawer } from '@/containers/Sales/Receipts/ReceiptSendMailDrawer';
 import { PaymentReceivedSendMailDrawer } from '@/containers/Sales/PaymentsReceived/PaymentReceivedMailDrawer';
-
+import BookingDetailDrawer from '@/containers/Bookings/drawers/BookingDetailDrawer';
 /**
  * Drawers container of the dashboard.
  */
@@ -86,6 +86,7 @@ export default function DrawersContainer() {
       <EstimateSendMailDrawer name={DRAWERS.ESTIMATE_SEND_MAIL} />
       <ReceiptSendMailDrawer name={DRAWERS.RECEIPT_SEND_MAIL} />
       <PaymentReceivedSendMailDrawer name={DRAWERS.PAYMENT_RECEIVED_SEND_MAIL} />
+      <BookingDetailDrawer name={DRAWERS.BOOKING_DETAILS} />
     </div>
   );
 }

@@ -32,6 +32,8 @@ import { BankAccountAlerts } from '@/containers/CashFlow/AccountTransactions/ale
 import { BrandingTemplatesAlerts } from '../BrandingTemplates/alerts/BrandingTemplatesAlerts';
 import { PaymentMethodsAlerts } from '../Preferences/PaymentMethods/alerts/PaymentMethodsAlerts';
 import TravelServiceTypeAlerts from '@/containers/TravelServiceTypes/alerts';
+import BookingAlerts from '@/containers/Bookings/alerts';
+import PassengerAlerts from '@/containers/Passengers/alerts';
 
 export default [
   ...AccountsAlerts,
@@ -67,4 +69,6 @@ export default [
   ...BankAccountAlerts,
   ...BrandingTemplatesAlerts,
   ...PaymentMethodsAlerts,
+  ...BookingAlerts,
+  ...PassengerAlerts,
 ];

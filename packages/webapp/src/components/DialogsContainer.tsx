@@ -64,6 +64,7 @@ import ItemBulkDeleteDialog from '@/containers/Dialogs/Items/ItemBulkDeleteDialo
 import CustomerBulkDeleteDialog from '@/containers/Dialogs/Customers/CustomerBulkDeleteDialog';
 import VendorBulkDeleteDialog from '@/containers/Dialogs/Vendors/VendorBulkDeleteDialog';
 import TravelServiceTypeDialog from '@/containers/TravelServiceTypes/dialogs/TravelServiceTypeDialog/index';
+import PassengerFormDialog from '@/containers/Passengers/dialogs/PassengerFormDialog';
 /**
  * Dialogs container.
  */
@@ -186,6 +187,7 @@ export default function DialogsContainer() {
       <ApiKeysGenerateDialog
         dialogName={DialogsName.ApiKeysGenerate}
       />
+      <PassengerFormDialog dialogName={DialogsName.PassengerForm} />
     </div>
   );
 }

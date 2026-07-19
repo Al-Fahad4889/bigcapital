@@ -1239,6 +1239,30 @@ export const getDashboardRoutes = () => [
     subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
   },
   {
+    path: '/bookings/:id/edit',
+    component: lazy(() => import('@/containers/Bookings/pages/BookingFormPage')),
+    name: 'booking-edit',
+    pageTitle: intl.get('bookings.label.edit_booking'),
+    sidebarExpand: false,
+    backLink: true,
+    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
+  },
+  {
+    path: '/bookings/new',
+    component: lazy(() => import('@/containers/Bookings/pages/BookingFormPage')),
+    name: 'booking-new',
+    pageTitle: intl.get('bookings.label.new_booking'),
+    sidebarExpand: false,
+    backLink: true,
+    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
+  },
+  {
+    path: '/bookings',
+    component: lazy(() => import('@/containers/Bookings/pages/BookingsList')),
+    pageTitle: intl.get('bookings.label.booking_list'),
+    subscriptionActive: [SUBSCRIPTION_TYPE.MAIN],
+  },
+  {
     path: '/bank-rules',
     component: lazy(
       () => import('@/containers/Banking/Rules/RulesList/RulesLandingPage'),
