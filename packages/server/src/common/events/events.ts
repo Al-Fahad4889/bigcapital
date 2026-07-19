@@ -725,6 +725,12 @@ export const events = {
     onAssigningDefault: 'onPdfTemplateAssigningDefault',
   },
 
+  // Booking.
+  booking: {
+    onCreated: 'onBookingCreated',
+    onConfirmed: 'onBookingConfirmed',
+  },
+
   // Payment method.
   paymentMethod: {
     onEditing: 'onPaymentMethodEditing',

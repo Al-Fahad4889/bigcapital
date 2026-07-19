@@ -106,7 +106,12 @@ import { SocketModule } from '../Socket/Socket.module';
 import { ThrottlerGuard } from '@nestjs/throttler';
 import { AppThrottleModule } from './AppThrottle.module';
 import { TravelServiceTypesModule } from '../TravelServiceTypes/TravelServiceType.module';
-
+import { EncryptionModule } from '../Encryption/Encryption.module';
+import { IdentityDocumentsModule } from '../IdentityDocuments/IdentityDocuments.module';
+import { PassengersModule } from '../Passengers/Passengers.module';
+import { BookingsModule } from '../Bookings/Bookings.module';
+import { ManifestsModule } from '../Manifests/Manifests.module';
+import { TravelDocumentsModule } from '../TravelDocuments/TravelDocuments.module';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -260,6 +265,12 @@ import { TravelServiceTypesModule } from '../TravelServiceTypes/TravelServiceTyp
     ContactsModule,
     SocketModule,
     ExchangeRatesModule,
+    EncryptionModule,
+    IdentityDocumentsModule,
+    PassengersModule,
+    BookingsModule,
+    ManifestsModule,
+    TravelDocumentsModule,
   ],
   controllers: [AppController],
   providers: [
