@@ -1,5 +1,26 @@
 import { IsString, IsInt, IsBoolean, IsOptional, MaxLength } from 'class-validator';
+import { Transform } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
+
+/**
+ * Coerce common boolean encodings (true/false, 1/0, "1"/"0") for validation.
+ * MySQL boolean columns often round-trip as 0/1 through the client.
+ */
+const toBoolean = ({ value }: { value: unknown }) => {
+  if (value === undefined || value === null || value === '') {
+    return value;
+  }
+  if (typeof value === 'boolean') {
+    return value;
+  }
+  if (value === 1 || value === '1' || value === 'true') {
+    return true;
+  }
+  if (value === 0 || value === '0' || value === 'false') {
+    return false;
+  }
+  return value;
+};
 
 export class CreateTravelServiceTypeDto {
   @IsString()
@@ -16,6 +37,7 @@ export class CreateTravelServiceTypeDto {
   taxRateId?: number;
 
   @IsOptional()
+  @Transform(toBoolean)
   @IsBoolean()
   active?: boolean;
 }
@@ -36,6 +58,7 @@ export class EditTravelServiceTypeDto {
   taxRateId?: number;
 
   @IsOptional()
+  @Transform(toBoolean)
   @IsBoolean()
   active?: boolean;
 }

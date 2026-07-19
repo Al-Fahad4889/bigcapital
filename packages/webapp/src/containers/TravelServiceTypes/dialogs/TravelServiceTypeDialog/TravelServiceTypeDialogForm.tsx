@@ -14,7 +14,7 @@ import {
   CreateTravelServiceTypeSchema,
   EditTravelServiceTypeSchema,
 } from './TravelServiceType.schema';
-import { compose } from '@/utils';
+import { compose, parseBoolean } from '@/utils';
 
 const defaultInitialValues = {
   name: '',
@@ -29,7 +29,8 @@ function transformToForm(travelServiceType) {
     name: travelServiceType.name || '',
     description: travelServiceType.description || '',
     taxRateId: travelServiceType.taxRateId || '',
-    active: travelServiceType.active ?? true,
+    // MySQL/Objection often returns boolean columns as 0/1; coerce for the API.
+    active: parseBoolean(travelServiceType.active, true),
   };
 }
 
@@ -57,6 +58,7 @@ function TravelServiceTypeDialogForm({
     const form = {
       ...values,
       taxRateId: values.taxRateId || null,
+      active: parseBoolean(values.active, true),
     };
 
     const onSuccess = () => {
