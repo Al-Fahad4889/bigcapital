@@ -6,7 +6,7 @@ import {
 export interface InvoiceMailReceiptPreviewProps
   extends Partial<InvoiceMailReceiptProps> {}
 
-const receiptMessage = `Hi Ahmed,
+const receiptMessage = `Hi Fahad,
 
 Here’s invoice INV-0002 for AED 0.00
 
@@ -25,7 +25,7 @@ export function InvoiceMailReceiptPreview(
 ) {
   const propsWithDefaults = {
     message: receiptMessage,
-    companyName: 'Bigcapital Technology, Inc.',
+    companyName: 'Travel Books Technology, Inc.',
     total: '$1,000.00',
     invoiceNumber: 'INV-0001',
     dueDate: '2 Oct 2024',

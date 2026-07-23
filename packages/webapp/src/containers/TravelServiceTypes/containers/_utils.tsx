@@ -18,7 +18,7 @@ const descriptionAccessor = (type) => {
 const vatRateAccessor = (type) => {
   return (
     <Tag minimal={true} round={false} intent={Intent.NONE} interactive={true}>
-      {type.taxRate?.name ?? type.taxRateId ?? 'None'}
+      {type.tax_rate?.name ?? type.tax_rate_id ?? 'None'}
     </Tag>
   );
 };

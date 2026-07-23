@@ -28,7 +28,7 @@ function transformToForm(travelServiceType) {
   return {
     name: travelServiceType.name || '',
     description: travelServiceType.description || '',
-    taxRateId: travelServiceType.taxRateId || '',
+    taxRateId: travelServiceType.tax_rate_id || travelServiceType.taxRateId || '',
     // MySQL/Objection often returns boolean columns as 0/1; coerce for the API.
     active: parseBoolean(travelServiceType.active, true),
   };
