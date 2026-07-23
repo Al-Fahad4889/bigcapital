@@ -82,14 +82,16 @@ function TaxRateFormDialogForm({
     };
     // Handle request error.
     const handleError = (error) => {
-      const {
-        response: {
-          data: { errors },
-        },
-      } = error;
-
-      const errorsTransformed = transformApiErrors(errors);
-      setErrors({ ...errorsTransformed });
+      const errors = error?.response?.data?.errors;
+      if (Array.isArray(errors)) {
+        const errorsTransformed = transformApiErrors(errors);
+        setErrors({ ...errorsTransformed });
+      } else {
+        AppToaster.show({
+          message: 'An unexpected error occurred.',
+          intent: Intent.DANGER,
+        });
+      }
       setSubmitting(false);
     };
     if (isNewMode) {

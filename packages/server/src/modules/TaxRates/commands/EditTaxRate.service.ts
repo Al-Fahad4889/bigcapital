@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Knex } from 'knex';
-import { omit } from 'lodash';
 import {
-  IEditTaxRateDTO,
   ITaxRateEditedPayload,
   ITaxRateEditingPayload,
 } from '../TaxRates.types';
@@ -61,28 +59,9 @@ export class EditTaxRateService {
     editTaxRateDTO: EditTaxRateDto,
     trx?: Knex.Transaction,
   ) {
-    const isTaxDTOChanged = this.isTaxRateDTOChanged(
-      oldTaxRate,
-      editTaxRateDTO,
-    );
-    if (isTaxDTOChanged) {
-      // Soft deleting the old tax rate.
-      await this.taxRateModel().query(trx).findById(oldTaxRate.id).delete();
-
-      // Create a new tax rate with new edited data.
-      return this.taxRateModel()
-        .query(trx)
-        .insertAndFetch({
-          ...omit(oldTaxRate, ['id']),
-          ...editTaxRateDTO,
-        });
-    } else {
-      return this.taxRateModel()
-        .query(trx)
-        .patchAndFetchById(oldTaxRate.id, {
-          ...editTaxRateDTO,
-        });
-    }
+     return this.taxRateModel().query(trx).patchAndFetchById(oldTaxRate.id, {
+        ...editTaxRateDTO,
+    });
   }
 
   /**

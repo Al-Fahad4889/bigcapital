@@ -129,7 +129,7 @@ const CompoundFormGroup = styled(FFormGroup)`
 `;
 
 const EditWarningWrap = styled(`div`)`
-  background: #fcf8ec;
+  background: transparent;
   margin-left: -20px;
   margin-right: -20px;
   padding: 14px 20px;
