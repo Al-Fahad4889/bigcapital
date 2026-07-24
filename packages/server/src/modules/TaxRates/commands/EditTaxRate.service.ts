@@ -27,7 +27,7 @@ export class EditTaxRateService {
 
     @Inject(TaxRateModel.name)
     private readonly taxRateModel: TenantModelProxy<typeof TaxRateModel>,
-  ) {}
+  ) { }
 
   /**
    * Determines whether the tax rate, name or code have been changed.
@@ -59,8 +59,15 @@ export class EditTaxRateService {
     editTaxRateDTO: EditTaxRateDto,
     trx?: Knex.Transaction,
   ) {
-     return this.taxRateModel().query(trx).patchAndFetchById(oldTaxRate.id, {
+    const isChanged = this.isTaxRateDTOChanged(oldTaxRate, editTaxRateDTO);
+
+    if (isChanged) {
+      return this.taxRateModel().query(trx).insertAndFetch({
         ...editTaxRateDTO,
+      });
+    }
+    return this.taxRateModel().query(trx).patchAndFetchById(oldTaxRate.id, {
+      ...editTaxRateDTO,
     });
   }
 

@@ -4,12 +4,10 @@ import { runAfterTransaction } from '@/modules/Tenancy/TenancyDB/TransactionsHoo
 import { events } from '@/common/events/events';
 import { SyncItemTaxRateOnEditTaxRate } from '../SyncItemTaxRateOnEditTaxRate';
 import { OnEvent } from '@nestjs/event-emitter';
-import { SyncTravelServiceTypeTaxRateOnEditTaxRate } from '../SyncTravelServiceTypeTaxRateOnEditTaxRate';
 @Injectable()
 export class SyncItemTaxRateOnEditTaxSubscriber {
   constructor(
     private readonly syncItemRateOnEdit: SyncItemTaxRateOnEditTaxRate,
-    private readonly syncTravelServiceTypeTaxRateOnEdit: SyncTravelServiceTypeTaxRateOnEditTaxRate,
   ) {}
 
   /**
@@ -28,10 +26,6 @@ export class SyncItemTaxRateOnEditTaxSubscriber {
         taxRate.id,
       );
       await this.syncItemRateOnEdit.updateItemSellTaxRate(
-        oldTaxRate.id,
-        taxRate.id,
-      );
-      await this.syncTravelServiceTypeTaxRateOnEdit.updateTravelServiceTypeTaxRate(
         oldTaxRate.id,
         taxRate.id,
       );
