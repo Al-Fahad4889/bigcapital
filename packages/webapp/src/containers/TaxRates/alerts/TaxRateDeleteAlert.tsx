@@ -44,18 +44,15 @@ function TaxRateDeleteAlert({
         });
         closeDrawer(DRAWERS.TAX_RATE_DETAILS);
       })
-      .catch(
-        ({
-          response: {
-            data: { errors },
-          },
-        }) => {
-          AppToaster.show({
-            message: 'Something went wrong.',
-            intent: Intent.DANGER,
-          });
-        },
-      )
+      .catch((error) => {
+        const errorType = error?.response?.data?.errors?.[0]?.type;
+        const message =
+          errorType === 'TAX_RATE_HAS_RELATED_TRANSACTIONS'
+            ? 'Cannot delete the tax rate because it is associated with existing transactions. Consider inactivating it instead.'
+            : 'Something went wrong.';
+
+        AppToaster.show({ message, intent: Intent.DANGER });
+      })
       .finally(() => {
         closeAlert(name);
       });

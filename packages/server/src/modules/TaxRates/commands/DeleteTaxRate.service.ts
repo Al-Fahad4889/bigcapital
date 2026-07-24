@@ -46,7 +46,14 @@ export class DeleteTaxRateService {
         trx,
       } as ITaxRateDeletingPayload);
 
-      await this.taxRateModel().query(trx).findById(taxRateId).delete();
+      await this.taxRateModel()
+        .query(trx)
+        .findById(taxRateId)
+        .deleteIfNoRelations({
+          type: 'TAX_RATE_HAS_RELATED_TRANSACTIONS',
+          message:
+            'Cannot delete the tax rate because it is associated with existing transactions. Consider inactivating it instead.',
+        });
 
       // Triggers `onTaxRateDeleted` event.
       await this.eventEmitter.emitAsync(events.taxRates.onDeleted, {
