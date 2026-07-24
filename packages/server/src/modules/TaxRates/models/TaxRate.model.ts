@@ -61,6 +61,84 @@ export class TaxRateModel extends BaseModel {
    * Relationship mapping.
    */
   static get relationMappings() {
-    return {};
+    const { ItemEntry } = require('../../TransactionItemEntry/models/ItemEntry');
+    const { Item } = require('../../Items/models/Item');
+    const { TaxRateTransaction } = require('./TaxRateTransaction.model');
+    const { AccountTransaction } = require('../../Accounts/models/AccountTransaction.model');
+    const { TravelServiceType } = require('../../TravelServiceTypes/models/TravelServiceType.model');
+
+    return {
+      /**
+       * Items that use this tax rate as sell tax rate.
+       */
+      itemsViaSellTaxRate: {
+        relation: Model.HasManyRelation,
+        modelClass: Item,
+        join: {
+          from: 'tax_rates.id',
+          to: 'items.sellTaxRateId',
+        },
+      },
+
+      /**
+       * Items that use this tax rate as purchase tax rate.
+       */
+      itemsViaPurchaseTaxRate: {
+        relation: Model.HasManyRelation,
+        modelClass: Item,
+        join: {
+          from: 'tax_rates.id',
+          to: 'items.purchaseTaxRateId',
+        },
+      },
+
+      /**
+       * Item entries referencing this tax rate.
+       */
+      itemEntries: {
+        relation: Model.HasManyRelation,
+        modelClass: ItemEntry,
+        join: {
+          from: 'tax_rates.id',
+          to: 'items_entries.taxRateId',
+        },
+      },
+
+      /**
+       * Tax rate transactions.
+       */
+      taxRateTransactions: {
+        relation: Model.HasManyRelation,
+        modelClass: TaxRateTransaction,
+        join: {
+          from: 'tax_rates.id',
+          to: 'tax_rate_transactions.taxRateId',
+        },
+      },
+
+      /**
+       * Account transactions referencing this tax rate.
+       */
+      accountTransactions: {
+        relation: Model.HasManyRelation,
+        modelClass: AccountTransaction,
+        join: {
+          from: 'tax_rates.id',
+          to: 'accounts_transactions.taxRateId',
+        },
+      },
+
+      /**
+       * Travel service types referencing this tax rate.
+       */
+      travelServiceTypes: {
+        relation: Model.HasManyRelation,
+        modelClass: TravelServiceType,
+        join: {
+          from: 'tax_rates.id',
+          to: 'travel_service_types.taxRateId',
+        },
+      },
+    };
   }
 }
